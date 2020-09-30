@@ -1,0 +1,31 @@
+<properties xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:oxf="http://www.orbeon.com/oxf/processors">
+
+    <!--********************************Les propriétés existantes d'orbeon********************************-->
+
+    <!-- Le chemin vers la collection fr qui va abriter les formulaires qui vont être traités par le form-runner d'orbeon
+     (avec id et mdp de connexion)-->
+	<property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri"
+        value="http://admin:@exist:8080/exist/rest/db/orbeon/fr"/>
+
+    <!-- L'url vers coltorb pour la redirection des services orbeon (bien indiquer l'adresse du serveur et pas l'url accédée) -->
+    <property as="xs:anyURI" name="oxf.url-rewriting.service.base-uri"
+        value="http://localhost:8181/rmesstromae"/>
+
+    <!--********************************Les propriétés créées par coltrane********************************-->
+
+    <!-- L'url de base pour la redirection vers l'url form runner -->
+    <property as="xs:anyURI" name="url-orbeon" value="http://localhost:8181/rmesstromae"/>
+	<property as="xs:anyURI" name="url-orbeon-s" value="http://localhost:8181/rmesstromae"/>
+
+    <!-- L'adresse du serveur exist (avec id et mdp de connexion) -->
+	<property as="xs:anyURI" name="server-exist"
+        value="http://admin:@exist:8080/exist"/>
+	<property as="xs:anyURI" name="server-exist-orbeon"
+        value="http://admin:@exist:8080/exist"/>
+
+    <!-- Affichage du numéro de version -->
+    <property as="xs:boolean" name="affichage-numero" value="false"/>
+	
+	<property as="xs:string" name="lien-deconnexion" value="/logout"/>
+</properties>
