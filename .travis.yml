@@ -1,0 +1,25 @@
+language: java
+jdk:
+- openjdk8
+services:
+- docker
+before_script:
+- curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+
+script:
+- docker build -t bwerquin/stromae .
+
+deploy:
+  - skip_cleanup: true
+    provider: script
+    script:
+      echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      && docker push bwerquin/stromae
+    on:
+      branch: master
+
+  - skip_cleanup: true
+    provider: script
+    script: kubectl --token $K8S_TOKEN --server $K8S_SERVER --insecure-skip-tls-verify rollout restart deployment/stromae -n pogues-eno
+    on:
+      branch: master
