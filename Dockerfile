@@ -5,8 +5,8 @@ RUN rm -rf $CATALINA_HOME/webapps/*
 ADD demo/ $CATALINA_HOME/webapps/
 ADD ./target/*.war $CATALINA_HOME/webapps/questionnaire.war
 
-COPY ./scripts/env.sh $CATALINA_HOME
-COPY ./scripts/.env $CATALINA_HOME
+COPY ./script/env.sh $CATALINA_HOME
+COPY ./script/.env $CATALINA_HOME
 
 CMD ["/bin/bash", "-c", "$CATALINA_HOME/env.sh && catalina.sh run"]
 
