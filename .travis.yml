@@ -8,7 +8,6 @@ sudo: required
 
 env:
   - ORBEON_URL_CE=https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2017.1-ce/orbeon-2017.1.201706222342-CE.zip
-  - ORBEON_URL_PE=https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2017.1.1-ce/orbeon-2017.1.1.201709122316-PE.zip
 
 script:
   - chmod +x ./script/getCleanedOrbeon.sh && ./script/getCleanedOrbeon.sh $ORBEON_URL_CE
