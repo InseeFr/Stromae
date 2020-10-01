@@ -13,4 +13,11 @@ env:
 script:
   - ./script/getCleanedOrbeon.sh $ORBEON_URL_CE
   - mvn clean install
-  - docker build -t inseefr/stromae .
+  - docker build -t laurentc35/stromae .
+
+deploy:
+  - skip_cleanup: true
+    provider: script
+    script:
+      echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      && docker push laurentc35/stromae
