@@ -1,0 +1,47 @@
+<controller xmlns="http://www.orbeon.com/oxf/controller" matcher="regexp">
+
+    <!-- Redirection for internal and external users, refers to form-runner -->
+    <page path="/(repondre|visualiser)/([^/]+)/([^/]+)">
+        <action action="services/redirect.xpl"/>
+    </page>
+
+    <!-- The redirection to the portal for assistance -->
+    <page path="/contacter/([^/]+)/([^/]+)">
+        <action action="services/assistance.xpl"/>
+    </page>
+
+    <!-- View pdf -->
+    <page path="/exporter/([^/]+)/([^/]+)">
+        <action action="services/pdf/export.xpl"/>
+    </page>
+
+    <!-- Sending of the pdf in database -->
+    <page path="/expedier/([^/]+)/([^/]+)">
+        <action action="services/pdf/send.xpl"/>
+    </page>
+
+    <!-- Logout -->
+    <page path="/logout" view="services/logout.xpl" />
+
+    <!-- Error management -->
+    <page path="/error">
+        <action action="services/error.xpl"/>
+    </page>
+
+    <!-- ==== Pages ================================================================================================ -->
+
+    <page path="/fr/.*" model="apps/fr/page-flow.xml" public-methods="#all"/>
+
+    <!-- ==== Forward application services ========================================================================= -->
+
+    <service path="/([^/]+)/service/.+" model="apps/${1}/page-flow.xml" public-methods="#all"/>
+
+    <!-- ==== Files ================================================================================================ -->
+
+    <files path="(?!/([^/]+)/service/).+\.(gif|css|pdf|json|js|coffee|map|png|jpg|xsd|htc|ico|swf|html|htm|txt)"/>
+
+    <!-- ==== Epilogue and handlers ================================================================================ -->
+
+    <epilogue url="/config/epilogue.xpl"/>
+
+</controller>
