@@ -17,3 +17,11 @@ deploy:
     script:
       echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
       && docker push laurentc35/stromae
+    on:
+      branch: master
+
+  - skip_cleanup: true
+    provider: script
+    script: kubectl --token $K8S_TOKEN --server $K8S_SERVER --insecure-skip-tls-verify rollout restart deployment/stromae -n pogues-eno
+    on:
+      branch: master
