@@ -11,7 +11,7 @@ import org.apache.log4j.spi.LoggingEvent;
 /**
  * Log4j filter allowing to filter log messages according to a pattern 
  * in the context of paradata exploitation. 
- * This filter can be activated by adding <filter class="en.insee.orbeon.logging.CustomFilterParadata" /> 
+ * This filter can be activated by adding <filter class="fr.insee.stroame.logging.CustomFilterParadata" /> 
  * in the appender's conf
  * @author Benjamin Bour
  */

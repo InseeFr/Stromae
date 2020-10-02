@@ -125,21 +125,22 @@ public class AddSessionDataFilter implements Filter {
 
 	public static String getStromaeUrl(HttpServletRequest request) {
 		try {
-			String urlRequest=null;
-			String refererHeader = request.getHeader("Referer");
-			if(refererHeader != null) {
-				urlRequest = refererHeader.contains("auth/realms") && refererHeader.contains("redirect_uri=")
-						?
-								refererHeader.split("redirect_uri=")[1]
-										.replaceAll("%2F", "/")
-										.replaceAll("%3A", ":")
-										.replaceAll("%3D", "=")
-										.replaceAll("%3F", "?")
-										: 
-											refererHeader;
-			} else {
-				urlRequest = request.getRequestURL().toString()+"?"+request.getQueryString();
+			String urlRequest = request.getRequestURL().toString()+"?"+request.getQueryString();
+			if(!urlRequest.contains("unite-enquete")) {
+				String refererHeader = request.getHeader("Referer");
+				if(refererHeader != null) {
+					urlRequest = refererHeader.contains("auth/realms") && refererHeader.contains("redirect_uri=")
+							?
+									refererHeader.split("redirect_uri=")[1]
+											.replaceAll("%2F", "/")
+											.replaceAll("%3A", ":")
+											.replaceAll("%3D", "=")
+											.replaceAll("%3F", "?")
+											: 
+												refererHeader;
+				} 
 			}
+			
 			return urlRequest;
 		} catch (Exception e) {
 			return "unknown";
