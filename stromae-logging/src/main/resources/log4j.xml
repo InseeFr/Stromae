@@ -11,11 +11,27 @@
 
   The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
   -->
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" xmlns="http://jakarta.apache.org/log4j/">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+    xmlns="http://jakarta.apache.org/log4j/">
 
     <!-- Logging to a rolling files. Every time the file exceeds a certain size, a backup
          is created and the file used for logging is truncated.
          See: http://logging.apache.org/log4j/docs/api/org/apache/log4j/RollingFileAppender.html -->
+    <appender name="RollingFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/orbeon.log"/>
+        <param name="MaxFileSize" value="1MB"/>
+        <param name="maxBackupIndex" value="200"/>
+        <param name="Append" value="false" />
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c{1} %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO" />
+            <param name="LevelMax" value="ERROR" />
+        </filter>
+    </appender>
+
     <appender name="ParadataFileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="File" value="${catalina.base}/logs/paradata-orbeon.log"/>
         <param name="MaxFileSize" value="1MB"/>
@@ -30,7 +46,7 @@
             <param name="LevelMax" value="INFO" />
         </filter>
         <!-- Filter useless logs -->
-        <filter class="fr.insee.stromae.logging.CustomFilterParadonnees" />
+        <filter class="fr.insee.stromae.logging.CustomFilterParadata" />
     </appender>
 
     <!-- XForms engine activity, see http://wiki.orbeon.com/forms/doc/developer-guide/xforms-logging -->
@@ -58,6 +74,7 @@
     <root>
         <priority value="debug"/>
         <appender-ref ref="RollingFileAppender"/>
+        <appender-ref ref="ParadataFileAppender"/>
     </root>
 
 </log4j:configuration>
