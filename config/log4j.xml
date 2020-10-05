@@ -1,0 +1,97 @@
+<!--
+  Copyright (C) 2009 Orbeon, Inc.
+
+  This program is free software; you can redistribute it and/or modify it under the terms of the
+  GNU Lesser General Public License as published by the Free Software Foundation; either version
+  2.1 of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Lesser General Public License for more details.
+
+  The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+  -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" xmlns="http://jakarta.apache.org/log4j/">
+
+    <!-- Logging to a rolling files. Every time the file exceeds a certain size, a backup
+         is created and the file used for logging is truncated.
+         See: http://logging.apache.org/log4j/docs/api/org/apache/log4j/RollingFileAppender.html -->
+    <appender name="RollingFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/orbeon.log"/>
+        <param name="MaxFileSize" value="5MB"/>
+        <param name="maxBackupIndex" value="200"/>
+        <param name="Append" value="false" />
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p %c{1} %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- XForms engine activity, see http://wiki.orbeon.com/forms/doc/developer-guide/xforms-logging -->
+    <!--<category name="org.orbeon.oxf.xforms.processor.XFormsServer">-->
+        <!--<priority value="debug"/>-->
+    <!--</category>-->
+
+    <!-- To enable logging for any of the sub-systems below, copy that section outside of the comment block -->
+    <!--
+    <category name="org.orbeon.oxf.properties.Properties">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.pipeline.TeeProcessor">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.pipeline.choose.ConcreteChooseProcessor">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.generator.URLGenerator">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.xmldb.XMLDBProcessor">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.sql.SQLProcessor">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.controller.PageFlowControllerProcessor">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.processor.generator.RequestGenerator">
+        <priority value="debug"/>
+    </category>
+
+    <category name="org.orbeon.oxf.webapp.OPSSessionListener">
+        <priority value="info"/>
+    </category>
+
+    <category name="org.orbeon.oxf.webapp.OPSServletContextListener">
+        <priority value="info"/>
+    </category>
+    -->
+
+    <!-- Prevent extra display of eXist paging activity -->
+    <category name="org.exist.storage.btree.Paged">
+        <priority value="warn"/>
+    </category>
+
+    <category name="org.exist.storage.DBBroker">
+        <priority value="warn"/>
+    </category>
+
+    <category name="org.exist.storage.BrokerPool">
+        <priority value="warn"/>
+    </category>
+
+    <!-- You decide here which one of the loggers listed above you want to use. -->
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="RollingFileAppender"/>
+    </root>
+
+</log4j:configuration>
