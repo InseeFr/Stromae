@@ -19,7 +19,7 @@
     <property as="xs:anyURI" name="url-keycloak-logout" value="${URL_LOGOUT}"/>
 
     <!-- Affichage du numéro de version -->
-    <property as="xs:boolean" name="affichage-numero" value="true"/>
+    <property as="xs:boolean" name="affichage-numero" value="false"/>
     <!-- The link to the assistance for the survey -->
     <property as="xs:anyURI" name="url-assistance" value="#"/>
 
