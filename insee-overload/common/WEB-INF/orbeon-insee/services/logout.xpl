@@ -13,7 +13,7 @@
     
     <!-- We create the url we are redirected to -->
     <p:processor name="oxf:unsafe-xslt">
-        <p:input name="data" href="#parametres"/>	    
+        <p:input name="data" href="#parameters"/>	    
         <p:input name="config">			
             <redirect-url xsl:version="2.0">
                 <server-side>false</server-side>  
