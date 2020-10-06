@@ -16,7 +16,7 @@
 	<!-- We retrieve the personalized form -->
 	<p:processor name="oxf:pipeline">
 		<p:input name="config" href="../personalization/personalization.xpl"/>
-		<p:input name="formulaire" href="#data"/>
+		<p:input name="form" href="#data"/>
 		<p:input name="parameters" href="#parameters"/>
 		<p:output name="personalized-form" id="personalized-form"/>
 	</p:processor>

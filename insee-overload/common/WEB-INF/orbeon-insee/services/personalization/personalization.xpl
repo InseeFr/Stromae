@@ -4,7 +4,7 @@
     xmlns:oxf="http://www.orbeon.com/oxf/processors"
     xmlns:xf="http://www.w3.org/2002/xforms">
 
-    <p:param type="input" name="formulaire"/>
+    <p:param type="input" name="form"/>
     <p:param type="input" name="parameters"/>
     <p:param type="output" name="personalized-form"/>
 
@@ -105,7 +105,7 @@
     
     <!-- We enrich the form with the recovered information -->
     <p:processor name="oxf:unsafe-xslt">
-        <p:input name="data" href="#formulaire"/>
+        <p:input name="data" href="#form"/>
         <p:input name="instance" href="#instance"/>
         <p:input name="informations" href="#informations"/>
         <p:input name="config">
