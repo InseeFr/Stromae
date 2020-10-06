@@ -20,7 +20,7 @@
                 <path-info>
                     <xsl:choose>
                         <xsl:when test="p:property('insee-context')='household'">
-                            <xsl:value-of select="concat(p:property('url-keycloak-logout'),'/',substring-before(/parameters/survey,'-'))"/>
+                            <xsl:value-of select="concat(p:property('url-keycloak-logout'), '/', /parameters/survey)"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="p:property('url-keycloak-logout')"/>
