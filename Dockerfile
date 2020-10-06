@@ -1,7 +1,14 @@
-FROM tomcat:8.5.16-jre8
+FROM tomcat:8.0-jre8
 
-MAINTAINER bwerquin
-
+RUN apt-get update -qy && apt-get install gettext-base -y
 RUN rm -rf $CATALINA_HOME/webapps/*
-ADD /config/ $CATALINA_HOME/webapps/config/
-ADD *.war $CATALINA_HOME/webapps/rmestromae.war
+ADD config/ $CATALINA_HOME/webapps/
+ADD ./target/*.war $CATALINA_HOME/webapps/rmesstromae.war
+
+COPY ./script/env.sh $CATALINA_HOME
+COPY ./script/.env $CATALINA_HOME
+
+RUN chmod +x $CATALINA_HOME/env.sh
+
+CMD ["/bin/bash", "-c", "$CATALINA_HOME/env.sh && catalina.sh run"]
+

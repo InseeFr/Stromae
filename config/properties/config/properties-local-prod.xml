@@ -1,0 +1,26 @@
+﻿<properties xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:oxf="http://www.orbeon.com/oxf/processors">
+
+    <!-- ************* Orbeon properties ************* -->
+
+    <!-- The path to the collection that will house the forms that will be processed by orbeon (with id et password )-->
+    <property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri" value="${STROMAE_DB_SCHEME}://${STROMAE_DB_USERNAME}:${STROMAE_DB_PASSWORD}@${STROMAE_DB_HOST}:${STROMAE_DB_PORT}/${ORBEON_EXIST_COLLECTION}"/>
+    <!-- The url to server for the redirection of orbeon services (be sure to indicate the server address and not the url accessed) -->
+    <property as="xs:anyURI" name="oxf.url-rewriting.service.base-uri" value="${STROMAE_HOST}"/>
+
+    <!-- ************** Insee properties ************** -->
+
+    <!-- The base url for redirection to the orbeon url -->
+    <property as="xs:anyURI" name="url-orbeon" value="${STROMAE_HOST}"/>
+    <!-- insee-context : 'default' / 'household' / 'business' -->
+    <property as="xs:string" name="insee-context" value="${INSEE_CONTEXT}"/>
+    <!-- The address of the server exists (with id and password) -->
+    <property as="xs:anyURI" name="server-exist-orbeon" value="${STROMAE_DB_SCHEME}://${STROMAE_DB_USERNAME}:${STROMAE_DB_PASSWORD}@${STROMAE_DB_HOST}:${STROMAE_DB_PORT}/${ORBEON_EXIST}"/>
+    <property as="xs:anyURI" name="url-keycloak-logout" value="${URL_LOGOUT}"/>
+
+    <!-- Affichage du numéro de version -->
+    <property as="xs:boolean" name="affichage-numero" value="false"/>
+    <!-- The link to the assistance for the survey -->
+    <property as="xs:anyURI" name="url-assistance" value="#"/>
+
+</properties>

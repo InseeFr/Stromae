@@ -1,0 +1,5 @@
+orbeon-source/
+target/
+.project
+.classpath
+.settings
