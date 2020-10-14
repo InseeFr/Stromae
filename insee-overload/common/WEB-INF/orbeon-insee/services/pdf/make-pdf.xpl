@@ -80,8 +80,16 @@
 						<xsl:param name="imgPathMariane" select="concat('url(',p:property('url-orbeon-nom-machine'),'/3.1415/img/marianne.png)')" /> 
 						<xsl:param name="imgPathStatPub" select="concat('url(',p:property('url-orbeon-nom-machine'),'/3.1415/img/logo_statpub.png)')" /> 
 						<xsl:param name="imgPathInsee" select="concat('url(',p:property('url-orbeon-nom-machine'),'/3.1415/img/logo4.png)')" /> 
-						<xsl:param name="unite"
-							select="doc('input:parameters')/parameters/surveyUnit/text()"/>
+						<xsl:param name="unite">
+							<xsl:choose>
+								<xsl:when test="p:property('insee-context')='household'">
+									<xsl:value-of select="doc('input:parameters')/parameters/identifiant/text()"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="doc('input:parameters')/parameters/surveyUnit/text()"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:param>
 					</xsl:stylesheet>
 				</p:input>
 				<p:output name="data" id="pdf-form"/>
