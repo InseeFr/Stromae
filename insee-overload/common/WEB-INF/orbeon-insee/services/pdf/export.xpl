@@ -28,9 +28,14 @@
 						<header>
 							<name>Content-Disposition</name>
 							<value>
-								<xsl:value-of
-									select="concat(string('attachement; filename='), /parameters/survey, '_', /parameters/surveyUnit, string('.pdf'))"
-								/>
+								<xsl:choose>
+									<xsl:when test="p:property('insee-context')='household'">
+										<xsl:value-of select="concat(string('attachement; filename='), /parameters/survey, '_', /parameters/identifiant, string('.pdf'))"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="concat(string('attachement; filename='), /parameters/survey, '_', /parameters/surveyUnit, string('.pdf'))"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</value>
 						</header>
 					</config>
