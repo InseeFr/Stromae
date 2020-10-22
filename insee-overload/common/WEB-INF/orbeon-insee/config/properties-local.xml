@@ -34,25 +34,6 @@
     <property as="xs:string" name="oxf.fr.detail.error-summary.*.*" value="none"/>
 
     <!-- Rules for displaying the logo: specific rule for Dares surveys. Insee by default -->
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2016-t04.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2017-t01.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2017-t02.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2017-t03.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2017-t04.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2018-t01.*" value="/img/dares3.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2018-t02.*" value="/img/dares3.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2018-t03.*" value="/img/dares3.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemotrim-2018-t04.*" value="/img/dares3.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemopipa-2017-a00.*" value="/img/dares2.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.acemopipa-2018-a00.*" value="/img/dares3.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2018-t01.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2018-t02.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2018-t03.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2018-t04.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2017-t01.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2017-t02.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2017-t03.*" value="/img/Logo_COLL.png"/>
-    <property as="xs:anyURI" name="oxf.fr.default-logo.uri.coll-2017-t04.*" value="/img/Logo_COLL.png"/>
     <property as="xs:anyURI" name="oxf.fr.default-logo.uri.*.*" value="/img/insee.png"/>
 
     <!--********************************The properties created for insee********************************-->
