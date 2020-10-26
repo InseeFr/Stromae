@@ -1,4 +1,4 @@
-/************************************* CSS Coleman ********************************************/
+/************************************* CSS orbeon-insee ********************************************/
 /* Version anglaise
 
 
@@ -13,6 +13,28 @@ Liste de ces composants :
 
 Le reste des composants est ciblé grâce aux classes XForms.
 */
+
+/*---------------------------- Accessibility --------------------------*/
+
+/* Pour empecher l'accès aux sections cachées */
+div.xbl-fr-section.xforms-case-deselected,
+div.xbl-fr-section.xforms-case-deselected-subsequent {
+  visibility: hidden;
+}
+
+/* mise en place du lien d'evitement */
+a.avoidance {
+  display: inline-block;
+  color: #555;
+  background: #fff;
+  padding: 0.5em;
+  position: absolute;
+  left: -99999rem;
+  z-index: 100;
+}
+a.avoidance:focus {
+  left: 0;
+}
 
 /*----------- Couleur de tous les boutons, regroupée pour une seule modif -----*/
 .orbeon .btn,

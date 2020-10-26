@@ -220,7 +220,7 @@
         </xsl:if>
     </xsl:template>
 
-
+    <!-- Add uri assitance in error dialog -->
     <xsl:template match="xhtml:div[contains(@class,'xforms-error-dialogs')]//xhtml:a[@id='error-assistance']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
@@ -228,4 +228,41 @@
             <xsl:apply-templates select="text()"/>
         </xsl:copy>
     </xsl:template>
+    
+    
+    <!------------------ A11y : web accessibility ------------------>
+    
+    <!-- A11y: Added the attribute role='alert' to vocalize error messages when they occur -->
+    <xsl:template match="xhtml:span[@class='xforms-alert']">        
+        <xsl:copy>
+            <xsl:attribute name="role">alert</xsl:attribute>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    
+    <!-- A11y: Addition of an avoidance link (access to the main content of the page)-->  
+    <xsl:template match="xhtml:form[@id='xforms-form']">
+        <xhtml:a class="avoidance" href="#fr-view-component">Aller au contenu</xhtml:a>
+        <xsl:copy>            
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>    
+    
+    <!-- A11y: setting up the main content area -->    
+    <xsl:template match="xhtml:span[@id='fr-view-component']">        
+        <xsl:copy>
+            <xsl:attribute name="role">main</xsl:attribute>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- A11y: setting up of the navigation area on the previous/next buttons -->
+    <xsl:template match="xhtml:span[@class='fr-buttons']">        
+        <xsl:copy>
+            <xsl:attribute name="role">navigation</xsl:attribute>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
 </xsl:stylesheet>
