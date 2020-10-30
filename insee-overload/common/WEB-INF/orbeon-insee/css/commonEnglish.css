@@ -72,7 +72,7 @@ button.btn[id^="start"]:focus,
 
 /* ----------------------------- Police du texte -----------------------------*/
 .orbeon * {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
 }
 .orbeon .fr-section-content *,
 .orbeon .submodule * {
@@ -270,8 +270,8 @@ span#progress-percent {
   padding: 0.5em;
   /*Pour que le libellé de sous-module prenne toutes la largeur de l'Encadrement de sous-module*/
   margin-top: -0.9em;
-  margin-left: -0.77em;
-  margin-right: -0.8em;
+  margin-left: -0.8em;
+  margin-right: -0.77em;
 }
 .fr-section-content .submodule h3 .xforms-label * {
   font-size: 18px;
