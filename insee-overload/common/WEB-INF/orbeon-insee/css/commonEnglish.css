@@ -72,7 +72,7 @@ button.btn[id^="start"]:focus,
 
 /* ----------------------------- Police du texte -----------------------------*/
 .orbeon * {
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
 }
 .orbeon .fr-section-content *,
 .orbeon .submodule * {
