@@ -230,7 +230,7 @@
     </xsl:template>
     
     
-    <!------------------ A11y : web accessibility ------------------>
+    <!-- A11y : web accessibility -->
     
     <!-- A11y: Added the attribute role='alert' to vocalize error messages when they occur -->
     <xsl:template match="xhtml:span[@class='xforms-alert']">        
