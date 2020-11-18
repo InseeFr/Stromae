@@ -21,9 +21,7 @@
     </page>
 
     <!-- Logout -->
-    <page path="/logout">
-        <action action="services/logout-redirect.xpl"/>
-    </page>
+    <page path="/logout" view="services/logout-redirect.xpl" />
 
     <!-- Error management -->
     <page path="/error">

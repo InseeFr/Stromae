@@ -36,17 +36,6 @@
 	            <p:output name="data" ref="data"/>
 	        </p:processor>
 	    </p:when>
-		<p:when test="/parameters/visualize='true'">
-			<p:processor name="oxf:unsafe-xslt">
-				<p:input name="data" href="#personalized-form"/>
-				<p:input name="config">
-					<xsl:stylesheet version="2.0">
-						<xsl:import href="visualize.xsl"/>
-					</xsl:stylesheet>
-				</p:input>
-				<p:output name="data" ref="data"/>
-			</p:processor>
-		</p:when>
 	    <p:otherwise>
 			<p:processor name="oxf:identity">
 				<p:input name="data" href="#personalized-form"/>

@@ -46,11 +46,6 @@
                                 select="upper-case(/request/parameters/parameter[name/text()='unite-enquete']/value)"
                             />
                         </surveyUnit>
-                        <visualize>
-                            <xsl:value-of
-                                select="lower-case(/request/parameters/parameter[name/text()='visualize']/value)"
-                            />
-                        </visualize>
                         <xsl:if test="/request/attributes/attribute[name='remote-user']">
                             <identifiant>
                                 <xsl:value-of select="upper-case(/request/attributes/attribute[name='remote-user']/value)"/>
