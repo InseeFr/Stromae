@@ -16,7 +16,7 @@
     <!-- insee-context : 'default' / 'household' / 'business' -->
     <property as="xs:string" name="insee-context" value="${INSEE_CONTEXT}"/>
     <!-- The address of the server exists (with id and password) -->
-    <property as="xs:anyURI" name="server-exist-orbeon" value="${STROMAE_DB_SCHEME}://${STROMAE_DB_USERNAME}:${STROMAE_DB_PASSWORD}@${STROMAE_DB_HOST}:${STROMAE_DB_PORT}/${ORBEON_EXIST}"/>
+    <property as="xs:anyURI" name="server-exist-orbeon" value="${STROMAE_DB_URL}/${ORBEON_EXIST}"/>
     <property as="xs:anyURI" name="url-keycloak-logout" value="${URL_LOGOUT}"/>
 
     <!-- Affichage du numéro de version -->
