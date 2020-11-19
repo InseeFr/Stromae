@@ -4,7 +4,8 @@
     <!-- ************* Orbeon properties ************* -->
 
     <!-- The path to the collection that will house the forms that will be processed by orbeon (with id et password )-->
-    <property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri" value="${STROMAE_DB_SCHEME}://${STROMAE_DB_USERNAME}:${STROMAE_DB_PASSWORD}@${STROMAE_DB_HOST}:${STROMAE_DB_PORT}/${ORBEON_EXIST_COLLECTION}"/>
+    <!--<property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri" value="${STROMAE_DB_SCHEME}://${STROMAE_DB_USERNAME}:${STROMAE_DB_PASSWORD}@${STROMAE_DB_HOST}:${STROMAE_DB_PORT}/${ORBEON_EXIST_COLLECTION}"/>-->
+    <property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri" value="${STROMAE_DB_URL}/${ORBEON_EXIST_COLLECTION}"/>
     <!-- The url to server for the redirection of orbeon services (be sure to indicate the server address and not the url accessed) -->
     <property as="xs:anyURI" name="oxf.url-rewriting.service.base-uri" value="${STROMAE_HOST}"/>
 
