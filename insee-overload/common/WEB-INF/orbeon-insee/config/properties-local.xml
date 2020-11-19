@@ -57,6 +57,8 @@
     <!-- The end of the assistance path on the portal side when you are not logged in. -->
     <property as="xs:string" name="assistance-deconnecte" value="/mesEnquetes/RecupererIdentifiantAction"/>
 
+    <property as="xs:string" name="insee-context" value="${insee.context}"/>
+
     <!-- The link for disconnection -->
     <property as="xs:string" name="logout-uri" value="/logout"/>
 
