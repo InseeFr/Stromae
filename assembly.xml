@@ -8,7 +8,7 @@
     <files>
         <file>
             <source>${project.basedir}/insee-overload/common/WEB-INF/orbeon-insee/config/properties-local.xml</source>
-            <outputDirectory>WEB-INF/config</outputDirectory>
+            <outputDirectory>WEB-INF/orbeon-insee/config</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
