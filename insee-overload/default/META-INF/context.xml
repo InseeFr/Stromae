@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Context>
-    <!-- Declaration of an external resource file for orbeon -->
-    <Parameter override="false" name="oxf.resources.priority.0" value="org.orbeon.oxf.resources.FilesystemResourceManagerFactory"/>
-    <Parameter override="false" name="oxf.resources.priority.0.oxf.resources.filesystem.sandbox-directory" value="${catalina.base}/webapps/properties"/>
-</Context>
