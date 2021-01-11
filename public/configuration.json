@@ -1,0 +1,6 @@
+{
+  "authenticationType": "OIDC",
+  "apiUrl": "http://localhost:8080",
+  "inseeContext": "household",
+  "portailPromotion": "http://localhost:5000"
+}

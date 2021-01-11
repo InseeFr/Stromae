@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@axa-fr/react-oidc-context": "^3.1.6",
+    "@inseefr/lunatic": "^2.0.0-rc16",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "oidc-client": "^1.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-modal": "^3.12.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -20,8 +25,30 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "prettier",
+      "prettier/react",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "prettier",
+      "jsx-a11y"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "arrowParens": "avoid"
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "arrowParens": "avoid"
   },
   "browserslist": {
     "production": [
@@ -34,5 +61,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "prettier": "^2.2.1"
   }
 }

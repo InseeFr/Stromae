@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from 'components/auth';
+import { Router } from 'components/router';
 
-function App() {
+export const AppContext = React.createContext();
+
+const App = () => {
+  const [configuration, setConfiguration] = useState(null);
+
+  useEffect(() => {
+    fetch(`${window.location.origin}/configuration.json`)
+      .then(r => r.json())
+      .then(r => {
+        setConfiguration(r);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {configuration && (
+        <AppContext.Provider value={configuration}>
+          <AuthProvider authType={configuration.authenticationType}>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </AuthProvider>
+        </AppContext.Provider>
+      )}
+    </>
   );
-}
+};
 
 export default App;
