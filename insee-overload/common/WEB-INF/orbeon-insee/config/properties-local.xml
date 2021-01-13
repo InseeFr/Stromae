@@ -59,6 +59,9 @@
 
     <property as="xs:string" name="insee-context" value="${insee.context}"/>
 
+    <!-- session heartbeat of orbeon : https://doc.orbeon.com/contributors/state-handling#session-heartbeat -->
+    <property as="xs:boolean" name="oxf.xforms.session-heartbeat" value="${session.heartbeat}"/>
+
     <!-- The link for disconnection -->
     <property as="xs:string" name="logout-uri" value="/logout"/>
 
