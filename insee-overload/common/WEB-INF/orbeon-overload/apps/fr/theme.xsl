@@ -33,7 +33,7 @@
     <xsl:variable name="uri-assistance">
         <xsl:choose>
             <xsl:when test="p:property('insee-context')='household'">
-                <xsl:value-of select="concat(p:property('url-assistance'),'/',substring-before($survey,'-'),'/assistance/auth?idue=',$surveyUnit)"/>
+                <xsl:value-of select="concat(p:property('url-assistance'),'/',substring-before($survey,'-'),'/contacter-assistance/auth?idue=',$surveyUnit)"/>
             </xsl:when>
             <xsl:when test="p:property('insee-context')='business'">
                 <xsl:value-of select="concat(p:property('url-orbeon'),'/contacter/',$survey,'/',$surveyUnit)"/>
