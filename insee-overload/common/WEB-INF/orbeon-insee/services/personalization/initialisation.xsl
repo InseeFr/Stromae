@@ -22,6 +22,9 @@
     </xsl:template>
 
     <!-- When we find the instance corresponding to the Control data, we apply the templates of the recovered data, in order to perform some treatments -->
+    <xsl:template match="InformationsQuestionnaire[parent::xf:instance[@id='fr-donnees-pilotage']]">
+        <xsl:apply-templates select="$informations" mode="pilotage"/>
+    </xsl:template>
     <xsl:template match="InformationsQuestionnaire[parent::xf:instance[@id='donnees-pilotage']]">
         <xsl:apply-templates select="$informations" mode="pilotage"/>
     </xsl:template>
