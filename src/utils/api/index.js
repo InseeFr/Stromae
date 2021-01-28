@@ -1,4 +1,4 @@
-import { fetcher } from './fetcher';
+import { fetcher, fetcherFile } from './fetcher';
 
 const getRequest = url => token => fetcher(url, token, 'GET', null);
 const putRequest = url => token => body => fetcher(url, token, 'PUT', body);
@@ -13,4 +13,7 @@ const putData = apiUrl => id => token => body =>
 const getQuestionnaire = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/campaign/${id}/questionnaire`)(token);
 
-export const API = { getData, putData, getQuestionnaire };
+const getDepositProof = apiUrl => id => token => filename =>
+  fetcherFile(`${apiUrl}/api/survey-unit/${id}/deposit-proof`, token, filename);
+
+export const API = { getData, putData, getQuestionnaire, getDepositProof };

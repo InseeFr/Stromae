@@ -28,6 +28,14 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
+  const getPDF = useCallback(
+    filename => {
+      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      return API.getDepositProof(apiUrl)(surveyUnitID)(token)(filename);
+    },
+    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  );
+
   const putData = useCallback(
     body => {
       const token = authenticationType === OIDC ? oidcUser?.access_token : null;
@@ -36,12 +44,14 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
-  return { getQuestionnaire, getData, putData };
+  return { getQuestionnaire, getData, getPDF, putData };
 };
 
 export const useRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [data, setData] = useState(null);
+
+  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const { getData, getQuestionnaire } = useAPI(surveyUnitID, questionnaireID);
@@ -53,9 +63,13 @@ export const useRemoteData = (surveyUnitID, questionnaireID) => {
         if (!qR.error) {
           setQuestionnaire(qR.data);
           const dR = await getData();
-          if (!dR.error) setData(dR.data);
-          else setErrorMessage(getErrorMessage(dR, false));
+          if (!dR.error) {
+            setData(dR.data);
+            setLoading(false);
+          } else setErrorMessage(getErrorMessage(dR, false));
+          setLoading(false);
         } else setErrorMessage(getErrorMessage(qR));
+        setLoading(false);
       };
       load();
     }
@@ -63,5 +77,5 @@ export const useRemoteData = (surveyUnitID, questionnaireID) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyUnitID, questionnaireID]);
 
-  return { errorMessage, data, questionnaire };
+  return { loading, errorMessage, data, questionnaire };
 };

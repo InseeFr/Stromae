@@ -1,16 +1,13 @@
-.loading {
-  padding-top: 12em;
-  text-align: center;
-}
-
 .loading img {
-  width: 200px;
+  width: 160px;
+  display: block;
   filter: drop-shadow(0 0 0.75rem #282c34);
   animation: App-logo-zoom infinite 0.7s alternate;
 }
 
 .loading figcaption {
   padding-top: 2em;
+  text-align: center;
 }
 
 @keyframes App-logo-zoom {

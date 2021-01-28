@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from 'components/auth';
 import { Router } from 'components/router';
+import { StyleProvider } from 'components/style';
+import './App.css';
 
 export const AppContext = React.createContext();
 
@@ -20,11 +22,13 @@ const App = () => {
     <>
       {configuration && (
         <AppContext.Provider value={configuration}>
-          <AuthProvider authType={configuration.authenticationType}>
-            <BrowserRouter>
-              <Router />
-            </BrowserRouter>
-          </AuthProvider>
+          <StyleProvider>
+            <AuthProvider authType={configuration.authenticationType}>
+              <BrowserRouter>
+                <Router />
+              </BrowserRouter>
+            </AuthProvider>
+          </StyleProvider>
         </AppContext.Provider>
       )}
     </>

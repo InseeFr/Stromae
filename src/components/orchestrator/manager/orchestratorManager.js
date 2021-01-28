@@ -1,65 +1,70 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { READ_ONLY } from 'utils/constants';
 import { useAPI, useAuth, usePutData, useRemoteData } from 'utils/hooks';
-import { API } from 'utils/api';
+import { Button, Container, Typography } from '@material-ui/core';
+import { CookieConsent } from 'components/shared/cookieConsent';
+import { LoaderLogo, LoaderSimple } from 'components/shared/loader';
+import { AppBar } from 'components/navigation/appBar';
+import Orchestrator from '../collector';
+import { buildQuestionnaire } from 'utils/questionnaire/build';
 
 const OrchestratorManger = () => {
-  const { authenticationType, oidcUser, login, logout } = useAuth();
+  const [source, setSource] = useState(false);
+  const { oidcUser, logout } = useAuth();
+  const isAuthenticated = oidcUser?.profile;
   const { readonly, idQ, idSU } = useParams();
-  const { search } = useLocation();
+  const { data, questionnaire, loading, errorMessage } = useRemoteData(
+    idSU,
+    idQ
+  );
+  const { putData } = useAPI(idQ, idSU);
 
   const [sending, setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(search);
-    const questionnnaireUrl = searchParams.get('questionnaire');
-  }, [search]);
-
-  const { data, questionnaire, errorMessage } = useRemoteData(idSU, idQ);
-  const { putData } = useAPI(idQ, idSU);
-
-  const sendData = async () => {
+  const sendData = async dataToSave => {
     setErrorSending(null);
     setSending(true);
-    const { status, error } = await putData({});
+    const { status, error } = await putData(dataToSave);
+    console.log(dataToSave);
     setSending(false);
     if (error) setErrorSending('Error during sending');
   };
 
-  const isAuthenticated = oidcUser?.profile;
-
   useEffect(() => {
-    if (questionnaire) {
-      console.log(questionnaire);
+    if (!loading && questionnaire) {
+      setSource({
+        ...questionnaire,
+        components: buildQuestionnaire(questionnaire.components),
+      });
     }
-  }, [questionnaire]);
+  }, [questionnaire, loading]);
 
   return (
-    <main>
-      <h1>{`OrchestratorManger`}</h1>
-      {authenticationType === 'OIDC' && (
-        <>
-          <button type="button" onClick={isAuthenticated ? logout : login}>
-            {isAuthenticated ? 'Logout' : 'Login'}
-          </button>
-          <p>{`Readonly : ${readonly === READ_ONLY}`}</p>
-          <p>{`Questionnaire : ${idQ}`}</p>
-          <p>{`Survey unit : ${idSU}`}</p>
-        </>
-      )}
-      {!errorMessage && (!data || !questionnaire) && <h3>chargement ...</h3>}
-      {!errorMessage && data && questionnaire && (
-        <>
-          <h3>Pas d'erreur au chargement :)</h3>
-          <button onClick={sendData}>Send data</button>
-          {sending && <h4>Envoie en cours ...</h4>}
-          {errorSending && <h4>{errorSending}</h4>}
-        </>
-      )}
-      {errorMessage && <h3>{`Erreur : ${errorMessage}`}</h3>}
-    </main>
+    <>
+      <AppBar
+        isAuthenticated={isAuthenticated}
+        logout={logout}
+        title={questionnaire?.label}
+      />
+      <Container maxWidth="md" component="main">
+        {loading && <LoaderSimple />}
+        {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
+        {!loading && data && questionnaire && source && (
+          <Orchestrator
+            stromaeData={data}
+            source={source}
+            save={sendData}
+            savingType="COLLECTED"
+            preferences={['COLLECTED']}
+            features={['VTL']}
+          />
+        )}
+      </Container>
+      {errorSending && <h2>Error lors de l'envoie</h2>}
+      <CookieConsent />
+    </>
   );
 };
 export default OrchestratorManger;

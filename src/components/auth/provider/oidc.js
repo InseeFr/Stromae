@@ -4,7 +4,7 @@ import {
   AuthenticationProvider,
   InMemoryWebStorage,
 } from '@axa-fr/react-oidc-context';
-import { Loader } from 'components/shared/loader';
+import { LoaderLogo } from 'components/shared/loader';
 import { buildOidcConfiguration } from 'utils/oidc/build-configuration';
 
 const AuthProviderOIDC = ({ children }) => {
@@ -13,7 +13,7 @@ const AuthProviderOIDC = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${window.location.origin}/keycloak.json`)
+    fetch(`${window.location.origin}/oidc.json`)
       .then(r => r.json())
       .then(r => {
         setOidcConf(r);
@@ -21,15 +21,18 @@ const AuthProviderOIDC = ({ children }) => {
       });
   }, []);
 
-  if (loading) return <Loader />;
+  if (loading) return <LoaderLogo />;
   return (
     <AuthenticationProvider
-      configuration={buildOidcConfiguration({ oidcConf, conf })}
-      isEnabled={true}
+      configuration={buildOidcConfiguration({
+        oidcConf: oidcConf.config,
+        conf,
+      })}
+      isEnabled={oidcConf.isEnabled}
       UserStore={InMemoryWebStorage}
-      callbackComponentOverride={Loader}
-      authenticating={Loader}
-      sessionLostComponent={Loader}
+      callbackComponentOverride={LoaderLogo}
+      authenticating={LoaderLogo}
+      sessionLostComponent={LoaderLogo}
     >
       {children}
     </AuthenticationProvider>
