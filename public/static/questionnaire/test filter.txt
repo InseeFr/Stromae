@@ -1,0 +1,8 @@
+T1 -> ok resultat attendu
+if ((not(isnull(cast(Q4121,string)))) and (not(cast(Q4121,string) = "17748")) and (not(cast(Q4121,string) = "17745")) and (not(cast(Q4121,string) = "17738")) and (not(cast(Q4121,string) = "17736")) and (not(cast(Q4121,string) = "17734"))) then "normal" else "hidden"
+
+T2 -> ok resultat attendu
+if ((not(isnull(cast(Q4121,string)))) and (not(cast(Q4121,string) = "17748")) and (not(cast(Q4121,string) = "17745")) and (not(cast(Q4121,string) = "17738")) and (not(cast(Q4121,string) = "17736")) and (not((cast(Q4121,string) = "17731") and not ((cast(Q4121,string) = "17734"))))) then "normal" else "hidden"
+
+T3 -> ok resultat attendu
+if ((not(isnull(cast(Q4121,string)))) and (not(cast(Q4121,string) = "17748")) and (not(cast(Q4121,string) = "17745")) and (not(cast(Q4121,string) = "17738")) and (not(((cast(Q4121,string) = "17731") and not ((cast(Q4121,string) = "17734") or (cast(Q4121,string) = "17736"))) or ((cast(Q4121,string) = "17734") and not ((cast(Q4121,string) = "17736")))))) then "normal" else "hidden"

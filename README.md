@@ -1,3 +1,3 @@
 # Stromae
 
-Data collection services for XForms questionnaires powered by Orbeon. 
+Web application for the management of questionnaires powered by Lunatic (https://github.com/InseeFr/Lunatic)
