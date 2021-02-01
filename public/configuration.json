@@ -1,0 +1,7 @@
+{
+  "authenticationType": "OIDC",
+  "_authenticationType_comment_": "Authentication type : OIDC or NONE",
+  "apiUrl": "http://localhost:8080",
+  "inseeContext": "household",
+  "portail": "https://particuliers.recette.insee.fr"
+}

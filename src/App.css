@@ -1,0 +1,25 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+main {
+  padding-top: 80px;
+}
+
+.lunatic.lunatic-component {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navigation-buttons {
+  background-color: whitesmoke;
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}

@@ -1,14 +1,13 @@
-FROM tomcat:8.0-jre8
+FROM nginx
+ADD build /usr/share/nginx/html
 
-RUN apt-get update -qy && apt-get install gettext-base -y
-RUN rm -rf $CATALINA_HOME/webapps/*
-ADD config/ $CATALINA_HOME/webapps/
-ADD ./target/*.war $CATALINA_HOME/webapps/rmesstromae.war
+# Copy .env file and shell script to container
+WORKDIR /usr/share/nginx/html
+COPY ./scripts/env.sh .
+COPY ./scripts/.env .
 
-COPY ./script/env.sh $CATALINA_HOME
-COPY ./script/.env $CATALINA_HOME
+# Make shell script executable and prevent windows encoding
+RUN sed -i -e 's/\r$//' env.sh && sed -i -e 's/\r$//' .env && chmod +x env.sh
 
-RUN chmod +x $CATALINA_HOME/env.sh
-
-CMD ["/bin/bash", "-c", "$CATALINA_HOME/env.sh && catalina.sh run"]
-
+# Start Nginx server
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
