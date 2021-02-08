@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useParams } from 'react-router-dom';
 import { Link } from '@material-ui/core';
+import './assistance.scss';
 
 const Assistance = ({ open, setOpen }) => {
   const { idQ } = useParams();

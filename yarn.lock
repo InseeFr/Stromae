@@ -1214,14 +1214,15 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^2.0.0-rc23":
-  version "2.0.0-rc23"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.0.0-rc23.tgz#3601ea6c49b7165c1aa668d48d30782a6d927c6e"
-  integrity sha512-hVueVPEzFkUTs3W/4VaTrVNxZdXweNMTmbO4flRsuBSG1ZiwZX4FlxfRpV7uGuGAuoZjtzkc/3Xw+JU/VHi5mQ==
+"@inseefr/lunatic@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.0.2.tgz#3142c0abaddd48b4dfd8e429fc2a8090ca7a0e6c"
+  integrity sha512-syhHTa6rVVYlzlLv4cwtYJj9do430/b0j5Yw0m86mm0iYcT/06DD4nf0c8FjxVgNlopHL1MPZcr9+KMl1dMKnA==
   dependencies:
-    "@inseefr/vtl-2.1-engine" "^0.1.8"
+    "@inseefr/vtl-2.1-engine" "^0.1.9"
     keycode "^2.2.0"
     lodash.camelcase "^4.3.0"
+    lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
     prop-types "^15.7.2"
     remove-accents "^0.4.2"
@@ -1234,10 +1235,10 @@
   dependencies:
     antlr4 "4.8.0"
 
-"@inseefr/vtl-2.1-engine@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@inseefr/vtl-2.1-engine/-/vtl-2.1-engine-0.1.8.tgz#9f1914f0449edc7cc93ebb658016fb688a0da144"
-  integrity sha512-SiBZmIyhDUpsiIUFp4pznIjtDBoCYxRN33oElXZ7eYoZvtnwrA8KByl0V2jCWf+dR9KCcnMfWkMkvG9SpSzD9w==
+"@inseefr/vtl-2.1-engine@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@inseefr/vtl-2.1-engine/-/vtl-2.1-engine-0.1.9.tgz#885efd3278ded5d4ed9d0102cdd13e87f47fa238"
+  integrity sha512-vtzG+v+QxM+r5ZlFyDefM4oqshgJj8InC6CRylfYgYvCLyJL5DxZ+I0RouTNrj8bxE6CfN5BqZhsfLRyzgH5Kw==
   dependencies:
     "@inseefr/vtl-2.1-antlr-tools" "1.0.0-rc2"
     antlr4 "4.8.0"
@@ -7320,6 +7321,11 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
 lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
@@ -10176,10 +10182,10 @@ sass@^1.32.2:
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
-sass@^1.32.5:
-  version "1.32.5"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.5.tgz#2882d22ad5748c05fa9bff6c3b0ffbc4f4b9e1dc"
-  integrity sha512-kU1yJ5zUAmPxr7f3q0YXTAd1oZjSR1g3tYyv+xu0HZSl5JiNOaE987eiz7wCUvbm4I9fGWGU2TgApTtcP4GMNQ==
+sass@^1.32.6:
+  version "1.32.6"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.6.tgz#e3646c8325cd97ff75a8a15226007f3ccd221393"
+  integrity sha512-1bcDHDcSqeFtMr0JXI3xc/CXX6c4p0wHHivJdru8W7waM7a1WjKMm4m/Z5sY7CbVw4Whi2Chpcw6DFfSWwGLzQ==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 

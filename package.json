@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^2.0.0-rc23",
+    "@inseefr/lunatic": "^2.0.2",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -20,7 +20,7 @@
     "react-scripts": "4.0.1",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
-    "sass": "^1.32.5",
+    "sass": "^1.32.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
