@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   AppBar,
   IconButton,
   ListItemIcon,
+  makeStyles,
   Menu,
   MenuItem,
   Toolbar,
@@ -12,10 +13,24 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AccountCircle, Help, ExitToApp } from '@material-ui/icons';
 import { AssistanceConfirm } from 'components/modals/assistance';
 import { Skeleton } from '@material-ui/lab';
+import { useAuth } from 'utils/hooks';
+import { HOUSEHOLD } from 'utils/constants';
+import { NotYetImpl } from 'components/modals/notYetImpl';
+import { OrchestratorContext } from 'components/orchestrator/collector';
 
-const AppBarMenu = ({ isAuthenticated, logout, title }) => {
+const useStyles = makeStyles(theme => ({
+  title: { flexGrow: 1 },
+}));
+
+const AppBarMenu = ({ title }) => {
+  const {
+    metadata: { inseeContext },
+  } = useContext(OrchestratorContext);
+  const { oidcUser, logout } = useAuth();
+  const isAuthenticated = oidcUser?.profile;
   const [anchorEl, setAnchorEl] = useState(null);
   const [assistance, setAssistance] = useState(false);
+  const [nyi, setNyi] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -27,35 +42,46 @@ const AppBarMenu = ({ isAuthenticated, logout, title }) => {
     setAnchorEl(null);
   };
 
-  const renderMenu = isAuthenticated && (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={'menuId'}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={logout}>
-        <ListItemIcon>
-          <ExitToApp />
-        </ListItemIcon>
-        <Typography variant="inherit">Déconnexion</Typography>
-      </MenuItem>
+  const renderMenu = () => {
+    if (isAuthenticated && inseeContext === HOUSEHOLD) {
+      return (
+        <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          id={'menuId'}
+          keepMounted
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={logout}>
+            <ListItemIcon>
+              <ExitToApp />
+            </ListItemIcon>
+            <Typography variant="inherit">Déconnexion</Typography>
+          </MenuItem>
 
-      {false && <MenuItem onClick={handleMenuClose}>My account</MenuItem>}
-    </Menu>
-  );
+          {false && <MenuItem onClick={handleMenuClose}>My account</MenuItem>}
+        </Menu>
+      );
+    }
+  };
+
+  const classes = useStyles();
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setNyi(true)}
+          >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Typography variant="h6" className={classes.title}>
             {title ? title : <Skeleton variant="text" />}
           </Typography>
           <IconButton
@@ -79,7 +105,8 @@ const AppBarMenu = ({ isAuthenticated, logout, title }) => {
           )}
         </Toolbar>
       </AppBar>
-      {renderMenu}
+      {renderMenu()}
+      <NotYetImpl open={nyi} setOpen={setNyi} />
       <AssistanceConfirm open={assistance} setOpen={setAssistance} />
     </>
   );

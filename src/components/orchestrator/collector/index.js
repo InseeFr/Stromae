@@ -1,16 +1,30 @@
-import { WelcomePage, EndPage, ValidationPage } from '../genericPages';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as lunatic from '@inseefr/lunatic';
-import { Button, Card, Typography } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
+import { AppBar } from 'components/navigation/appBar';
 import Pagination from '../pagination';
 import '../custom-lunatic.scss';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
-import { Skeleton } from '@material-ui/lab';
+import { addConstantPages } from 'utils/questionnaire/build';
+import { ButtonsNavigation } from '../navigation';
+
+export const OrchestratorContext = React.createContext();
+export const UtilsFunctionContext = React.createContext();
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flex: '1 1 auto',
+    backgroundColor: 'whitesmoke',
+    padding: '1em',
+    paddingBottom: '3em',
+  },
+}));
 
 const Orchestrator = ({
   source,
   stromaeData,
+  metadata,
   save,
   savingType,
   preferences,
@@ -18,17 +32,25 @@ const Orchestrator = ({
 }) => {
   const [init, setInit] = useState(false);
 
-  const { validated, currentPage, data } = stromaeData;
+  const { questionnaireState, data } = stromaeData;
+
+  const [context /*, setContext */] = useState({
+    metadata,
+    ...stromaeData,
+    lunaticOptions: { preferences, features },
+  });
+
+  const validated = questionnaireState.state === 'VALIDATED';
 
   const [currentIndex, setCurrentIndex] = useState(() => {
-    if (currentPage && !validated) return currentPage;
+    if (questionnaireState.currentPage && !validated)
+      return questionnaireState.currentPage;
     if (validated) return -1;
     return 0;
   });
-  const [lastIndex, setLastIndex] = useState(null);
 
   const [validatedQuestionnaire, setValidated] = useState(validated);
-  const [waiting, setWaiting] = useState(false);
+  const [waiting /*, setWaiting*/] = useState(false);
 
   const {
     questionnaire,
@@ -42,119 +64,77 @@ const Orchestrator = ({
   });
 
   const validateQuestionnaire = () => {
-    console.log('validate');
     setValidated(true);
+    const dataToSave = {
+      ...stromaeData,
+      context: {
+        state: 'VALIDATED',
+        date: new Date().getTime(),
+        currentPage: currentIndex,
+      },
+      data: lunatic.getState(questionnaire),
+    };
+    save(dataToSave);
     setCurrentIndex(currentIndex + 1);
   };
 
-  const onNext = useCallback(() => {
-    const stateToSave = lunatic.getState(questionnaire);
-
+  const onNext = useCallback(async () => {
     const dataToSave = {
-      currentPage: currentIndex,
-      validated: validatedQuestionnaire,
-      data: stateToSave,
+      ...stromaeData,
+      utils: { currentPage: currentIndex },
+      questionnaire: {
+        state: 'STARTED',
+        date: new Date().getTime(),
+      },
+      data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
-  }, [questionnaire, currentIndex, validatedQuestionnaire, save]);
+    setCurrentIndex(currentIndex + 1);
+  }, [questionnaire, currentIndex, save, stromaeData]);
 
-  const componentFilterd = components.filter(({ page }) => page);
+  const onPrevious = () => {
+    setCurrentIndex(currentIndex - 1);
+  };
 
-  const componentsToDisplay = componentFilterd.map(q => {
-    const { id, componentType } = q;
-    const Component = lunatic[componentType];
-    const comp = (
-      <Card
-        className="lunatic lunatic-component"
-        key={`component-${id}`}
-        style={{ padding: '10px', overflow: 'visible' }}
-      >
-        <Component
-          {...q}
-          handleChange={handleChange}
-          labelPosition="TOP"
-          preferences={preferences}
-          features={features}
-          bindings={bindings}
-          writable
-          zIndex={1}
-        />
-      </Card>
-    );
-    return comp;
-  });
+  const fullQuestionnaire = addConstantPages(components)(
+    validatedQuestionnaire
+  );
+  const classes = useStyles();
 
-  const constantPage = [
-    <WelcomePage key={'welcome'} />,
-    ...componentsToDisplay,
-    <ValidationPage key={'validation'} validate={validateQuestionnaire} />,
-  ];
-
-  const componentsPages = validatedQuestionnaire
-    ? [...constantPage, <EndPage key={'end'} setWaiting={setWaiting} />]
-    : constantPage;
-
-  const { sequence, subsequence } = componentFilterd[currentIndex - 1] || {};
   return (
-    <>
-      {sequence && (
-        <Card
-          style={{
-            marginRight: '10px',
-            marginLeft: '10px',
-            marginBottom: '10px',
-            padding: '10px',
-          }}
-        >
-          <Typography variant="h4">
-            {lunatic.interpret(features)(bindings)(sequence.label)}
-          </Typography>
-
-          {subsequence && (
-            <Typography variant="h6">
-              {lunatic.interpret(features)(bindings)(subsequence.label)}
-            </Typography>
-          )}
-        </Card>
-      )}
-
-      <Pagination
-        componentsPages={componentsPages}
-        currentPage={currentIndex}
-        setCurrentPage={setCurrentIndex}
-        validated={validatedQuestionnaire}
-        onNext={onNext}
-      />
-
+    <OrchestratorContext.Provider value={context}>
+      <AppBar title={questionnaire?.label} />
+      <Container
+        maxWidth="md"
+        component="main"
+        id="main"
+        className={classes.root}
+      >
+        <Pagination
+          components={fullQuestionnaire}
+          handleChange={handleChange}
+          bindings={bindings}
+          currentPage={currentIndex}
+          setCurrentPage={setCurrentIndex}
+          validateQuestionnaire={validateQuestionnaire}
+        />
+      </Container>
       {!validatedQuestionnaire && (
-        <div className="navigation-buttons">
-          <Button
-            onClick={() => {
-              setCurrentIndex(currentIndex - 1);
-              onNext();
-            }}
-            disabled={currentIndex === 0}
-          >
-            Previous
-          </Button>
-          <Button
-            onClick={() => {
-              setCurrentIndex(currentIndex + 1);
-              onNext();
-            }}
-            disabled={currentIndex === componentsPages.length - 1}
-          >
-            Next
-          </Button>
-        </div>
+        <ButtonsNavigation
+          onNext={onNext}
+          onPrevious={onPrevious}
+          currentIndex={currentIndex}
+          maxPage={fullQuestionnaire.length}
+        />
       )}
+
       <WelcomeBack
-        open={!init && !validated && currentPage}
+        open={!init && !validated && !!questionnaireState.currentPage}
         setOpen={o => setInit(!o)}
         goToFirstPage={() => setCurrentIndex(0)}
       />
       {waiting && <LoaderSimple />}
-    </>
+    </OrchestratorContext.Provider>
   );
 };
 export default Orchestrator;

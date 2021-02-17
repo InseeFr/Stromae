@@ -1,49 +1,61 @@
-import { useMediaQuery } from '@material-ui/core';
-import SwipeableViews from 'react-swipeable-views';
-import React from 'react';
+import React, { useContext } from 'react';
+import * as lunatic from '@inseefr/lunatic';
+import { Card, makeStyles } from '@material-ui/core';
+import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
+import { OrchestratorContext } from '../collector';
 
-// const SwipeComponent = bindKeyboard(SwipeableViews);
-const SwipeComponent = SwipeableViews;
+const useStyles = makeStyles(theme => ({
+  root: { padding: '10px', overflow: 'visible' },
+}));
 
 const Pagination = ({
-  componentsPages,
+  components,
+  handleChange,
+  bindings,
   currentPage,
-  setCurrentPage,
-  validated,
-  onNext,
+  validateQuestionnaire,
 }) => {
-  const mobile1 = useMediaQuery(
-    '(max-width:500px) and (orientation: portrait)'
-  );
-  const mobile2 = useMediaQuery(
-    '(max-height:500px) and (orientation: landscape)'
-  );
+  const classes = useStyles();
+  const currentIndex = currentPage >= 0 ? currentPage : components.length - 1;
 
-  const changePage = index => {
-    console.log('changeing');
+  const { lunaticOptions } = useContext(OrchestratorContext);
+
+  const currentCompoent = () => {
+    const { stromaeType, ...others } = components[currentIndex];
+    if (stromaeType === 'Lunatic') {
+      const { id, componentType } = others;
+      const Component = lunatic[componentType];
+      const comp = (
+        <Card
+          className={`lunatic lunatic-component ${classes.root}`}
+          key={`component-${id}`}
+          style={{ padding: '10px', overflow: 'visible' }}
+        >
+          <Component
+            {...others}
+            handleChange={handleChange}
+            labelPosition="TOP"
+            preferences={lunaticOptions.preferences}
+            features={lunaticOptions.features}
+            bindings={bindings}
+            writable
+            focused={componentType !== 'Loop'}
+            zIndex={1}
+          />
+        </Card>
+      );
+      return comp;
+    } else {
+      if (stromaeType === 'welcomePage') return <WelcomePage key={'welcome'} />;
+      if (stromaeType === 'validationPage')
+        return (
+          <ValidationPage key={'validation'} validate={validateQuestionnaire} />
+        );
+      if (stromaeType === 'endPage') return <EndPage key={'endPage'} />;
+    }
   };
 
-  const isMobileDevice = mobile1 || mobile2;
-
-  const currentIndex =
-    currentPage >= 0 ? currentPage : componentsPages.length - 1;
-
-  return (
-    <>
-      {isMobileDevice && (
-        <SwipeComponent
-          index={currentIndex}
-          onChangeIndex={setCurrentPage}
-          resistance
-          disabled={validated}
-          onTransitionEnd={onNext}
-        >
-          {componentsPages}
-        </SwipeComponent>
-      )}
-      {!isMobileDevice && componentsPages[currentIndex]}
-    </>
-  );
+  return currentCompoent();
 };
 
 export default Pagination;

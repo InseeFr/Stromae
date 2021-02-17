@@ -1,6 +1,24 @@
 {
-  "currentPage": null,
-  "validated": false,
+  "questionnaireState": {
+    "state": "NOT_STARTED",
+    "date": null,
+    "currentPage": null
+  },
+
+  "personalization": [
+    {
+      "name": "whoAnswers1",
+      "value": "Mr Dupond"
+    },
+    {
+      "name": "whoAnswers2",
+      "value": ""
+    },
+    {
+      "name": "whoAnswers3",
+      "value": ""
+    }
+  ],
 
   "data": {}
 }

@@ -1,39 +1,58 @@
 {
-  "theme": "default",
+  "inseeContext": "household",
 
-  "menu": {
-    "logout": true,
-    "logout_url": null,
-
-    "account": false,
-    "account_url": null
-  },
-
-  "welcomePage": {
-    "title": "Accueil",
-    "shortDescription": "",
-    "knowLegalTerms": "Connaître le cadre légal de l'enquête ?",
-    "legalTermsDetails": {
-      "paragraphs": [
-        "Vu l'avis favorable du Conseil national de l'information statistique, cette enquête est reconnue d’intérêt général et de qualité statistique sans avoir de caractère obligatoire, en application de la loi n° 51-711 du 7 juin 1951 sur l’obligation, la coordination et le secret en matière de statistiques.",
-        "Visa n° valable pour l'année - Arrêté en cours de parution.",
-        "Les réponses à ce questionnaire sont protégées par le secret statistique et destinées à . Le règlement général 2016/679 du 27 avril 2016 sur la protection des données (RGPD) ainsi que la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, s'appliquent à la présente enquête. Les droits des personnes, rappelés dans la lettre-avis, peuvent être exercés auprès de ."
-      ]
+  "variables": [
+    {
+      "name": "Enq_LibelleEnquete",
+      "value": "enquête vqs !!!"
+    },
+    {
+      "name": "Enq_ObjectifsCourts",
+      "value": ""
+    },
+    {
+      "name": "Enq_CaractereObligatoire",
+      "value": false
+    },
+    {
+      "name": "Enq_NumeroVisa",
+      "value": "2021xxxx"
+    },
+    {
+      "name": "Enq_MinistereTutelle",
+      "value": "de la santé"
+    },
+    {
+      "name": "Enq_ParutionJo",
+      "value": true
+    },
+    {
+      "name": "Enq_DateParutionJo",
+      "value": "21/12/2021"
+    },
+    {
+      "name": "Enq_RespOperationnel",
+      "value": "l'Insee"
+    },
+    {
+      "name": "Enq_RespTraitement",
+      "value": "la DREES"
+    },
+    {
+      "name": "Enq_AnneeVisa",
+      "value": "2021"
+    },
+    {
+      "name": "Loi_statistique",
+      "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573"
+    },
+    {
+      "name": "Loi_rgpd",
+      "value": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679"
+    },
+    {
+      "name": "Loi_informatique",
+      "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
     }
-  },
-
-  "validationPage": {
-    "title": "Validation",
-    "paragraphs": [
-      "Vous êtes arrivé à la fin du questionnaire. \n Merci de cliquer sur le bouton \"Envoyer\" pour le transmettre à l'Insee.",
-      "Après envoi, vous ne pourrez plus modifier vos réponses en ligne. \n Pour toute modification, cliquer sur le bouton \"Retour\"."
-    ]
-  },
-
-  "endPage": {
-    "title": "Fin",
-    "sentMessage": true,
-    "thanks": "L'Insee vous remercie de votre collaboration à cette enquête.",
-    "depositProof": true
-  }
+  ]
 }
