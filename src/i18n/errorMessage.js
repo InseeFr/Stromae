@@ -4,28 +4,35 @@ const errorMessage = {
     en: 'Changing the sequence',
   },
   getError403: {
-    fr: questionnaire =>
-      `Vous n'êtes pas autorisé à accéder ${
-        questionnaire ? 'au questionnaire.' : 'aux données du répondant.'
-      }`,
-    en: questionnaire =>
-      `You are not authorized to access ${
-        questionnaire ? 'the questionnaire.' : `the respondent's data.`
-      }`,
+    fr: type => {
+      if (type === 'q')
+        return `Vous n'êtes pas autorisé à accéder au questionnaire.`;
+      if (type === 'm')
+        return `Vous n'êtes pas autorisé à accéder aux métadonnées du questionnaire.`;
+      if (type === 'd')
+        return `Vous n'êtes pas autorisé à accéder aux données du répondant.`;
+    },
+    en: type => {
+      if (type === 'q')
+        return `You are not authorized to access the questionnaire.`;
+      if (type === 'm')
+        return `You are not authorized to access the metadata of the questionnaire.`;
+      if (type === 'd')
+        return `You are not authorized to access the respondent's data.`;
+    },
   },
   getError404: {
-    fr: questionnaire =>
-      `${
-        questionnaire
-          ? "Le questionnaire n'existe pas."
-          : "Il n'y a aucune donnée pour ce répondant."
-      }`,
-    en: questionnaire =>
-      `${
-        questionnaire
-          ? 'The questionnaire does not exist.'
-          : 'There is no data for this respondent.'
-      }`,
+    fr: type => {
+      if (type === 'q') return `Le questionnaire n'existe pas.`;
+      if (type === 'm') return `Les métadonnées du questionnaire n'existe pas.`;
+      if (type === 'd') return `Il n'y a aucune donnée pour ce répondant.`;
+    },
+    en: type => {
+      if (type === 'q') return `The questionnaire does not exist.`;
+      if (type === 'm')
+        return `The metadata of the questionnaire does not exist.`;
+      if (type === 'd') return `There is no data for this respondent.`;
+    },
   },
   getErrorServeur: {
     fr: `Il semble qu'il y ait une erreur côté serveur.`,
