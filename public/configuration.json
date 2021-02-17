@@ -1,5 +1,5 @@
 {
-  "authenticationType": "OIDC",
+  "authenticationType": "NONE",
   "_authenticationType_comment_": "Authentication type : OIDC or NONE",
   "apiUrl": "http://localhost:8080",
   "inseeContext": "household",
