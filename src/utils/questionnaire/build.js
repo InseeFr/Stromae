@@ -1,7 +1,3 @@
-import D from 'i18n';
-import * as lunatic from '@inseefr/lunatic';
-import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
-
 /**
  * Function to build questionnaire for stromae.
  * It adds attribute to components
@@ -12,12 +8,9 @@ import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
  */
 export const buildQuestionnaire = components => {
   let seqLabel;
-  let seqPage = 0;
   let idSeq;
   let subseqLabel;
-  let subseqPage = 0;
   let idSubseq;
-  let currentPage = 0;
   return Array.isArray(components)
     ? components.reduce((_, component) => {
         const { componentType, label, id, declarations } = component;
@@ -27,27 +20,21 @@ export const buildQuestionnaire = components => {
             componentType
           )
         ) {
-          currentPage += 1;
           return [
             ..._,
             {
               ...component,
               idSequence: idSeq,
               idSubsequence: idSubseq,
-              sequence: { label: seqLabel, page: seqPage },
-              subsequence:
-                subseqLabel && subseqPage
-                  ? { label: subseqLabel, page: subseqPage }
-                  : null,
-              page: currentPage,
+              sequence: { label: seqLabel },
+              subsequence: subseqLabel ? { label: subseqLabel } : null,
+              stromaeType: 'Lunatic',
             },
           ];
         }
         if (componentType === 'Sequence') {
-          currentPage += 1;
           idSeq = id;
           seqLabel = label;
-          seqPage = currentPage;
           subseqLabel = '';
           idSubseq = '';
           /**
@@ -60,7 +47,7 @@ export const buildQuestionnaire = components => {
                     id: `${id}-d1`,
                     declarationType: 'COMMENT',
                     position: 'AFTER_QUESTION_TEXT',
-                    label: '"coucou"',
+                    label: '"Nouvelle séquence"',
                   },
                 ]
               : declarations;
@@ -71,15 +58,14 @@ export const buildQuestionnaire = components => {
               labelNav: label,
               label: '',
               declarations: newDeclarations,
-              sequence: { label: seqLabel, page: seqPage },
-              page: currentPage,
+              sequence: { label: seqLabel },
+              stromaeType: 'Lunatic',
             },
           ];
         }
         if (componentType === 'Subsequence') {
           idSubseq = id;
           subseqLabel = label;
-          subseqPage = currentPage + 1;
           /**
            * if there is no declarations, we "delete" this component
            */
@@ -90,41 +76,32 @@ export const buildQuestionnaire = components => {
                 ...component,
                 labelNav: label,
                 idSequence: idSeq,
-                goToPage: currentPage + 1,
+                stromaeType: 'Lunatic',
               },
             ];
           }
-          currentPage += 1;
           return [
             ..._,
             {
               ...component,
               labelNav: label,
               label: '',
-              sequence: { label: seqLabel, page: seqPage },
-              subsequence: { label: subseqLabel, page: subseqPage },
+              sequence: { label: seqLabel },
+              subsequence: { label: subseqLabel },
               idSequence: idSeq,
-              goToPage: currentPage,
-              page: currentPage,
-            },
-          ];
-        }
-        if (componentType === 'FilterDescription') {
-          return [
-            ..._,
-            {
-              ...component,
-              idSequence: idSeq,
-              idSubsequence: idSubseq,
-              sequence: { label: seqLabel, page: seqPage },
-              subsequence:
-                subseqLabel && subseqPage
-                  ? { label: subseqLabel, page: subseqPage }
-                  : null,
+              stromaeType: 'Lunatic',
             },
           ];
         }
         return _;
       }, [])
     : [];
+};
+
+export const addConstantPages = components => validatedQuestionnaire => {
+  const welcome = { stromaeType: 'welcomePage' };
+  const validation = { stromaeType: 'validationPage' };
+  const end = { stromaeType: 'endPage' };
+  if (validatedQuestionnaire) return [welcome, ...components, validation, end];
+  return [welcome, ...components, validation];
 };

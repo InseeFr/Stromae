@@ -13,7 +13,17 @@ const putData = apiUrl => id => token => body =>
 const getQuestionnaire = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/campaign/${id}/questionnaire`)(token);
 
+const getMetadata = apiUrl => id => token =>
+  getRequest(`${apiUrl}/api/campaign/${id}/metadata`)(token);
+
 const getDepositProof = apiUrl => id => token => filename =>
   fetcherFile(`${apiUrl}/api/survey-unit/${id}/deposit-proof`, token, filename);
 
-export const API = { getData, putData, getQuestionnaire, getDepositProof };
+export const API = {
+  getRequest,
+  getData,
+  putData,
+  getQuestionnaire,
+  getMetadata,
+  getDepositProof,
+};
