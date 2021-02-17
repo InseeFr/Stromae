@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { COOKIE_CONSENT } from 'utils/constants';
-import Dictionary from 'i18n';
+import { defaultDictionary, buttonDictionary } from 'i18n';
 
 const CookieConsent = () => {
   const [open, setOpen] = useState(
@@ -29,15 +29,15 @@ const CookieConsent = () => {
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle id="alert-dialog-slide-title">
-        {Dictionary.cookieTitle}
+        {defaultDictionary.cookieTitle}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description" component="div">
-          <MarkdownTypo>{Dictionary.cookieConsent}</MarkdownTypo>
+          <MarkdownTypo>{defaultDictionary.cookieConsent}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={understand}>{Dictionary.understand}</Button>
+        <Button onClick={understand}>{buttonDictionary.understand}</Button>
       </DialogActions>
     </Dialog>
   );

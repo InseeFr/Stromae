@@ -5,7 +5,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
-import Dictionary from 'i18n';
+import { visualizeDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 import React from 'react';
 
@@ -34,14 +34,14 @@ const Helper = () => {
         id="panel1a-header"
       >
         <MarkdownTypo className={classes.heading}>
-          {Dictionary.accordionHelperTitle}
+          {visualizeDictionary.accordionHelperTitle}
         </MarkdownTypo>
         <MarkdownTypo className={classes.secondaryHeading}>
-          {Dictionary.accordionHelperSubtitle}
+          {visualizeDictionary.accordionHelperSubtitle}
         </MarkdownTypo>
       </AccordionSummary>
       <AccordionDetails className={classes.accordionDetails}>
-        <MarkdownTypo>{Dictionary.accordionHelperBody}</MarkdownTypo>
+        <MarkdownTypo>{visualizeDictionary.accordionHelperBody}</MarkdownTypo>
       </AccordionDetails>
     </Accordion>
   );

@@ -1,6 +1,6 @@
 import { Button } from 'components/designSystem';
 import React from 'react';
-import Dictionary from 'i18n';
+import { buttonDictionary } from 'i18n';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -30,12 +30,12 @@ const useStyles = makeStyles(theme => ({
 const ButtonsNavigation = ({ currentIndex, maxPage, onPrevious, onNext }) => {
   const classes = useStyles();
   const nextLabel =
-    currentIndex === 0 ? Dictionary.start : Dictionary.saveAndNext;
+    currentIndex === 0 ? buttonDictionary.start : buttonDictionary.saveAndNext;
   return (
     <footer role="navigation" className={classes.root}>
       {currentIndex !== 0 && (
         <Button className={classes.navButton} onClick={onPrevious}>
-          {Dictionary.back}
+          {buttonDictionary.back}
         </Button>
       )}
       {currentIndex !== maxPage - 1 && (

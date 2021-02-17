@@ -12,7 +12,7 @@ import { Button as InseeButton } from 'components/designSystem/Button';
 import PDFimg from 'img/pdf.png';
 import { GetApp } from '@material-ui/icons';
 import { useAPI, useAuth } from 'utils/hooks';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { formatDistance, format } from 'date-fns';
 import { getEndPage } from 'utils/content';
 
@@ -23,8 +23,9 @@ const EndPage = () => {
   const {
     metadata: { inseeContext },
   } = useContext(OrchestratorContext);
-  const { logout, oidcUser } = useAuth();
+  const { logout: logoutAuth, oidcUser } = useAuth();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
@@ -39,6 +40,12 @@ const EndPage = () => {
     const { error, status } = await getPDF(filename);
     console.log(status + error);
   };
+
+  const fakeLogout = () => {
+    history.push('/');
+  };
+
+  const logout = pathname.includes('visualize') ? fakeLogout : logoutAuth;
 
   return (
     <Card>

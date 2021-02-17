@@ -1,5 +1,5 @@
 import { AppContext } from 'App';
-import Dictionary from 'i18n';
+import { errorDictionary } from 'i18n';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
 import { DATA_EXAMPLE_URL, METADATA_EXAMPLE_URL, OIDC } from 'utils/constants';
@@ -7,11 +7,11 @@ import { useAuth } from './auth';
 
 const getErrorMessage = (response, type = 'q') => {
   const { status } = response;
-  if (status === 401) return Dictionary.getError401;
-  if (status === 403) return Dictionary.getError403(type);
-  if (status === 404) return Dictionary.getError404(type);
-  if (status >= 500 && status < 600) return Dictionary.getErrorServeur;
-  return Dictionary.getUnknownError;
+  if (status === 401) return errorDictionary.getError401;
+  if (status === 403) return errorDictionary.getError403(type);
+  if (status === 404) return errorDictionary.getError404(type);
+  if (status >= 500 && status < 600) return errorDictionary.getErrorServeur;
+  return errorDictionary.getUnknownError;
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {

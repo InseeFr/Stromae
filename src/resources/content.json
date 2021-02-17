@@ -21,7 +21,7 @@
       "end": {
         "title": "Fin",
         "thanks": "L'Insee vous remercie de votre collaboration à cette \n\n enquête.",
-        "depositProof": true,
+        "depositProof": false,
         "logout": true
       }
     }

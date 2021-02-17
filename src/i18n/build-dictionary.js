@@ -1,14 +1,12 @@
-import dictionary from './dictionary';
-
 /**
  * Based on the locale passed as a paremeter, this function will return
  * the corresponding dictionary.
  *
  * @param {string} lang the lang of the user
  */
-export const createDictionary = lang =>
-  Object.keys(dictionary).reduce((_, k) => {
-    _[k] = dictionary[k][lang];
+export const createDictionary = lang => dico =>
+  Object.keys(dico).reduce((_, k) => {
+    _[k] = dico[k][lang];
     return _;
   }, {});
 
@@ -24,5 +22,3 @@ export const getLang = defaultLang =>
   )[0] === 'fr'
     ? 'fr'
     : 'en';
-
-export default createDictionary(getLang());

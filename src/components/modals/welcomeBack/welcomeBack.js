@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'components/designSystem/Button';
-import Dictionary from 'i18n';
+import { defaultDictionary, buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -28,18 +28,18 @@ const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle id="alert-dialog-slide-title">
-        {Dictionary.welcomeBackTitle}
+        {defaultDictionary.welcomeBackTitle}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description" component="div">
-          <MarkdownTypo>{Dictionary.welcomeBackBody}</MarkdownTypo>
+          <MarkdownTypo>{defaultDictionary.welcomeBackBody}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={goToCurrentPage}>
-          {Dictionary.goBackToCurrentPage}
+          {buttonDictionary.goBackToCurrentPage}
         </Button>
-        <Button onClick={goToFirst}>{Dictionary.goToFirstPage}</Button>
+        <Button onClick={goToFirst}>{buttonDictionary.goToFirstPage}</Button>
       </DialogActions>
     </Dialog>
   );

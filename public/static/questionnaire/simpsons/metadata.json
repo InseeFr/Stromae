@@ -1,0 +1,58 @@
+{
+  "inseeContext": "default",
+
+  "variables": [
+    {
+      "name": "Enq_LibelleEnquete",
+      "value": "Enquête Simpsons"
+    },
+    {
+      "name": "Enq_ObjectifsCourts",
+      "value": ""
+    },
+    {
+      "name": "Enq_CaractereObligatoire",
+      "value": false
+    },
+    {
+      "name": "Enq_NumeroVisa",
+      "value": "2021xxxx"
+    },
+    {
+      "name": "Enq_MinistereTutelle",
+      "value": "du divertissement"
+    },
+    {
+      "name": "Enq_ParutionJo",
+      "value": true
+    },
+    {
+      "name": "Enq_DateParutionJo",
+      "value": "21/12/2021"
+    },
+    {
+      "name": "Enq_RespOperationnel",
+      "value": "l'Insee"
+    },
+    {
+      "name": "Enq_RespTraitement",
+      "value": "l'Insee"
+    },
+    {
+      "name": "Enq_AnneeVisa",
+      "value": "2021"
+    },
+    {
+      "name": "Loi_statistique",
+      "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573"
+    },
+    {
+      "name": "Loi_rgpd",
+      "value": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679"
+    },
+    {
+      "name": "Loi_informatique",
+      "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
+    }
+  ]
+}

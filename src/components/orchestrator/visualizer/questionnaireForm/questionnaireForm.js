@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dictionary from 'i18n';
+import { visualizeDictionary, buttonDictionary } from 'i18n';
 import {
   QUESTIONNAIRE_EXAMPLE_URL,
   METADATA_EXAMPLE_URL,
@@ -31,12 +31,14 @@ const QuestionnaireForm = () => {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h3">{Dictionary.visualizationTitlePage}</Typography>
+      <Typography variant="h3">
+        {visualizeDictionary.visualizationTitlePage}
+      </Typography>
       <form onSubmit={goToQuestionnaire}>
         <TextField
-          label={Dictionary.labelQuest}
+          label={visualizeDictionary.labelQuest}
           placeholder={QUESTIONNAIRE_EXAMPLE_URL}
-          helperText={Dictionary.helperTextQuest}
+          helperText={visualizeDictionary.helperTextQuest}
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -48,9 +50,9 @@ const QuestionnaireForm = () => {
           variant="outlined"
         />
         <TextField
-          label={Dictionary.labelMetadata}
+          label={visualizeDictionary.labelMetadata}
           placeholder={METADATA_EXAMPLE_URL}
-          helperText={Dictionary.helperTextMetadata}
+          helperText={visualizeDictionary.helperTextMetadata}
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -62,9 +64,9 @@ const QuestionnaireForm = () => {
           variant="outlined"
         />
         <TextField
-          label={Dictionary.labelData}
+          label={visualizeDictionary.labelData}
           placeholder={DATA_EXAMPLE_URL}
-          helperText={Dictionary.helperTextData}
+          helperText={visualizeDictionary.helperTextData}
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -75,7 +77,7 @@ const QuestionnaireForm = () => {
           }}
           variant="outlined"
         />
-        <Button type="submit">{Dictionary.visualize}</Button>
+        <Button type="submit">{buttonDictionary.visualize}</Button>
       </form>
       <br />
       <Helper />
