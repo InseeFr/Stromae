@@ -12,7 +12,7 @@ import { Button as InseeButton } from 'components/designSystem/Button';
 import PDFimg from 'img/pdf.png';
 import { GetApp } from '@material-ui/icons';
 import { useAPI, useAuth } from 'utils/hooks';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { formatDistance, format } from 'date-fns';
 import { getEndPage } from 'utils/content';
 
@@ -24,6 +24,7 @@ const EndPage = () => {
     metadata: { inseeContext },
   } = useContext(OrchestratorContext);
   const { logout, oidcUser } = useAuth();
+  const { pathname } = useLocation();
 
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
@@ -53,7 +54,7 @@ const EndPage = () => {
         </Typography>
         <Typography>{thanks}</Typography>
         <br />
-        {depositProof && (
+        {depositProof && !pathname.includes('visualize') && (
           <>
             <Typography>
               {`Télécharger la preuve de votre participation à l'enquête `}
