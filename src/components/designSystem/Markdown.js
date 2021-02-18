@@ -1,22 +1,19 @@
-import { Link as MuiLink, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { Link as MuiLink, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-const styles = theme => ({
-  listItem: {
-    marginTop: theme.spacing(1),
-  },
+const useStyles = makeStyles(theme => ({
   header: {
     marginTop: theme.spacing(2),
   },
-});
+}));
 
-function MarkdownParagraph(props) {
+const MarkdownParagraph = props => {
   return <Typography>{props.children}</Typography>;
-}
+};
 
-const MarkdownHeading = withStyles(styles)(({ classes, ...props }) => {
+const MarkdownHeading = props => {
+  const classes = useStyles();
   let variant;
   switch (props.level) {
     case 1:
@@ -40,17 +37,17 @@ const MarkdownHeading = withStyles(styles)(({ classes, ...props }) => {
       {props.children}
     </Typography>
   );
-});
+};
 
 const Link = props => <MuiLink target="_blank" {...props} />;
 
-const MarkdownListItem = withStyles(styles)(({ classes, ...props }) => {
+const MarkdownListItem = props => {
   return (
-    <li className={classes.listItem}>
+    <li>
       <Typography component="span">{props.children}</Typography>
     </li>
   );
-});
+};
 
 const renderers = {
   heading: MarkdownHeading,

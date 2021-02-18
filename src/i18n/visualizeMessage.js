@@ -39,7 +39,7 @@ const visualizeMessage = {
   },
   accordionHelperSubtitle: {
     fr: 'Comment visualiser un questionnaire ?',
-    en: 'How do I view a questionnaire ?',
+    en: 'How do I preview a questionnaire ?',
   },
   accordionHelperBody: {
     fr: `Chacun des 3 champs est optionnel, si aucune valeur n'est renseignée, les valeurs par défaut sont appliquées. \n\n Les valeurs par défaut des json sont disponible ici : \n - [questionnaire](${QUESTIONNAIRE_EXAMPLE_URL}) \n - [metadonnées](${METADATA_EXAMPLE_URL}) \n - [données](${DATA_EXAMPLE_URL})`,
