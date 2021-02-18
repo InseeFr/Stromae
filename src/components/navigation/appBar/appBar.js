@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   AppBar,
   IconButton,
@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 const AppBarMenu = ({ title }) => {
   const {
     metadata: { inseeContext },
+    validated,
   } = useContext(OrchestratorContext);
   const { oidcUser, logout } = useAuth();
   const isAuthenticated = oidcUser?.profile;
@@ -73,14 +74,17 @@ const AppBarMenu = ({ title }) => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setNyi(true)}
-          >
-            <MenuIcon />
-          </IconButton>
+          {!validated && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => setNyi(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
+
           <Typography variant="h6" className={classes.title}>
             {title ? title : <Skeleton variant="text" />}
           </Typography>

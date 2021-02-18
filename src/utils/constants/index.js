@@ -16,6 +16,6 @@ export const GUEST_USER = {
 };
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
-export const QUESTIONNAIRE_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/tic/form.json`;
-export const METADATA_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/tic/metadata.json`;
-export const DATA_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/tic/data.json`;
+export const QUESTIONNAIRE_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/simpsons/form.json`;
+export const METADATA_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/simpsons/metadata.json`;
+export const DATA_EXAMPLE_URL = `${window.location.origin}/static/questionnaire/simpsons/data.json`;

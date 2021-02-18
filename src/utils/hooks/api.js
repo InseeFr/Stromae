@@ -33,13 +33,10 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const getPDF = useCallback(
-    filename => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.getDepositProof(apiUrl)(surveyUnitID)(token)(filename);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
-  );
+  const getPDF = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getDepositProof(apiUrl)(surveyUnitID)(token);
+  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
   const putData = useCallback(
     body => {

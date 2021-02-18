@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const WelcomePage = () => {
+  const classes = useStyles();
   const {
     metadata: { inseeContext, variables },
     personalization,
@@ -44,8 +45,6 @@ const WelcomePage = () => {
   const getFinalLabel = label =>
     label || `Not yet Implemented for ${inseeContext}`;
 
-  const classes = useStyles();
-
   return (
     <Card>
       <CardHeader title={getFinalLabel(title)} />
@@ -56,7 +55,7 @@ const WelcomePage = () => {
             <MarkdownTypo>
               {getBodyWithVariables(getFinalLabel(line))}
             </MarkdownTypo>
-            <br />
+            {i !== body.length - 1 && <br />}
           </React.Fragment>
         ))}
         {legalTermsTitle && (
@@ -72,7 +71,7 @@ const WelcomePage = () => {
               {legalTermsDetails.map((line, i) => (
                 <React.Fragment key={`line-${i}`}>
                   <MarkdownTypo>{getBodyWithVariables(line)}</MarkdownTypo>
-                  <br />
+                  {i !== body.length - 1 && <br />}
                 </React.Fragment>
               ))}
             </AccordionDetails>

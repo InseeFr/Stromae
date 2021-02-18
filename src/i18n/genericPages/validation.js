@@ -14,7 +14,7 @@ const validationHousehold = {
   },
 };
 
-const validationeDefault = {
+const validationDefault = {
   title: { fr: `Validation`, en: `Validation` },
   body: {
     fr: [
@@ -45,7 +45,7 @@ const validationBusiness = {
 const validationMessage = {
   household: validationHousehold,
   business: validationBusiness,
-  default: validationeDefault,
+  default: validationDefault,
 };
 
 export const getValidationPageMessage = inseeContext =>
