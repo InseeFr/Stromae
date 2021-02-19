@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as lunatic from '@inseefr/lunatic';
 import { Container, makeStyles } from '@material-ui/core';
 import { AppBar } from 'components/navigation/appBar';

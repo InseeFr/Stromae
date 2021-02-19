@@ -2,7 +2,7 @@ import { AppContext } from 'App';
 import { errorDictionary } from 'i18n';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { DATA_EXAMPLE_URL, METADATA_EXAMPLE_URL, OIDC } from 'utils/constants';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
 
 const getErrorMessage = (response, type = 'q') => {
@@ -106,12 +106,12 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
         if (!qR.error) {
           setQuestionnaire(qR.data);
-          const mR = await API.getRequest(metadataUrl || METADATA_EXAMPLE_URL)(
+          const mR = await API.getRequest(metadataUrl || DEFAULT_METADATA_URL)(
             fakeToken
           );
           if (!mR.error) {
             setMetadata(mR.data);
-            const dR = await API.getRequest(dataUrl || DATA_EXAMPLE_URL)(
+            const dR = await API.getRequest(dataUrl || DEFAULT_DATA_URL)(
               fakeToken
             );
             if (!dR.error) {

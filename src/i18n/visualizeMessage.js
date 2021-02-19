@@ -1,8 +1,5 @@
-import {
-  DATA_EXAMPLE_URL,
-  METADATA_EXAMPLE_URL,
-  QUESTIONNAIRE_EXAMPLE_URL,
-} from 'utils/constants';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
+import buttonMessage from './buttonMessage';
 
 const visualizeMessage = {
   visualizationTitlePage: {
@@ -42,9 +39,18 @@ const visualizeMessage = {
     en: 'How do I preview a questionnaire ?',
   },
   accordionHelperBody: {
-    fr: `Chacun des 3 champs est optionnel, si aucune valeur n'est renseignée, les valeurs par défaut sont appliquées. \n\n Les valeurs par défaut des json sont disponible ici : \n - [questionnaire](${QUESTIONNAIRE_EXAMPLE_URL}) \n - [metadonnées](${METADATA_EXAMPLE_URL}) \n - [données](${DATA_EXAMPLE_URL})`,
-    en: `Each of the 3 fields is optional, if no value is entered, the default values are applied. \n\n Default json values are available here : \n - [questionnaire](${QUESTIONNAIRE_EXAMPLE_URL}) \n - [metadata](${METADATA_EXAMPLE_URL}) \n - [data](${DATA_EXAMPLE_URL})`,
+    fr: `Seul le champ "Questionnaire" est obligatoire, si aucune valeur n'est renseignée pour les autres champs, les valeurs par défaut sont appliquées. \n\n Les valeurs par défaut des json sont disponible ici : \n - [metadonnées](${DEFAULT_METADATA_URL}) \n - [données](${DEFAULT_DATA_URL}) \n\n Vous pouvez également choisir un exemple de questionnaire directement. \n\n Une fois les valeurs renseignées, il vous suffit de cliquer sur le bouton "${buttonMessage?.visualize?.fr}".`,
+    en: `Only the "Questionnaire" field is mandatory, if no value is filled in for the other fields, the default values are applied. \n\n Default json values are available here : \n - [metadata](${DEFAULT_METADATA_URL}) \n - [data](${DEFAULT_DATA_URL}) \n\n You can also choose an example questionnaire directly. \n\n Once you have filled in the values, just click on the "${buttonMessage?.visualize?.en}" button.`,
   },
+  chooseExamples: {
+    fr: 'Ou choisir un exemple :',
+    en: 'Or choose an example',
+  },
+  labelExamples: {
+    fr: 'Exemples',
+    en: 'Examples',
+  },
+  labelNone: { fr: 'Aucun', en: 'None' },
 };
 
 export default visualizeMessage;

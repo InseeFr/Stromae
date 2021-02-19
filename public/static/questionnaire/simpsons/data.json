@@ -5,20 +5,7 @@
     "currentPage": null
   },
 
-  "personalization": [
-    {
-      "name": "whoAnswers1",
-      "value": "Mr Dupond"
-    },
-    {
-      "name": "whoAnswers2",
-      "value": ""
-    },
-    {
-      "name": "whoAnswers3",
-      "value": ""
-    }
-  ],
+  "personalization": [],
 
   "data": {}
 }
