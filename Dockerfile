@@ -1,5 +1,7 @@
 FROM nginx
 ADD build /usr/share/nginx/html
+RUN rm etc/nginx/conf.d/default.conf
+COPY nginx.conf etc/nginx/conf.d/
 
 # Copy .env file and shell script to container
 WORKDIR /usr/share/nginx/html

@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   },
 }));
+
 const OrchestratorManger = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
@@ -27,7 +28,7 @@ const OrchestratorManger = () => {
   } = useAPIRemoteData(idSU, idQ);
   const { putData } = useAPI(idSU, idQ);
 
-  const [/*sending,*/ setSending] = useState(false);
+  const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
 
   const sendData = async dataToSave => {
@@ -50,7 +51,7 @@ const OrchestratorManger = () => {
   }, [questionnaire, loading]);
 
   return (
-    <Box lassName={classes.root}>
+    <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
       {!loading && metadata && data && questionnaire && source && (

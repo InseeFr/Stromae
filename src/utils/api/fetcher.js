@@ -25,20 +25,25 @@ export const fetcher = async (url, token, method, body) => {
   }
 };
 
-export const fetcherFile = async (url, token, filename) => {
+const getFilenameFromHeader = header => {
+  const res = /filename="(.*)"/.exec(header);
+  return res && res.length > 0 ? res[1] : 'default.pdf';
+};
+
+export const fetcherFile = async (url, token) => {
   try {
     const response = await fetch(url, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       method: 'GET',
     });
-    const { ok, status, statusText } = response;
+    const { ok, status, statusText, headers } = response;
     if (ok) {
       try {
         const blob = await response.blob();
         const file = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = file;
-        a.download = filename;
+        a.download = getFilenameFromHeader(headers.get('Content-Disposition'));
         a.click();
         a.remove();
         return { status, statusText };

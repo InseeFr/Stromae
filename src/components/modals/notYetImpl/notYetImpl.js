@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'components/designSystem/Button';
-import Dictionary from 'i18n';
+import { buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -25,7 +25,7 @@ const NotYetImpl = ({ open, setOpen }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={close}>{Dictionary.understand}</Button>
+        <Button onClick={close}>{buttonDictionary.understand}</Button>
       </DialogActions>
     </Dialog>
   );

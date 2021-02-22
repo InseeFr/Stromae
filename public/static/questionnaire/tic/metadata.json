@@ -4,23 +4,23 @@
   "variables": [
     {
       "name": "Enq_LibelleEnquete",
-      "value": "enquête vqs !!!"
+      "value": "Enquête statistique sur les technologies de l’information et de la communication 2021"
     },
     {
       "name": "Enq_ObjectifsCourts",
-      "value": ""
+      "value": "Cette enquête permet de connaître l'équipement et les usages des personnes dans le domaine des technologies de l'information et de la communication (téléphone fixe et mobile, informatique, internet sur support fixe et mobile)."
     },
     {
       "name": "Enq_CaractereObligatoire",
-      "value": false
+      "value": true
     },
     {
       "name": "Enq_NumeroVisa",
-      "value": "2021xxxx"
+      "value": "2021A054EC"
     },
     {
       "name": "Enq_MinistereTutelle",
-      "value": "de la santé"
+      "value": "de l'Économie, des Finances et de la Relance"
     },
     {
       "name": "Enq_ParutionJo",
@@ -28,15 +28,15 @@
     },
     {
       "name": "Enq_DateParutionJo",
-      "value": "21/12/2021"
+      "value": "23/11/2020"
     },
     {
       "name": "Enq_RespOperationnel",
-      "value": "l'Insee"
+      "value": "L’Institut national de la statistique et des études économiques (Insee)"
     },
     {
       "name": "Enq_RespTraitement",
-      "value": "la DREES"
+      "value": "l'Insee"
     },
     {
       "name": "Enq_AnneeVisa",

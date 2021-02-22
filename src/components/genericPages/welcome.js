@@ -8,10 +8,11 @@ import {
   CardHeader,
   Divider,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 import { interpret } from '@inseefr/lunatic';
 import { ExpandMore } from '@material-ui/icons';
-import { getWelcomePage } from 'utils/content';
+import { welcomePageDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { buildBuidings } from 'utils/personalization';
@@ -23,11 +24,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const WelcomePage = () => {
+  const classes = useStyles();
   const {
     metadata: { inseeContext, variables },
     personalization,
   } = useContext(OrchestratorContext);
-  const { title, body, legalTerms } = getWelcomePage(inseeContext);
+  const {
+    title,
+    body,
+    legalTermsTitle,
+    legalTermsDetails,
+  } = welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = myBody =>
     interpret(['VTL'])({
@@ -38,35 +45,37 @@ const WelcomePage = () => {
   const getFinalLabel = label =>
     label || `Not yet Implemented for ${inseeContext}`;
 
-  const classes = useStyles();
-
   return (
     <Card>
       <CardHeader title={getFinalLabel(title)} />
       <Divider />
       <CardContent>
-        <MarkdownTypo>{getBodyWithVariables(getFinalLabel(body))}</MarkdownTypo>
-        {legalTerms && (
-          <>
-            <br />
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMore />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <MarkdownTypo>{legalTerms.title}</MarkdownTypo>
-              </AccordionSummary>
-              <AccordionDetails className={classes.accordionDetails}>
-                {legalTerms.details.map((term, i) => (
-                  <React.Fragment key={`term-${i}`}>
-                    <MarkdownTypo>{getBodyWithVariables(term)}</MarkdownTypo>
-                    <br />
-                  </React.Fragment>
-                ))}
-              </AccordionDetails>
-            </Accordion>
-          </>
+        {body.map((line, i) => (
+          <React.Fragment key={`line-${i}`}>
+            <MarkdownTypo>
+              {getBodyWithVariables(getFinalLabel(line))}
+            </MarkdownTypo>
+            {i !== body.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+        {legalTermsTitle && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMore />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>{legalTermsTitle}</Typography>
+            </AccordionSummary>
+            <AccordionDetails className={classes.accordionDetails}>
+              {legalTermsDetails.map((line, i) => (
+                <React.Fragment key={`line-${i}`}>
+                  <MarkdownTypo>{getBodyWithVariables(line)}</MarkdownTypo>
+                  {i !== body.length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </AccordionDetails>
+          </Accordion>
         )}
       </CardContent>
     </Card>

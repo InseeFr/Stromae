@@ -1,59 +1,55 @@
 import React, { useContext } from 'react';
-import { AppContext } from 'App';
 import { Button } from 'components/designSystem/Button';
-import { defaultDictionary, buttonDictionary } from 'i18n';
+import { confirmationDictionary, buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useParams } from 'react-router-dom';
-import { HOUSEHOLD } from 'utils/constants';
 import { OrchestratorContext } from 'components/orchestrator/collector';
+import { MarkdownTypo } from 'components/designSystem';
 
-const Assistance = ({ open, setOpen }) => {
-  const { idQ } = useParams();
-  const { portail } = useContext(AppContext);
+const SendingConfirmation = ({ open, setOpen }) => {
   const {
     metadata: { inseeContext },
+    validateQuestionnaire,
   } = useContext(OrchestratorContext);
 
-  const disagree = () => {
-    setOpen(false);
-  };
+  const { title, body } = confirmationDictionary(inseeContext);
+
+  const close = () => setOpen(false);
+
   const agree = () => {
     setOpen(false);
-    if (inseeContext === HOUSEHOLD && idQ) {
-      window.open(
-        `${portail}/${idQ.split('-')[0]}/contacter-assistance`,
-        '_blank'
-      );
-    }
+    validateQuestionnaire();
   };
 
   return (
     <Dialog
       open={open}
-      onClose={disagree}
+      onClose={close}
       disableBackdropClick
       disableEscapeKeyDown
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle id="alert-dialog-slide-title">
-        {defaultDictionary.assistanceTitle}
-      </DialogTitle>
+      <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          {defaultDictionary.assistanceBody}
+          {body.map((line, i) => (
+            <React.Fragment key={`line-${i}`}>
+              <MarkdownTypo>{line}</MarkdownTypo>
+              {i !== body.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={disagree}>{buttonDictionary.no}</Button>
+        <Button onClick={close}>{buttonDictionary.no}</Button>
         <Button onClick={agree}>{buttonDictionary.yes}</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default Assistance;
+export default SendingConfirmation;

@@ -8,9 +8,9 @@ import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
 import { addConstantPages } from 'utils/questionnaire/build';
 import { ButtonsNavigation } from '../navigation';
+import { SendingConfirmation } from 'components/modals/sendingConfirmation';
 
 export const OrchestratorContext = React.createContext();
-export const UtilsFunctionContext = React.createContext();
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,17 +30,15 @@ const Orchestrator = ({
   preferences,
   features,
 }) => {
+  const classes = useStyles();
   const [init, setInit] = useState(false);
+  const [validationConfirmation, setValidationConfirmation] = useState(false);
 
   const { questionnaireState, data } = stromaeData;
 
-  const [context /*, setContext */] = useState({
-    metadata,
-    ...stromaeData,
-    lunaticOptions: { preferences, features },
-  });
-
-  const validated = questionnaireState.state === 'VALIDATED';
+  const [validated, setValidated] = useState(
+    questionnaireState.state === 'VALIDATED'
+  );
 
   const [currentIndex, setCurrentIndex] = useState(() => {
     if (questionnaireState.currentPage && !validated)
@@ -49,7 +47,6 @@ const Orchestrator = ({
     return 0;
   });
 
-  const [validatedQuestionnaire, setValidated] = useState(validated);
   const [waiting /*, setWaiting*/] = useState(false);
 
   const {
@@ -77,7 +74,6 @@ const Orchestrator = ({
     save(dataToSave);
     setCurrentIndex(currentIndex + 1);
   };
-
   const onNext = useCallback(async () => {
     const dataToSave = {
       ...stromaeData,
@@ -96,10 +92,15 @@ const Orchestrator = ({
     setCurrentIndex(currentIndex - 1);
   };
 
-  const fullQuestionnaire = addConstantPages(components)(
-    validatedQuestionnaire
-  );
-  const classes = useStyles();
+  const fullQuestionnaire = addConstantPages(components)(validated);
+
+  const context = {
+    metadata,
+    validated,
+    validateQuestionnaire,
+    ...stromaeData,
+    lunaticOptions: { preferences, features },
+  };
 
   return (
     <OrchestratorContext.Provider value={context}>
@@ -116,15 +117,16 @@ const Orchestrator = ({
           bindings={bindings}
           currentPage={currentIndex}
           setCurrentPage={setCurrentIndex}
-          validateQuestionnaire={validateQuestionnaire}
+          validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       </Container>
-      {!validatedQuestionnaire && (
+      {!validated && (
         <ButtonsNavigation
           onNext={onNext}
           onPrevious={onPrevious}
           currentIndex={currentIndex}
           maxPage={fullQuestionnaire.length}
+          validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
 
@@ -132,6 +134,10 @@ const Orchestrator = ({
         open={!init && !validated && !!questionnaireState.currentPage}
         setOpen={o => setInit(!o)}
         goToFirstPage={() => setCurrentIndex(0)}
+      />
+      <SendingConfirmation
+        open={validationConfirmation}
+        setOpen={setValidationConfirmation}
       />
       {waiting && <LoaderSimple />}
     </OrchestratorContext.Provider>

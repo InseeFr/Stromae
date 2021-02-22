@@ -1,6 +1,6 @@
 import { Button } from 'components/designSystem';
 import React from 'react';
-import Dictionary from 'i18n';
+import { buttonDictionary } from 'i18n';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -27,22 +27,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ButtonsNavigation = ({ currentIndex, maxPage, onPrevious, onNext }) => {
+const ButtonsNavigation = ({
+  currentIndex,
+  maxPage,
+  onPrevious,
+  onNext,
+  validateQuestionnaire,
+}) => {
   const classes = useStyles();
-  const nextLabel =
-    currentIndex === 0 ? Dictionary.start : Dictionary.saveAndNext;
+  const nextLabel = () => {
+    if (currentIndex === 0) return buttonDictionary.start;
+    if (currentIndex === maxPage - 1) return buttonDictionary.send;
+    return buttonDictionary.saveAndNext;
+  };
+  const nextFunction =
+    currentIndex === maxPage - 1 ? validateQuestionnaire : onNext;
+
   return (
     <footer role="navigation" className={classes.root}>
       {currentIndex !== 0 && (
         <Button className={classes.navButton} onClick={onPrevious}>
-          {Dictionary.back}
+          {buttonDictionary.back}
         </Button>
       )}
-      {currentIndex !== maxPage - 1 && (
-        <Button className={classes.navButton} onClick={onNext}>
-          {nextLabel}
-        </Button>
-      )}
+
+      <Button className={classes.navButton} onClick={nextFunction}>
+        {nextLabel()}
+      </Button>
     </footer>
   );
 };

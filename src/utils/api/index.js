@@ -16,8 +16,8 @@ const getQuestionnaire = apiUrl => id => token =>
 const getMetadata = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/campaign/${id}/metadata`)(token);
 
-const getDepositProof = apiUrl => id => token => filename =>
-  fetcherFile(`${apiUrl}/api/survey-unit/${id}/deposit-proof`, token, filename);
+const getDepositProof = apiUrl => id => token =>
+  fetcherFile(`${apiUrl}/api/survey-unit/${id}/deposit-proof`, token);
 
 export const API = {
   getRequest,

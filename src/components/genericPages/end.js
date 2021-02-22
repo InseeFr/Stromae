@@ -6,82 +6,106 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  makeStyles,
   Typography,
 } from '@material-ui/core';
 import { Button as InseeButton } from 'components/designSystem/Button';
-import PDFimg from 'img/pdf.png';
 import { GetApp } from '@material-ui/icons';
 import { useAPI, useAuth } from 'utils/hooks';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { formatDistance, format } from 'date-fns';
-import { getEndPage } from 'utils/content';
-
-import { fr } from 'date-fns/locale';
+import { buttonDictionary, endPageDictionary } from 'i18n';
 import { OrchestratorContext } from 'components/orchestrator/collector';
+import { dateFnsLocal, formatLocal } from 'utils/personalization';
+import { interpret } from '@inseefr/lunatic';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  download: {
+    marginTop: theme.spacing(2),
+    margin: 'auto',
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+}));
 
 const EndPage = () => {
+  const classes = useStyles();
   const {
     metadata: { inseeContext },
   } = useContext(OrchestratorContext);
-  const { logout, oidcUser } = useAuth();
+  const { logout: logoutAuth } = useAuth();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
 
-  const { title, thanks, depositProof, logout: logoutEnabled } = getEndPage(
-    inseeContext
-  );
+  const {
+    title,
+    confirmation,
+    thanks,
+    pdfMessage,
+    youCanQuit,
+  } = endPageDictionary(inseeContext);
 
   const download = async () => {
-    const id = oidcUser?.profile?.preferred_username || idSU;
-    const filename = `${idQ}-${id}.pdf`;
-    const { error, status } = await getPDF(filename);
-    console.log(status + error);
+    const { error, status } = await getPDF();
+    console.log(`${status} : ${error}`);
   };
+
+  const fakeLogout = () => {
+    history.push('/');
+  };
+
+  const logout = pathname.includes('visualize') ? fakeLogout : logoutAuth;
+
+  const validatedDate = `${formatDistance(new Date(), new Date(), {
+    addSuffix: true,
+    locale: dateFnsLocal,
+  })} (${format(new Date(), formatLocal)})`;
+
+  const getBodyWithVariables = myBody =>
+    interpret(['VTL'])({
+      validatedDate,
+    })(myBody);
 
   return (
     <Card>
       <CardHeader title={title} />
       <Divider />
-      <CardContent>
-        <Typography>
-          {`Votre questionnaire a bien été expédié ${formatDistance(
-            new Date(),
-            new Date(),
-            { addSuffix: true, locale: fr }
-          )} (le ${format(new Date(), 'dd/MM/yyyy à HH:mm')})`}
-        </Typography>
+      <CardContent className={classes.root}>
+        <Typography>{getBodyWithVariables(confirmation)}</Typography>
         <Typography>{thanks}</Typography>
-        <br />
-        {depositProof && !pathname.includes('visualize') && (
-          <>
-            <Typography>
-              {`Télécharger la preuve de votre participation à l'enquête `}
-            </Typography>
-            <img src={PDFimg} alt="PDF"></img>
 
+        {!pathname.includes('visualize') && (
+          <>
+            <br />
+            <Typography>{pdfMessage}</Typography>
             <Button
+              className={classes.download}
               variant="contained"
               color="primary"
               endIcon={<GetApp />}
               onClick={download}
             >
-              Télécharger
+              {buttonDictionary.download}
             </Button>
-
-            <br />
           </>
         )}
-        {logoutEnabled && (
-          <Typography>{`Vous pouvez à présent vous déconnecter`}</Typography>
-        )}
+        <br />
+        <Typography>{youCanQuit}</Typography>
       </CardContent>
-      {logoutEnabled && (
-        <CardActions>
-          <InseeButton onClick={logout}>Se déconnecter et quitter</InseeButton>
-        </CardActions>
-      )}
+      <CardActions className={classes.actions}>
+        <InseeButton onClick={logout}>
+          {buttonDictionary.logoutAndClose}
+        </InseeButton>
+      </CardActions>
     </Card>
   );
 };

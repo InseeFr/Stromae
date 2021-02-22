@@ -1,17 +1,17 @@
 import { AppContext } from 'App';
-import Dictionary from 'i18n';
+import { errorDictionary } from 'i18n';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { DATA_EXAMPLE_URL, METADATA_EXAMPLE_URL, OIDC } from 'utils/constants';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
 
 const getErrorMessage = (response, type = 'q') => {
   const { status } = response;
-  if (status === 401) return Dictionary.getError401;
-  if (status === 403) return Dictionary.getError403(type);
-  if (status === 404) return Dictionary.getError404(type);
-  if (status >= 500 && status < 600) return Dictionary.getErrorServeur;
-  return Dictionary.getUnknownError;
+  if (status === 401) return errorDictionary.getError401;
+  if (status === 403) return errorDictionary.getError403(type);
+  if (status === 404) return errorDictionary.getError404(type);
+  if (status >= 500 && status < 600) return errorDictionary.getErrorServeur;
+  return errorDictionary.getUnknownError;
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
@@ -33,13 +33,10 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const getPDF = useCallback(
-    filename => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.getDepositProof(apiUrl)(surveyUnitID)(token)(filename);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
-  );
+  const getPDF = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getDepositProof(apiUrl)(surveyUnitID)(token);
+  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
   const putData = useCallback(
     body => {
@@ -109,12 +106,12 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
         if (!qR.error) {
           setQuestionnaire(qR.data);
-          const mR = await API.getRequest(metadataUrl || METADATA_EXAMPLE_URL)(
+          const mR = await API.getRequest(metadataUrl || DEFAULT_METADATA_URL)(
             fakeToken
           );
           if (!mR.error) {
             setMetadata(mR.data);
-            const dR = await API.getRequest(dataUrl || DATA_EXAMPLE_URL)(
+            const dR = await API.getRequest(dataUrl || DEFAULT_DATA_URL)(
               fakeToken
             );
             if (!dR.error) {

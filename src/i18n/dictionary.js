@@ -1,7 +1,3 @@
-import errorMessage from './errorMessage';
-import buttonMessage from './buttonMessage';
-import visualizeMessage from './visualizeMessage';
-
 const dictionary = {
   survey: {
     fr: 'Questionnaire',
@@ -23,9 +19,6 @@ const dictionary = {
     fr: `Vous avez déjà commencé à renseigner le questionnaire. \n\n Pour poursuivre votre saisie dans le questionnaire,\n\n que souhaitez-vous faire ?`,
     en: `You have already started to fill in the questionnaire. What do you want to do to continue your entry in the questionnaire?`,
   },
-  ...errorMessage,
-  ...buttonMessage,
-  ...visualizeMessage,
 };
 
 export default dictionary;
