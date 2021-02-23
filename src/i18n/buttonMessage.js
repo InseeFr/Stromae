@@ -12,7 +12,7 @@ const buttonMessage = {
   download: { fr: 'Télécharger', en: 'Download' },
   logout: { fr: 'Déconnexion', en: 'Logout' },
   logoutAndClose: { fr: 'Se déconnecter et quitter', en: 'Logout and exit' },
-  yes: { fr: 'oui', en: 'Yes' },
+  yes: { fr: 'Oui', en: 'Yes' },
   no: { fr: 'Non', en: 'No' },
   understand: { fr: 'Je comprends', en: 'I understand' },
   goBackToCurrentPage: {

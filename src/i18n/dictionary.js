@@ -12,7 +12,7 @@ const dictionary = {
   assistanceTitle: { fr: `Contacter l'assistance`, en: `Contact Support` },
   assistanceBody: {
     fr: `Vous êtes sur le point de contacter l'assistance, en êtes-vous sûr ?`,
-    en: `Are you about to contact support, are you sure?`,
+    en: `You are about to contact support, are you sure?`,
   },
   welcomeBackTitle: { fr: `Bienvenue`, en: `Welcome` },
   welcomeBackBody: {
