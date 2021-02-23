@@ -18,6 +18,7 @@ import { OrchestratorContext } from 'components/orchestrator/collector';
 import { buildBuidings } from 'utils/personalization';
 
 const useStyles = makeStyles(theme => ({
+  card: { marginLeft: '1em', marginRight: '1em' },
   accordionDetails: {
     display: 'block',
   },
@@ -46,7 +47,7 @@ const WelcomePage = () => {
     label || `Not yet Implemented for ${inseeContext}`;
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardHeader title={getFinalLabel(title)} />
       <Divider />
       <CardContent>

@@ -20,6 +20,7 @@ import { dateFnsLocal, formatLocal } from 'utils/personalization';
 import { interpret } from '@inseefr/lunatic';
 
 const useStyles = makeStyles(theme => ({
+  card: { marginLeft: '1em', marginRight: '1em' },
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -76,7 +77,7 @@ const EndPage = () => {
     })(myBody);
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardHeader title={title} />
       <Divider />
       <CardContent className={classes.root}>
