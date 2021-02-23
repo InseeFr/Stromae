@@ -63,7 +63,10 @@ const Orchestrator = ({
   });
 
   const goToTop = () => {
-    document.getElementById('main').scrollIntoView();
+    const a = document.createElement('a');
+    a.href = '#main';
+    a.click();
+    a.remove();
   };
   const validateQuestionnaire = () => {
     setValidated(true);
@@ -115,6 +118,7 @@ const Orchestrator = ({
       <Container
         maxWidth="md"
         component="main"
+        role="main"
         id="main"
         className={classes.root}
       >
