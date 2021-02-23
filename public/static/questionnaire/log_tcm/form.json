@@ -1,0 +1,2082 @@
+{
+  "id": "jr9atbisqf2",
+  "modele": "Questionnaire_1",
+  "enoCoreVersion": "2.2.1",
+  "lunaticModelVersion": "2.0.0",
+  "label": "TCM test Logement 2022 - Séquence 1",
+  "components": [
+    {
+      "id": "kb9hi4j0",
+      "componentType": "Sequence",
+      "label": "\"I - Coordonnées du ménage\"",
+      "declarations": [
+        {
+          "id": "kb9hi4j0-kb9hk7j8",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Bienvenue dans le questionnaire de l'enquête sur les conditions de logement. Nous allons commencer par passer en revue la situation de votre ménage.\""
+        }
+      ],
+      "conditionFilter": "\"normal\""
+    },
+
+    {
+      "id": "kb9hlpdc",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 1. Confirmez-vous que vous habitez toujours à l'adresse suivante ?Adresse du logement : \" || cast(cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string),string) || \"\"",
+      "conditionFilter": "\"normal\"",
+      "bindingDependencies": ["CADR"],
+      "options": [
+        {
+          "value": "1",
+          "label": "\"Oui, j'habite toujours à cette adresse et l'adresse est correcte et complète\""
+        },
+
+        {
+          "value": "2",
+          "label": "\"Oui, j'habite toujours à cette adresse, mais l'adresse est incorrecte ou incomplète\""
+        },
+
+        {
+          "value": "3",
+          "label": "\"Non, j'ai déménagé et habite à une autre adresse\""
+        }
+      ],
+      "response": { "name": "CADR" }
+    },
+
+    {
+      "id": "kbakg29x",
+      "componentType": "Subsequence",
+      "label": "\"Correction de l'adresse\"",
+      "declarations": [
+        {
+          "id": "kbakg29x-kbakhzfh",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Veuillez corriger ou compléter votre adresse ci-dessous.\""
+        },
+
+        {
+          "id": "kbakg29x-kbal3iiw",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Cette adresse sera utilisée pour envoyer les courriers. Veillez à la renseigner correctement.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kbakywwy",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 10,
+      "label": "\"➡ 2. Numéro de voie : \" || cast(cast(cast(\"57b\",string),string),string) || \" \"",
+      "declarations": [
+        {
+          "id": "kbakywwy-kbal5fzg",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"En précisant bis, ter si besoin. Par exemple : 12 bis.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["RUECOLL"],
+      "response": { "name": "RUECOLL" }
+    },
+
+    {
+      "id": "kbal4bzb",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 50,
+      "label": "\"➡ 3. Libellé de la voie : \" || cast(cast(cast(\"RUE DES MIMOSAS\",string),string),string) || \" \"",
+      "declarations": [
+        {
+          "id": "kbal4bzb-kbalg7ww",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Saisissez le type et le nom de la voie. Par exemple : rue des Plantes.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["LIBVOIECOLL"],
+      "response": { "name": "LIBVOIECOLL" }
+    },
+
+    {
+      "id": "kbalhn4i",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 50,
+      "label": "\"➡ 4. Complément d'adresse : \" || cast(cast(cast(\"Bâtiment C\",string),string),string) || \" \"",
+      "declarations": [
+        {
+          "id": "kbalhn4i-kbalm3fl",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Précisez un bâtiment, un lieu-dit…\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["COMPLADCOLL"],
+      "response": { "name": "COMPLADCOLL" }
+    },
+
+    {
+      "id": "kbal8crw",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 5,
+      "label": "\"➡ 5. Code postal : \" || cast(cast(cast(\"47000\",string),string),string) || \" \"",
+      "declarations": [
+        {
+          "id": "kbal8crw-kbal97f4",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Pour PARIS, LYON et MARSEILLE, précisez l’arrondissement. Par exemple : 75012.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["CODEPOSTCOLL"],
+      "response": { "name": "CODEPOSTCOLL" }
+    },
+
+    {
+      "id": "kbal9dwk",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 100,
+      "label": "\"➡ 6. Commune : \" || cast(cast(cast(\"AGEN\",string),string),string) || \" \"",
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["LIBCOMCOLL"],
+      "response": { "name": "LIBCOMCOLL" }
+    },
+
+    {
+      "id": "kbakx4hl",
+      "componentType": "Subsequence",
+      "label": "\"Informations de contact\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kbamkrlv",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 7. Les courriers que nous vous envoyons dans le cadre de cette enquête sont adressés à la personne suivante : \" || cast(cast(cast(\"Mme\",string) || \" \" || cast(\"Françoise\",string) || \" \" || cast(\"JARDIN\",string),string),string) || \". Cela vous convient-il ? \"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["CHGNC"],
+      "options": [
+        { "value": "1", "label": "\"Oui\"" },
+
+        { "value": "2", "label": "\"Non\"" }
+      ],
+      "response": { "name": "CHGNC" }
+    },
+
+    {
+      "id": "kbaxq9l0",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 5,
+      "label": "\"➡ 8. Pouvez-vous modifier ses coordonnées ?Civilité du destinataire : \" || cast(cast(cast(\"Mme\",string),string),string) || \"\"",
+      "declarations": [
+        {
+          "id": "kbaxq9l0-kbaxtrq1",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"M. ou Mme\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["CIVCOLL"],
+      "response": { "name": "CIVCOLL" }
+    },
+
+    {
+      "id": "kbbzjgn8",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 20,
+      "label": "\"➡ 9. Prénom du destinataire : \" || cast(cast(cast(\"Françoise\",string),string),string) || \" \"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["PRENOMCOLL"],
+      "response": { "name": "PRENOMCOLL" }
+    },
+
+    {
+      "id": "kbbzhtx3",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 40,
+      "label": "\"➡ 10. Nom du destinataire : \" || cast(cast(cast(\"JARDIN\",string),string),string) || \" \"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["NOMCOLL"],
+      "response": { "name": "NOMCOLL" }
+    },
+
+    {
+      "id": "kbay0xfi",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 10,
+      "label": "\"➡ 11. Pourriez-vous compléter et corriger si besoin les numéros de téléphone à utiliser pour vous contacter ?Premier numéro de téléphone : \" || cast(cast(\"0607080910\",string),string) || \"\"",
+      "declarations": [
+        {
+          "id": "kbay0xfi-kksdc5ct",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Vos coordonnées seront utilisées uniquement dans le cadre des réinterrogations de l'enquête dans les semaines à venir. Elles ne seront ni conservées, ni transmises à un tiers.\""
+        },
+
+        {
+          "id": "kbay0xfi-kkscy2qd",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Ne pas mettre d'espace, de '/', de '-' ni de '.' entre les numéros. Ex. : 0147200001\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["NOTEL1C"],
+      "response": { "name": "NOTEL1C" }
+    },
+
+    {
+      "id": "kbc0te93",
+      "componentType": "Input",
+      "mandatory": false,
+      "maxLength": 10,
+      "label": "\"➡ 12. Deuxième numéro de téléphone : \" || cast(cast(\" \",string),string) || \" \"",
+      "declarations": [
+        {
+          "id": "kbc0te93-kbc0sxy4",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Ne pas mettre d'espace, de '/', de '-' ni de '.' entre les numéros. Ex. : 0147200001\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["NOTEL2C"],
+      "response": { "name": "NOTEL2C" }
+    },
+
+    {
+      "id": "jruq5os5",
+      "componentType": "Sequence",
+      "label": "\"II - Liste des habitants du logement\"",
+      "declarations": [
+        {
+          "id": "jruq5os5-kbc0wx91",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Nous allons commencer par décrire rapidement les personnes qui habitent dans ce logement.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kbc1b4k2",
+      "componentType": "InputNumber",
+      "mandatory": false,
+      "min": 1,
+      "max": 15,
+      "decimals": 0,
+      "label": "\"➡ 1. Au total, combien de personnes habitent dans ce logement, même occasionnellement ?\"",
+      "declarations": [
+        {
+          "id": "kbc1b4k2-kbc1gah1",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\" Toute personne vivant plus d’un mois dans l’année doit être prise en compte (enfants habitant aussi ailleurs pour leurs études, conjoints éloignés pour leur travail, enfants en résidence alternée, employés de maison ou jeunes au pair habitant dans le logement, personne âgée vivant partiellement en maison de retraite,…)\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["G_NBHAB"],
+      "response": { "name": "G_NBHAB" }
+    },
+
+    {
+      "id": "kky7wtoe",
+      "componentType": "RosterForLoop",
+      "mandatory": false,
+      "positioning": "HORIZONTAL",
+      "label": "\"➡ 2. Quels sont les prénoms des habitants du logement\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["G_PRENOM"],
+      "lines": { "min": 1, "max": 15 },
+      "headers": [
+        {
+          "headerCell": true,
+          "label": "\"Indiquer ci-dessous le ou les prénoms des occupants du logement\""
+        }
+      ],
+      "components": [
+        {
+          "componentType": "Input",
+          "maxLength": 15,
+          "id": "kky7wtoe-QOP-kky7q1rw",
+          "response": { "name": "G_PRENOM" },
+          "bindingDependencies": ["G_PRENOM"]
+        }
+      ]
+    },
+
+    {
+      "id": "kkzk2p4a",
+      "componentType": "Loop",
+      "min": 0,
+      "iterations": "count(G_PRENOM)",
+      "conditionFilter": "\"normal\"",
+      "bindingDependencies": [
+        "G_PRENOM",
+        "G_SEXE",
+        "DATENAIS",
+        "DATEENQ",
+        "LIB_FEMININ",
+        "NATIO1N1",
+        "NATIO1N2",
+        "NATIO1N4",
+        "NATIO1N3",
+        "LNAIS",
+        "DEPNAIS",
+        "PAYSNAIS",
+        "NATIO2N"
+      ],
+      "loopDependencies": ["G_PRENOM"],
+      "components": [
+        {
+          "id": "kkzjmhx0",
+          "componentType": "Sequence",
+          "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \"",
+          "conditionFilter": "\"normal\"",
+          "bindingDependencies": ["G_PRENOM"]
+        },
+
+        {
+          "id": "jruqmcco",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 1. Quel est le sexe de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "conditionFilter": "\"normal\"",
+          "bindingDependencies": ["G_PRENOM", "G_SEXE"],
+          "options": [
+            { "value": "1", "label": "\"Masculin\"" },
+
+            { "value": "2", "label": "\"Féminin\"" }
+          ],
+          "response": { "name": "G_SEXE" }
+        },
+
+        {
+          "id": "jruqe01r",
+          "componentType": "Datepicker",
+          "mandatory": false,
+          "min": "1900-01-01",
+          "label": "\"➡ 2. Quelle est la date de naissance de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "declarations": [
+            {
+              "id": "jruqe01r-k1ry0mqu",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Si l'année est inconnue, indiquer une année vraisemblable.\""
+            }
+          ],
+          "conditionFilter": "\"normal\"",
+          "bindingDependencies": ["G_PRENOM", "DATENAIS"],
+          "dateFormat": "YYYY-MM-DD",
+          "response": { "name": "DATENAIS" }
+        },
+
+        {
+          "id": "jrurcgqm",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 3. Où est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "declarations": [
+            {
+              "id": "jrurcgqm-kksgl6du",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(DATEENQ,string)) > month-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else if (month-from-date(cast(DATEENQ,string)) = month-from-date()) then if (day-from-date(cast(DATEENQ,string)) >= day-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1 else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1,number),string) || \" \""
+            }
+          ],
+          "conditionFilter": "\"normal\"",
+          "bindingDependencies": [
+            "DATENAIS",
+            "DATEENQ",
+            "LIB_FEMININ",
+            "G_PRENOM",
+            "LNAIS"
+          ],
+          "options": [
+            {
+              "value": "1",
+              "label": "\"En France (métropole ou d'outre-mer)\""
+            },
+
+            { "value": "2", "label": "\"À l'étranger\"" }
+          ],
+          "response": { "name": "LNAIS" }
+        },
+
+        {
+          "id": "k1m75kpc",
+          "componentType": "Dropdown",
+          "mandatory": false,
+          "label": "\"➡ 4. Dans quel département est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "conditionFilter": "if ((cast(LNAIS,string) = \"1\" or cast(LNAIS,string) = \"\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["LIB_FEMININ", "G_PRENOM", "DEPNAIS"],
+          "options": [
+            { "value": "01", "label": "\"AIN\"" },
+
+            { "value": "02", "label": "\"AISNE\"" },
+
+            { "value": "03", "label": "\"ALLIER\"" }
+          ],
+          "response": { "name": "DEPNAIS" }
+        },
+
+        {
+          "id": "k1m7s0jt",
+          "componentType": "Dropdown",
+          "mandatory": false,
+          "label": "\"➡ 5. Dans quel pays est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "conditionFilter": "if ((cast(LNAIS,string) = \"2\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["LIB_FEMININ", "G_PRENOM", "PAYSNAIS"],
+          "options": [
+            { "value": "001", "label": "\"ROYAUME-UNI\"" },
+
+            { "value": "002", "label": "\"ALBANIE\"" },
+
+            { "value": "003", "label": "\"CHINE\"" }
+          ],
+          "response": { "name": "PAYSNAIS" }
+        },
+
+        {
+          "id": "kbcackq2",
+          "componentType": "CheckboxGroup",
+          "label": "\"➡ 6. Quelle est la nationalité de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "declarations": [
+            {
+              "id": "kbcackq2-kks7yc1u",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Deux réponses possibles.\""
+            }
+          ],
+          "conditionFilter": "\"normal\"",
+          "bindingDependencies": [
+            "G_PRENOM",
+            "NATIO1N1",
+            "NATIO1N2",
+            "NATIO1N3",
+            "NATIO1N4"
+          ],
+          "responses": [
+            {
+              "id": "kbcackq2-QOP-kg21tn5w",
+              "label": "\"Française de naissance\"",
+              "response": { "name": "NATIO1N1" }
+            },
+
+            {
+              "id": "kbcackq2-QOP-kg21rn0c",
+              "label": "\"Française par naturalisation, mariage, déclaration ou option à sa majorité\"",
+              "response": { "name": "NATIO1N2" }
+            },
+
+            {
+              "id": "kbcackq2-QOP-kg21h3ng",
+              "label": "\"Étrangère\"",
+              "response": { "name": "NATIO1N3" }
+            },
+
+            {
+              "id": "kbcackq2-QOP-kg21lajt",
+              "label": "\"Apatride (pas de nationalité)\"",
+              "response": { "name": "NATIO1N4" }
+            }
+          ]
+        },
+
+        {
+          "id": "kbcbffmr",
+          "componentType": "Dropdown",
+          "mandatory": false,
+          "label": "\"➡ 7. Quelle est la nationalité étrangère de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "conditionFilter": "if ((cast(NATIO1N3,integer) = 1)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "NATIO2N"],
+          "options": [
+            { "value": "1", "label": "\"Allemande\"" },
+
+            { "value": "2", "label": "\"Mozambicaine\"" },
+
+            { "value": "3", "label": "\"Chinoise\"" }
+          ],
+          "response": { "name": "NATIO2N" }
+        }
+      ]
+    },
+
+    {
+      "id": "k1qixy11",
+      "componentType": "Sequence",
+      "label": "\"IV - Situation familiale des personnes\"",
+      "declarations": [
+        {
+          "id": "k1qixy11-kkzmeoc9",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Nombre d'habitants : \" || cast(cast(G_NBHAB,number),string) || \" et \" || cast(cast(NBHAB,number),string) || \" \""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["G_NBHAB", "NBHAB"]
+    },
+
+    {
+      "id": "kkzjhhw7",
+      "componentType": "Loop",
+      "min": 0,
+      "iterations": "count(G_PRENOM)",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": [
+        "DATENAIS",
+        "DATEENQ",
+        "G_PRENOM",
+        "LIB_PRONOM",
+        "COUPLE",
+        "LIB_FEMININ",
+        "MER1E",
+        "PER1E",
+        "CONJOINT",
+        "COUPLE1",
+        "SITUMATRI",
+        "MERELOG1",
+        "PERELOG1"
+      ],
+      "loopDependencies": ["G_PRENOM"],
+      "components": [
+        {
+          "id": "k1qj1m93",
+          "componentType": "Subsequence",
+          "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \"",
+          "declarations": [
+            {
+              "id": "k1qj1m93-kkzjju2h",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(DATEENQ,string)) > month-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else if (month-from-date(cast(DATEENQ,string)) = month-from-date()) then if (day-from-date(cast(DATEENQ,string)) >= day-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1 else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1,number),string) || \" \""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["DATENAIS", "DATEENQ", "G_PRENOM"]
+        },
+
+        {
+          "id": "k1qik8zs",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 1. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(LIB_PRONOM,string),string) || \" actuellement en couple ? \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(G_NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "COUPLE"],
+          "options": [
+            {
+              "value": "1",
+              "label": "\"Oui, avec une personne qui vit dans le logement\""
+            },
+
+            {
+              "value": "2",
+              "label": "\"Oui, avec une personne qui ne vit pas dans le logement\""
+            },
+
+            { "value": "3", "label": "\"Non\"" }
+          ],
+          "response": { "name": "COUPLE" }
+        },
+
+        {
+          "id": "k2ous0uj",
+          "componentType": "Dropdown",
+          "mandatory": false,
+          "label": "\"➡ 2. Avec qui ?\"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(COUPLE,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["CONJOINT"],
+          "options": [{ "value": "1", "label": "\"Conjoint\"" }],
+          "response": { "name": "CONJOINT" }
+        },
+
+        {
+          "id": "kkzm5d45",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 3. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(LIB_PRONOM,string),string) || \" actuellement en couple ? \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(G_NBHAB,number) = 1)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "COUPLE1"],
+          "options": [
+            {
+              "value": "2",
+              "label": "\"Oui, avec une personne qui ne vit pas dans le logement\""
+            },
+
+            { "value": "3", "label": "\"Non\"" }
+          ],
+          "response": { "name": "COUPLE1" }
+        },
+
+        {
+          "id": "k1qikkrm",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 4. Quelle est la situation matrimoniale de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "declarations": [
+            {
+              "id": "k1qikkrm-k1rz1b1x",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Si \" || cast(cast(G_PRENOM,string),string) || \" est séparé\" || cast(cast(LIB_FEMININ,string),string) || \" légalement, ou suit une procédure de rupture d'union, cocher 'Marié(e)'. \""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "LIB_FEMININ", "SITUMATRI"],
+          "options": [
+            { "value": "1", "label": "\"Marié(e)\"" },
+
+            { "value": "2", "label": "\"Pacsé(e)\"" },
+
+            { "value": "3", "label": "\"En concubinage ou union libre\"" },
+
+            { "value": "4", "label": "\"Veuf(ve)\"" },
+
+            { "value": "5", "label": "\"Divorcé(e)\"" },
+
+            { "value": "6", "label": "\"Célibataire\"" }
+          ],
+          "response": { "name": "SITUMATRI" }
+        },
+
+        {
+          "id": "k1qj8wj8",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 5. La mère de \" || cast(cast(G_PRENOM,string),string) || \" vit-elle dans le logement ? \"",
+          "declarations": [
+            {
+              "id": "k1qj8wj8-k1rz7v3i",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Biologique ou adoptive\""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "MER1E"],
+          "options": [
+            { "value": "1", "label": "\"Oui\"" },
+
+            { "value": "2", "label": "\"Non\"" }
+          ],
+          "response": { "name": "MER1E" }
+        },
+
+        {
+          "id": "kksepc3a",
+          "componentType": "CheckboxGroup",
+          "label": "\"➡ 6. Qui est-elle (sont-elles) ?\"",
+          "declarations": [
+            {
+              "id": "kksepc3a-kksehwm6",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Deux réponses possibles\""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(MER1E,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["MERELOG1"],
+          "responses": [
+            {
+              "id": "kksepc3a-QOP-kksey1ny",
+              "label": "\"Conjoint\"",
+              "response": { "name": "MERELOG1" }
+            }
+          ]
+        },
+
+        {
+          "id": "kbcd99g2",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 7. Le père de \" || cast(cast(G_PRENOM,string),string) || \" vit-il dans le logement ? \"",
+          "declarations": [
+            {
+              "id": "kbcd99g2-kbcd16ch",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Biologique ou adoptif\""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "PER1E"],
+          "options": [
+            { "value": "1", "label": "\"Oui\"" },
+
+            { "value": "2", "label": "\"Non\"" }
+          ],
+          "response": { "name": "PER1E" }
+        },
+
+        {
+          "id": "kksern9f",
+          "componentType": "CheckboxGroup",
+          "label": "\"➡ 8. Qui est-il (sont-ils) ?\"",
+          "declarations": [
+            {
+              "id": "kksern9f-kkseprpm",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Deux réponses possibles\""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(PER1E,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["PERELOG1"],
+          "responses": [
+            {
+              "id": "kksern9f-QOP-kkseo26y",
+              "label": "\"Conjoint\"",
+              "response": { "name": "PERELOG1" }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "kkzk15ok",
+      "componentType": "Sequence",
+      "label": "\"V - Liens spécifiques\"",
+      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "k1qja1b4",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 1. Pouvez-vous préciser un lien de parenté, ou une relation, entre \" || cast(cast(G_PRENOM,string),string) || \" et une personne qui habite ici ? \"",
+      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["G_PRENOM", "LIENTYP"],
+      "options": [
+        { "value": "1", "label": "\"Frère, sœur\"" },
+
+        { "value": "2", "label": "\"Grand-parent, petit enfant\"" },
+
+        { "value": "3", "label": "\"Gendre, belle-fille, beau-parent\"" },
+
+        {
+          "value": "4",
+          "label": "\"Oncle, tante, neveu, nièce, cousin, cousine\""
+        },
+
+        { "value": "5", "label": "\"Autre lien familial\"" },
+
+        { "value": "6", "label": "\"Colocataire\"" },
+
+        {
+          "value": "7",
+          "label": "\"Autre lien (employé de maison, salarié logé, jeune au pair, ...)\""
+        }
+      ],
+      "response": { "name": "LIENTYP" }
+    },
+
+    {
+      "id": "kcen5rym",
+      "componentType": "Dropdown",
+      "mandatory": false,
+      "label": "\"➡ 2. Quel est le prénom de la personne concernée par ce lien ?\"",
+      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\") and (cast(LIENTYP,string)  <>  \"\" and cast(LIENTYP,string)  <>  \"7\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["LIENPERS"],
+      "options": [
+        { "value": "1", "label": "\"Prénom\"" },
+
+        { "value": "2", "label": "\"Conjoint\"" }
+      ],
+      "response": { "name": "LIENPERS" }
+    },
+
+    {
+      "id": "k1qjq9lu",
+      "componentType": "Sequence",
+      "label": "\"VI - Lieux de vie des personnes\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kkzk7edk",
+      "componentType": "Loop",
+      "min": 0,
+      "iterations": "count(G_PRENOM)",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "UNLOG", "DURLOG"],
+      "loopDependencies": ["G_PRENOM"],
+      "components": [
+        {
+          "id": "kkzjyu49",
+          "componentType": "Subsequence",
+          "label": "\"Lieux de vie de \" || cast(cast(G_PRENOM,string),string) || \" \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM"]
+        },
+
+        {
+          "id": "k1qk4rj5",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 1. \" || cast(cast(G_PRENOM,string),string) || \" vit-il uniquement à l'adresse suivante : \" || cast(cast(ADRCOLLC,string),string) || \" ? \"",
+          "declarations": [
+            {
+              "id": "k1qk4rj5-kbgaz7jh",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Répondre 'Non' si \" || cast(cast(if (cast(G_PRENOM,string) = \"\") then \"PRENOM_X\" else upper-case(cast(G_PRENOM,string)),string),string) || \" vit aussi dans un autre logement, même occasionnellement (résidence secondaire, internat, foyer, caserne, maison de retraite,...) \""
+            }
+          ],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "UNLOG"],
+          "options": [
+            { "value": "1", "label": "\"Oui\"" },
+
+            { "value": "2", "label": "\"Non\"" }
+          ],
+          "response": { "name": "UNLOG" }
+        },
+
+        {
+          "id": "kbgaskew",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 2. \" || cast(cast(G_PRENOM,string),string) || \" vit à l'adresse suivante : \" || cast(cast(ADRCOLLC,string),string) || \" ... \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(UNLOG,string) = \"2\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "DURLOG"],
+          "options": [
+            { "value": "1", "label": "\"Plus de la moitié du temps\"" },
+
+            { "value": "2", "label": "\"La moitié du temps\"" },
+
+            { "value": "3", "label": "\"Moins de la moitié du temps\"" }
+          ],
+          "response": { "name": "DURLOG" }
+        }
+      ]
+    },
+
+    {
+      "id": "kkzoja3x",
+      "componentType": "Loop",
+      "min": 0,
+      "iterations": "count(G_PRENOM)",
+      "conditionFilter": "\"normal\"",
+      "bindingDependencies": [
+        "G_PRENOM",
+        "SITUA",
+        "LIB_PRONOM",
+        "TRAVAIL",
+        "DIPLOME"
+      ],
+      "loopDependencies": ["G_PRENOM"],
+      "components": [
+        {
+          "id": "k1qjqjvr",
+          "componentType": "Sequence",
+          "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \"",
+          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM"]
+        },
+
+        {
+          "id": "k1ruyhro",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 1. Quelle est actuellement la situation principale de \" || cast(cast(G_PRENOM,string),string) || \" vis-à-vis du travail ? \"",
+          "declarations": [
+            {
+              "id": "k1ruyhro-k1rzxgnk",
+              "declarationType": "INSTRUCTION",
+              "position": "AFTER_QUESTION_TEXT",
+              "label": "\"Les personnes en arrêt maladie de moins d'un an, en congé parental de moins de trois mois, ou en congé parental sont considérées comme étant en emploi. Les aides familiaux ou les conjoints collaborateurs sont aussi considérés comme étant en emploi.\""
+            }
+          ],
+          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "SITUA"],
+          "options": [
+            { "value": "1", "label": "\"Occupe un emploi\"" },
+
+            {
+              "value": "2",
+              "label": "\"Apprenti(e) sous contrat ou stagiaire rémunéré\""
+            },
+
+            {
+              "value": "3",
+              "label": "\"Étudiant(e), élève, en formation ou stagiaire non rémunéré\""
+            },
+
+            {
+              "value": "4",
+              "label": "\"Chômeur(se), inscrit(e) ou non à Pôle Emploi\""
+            },
+
+            {
+              "value": "5",
+              "label": "\"Retraité(e), retiré(e) des affaires ou en préretraite\""
+            },
+
+            { "value": "6", "label": "\"Personne au foyer\"" },
+
+            {
+              "value": "7",
+              "label": "\"Inactif(ve) pour cause d'invalidité\""
+            },
+
+            { "value": "8", "label": "\"Inactif(ve) pour une autre raison\"" }
+          ],
+          "response": { "name": "SITUA" }
+        },
+
+        {
+          "id": "k1taosz8",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 2. \" || cast(cast(G_PRENOM,string),string) || \" exerce-t-\" || cast(cast(LIB_PRONOM,string),string) || \" une activité rémunérée ? \"",
+          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\")) and (cast(SITUA,string)  <>  \"1\" and cast(SITUA,string)  <>  \"2\")) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "TRAVAIL"],
+          "options": [
+            { "value": "1", "label": "\"Oui\"" },
+
+            { "value": "2", "label": "\"Non\"" }
+          ],
+          "response": { "name": "TRAVAIL" }
+        },
+
+        {
+          "id": "kbggbgzy",
+          "componentType": "Radio",
+          "mandatory": false,
+          "label": "\"➡ 3. Quel est le plus haut niveau de diplôme que \" || cast(cast(G_PRENOM,string),string) || \" a obtenu ? \"",
+          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "bindingDependencies": ["G_PRENOM", "DIPLOME"],
+          "options": [
+            { "value": "0", "label": "\"Aucune diplôme\"" },
+
+            {
+              "value": "1",
+              "label": "\"CEP, BEPC, diplôme national du brevet\""
+            },
+
+            {
+              "value": "2",
+              "label": "\"CAP, BEP, autre diplôme ou titre professionnel de niveau équivalent\""
+            },
+
+            {
+              "value": "3",
+              "label": "\"Baccalauréat général, technologique ou professionnel, autre diplôme ou titre professionnel de niveau équivalent\""
+            },
+
+            {
+              "value": "4",
+              "label": "\"Capacité en droit, DEUG, BTS, DUT, autre diplôme ou titre professionnel de niveau bac+2\""
+            },
+
+            {
+              "value": "5",
+              "label": "\"Licence, maîtrise, autre diplôme ou titre professionnel de niveau bac+3/4\""
+            },
+
+            {
+              "value": "6",
+              "label": "\"Diplôme d'une grande école,DEA, DESS, master, autre diplôme ou titre professionnel de niveau bac+5\""
+            },
+
+            { "value": "7", "label": "\"Doctorat\"" }
+          ],
+          "response": { "name": "DIPLOME" }
+        }
+      ]
+    },
+
+    {
+      "id": "k1qjjjre",
+      "componentType": "Sequence",
+      "label": "\"VIII - Logement\"",
+      "declarations": [
+        {
+          "id": "k1qjjjre-k1ta1wtu",
+          "declarationType": "COMMENT",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Nous allons maintenant vous poser quelques questions introductives sur votre logement.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kbghszh6",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 1. À quelle période a été achevée la construction de l'immeuble ou de la maison ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["IAATC"],
+      "options": [
+        { "value": "1", "label": "\"Avant 1919\"" },
+
+        { "value": "2", "label": "\"De 1919 à 1945\"" },
+
+        { "value": "3", "label": "\"De 1946 à 1970\"" },
+
+        { "value": "4", "label": "\"De 1971 à 1990\"" },
+
+        { "value": "5", "label": "\"De 1991 à 2005\"" },
+
+        { "value": "6", "label": "\"2006 ou après\"" }
+      ],
+      "response": { "name": "IAATC" }
+    },
+
+    {
+      "id": "kbghz7mp",
+      "componentType": "InputNumber",
+      "mandatory": false,
+      "min": 2006,
+      "max": 2022,
+      "decimals": 0,
+      "label": "\"➡ 2. En quelle année a-t-elle été achevée ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(IAATC,string) = \"6\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["IAATCD"],
+      "response": { "name": "IAATCD" }
+    },
+
+    {
+      "id": "kbgi101f",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 3. Quel est le type du logement situé \" || cast(cast(if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(ADRESSE,string) else if (cast(CADR,string) = \"2\") then cast(RUECOLLC,string) || \" \" || cast(LIBVOIECOLLC,string) || \" \" || cast(COMPLADCOLLC,string) || \" \" || cast(CODEPOSTCOLLC,string) || \" \" || cast(LIBCOMCOLLC,string) else \"\",string),string) || \" ? \"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": [
+        "CADR",
+        "ADRESSE",
+        "RUECOLLC",
+        "LIBVOIECOLLC",
+        "COMPLADCOLLC",
+        "CODEPOSTCOLLC",
+        "LIBCOMCOLLC",
+        "HTLC"
+      ],
+      "options": [
+        { "value": "1", "label": "\"Une maison individuelle\"" },
+
+        { "value": "2", "label": "\"Un logement dans un immeuble collectif\"" },
+
+        {
+          "value": "3",
+          "label": "\"Une pièce indépendante ayant sa propre entrée\""
+        },
+
+        {
+          "value": "4",
+          "label": "\"Un logement-foyer pour personnes âgées, étudiants, travailleurs,...\""
+        },
+
+        {
+          "value": "5",
+          "label": "\"Une ferme, un bâtiment d'exploitation agricole\""
+        },
+
+        { "value": "6", "label": "\"Une chambre d'hôtel\"" },
+
+        {
+          "value": "7",
+          "label": "\"Une construction provisoire, une habitation de fortune\""
+        },
+
+        {
+          "value": "8",
+          "label": "\"Un logement dans un immeuble collectif à usage autre que d'habitation (usines, bureaux, commerces, bâtiments publics,...)\""
+        }
+      ],
+      "response": { "name": "HTLC" }
+    },
+
+    {
+      "id": "kbgi5n3g",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 4. Le logement fait-il partie d'un immeuble collectif ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"3\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["INDCOLL"],
+      "options": [
+        { "value": "1", "label": "\"Oui\"" },
+
+        { "value": "2", "label": "\"Non\"" }
+      ],
+      "response": { "name": "INDCOLL" }
+    },
+
+    {
+      "id": "kbgigljc",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 5. Quel est le type de construction de la maison individuelle ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"1\" or cast(INDCOLL,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["IMI"],
+      "options": [
+        { "value": "1", "label": "\"isolée\"" },
+
+        { "value": "2", "label": "\"jumelée (un mur mitoyen)\"" },
+
+        {
+          "value": "3",
+          "label": "\"en bande, ou regroupée selon toute autre configuration\""
+        }
+      ],
+      "response": { "name": "IMI" }
+    },
+
+    {
+      "id": "kbgim4v3",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 6. La maison fait-elle partie d'une résidence ou d'un 'village' en copropriété ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"1\" or cast(INDCOLL,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["ICOI"],
+      "options": [
+        { "value": "1", "label": "\"Oui\"" },
+
+        { "value": "2", "label": "\"Non\"" }
+      ],
+      "response": { "name": "ICOI" }
+    },
+
+    {
+      "id": "kbgidvnm",
+      "componentType": "Radio",
+      "mandatory": false,
+      "label": "\"➡ 7. Y a-t-il au moins un ascenseur dans l'immeuble collectif ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"2\" or cast(INDCOLL,string) = \"1\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["IAS"],
+      "options": [
+        { "value": "1", "label": "\"Oui\"" },
+
+        { "value": "2", "label": "\"Non\"" }
+      ],
+      "response": { "name": "IAS" }
+    },
+
+    {
+      "id": "kbgigafp",
+      "componentType": "InputNumber",
+      "mandatory": false,
+      "min": 0,
+      "max": 99,
+      "decimals": 0,
+      "label": "\"➡ 8. À quel étage se trouve votre logement ?\"",
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"2\" or cast(INDCOLL,string) = \"1\")) then \"normal\" else \"hidden\"",
+      "bindingDependencies": ["IEL"],
+      "response": { "name": "IEL" }
+    },
+
+    {
+      "id": "k1m84p77",
+      "componentType": "Sequence",
+      "label": "\"IX - Fin du TCM\"",
+      "declarations": [
+        {
+          "id": "k1m84p77-k1qjshag",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Merci d'avoir rempli ce questionnaire, vous allez maintenant rentrer dans le cœur de l'enquête !\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+    },
+
+    {
+      "id": "kb9ie1nv",
+      "componentType": "Sequence",
+      "label": "\"X - Arrêt de l'enquête (cause déménagement)\"",
+      "declarations": [
+        {
+          "id": "kb9ie1nv-kb9hyuj3",
+          "declarationType": "INSTRUCTION",
+          "position": "AFTER_QUESTION_TEXT",
+          "label": "\"Nous vous remercions de votre participation, mais l'enquête se termine ici, puisque vous n'habitez pas dans le logement enquêté.\""
+        }
+      ],
+      "conditionFilter": "if ((cast(CADR,string) = \"3\")) then \"normal\" else \"hidden\""
+    }
+  ],
+  "variables": [
+    {
+      "variableType": "COLLECTED",
+      "name": "CADR",
+      "componentRef": "kb9hlpdc",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "RUECOLL",
+      "componentRef": "kbakywwy",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "LIBVOIECOLL",
+      "componentRef": "kbal4bzb",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "COMPLADCOLL",
+      "componentRef": "kbalhn4i",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "CODEPOSTCOLL",
+      "componentRef": "kbal8crw",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "LIBCOMCOLL",
+      "componentRef": "kbal9dwk",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "CHGNC",
+      "componentRef": "kbamkrlv",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "CIVCOLL",
+      "componentRef": "kbaxq9l0",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "PRENOMCOLL",
+      "componentRef": "kbbzjgn8",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NOMCOLL",
+      "componentRef": "kbbzhtx3",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NOTEL1C",
+      "componentRef": "kbay0xfi",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NOTEL2C",
+      "componentRef": "kbc0te93",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "G_NBHAB",
+      "componentRef": "kbc1b4k2",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "G_PRENOM",
+      "componentRef": "kky7wtoe",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "G_SEXE",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "DATENAIS",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "LNAIS",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "DEPNAIS",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "PAYSNAIS",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NATIO1N1",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NATIO1N2",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NATIO1N3",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NATIO1N4",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "NATIO2N",
+      "componentRef": "kkzk2p4a",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "COUPLE",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "CONJOINT",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "COUPLE1",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "SITUMATRI",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "MER1E",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "MERELOG1",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "PER1E",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "PERELOG1",
+      "componentRef": "kkzjhhw7",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "LIENTYP",
+      "componentRef": "k1qja1b4",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "LIENPERS",
+      "componentRef": "kcen5rym",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "UNLOG",
+      "componentRef": "kkzk7edk",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "DURLOG",
+      "componentRef": "kkzk7edk",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "SITUA",
+      "componentRef": "kkzoja3x",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "TRAVAIL",
+      "componentRef": "kkzoja3x",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "DIPLOME",
+      "componentRef": "kkzoja3x",
+      "values": {
+        "PREVIOUS": [null],
+        "COLLECTED": [null],
+        "FORCED": [null],
+        "EDITED": [null],
+        "INPUTED": [null]
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "IAATC",
+      "componentRef": "kbghszh6",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "IAATCD",
+      "componentRef": "kbghz7mp",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "HTLC",
+      "componentRef": "kbgi101f",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "INDCOLL",
+      "componentRef": "kbgi5n3g",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "IMI",
+      "componentRef": "kbgigljc",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "ICOI",
+      "componentRef": "kbgim4v3",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "IAS",
+      "componentRef": "kbgidvnm",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "COLLECTED",
+      "name": "IEL",
+      "componentRef": "kbgigafp",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "ANAIS",
+      "expression": "year-from-date()"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NBHAB",
+      "expression": "if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "SEXE",
+      "expression": "if (cast(G_SEXE,string) = \"\") then \"1\" else cast(G_SEXE,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VI_FRANCAIS",
+      "expression": "if (cast(NATIO1N1,integer)  <>  2 or cast(NATIO1N2,integer)  <>  2) then 1 else 2"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "AGE",
+      "expression": "if (string() = \"\") then \"\" else if (month-from-date(cast(DATEENQ,string)) > month-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else if (month-from-date(cast(DATEENQ,string)) = month-from-date()) then if (day-from-date(cast(DATEENQ,string)) >= day-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1 else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "DATEENQ",
+      "expression": "xs:date(current-date())"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_NUMTH",
+      "expression": "\"57b\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_ADR",
+      "expression": "\"RUE DES MIMOSAS\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_CADRTH",
+      "expression": "\"Bâtiment C\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_CODEPOST1",
+      "expression": "\"47000\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_LIBCOM",
+      "expression": "\"AGEN\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "ADRESSE",
+      "expression": "cast(VE_NUMTH,string) || \" \" || cast(VE_ADR,string)  || \" \" || cast(VE_CADRTH,string) || \" \" || cast(VE_CODEPOST1,string) || \" \" || cast(VE_LIBCOM,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NUMERO",
+      "expression": "cast(VE_NUMTH,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VOIE",
+      "expression": "cast(VE_ADR,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "COMPLEMENT",
+      "expression": "cast(VE_CADRTH,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "CODEPOSTAL",
+      "expression": "cast(VE_CODEPOST1,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "COMMUNE",
+      "expression": "cast(VE_LIBCOM,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "RUECOLLC",
+      "expression": "if (cast(RUECOLL,string)  <>  \"\") then cast(RUECOLL,string) else cast(NUMERO,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "LIBVOIECOLLC",
+      "expression": "if (cast(LIBVOIECOLL,string)  <>  \"\") then cast(LIBVOIECOLL,string) else cast(VOIE,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "COMPLADCOLLC",
+      "expression": "if (cast(COMPLADCOLL,string)  <>  \"\") then cast(COMPLADCOLL,string) else cast(COMPLEMENT,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "CODEPOSTCOLLC",
+      "expression": "if (cast(CODEPOSTCOLL,string)  <>  \"\") then cast(CODEPOSTCOLL,string) else cast(CODEPOSTAL,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "LIBCOMCOLLC",
+      "expression": "if (cast(LIBCOMCOLL,string)  <>  \"\") then cast(LIBCOMCOLL,string) else cast(COMMUNE,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "ADRCOLLC",
+      "expression": "if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(ADRESSE,string) else if (cast(CADR,string) = \"2\") then cast(RUECOLLC,string) || \" \" || cast(LIBVOIECOLLC,string) || \" \" || cast(COMPLADCOLLC,string) || \" \" || cast(CODEPOSTCOLLC,string) || \" \" || cast(LIBCOMCOLLC,string) else \"\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_CIV_D1",
+      "expression": "\"Mme\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_PREN_D1",
+      "expression": "\"Françoise\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "VE_NOMVOUS_D1",
+      "expression": "\"JARDIN\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOMOCC",
+      "expression": "cast(VE_CIV_D1,string) || \" \" || cast(VE_PREN_D1,string) || \" \" || cast(VE_NOMVOUS_D1,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "CIVILIT1E",
+      "expression": "cast(VE_CIV_D1,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NO1M",
+      "expression": "cast(VE_NOMVOUS_D1,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "PRENO1M",
+      "expression": "cast(VE_PREN_D1,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "CIV_D1COLLC",
+      "expression": "if (cast(CIVCOLL,string)  <>  \"\") then cast(CIVCOLL,string) else cast(CIVILIT1E,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "PREN_D1COLLC",
+      "expression": "if (cast(PRENOMCOLL,string)  <>  \"\") then cast(PRENOMCOLL,string) else cast(PRENO1M,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOMVOUS_D1COLLC",
+      "expression": "if (cast(NOMCOLL,string)  <>  \"\") then cast(NOMCOLL,string) else cast(NO1M,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOMCOLLC",
+      "expression": "if (cast(CHGNC,string) = \"2\") then cast(CIV_D1COLLC,string) || \" \" || cast(PREN_D1COLLC,string) || \" \" || cast(NOMVOUS_D1COLLC,string) else cast(NOMOCC,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOTEL1",
+      "expression": "\"0607080910\""
+    },
+
+    { "variableType": "CALCULATED", "name": "NOTEL2", "expression": "\" \"" },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOTEL1COLL",
+      "expression": "if ((cast(NOTEL1C,string) = \"\") or (string-length(cast(NOTEL1C,string)) > 0 and string-length(cast(NOTEL1C,string))  <>  10) or (string-length(cast(NOTEL1C,string)) = 10 and not(cast(NOTEL1C,string) castable as xs:integer)) or (string-length(cast(NOTEL1C,string)) = 10 and (substr(cast(NOTEL1C,string),1,1)  <>  \"0\")) or (string-length(cast(NOTEL1C,string)) = 10 and ((starts-with(cast(NOTEL1C,string),\"00\")) or (starts-with(cast(NOTEL1C,string),\"08\"))))) then cast(NOTEL1,string) else cast(NOTEL1C,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "NOTEL2COLL",
+      "expression": "if ((cast(NOTEL2C,string) = \"\") or (string-length(cast(NOTEL2C,string)) > 0 and string-length(cast(NOTEL2C,string))  <>  10) or (string-length(cast(NOTEL2C,string)) = 10 and not(cast(NOTEL2C,string) castable as xs:integer)) or (string-length(cast(NOTEL2C,string)) = 10 and (substr(cast(NOTEL2C,string),1,1)  <>  \"0\")) or (string-length(cast(NOTEL2C,string)) = 10 and ((starts-with(cast(NOTEL2C,string),\"00\")) or (starts-with(cast(NOTEL2C,string),\"08\"))))) then cast(NOTEL2,string) else cast(NOTEL2C,string)"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "PRENOM",
+      "expression": "if (cast(G_PRENOM,string) = \"\") then \"PRENOM_X\" else upper-case(cast(G_PRENOM,string))"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "B_ACTIF",
+      "expression": "if (cast(AGE,number) < 15 and cast(AGE,number)  <>  \"\") then 1 else 2"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "LIB_FEMININ",
+      "expression": "if (cast(G_SEXE,string) = \"2\") then \"e\" else \"\""
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "LIB_PRONOM",
+      "expression": "if (cast(G_SEXE,string) = \"2\") then \"elle\" else \"il\""
+    }
+  ]
+}
