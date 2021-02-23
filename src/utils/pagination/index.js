@@ -1,6 +1,3 @@
-// page 1 du questionnaire -> 1er composants
-const simplePage = { page: 1 };
-
 const sequencePagination = 'sequence';
 const subsequencePagination = 'subsequence';
 // const questionPagination = 'question';
