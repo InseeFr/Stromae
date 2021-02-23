@@ -5,7 +5,8 @@ import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { OrchestratorContext } from '../collector';
 
 const useStyles = makeStyles(theme => ({
-  root: { padding: '10px', overflow: 'visible' },
+  root: { padding: '10px', overflow: 'visible', marginBottom: '10px' },
+  sequenceContainer: { paddingLeft: '1em', paddingRight: '1em' },
 }));
 
 const Pagination = ({

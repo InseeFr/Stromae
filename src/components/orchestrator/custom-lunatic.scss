@@ -19,6 +19,12 @@ $colorSecondaryContrastText: #ffffff;
   font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
 }
 
+.lunatic-component.Sequence {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
 .lunatic input[type='number']::-webkit-inner-spin-button,
 .lunatic input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;

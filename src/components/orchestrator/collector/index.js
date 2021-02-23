@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 1 auto',
     backgroundColor: 'whitesmoke',
-    padding: '1em',
+    padding: '0',
+    paddingTop: '1em',
     paddingBottom: '3em',
   },
 }));
