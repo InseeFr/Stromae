@@ -37,12 +37,12 @@ const Orchestrator = ({
   const { questionnaireState, data } = stromaeData;
 
   const [validated, setValidated] = useState(
-    questionnaireState.state === 'VALIDATED'
+    questionnaireState?.state === 'VALIDATED'
   );
 
   const [currentIndex, setCurrentIndex] = useState(() => {
-    if (questionnaireState.currentPage && !validated)
-      return questionnaireState.currentPage;
+    if (questionnaireState?.currentPage && !validated)
+      return questionnaireState?.currentPage;
     if (validated) return -1;
     return 0;
   });
@@ -131,7 +131,7 @@ const Orchestrator = ({
       )}
 
       <WelcomeBack
-        open={!init && !validated && !!questionnaireState.currentPage}
+        open={!init && !validated && !!questionnaireState?.currentPage}
         setOpen={o => setInit(!o)}
         goToFirstPage={() => setCurrentIndex(0)}
       />

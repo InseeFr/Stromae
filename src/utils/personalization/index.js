@@ -1,11 +1,16 @@
 import { getLang } from 'i18n/build-dictionary';
 import { fr, enUS } from 'date-fns/locale';
 
-export const buildBuidings = variables =>
-  variables.reduce((acc, { name, value }) => {
-    acc[name] = value;
-    return acc;
-  }, {});
+export const buildBuidings = variables => {
+  if (Array.isArray(variables)) {
+    return variables.reduce((acc, { name, value }) => {
+      acc[name] = value;
+      return acc;
+    }, {});
+  } else {
+    return {};
+  }
+};
 
 export const dateFnsLocal = getLang() === 'fr' ? fr : enUS;
 
