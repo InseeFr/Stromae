@@ -9,6 +9,7 @@ import { WelcomeBack } from 'components/modals/welcomeBack';
 import { addConstantPages } from 'utils/questionnaire/build';
 import { ButtonsNavigation } from '../navigation';
 import { SendingConfirmation } from 'components/modals/sendingConfirmation';
+import { getListOfPages } from 'utils/pagination';
 
 export const OrchestratorContext = React.createContext();
 
@@ -61,6 +62,9 @@ const Orchestrator = ({
     features,
   });
 
+  const goToTop = () => {
+    document.getElementById('main').scrollIntoView();
+  };
   const validateQuestionnaire = () => {
     setValidated(true);
     const dataToSave = {
@@ -87,13 +91,15 @@ const Orchestrator = ({
     };
     save(dataToSave);
     setCurrentIndex(currentIndex + 1);
+    goToTop();
   }, [questionnaire, currentIndex, save, stromaeData]);
 
   const onPrevious = () => {
     setCurrentIndex(currentIndex - 1);
   };
 
-  const fullQuestionnaire = addConstantPages(components)(validated);
+  const listOfSequence = getListOfPages('sequence')(components);
+  const allPages = addConstantPages(listOfSequence)(validated);
 
   const context = {
     metadata,
@@ -113,7 +119,8 @@ const Orchestrator = ({
         className={classes.root}
       >
         <Pagination
-          components={fullQuestionnaire}
+          components={components}
+          allPages={allPages}
           handleChange={handleChange}
           bindings={bindings}
           currentPage={currentIndex}
@@ -126,7 +133,7 @@ const Orchestrator = ({
           onNext={onNext}
           onPrevious={onPrevious}
           currentIndex={currentIndex}
-          maxPage={fullQuestionnaire.length}
+          maxPage={allPages.length}
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
