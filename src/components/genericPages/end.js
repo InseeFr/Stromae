@@ -16,8 +16,13 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { formatDistance, format } from 'date-fns';
 import { buttonDictionary, endPageDictionary } from 'i18n';
 import { OrchestratorContext } from 'components/orchestrator/collector';
-import { dateFnsLocal, formatLocal } from 'utils/personalization';
+import {
+  buildBuidings,
+  dateFnsLocal,
+  formatLocal,
+} from 'utils/personalization';
 import { interpret } from '@inseefr/lunatic';
+import { MarkdownTypo } from 'components/designSystem';
 
 const useStyles = makeStyles(theme => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -38,7 +43,8 @@ const useStyles = makeStyles(theme => ({
 const EndPage = () => {
   const classes = useStyles();
   const {
-    metadata: { inseeContext },
+    metadata: { inseeContext, variables },
+    personalization,
   } = useContext(OrchestratorContext);
   const { logout: logoutAuth } = useAuth();
   const { pathname } = useLocation();
@@ -47,13 +53,9 @@ const EndPage = () => {
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
 
-  const {
-    title,
-    confirmation,
-    thanks,
-    pdfMessage,
-    youCanQuit,
-  } = endPageDictionary(inseeContext);
+  const { title, body, pdfMessage, youCanQuit } = endPageDictionary(
+    inseeContext
+  );
 
   const download = async () => {
     const { error, status } = await getPDF();
@@ -74,6 +76,8 @@ const EndPage = () => {
   const getBodyWithVariables = myBody =>
     interpret(['VTL'])({
       validatedDate,
+      ...buildBuidings(variables),
+      ...buildBuidings(personalization),
     })(myBody);
 
   return (
@@ -81,9 +85,12 @@ const EndPage = () => {
       <CardHeader title={title} />
       <Divider />
       <CardContent className={classes.root}>
-        <Typography>{getBodyWithVariables(confirmation)}</Typography>
-        <Typography>{thanks}</Typography>
-
+        {body.map((line, i) => (
+          <React.Fragment key={`line-${i}`}>
+            <MarkdownTypo>{getBodyWithVariables(line)}</MarkdownTypo>
+            {i !== body.length - 1 && <br />}
+          </React.Fragment>
+        ))}
         {!pathname.includes('visualize') && (
           <>
             <br />
