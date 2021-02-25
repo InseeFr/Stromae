@@ -64,6 +64,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
 
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {
+      setErrorMessage(null);
       const load = async () => {
         const qR = await getQuestionnaire();
         if (!qR.error) {

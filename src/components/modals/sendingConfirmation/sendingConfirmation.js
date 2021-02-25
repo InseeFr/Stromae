@@ -35,7 +35,7 @@ const SendingConfirmation = ({ open, setOpen }) => {
     >
       <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
+        <DialogContentText id="alert-dialog-slide-description" component="div">
           {body.map((line, i) => (
             <React.Fragment key={`line-${i}`}>
               <MarkdownTypo>{line}</MarkdownTypo>

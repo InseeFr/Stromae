@@ -14,6 +14,7 @@ import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 
 const useStyles = makeStyles(theme => ({
+  card: { marginLeft: '1em', marginRight: '1em' },
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -31,7 +32,7 @@ const ValidationPage = ({ validate }) => {
   } = useContext(OrchestratorContext);
   const { title, body } = validationPageDictionary(inseeContext);
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardHeader title={title} />
       <Divider />
       <CardContent className={classes.root}>

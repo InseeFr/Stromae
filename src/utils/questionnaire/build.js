@@ -16,7 +16,7 @@ export const buildQuestionnaire = components => {
         const { componentType, label, id, declarations } = component;
         if (
           componentType &&
-          !['Sequence', 'Subsequence', 'FilterDescription'].includes(
+          !['Sequence', 'Subsequence', 'Loop', 'FilterDescription'].includes(
             componentType
           )
         ) {
@@ -28,6 +28,20 @@ export const buildQuestionnaire = components => {
               idSubsequence: idSubseq,
               sequence: { label: seqLabel },
               subsequence: subseqLabel ? { label: subseqLabel } : null,
+              stromaeType: 'Lunatic',
+            },
+          ];
+        }
+        if (componentType === 'Loop') {
+          idSeq = id;
+          idSubseq = '';
+
+          return [
+            ..._,
+            {
+              ...component,
+              idSequence: idSeq,
+              sequence: { label: seqLabel },
               stromaeType: 'Lunatic',
             },
           ];
@@ -56,7 +70,8 @@ export const buildQuestionnaire = components => {
             {
               ...component,
               labelNav: label,
-              label: '',
+              // label: '',
+              idSequence: idSeq,
               declarations: newDeclarations,
               sequence: { label: seqLabel },
               stromaeType: 'Lunatic',

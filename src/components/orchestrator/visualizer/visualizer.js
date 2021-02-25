@@ -9,8 +9,9 @@ import QuestionnaireForm from './questionnaireForm';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    height: '100%',
+    minHeight: '100%',
     flexDirection: 'column',
+    backgroundColor: 'whitesmoke',
   },
 }));
 

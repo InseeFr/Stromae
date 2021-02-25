@@ -1,12 +1,14 @@
 const endHousehold = {
   title: { fr: `Fin`, en: `End` },
-  confirmation: {
-    fr: `"Votre questionnaire a bien été expédié " || validatedDate || "."`,
-    en: `"Your questionnaire has been sent " || validatedDate || "."`,
-  },
-  thanks: {
-    fr: `L'Insee vous remercie de votre collaboration à cette enquête.`,
-    en: `INSEE thanks you for your collaboration in this survey.`,
+  body: {
+    fr: [
+      `"Votre questionnaire a bien été expédié " || validatedDate || "."`,
+      `"L'Insee vous remercie de votre collaboration à cette enquête."`,
+    ],
+    en: [
+      `"Your questionnaire has been sent " || validatedDate || "."`,
+      `"INSEE thanks you for your collaboration in this survey."`,
+    ],
   },
   pdfMessage: {
     fr: `Télécharger la preuve de votre participation à l'enquête`,
@@ -21,28 +23,22 @@ const endHousehold = {
 const endDefault = {
   title: { fr: 'Fin', en: 'End' },
   body: {
-    fr: [`Page de fin générique.`],
-    en: ['Generic end page.'],
-  },
-  thanks: {
-    fr: `L'Insee vous remercie de votre collaboration à cette enquête.`,
-    en: `INSEE thanks you for your collaboration in this survey.`,
-  },
-  pdfMessage: {
-    fr: `Télécharger la preuve de votre participation à l'enquête`,
-    en: `Download the proof of your participation in the survey`,
+    fr: [
+      `"Page de fin générique."`,
+      `"L'Insee vous remercie de votre collaboration à cette enquête."`,
+    ],
+    en: [
+      '"Generic end page."',
+      `"INSEE thanks you for your collaboration in this survey."`,
+    ],
   },
 };
 
 const endBusiness = {
   title: { fr: 'Fin', en: 'End' },
   body: {
-    fr: [`Page de fin entreprise`],
-    en: [`End page for business`],
-  },
-  thanks: {
-    fr: `Merci`,
-    en: `Thanks`,
+    fr: [`"Page de fin entreprise."`, `"Merci !"`],
+    en: [`"End page for business"`, `"Thanks !"`],
   },
   pdfMessage: {
     fr: `Télécharger la preuve de votre participation à l'enquête`,

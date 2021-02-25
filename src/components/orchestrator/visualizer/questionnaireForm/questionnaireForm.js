@@ -63,11 +63,9 @@ const QuestionnaireForm = () => {
   const goToQuestionnaire = e => {
     history.push({
       pathname: '/visualize',
-      search: `?questionnaire=${encodeURIComponent(
-        questionnaire
-      )}&metadata=${encodeURIComponent(
-        metadata || DEFAULT_METADATA_URL
-      )}&data=${encodeURIComponent(data || DEFAULT_METADATA_URL)}`,
+      search: `?questionnaire=${encodeURIComponent(questionnaire)}${
+        metadata ? `&metadata=${encodeURIComponent(metadata)}` : ''
+      }${data ? `&data=${encodeURIComponent(data)}` : ''}`,
     });
     e.preventDefault();
   };

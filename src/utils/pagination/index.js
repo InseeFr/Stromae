@@ -1,9 +1,21 @@
-// page 1 du questionnaire -> 1er composants
-const simplePage = { page: 1 };
+const sequencePagination = 'sequence';
+const subsequencePagination = 'subsequence';
+// const questionPagination = 'question';
 
-// page 6 de la 5è iterations de la boucle
-const pageInLoop = { iteration: 5, page: 6 };
+export const getListOfPages = pagination => components => {
+  if (pagination === sequencePagination) {
+    return components.filter(
+      ({ componentType }) =>
+        componentType === 'Sequence' || componentType === 'Loop'
+    );
+  }
+  if (pagination === subsequencePagination) {
+    return components.filter(
+      ({ componentType }) => componentType === 'Subsequence'
+    );
+  }
+  return components;
+};
 
-// 3eme composant du questionnaire, 2ème itérations, page 5, 4ème itérations, 7ème composants
-const pageInLoopInLoopInQuestionnaire = [3, 2, 5, 4, 7];
-const v2 = { page: 3 };
+export const getComponentsOfSequence = components => sequenceId =>
+  components.filter(({ idSequence }) => idSequence === sequenceId);

@@ -10,7 +10,7 @@ import { buildQuestionnaire } from 'utils/questionnaire/build';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    height: '100%',
+    minHeight: '100%',
     flexDirection: 'column',
   },
 }));
