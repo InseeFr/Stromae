@@ -52,8 +52,9 @@ const Visualizer = () => {
               metadata={metadata}
               save={sendData}
               savingType="COLLECTED"
-              preferences={['COLLECTED']}
+              preferences={['PREVIOUS', 'COLLECTED']}
               features={['VTL']}
+              pagination={true}
             />
           )}
         </Box>

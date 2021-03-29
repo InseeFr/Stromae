@@ -1,21 +1,6 @@
-const sequencePagination = 'sequence';
-const subsequencePagination = 'subsequence';
-// const questionPagination = 'question';
+export const WELCOME_PAGE = 'welcomePage';
+export const VALIDATION_PAGE = 'validationPage';
+export const END_PAGE = 'endPage';
 
-export const getListOfPages = pagination => components => {
-  if (pagination === sequencePagination) {
-    return components.filter(
-      ({ componentType }) =>
-        componentType === 'Sequence' || componentType === 'Loop'
-    );
-  }
-  if (pagination === subsequencePagination) {
-    return components.filter(
-      ({ componentType }) => componentType === 'Subsequence'
-    );
-  }
-  return components;
-};
-
-export const getComponentsOfSequence = components => sequenceId =>
-  components.filter(({ idSequence }) => idSequence === sequenceId);
+export const isLunaticPage = page =>
+  ![WELCOME_PAGE, VALIDATION_PAGE, END_PAGE].includes(page);

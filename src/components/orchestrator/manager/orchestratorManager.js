@@ -57,8 +57,9 @@ const OrchestratorManger = () => {
           metadata={metadata}
           save={sendData}
           savingType="COLLECTED"
-          preferences={['COLLECTED']}
-          features={['VTL']}
+          preferences={['PREVIOUS', 'COLLECTED']}
+          features={['VTL', 'MD']}
+          pagination={true}
         />
       )}
       {errorSending && <h2>Error lors de l'envoie</h2>}
