@@ -5,8 +5,8 @@ export const fetcher = async (url, token, method, body) => {
       headers: token
         ? { ...headers, Authorization: `Bearer ${token}` }
         : headers,
-      method: method,
-      body: body,
+      method,
+      body,
     });
     const { ok, status, statusText } = response;
     if (ok) {

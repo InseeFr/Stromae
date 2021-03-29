@@ -77,7 +77,7 @@ const QuestionnaireForm = () => {
       </Typography>
       <form onSubmit={goToQuestionnaire}>
         <TextField
-          id={'questionnaire-url-form'}
+          id="questionnaire-url-form"
           required
           label={visualizeDictionary.labelQuest}
           placeholder={QUESTIONNAIRE_EXAMPLE_URL(SIMPSONS)}
@@ -94,7 +94,7 @@ const QuestionnaireForm = () => {
           variant="outlined"
         />
         <TextField
-          id={'metadata-url-form'}
+          id="metadata-url-form"
           label={visualizeDictionary.labelMetadata}
           placeholder={DEFAULT_METADATA_URL}
           helperText={visualizeDictionary.helperTextMetadata}
@@ -110,7 +110,7 @@ const QuestionnaireForm = () => {
           variant="outlined"
         />
         <TextField
-          id={'data-url-form'}
+          id="data-url-form"
           label={visualizeDictionary.labelData}
           placeholder={DEFAULT_DATA_URL}
           helperText={visualizeDictionary.helperTextData}

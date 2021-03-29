@@ -4,8 +4,8 @@ import { useAPI, useAPIRemoteData } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
-import Orchestrator from '../collector';
 import { buildQuestionnaire } from 'utils/questionnaire/build';
+import { Orchestrator } from './../collector';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +20,7 @@ const OrchestratorManger = () => {
   const [source, setSource] = useState(false);
   const { /*readonly,*/ idQ, idSU } = useParams();
   const {
-    data,
+    ueData,
     questionnaire,
     metadata,
     loading,
@@ -54,9 +54,9 @@ const OrchestratorManger = () => {
     <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-      {!loading && metadata && data && questionnaire && source && (
+      {!loading && metadata && ueData && questionnaire && source && (
         <Orchestrator
-          stromaeData={data}
+          stromaeData={ueData}
           source={source}
           metadata={metadata}
           save={sendData}

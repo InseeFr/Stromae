@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Orchestrator } from 'components/orchestrator/collector';
 import { useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
-import Orchestrator from '../collector';
 import { buildQuestionnaire } from 'utils/questionnaire/build';
 import QuestionnaireForm from './questionnaireForm';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     minHeight: '100%',
@@ -21,14 +21,14 @@ const Visualizer = () => {
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
   const {
-    data,
+    ueData,
     questionnaire,
     metadata,
     loading,
     errorMessage,
   } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
-  const sendData = async dataToSave => {
+  const sendData = async () => {
     console.log('nothing to do');
   };
 
@@ -49,9 +49,9 @@ const Visualizer = () => {
         <Box className={classes.root}>
           {loading && <LoaderSimple />}
           {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-          {!loading && metadata && data && questionnaire && source && (
+          {!loading && metadata && ueData && questionnaire && source && (
             <Orchestrator
-              stromaeData={data}
+              stromaeData={ueData}
               source={source}
               metadata={metadata}
               save={sendData}

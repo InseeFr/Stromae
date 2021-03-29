@@ -10,7 +10,7 @@ import { defaultDictionary, buttonDictionary } from 'i18n';
 
 const CookieConsent = () => {
   const [open, setOpen] = useState(
-    () => !!!window.localStorage.getItem(COOKIE_CONSENT)
+    () => !window.localStorage.getItem(COOKIE_CONSENT)
   );
 
   const understand = () => {

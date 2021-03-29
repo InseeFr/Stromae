@@ -28,9 +28,9 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getMetadata(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
 
-  const getData = useCallback(() => {
+  const getUeData = useCallback(() => {
     const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getData(apiUrl)(surveyUnitID)(token);
+    return API.getUeData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
   const getPDF = useCallback(() => {
@@ -38,26 +38,26 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getDepositProof(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const putData = useCallback(
+  const putUeData = useCallback(
     body => {
       const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putData(apiUrl)(surveyUnitID)(token)(body);
+      return API.putUeData(apiUrl)(surveyUnitID)(token)(body);
     },
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
-  return { getQuestionnaire, getMetadata, getData, getPDF, putData };
+  return { getQuestionnaire, getMetadata, getUeData, getPDF, putUeData };
 };
 
 export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
-  const [data, setData] = useState(null);
+  const [ueData, setUeData] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { getData, getQuestionnaire, getMetadata } = useAPI(
+  const { getUeData, getQuestionnaire, getMetadata } = useAPI(
     surveyUnitID,
     questionnaireID
   );
@@ -72,9 +72,9 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
           const mR = await getMetadata();
           if (!mR.error) {
             setMetadata(mR.data);
-            const dR = await getData();
+            const dR = await getUeData();
             if (!dR.error) {
-              setData(dR.data);
+              setUeData(dR.data);
               setLoading(false);
             } else setErrorMessage(getErrorMessage(dR, 'd'));
             setLoading(false);
@@ -89,19 +89,22 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyUnitID, questionnaireID]);
 
-  return { loading, errorMessage, data, questionnaire, metadata };
+  return { loading, errorMessage, ueData, questionnaire, metadata };
 };
 
 export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
-  const [data, setData] = useState(null);
+  const [ueData, setUeData] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     if (questionnaireUrl) {
+      setErrorMessage(null);
+      setQuestionnaire(null);
+      setUeData(null);
       const fakeToken = null;
       const load = async () => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
@@ -116,7 +119,7 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
               fakeToken
             );
             if (!dR.error) {
-              setData(dR.data);
+              setUeData(dR.data);
               setLoading(false);
             } else setErrorMessage(getErrorMessage(dR, 'd'));
             setLoading(false);
@@ -129,5 +132,5 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     }
   }, [questionnaireUrl, metadataUrl, dataUrl]);
 
-  return { loading, errorMessage, data, questionnaire, metadata };
+  return { loading, errorMessage, ueData, questionnaire, metadata };
 };

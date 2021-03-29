@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
-export * from './auth';
 export * from './api';
+export * from './auth';
 
 export const useVisuQuery = () => {
   const searchUrl = new URLSearchParams(useLocation().search);

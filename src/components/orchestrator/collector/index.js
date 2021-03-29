@@ -3,7 +3,7 @@ import * as lunatic from '@inseefr/lunatic';
 import { Container, makeStyles } from '@material-ui/core';
 import { AppBar } from 'components/navigation/appBar';
 import Pagination from '../pagination';
-import '../custom-lunatic.scss';
+//import '../custom-lunatic.scss';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
 import { addConstantPages } from 'utils/questionnaire/build';
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Orchestrator = ({
+export const Orchestrator = ({
   source,
   stromaeData,
   metadata,
@@ -36,15 +36,12 @@ const Orchestrator = ({
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
-  const { questionnaireState, data } = stromaeData;
+  const { stateData, data } = stromaeData;
 
-  const [validated, setValidated] = useState(
-    questionnaireState?.state === 'VALIDATED'
-  );
+  const [validated, setValidated] = useState(stateData?.state === 'VALIDATED');
 
   const [currentIndex, setCurrentIndex] = useState(() => {
-    if (questionnaireState?.currentPage && !validated)
-      return questionnaireState?.currentPage;
+    if (stateData?.currentPage && !validated) return stateData?.currentPage;
     if (validated) return -1;
     return 0;
   });
@@ -63,16 +60,15 @@ const Orchestrator = ({
   });
 
   const goToTop = () => {
-    const a = document.createElement('a');
-    a.href = '#main';
-    a.click();
-    a.remove();
+    // const a = document.createElement('a');
+    // a.href = '#main';
+    // a.click();
+    // a.remove();
   };
   const validateQuestionnaire = () => {
     setValidated(true);
     const dataToSave = {
-      ...stromaeData,
-      context: {
+      stateData: {
         state: 'VALIDATED',
         date: new Date().getTime(),
         currentPage: currentIndex,
@@ -84,18 +80,17 @@ const Orchestrator = ({
   };
   const onNext = useCallback(async () => {
     const dataToSave = {
-      ...stromaeData,
-      utils: { currentPage: currentIndex },
-      questionnaire: {
+      stateData: {
         state: 'STARTED',
         date: new Date().getTime(),
+        currentPage: currentIndex,
       },
       data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
     setCurrentIndex(currentIndex + 1);
     goToTop();
-  }, [questionnaire, currentIndex, save, stromaeData]);
+  }, [questionnaire, currentIndex, save]);
 
   const onPrevious = () => {
     setCurrentIndex(currentIndex - 1);
@@ -143,7 +138,7 @@ const Orchestrator = ({
       )}
 
       <WelcomeBack
-        open={!init && !validated && !!questionnaireState?.currentPage}
+        open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
         goToFirstPage={() => setCurrentIndex(0)}
       />
@@ -155,4 +150,3 @@ const Orchestrator = ({
     </OrchestratorContext.Provider>
   );
 };
-export default Orchestrator;
