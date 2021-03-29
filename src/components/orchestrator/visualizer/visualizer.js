@@ -3,7 +3,6 @@ import { Orchestrator } from 'components/orchestrator/collector';
 import { useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
-import { buildQuestionnaire } from 'utils/questionnaire/build';
 import QuestionnaireForm from './questionnaireForm';
 
 const useStyles = makeStyles(() => ({
@@ -34,12 +33,9 @@ const Visualizer = () => {
 
   useEffect(() => {
     if (!loading && questionnaire) {
-      const { label: questionnaireTitle, components } = questionnaire;
+      const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
-      setSource({
-        ...questionnaire,
-        components: buildQuestionnaire(components),
-      });
+      setSource(questionnaire);
     }
   }, [questionnaire, loading]);
 

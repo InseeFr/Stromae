@@ -7,7 +7,6 @@ import {
   Divider,
   makeStyles,
 } from '@material-ui/core';
-
 import { validationPageDictionary, buttonDictionary } from 'i18n';
 import { Send } from '@material-ui/icons';
 import { OrchestratorContext } from 'components/orchestrator/collector';
@@ -25,10 +24,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ValidationPage = ({ validate }) => {
+const ValidationPage = () => {
   const classes = useStyles();
   const {
     metadata: { inseeContext },
+    setValidationConfirmation,
   } = useContext(OrchestratorContext);
   const { title, body } = validationPageDictionary(inseeContext);
   return (
@@ -47,7 +47,7 @@ const ValidationPage = ({ validate }) => {
           variant="contained"
           color="primary"
           endIcon={<Send />}
-          onClick={validate}
+          onClick={() => setValidationConfirmation(true)}
         >
           {buttonDictionary.send}
         </Button>
