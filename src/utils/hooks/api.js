@@ -68,7 +68,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
       const load = async () => {
         const qR = await getQuestionnaire();
         if (!qR.error) {
-          setQuestionnaire(qR.data);
+          setQuestionnaire(qR.data.model);
           const mR = await getMetadata();
           if (!mR.error) {
             setMetadata(mR.data);
