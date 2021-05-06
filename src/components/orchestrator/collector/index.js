@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as lunatic from '@inseefr/lunatic';
 import { Card, Container, makeStyles } from '@material-ui/core';
 import { AppBar } from 'components/navigation/appBar';
@@ -13,6 +13,8 @@ import {
   VALIDATION_PAGE,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
+import { useLocation } from 'react-router';
+import { LaptopWindowsRounded } from '@material-ui/icons';
 
 export const OrchestratorContext = React.createContext();
 
@@ -43,8 +45,10 @@ export const Orchestrator = ({
   pagination,
 }) => {
   const classes = useStyles();
+  const topRef = useRef();
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
+  const { pathname } = useLocation();
 
   const { stateData, data } = stromaeData;
 
@@ -79,14 +83,18 @@ export const Orchestrator = ({
   });
 
   const goToTop = () => {
-    const a = document.createElement('a');
-    a.href = '#main';
-    a.click();
-    a.remove();
+    if (topRef && topRef.current) {
+      topRef.current.tabIndex = -1;
+      topRef.current.focus();
+      topRef.current.blur();
+      window.scrollTo({ top: 0 });
+      topRef.current.removeAttribute('tabindex');
+    }
   };
   const validateQuestionnaire = () => {
     setValidated(true);
     const dataToSave = {
+      ...stromaeData,
       stateData: {
         state: 'VALIDATED',
         date: new Date().getTime(),
@@ -98,8 +106,8 @@ export const Orchestrator = ({
     setCurrentPage(END_PAGE);
   };
   const onNext = () => {
-    const realIsLastPage = isFirstPage;
     const dataToSave = {
+      ...stromaeData,
       stateData: {
         state: 'STARTED',
         date: new Date().getTime(),
@@ -110,7 +118,7 @@ export const Orchestrator = ({
     save(dataToSave);
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      if (!realIsLastPage) goNext();
+      if (!isLastPage) goNext();
       else setCurrentPage(VALIDATION_PAGE);
     }
     goToTop();
@@ -121,10 +129,9 @@ export const Orchestrator = ({
   }, [currentPage, page]);
 
   const onPrevious = () => {
-    const realIsFirstPage = isLastPage;
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
     else {
-      if (!realIsFirstPage) goPrevious();
+      if (!isFirstPage) goPrevious();
       else setCurrentPage(WELCOME_PAGE);
     }
   };
@@ -146,6 +153,7 @@ export const Orchestrator = ({
         component="main"
         role="main"
         id="main"
+        ref={topRef}
         className={classes.root}
       >
         {currentPage === WELCOME_PAGE && <WelcomePage />}

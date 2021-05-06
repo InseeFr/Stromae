@@ -25,7 +25,7 @@ const OrchestratorManger = () => {
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
-  const { putData } = useAPI(idSU, idQ);
+  const { putUeData } = useAPI(idSU, idQ);
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -33,7 +33,7 @@ const OrchestratorManger = () => {
   const sendData = async dataToSave => {
     setErrorSending(null);
     setSending(true);
-    const { /*status,*/ error } = await putData(dataToSave);
+    const { /*status,*/ error } = await putUeData(dataToSave);
     setSending(false);
     if (error) setErrorSending('Error during sending');
   };

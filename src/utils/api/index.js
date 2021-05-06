@@ -11,7 +11,7 @@ const putUeData = apiUrl => id => token => body =>
 
 /* Questionnaire's resource */
 const getQuestionnaire = apiUrl => id => token =>
-  getRequest(`${apiUrl}/api/campaign/${id}/questionnaire`)(token);
+  getRequest(`${apiUrl}/api/questionnaire/${id}`)(token);
 
 const getMetadata = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/campaign/${id}/metadata`)(token);
