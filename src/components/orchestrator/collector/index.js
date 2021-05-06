@@ -13,8 +13,7 @@ import {
   VALIDATION_PAGE,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { useLocation } from 'react-router';
-import { LaptopWindowsRounded } from '@material-ui/icons';
+// import { useLocation } from 'react-router';
 
 export const OrchestratorContext = React.createContext();
 
@@ -48,7 +47,7 @@ export const Orchestrator = ({
   const topRef = useRef();
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   const { stateData, data } = stromaeData;
 
