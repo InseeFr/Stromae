@@ -35,7 +35,7 @@ const Visualizer = () => {
   };
 
   const logoutAndClose = async surveyUnit => {
-    downloadDataAsJson(surveyUnit, 'data');
+    downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
     history.push('/');
   };
 
