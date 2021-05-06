@@ -7,11 +7,7 @@
     <xsl:include href="caractereDanois.xsl"/>
 
     <xsl:template match="/">
-        <!--decommenter pour générer le fichier de sortie dans webapps-->
-        <xsl:result-document href="webapps/resultat2danois.xml">
-            <xsl:apply-templates select="/xhtml:html"/>
-        </xsl:result-document>
-        <xsl:apply-templates select="/xhtml:html"/>
+       <xsl:apply-templates select="/xhtml:html"/>
     </xsl:template>
 
     <xsl:template match="node()|@*">
