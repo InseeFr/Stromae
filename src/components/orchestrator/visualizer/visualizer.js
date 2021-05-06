@@ -4,6 +4,8 @@ import { useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
 import QuestionnaireForm from './questionnaireForm';
+import { downloadDataAsJson } from 'utils/questionnaire';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles(() => ({
 const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
+  const history = useHistory();
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
   const {
@@ -27,8 +30,13 @@ const Visualizer = () => {
     errorMessage,
   } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
-  const sendData = async () => {
-    console.log('nothing to do');
+  const sendData = surveyUnit => {
+    //downloadDataAsJson(surveyUnit, 'data');
+  };
+
+  const logoutAndClose = async surveyUnit => {
+    downloadDataAsJson(surveyUnit, 'data');
+    history.push('/');
   };
 
   useEffect(() => {
@@ -54,6 +62,7 @@ const Visualizer = () => {
               savingType="COLLECTED"
               preferences={['PREVIOUS', 'COLLECTED']}
               features={['VTL']}
+              logoutAndClose={logoutAndClose}
               pagination={true}
             />
           )}

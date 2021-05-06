@@ -13,7 +13,7 @@ import {
   VALIDATION_PAGE,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-// import { useLocation } from 'react-router';
+import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 
 export const OrchestratorContext = React.createContext();
 
@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Orchestrator = ({
   source,
+  logoutAndClose: quit,
   stromaeData,
   metadata,
   save,
@@ -47,7 +48,6 @@ export const Orchestrator = ({
   const topRef = useRef();
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
-  // const { pathname } = useLocation();
 
   const { stateData, data } = stromaeData;
 
@@ -75,6 +75,23 @@ export const Orchestrator = ({
     pagination,
   });
 
+  const [state, setState] = useQuestionnaireState(
+    questionnaire,
+    stateData?.state
+  );
+
+  const logoutAndClose = () => {
+    quit({
+      ...stromaeData,
+      stateData: {
+        state: state,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      },
+      data: lunatic.getState(questionnaire),
+    });
+  };
+
   const [currentPage, setCurrentPage] = useState(() => {
     if (!validated && stateData?.currentPage) return stateData?.currentPage;
     if (validated) return END_PAGE;
@@ -92,10 +109,11 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
+    setState(VALIDATED);
     const dataToSave = {
       ...stromaeData,
       stateData: {
-        state: 'VALIDATED',
+        state: VALIDATED,
         date: new Date().getTime(),
         currentPage: currentPage,
       },
@@ -108,7 +126,7 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: {
-        state: 'STARTED',
+        state: state,
         date: new Date().getTime(),
         currentPage: currentPage,
       },
@@ -140,6 +158,7 @@ export const Orchestrator = ({
     validated,
     validateQuestionnaire,
     setValidationConfirmation,
+    logoutAndClose,
     ...stromaeData,
     lunaticOptions: { preferences, features, pagination },
   };

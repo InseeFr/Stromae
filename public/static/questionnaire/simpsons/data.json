@@ -1,6 +1,6 @@
 {
-  "questionnaireState": {
-    "state": "NOT_STARTED",
+  "stateData": {
+    "state": null,
     "date": null,
     "currentPage": null
   },

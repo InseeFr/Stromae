@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAPI, useAPIRemoteData } from 'utils/hooks';
+import { useAPI, useAPIRemoteData, useAuth } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
@@ -26,6 +26,7 @@ const OrchestratorManger = () => {
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
   const { putUeData } = useAPI(idSU, idQ);
+  const { logout } = useAuth();
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -36,6 +37,10 @@ const OrchestratorManger = () => {
     const { /*status,*/ error } = await putUeData(dataToSave);
     setSending(false);
     if (error) setErrorSending('Error during sending');
+  };
+
+  const logoutAndClose = async surveyUnit => {
+    logout();
   };
 
   useEffect(() => {
@@ -55,6 +60,7 @@ const OrchestratorManger = () => {
           stromaeData={ueData}
           source={source}
           metadata={metadata}
+          logoutAndClose={logoutAndClose}
           save={sendData}
           savingType="COLLECTED"
           preferences={['PREVIOUS', 'COLLECTED']}
