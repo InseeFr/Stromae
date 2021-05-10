@@ -19,7 +19,7 @@ const OrchestratorManger = () => {
   const [source, setSource] = useState(false);
   const { /*readonly,*/ idQ, idSU } = useParams();
   const {
-    ueData,
+    suData,
     questionnaire,
     metadata,
     loading,
@@ -55,9 +55,9 @@ const OrchestratorManger = () => {
     <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-      {!loading && metadata && ueData && questionnaire && source && (
+      {!loading && metadata && suData && questionnaire && source && (
         <Orchestrator
-          stromaeData={ueData}
+          stromaeData={suData}
           source={source}
           metadata={metadata}
           logoutAndClose={logoutAndClose}

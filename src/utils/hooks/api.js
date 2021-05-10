@@ -52,7 +52,7 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
 export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
-  const [ueData, setUeData] = useState(null);
+  const [suData, setSuData] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -74,7 +74,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
             setMetadata(mR.data);
             const dR = await getUeData();
             if (!dR.error) {
-              setUeData(dR.data);
+              setSuData(dR.data);
               setLoading(false);
             } else setErrorMessage(getErrorMessage(dR, 'd'));
             setLoading(false);
@@ -89,13 +89,13 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyUnitID, questionnaireID]);
 
-  return { loading, errorMessage, ueData, questionnaire, metadata };
+  return { loading, errorMessage, suData, questionnaire, metadata };
 };
 
 export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
-  const [ueData, setUeData] = useState(null);
+  const [suData, setSuData] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -104,7 +104,7 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     if (questionnaireUrl) {
       setErrorMessage(null);
       setQuestionnaire(null);
-      setUeData(null);
+      setSuData(null);
       const fakeToken = null;
       const load = async () => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
@@ -119,7 +119,7 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
               fakeToken
             );
             if (!dR.error) {
-              setUeData(dR.data);
+              setSuData(dR.data);
               setLoading(false);
             } else setErrorMessage(getErrorMessage(dR, 'd'));
             setLoading(false);
@@ -132,5 +132,5 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     }
   }, [questionnaireUrl, metadataUrl, dataUrl]);
 
-  return { loading, errorMessage, ueData, questionnaire, metadata };
+  return { loading, errorMessage, suData, questionnaire, metadata };
 };

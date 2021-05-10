@@ -23,7 +23,7 @@ const Visualizer = () => {
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
   const {
-    ueData,
+    suData,
     questionnaire,
     metadata,
     loading,
@@ -53,9 +53,9 @@ const Visualizer = () => {
         <Box className={classes.root}>
           {loading && <LoaderSimple />}
           {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-          {!loading && metadata && ueData && questionnaire && source && (
+          {!loading && metadata && suData && questionnaire && source && (
             <Orchestrator
-              stromaeData={ueData}
+              stromaeData={suData}
               source={source}
               metadata={metadata}
               save={sendData}
