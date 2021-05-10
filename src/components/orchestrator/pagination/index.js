@@ -1,49 +1,38 @@
-import { useMediaQuery } from '@material-ui/core';
-import SwipeableViews from 'react-swipeable-views';
 import React from 'react';
+import * as lunatic from '@inseefr/lunatic';
+import { Card, makeStyles } from '@material-ui/core';
 
-// const SwipeComponent = bindKeyboard(SwipeableViews);
-const SwipeComponent = SwipeableViews;
+const useStyles = makeStyles(theme => ({
+  root: { padding: '10px', overflow: 'visible', marginBottom: '10px' },
+  sequenceContainer: { paddingLeft: '1em', paddingRight: '1em' },
+}));
 
-const Pagination = ({
-  componentsPages,
-  currentPage,
-  setCurrentPage,
-  validated,
-  onNext,
+const OneComponent = ({
+  component,
+  lunaticOptions,
+  handleChange,
+  bindings,
 }) => {
-  const mobile1 = useMediaQuery(
-    '(max-width:500px) and (orientation: portrait)'
-  );
-  const mobile2 = useMediaQuery(
-    '(max-height:500px) and (orientation: landscape)'
-  );
-
-  const changePage = index => {
-    console.log('changeing');
-  };
-
-  const isMobileDevice = mobile1 || mobile2;
-
-  const currentIndex =
-    currentPage >= 0 ? currentPage : componentsPages.length - 1;
-
+  const classes = useStyles();
+  const { id, componentType } = component;
+  const Component = lunatic[componentType];
   return (
-    <>
-      {isMobileDevice && (
-        <SwipeComponent
-          index={currentIndex}
-          onChangeIndex={setCurrentPage}
-          resistance
-          disabled={validated}
-          onTransitionEnd={onNext}
-        >
-          {componentsPages}
-        </SwipeComponent>
-      )}
-      {!isMobileDevice && componentsPages[currentIndex]}
-    </>
+    <Card
+      className={`lunatic lunatic-component ${componentType} ${classes.root}`}
+      key={`component-${id}`}
+    >
+      <Component
+        {...component}
+        handleChange={handleChange}
+        labelPosition="TOP"
+        preferences={lunaticOptions?.preferences}
+        features={lunaticOptions?.features}
+        bindings={bindings}
+        writable
+        zIndex={1}
+      />
+    </Card>
   );
 };
 
-export default Pagination;
+export default OneComponent;

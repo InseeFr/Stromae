@@ -2,7 +2,5 @@
   "authenticationType": "${AUTHENTICATION_TYPE}",
   "_authenticationType_comment_": "Authentication type : OIDC or NONE",
   "apiUrl": "${API_URL}",
-  "inseeContext": "${INSEE_CONTEXT}",
-  "_inseeContext_comment_": "household or business",
   "portail": "${PORTAIL_URL}"
 }

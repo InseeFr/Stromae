@@ -1,20 +1,16 @@
-import React, { forwardRef, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
+import { Button, MarkdownTypo } from 'components/designSystem';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 import { COOKIE_CONSENT } from 'utils/constants';
-
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import { defaultDictionary, buttonDictionary } from 'i18n';
 
 const CookieConsent = () => {
   const [open, setOpen] = useState(
-    () => !!!window.localStorage.getItem(COOKIE_CONSENT)
+    () => !window.localStorage.getItem(COOKIE_CONSENT)
   );
 
   const understand = () => {
@@ -25,7 +21,6 @@ const CookieConsent = () => {
   return (
     <Dialog
       open={open}
-      TransitionComponent={Transition}
       keepMounted
       disableBackdropClick
       disableEscapeKeyDown
@@ -34,20 +29,15 @@ const CookieConsent = () => {
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle id="alert-dialog-slide-title">
-        {'Utilisation des cookies'}
+        {defaultDictionary.cookieTitle}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
-          Pour son bon fonctionnement, le site utilise des cookies, en
-          remplissant le questionnaire, vous acceptez l'installation et
-          l'utilisation de cookies sur votre poste.
+        <DialogContentText id="alert-dialog-slide-description" component="div">
+          <MarkdownTypo>{defaultDictionary.cookieConsent}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <Button onClick={understand} color="primary" autoFocus>
-          Je comprends
-        </Button>
+        <Button onClick={understand}>{buttonDictionary.understand}</Button>
       </DialogActions>
     </Dialog>
   );

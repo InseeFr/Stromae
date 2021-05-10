@@ -1,17 +1,17 @@
 import { AppContext } from 'App';
-import Dictionary from 'i18n';
+import { errorDictionary } from 'i18n';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { OIDC } from 'utils/constants';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
 
-const getErrorMessage = (response, questionnaire = true) => {
+const getErrorMessage = (response, type = 'q') => {
   const { status } = response;
-  if (status === 401) return Dictionary.getError401;
-  if (status === 403) return Dictionary.getError403(questionnaire);
-  if (status === 404) return Dictionary.getError404(questionnaire);
-  if (status >= 500 && status < 600) return Dictionary.getErrorServeur;
-  return Dictionary.getUnknownError;
+  if (status === 401) return errorDictionary.getError401;
+  if (status === 403) return errorDictionary.getError403(type);
+  if (status === 404) return errorDictionary.getError404(type);
+  if (status >= 500 && status < 600) return errorDictionary.getErrorServeur;
+  return errorDictionary.getUnknownError;
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
@@ -23,52 +23,64 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
 
-  const getData = useCallback(() => {
+  const getMetadata = useCallback(() => {
     const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getData(apiUrl)(surveyUnitID)(token);
+    return API.getMetadata(apiUrl)(questionnaireID)(token);
+  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+
+  const getSuData = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getSuData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const getPDF = useCallback(
-    filename => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.getDepositProof(apiUrl)(surveyUnitID)(token)(filename);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
-  );
+  const getPDF = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getDepositProof(apiUrl)(surveyUnitID)(token);
+  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const putData = useCallback(
+  const putSuData = useCallback(
     body => {
       const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putData(apiUrl)(surveyUnitID)(token)(body);
+      return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
     },
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
-  return { getQuestionnaire, getData, getPDF, putData };
+  return { getQuestionnaire, getMetadata, getSuData, getPDF, putSuData };
 };
 
-export const useRemoteData = (surveyUnitID, questionnaireID) => {
+export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
-  const [data, setData] = useState(null);
+  const [metadata, setMetadata] = useState(null);
+  const [suData, setSuData] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { getData, getQuestionnaire } = useAPI(surveyUnitID, questionnaireID);
+  const { getSuData, getQuestionnaire, getMetadata } = useAPI(
+    surveyUnitID,
+    questionnaireID
+  );
 
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {
+      setErrorMessage(null);
       const load = async () => {
         const qR = await getQuestionnaire();
         if (!qR.error) {
-          setQuestionnaire(qR.data);
-          const dR = await getData();
-          if (!dR.error) {
-            setData(dR.data);
+          setQuestionnaire(qR.data.model);
+          const mR = await getMetadata();
+          if (!mR.error) {
+            setMetadata(mR.data);
+            const dR = await getSuData();
+            if (!dR.error) {
+              setSuData(dR.data);
+              setLoading(false);
+            } else setErrorMessage(getErrorMessage(dR, 'd'));
             setLoading(false);
-          } else setErrorMessage(getErrorMessage(dR, false));
+          } else setErrorMessage(getErrorMessage(mR, 'm'));
           setLoading(false);
-        } else setErrorMessage(getErrorMessage(qR));
+        } else setErrorMessage(getErrorMessage(qR, 'q'));
         setLoading(false);
       };
       load();
@@ -77,5 +89,48 @@ export const useRemoteData = (surveyUnitID, questionnaireID) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyUnitID, questionnaireID]);
 
-  return { loading, errorMessage, data, questionnaire };
+  return { loading, errorMessage, suData, questionnaire, metadata };
+};
+
+export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
+  const [questionnaire, setQuestionnaire] = useState(null);
+  const [metadata, setMetadata] = useState(null);
+  const [suData, setSuData] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    if (questionnaireUrl) {
+      setErrorMessage(null);
+      setQuestionnaire(null);
+      setSuData(null);
+      const fakeToken = null;
+      const load = async () => {
+        const qR = await API.getRequest(questionnaireUrl)(fakeToken);
+        if (!qR.error) {
+          setQuestionnaire(qR.data);
+          const mR = await API.getRequest(metadataUrl || DEFAULT_METADATA_URL)(
+            fakeToken
+          );
+          if (!mR.error) {
+            setMetadata(mR.data);
+            const dR = await API.getRequest(dataUrl || DEFAULT_DATA_URL)(
+              fakeToken
+            );
+            if (!dR.error) {
+              setSuData(dR.data);
+              setLoading(false);
+            } else setErrorMessage(getErrorMessage(dR, 'd'));
+            setLoading(false);
+          } else setErrorMessage(getErrorMessage(mR, 'm'));
+          setLoading(false);
+        } else setErrorMessage(getErrorMessage(qR, 'q'));
+        setLoading(false);
+      };
+      load();
+    }
+  }, [questionnaireUrl, metadataUrl, dataUrl]);
+
+  return { loading, errorMessage, suData, questionnaire, metadata };
 };

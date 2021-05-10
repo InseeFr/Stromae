@@ -1,6 +1,6 @@
 import { createDictionary, getLang } from './build-dictionary';
 
-['browserLanguage', 'language'].forEach((property) => {
+['browserLanguage', 'language'].forEach(property => {
   test(`should return the french version when the navigator.${property} is FR`, () => {
     expect(createDictionary('fr').survey).toBe('Questionnaire');
   });

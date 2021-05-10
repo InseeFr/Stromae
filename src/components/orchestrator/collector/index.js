@@ -1,160 +1,232 @@
-import { WelcomePage, EndPage, ValidationPage } from '../genericPages';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as lunatic from '@inseefr/lunatic';
-import { Button, Card, Typography } from '@material-ui/core';
-import Pagination from '../pagination';
-import '../custom-lunatic.scss';
+import { Card, Container, makeStyles } from '@material-ui/core';
+import { AppBar } from 'components/navigation/appBar';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
-import { Skeleton } from '@material-ui/lab';
+import { ButtonsNavigation } from '../navigation';
+import { SendingConfirmation } from 'components/modals/sendingConfirmation';
+import {
+  WELCOME_PAGE,
+  END_PAGE,
+  isLunaticPage,
+  VALIDATION_PAGE,
+} from 'utils/pagination';
+import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
+import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 
-const Orchestrator = ({
+export const OrchestratorContext = React.createContext();
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flex: '1 1 auto',
+    backgroundColor: 'whitesmoke',
+    padding: '0',
+    paddingTop: '1em',
+    paddingBottom: '3em',
+  },
+  component: {
+    padding: '10px',
+    overflow: 'visible',
+    marginBottom: '10px',
+    '& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
+  },
+}));
+
+export const Orchestrator = ({
   source,
+  logoutAndClose: quit,
   stromaeData,
+  metadata,
   save,
   savingType,
   preferences,
   features,
+  pagination,
 }) => {
+  const classes = useStyles();
+  const topRef = useRef();
   const [init, setInit] = useState(false);
+  const [validationConfirmation, setValidationConfirmation] = useState(false);
 
-  const { validated, currentPage, data } = stromaeData;
+  const { stateData, data } = stromaeData;
 
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    if (currentPage && !validated) return currentPage;
-    if (validated) return -1;
-    return 0;
-  });
-  const [lastIndex, setLastIndex] = useState(null);
+  const [validated, setValidated] = useState(stateData?.state === 'VALIDATED');
 
-  const [validatedQuestionnaire, setValidated] = useState(validated);
-  const [waiting, setWaiting] = useState(false);
-
+  const [waiting /*, setWaiting*/] = useState(false);
   const {
     questionnaire,
     components,
     handleChange,
     bindings,
+    pagination: {
+      goNext,
+      goPrevious,
+      page,
+      setPage,
+      isFirstPage,
+      isLastPage,
+      flow,
+    },
   } = lunatic.useLunatic(source, data, {
     savingType,
     preferences,
     features,
+    pagination,
   });
 
-  const validateQuestionnaire = () => {
-    console.log('validate');
-    setValidated(true);
-    setCurrentIndex(currentIndex + 1);
+  const [state, setState] = useQuestionnaireState(
+    questionnaire,
+    stateData?.state
+  );
+
+  const logoutAndClose = () => {
+    quit({
+      ...stromaeData,
+      stateData: {
+        state: state,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      },
+      data: lunatic.getState(questionnaire),
+    });
   };
 
-  const onNext = useCallback(() => {
-    const stateToSave = lunatic.getState(questionnaire);
-
-    const dataToSave = {
-      currentPage: currentIndex,
-      validated: validatedQuestionnaire,
-      data: stateToSave,
-    };
-    save(dataToSave);
-  }, [questionnaire, currentIndex, validatedQuestionnaire, save]);
-
-  const componentFilterd = components.filter(({ page }) => page);
-
-  const componentsToDisplay = componentFilterd.map(q => {
-    const { id, componentType } = q;
-    const Component = lunatic[componentType];
-    const comp = (
-      <Card
-        className="lunatic lunatic-component"
-        key={`component-${id}`}
-        style={{ padding: '10px', overflow: 'visible' }}
-      >
-        <Component
-          {...q}
-          handleChange={handleChange}
-          labelPosition="TOP"
-          preferences={preferences}
-          features={features}
-          bindings={bindings}
-          writable
-          zIndex={1}
-        />
-      </Card>
-    );
-    return comp;
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (!validated && stateData?.currentPage) return stateData?.currentPage;
+    if (validated) return END_PAGE;
+    return WELCOME_PAGE;
   });
 
-  const constantPage = [
-    <WelcomePage key={'welcome'} />,
-    ...componentsToDisplay,
-    <ValidationPage key={'validation'} validate={validateQuestionnaire} />,
-  ];
+  const goToTop = () => {
+    if (topRef && topRef.current) {
+      topRef.current.tabIndex = -1;
+      topRef.current.focus();
+      topRef.current.blur();
+      window.scrollTo({ top: 0 });
+      topRef.current.removeAttribute('tabindex');
+    }
+  };
+  const validateQuestionnaire = () => {
+    setValidated(true);
+    setState(VALIDATED);
+    const dataToSave = {
+      ...stromaeData,
+      stateData: {
+        state: VALIDATED,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      },
+      data: lunatic.getState(questionnaire),
+    };
+    save(dataToSave);
+    setCurrentPage(END_PAGE);
+  };
+  const onNext = () => {
+    const dataToSave = {
+      ...stromaeData,
+      stateData: {
+        state: state,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      },
+      data: lunatic.getState(questionnaire),
+    };
+    save(dataToSave);
+    if (currentPage === WELCOME_PAGE) setCurrentPage(page);
+    else {
+      if (!isLastPage) goNext();
+      else setCurrentPage(VALIDATION_PAGE);
+    }
+    goToTop();
+  };
 
-  const componentsPages = validatedQuestionnaire
-    ? [...constantPage, <EndPage key={'end'} setWaiting={setWaiting} />]
-    : constantPage;
+  useEffect(() => {
+    if (isLunaticPage(currentPage)) setCurrentPage(page);
+  }, [currentPage, page]);
 
-  const { sequence, subsequence } = componentFilterd[currentIndex - 1] || {};
+  const onPrevious = () => {
+    if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
+    else {
+      if (!isFirstPage) goPrevious();
+      else setCurrentPage(WELCOME_PAGE);
+    }
+  };
+
+  const context = {
+    metadata,
+    validated,
+    validateQuestionnaire,
+    setValidationConfirmation,
+    logoutAndClose,
+    ...stromaeData,
+    lunaticOptions: { preferences, features, pagination },
+  };
+
   return (
-    <>
-      {sequence && (
-        <Card
-          style={{
-            marginRight: '10px',
-            marginLeft: '10px',
-            marginBottom: '10px',
-            padding: '10px',
-          }}
-        >
-          <Typography variant="h4">
-            {lunatic.interpret(features)(bindings)(sequence.label)}
-          </Typography>
-
-          {subsequence && (
-            <Typography variant="h6">
-              {lunatic.interpret(features)(bindings)(subsequence.label)}
-            </Typography>
-          )}
-        </Card>
+    <OrchestratorContext.Provider value={context}>
+      <AppBar title={questionnaire?.label} />
+      <Container
+        maxWidth="md"
+        component="main"
+        role="main"
+        id="main"
+        ref={topRef}
+        className={classes.root}
+      >
+        {currentPage === WELCOME_PAGE && <WelcomePage />}
+        {isLunaticPage(currentPage) &&
+          components.map(q => {
+            const { id, componentType } = q;
+            const Component = lunatic[componentType];
+            if (componentType !== 'FilterDescription')
+              return (
+                <Card
+                  className={`lunatic lunatic-component ${componentType} ${classes.component}`}
+                  key={`component-${id}`}
+                >
+                  <div className="lunatic-component" key={`component-${id}`}>
+                    <Component
+                      {...q}
+                      handleChange={handleChange}
+                      labelPosition="TOP"
+                      preferences={preferences}
+                      features={features}
+                      bindings={bindings}
+                      writable
+                      unitPosition="AFTER"
+                      currentPage={page}
+                      setPage={setPage}
+                      flow={flow}
+                      pagination={pagination}
+                    />
+                  </div>
+                </Card>
+              );
+            return null;
+          })}
+        {currentPage === VALIDATION_PAGE && <ValidationPage />}
+        {currentPage === END_PAGE && <EndPage />}
+      </Container>
+      {!validated && (
+        <ButtonsNavigation
+          onNext={onNext}
+          onPrevious={onPrevious}
+          currentPage={currentPage}
+          validateQuestionnaire={() => setValidationConfirmation(true)}
+        />
       )}
 
-      <Pagination
-        componentsPages={componentsPages}
-        currentPage={currentIndex}
-        setCurrentPage={setCurrentIndex}
-        validated={validatedQuestionnaire}
-        onNext={onNext}
-      />
-
-      {!validatedQuestionnaire && (
-        <div className="navigation-buttons">
-          <Button
-            onClick={() => {
-              setCurrentIndex(currentIndex - 1);
-              onNext();
-            }}
-            disabled={currentIndex === 0}
-          >
-            Previous
-          </Button>
-          <Button
-            onClick={() => {
-              setCurrentIndex(currentIndex + 1);
-              onNext();
-            }}
-            disabled={currentIndex === componentsPages.length - 1}
-          >
-            Next
-          </Button>
-        </div>
-      )}
       <WelcomeBack
-        open={!init && !validated && currentPage}
+        open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
-        goToFirstPage={() => setCurrentIndex(0)}
+        goToFirstPage={() => setCurrentPage(0)}
+      />
+      <SendingConfirmation
+        open={validationConfirmation}
+        setOpen={setValidationConfirmation}
       />
       {waiting && <LoaderSimple />}
-    </>
+    </OrchestratorContext.Provider>
   );
 };
-export default Orchestrator;

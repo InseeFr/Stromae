@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { blue, green } from '@material-ui/core/colors';
 
 const StyleProvider = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -12,8 +11,12 @@ const StyleProvider = ({ children }) => {
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
-            main: blue['900'],
+            main: '#0f417a',
           },
+          secondary: {
+            main: '#ffc400',
+          },
+          background: {},
         },
       }),
     [prefersDarkMode]

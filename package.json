@@ -1,10 +1,10 @@
 {
   "name": "stromae",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^2.0.0-rc23",
+    "@inseefr/lunatic": "^2.2.3",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -12,15 +12,17 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "date-fns": "^2.17.0",
     "oidc-client": "^1.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-markdown": "^5.0.3",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
-    "sass": "^1.32.5",
+    "sass": "^1.32.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -44,12 +46,30 @@
       "jsx-a11y"
     ],
     "rules": {
+      "react/prop-types": [
+        "off"
+      ],
       "prettier/prettier": [
-        "error",
+        1,
         {
           "arrowParens": "avoid"
         }
       ]
+    },
+    "globals": {
+      "fetch": true,
+      "window": true,
+      "document": true,
+      "navigator": true
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": [
+            "src"
+          ]
+        }
+      }
     }
   },
   "prettier": {
@@ -72,6 +92,7 @@
   },
   "devDependencies": {
     "copy-and-watch": "^0.1.5",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "2.22.1",

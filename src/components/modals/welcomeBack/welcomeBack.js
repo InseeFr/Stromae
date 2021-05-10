@@ -1,10 +1,12 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button } from 'components/designSystem/Button';
+import { defaultDictionary, buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { MarkdownTypo } from 'components/designSystem';
 
 const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
   const goToCurrentPage = () => {
@@ -25,27 +27,19 @@ const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle id="alert-dialog-slide-title">{`Bienvenue`}</DialogTitle>
+      <DialogTitle id="alert-dialog-slide-title">
+        {defaultDictionary.welcomeBackTitle}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
-          Vous avez déjà commencé à renseigner le questionnaire. <br />
-          Pour poursuivre votre saisie dans le questionnaire, que souhaitez-vous
-          faire ?
+        <DialogContentText id="alert-dialog-slide-description" component="div">
+          <MarkdownTypo>{defaultDictionary.welcomeBackBody}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={goToCurrentPage} color="primary">
-          Revenir à la dernière page accédée
+        <Button onClick={goToCurrentPage}>
+          {buttonDictionary.goBackToCurrentPage}
         </Button>
-        <Button
-          /* eslint-disable-next-line jsx-a11y/no-autofocus */
-          autoFocus
-          onClick={goToFirst}
-          target="_blank"
-          color="primary"
-        >
-          Aller à la première page
-        </Button>
+        <Button onClick={goToFirst}>{buttonDictionary.goToFirstPage}</Button>
       </DialogActions>
     </Dialog>
   );
