@@ -28,9 +28,9 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getMetadata(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
 
-  const getUeData = useCallback(() => {
+  const getSuData = useCallback(() => {
     const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getUeData(apiUrl)(surveyUnitID)(token);
+    return API.getSuData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
   const getPDF = useCallback(() => {
@@ -38,15 +38,15 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     return API.getDepositProof(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
 
-  const putUeData = useCallback(
+  const putSuData = useCallback(
     body => {
       const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putUeData(apiUrl)(surveyUnitID)(token)(body);
+      return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
     },
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
-  return { getQuestionnaire, getMetadata, getUeData, getPDF, putUeData };
+  return { getQuestionnaire, getMetadata, getSuData, getPDF, putSuData };
 };
 
 export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
@@ -57,7 +57,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { getUeData, getQuestionnaire, getMetadata } = useAPI(
+  const { getSuData, getQuestionnaire, getMetadata } = useAPI(
     surveyUnitID,
     questionnaireID
   );
@@ -72,7 +72,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
           const mR = await getMetadata();
           if (!mR.error) {
             setMetadata(mR.data);
-            const dR = await getUeData();
+            const dR = await getSuData();
             if (!dR.error) {
               setSuData(dR.data);
               setLoading(false);
