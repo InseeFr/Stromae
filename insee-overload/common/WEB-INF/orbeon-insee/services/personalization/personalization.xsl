@@ -7,7 +7,7 @@
     <xsl:include href="caractereDanois.xsl"/>
 
     <xsl:template match="/">
-        <xsl:apply-templates select="/xhtml:html"/>
+       <xsl:apply-templates select="/xhtml:html"/>
     </xsl:template>
 
     <xsl:template match="node()|@*">
@@ -33,6 +33,23 @@
                 <xsl:value-of select="//xf:instance[@id='donnees-pilotage']//UniteEnquetee/LabelUniteEnquetee/text()" />
             </xsl:variable>
             <xsl:value-of select="replace(text(),'&#248;LabelUniteEnquetee&#248;',$valeur)" />
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Display of the logo according to the Source in Pilotage database  -->
+    <xsl:template match="xhtml:img[parent::xhtml:div[contains(@class, 'container')]]">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="//xf:instance[@id = 'donnees-pilotage']//Logo/text() != ''">
+                    <xsl:apply-templates select="@*[not(name() = 'src')]"/>
+                    <xsl:attribute name="src"
+                        select="concat('/img/',//xf:instance[@id = 'donnees-pilotage']//Logo/text())"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
 
