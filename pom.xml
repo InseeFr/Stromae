@@ -17,6 +17,7 @@
         <compiler.source>1.8</compiler.source>
         <compiler.target>1.8</compiler.target>
         <insee.context>default</insee.context>
+        <session.heartbeat>true</session.heartbeat>
     </properties>
 
     <build>
