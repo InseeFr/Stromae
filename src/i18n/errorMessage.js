@@ -11,6 +11,7 @@ const errorMessage = {
         return `Vous n'êtes pas autorisé à accéder aux métadonnées du questionnaire.`;
       if (type === 'd')
         return `Vous n'êtes pas autorisé à accéder aux données du répondant.`;
+      return '';
     },
     en: type => {
       if (type === 'q')
@@ -19,6 +20,7 @@ const errorMessage = {
         return `You are not authorized to access the metadata of the questionnaire.`;
       if (type === 'd')
         return `You are not authorized to access the respondent's data.`;
+      return '';
     },
   },
   getError404: {
@@ -26,12 +28,14 @@ const errorMessage = {
       if (type === 'q') return `Le questionnaire n'existe pas.`;
       if (type === 'm') return `Les métadonnées du questionnaire n'existe pas.`;
       if (type === 'd') return `Il n'y a aucune donnée pour ce répondant.`;
+      return '';
     },
     en: type => {
       if (type === 'q') return `The questionnaire does not exist.`;
       if (type === 'm')
         return `The metadata of the questionnaire does not exist.`;
       if (type === 'd') return `There is no data for this respondent.`;
+      return '';
     },
   },
   getErrorServeur: {

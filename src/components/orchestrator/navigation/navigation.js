@@ -2,6 +2,7 @@ import { Button } from 'components/designSystem';
 import React from 'react';
 import { buttonDictionary } from 'i18n';
 import { makeStyles } from '@material-ui/core';
+import { VALIDATION_PAGE, WELCOME_PAGE } from 'utils/pagination';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,24 +29,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ButtonsNavigation = ({
-  currentIndex,
-  maxPage,
+  currentPage,
   onPrevious,
   onNext,
   validateQuestionnaire,
 }) => {
   const classes = useStyles();
   const nextLabel = () => {
-    if (currentIndex === 0) return buttonDictionary.start;
-    if (currentIndex === maxPage - 1) return buttonDictionary.send;
+    if (currentPage === WELCOME_PAGE) return buttonDictionary.start;
+    if (currentPage === VALIDATION_PAGE) return buttonDictionary.send;
     return buttonDictionary.saveAndNext;
   };
   const nextFunction =
-    currentIndex === maxPage - 1 ? validateQuestionnaire : onNext;
+    currentPage === VALIDATION_PAGE ? validateQuestionnaire : onNext;
 
   return (
     <footer role="navigation" className={classes.root}>
-      {currentIndex !== 0 && (
+      {currentPage !== WELCOME_PAGE && (
         <Button className={classes.navButton} onClick={onPrevious}>
           {buttonDictionary.back}
         </Button>

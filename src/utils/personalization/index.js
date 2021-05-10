@@ -7,9 +7,8 @@ export const buildBuidings = variables => {
       acc[name] = value;
       return acc;
     }, {});
-  } else {
-    return {};
   }
+  return {};
 };
 
 export const dateFnsLocal = getLang() === 'fr' ? fr : enUS;

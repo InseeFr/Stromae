@@ -1,4 +1,4 @@
-import { FormControl, Select, InputLabel, MenuItem } from '@material-ui/core';
+import { FormControl, Select, InputLabel } from '@material-ui/core';
 import { visualizeDictionary } from 'i18n';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
@@ -25,6 +25,7 @@ const Examples = ({ selected, setSelected, className }) => {
         {visualizeDictionary.labelExamples}
       </InputLabel>
       <Select
+        native
         value={selected}
         onChange={handleChange}
         inputProps={{
@@ -32,14 +33,12 @@ const Examples = ({ selected, setSelected, className }) => {
           id: 'native-simple',
         }}
       >
-        <MenuItem aria-label={visualizeDictionary.labelNone} value="">
-          <em>{visualizeDictionary.labelNone}</em>
-        </MenuItem>
+        <option value="">{visualizeDictionary.labelExamples}</option>
         {QUESTIONNAIRE_EXAMPLES.map((v, i) => {
           return (
-            <MenuItem key={`${v}-${i}`} value={v}>
+            <option key={v} value={v}>
               {v.toUpperCase()}
-            </MenuItem>
+            </option>
           );
         })}
       </Select>

@@ -1,46 +1,64 @@
 {
   "id": "jr9atbisqf2",
   "modele": "Questionnaire_1",
-  "enoCoreVersion": "2.2.1",
-  "lunaticModelVersion": "2.0.0",
+  "enoCoreVersion": "2.2.4-dev-xml-lunatic-pagination",
+  "lunaticModelVersion": "2.1.0",
+  "pagination": "sequence",
+  "maxPage": "10",
   "label": "TCM test Logement 2022 - Séquence 1",
   "components": [
     {
       "id": "kb9hi4j0",
       "componentType": "Sequence",
+      "page": "1",
       "label": "\"I - Coordonnées du ménage\"",
       "declarations": [
         {
           "id": "kb9hi4j0-kb9hk7j8",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Bienvenue dans le questionnaire de l'enquête sur les conditions de logement. Nous allons commencer par passer en revue la situation de votre ménage.\""
+          "label": "\"Bienvenue dans le questionnaire de l’enquête sur les conditions de logement. Nous allons commencer par passer en revue la situation de votre ménage.\""
         }
       ],
-      "conditionFilter": "\"normal\""
+      "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        }
+      }
     },
 
     {
       "id": "kb9hlpdc",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 1. Confirmez-vous que vous habitez toujours à l'adresse suivante ?Adresse du logement : \" || cast(cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string),string) || \"\"",
+      "page": "1",
+      "label": "\"➡ 1. Confirmez-vous que vous habitez toujours à l’adresse suivante ?Adresse du logement : \" || cast(cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string),string) || \"\"",
       "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        }
+      },
       "bindingDependencies": ["CADR"],
       "options": [
         {
           "value": "1",
-          "label": "\"Oui, j'habite toujours à cette adresse et l'adresse est correcte et complète\""
+          "label": "\"Oui, j’habite toujours à cette adresse et l’adresse est correcte et complète\""
         },
 
         {
           "value": "2",
-          "label": "\"Oui, j'habite toujours à cette adresse, mais l'adresse est incorrecte ou incomplète\""
+          "label": "\"Oui, j’habite toujours à cette adresse, mais l’adresse est incorrecte ou incomplète\""
         },
 
         {
           "value": "3",
-          "label": "\"Non, j'ai déménagé et habite à une autre adresse\""
+          "label": "\"Non, j’ai déménagé et habite à une autre adresse\""
         }
       ],
       "response": { "name": "CADR" }
@@ -49,7 +67,8 @@
     {
       "id": "kbakg29x",
       "componentType": "Subsequence",
-      "label": "\"Correction de l'adresse\"",
+      "page": "1",
+      "label": "\"Correction de l’adresse\"",
       "declarations": [
         {
           "id": "kbakg29x-kbakhzfh",
@@ -65,13 +84,26 @@
           "label": "\"Cette adresse sera utilisée pour envoyer les courriers. Veillez à la renseigner correctement.\""
         }
       ],
-      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      }
     },
 
     {
       "id": "kbakywwy",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 10,
       "label": "\"➡ 2. Numéro de voie : \" || cast(cast(cast(\"57b\",string),string),string) || \" \"",
       "declarations": [
@@ -83,6 +115,18 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      },
       "bindingDependencies": ["RUECOLL"],
       "response": { "name": "RUECOLL" }
     },
@@ -91,6 +135,7 @@
       "id": "kbal4bzb",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 50,
       "label": "\"➡ 3. Libellé de la voie : \" || cast(cast(cast(\"RUE DES MIMOSAS\",string),string),string) || \" \"",
       "declarations": [
@@ -102,6 +147,18 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      },
       "bindingDependencies": ["LIBVOIECOLL"],
       "response": { "name": "LIBVOIECOLL" }
     },
@@ -110,8 +167,9 @@
       "id": "kbalhn4i",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 50,
-      "label": "\"➡ 4. Complément d'adresse : \" || cast(cast(cast(\"Bâtiment C\",string),string),string) || \" \"",
+      "label": "\"➡ 4. Complément d’adresse : \" || cast(cast(cast(\"Bâtiment C\",string),string),string) || \" \"",
       "declarations": [
         {
           "id": "kbalhn4i-kbalm3fl",
@@ -121,6 +179,18 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      },
       "bindingDependencies": ["COMPLADCOLL"],
       "response": { "name": "COMPLADCOLL" }
     },
@@ -129,6 +199,7 @@
       "id": "kbal8crw",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 5,
       "label": "\"➡ 5. Code postal : \" || cast(cast(cast(\"47000\",string),string),string) || \" \"",
       "declarations": [
@@ -140,6 +211,18 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      },
       "bindingDependencies": ["CODEPOSTCOLL"],
       "response": { "name": "CODEPOSTCOLL" }
     },
@@ -148,9 +231,22 @@
       "id": "kbal9dwk",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 100,
       "label": "\"➡ 6. Commune : \" || cast(cast(cast(\"AGEN\",string),string),string) || \" \"",
       "conditionFilter": "if ((cast(CADR,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakg29x",
+          "page": "1",
+          "label": "\"Correction de l’adresse\""
+        }
+      },
       "bindingDependencies": ["LIBCOMCOLL"],
       "response": { "name": "LIBCOMCOLL" }
     },
@@ -158,16 +254,42 @@
     {
       "id": "kbakx4hl",
       "componentType": "Subsequence",
+      "page": "1",
       "label": "\"Informations de contact\"",
-      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      }
     },
 
     {
       "id": "kbamkrlv",
       "componentType": "Radio",
       "mandatory": false,
+      "page": "1",
       "label": "\"➡ 7. Les courriers que nous vous envoyons dans le cadre de cette enquête sont adressés à la personne suivante : \" || cast(cast(cast(\"Mme\",string) || \" \" || cast(\"Françoise\",string) || \" \" || cast(\"JARDIN\",string),string),string) || \". Cela vous convient-il ? \"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["CHGNC"],
       "options": [
         { "value": "1", "label": "\"Oui\"" },
@@ -181,6 +303,7 @@
       "id": "kbaxq9l0",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 5,
       "label": "\"➡ 8. Pouvez-vous modifier ses coordonnées ?Civilité du destinataire : \" || cast(cast(cast(\"Mme\",string),string),string) || \"\"",
       "declarations": [
@@ -192,6 +315,18 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["CIVCOLL"],
       "response": { "name": "CIVCOLL" }
     },
@@ -200,9 +335,22 @@
       "id": "kbbzjgn8",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 20,
       "label": "\"➡ 9. Prénom du destinataire : \" || cast(cast(cast(\"Françoise\",string),string),string) || \" \"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["PRENOMCOLL"],
       "response": { "name": "PRENOMCOLL" }
     },
@@ -211,9 +359,22 @@
       "id": "kbbzhtx3",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 40,
       "label": "\"➡ 10. Nom du destinataire : \" || cast(cast(cast(\"JARDIN\",string),string),string) || \" \"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(CHGNC,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["NOMCOLL"],
       "response": { "name": "NOMCOLL" }
     },
@@ -222,6 +383,7 @@
       "id": "kbay0xfi",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 10,
       "label": "\"➡ 11. Pourriez-vous compléter et corriger si besoin les numéros de téléphone à utiliser pour vous contacter ?Premier numéro de téléphone : \" || cast(cast(\"0607080910\",string),string) || \"\"",
       "declarations": [
@@ -229,17 +391,29 @@
           "id": "kbay0xfi-kksdc5ct",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Vos coordonnées seront utilisées uniquement dans le cadre des réinterrogations de l'enquête dans les semaines à venir. Elles ne seront ni conservées, ni transmises à un tiers.\""
+          "label": "\"Vos coordonnées seront utilisées uniquement dans le cadre des réinterrogations de l’enquête dans les semaines à venir. Elles ne seront ni conservées, ni transmises à un tiers.\""
         },
 
         {
           "id": "kbay0xfi-kkscy2qd",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Ne pas mettre d'espace, de '/', de '-' ni de '.' entre les numéros. Ex. : 0147200001\""
+          "label": "\"Ne pas mettre d’espace, de ’’/’’, de ’’-’’ ni de ’’.’’ entre les numéros. Ex. : 0147200001\""
         }
       ],
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["NOTEL1C"],
       "response": { "name": "NOTEL1C" }
     },
@@ -248,6 +422,7 @@
       "id": "kbc0te93",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 10,
       "label": "\"➡ 12. Deuxième numéro de téléphone : \" || cast(cast(\" \",string),string) || \" \"",
       "declarations": [
@@ -255,10 +430,22 @@
           "id": "kbc0te93-kbc0sxy4",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Ne pas mettre d'espace, de '/', de '-' ni de '.' entre les numéros. Ex. : 0147200001\""
+          "label": "\"Ne pas mettre d’espace, de ’’/’’, de ’’-’’ ni de ’’.’’ entre les numéros. Ex. : 0147200001\""
         }
       ],
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9hi4j0",
+          "page": "1",
+          "label": "\"I - Coordonnées du ménage\""
+        },
+        "subSequence": {
+          "id": "kbakx4hl",
+          "page": "1",
+          "label": "\"Informations de contact\""
+        }
+      },
       "bindingDependencies": ["NOTEL2C"],
       "response": { "name": "NOTEL2C" }
     },
@@ -266,6 +453,7 @@
     {
       "id": "jruq5os5",
       "componentType": "Sequence",
+      "page": "2",
       "label": "\"II - Liste des habitants du logement\"",
       "declarations": [
         {
@@ -275,17 +463,25 @@
           "label": "\"Nous allons commencer par décrire rapidement les personnes qui habitent dans ce logement.\""
         }
       ],
-      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "jruq5os5",
+          "page": "2",
+          "label": "\"II - Liste des habitants du logement\""
+        }
+      }
     },
 
     {
       "id": "kbc1b4k2",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "2",
       "min": 1,
       "max": 15,
       "decimals": 0,
-      "label": "\"➡ 1. Au total, combien de personnes habitent dans ce logement, même occasionnellement ?\"",
+      "label": "\"➡ 13. Au total, combien de personnes habitent dans ce logement, même occasionnellement ?\"",
       "declarations": [
         {
           "id": "kbc1b4k2-kbc1gah1",
@@ -295,6 +491,13 @@
         }
       ],
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "jruq5os5",
+          "page": "2",
+          "label": "\"II - Liste des habitants du logement\""
+        }
+      },
       "bindingDependencies": ["G_NBHAB"],
       "response": { "name": "G_NBHAB" }
     },
@@ -303,9 +506,17 @@
       "id": "kky7wtoe",
       "componentType": "RosterForLoop",
       "mandatory": false,
+      "page": "2",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 2. Quels sont les prénoms des habitants du logement\"",
+      "label": "\"➡ 14. Quels sont les prénoms des habitants du logement\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "jruq5os5",
+          "page": "2",
+          "label": "\"II - Liste des habitants du logement\""
+        }
+      },
       "bindingDependencies": ["G_PRENOM"],
       "lines": { "min": 1, "max": 15 },
       "headers": [
@@ -328,15 +539,17 @@
     {
       "id": "kkzk2p4a",
       "componentType": "Loop",
+      "page": "3",
+      "maxPage": "1",
       "min": 0,
       "iterations": "count(G_PRENOM)",
+      "depth": 1,
+      "paginatedLoop": true,
       "conditionFilter": "\"normal\"",
       "bindingDependencies": [
         "G_PRENOM",
         "G_SEXE",
         "DATENAIS",
-        "DATEENQ",
-        "LIB_FEMININ",
         "NATIO1N1",
         "NATIO1N2",
         "NATIO1N4",
@@ -351,8 +564,16 @@
         {
           "id": "kkzjmhx0",
           "componentType": "Sequence",
+          "page": "3.1",
           "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \"",
           "conditionFilter": "\"normal\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM"]
         },
 
@@ -360,8 +581,16 @@
           "id": "jruqmcco",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 1. Quel est le sexe de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 15. Quel est le sexe de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "conditionFilter": "\"normal\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "G_SEXE"],
           "options": [
             { "value": "1", "label": "\"Masculin\"" },
@@ -375,17 +604,25 @@
           "id": "jruqe01r",
           "componentType": "Datepicker",
           "mandatory": false,
+          "page": "3.1",
           "min": "1900-01-01",
-          "label": "\"➡ 2. Quelle est la date de naissance de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "label": "\"➡ 16. Quelle est la date de naissance de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "declarations": [
             {
               "id": "jruqe01r-k1ry0mqu",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Si l'année est inconnue, indiquer une année vraisemblable.\""
+              "label": "\"Si l’année est inconnue, indiquer une année vraisemblable.\""
             }
           ],
           "conditionFilter": "\"normal\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "DATENAIS"],
           "dateFormat": "YYYY-MM-DD",
           "response": { "name": "DATENAIS" }
@@ -395,30 +632,32 @@
           "id": "jrurcgqm",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 3. Où est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 17. Où est né\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"e\" else \"\",string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "declarations": [
             {
               "id": "jrurcgqm-kksgl6du",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(DATEENQ,string)) > month-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else if (month-from-date(cast(DATEENQ,string)) = month-from-date()) then if (day-from-date(cast(DATEENQ,string)) >= day-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1 else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1,number),string) || \" \""
+              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number),string) || \" \""
             }
           ],
           "conditionFilter": "\"normal\"",
-          "bindingDependencies": [
-            "DATENAIS",
-            "DATEENQ",
-            "LIB_FEMININ",
-            "G_PRENOM",
-            "LNAIS"
-          ],
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["DATENAIS", "G_SEXE", "G_PRENOM", "LNAIS"],
           "options": [
             {
               "value": "1",
-              "label": "\"En France (métropole ou d'outre-mer)\""
+              "label": "\"En France (métropole ou d’outre-mer)\""
             },
 
-            { "value": "2", "label": "\"À l'étranger\"" }
+            { "value": "2", "label": "\"À l’étranger\"" }
           ],
           "response": { "name": "LNAIS" }
         },
@@ -427,9 +666,17 @@
           "id": "k1m75kpc",
           "componentType": "Dropdown",
           "mandatory": false,
-          "label": "\"➡ 4. Dans quel département est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 18. Dans quel département est né\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"e\" else \"\",string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "conditionFilter": "if ((cast(LNAIS,string) = \"1\" or cast(LNAIS,string) = \"\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["LIB_FEMININ", "G_PRENOM", "DEPNAIS"],
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_SEXE", "G_PRENOM", "DEPNAIS"],
           "options": [
             { "value": "01", "label": "\"AIN\"" },
 
@@ -444,9 +691,17 @@
           "id": "k1m7s0jt",
           "componentType": "Dropdown",
           "mandatory": false,
-          "label": "\"➡ 5. Dans quel pays est né\" || cast(cast(LIB_FEMININ,string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 19. Dans quel pays est né\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"e\" else \"\",string),string) || \" \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "conditionFilter": "if ((cast(LNAIS,string) = \"2\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["LIB_FEMININ", "G_PRENOM", "PAYSNAIS"],
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_SEXE", "G_PRENOM", "PAYSNAIS"],
           "options": [
             { "value": "001", "label": "\"ROYAUME-UNI\"" },
 
@@ -460,7 +715,8 @@
         {
           "id": "kbcackq2",
           "componentType": "CheckboxGroup",
-          "label": "\"➡ 6. Quelle est la nationalité de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 20. Quelle est la nationalité de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "declarations": [
             {
               "id": "kbcackq2-kks7yc1u",
@@ -470,6 +726,13 @@
             }
           ],
           "conditionFilter": "\"normal\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": [
             "G_PRENOM",
             "NATIO1N1",
@@ -508,8 +771,16 @@
           "id": "kbcbffmr",
           "componentType": "Dropdown",
           "mandatory": false,
-          "label": "\"➡ 7. Quelle est la nationalité étrangère de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "3.1",
+          "label": "\"➡ 21. Quelle est la nationalité étrangère de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "conditionFilter": "if ((cast(NATIO1N3,integer) = 1)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kkzjmhx0",
+              "page": "3.1",
+              "label": "\"III - État civil de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "NATIO2N"],
           "options": [
             { "value": "1", "label": "\"Allemande\"" },
@@ -526,32 +797,48 @@
     {
       "id": "k1qixy11",
       "componentType": "Sequence",
+      "page": "4",
       "label": "\"IV - Situation familiale des personnes\"",
       "declarations": [
         {
           "id": "k1qixy11-kkzmeoc9",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Nombre d'habitants : \" || cast(cast(G_NBHAB,number),string) || \" et \" || cast(cast(NBHAB,number),string) || \" \""
+          "label": "\"Nombre d’habitants : \" || cast(cast(G_NBHAB,number),string) || \" et \" || cast(cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number),string) || \" \""
         }
       ],
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
-      "bindingDependencies": ["G_NBHAB", "NBHAB"]
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qixy11",
+          "page": "4",
+          "label": "\"IV - Situation familiale des personnes\""
+        }
+      },
+      "bindingDependencies": ["G_NBHAB"]
     },
 
     {
       "id": "kkzjhhw7",
       "componentType": "Loop",
+      "page": "4",
       "min": 0,
       "iterations": "count(G_PRENOM)",
+      "depth": 1,
+      "paginatedLoop": false,
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qixy11",
+          "page": "4",
+          "label": "\"IV - Situation familiale des personnes\""
+        }
+      },
       "bindingDependencies": [
         "DATENAIS",
-        "DATEENQ",
         "G_PRENOM",
-        "LIB_PRONOM",
+        "G_SEXE",
         "COUPLE",
-        "LIB_FEMININ",
         "MER1E",
         "PER1E",
         "CONJOINT",
@@ -565,26 +852,52 @@
         {
           "id": "k1qj1m93",
           "componentType": "Subsequence",
+          "page": "4",
           "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \"",
           "declarations": [
             {
               "id": "k1qj1m93-kkzjju2h",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(DATEENQ,string)) > month-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else if (month-from-date(cast(DATEENQ,string)) = month-from-date()) then if (day-from-date(cast(DATEENQ,string)) >= day-from-date()) then year-from-date(cast(DATEENQ,string)) - year-from-date() else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1 else year-from-date(cast(DATEENQ,string)) - year-from-date() - 1,number),string) || \" \""
+              "label": "\"Âge : \" || cast(cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number),string) || \" \""
             }
           ],
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["DATENAIS", "DATEENQ", "G_PRENOM"]
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["DATENAIS", "G_PRENOM"]
         },
 
         {
           "id": "k1qik8zs",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 1. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(LIB_PRONOM,string),string) || \" actuellement en couple ? \"",
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(G_NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "COUPLE"],
+          "page": "4",
+          "label": "\"➡ 22. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"elle\" else \"il\",string),string) || \" actuellement en couple ? \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) = \"\" or cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) >= 15) and (cast(G_NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_PRENOM", "G_SEXE", "COUPLE"],
           "options": [
             {
               "value": "1",
@@ -605,8 +918,21 @@
           "id": "k2ous0uj",
           "componentType": "Dropdown",
           "mandatory": false,
-          "label": "\"➡ 2. Avec qui ?\"",
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(COUPLE,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "page": "4",
+          "label": "\"➡ 23. Avec qui ?\"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) = \"\" or cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) >= 15) and (cast(COUPLE,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["CONJOINT"],
           "options": [{ "value": "1", "label": "\"Conjoint\"" }],
           "response": { "name": "CONJOINT" }
@@ -616,9 +942,22 @@
           "id": "kkzm5d45",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 3. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(LIB_PRONOM,string),string) || \" actuellement en couple ? \"",
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15) and (cast(G_NBHAB,number) = 1)) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "COUPLE1"],
+          "page": "4",
+          "label": "\"➡ 24. \" || cast(cast(G_PRENOM,string),string) || \" est-\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"elle\" else \"il\",string),string) || \" actuellement en couple ? \"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) = \"\" or cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) >= 15) and (cast(G_NBHAB,number) = 1)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_PRENOM", "G_SEXE", "COUPLE1"],
           "options": [
             {
               "value": "2",
@@ -634,17 +973,30 @@
           "id": "k1qikkrm",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 4. Quelle est la situation matrimoniale de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
+          "page": "4",
+          "label": "\"➡ 25. Quelle est la situation matrimoniale de \" || cast(cast(G_PRENOM,string),string) || \" ? \"",
           "declarations": [
             {
               "id": "k1qikkrm-k1rz1b1x",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Si \" || cast(cast(G_PRENOM,string),string) || \" est séparé\" || cast(cast(LIB_FEMININ,string),string) || \" légalement, ou suit une procédure de rupture d'union, cocher 'Marié(e)'. \""
+              "label": "\"Si \" || cast(cast(G_PRENOM,string),string) || \" est séparé\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"e\" else \"\",string),string) || \" légalement, ou suit une procédure de rupture d’union, cocher ’’Marié(e)’’. \""
             }
           ],
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(AGE,number) = \"\" or cast(AGE,number) >= 15)) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "LIB_FEMININ", "SITUMATRI"],
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) = \"\" or cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) >= 15)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_PRENOM", "G_SEXE", "SITUMATRI"],
           "options": [
             { "value": "1", "label": "\"Marié(e)\"" },
 
@@ -665,7 +1017,8 @@
           "id": "k1qj8wj8",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 5. La mère de \" || cast(cast(G_PRENOM,string),string) || \" vit-elle dans le logement ? \"",
+          "page": "4",
+          "label": "\"➡ 26. La mère de \" || cast(cast(G_PRENOM,string),string) || \" vit-elle dans le logement ? \"",
           "declarations": [
             {
               "id": "k1qj8wj8-k1rz7v3i",
@@ -674,7 +1027,19 @@
               "label": "\"Biologique ou adoptive\""
             }
           ],
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number) > 1)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "MER1E"],
           "options": [
             { "value": "1", "label": "\"Oui\"" },
@@ -687,7 +1052,8 @@
         {
           "id": "kksepc3a",
           "componentType": "CheckboxGroup",
-          "label": "\"➡ 6. Qui est-elle (sont-elles) ?\"",
+          "page": "4",
+          "label": "\"➡ 27. Qui est-elle (sont-elles) ?\"",
           "declarations": [
             {
               "id": "kksepc3a-kksehwm6",
@@ -697,6 +1063,18 @@
             }
           ],
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(MER1E,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["MERELOG1"],
           "responses": [
             {
@@ -711,7 +1089,8 @@
           "id": "kbcd99g2",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 7. Le père de \" || cast(cast(G_PRENOM,string),string) || \" vit-il dans le logement ? \"",
+          "page": "4",
+          "label": "\"➡ 28. Le père de \" || cast(cast(G_PRENOM,string),string) || \" vit-il dans le logement ? \"",
           "declarations": [
             {
               "id": "kbcd99g2-kbcd16ch",
@@ -720,7 +1099,19 @@
               "label": "\"Biologique ou adoptif\""
             }
           ],
-          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(NBHAB,number) > 1)) then \"normal\" else \"hidden\"",
+          "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number) > 1)) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "PER1E"],
           "options": [
             { "value": "1", "label": "\"Oui\"" },
@@ -733,7 +1124,8 @@
         {
           "id": "kksern9f",
           "componentType": "CheckboxGroup",
-          "label": "\"➡ 8. Qui est-il (sont-ils) ?\"",
+          "page": "4",
+          "label": "\"➡ 29. Qui est-il (sont-ils) ?\"",
           "declarations": [
             {
               "id": "kksern9f-kkseprpm",
@@ -743,6 +1135,18 @@
             }
           ],
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(PER1E,string) = \"1\")) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qixy11",
+              "page": "4",
+              "label": "\"IV - Situation familiale des personnes\""
+            },
+            "subSequence": {
+              "id": "k1qj1m93",
+              "page": "4",
+              "label": "\"Liens familiaux de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["PERELOG1"],
           "responses": [
             {
@@ -758,16 +1162,32 @@
     {
       "id": "kkzk15ok",
       "componentType": "Sequence",
+      "page": "5",
       "label": "\"V - Liens spécifiques\"",
-      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kkzk15ok",
+          "page": "5",
+          "label": "\"V - Liens spécifiques\""
+        }
+      }
     },
 
     {
       "id": "k1qja1b4",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 1. Pouvez-vous préciser un lien de parenté, ou une relation, entre \" || cast(cast(G_PRENOM,string),string) || \" et une personne qui habite ici ? \"",
-      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "page": "5",
+      "label": "\"➡ 30. Pouvez-vous préciser un lien de parenté, ou une relation, entre \" || cast(cast(G_PRENOM,string),string) || \" et une personne qui habite ici ? \"",
+      "conditionFilter": "if ((cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number) > 1) and (cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kkzk15ok",
+          "page": "5",
+          "label": "\"V - Liens spécifiques\""
+        }
+      },
       "bindingDependencies": ["G_PRENOM", "LIENTYP"],
       "options": [
         { "value": "1", "label": "\"Frère, sœur\"" },
@@ -797,8 +1217,16 @@
       "id": "kcen5rym",
       "componentType": "Dropdown",
       "mandatory": false,
-      "label": "\"➡ 2. Quel est le prénom de la personne concernée par ce lien ?\"",
-      "conditionFilter": "if ((cast(NBHAB,number) > 1) and (cast(CADR,string)  <>  \"3\") and (cast(LIENTYP,string)  <>  \"\" and cast(LIENTYP,string)  <>  \"7\")) then \"normal\" else \"hidden\"",
+      "page": "5",
+      "label": "\"➡ 31. Quel est le prénom de la personne concernée par ce lien ?\"",
+      "conditionFilter": "if ((cast(if ((cast(G_NBHAB,number) = 0) or (cast(G_NBHAB,number) = \"\")) then 1 else if (cast(G_NBHAB,number) > 15) then 15 else cast(G_NBHAB,number),number) > 1) and (cast(CADR,string)  <>  \"3\") and (cast(LIENTYP,string)  <>  \"\" and cast(LIENTYP,string)  <>  \"7\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kkzk15ok",
+          "page": "5",
+          "label": "\"V - Liens spécifiques\""
+        }
+      },
       "bindingDependencies": ["LIENPERS"],
       "options": [
         { "value": "1", "label": "\"Prénom\"" },
@@ -811,24 +1239,65 @@
     {
       "id": "k1qjq9lu",
       "componentType": "Sequence",
+      "page": "6",
       "label": "\"VI - Lieux de vie des personnes\"",
-      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjq9lu",
+          "page": "6",
+          "label": "\"VI - Lieux de vie des personnes\""
+        }
+      }
     },
 
     {
       "id": "kkzk7edk",
       "componentType": "Loop",
+      "page": "6",
       "min": 0,
       "iterations": "count(G_PRENOM)",
+      "depth": 1,
+      "paginatedLoop": false,
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
-      "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "UNLOG", "DURLOG"],
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjq9lu",
+          "page": "6",
+          "label": "\"VI - Lieux de vie des personnes\""
+        }
+      },
+      "bindingDependencies": [
+        "G_PRENOM",
+        "CADR",
+        "RUECOLL",
+        "LIBVOIECOLL",
+        "COMPLADCOLL",
+        "CODEPOSTCOLL",
+        "LIBCOMCOLL",
+        "UNLOG",
+        "DURLOG"
+      ],
       "loopDependencies": ["G_PRENOM"],
       "components": [
         {
           "id": "kkzjyu49",
           "componentType": "Subsequence",
+          "page": "6",
           "label": "\"Lieux de vie de \" || cast(cast(G_PRENOM,string),string) || \" \"",
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjq9lu",
+              "page": "6",
+              "label": "\"VI - Lieux de vie des personnes\""
+            },
+            "subSequence": {
+              "id": "kkzjyu49",
+              "page": "6",
+              "label": "\"Lieux de vie de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM"]
         },
 
@@ -836,17 +1305,39 @@
           "id": "k1qk4rj5",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 1. \" || cast(cast(G_PRENOM,string),string) || \" vit-il uniquement à l'adresse suivante : \" || cast(cast(ADRCOLLC,string),string) || \" ? \"",
+          "page": "6",
+          "label": "\"➡ 32. \" || cast(cast(G_PRENOM,string),string) || \" vit-il uniquement à l’adresse suivante : \" || cast(cast(if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string) else if (cast(CADR,string) = \"2\") then cast(if (cast(RUECOLL,string)  <>  \"\") then cast(RUECOLL,string) else cast(cast(\"57b\",string),string),string) || \" \" || cast(if (cast(LIBVOIECOLL,string)  <>  \"\") then cast(LIBVOIECOLL,string) else cast(cast(\"RUE DES MIMOSAS\",string),string),string) || \" \" || cast(if (cast(COMPLADCOLL,string)  <>  \"\") then cast(COMPLADCOLL,string) else cast(cast(\"Bâtiment C\",string),string),string) || \" \" || cast(if (cast(CODEPOSTCOLL,string)  <>  \"\") then cast(CODEPOSTCOLL,string) else cast(cast(\"47000\",string),string),string) || \" \" || cast(if (cast(LIBCOMCOLL,string)  <>  \"\") then cast(LIBCOMCOLL,string) else cast(cast(\"AGEN\",string),string),string) else \"\",string),string) || \" ? \"",
           "declarations": [
             {
               "id": "k1qk4rj5-kbgaz7jh",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Répondre 'Non' si \" || cast(cast(if (cast(G_PRENOM,string) = \"\") then \"PRENOM_X\" else upper-case(cast(G_PRENOM,string)),string),string) || \" vit aussi dans un autre logement, même occasionnellement (résidence secondaire, internat, foyer, caserne, maison de retraite,...) \""
+              "label": "\"Répondre ’’Non’’ si \" || cast(cast(if (cast(G_PRENOM,string) = \"\") then \"PRENOM_X\" else upper-case(cast(G_PRENOM,string)),string),string) || \" vit aussi dans un autre logement, même occasionnellement (résidence secondaire, internat, foyer, caserne, maison de retraite,...) \""
             }
           ],
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "UNLOG"],
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjq9lu",
+              "page": "6",
+              "label": "\"VI - Lieux de vie des personnes\""
+            },
+            "subSequence": {
+              "id": "kkzjyu49",
+              "page": "6",
+              "label": "\"Lieux de vie de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": [
+            "G_PRENOM",
+            "CADR",
+            "RUECOLL",
+            "LIBVOIECOLL",
+            "COMPLADCOLL",
+            "CODEPOSTCOLL",
+            "LIBCOMCOLL",
+            "UNLOG"
+          ],
           "options": [
             { "value": "1", "label": "\"Oui\"" },
 
@@ -859,9 +1350,31 @@
           "id": "kbgaskew",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 2. \" || cast(cast(G_PRENOM,string),string) || \" vit à l'adresse suivante : \" || cast(cast(ADRCOLLC,string),string) || \" ... \"",
+          "page": "6",
+          "label": "\"➡ 33. \" || cast(cast(G_PRENOM,string),string) || \" vit à l’adresse suivante : \" || cast(cast(if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string) else if (cast(CADR,string) = \"2\") then cast(if (cast(RUECOLL,string)  <>  \"\") then cast(RUECOLL,string) else cast(cast(\"57b\",string),string),string) || \" \" || cast(if (cast(LIBVOIECOLL,string)  <>  \"\") then cast(LIBVOIECOLL,string) else cast(cast(\"RUE DES MIMOSAS\",string),string),string) || \" \" || cast(if (cast(COMPLADCOLL,string)  <>  \"\") then cast(COMPLADCOLL,string) else cast(cast(\"Bâtiment C\",string),string),string) || \" \" || cast(if (cast(CODEPOSTCOLL,string)  <>  \"\") then cast(CODEPOSTCOLL,string) else cast(cast(\"47000\",string),string),string) || \" \" || cast(if (cast(LIBCOMCOLL,string)  <>  \"\") then cast(LIBCOMCOLL,string) else cast(cast(\"AGEN\",string),string),string) else \"\",string),string) || \" ... \"",
           "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(UNLOG,string) = \"2\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "ADRCOLLC", "DURLOG"],
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjq9lu",
+              "page": "6",
+              "label": "\"VI - Lieux de vie des personnes\""
+            },
+            "subSequence": {
+              "id": "kkzjyu49",
+              "page": "6",
+              "label": "\"Lieux de vie de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": [
+            "G_PRENOM",
+            "CADR",
+            "RUECOLL",
+            "LIBVOIECOLL",
+            "COMPLADCOLL",
+            "CODEPOSTCOLL",
+            "LIBCOMCOLL",
+            "DURLOG"
+          ],
           "options": [
             { "value": "1", "label": "\"Plus de la moitié du temps\"" },
 
@@ -877,13 +1390,17 @@
     {
       "id": "kkzoja3x",
       "componentType": "Loop",
+      "page": "7",
+      "maxPage": "1",
       "min": 0,
       "iterations": "count(G_PRENOM)",
+      "depth": 1,
+      "paginatedLoop": true,
       "conditionFilter": "\"normal\"",
       "bindingDependencies": [
         "G_PRENOM",
         "SITUA",
-        "LIB_PRONOM",
+        "G_SEXE",
         "TRAVAIL",
         "DIPLOME"
       ],
@@ -892,8 +1409,16 @@
         {
           "id": "k1qjqjvr",
           "componentType": "Sequence",
+          "page": "7.1",
           "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \"",
-          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "conditionFilter": "if ((not(cast(if (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) < 15 and cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number)  <>  \"\") then 1 else 2,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjqjvr",
+              "page": "7.1",
+              "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM"]
         },
 
@@ -901,16 +1426,24 @@
           "id": "k1ruyhro",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 1. Quelle est actuellement la situation principale de \" || cast(cast(G_PRENOM,string),string) || \" vis-à-vis du travail ? \"",
+          "page": "7.1",
+          "label": "\"➡ 34. Quelle est actuellement la situation principale de \" || cast(cast(G_PRENOM,string),string) || \" vis-à-vis du travail ? \"",
           "declarations": [
             {
               "id": "k1ruyhro-k1rzxgnk",
               "declarationType": "INSTRUCTION",
               "position": "AFTER_QUESTION_TEXT",
-              "label": "\"Les personnes en arrêt maladie de moins d'un an, en congé parental de moins de trois mois, ou en congé parental sont considérées comme étant en emploi. Les aides familiaux ou les conjoints collaborateurs sont aussi considérés comme étant en emploi.\""
+              "label": "\"Les personnes en arrêt maladie de moins d’un an, en congé parental de moins de trois mois, ou en congé parental sont considérées comme étant en emploi. Les aides familiaux ou les conjoints collaborateurs sont aussi considérés comme étant en emploi.\""
             }
           ],
-          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "conditionFilter": "if ((not(cast(if (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) < 15 and cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number)  <>  \"\") then 1 else 2,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjqjvr",
+              "page": "7.1",
+              "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "SITUA"],
           "options": [
             { "value": "1", "label": "\"Occupe un emploi\"" },
@@ -939,7 +1472,7 @@
 
             {
               "value": "7",
-              "label": "\"Inactif(ve) pour cause d'invalidité\""
+              "label": "\"Inactif(ve) pour cause d’invalidité\""
             },
 
             { "value": "8", "label": "\"Inactif(ve) pour une autre raison\"" }
@@ -951,9 +1484,17 @@
           "id": "k1taosz8",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 2. \" || cast(cast(G_PRENOM,string),string) || \" exerce-t-\" || cast(cast(LIB_PRONOM,string),string) || \" une activité rémunérée ? \"",
-          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\")) and (cast(SITUA,string)  <>  \"1\" and cast(SITUA,string)  <>  \"2\")) then \"normal\" else \"hidden\"",
-          "bindingDependencies": ["G_PRENOM", "LIB_PRONOM", "TRAVAIL"],
+          "page": "7.1",
+          "label": "\"➡ 35. \" || cast(cast(G_PRENOM,string),string) || \" exerce-t-\" || cast(cast(if (cast(G_SEXE,string) = \"2\") then \"elle\" else \"il\",string),string) || \" une activité rémunérée ? \"",
+          "conditionFilter": "if ((not(cast(if (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) < 15 and cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number)  <>  \"\") then 1 else 2,string) = \"1\" or cast(CADR,string) =\"3\")) and (cast(SITUA,string)  <>  \"1\" and cast(SITUA,string)  <>  \"2\")) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjqjvr",
+              "page": "7.1",
+              "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
+          "bindingDependencies": ["G_PRENOM", "G_SEXE", "TRAVAIL"],
           "options": [
             { "value": "1", "label": "\"Oui\"" },
 
@@ -966,8 +1507,16 @@
           "id": "kbggbgzy",
           "componentType": "Radio",
           "mandatory": false,
-          "label": "\"➡ 3. Quel est le plus haut niveau de diplôme que \" || cast(cast(G_PRENOM,string),string) || \" a obtenu ? \"",
-          "conditionFilter": "if ((not(cast(B_ACTIF,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "page": "7.1",
+          "label": "\"➡ 36. Quel est le plus haut niveau de diplôme que \" || cast(cast(G_PRENOM,string),string) || \" a obtenu ? \"",
+          "conditionFilter": "if ((not(cast(if (cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number) < 15 and cast(if (string() = \"\") then \"\" else if (month-from-date(cast(xs:date(current-date()),string)) > month-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else if (month-from-date(cast(xs:date(current-date()),string)) = month-from-date()) then if (day-from-date(cast(xs:date(current-date()),string)) >= day-from-date()) then year-from-date(cast(xs:date(current-date()),string)) - year-from-date() else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1 else year-from-date(cast(xs:date(current-date()),string)) - year-from-date() - 1,number)  <>  \"\") then 1 else 2,string) = \"1\" or cast(CADR,string) =\"3\"))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "k1qjqjvr",
+              "page": "7.1",
+              "label": "\"VII - Activité et formation de \" || cast(cast(G_PRENOM,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["G_PRENOM", "DIPLOME"],
           "options": [
             { "value": "0", "label": "\"Aucune diplôme\"" },
@@ -999,7 +1548,7 @@
 
             {
               "value": "6",
-              "label": "\"Diplôme d'une grande école,DEA, DESS, master, autre diplôme ou titre professionnel de niveau bac+5\""
+              "label": "\"Diplôme d’une grande école,DEA, DESS, master, autre diplôme ou titre professionnel de niveau bac+5\""
             },
 
             { "value": "7", "label": "\"Doctorat\"" }
@@ -1012,6 +1561,7 @@
     {
       "id": "k1qjjjre",
       "componentType": "Sequence",
+      "page": "8",
       "label": "\"VIII - Logement\"",
       "declarations": [
         {
@@ -1021,15 +1571,30 @@
           "label": "\"Nous allons maintenant vous poser quelques questions introductives sur votre logement.\""
         }
       ],
-      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      }
     },
 
     {
       "id": "kbghszh6",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 1. À quelle période a été achevée la construction de l'immeuble ou de la maison ?\"",
+      "page": "8",
+      "label": "\"➡ 37. À quelle période a été achevée la construction de l’immeuble ou de la maison ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["IAATC"],
       "options": [
         { "value": "1", "label": "\"Avant 1919\"" },
@@ -1051,11 +1616,19 @@
       "id": "kbghz7mp",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "8",
       "min": 2006,
       "max": 2022,
       "decimals": 0,
-      "label": "\"➡ 2. En quelle année a-t-elle été achevée ?\"",
+      "label": "\"➡ 38. En quelle année a-t-elle été achevée ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(IAATC,string) = \"6\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["IAATCD"],
       "response": { "name": "IAATCD" }
     },
@@ -1064,16 +1637,23 @@
       "id": "kbgi101f",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 3. Quel est le type du logement situé \" || cast(cast(if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(ADRESSE,string) else if (cast(CADR,string) = \"2\") then cast(RUECOLLC,string) || \" \" || cast(LIBVOIECOLLC,string) || \" \" || cast(COMPLADCOLLC,string) || \" \" || cast(CODEPOSTCOLLC,string) || \" \" || cast(LIBCOMCOLLC,string) else \"\",string),string) || \" ? \"",
+      "page": "8",
+      "label": "\"➡ 39. Quel est le type du logement situé \" || cast(cast(if (cast(CADR,string) = \"\" or cast(CADR,string) = \"1\") then cast(cast(\"57b\",string) || \" \" || cast(\"RUE DES MIMOSAS\",string)  || \" \" || cast(\"Bâtiment C\",string) || \" \" || cast(\"47000\",string) || \" \" || cast(\"AGEN\",string),string) else if (cast(CADR,string) = \"2\") then cast(if (cast(RUECOLL,string)  <>  \"\") then cast(RUECOLL,string) else cast(cast(\"57b\",string),string),string) || \" \" || cast(if (cast(LIBVOIECOLL,string)  <>  \"\") then cast(LIBVOIECOLL,string) else cast(cast(\"RUE DES MIMOSAS\",string),string),string) || \" \" || cast(if (cast(COMPLADCOLL,string)  <>  \"\") then cast(COMPLADCOLL,string) else cast(cast(\"Bâtiment C\",string),string),string) || \" \" || cast(if (cast(CODEPOSTCOLL,string)  <>  \"\") then cast(CODEPOSTCOLL,string) else cast(cast(\"47000\",string),string),string) || \" \" || cast(if (cast(LIBCOMCOLL,string)  <>  \"\") then cast(LIBCOMCOLL,string) else cast(cast(\"AGEN\",string),string),string) else \"\",string),string) || \" ? \"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": [
         "CADR",
-        "ADRESSE",
-        "RUECOLLC",
-        "LIBVOIECOLLC",
-        "COMPLADCOLLC",
-        "CODEPOSTCOLLC",
-        "LIBCOMCOLLC",
+        "RUECOLL",
+        "LIBVOIECOLL",
+        "COMPLADCOLL",
+        "CODEPOSTCOLL",
+        "LIBCOMCOLL",
         "HTLC"
       ],
       "options": [
@@ -1093,10 +1673,10 @@
 
         {
           "value": "5",
-          "label": "\"Une ferme, un bâtiment d'exploitation agricole\""
+          "label": "\"Une ferme, un bâtiment d’exploitation agricole\""
         },
 
-        { "value": "6", "label": "\"Une chambre d'hôtel\"" },
+        { "value": "6", "label": "\"Une chambre d’hôtel\"" },
 
         {
           "value": "7",
@@ -1105,7 +1685,7 @@
 
         {
           "value": "8",
-          "label": "\"Un logement dans un immeuble collectif à usage autre que d'habitation (usines, bureaux, commerces, bâtiments publics,...)\""
+          "label": "\"Un logement dans un immeuble collectif à usage autre que d’habitation (usines, bureaux, commerces, bâtiments publics,...)\""
         }
       ],
       "response": { "name": "HTLC" }
@@ -1115,8 +1695,16 @@
       "id": "kbgi5n3g",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 4. Le logement fait-il partie d'un immeuble collectif ?\"",
+      "page": "8",
+      "label": "\"➡ 40. Le logement fait-il partie d’un immeuble collectif ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["INDCOLL"],
       "options": [
         { "value": "1", "label": "\"Oui\"" },
@@ -1130,8 +1718,16 @@
       "id": "kbgigljc",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 5. Quel est le type de construction de la maison individuelle ?\"",
+      "page": "8",
+      "label": "\"➡ 41. Quel est le type de construction de la maison individuelle ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"1\" or cast(INDCOLL,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["IMI"],
       "options": [
         { "value": "1", "label": "\"isolée\"" },
@@ -1150,8 +1746,16 @@
       "id": "kbgim4v3",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 6. La maison fait-elle partie d'une résidence ou d'un 'village' en copropriété ?\"",
+      "page": "8",
+      "label": "\"➡ 42. La maison fait-elle partie d’une résidence ou d’un ’’village’’ en copropriété ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"1\" or cast(INDCOLL,string) = \"2\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["ICOI"],
       "options": [
         { "value": "1", "label": "\"Oui\"" },
@@ -1165,8 +1769,16 @@
       "id": "kbgidvnm",
       "componentType": "Radio",
       "mandatory": false,
-      "label": "\"➡ 7. Y a-t-il au moins un ascenseur dans l'immeuble collectif ?\"",
+      "page": "8",
+      "label": "\"➡ 43. Y a-t-il au moins un ascenseur dans l’immeuble collectif ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"2\" or cast(INDCOLL,string) = \"1\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["IAS"],
       "options": [
         { "value": "1", "label": "\"Oui\"" },
@@ -1180,11 +1792,19 @@
       "id": "kbgigafp",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "8",
       "min": 0,
       "max": 99,
       "decimals": 0,
-      "label": "\"➡ 8. À quel étage se trouve votre logement ?\"",
+      "label": "\"➡ 44. À quel étage se trouve votre logement ?\"",
       "conditionFilter": "if ((cast(CADR,string)  <>  \"3\") and (cast(HTLC,string) = \"2\" or cast(INDCOLL,string) = \"1\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1qjjjre",
+          "page": "8",
+          "label": "\"VIII - Logement\""
+        }
+      },
       "bindingDependencies": ["IEL"],
       "response": { "name": "IEL" }
     },
@@ -1192,31 +1812,47 @@
     {
       "id": "k1m84p77",
       "componentType": "Sequence",
+      "page": "9",
       "label": "\"IX - Fin du TCM\"",
       "declarations": [
         {
           "id": "k1m84p77-k1qjshag",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Merci d'avoir rempli ce questionnaire, vous allez maintenant rentrer dans le cœur de l'enquête !\""
+          "label": "\"Merci d’avoir rempli ce questionnaire, vous allez maintenant rentrer dans le cœur de l’enquête !\""
         }
       ],
-      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string)  <>  \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "k1m84p77",
+          "page": "9",
+          "label": "\"IX - Fin du TCM\""
+        }
+      }
     },
 
     {
       "id": "kb9ie1nv",
       "componentType": "Sequence",
-      "label": "\"X - Arrêt de l'enquête (cause déménagement)\"",
+      "page": "10",
+      "label": "\"X - Arrêt de l’enquête (cause déménagement)\"",
       "declarations": [
         {
           "id": "kb9ie1nv-kb9hyuj3",
           "declarationType": "INSTRUCTION",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"Nous vous remercions de votre participation, mais l'enquête se termine ici, puisque vous n'habitez pas dans le logement enquêté.\""
+          "label": "\"Nous vous remercions de votre participation, mais l’enquête se termine ici, puisque vous n’habitez pas dans le logement enquêté.\""
         }
       ],
-      "conditionFilter": "if ((cast(CADR,string) = \"3\")) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((cast(CADR,string) = \"3\")) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kb9ie1nv",
+          "page": "10",
+          "label": "\"X - Arrêt de l’enquête (cause déménagement)\""
+        }
+      }
     }
   ],
   "variables": [

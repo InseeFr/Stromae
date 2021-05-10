@@ -12,10 +12,10 @@ const Loader = ({ info }) => {
   }));
 
   return (
-    <Backdrop open={true} className={`${useStyles().backdrop} loading`}>
+    <Backdrop open className={`${useStyles().backdrop} loading`}>
       <figure>
         <img src={logo} alt="Logo de l'Insee" />
-        <figcaption>{`Chargement ... ${info ? info : ''}`}</figcaption>
+        <figcaption>{`Chargement ... ${info || ''}`}</figcaption>
       </figure>
     </Backdrop>
   );

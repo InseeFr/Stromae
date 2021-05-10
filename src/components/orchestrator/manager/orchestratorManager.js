@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAPI, useAPIRemoteData } from 'utils/hooks';
+import { useAPI, useAPIRemoteData, useAuth } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
-import Orchestrator from '../collector';
-import { buildQuestionnaire } from 'utils/questionnaire/build';
+import { Orchestrator } from './../collector';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,13 +19,14 @@ const OrchestratorManger = () => {
   const [source, setSource] = useState(false);
   const { /*readonly,*/ idQ, idSU } = useParams();
   const {
-    data,
+    suData,
     questionnaire,
     metadata,
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
-  const { putData } = useAPI(idSU, idQ);
+  const { putSuData } = useAPI(idSU, idQ);
+  const { logout } = useAuth();
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -34,19 +34,20 @@ const OrchestratorManger = () => {
   const sendData = async dataToSave => {
     setErrorSending(null);
     setSending(true);
-    const { /*status,*/ error } = await putData(dataToSave);
+    const { /*status,*/ error } = await putSuData(dataToSave);
     setSending(false);
     if (error) setErrorSending('Error during sending');
   };
 
+  const logoutAndClose = async surveyUnit => {
+    logout();
+  };
+
   useEffect(() => {
     if (!loading && questionnaire) {
-      const { label: questionnaireTitle, components } = questionnaire;
+      const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
-      setSource({
-        ...questionnaire,
-        components: buildQuestionnaire(components),
-      });
+      setSource(questionnaire);
     }
   }, [questionnaire, loading]);
 
@@ -54,15 +55,17 @@ const OrchestratorManger = () => {
     <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-      {!loading && metadata && data && questionnaire && source && (
+      {!loading && metadata && suData && questionnaire && source && (
         <Orchestrator
-          stromaeData={data}
+          stromaeData={suData}
           source={source}
           metadata={metadata}
+          logoutAndClose={logoutAndClose}
           save={sendData}
           savingType="COLLECTED"
-          preferences={['COLLECTED']}
-          features={['VTL']}
+          preferences={['PREVIOUS', 'COLLECTED']}
+          features={['VTL', 'MD']}
+          pagination={true}
         />
       )}
       {errorSending && <h2>Error lors de l'envoie</h2>}

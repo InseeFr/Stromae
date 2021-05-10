@@ -11,8 +11,8 @@ import {
 } from '@material-ui/core';
 import { Button as InseeButton } from 'components/designSystem/Button';
 import { GetApp } from '@material-ui/icons';
-import { useAPI, useAuth } from 'utils/hooks';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useAPI } from 'utils/hooks';
+import { useLocation, useParams } from 'react-router-dom';
 import { formatDistance, format } from 'date-fns';
 import { buttonDictionary, endPageDictionary } from 'i18n';
 import { OrchestratorContext } from 'components/orchestrator/collector';
@@ -43,12 +43,11 @@ const useStyles = makeStyles(theme => ({
 const EndPage = () => {
   const classes = useStyles();
   const {
+    logoutAndClose,
     metadata: { inseeContext, variables },
     personalization,
   } = useContext(OrchestratorContext);
-  const { logout: logoutAuth } = useAuth();
   const { pathname } = useLocation();
-  const history = useHistory();
 
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
@@ -61,12 +60,6 @@ const EndPage = () => {
     const { error, status } = await getPDF();
     console.log(`${status} : ${error}`);
   };
-
-  const fakeLogout = () => {
-    history.push('/');
-  };
-
-  const logout = pathname.includes('visualize') ? fakeLogout : logoutAuth;
 
   const validatedDate = `${formatDistance(new Date(), new Date(), {
     addSuffix: true,
@@ -110,7 +103,7 @@ const EndPage = () => {
         <Typography>{youCanQuit}</Typography>
       </CardContent>
       <CardActions className={classes.actions}>
-        <InseeButton onClick={logout}>
+        <InseeButton onClick={logoutAndClose}>
           {buttonDictionary.logoutAndClose}
         </InseeButton>
       </CardActions>

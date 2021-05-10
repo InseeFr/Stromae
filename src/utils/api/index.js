@@ -4,14 +4,14 @@ const getRequest = url => token => fetcher(url, token, 'GET', null);
 const putRequest = url => token => body => fetcher(url, token, 'PUT', body);
 
 /* SurveyUnit's data */
-const getData = apiUrl => id => token =>
-  getRequest(`${apiUrl}/api/survey-unit/${id}/data`)(token);
-const putData = apiUrl => id => token => body =>
-  putRequest(`${apiUrl}/api/survey-unit/${id}/data`)(token)(body);
+const getSuData = apiUrl => id => token =>
+  getRequest(`${apiUrl}/api/survey-unit/${id}`)(token);
+const putSuData = apiUrl => id => token => body =>
+  putRequest(`${apiUrl}/api/survey-unit/${id}`)(token)(body);
 
-/* Questionnaire's resource*/
+/* Questionnaire's resource */
 const getQuestionnaire = apiUrl => id => token =>
-  getRequest(`${apiUrl}/api/campaign/${id}/questionnaire`)(token);
+  getRequest(`${apiUrl}/api/questionnaire/${id}`)(token);
 
 const getMetadata = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/campaign/${id}/metadata`)(token);
@@ -21,8 +21,8 @@ const getDepositProof = apiUrl => id => token =>
 
 export const API = {
   getRequest,
-  getData,
-  putData,
+  getSuData,
+  putSuData,
   getQuestionnaire,
   getMetadata,
   getDepositProof,

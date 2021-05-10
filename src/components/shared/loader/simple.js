@@ -10,7 +10,7 @@ const Simple = () => {
   }));
 
   return (
-    <Backdrop open={true} className={useStyles().backdrop}>
+    <Backdrop open className={useStyles().backdrop}>
       <CircularProgress />
     </Backdrop>
   );

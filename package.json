@@ -1,10 +1,10 @@
 {
   "name": "stromae",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^2.0.2",
+    "@inseefr/lunatic": "^2.2.3",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -46,12 +46,30 @@
       "jsx-a11y"
     ],
     "rules": {
+      "react/prop-types": [
+        "off"
+      ],
       "prettier/prettier": [
-        "error",
+        1,
         {
           "arrowParens": "avoid"
         }
       ]
+    },
+    "globals": {
+      "fetch": true,
+      "window": true,
+      "document": true,
+      "navigator": true
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": [
+            "src"
+          ]
+        }
+      }
     }
   },
   "prettier": {
@@ -74,6 +92,7 @@
   },
   "devDependencies": {
     "copy-and-watch": "^0.1.5",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "2.22.1",

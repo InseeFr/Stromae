@@ -1,32 +1,50 @@
 {
   "id": "i6vwi2506qf2mms",
   "modele": "SIMPSONS",
-  "enoCoreVersion": "2.2.1",
-  "lunaticModelVersion": "2.0.0",
+  "enoCoreVersion": "2.2.4-dev-xml-lunatic-pagination",
+  "lunaticModelVersion": "2.1.0",
+  "pagination": "sequence",
+  "maxPage": "8",
   "label": "Questionnaire SIMPSONS 20201215",
   "components": [
     {
       "id": "j6p0ti5h",
       "componentType": "Sequence",
+      "page": "1",
       "label": "\"I - Introduction\"",
       "declarations": [
         {
           "id": "j6p0ti5h-d1",
           "declarationType": "COMMENT",
           "position": "AFTER_QUESTION_TEXT",
-          "label": "\"We're going to test your knowledge about the simpsons series.Welcome in the simpsons world!\""
+          "label": "\"We’re going to test your knowledge about the simpsons series.Welcome in the simpsons world!\""
         }
       ],
-      "conditionFilter": "\"normal\""
+      "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        }
+      }
     },
 
     {
       "id": "j6p3dkx6",
       "componentType": "Textarea",
       "mandatory": true,
+      "page": "1",
       "maxLength": 500,
       "label": "\"➡ 1. Before starting, do you have any comments about the Simpsons family?\"",
       "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        }
+      },
       "bindingDependencies": ["COMMENT"],
       "response": { "name": "COMMENT" }
     },
@@ -35,6 +53,7 @@
       "id": "j6p0np9q",
       "componentType": "CheckboxBoolean",
       "mandatory": false,
+      "page": "1",
       "label": "\"➡ 2. If you agree to answer this questionnaire, please check the box\"",
       "declarations": [
         {
@@ -45,6 +64,13 @@
         }
       ],
       "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        }
+      },
       "bindingDependencies": ["READY"],
       "response": { "name": "READY" }
     },
@@ -52,25 +78,59 @@
     {
       "id": "j6p6my1d",
       "componentType": "FilterDescription",
+      "page": "1",
       "filterDescription": false,
       "label": "\"If you are not ready, please go to the end of the questionnaire\"",
-      "conditionFilter": "\"normal\""
+      "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        }
+      }
     },
 
     {
       "id": "j6p0s7o5",
       "componentType": "Subsequence",
+      "page": "1",
       "label": "\"General knowledge of the series\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      }
     },
 
     {
       "id": "j3343qhx",
       "componentType": "Input",
       "mandatory": false,
+      "page": "1",
       "maxLength": 30,
       "label": "\"➡ 3. Who is the producer?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["PRODUCER"],
       "response": { "name": "PRODUCER" }
     },
@@ -79,11 +139,24 @@
       "id": "j6q9h8tj",
       "componentType": "InputNumber",
       "mandatory": true,
+      "page": "1",
       "min": 0,
       "max": 99,
       "decimals": 0,
       "label": "\"➡ 4. What is the current season number?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["SEASON_NUMBER"],
       "response": { "name": "SEASON_NUMBER" }
     },
@@ -92,6 +165,7 @@
       "id": "kiq71eoi",
       "componentType": "Datepicker",
       "mandatory": false,
+      "page": "1",
       "min": "1900-01-01",
       "max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
       "label": "\"➡ 5. When was the first episode of Simpsons? (format YYYY-MM-DD)\"",
@@ -104,6 +178,18 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DATEFIRST"],
       "dateFormat": "YYYY-MM-DD",
       "response": { "name": "DATEFIRST" }
@@ -113,6 +199,7 @@
       "id": "k5nvty2o",
       "componentType": "Datepicker",
       "mandatory": false,
+      "page": "1",
       "min": "1980-05",
       "label": "\"➡ 6. When was the first episode of the Simpsons? (format YYYY-MM)\"",
       "declarations": [
@@ -124,6 +211,18 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DATEYYYYMM"],
       "dateFormat": "YYYY-MM",
       "response": { "name": "DATEYYYYMM" }
@@ -133,6 +232,7 @@
       "id": "k5nw1fir",
       "componentType": "Datepicker",
       "mandatory": false,
+      "page": "1",
       "min": "1900",
       "max": "year-from-date(current-date())",
       "label": "\"➡ 7. When was the first episode of the Simpsons? (format YYYY)\"",
@@ -145,6 +245,18 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DATEYYYY"],
       "dateFormat": "YYYY",
       "response": { "name": "DATEYYYY" }
@@ -154,11 +266,24 @@
       "id": "k5nw0w05",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "1",
       "min": 0,
       "max": 70,
       "decimals": 2,
       "label": "\"➡ 8. How long does an episode last?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DURATIONH"],
       "unit": "heures",
       "response": { "name": "DURATIONH" }
@@ -168,11 +293,24 @@
       "id": "k5nvu98z",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "1",
       "min": 0,
       "max": 366,
       "decimals": 1,
       "label": "\"➡ 9. How long does it take to write a new episode?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DURATIOND"],
       "unit": "jours",
       "response": { "name": "DURATIOND" }
@@ -182,11 +320,24 @@
       "id": "k5nw8ei1",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "1",
       "min": 0,
       "max": 12,
       "decimals": 0,
       "label": "\"➡ 10. How long will it take you to watch all the existing episodes?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DURATIONM"],
       "unit": "mois",
       "response": { "name": "DURATIONM" }
@@ -196,11 +347,24 @@
       "id": "k5nw9dk4",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "1",
       "min": 0,
       "max": 100,
       "decimals": 0,
       "label": "\"➡ 11. For how long have you known the Simpsons family?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["DURATIONY"],
       "unit": "années",
       "response": { "name": "DURATIONY" }
@@ -210,11 +374,24 @@
       "id": "j6z06z1e",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "1",
       "min": 0,
       "max": 99,
       "decimals": 1,
       "label": "\"➡ 15. In your opinion, how much is the part of audience share in US for the 2016 season?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6p0ti5h",
+          "page": "1",
+          "label": "\"I - Introduction\""
+        },
+        "subSequence": {
+          "id": "j6p0s7o5",
+          "page": "1",
+          "label": "\"General knowledge of the series\""
+        }
+      },
       "bindingDependencies": ["AUDIENCE_SHARE"],
       "unit": "%",
       "response": { "name": "AUDIENCE_SHARE" }
@@ -223,7 +400,8 @@
     {
       "id": "j3341528",
       "componentType": "Sequence",
-      "label": "\"II - Simpsons' city\"",
+      "page": "2",
+      "label": "\"II - Simpsons’ city\"",
       "declarations": [
         {
           "id": "j3341528-d2",
@@ -232,14 +410,22 @@
           "label": "\"This module asks about your general knowledge of the Simpsons city\""
         }
       ],
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j3341528",
+          "page": "2",
+          "label": "\"II - Simpsons’ city\""
+        }
+      }
     },
 
     {
       "id": "j3343clt",
       "componentType": "Radio",
       "mandatory": true,
-      "label": "\"➡ 1. In which city do the Simpsons reside?\"",
+      "page": "2",
+      "label": "\"➡ 16. In which city do the Simpsons reside?\"",
       "declarations": [
         {
           "id": "j3343clt-d3",
@@ -249,6 +435,13 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j3341528",
+          "page": "2",
+          "label": "\"II - Simpsons’ city\""
+        }
+      },
       "bindingDependencies": ["CITY"],
       "options": [
         { "value": "00001", "label": "\"Springfield\"" },
@@ -264,7 +457,8 @@
       "id": "j6qdfhvw",
       "componentType": "CheckboxOne",
       "mandatory": false,
-      "label": "\"➡ 2. Who is the Simpsons city mayor?\"",
+      "page": "2",
+      "label": "\"➡ 17. Who is the Simpsons city mayor?\"",
       "declarations": [
         {
           "id": "j6qdfhvw-d4",
@@ -274,6 +468,13 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j3341528",
+          "page": "2",
+          "label": "\"II - Simpsons’ city\""
+        }
+      },
       "bindingDependencies": ["MAYOR"],
       "options": [
         { "value": "1", "label": "\"Constance Harm\"" },
@@ -291,8 +492,16 @@
       "id": "j4nw5cqz",
       "componentType": "Dropdown",
       "mandatory": false,
-      "label": "\"➡ 3. In which state do The Simpsons reside?\"",
+      "page": "2",
+      "label": "\"➡ 18. In which state do The Simpsons reside?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j3341528",
+          "page": "2",
+          "label": "\"II - Simpsons’ city\""
+        }
+      },
       "bindingDependencies": ["STATE"],
       "options": [
         { "value": "1", "label": "\"Washington\"" },
@@ -327,14 +536,23 @@
     {
       "id": "j6qe0h9q",
       "componentType": "Sequence",
+      "page": "3",
       "label": "\"III - Characters\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qe0h9q",
+          "page": "3",
+          "label": "\"III - Characters\""
+        }
+      }
     },
 
     {
       "id": "j334akov",
       "componentType": "CheckboxGroup",
-      "label": "\"➡ 1. What are the pet names that the Simpsons family had?\"",
+      "page": "3",
+      "label": "\"➡ 19. What are the pet names that the Simpsons family had?\"",
       "declarations": [
         {
           "id": "j334akov-d5",
@@ -344,11 +562,18 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qe0h9q",
+          "page": "3",
+          "label": "\"III - Characters\""
+        }
+      },
       "bindingDependencies": ["PET1", "PET2", "PET3", "PET4"],
       "responses": [
         {
           "id": "j334akov-QOP-khokqjtw",
-          "label": "\"Santa's Little Helper\"",
+          "label": "\"Santa’s Little Helper\"",
           "response": { "name": "PET1" }
         },
 
@@ -376,8 +601,9 @@
       "id": "j6p29i81",
       "componentType": "Table",
       "mandatory": false,
+      "page": "3",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 2. Does Jay like the following ice cream flavours?\"",
+      "label": "\"➡ 20. Does Jay like the following ice cream flavours?\"",
       "declarations": [
         {
           "id": "d12-SI",
@@ -387,6 +613,13 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qe0h9q",
+          "page": "3",
+          "label": "\"III - Characters\""
+        }
+      },
       "bindingDependencies": [
         "ICE_FLAVOUR1",
         "ICE_FLAVOUR2",
@@ -464,9 +697,17 @@
       "id": "j6qefnga",
       "componentType": "Table",
       "mandatory": false,
+      "page": "3",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 3. Which character works in the nuclear power plant?\"",
+      "label": "\"➡ 21. Which character works in the nuclear power plant?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qe0h9q",
+          "page": "3",
+          "label": "\"III - Characters\""
+        }
+      },
       "bindingDependencies": [
         "NUCLEAR_CHARACTER1",
         "NUCLEAR_CHARACTER2",
@@ -544,9 +785,17 @@
       "id": "j6yzoc6g",
       "componentType": "Table",
       "mandatory": false,
+      "page": "3",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 4. In which city each character was born?\"",
+      "label": "\"➡ 22. In which city each character was born?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qe0h9q",
+          "page": "3",
+          "label": "\"III - Characters\""
+        }
+      },
       "bindingDependencies": [
         "BIRTH_CHARACTER1",
         "BIRTH_CHARACTER2",
@@ -670,24 +919,58 @@
     {
       "id": "j4nw88h2",
       "componentType": "Sequence",
+      "page": "4",
       "label": "\"IV - General questions\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        }
+      }
     },
 
     {
       "id": "j6qe237q",
       "componentType": "Subsequence",
+      "page": "4",
       "label": "\"Kwik-E-Mart\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qe237q",
+          "page": "4",
+          "label": "\"Kwik-E-Mart\""
+        }
+      }
     },
 
     {
       "id": "j4nwc63q",
       "componentType": "Table",
       "mandatory": false,
+      "page": "4",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 1. Please, specify the percentage of Jay's expenses in the Kwik-E-Mart for each product?\"",
+      "label": "\"➡ 23. Please, specify the percentage of Jay’s expenses in the Kwik-E-Mart for each product?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qe237q",
+          "page": "4",
+          "label": "\"Kwik-E-Mart\""
+        }
+      },
       "bindingDependencies": [
         "PERCENTAGE_EXPENSES11",
         "PERCENTAGE_EXPENSES21",
@@ -827,9 +1110,22 @@
       "id": "k9cg2q5t",
       "componentType": "Table",
       "mandatory": false,
+      "page": "4",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 2. Please specify if Jay has bought each product in his last food shopping\"",
+      "label": "\"➡ 24. Please specify if Jay has bought each product in his last food shopping\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qe237q",
+          "page": "4",
+          "label": "\"Kwik-E-Mart\""
+        }
+      },
       "bindingDependencies": [
         "LAST_FOOD_SHOPPING11",
         "LAST_FOOD_SHOPPING21",
@@ -1002,17 +1298,43 @@
     {
       "id": "j6qejudb",
       "componentType": "Subsequence",
+      "page": "4",
       "label": "\"Clowning\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qejudb",
+          "page": "4",
+          "label": "\"Clowning\""
+        }
+      }
     },
 
     {
       "id": "kbkjvgel",
       "componentType": "Table",
       "mandatory": false,
+      "page": "4",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 3. Who did these clownings and tell us what you remember?\"",
+      "label": "\"➡ 25. Who did these clownings and tell us what you remember?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qejudb",
+          "page": "4",
+          "label": "\"Clowning\""
+        }
+      },
       "bindingDependencies": [
         "CLOWNING11",
         "CLOWNING12",
@@ -1155,16 +1477,30 @@
     {
       "id": "j6qeh91y",
       "componentType": "Subsequence",
+      "page": "4",
       "label": "\"Transport\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qeh91y",
+          "page": "4",
+          "label": "\"Transport\""
+        }
+      }
     },
 
     {
       "id": "j6p2lwuj",
       "componentType": "Table",
       "mandatory": false,
+      "page": "4",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 4. Which of the following means of transport were used by the hero and in which country?\"",
+      "label": "\"➡ 26. Which of the following means of transport were used by the hero and in which country?\"",
       "declarations": [
         {
           "id": "j6p2lwuj-d10",
@@ -1174,6 +1510,18 @@
         }
       ],
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j4nw88h2",
+          "page": "4",
+          "label": "\"IV - General questions\""
+        },
+        "subSequence": {
+          "id": "j6qeh91y",
+          "page": "4",
+          "label": "\"Transport\""
+        }
+      },
       "bindingDependencies": [
         "TRAVEL11",
         "TRAVEL12",
@@ -1406,17 +1754,33 @@
     {
       "id": "j6qfx9qe",
       "componentType": "Sequence",
+      "page": "5",
       "label": "\"V - Favourite characters (dynamic table)\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qfx9qe",
+          "page": "5",
+          "label": "\"V - Favourite characters (dynamic table)\""
+        }
+      }
     },
 
     {
       "id": "j6qg8rc6",
       "componentType": "Table",
       "mandatory": false,
+      "page": "5",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 1. Please, complete the following grid with your favourite characters\"",
+      "label": "\"➡ 27. Please, complete the following grid with your favourite characters\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qfx9qe",
+          "page": "5",
+          "label": "\"V - Favourite characters (dynamic table)\""
+        }
+      },
       "bindingDependencies": [
         "FAVOURITE_CHAR1",
         "FAVOURITE_CHAR2",
@@ -1788,9 +2152,17 @@
       "id": "jvxux0mi",
       "componentType": "Table",
       "mandatory": false,
+      "page": "5",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 2. How has your feeling about the following characters evolved over time?\"",
+      "label": "\"➡ 28. How has your feeling about the following characters evolved over time?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qfx9qe",
+          "page": "5",
+          "label": "\"V - Favourite characters (dynamic table)\""
+        }
+      },
       "bindingDependencies": [
         "FEELCHAREV1",
         "FEELCHAREV2",
@@ -1876,9 +2248,17 @@
       "id": "jvxwy68n",
       "componentType": "Table",
       "mandatory": false,
+      "page": "5",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 3. Can you tell how long Bart Simpson has been on leave for each type and whether there has been another type?\"",
+      "label": "\"➡ 29. Can you tell how long Bart Simpson has been on leave for each type and whether there has been another type?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6qfx9qe",
+          "page": "5",
+          "label": "\"V - Favourite characters (dynamic table)\""
+        }
+      },
       "bindingDependencies": [
         "LEAVDURATION11",
         "LEAVDURATION12",
@@ -2035,19 +2415,35 @@
     {
       "id": "kiq5mr0b",
       "componentType": "Sequence",
+      "page": "6",
       "label": "\"VI - Favourite characters (Loop)\"",
-      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+      "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kiq5mr0b",
+          "page": "6",
+          "label": "\"VI - Favourite characters (Loop)\""
+        }
+      }
     },
 
     {
       "id": "kiq612ky",
       "componentType": "InputNumber",
       "mandatory": false,
+      "page": "6",
       "min": 0,
       "max": 20,
       "decimals": 0,
-      "label": "\"➡ 1. How many characters from the Simpsons family could you precisely describe?\"",
+      "label": "\"➡ 30. How many characters from the Simpsons family could you precisely describe?\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kiq5mr0b",
+          "page": "6",
+          "label": "\"VI - Favourite characters (Loop)\""
+        }
+      },
       "bindingDependencies": ["NB_CHAR"],
       "response": { "name": "NB_CHAR" }
     },
@@ -2055,24 +2451,59 @@
     {
       "id": "kiq7bjam",
       "componentType": "Loop",
+      "page": "6",
+      "paginatedLoop": false,
       "label": "\"Add a character\"",
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "kiq5mr0b",
+          "page": "6",
+          "label": "\"VI - Favourite characters (Loop)\""
+        }
+      },
       "bindingDependencies": ["NAME_CHAR", "AGE_CHAR"],
       "components": [
         {
           "id": "kiq5u8d5",
           "componentType": "Subsequence",
+          "page": "6",
           "label": "\"Description of each character\"",
-          "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\""
+          "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5mr0b",
+              "page": "6",
+              "label": "\"VI - Favourite characters (Loop)\""
+            },
+            "subSequence": {
+              "id": "kiq5u8d5",
+              "page": "6",
+              "label": "\"Description of each character\""
+            }
+          }
         },
 
         {
           "id": "kiq66gtw",
           "componentType": "Input",
           "mandatory": false,
+          "page": "6",
           "maxLength": 30,
-          "label": "\"➡ 2. What is the first name of this character?\"",
+          "label": "\"➡ 31. What is the first name of this character?\"",
           "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5mr0b",
+              "page": "6",
+              "label": "\"VI - Favourite characters (Loop)\""
+            },
+            "subSequence": {
+              "id": "kiq5u8d5",
+              "page": "6",
+              "label": "\"Description of each character\""
+            }
+          },
           "bindingDependencies": ["NAME_CHAR"],
           "response": { "name": "NAME_CHAR" }
         },
@@ -2081,11 +2512,24 @@
           "id": "kiq5r8wu",
           "componentType": "InputNumber",
           "mandatory": false,
+          "page": "6",
           "min": 0,
           "max": 120,
           "decimals": 0,
-          "label": "\"➡ 3. How old is this character in the first episode of the Simpsons family?\"",
+          "label": "\"➡ 32. How old is this character in the first episode of the Simpsons family?\"",
           "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5mr0b",
+              "page": "6",
+              "label": "\"VI - Favourite characters (Loop)\""
+            },
+            "subSequence": {
+              "id": "kiq5u8d5",
+              "page": "6",
+              "label": "\"Description of each character\""
+            }
+          },
           "bindingDependencies": ["AGE_CHAR"],
           "response": { "name": "AGE_CHAR" }
         }
@@ -2095,8 +2539,12 @@
     {
       "id": "kiq7cbgo",
       "componentType": "Loop",
+      "page": "7",
+      "maxPage": "1",
       "min": 0,
       "iterations": "count(NAME_CHAR)",
+      "depth": 1,
+      "paginatedLoop": true,
       "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
       "bindingDependencies": ["NAME_CHAR", "FAVCHAR", "MEMORY_CHAR"],
       "loopDependencies": ["NAME_CHAR", "AGE_CHAR"],
@@ -2104,8 +2552,16 @@
         {
           "id": "kiq5xw5p",
           "componentType": "Sequence",
+          "page": "7.1",
           "label": "\"VII - Other details about character named \" || cast(cast(NAME_CHAR,string),string) || \" \"",
           "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5xw5p",
+              "page": "7.1",
+              "label": "\"VII - Other details about character named \" || cast(cast(NAME_CHAR,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["NAME_CHAR"]
         },
 
@@ -2113,8 +2569,16 @@
           "id": "kiq65x3c",
           "componentType": "CheckboxOne",
           "mandatory": false,
-          "label": "\"➡ 1. Is character named \" || cast(cast(NAME_CHAR,string),string) || \" your favourite one ? \"",
+          "page": "7.1",
+          "label": "\"➡ 33. Is character named \" || cast(cast(NAME_CHAR,string),string) || \" your favourite one ? \"",
           "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5xw5p",
+              "page": "7.1",
+              "label": "\"VII - Other details about character named \" || cast(cast(NAME_CHAR,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["NAME_CHAR", "FAVCHAR"],
           "options": [
             { "value": "1", "label": "\"Yes\"" },
@@ -2128,9 +2592,17 @@
           "id": "kiq651zv",
           "componentType": "Textarea",
           "mandatory": false,
+          "page": "7.1",
           "maxLength": 255,
-          "label": "\"➡ 2. What is your best memory about character named \" || cast(cast(NAME_CHAR,string),string) || \" ? \"",
+          "label": "\"➡ 34. What is your best memory about character named \" || cast(cast(NAME_CHAR,string),string) || \" ? \"",
           "conditionFilter": "if ((not(cast(READY,integer)  <>  1))) then \"normal\" else \"hidden\"",
+          "hierarchy": {
+            "sequence": {
+              "id": "kiq5xw5p",
+              "page": "7.1",
+              "label": "\"VII - Other details about character named \" || cast(cast(NAME_CHAR,string),string) || \" \""
+            }
+          },
           "bindingDependencies": ["NAME_CHAR", "MEMORY_CHAR"],
           "response": { "name": "MEMORY_CHAR" }
         }
@@ -2140,17 +2612,33 @@
     {
       "id": "j6z12s2d",
       "componentType": "Sequence",
+      "page": "8",
       "label": "\"VIII - Comment\"",
-      "conditionFilter": "\"normal\""
+      "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6z12s2d",
+          "page": "8",
+          "label": "\"VIII - Comment\""
+        }
+      }
     },
 
     {
       "id": "j6z0z3us",
       "componentType": "Textarea",
       "mandatory": false,
+      "page": "8",
       "maxLength": 255,
-      "label": "\"➡ 1. Do you have any comment about the survey?\"",
+      "label": "\"➡ 35. Do you have any comment about the survey?\"",
       "conditionFilter": "\"normal\"",
+      "hierarchy": {
+        "sequence": {
+          "id": "j6z12s2d",
+          "page": "8",
+          "label": "\"VIII - Comment\""
+        }
+      },
       "bindingDependencies": ["SURVEY_COMMENT"],
       "response": { "name": "SURVEY_COMMENT" }
     }
