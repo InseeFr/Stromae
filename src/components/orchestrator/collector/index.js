@@ -126,7 +126,7 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: {
-        state: state,
+        state: 'INIT',
         date: new Date().getTime(),
         currentPage: currentPage,
       },
