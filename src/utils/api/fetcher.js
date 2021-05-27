@@ -1,12 +1,14 @@
 export const fetcher = async (url, token, method, body) => {
-  const headers = { Accept: 'application/json' };
+  var headers = new Headers();
+  headers.append('Accept', 'application/json');
+  headers.append('Content-Type', 'application/json');
   try {
     const response = await fetch(url, {
       headers: token
         ? { ...headers, Authorization: `Bearer ${token}` }
         : headers,
       method,
-      body,
+      body: body ? JSON.stringify(body) : null,
     });
     const { ok, status, statusText } = response;
     if (ok) {
