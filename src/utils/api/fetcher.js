@@ -18,7 +18,7 @@ export const fetcher = async (url, token, method, body) => {
         ? { ...headers, Authorization: `Bearer ${token}` }
         : headers,
       method,
-      body,
+      body: body ? JSON.stringify(body) : null,
     });
     const { ok, status, statusText } = response;
     if (ok) {
