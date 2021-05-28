@@ -17,6 +17,11 @@ import { useAuth } from 'utils/hooks';
 import { HOUSEHOLD } from 'utils/constants';
 import { NotYetImpl } from 'components/modals/notYetImpl';
 import { OrchestratorContext } from 'components/orchestrator/collector';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+
+const utilInfo = (type, page) => {
+  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page };
+};
 
 const useStyles = makeStyles(theme => ({
   title: { flexGrow: 1 },
@@ -26,6 +31,7 @@ const AppBarMenu = ({ title }) => {
   const {
     metadata: { inseeContext },
     validated,
+    currentPage,
   } = useContext(OrchestratorContext);
   const { oidcUser, logout } = useAuth();
   const isAuthenticated = oidcUser?.profile;
@@ -55,7 +61,9 @@ const AppBarMenu = ({ title }) => {
           open={isMenuOpen}
           onClose={handleMenuClose}
         >
-          <MenuItem onClick={logout}>
+          <MenuItem
+            onClick={paradataHandler(logout)(utilInfo('logout', currentPage))}
+          >
             <ListItemIcon>
               <ExitToApp />
             </ListItemIcon>
@@ -91,7 +99,9 @@ const AppBarMenu = ({ title }) => {
           <IconButton
             aria-label="Assistance"
             color="inherit"
-            onClick={() => setAssistance(true)}
+            onClick={paradataHandler(() => setAssistance(true))(
+              utilInfo('assistance', currentPage)
+            )}
           >
             <Help />
           </IconButton>
@@ -101,7 +111,9 @@ const AppBarMenu = ({ title }) => {
               aria-label="Compte de l'utilisateur"
               aria-controls={'menuId'}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={paradataHandler(handleProfileMenuOpen)(
+                utilInfo('profile-menu', currentPage)
+              )}
               color="inherit"
             >
               <AccountCircle />

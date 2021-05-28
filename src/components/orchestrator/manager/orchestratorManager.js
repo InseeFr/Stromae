@@ -5,6 +5,7 @@ import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
+import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,6 +19,8 @@ const OrchestratorManger = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
   const { /*readonly,*/ idQ, idSU } = useParams();
+
+  const LOGGER = EventsManager.createEventLogger(idQ, idSU);
   const {
     suData,
     questionnaire,
@@ -48,8 +51,9 @@ const OrchestratorManger = () => {
       const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
+      LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading]);
+  }, [questionnaire, loading, LOGGER]);
 
   return (
     <Box className={classes.root}>
