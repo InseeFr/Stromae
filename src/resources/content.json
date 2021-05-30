@@ -1,0 +1,74 @@
+{
+  "default": {
+    "menu": {
+      "assistance": false,
+      "logout": false,
+      "close": true,
+      "account": false
+    },
+
+    "genericPages": {
+      "welcome": {
+        "title": "Début",
+        "body": "\"Page de commencement générique.\""
+      },
+
+      "validation": {
+        "title": "Validation",
+        "body": "Vous êtes arrivé à la fin du questionnaire. <br/> Merci de cliquer sur le bouton \"Envoyer\" pour le transmettre à l'Insee. \n\n Après envoi, vous ne pourrez plus modifier vos réponses en ligne. \n\n Pour toute modification, cliquer sur le bouton \"Retour\"."
+      },
+
+      "end": {
+        "title": "Fin",
+        "thanks": "L'Insee vous remercie de votre collaboration à cette \n\n enquête.",
+        "depositProof": false,
+        "logout": true
+      }
+    }
+  },
+
+  "household": {
+    "menu": {
+      "assistance": true,
+      "logout": true,
+      "close": false,
+      "account": false
+    },
+
+    "genericPages": {
+      "welcome": {
+        "title": "Accueil",
+        "body": "\"Bienvenue sur le questionnaire de réponse à l'\" || Enq_LibelleEnquete || \" \n\n Qui doit répondre à ce questionnaire ? \n\n \" || whoAnswers1 || \"\n\n\" || whoAnswers2 || \"\n\n\" || whoAnswers3",
+        "legalTerms": {
+          "title": "Connaître le cadre légal de l'enquête ?",
+          "details": [
+            "\"Vu l'avis favorable du Conseil national de l'information statistique, cette enquête\" || (if cast(Enq_CaractereObligatoire, boolean) then \", reconnue d’intérêt général et de qualité statistique, est obligatoire\" else \" est reconnue d’intérêt général et de qualité statistique sans avoir de caractère obligatoire\") || \", en application de la [loi n° 51-711 du 7 juin 1951](\" || Loi_statistique ||\") sur l’obligation, la coordination et le secret en matière de statistiques.\"",
+            "\"Visa n°\" || Enq_NumeroVisa || \" du Minsitre \" || Enq_MinistereTutelle || \", valable pour l'année \" || Enq_AnneeVisa || \" - Arrêté en \" || (if cast(Enq_ParutionJo,boolean) then (\" date du \" || Enq_DateParutionJo) else \"cours de parution\") || \".\"",
+            "\"Les réponses à ce questionnaire sont protégées par le secret statistique et destinées à \" || Enq_RespOperationnel || \". Le [règlement général 2016/679 du 27 avril 2016 sur la protection des données (RGPD)](\" || Loi_rgpd || \") ainsi que la [loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés](\" || Loi_informatique || \"), s'appliquent à la présente enquête.\" || \"Les droits des personnes,  rappelés dans la lettre-avis, peuvent être exercés auprès de \" || Enq_RespTraitement || \".\""
+          ]
+        }
+      },
+
+      "validation": {
+        "title": "Validation",
+        "body": "Vous êtes arrivé à la fin du questionnaire. <br/> Merci de cliquer sur le bouton \"Envoyer\" pour le transmettre à l'Insee. \n\n Après envoi, vous ne pourrez plus modifier vos réponses en ligne. \n\n Pour toute modification, cliquer sur le bouton \"Retour\"."
+      },
+
+      "end": {
+        "title": "Fin",
+        "thanks": "L'Insee vous remercie de votre collaboration à cette \n\n enquête.",
+        "depositProof": true,
+        "logout": true
+      }
+    }
+  },
+
+  "business": {
+    "menu": {
+      "assistance": true,
+      "logout": false,
+      "close": true,
+      "account": false
+    }
+  }
+}

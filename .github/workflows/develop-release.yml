@@ -1,0 +1,55 @@
+name: Release Candidate
+
+on:
+  push:
+    branches:
+      - 'v2-develop'
+    tags:
+      - '*'
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 14C
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn --frozen-lockfile
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn
+      - run: yarn build
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v2
+      - name: Get current version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package.json'
+          prop_path: 'version'
+      - run: echo ${{steps.version.outputs.prop}}
+      - name: Release snapshot
+        id: release-snapshot
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.version.outputs.prop}}-rc
+          release_name: Release Candidate ${{steps.version.outputs.prop}}
+          draft: false
+          prerelease: false
