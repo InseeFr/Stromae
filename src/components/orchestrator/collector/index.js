@@ -93,7 +93,12 @@ export const Orchestrator = ({
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
-    if (!validated && stateData?.currentPage) return stateData?.currentPage;
+    if (!validated && stateData?.currentPage) {
+      if (isLunaticPage(stateData?.currentPage)) {
+        setPage(stateData?.currentPage);
+      }
+      return stateData?.currentPage;
+    }
     if (validated) return END_PAGE;
     return WELCOME_PAGE;
   });
@@ -220,7 +225,7 @@ export const Orchestrator = ({
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
-        goToFirstPage={() => setCurrentPage(0)}
+        goToFirstPage={() => setPage('1')}
       />
       <SendingConfirmation
         open={validationConfirmation}
