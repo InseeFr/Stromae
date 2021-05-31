@@ -46,7 +46,11 @@ const EndPage = () => {
     logoutAndClose,
     metadata: { inseeContext, variables },
     personalization,
+    stateData: { date },
   } = useContext(OrchestratorContext);
+
+  const finalDate = date || 0;
+
   const { pathname } = useLocation();
 
   const { idQ, idSU } = useParams();
@@ -61,10 +65,10 @@ const EndPage = () => {
     console.log(`${status} : ${error}`);
   };
 
-  const validatedDate = `${formatDistance(new Date(), new Date(), {
+  const validatedDate = `${formatDistance(finalDate, new Date(), {
     addSuffix: true,
     locale: dateFnsLocal,
-  })} (${format(new Date(), formatLocal)})`;
+  })} (${format(finalDate, formatLocal)})`;
 
   const getBodyWithVariables = myBody =>
     interpret(['VTL'])({
