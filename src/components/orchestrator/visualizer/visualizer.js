@@ -33,18 +33,12 @@ const Visualizer = () => {
     errorMessage,
   } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
-  const [count, setCount] = useState(0);
-
-  const sendData = surveyUnit => {
-    setCount(count + 1);
-    const paradatas = EventsManager.getLogger().getEventsToSend();
-    downloadDataAsJson(paradatas, `paradata-${count}`);
-    downloadDataAsJson(surveyUnit, `data-${count}`);
-    EventsManager.getLogger().clear();
-  };
+  const sendData = surveyUnit => {};
 
   const logoutAndClose = async surveyUnit => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
+    const paradatas = EventsManager.getLogger().getEventsToSend();
+    downloadDataAsJson(paradatas, `paradata-${surveyUnit?.stateData?.date}`);
     history.push('/');
   };
 
