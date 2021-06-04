@@ -165,6 +165,7 @@ export const Orchestrator = ({
     setValidationConfirmation,
     logoutAndClose,
     ...stromaeData,
+    currentPage,
     lunaticOptions: { preferences, features, pagination },
   };
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { buttonDictionary } from 'i18n';
 import { makeStyles } from '@material-ui/core';
 import { VALIDATION_PAGE, WELCOME_PAGE } from 'utils/pagination';
+import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,15 +44,26 @@ const ButtonsNavigation = ({
   const nextFunction =
     currentPage === VALIDATION_PAGE ? validateQuestionnaire : onNext;
 
+  const utilInfo = type => {
+    return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page: currentPage };
+  };
+
   return (
     <footer role="navigation" className={classes.root}>
       {currentPage !== WELCOME_PAGE && (
-        <Button className={classes.navButton} onClick={onPrevious}>
+        <Button
+          className={classes.navButton}
+          onClick={paradataHandler(onPrevious)(utilInfo('previous'))}
+        >
           {buttonDictionary.back}
         </Button>
       )}
 
-      <Button className={classes.navButton} onClick={nextFunction}>
+      <Button
+        className={classes.navButton}
+        onClick={paradataHandler(nextFunction)(utilInfo('next'))}
+        id={'next-button'}
+      >
         {nextLabel()}
       </Button>
     </footer>
