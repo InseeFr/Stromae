@@ -25,13 +25,8 @@ const Visualizer = () => {
   const history = useHistory();
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
-  const {
-    suData,
-    questionnaire,
-    metadata,
-    loading,
-    errorMessage,
-  } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
+  const { suData, questionnaire, metadata, loading, errorMessage } =
+    useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
   const sendData = surveyUnit => {};
 

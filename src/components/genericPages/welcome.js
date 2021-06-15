@@ -30,12 +30,8 @@ const WelcomePage = () => {
     metadata: { inseeContext, variables },
     personalization,
   } = useContext(OrchestratorContext);
-  const {
-    title,
-    body,
-    legalTermsTitle,
-    legalTermsDetails,
-  } = welcomePageDictionary(inseeContext);
+  const { title, body, legalTermsTitle, legalTermsDetails } =
+    welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = myBody =>
     interpret(['VTL'])({

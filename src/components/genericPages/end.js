@@ -62,9 +62,8 @@ const EndPage = () => {
   const { idQ, idSU } = useParams();
   const { getPDF } = useAPI(idSU, idQ);
 
-  const { title, body, pdfMessage, youCanQuit } = endPageDictionary(
-    inseeContext
-  );
+  const { title, body, pdfMessage, youCanQuit } =
+    endPageDictionary(inseeContext);
 
   const download = async () => {
     const { error, status } = await getPDF();

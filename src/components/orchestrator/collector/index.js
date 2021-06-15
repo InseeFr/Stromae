@@ -281,7 +281,7 @@ export const Orchestrator = ({
         <div className={`subElementsInnerContainer-${componentType}`}>
           {subComponents.map(q => displayComponent(componentsStructure, q))}
         </div>
-      )
+      );
     }
     return null;
   };

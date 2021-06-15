@@ -21,13 +21,8 @@ const OrchestratorManger = () => {
   const { /*readonly,*/ idQ, idSU } = useParams();
 
   const LOGGER = EventsManager.createEventLogger(idQ, idSU);
-  const {
-    suData,
-    questionnaire,
-    metadata,
-    loading,
-    errorMessage,
-  } = useAPIRemoteData(idSU, idQ);
+  const { suData, questionnaire, metadata, loading, errorMessage } =
+    useAPIRemoteData(idSU, idQ);
   const { putSuData } = useAPI(idSU, idQ);
   const { logout } = useAuth();
 
