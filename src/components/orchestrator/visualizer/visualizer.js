@@ -6,6 +6,7 @@ import { LoaderSimple } from 'components/shared/loader';
 import QuestionnaireForm from './questionnaireForm';
 import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
+import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,6 +20,8 @@ const useStyles = makeStyles(() => ({
 const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
+
+  const LOGGER = EventsManager.createEventLogger('fake q', 'fake Su');
   const history = useHistory();
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
@@ -30,12 +33,12 @@ const Visualizer = () => {
     errorMessage,
   } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
-  const sendData = surveyUnit => {
-    //downloadDataAsJson(surveyUnit, 'data');
-  };
+  const sendData = surveyUnit => {};
 
   const logoutAndClose = async surveyUnit => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
+    const paradatas = EventsManager.getLogger().getEventsToSend();
+    downloadDataAsJson(paradatas, `paradata-${surveyUnit?.stateData?.date}`);
     history.push('/');
   };
 
@@ -44,8 +47,9 @@ const Visualizer = () => {
       const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
+      LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading]);
+  }, [questionnaire, loading, LOGGER]);
 
   return (
     <>
@@ -61,7 +65,7 @@ const Visualizer = () => {
               save={sendData}
               savingType="COLLECTED"
               preferences={['PREVIOUS', 'COLLECTED']}
-              features={['VTL']}
+              features={['VTL', 'MD']}
               logoutAndClose={logoutAndClose}
               pagination={true}
             />

@@ -1,0 +1,67 @@
+/* Burger menu */
+#burgerMenu {
+  z-index: 1200;
+  color: white;
+  position: absolute;
+  width: 280px;
+  height:200%;
+  display:grid;
+  transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+  pointer-events: none;
+}
+
+#burgerMenuSlideBar, #burgerMenuToggleTab {
+  background: #2a5885;
+  pointer-events: auto;
+}
+
+#burgerMenuSlideBar{
+  position:absolute;
+  height: 100%;
+  width:225px;
+  padding: 10px;
+  padding-top: 20px;
+  display: inline-block;
+  
+}
+
+#burgerMenuToggleTab{
+  position:absolute;
+  left: 225px;
+  height: 138px;
+  width:55px;
+  border-left: 1px solid #5181b8;
+  display: inline-block;
+}
+
+#burgerMenu.closed {
+  transform: translate3d(-226px, 0, 0);
+}
+
+#burgerMenu.opened {
+  transform: translate3d(0, 0, 0);
+}
+
+#toggleSlidebarButton{
+  position: absolute;
+  top: 45px;
+  left:15px
+}
+
+.slideBarButtonText{
+  text-align: left;
+  font-size: 15px;
+}
+
+
+.burgerMenuButton:hover{
+  border-radius: 8px;
+}
+
+.burgerMenuButton{
+  width: 100%
+}
+
+.burgerMenuButton > .MuiIconButton-label{
+  justify-content: unset;
+}

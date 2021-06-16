@@ -11,6 +11,8 @@ import { validationPageDictionary, buttonDictionary } from 'i18n';
 import { Send } from '@material-ui/icons';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
+import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { VALIDATION_PAGE } from 'utils/pagination';
 
 const useStyles = makeStyles(theme => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -23,6 +25,12 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
   },
 }));
+
+const utilInfo = {
+  ...SIMPLE_CLICK_EVENT,
+  id: 'validate-button',
+  page: VALIDATION_PAGE,
+};
 
 const ValidationPage = () => {
   const classes = useStyles();
@@ -47,7 +55,9 @@ const ValidationPage = () => {
           variant="contained"
           color="primary"
           endIcon={<Send />}
-          onClick={() => setValidationConfirmation(true)}
+          onClick={paradataHandler(() => setValidationConfirmation(true))(
+            utilInfo
+          )}
         >
           {buttonDictionary.send}
         </Button>

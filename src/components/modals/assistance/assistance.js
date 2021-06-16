@@ -10,12 +10,22 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useParams } from 'react-router-dom';
 import { HOUSEHOLD } from 'utils/constants';
 import { OrchestratorContext } from 'components/orchestrator/collector';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+
+const utilInfo = (type, currentPage) => {
+  return {
+    ...SIMPLE_CLICK_EVENT,
+    id: `${type}-assistance-modal-button`,
+    page: currentPage,
+  };
+};
 
 const Assistance = ({ open, setOpen }) => {
   const { idQ } = useParams();
   const { portail } = useContext(AppContext);
   const {
     metadata: { inseeContext },
+    currentPage,
   } = useContext(OrchestratorContext);
 
   const disagree = () => {
@@ -34,7 +44,7 @@ const Assistance = ({ open, setOpen }) => {
   return (
     <Dialog
       open={open}
-      onClose={disagree}
+      onClose={paradataHandler(disagree)(utilInfo('close', currentPage))}
       disableBackdropClick
       disableEscapeKeyDown
       aria-labelledby="alert-dialog-slide-title"
@@ -49,8 +59,16 @@ const Assistance = ({ open, setOpen }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={disagree}>{buttonDictionary.no}</Button>
-        <Button onClick={agree}>{buttonDictionary.yes}</Button>
+        <Button
+          onClick={paradataHandler(disagree)(utilInfo('disagree', currentPage))}
+        >
+          {buttonDictionary.no}
+        </Button>
+        <Button
+          onClick={paradataHandler(agree)(utilInfo('agree', currentPage))}
+        >
+          {buttonDictionary.yes}
+        </Button>
       </DialogActions>
     </Dialog>
   );
