@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import * as lunatic from '@inseefr/lunatic';
 import { Card, Container, makeStyles } from '@material-ui/core';
 import { AppBar } from 'components/navigation/appBar';
+import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
 import { ButtonsNavigation } from '../navigation';
@@ -165,11 +166,129 @@ export const Orchestrator = ({
     setValidationConfirmation,
     logoutAndClose,
     ...stromaeData,
+    currentPage,
     lunaticOptions: { preferences, features, pagination },
+  };
+
+  const displayComponents = function () {
+    const structure = components.reduce((acc, curr) => {
+      if (curr.componentType === 'Sequence') {
+        acc[curr.id] = [];
+        return acc;
+      }
+      if (curr.componentType === 'Subsequence') {
+        acc[curr.id] = [];
+        if (
+          curr.hierarchy &&
+          curr.hierarchy.sequence &&
+          !!acc[curr.hierarchy.sequence.id]
+        ) {
+          acc[curr.hierarchy.sequence.id].push(curr);
+        }
+        return acc;
+      }
+      if (
+        curr.hierarchy &&
+        curr.hierarchy.subSequence &&
+        !!acc[curr.hierarchy.sequence.id]
+      ) {
+        acc[curr.hierarchy.subSequence.id].push(curr);
+      } else if (
+        curr.hierarchy &&
+        curr.hierarchy.sequence &&
+        acc[curr.hierarchy.sequence.id]
+      ) {
+        acc[curr.hierarchy.sequence.id].push(curr);
+      }
+      return acc;
+    }, {});
+    return components.map(comp => {
+      if (shouldBeDisplayed(structure, comp)) {
+        return displayComponent(structure, comp);
+      }
+      return null;
+    });
+  };
+
+  const shouldBeDisplayed = function (structure, comp) {
+    const { hierarchy } = comp;
+    if (!hierarchy) {
+      return true;
+    }
+    if (!hierarchy.sequence) {
+      if (
+        !hierarchy.subSequence ||
+        !structure[hierarchy.subSequence.id] ||
+        hierarchy.subSequence.id === comp.id
+      ) {
+        return true;
+      }
+      return false;
+    }
+    if (
+      !structure[hierarchy.sequence.id] ||
+      hierarchy.sequence.id === comp.id
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const displayComponent = function (componentsStructure, comp) {
+    const { id, componentType } = comp;
+    const Component = lunatic[componentType];
+    if (componentType !== 'FilterDescription') {
+      return (
+        <Card
+          className={`lunatic lunatic-component ${componentType} ${classes.component}`}
+          key={`component-${id}`}
+        >
+          <div
+            className={`lunatic-component outerContainer-${componentType}`}
+            key={`component-${id}`}
+          >
+            <Component
+              {...comp}
+              handleChange={handleChange}
+              labelPosition="TOP"
+              preferences={preferences}
+              features={features}
+              bindings={bindings}
+              writable
+              unitPosition="AFTER"
+              currentPage={page}
+              setPage={setPage}
+              flow={flow}
+              pagination={pagination}
+            />
+            {displaySubComponents(componentsStructure, componentType, id)}
+          </div>
+        </Card>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const displaySubComponents = function (
+    componentsStructure,
+    componentType,
+    compId
+  ) {
+    const subComponents = componentsStructure[compId];
+    if (subComponents && subComponents.length) {
+      return (
+        <div className={`subElementsInnerContainer-${componentType}`}>
+          {subComponents.map(q => displayComponent(componentsStructure, q))}
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
     <OrchestratorContext.Provider value={context}>
+      <BurgerMenu title={questionnaire?.label} />
       <AppBar title={questionnaire?.label} />
       <Container
         maxWidth="md"
@@ -180,36 +299,7 @@ export const Orchestrator = ({
         className={classes.root}
       >
         {currentPage === WELCOME_PAGE && <WelcomePage />}
-        {isLunaticPage(currentPage) &&
-          components.map(q => {
-            const { id, componentType } = q;
-            const Component = lunatic[componentType];
-            if (componentType !== 'FilterDescription')
-              return (
-                <Card
-                  className={`lunatic lunatic-component ${componentType} ${classes.component}`}
-                  key={`component-${id}`}
-                >
-                  <div className="lunatic-component" key={`component-${id}`}>
-                    <Component
-                      {...q}
-                      handleChange={handleChange}
-                      labelPosition="TOP"
-                      preferences={preferences}
-                      features={features}
-                      bindings={bindings}
-                      writable
-                      unitPosition="AFTER"
-                      currentPage={page}
-                      setPage={setPage}
-                      flow={flow}
-                      pagination={pagination}
-                    />
-                  </div>
-                </Card>
-              );
-            return null;
-          })}
+        {isLunaticPage(currentPage) && displayComponents()}
         {currentPage === VALIDATION_PAGE && <ValidationPage />}
         {currentPage === END_PAGE && <EndPage />}
       </Container>

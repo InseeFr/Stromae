@@ -8,6 +8,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+import { VALIDATION_PAGE } from 'utils/pagination';
+
+const utilInfo = type => {
+  return {
+    ...SIMPLE_CLICK_EVENT,
+    id: `${type}-sending-modal-button`,
+    page: VALIDATION_PAGE,
+  };
+};
 
 const SendingConfirmation = ({ open, setOpen }) => {
   const {
@@ -27,7 +37,7 @@ const SendingConfirmation = ({ open, setOpen }) => {
   return (
     <Dialog
       open={open}
-      onClose={close}
+      onClose={paradataHandler(close)(utilInfo('close'))}
       disableBackdropClick
       disableEscapeKeyDown
       aria-labelledby="alert-dialog-slide-title"
@@ -45,8 +55,12 @@ const SendingConfirmation = ({ open, setOpen }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={close}>{buttonDictionary.no}</Button>
-        <Button onClick={agree}>{buttonDictionary.yes}</Button>
+        <Button onClick={paradataHandler(close)(utilInfo('disagree'))}>
+          {buttonDictionary.no}
+        </Button>
+        <Button onClick={paradataHandler(agree)(utilInfo('agree'))}>
+          {buttonDictionary.yes}
+        </Button>
       </DialogActions>
     </Dialog>
   );

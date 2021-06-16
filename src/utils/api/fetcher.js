@@ -1,7 +1,17 @@
+// manage empty response during PUT or POST request
+const readJsonResponse = async response => {
+  try {
+    return await response.json();
+  } catch (e) {
+    return {};
+  }
+};
+
 export const fetcher = async (url, token, method, body) => {
-  var headers = new Headers();
-  headers.append('Accept', 'application/json');
-  headers.append('Content-Type', 'application/json');
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
   try {
     const response = await fetch(url, {
       headers: token
@@ -13,7 +23,7 @@ export const fetcher = async (url, token, method, body) => {
     const { ok, status, statusText } = response;
     if (ok) {
       try {
-        const data = await response.json();
+        const data = await readJsonResponse(response);
         return { data, status, statusText };
       } catch (error) {
         return { error: true, status, statusText: error.message };

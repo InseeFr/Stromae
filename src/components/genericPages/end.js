@@ -23,6 +23,12 @@ import {
 } from 'utils/personalization';
 import { interpret } from '@inseefr/lunatic';
 import { MarkdownTypo } from 'components/designSystem';
+import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { END_PAGE } from 'utils/pagination';
+
+const utilInfo = type => {
+  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page: END_PAGE };
+};
 
 const useStyles = makeStyles(theme => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -97,7 +103,7 @@ const EndPage = () => {
               variant="contained"
               color="primary"
               endIcon={<GetApp />}
-              onClick={download}
+              onClick={paradataHandler(download)(utilInfo('download'))}
             >
               {buttonDictionary.download}
             </Button>
@@ -107,7 +113,9 @@ const EndPage = () => {
         <Typography>{youCanQuit}</Typography>
       </CardContent>
       <CardActions className={classes.actions}>
-        <InseeButton onClick={logoutAndClose}>
+        <InseeButton
+          onClick={paradataHandler(logoutAndClose)(utilInfo('logout-close'))}
+        >
           {buttonDictionary.logoutAndClose}
         </InseeButton>
       </CardActions>
