@@ -14,7 +14,7 @@
 	<p:processor name="oxf:xforms-submission">      
 		<p:input name="request"><dummy/></p:input>
 		<p:input name="submission" transform="oxf:unsafe-xslt" href="#parameters">            
-			<xforms:submission xsl:version="2.0" method="get" resource="{p:property('server-exist-orbeon')}/restxq/{p:property('recuperation-modele-service')}/{/parameters/survey}/{/parameters/surveyUnit}"/>
+			<xforms:submission xsl:version="2.0" method="get" resource="{p:property('server-exist-orbeon')}/apps/orbeon/{p:property('recuperation-modele-service')}/{/parameters/survey}/{/parameters/surveyUnit}"/>
 		</p:input>        
 		<p:output name="response" id="modele"/>
 	</p:processor>
