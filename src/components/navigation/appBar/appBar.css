@@ -1,0 +1,25 @@
+/* General toolbar */
+#generalToolbar {
+  background: rgb(243,250,254);
+  color: black
+}
+
+#inseeLogoGeneralToolbar {
+  margin: 15px;
+  margin-left: 50px;
+  width: 93px;
+  height: 108px;
+}
+
+@media screen and (max-width: 500px) {
+  #appBarTitle {
+    margin-left: 50px;
+  }
+  #inseeLogoGeneralToolbar {
+    display: none;
+  }
+
+  #generalToolbar {
+    min-height: 138px;
+  }
+}
