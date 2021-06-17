@@ -6,14 +6,6 @@ on:
       - 'v2-*'
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Use Node.js 14C
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - run: yarn --frozen-lockfile
   build:
     runs-on: ubuntu-latest
     steps:
