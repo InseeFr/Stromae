@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const utilInfo = {
   ...SIMPLE_CLICK_EVENT,
-  id: 'validate-button',
+  idParadataObject: 'validate-button',
   page: VALIDATION_PAGE,
 };
 

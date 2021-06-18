@@ -7,6 +7,7 @@ import QuestionnaireForm from './questionnaireForm';
 import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
 import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,7 +22,6 @@ const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
 
-  const LOGGER = EventsManager.createEventLogger('fake q', 'fake Su');
   const history = useHistory();
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
@@ -47,9 +47,14 @@ const Visualizer = () => {
       const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
+      const LOGGER = EventsManager.createEventLogger(
+        'fake q',
+        'fake Su',
+        ORCHESTRATOR_VIZUALISATION
+      );
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading, LOGGER]);
+  }, [questionnaire, loading]);
 
   return (
     <>

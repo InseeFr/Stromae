@@ -15,6 +15,7 @@ import {
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
+import { simpleLog } from 'utils/events';
 
 export const OrchestratorContext = React.createContext();
 
@@ -260,6 +261,7 @@ export const Orchestrator = ({
               setPage={setPage}
               flow={flow}
               pagination={pagination}
+              logFunction={simpleLog}
             />
             {displaySubComponents(componentsStructure, componentType, id)}
           </div>

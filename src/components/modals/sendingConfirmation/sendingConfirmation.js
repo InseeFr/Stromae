@@ -14,7 +14,7 @@ import { VALIDATION_PAGE } from 'utils/pagination';
 const utilInfo = type => {
   return {
     ...SIMPLE_CLICK_EVENT,
-    id: `${type}-sending-modal-button`,
+    idParadataObject: `${type}-sending-modal-button`,
     page: VALIDATION_PAGE,
   };
 };

@@ -11,7 +11,7 @@ import './burgerMenu.css';
 import { AppVersion } from 'components/designSystem/AppVersion';
 
 const utilInfo = (type, page) => {
-  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page };
+  return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
 };
 
 const BurgerMenu = ({ title }) => {

@@ -27,7 +27,11 @@ import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 import { END_PAGE } from 'utils/pagination';
 
 const utilInfo = type => {
-  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page: END_PAGE };
+  return {
+    ...SIMPLE_CLICK_EVENT,
+    idParadataObject: `${type}-button`,
+    page: END_PAGE,
+  };
 };
 
 const useStyles = makeStyles(theme => ({

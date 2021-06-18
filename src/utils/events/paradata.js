@@ -5,21 +5,21 @@ import {
 } from 'utils/constants';
 import { EventsManager } from './logger';
 
-export const paradataHandler = f => info => e => {
-  f(e);
-  EventsManager.getLogger()?.log(info);
-};
-
 export const simpleLog = info => EventsManager.getLogger()?.log(info);
 
+export const paradataHandler = f => info => e => {
+  simpleLog(info);
+  f(e);
+};
+
 export const SIMPLE_CLICK_EVENT = {
-  category: ORCHESTRATOR_CATEGORY,
+  typeParadataObject: ORCHESTRATOR_CATEGORY,
   type: EVENT_TYPE_CLICK,
 };
 
 export const INIT_ORCHESTRATOR_EVENT = {
-  id: 'orchestrator',
-  category: ORCHESTRATOR_CATEGORY,
+  idParadataObject: 'init',
+  typeParadataObject: ORCHESTRATOR_CATEGORY,
   type: EVENT_TYPE_CREATE,
 };
 

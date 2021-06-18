@@ -45,7 +45,11 @@ const ButtonsNavigation = ({
     currentPage === VALIDATION_PAGE ? validateQuestionnaire : onNext;
 
   const utilInfo = type => {
-    return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page: currentPage };
+    return {
+      ...SIMPLE_CLICK_EVENT,
+      idParadataObject: `${type}-button`,
+      page: currentPage,
+    };
   };
 
   return (

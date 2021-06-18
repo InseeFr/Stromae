@@ -6,6 +6,11 @@ import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
 import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import {
+  ORCHESTRATOR_COLLECT,
+  ORCHESTRATOR_READONLY,
+  READ_ONLY,
+} from 'utils/constants';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,9 +23,13 @@ const useStyles = makeStyles(theme => ({
 const OrchestratorManger = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
-  const { /*readonly,*/ idQ, idSU } = useParams();
+  const { readonly, idQ, idSU } = useParams();
 
-  const LOGGER = EventsManager.createEventLogger(idQ, idSU);
+  const LOGGER = EventsManager.createEventLogger(
+    idQ,
+    idSU,
+    readonly === READ_ONLY ? ORCHESTRATOR_READONLY : ORCHESTRATOR_COLLECT
+  );
   const {
     suData,
     questionnaire,
