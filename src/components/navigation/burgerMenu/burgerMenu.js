@@ -8,6 +8,7 @@ import { HOUSEHOLD } from 'utils/constants';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 import './burgerMenu.css';
+import { AppVersion } from 'components/designSystem/AppVersion';
 
 const utilInfo = (type, page) => {
   return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page };
@@ -64,6 +65,7 @@ const BurgerMenu = ({ title }) => {
               <span className="slideBarButtonText">Déconnexion</span>
             </IconButton>
           )}
+          <AppVersion className="appVersion" />
         </div>
         <div id="burgerMenuToggleTab">
           <IconButton
