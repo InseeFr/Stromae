@@ -11,6 +11,10 @@ body {
   padding: 10px;
 }
 
+#main.lunatic-component{
+  margin: 20px;
+}
+
 /* Boutons radio */
 #main .radio-modality.radio-modality-block { 
   padding: 0px 10px;
@@ -25,6 +29,8 @@ body {
 #main .radio-modality.radio-modality-block > .list-icon-wrapper > .modality-label,
 #main .radio-modality.radio-modality-block {
   color: #2b2b2b;
+  font-size: 10pt;
+  font-family: "Open Sans", sans-serif;
 }
 
 #main .radio-modality.radio-modality-block.content-checked > .list-icon-wrapper > .list-icon > svg {
@@ -153,6 +159,15 @@ body {
   position: relative;
 }
 
+#main .checkbox-group-list{
+  width: fit-content;
+  width: -moz-fit-content;
+}
+
+.checkbox-group-list .field{
+  display: block;
+}
+
 /* Date */
 #main input[type="date"] {
   border: 1px solid #b9b9b9;
@@ -183,12 +198,16 @@ body {
 #main .radio-group-list > legend {
   color: black;
   font-family: "Open Sans", sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
   line-height: 16px;
 }
 
 #main .declaration-lunatic {
   font-style: normal;
+}
+
+#main .lunatic-component:not(.outerContainer-Sequence, .outerContainer-Subsequence) .declaration-lunatic{
+  color: black;
 }
 
 #main .outerContainer-Sequence > .declarations-lunatic > .declaration-comment {
@@ -218,6 +237,10 @@ body {
   margin-left: 8px !important;
 }
 
+#main div.field-container, #main div.declarations-lunatic{
+  margin-left: 10px;
+}
+
 /* Sequences / Subsequences */
 #main .sequence-lunatic{
   color: white;
@@ -234,10 +257,13 @@ body {
     width: inherit;
     font-weight: bold;
     font-style: normal;
-    font-size: 19px;
+    font-size: 10pt;
+    font-family: "Open Sans", sans-serif !important;
+
     height: unset;
     line-height: 20px;
     color: white;
+    padding-left: 25px;
     background-color: #3467ae;
     padding: 0.5em;
 }
@@ -277,4 +303,15 @@ body {
 #main .lunatic.lunatic-component.Subsequence {
   box-shadow: none;
   padding: 0;
+}
+
+#main .lunatic-component.outerContainer-Sequence > .declarations-lunatic,
+#main .lunatic-component.outerContainer-Subsequence > .declarations-lunatic {
+  padding-left: 30px;
+}
+
+/* Dropdown list */
+
+#main .lunatic-dropdown-option {
+  font-size: 10pt;
 }
