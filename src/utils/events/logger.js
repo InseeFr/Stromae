@@ -8,10 +8,8 @@ const getHardwareInfo = () => {
 };
 
 class Logger {
-  constructor(idQuestionnaire, idSurveyUnit, idOrchestrator) {
-    this._idQuestionnaire = idQuestionnaire;
-    this._idSurveyUnit = idSurveyUnit;
-    this._idOrchestrator = idOrchestrator;
+  constructor(metadata) {
+    this._metadata = metadata;
     this._events = [];
   }
 
@@ -21,19 +19,22 @@ class Logger {
       events: this._events,
     };
   }
+  addMetadata(metadata) {
+    this._metadata = { ...this._metadata, ...metadata };
+  }
 
   log(event) {
     this._events.push({
       timestamp: new Date().getTime(),
-      idQuestionnaire: this._idQuestionnaire,
-      idSurveyUnit: this._idSurveyUnit,
+      ...this._metadata,
       ...event,
       idParadataObject:
         event?.typeParadataObject === ORCHESTRATOR_CATEGORY
-          ? `${event?.idParadataObject}-${this._idOrchestrator}`
+          ? `${event?.idParadataObject}-${this._metadata.idOrchestrator}`
           : event?.idParadataObject,
       ...getHardwareInfo(),
     });
+    console.log(this._events);
   }
 
   clear() {
@@ -44,20 +45,15 @@ class Logger {
 export class EventsManager {
   static _instance;
 
-  static _createInstance(idQuestionnaire, idSurveyUnit, idOrchestrator) {
-    const logger = new Logger(idQuestionnaire, idSurveyUnit, idOrchestrator);
+  static _createInstance(metadata) {
+    const logger = new Logger(metadata);
     return logger;
   }
 
-  static createEventLogger(idQuestionnaire, idSurveyUnit, idOrchestrator) {
+  static createEventLogger(metadata) {
     if (!this._instance) {
-      this._instance = this._createInstance(
-        idQuestionnaire,
-        idSurveyUnit,
-        idOrchestrator
-      );
+      this._instance = this._createInstance(metadata);
     }
-    this._instance.clear();
     return this._instance;
   }
 
