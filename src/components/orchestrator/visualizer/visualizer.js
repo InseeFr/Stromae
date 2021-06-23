@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Orchestrator } from 'components/orchestrator/collector';
-import { useRemoteData, useVisuQuery } from 'utils/hooks';
+import { useAuth, useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
 import QuestionnaireForm from './questionnaireForm';
 import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
-import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import {
+  EventsManager,
+  INIT_ORCHESTRATOR_EVENT,
+  INIT_SESSION_EVENT,
+} from 'utils/events';
 import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
 
 const useStyles = makeStyles(() => ({
@@ -17,6 +21,12 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'whitesmoke',
   },
 }));
+
+const LOGGER = EventsManager.createEventLogger({
+  idQuestionnaire: 'fake q',
+  idSurveyUnit: 'fake Su',
+  idOrchestrator: ORCHESTRATOR_VIZUALISATION,
+});
 
 const Visualizer = () => {
   const classes = useStyles();
@@ -47,11 +57,6 @@ const Visualizer = () => {
       const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
-      const LOGGER = EventsManager.createEventLogger(
-        'fake q',
-        'fake Su',
-        ORCHESTRATOR_VIZUALISATION
-      );
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
   }, [questionnaire, loading]);
