@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { version, dependencies } from '../../../package.json';
+import { lunaticVersion, stromaeVersion } from 'utils/app';
 
 const useStyles = makeStyles({
   root: {
@@ -9,13 +9,11 @@ const useStyles = makeStyles({
   },
 });
 
-const lunaticVersion = dependencies['@inseefr/lunatic'].replace('^', '');
-
 export const AppVersion = ({ className }) => {
   const classes = useStyles();
   return (
     <Typography className={`${className} ${classes.root}`}>
-      {`Stromae : ${version} | Lunatic : ${lunaticVersion}`}
+      {`Stromae : ${stromaeVersion} | Lunatic : ${lunaticVersion}`}
     </Typography>
   );
 };

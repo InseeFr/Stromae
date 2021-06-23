@@ -19,6 +19,15 @@ const dictionary = {
     fr: `Vous avez déjà commencé à renseigner le questionnaire. \n\n Pour poursuivre votre saisie dans le questionnaire,\n\n que souhaitez-vous faire ?`,
     en: `You have already started to fill in the questionnaire. What do you want to do to continue your entry in the questionnaire?`,
   },
+  appInfo: {
+    fr: `Informations sur l'application`,
+    en: `Application informations`,
+  },
+  appVersion: { fr: `Version de l'application`, en: `Application version` },
+  lunaticVersion: {
+    fr: `Version de la dépendance @inseefr/lunatic`,
+    en: `Version of the @inseefr/lunatic dependency`,
+  },
 };
 
 export default dictionary;

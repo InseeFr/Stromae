@@ -46,6 +46,10 @@ const errorMessage = {
     fr: `Une erreur inconnue s'est produite, veuillez contacter l'assistance ou réessayer plus tard.`,
     en: `An unknown error occurred, please contact support or try again later.`,
   },
+  detailsError: {
+    fr: `Détails de l'erreur`,
+    en: `Error details`,
+  },
 };
 
 export default errorMessage;
