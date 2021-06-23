@@ -26,7 +26,7 @@ export const INIT_ORCHESTRATOR_EVENT = {
 };
 
 export const INIT_SESSION_EVENT = {
-  idParadataObject: 'init',
+  idParadataObject: 'init-session',
   typeParadataObject: SESSION_CATEGORY,
   type: EVENT_TYPE_SESSION_STARTED,
 };

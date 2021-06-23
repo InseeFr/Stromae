@@ -15,7 +15,7 @@ class Logger {
 
   getEventsToSend() {
     return {
-      idSu: this._idSurveyUnit,
+      idSurveyUnit: this._idSurveyUnit,
       events: this._events,
     };
   }
@@ -34,7 +34,6 @@ class Logger {
           : event?.idParadataObject,
       ...getHardwareInfo(),
     });
-    console.log(this._events);
   }
 
   clear() {
