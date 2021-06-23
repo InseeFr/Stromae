@@ -53,7 +53,7 @@ const BurgerMenu = ({ title }) => {
             &nbsp;
             <span className="slideBarButtonText">Contacter l'assistance</span>
           </IconButton>
-          {!isAuthenticated || inseeContext !== HOUSEHOLD || (
+          {isAuthenticated && inseeContext === HOUSEHOLD && (
             <IconButton
               className="burgerMenuButton"
               aria-label="Déconnexion"
