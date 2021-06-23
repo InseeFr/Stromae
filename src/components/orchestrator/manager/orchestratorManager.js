@@ -5,7 +5,11 @@ import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
-import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import {
+  EventsManager,
+  INIT_ORCHESTRATOR_EVENT,
+  INIT_SESSION_EVENT,
+} from 'utils/events';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
@@ -25,11 +29,13 @@ const OrchestratorManger = () => {
   const [source, setSource] = useState(false);
   const { readonly, idQ, idSU } = useParams();
 
-  const LOGGER = EventsManager.createEventLogger(
-    idQ,
-    idSU,
-    readonly === READ_ONLY ? ORCHESTRATOR_READONLY : ORCHESTRATOR_COLLECT
-  );
+  const LOGGER = EventsManager.createEventLogger({
+    idQuestionnaire: idQ,
+    idSurveyUnit: idSU,
+    idOrchestrator:
+      readonly === READ_ONLY ? ORCHESTRATOR_READONLY : ORCHESTRATOR_COLLECT,
+  });
+
   const {
     suData,
     questionnaire,
@@ -38,7 +44,8 @@ const OrchestratorManger = () => {
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
   const { putSuData } = useAPI(idSU, idQ);
-  const { logout } = useAuth();
+  const { logout, oidcUser } = useAuth();
+  const isAuthenticated = !!oidcUser?.profile;
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -54,6 +61,14 @@ const OrchestratorManger = () => {
   const logoutAndClose = async surveyUnit => {
     logout();
   };
+
+  useEffect(() => {
+    if (isAuthenticated && questionnaire) {
+      LOGGER.addMetadata({ idSession: oidcUser?.session_state });
+      LOGGER.log({ idSession: oidcUser?.session_state, ...INIT_SESSION_EVENT });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, LOGGER, questionnaire]);
 
   useEffect(() => {
     if (!loading && questionnaire) {

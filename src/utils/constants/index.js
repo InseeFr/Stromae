@@ -31,12 +31,4 @@ export const DATA_EXAMPLE_URL = q =>
 export const DEFAULT_DATA_URL = DATA_EXAMPLE_URL(DEFAULT);
 export const DEFAULT_METADATA_URL = METADATA_EXAMPLE_URL(DEFAULT);
 
-// Paradata
-export const ORCHESTRATOR_CATEGORY = 'orchestrator';
-export const EVENT_TYPE_CREATE = 'orchestrator-create';
-export const EVENT_TYPE_CLICK = 'click';
-
-// type orchestrator
-export const ORCHESTRATOR_COLLECT = 'orchestrator-collect';
-export const ORCHESTRATOR_READONLY = 'orchestrator-readonly';
-export const ORCHESTRATOR_VIZUALISATION = 'orchestrator-vizualisation';
+export * from './paradata';

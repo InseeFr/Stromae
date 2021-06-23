@@ -148,6 +148,8 @@ export const Orchestrator = ({
     goToTop();
   };
 
+  const logFunction = e => simpleLog({ ...e, page: currentPage });
+
   useEffect(() => {
     if (isLunaticPage(currentPage)) setCurrentPage(page);
   }, [currentPage, page]);
@@ -261,7 +263,7 @@ export const Orchestrator = ({
               setPage={setPage}
               flow={flow}
               pagination={pagination}
-              logFunction={simpleLog}
+              logFunction={logFunction}
             />
             {displaySubComponents(componentsStructure, componentType, id)}
           </div>
