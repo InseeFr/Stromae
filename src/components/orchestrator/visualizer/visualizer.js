@@ -47,9 +47,10 @@ const Visualizer = () => {
 
   const logoutAndClose = async surveyUnit => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
-    const paradatas = EventsManager.getLogger().getEventsToSend();
+    const paradatas = LOGGER.getEventsToSend();
     downloadDataAsJson(paradatas, `paradata-${surveyUnit?.stateData?.date}`);
     history.push('/');
+    LOGGER.clear();
   };
 
   useEffect(() => {
