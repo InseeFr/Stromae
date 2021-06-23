@@ -43,7 +43,7 @@ const OrchestratorManger = () => {
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
-  const { putSuData } = useAPI(idSU, idQ);
+  const { putSuData, postParadata } = useAPI(idSU, idQ);
   const { logout, oidcUser } = useAuth();
   const isAuthenticated = !!oidcUser?.profile;
 
@@ -54,8 +54,11 @@ const OrchestratorManger = () => {
     setErrorSending(null);
     setSending(true);
     const { /*status,*/ error } = await putSuData(dataToSave);
+    const paradatas = LOGGER.getEventsToSend();
+    const { error: paradataPostError } = await postParadata(paradatas);
     setSending(false);
-    if (error) setErrorSending('Error during sending');
+    if (error || paradataPostError) setErrorSending('Error during sending');
+    if (!paradataPostError) LOGGER.clear();
   };
 
   const logoutAndClose = async surveyUnit => {
@@ -65,7 +68,7 @@ const OrchestratorManger = () => {
   useEffect(() => {
     if (isAuthenticated && questionnaire) {
       LOGGER.addMetadata({ idSession: oidcUser?.session_state });
-      LOGGER.log({ idSession: oidcUser?.session_state, ...INIT_SESSION_EVENT });
+      LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, LOGGER, questionnaire]);
