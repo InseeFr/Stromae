@@ -50,6 +50,12 @@ const errorMessage = {
     fr: `Détails de l'erreur`,
     en: `Error details`,
   },
+  noAuthFile: {
+    fr:
+      "Aucun fichier de configuration pour l'authentification n'a été trouvé (oidc.json ou keycloak.json).",
+    en:
+      'No configuration file for authentication was found (oidc.json or keycloak.json).',
+  },
 };
 
 export default errorMessage;

@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     margin: '0.5em',
   },
-  versions: {
+  alignBlock: {
     textAlign: 'left',
     display: 'block',
   },
@@ -55,8 +55,9 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
               {errorDictionary.detailsError}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className={classes.alignBlock}>
             <pre>{error.message}</pre>
+            <pre>{error.stack}</pre>
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -69,7 +70,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
               {defaultDictionary.appInfo}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails className={classes.versions}>
+          <AccordionDetails className={classes.alignBlock}>
             <Typography>
               {`${defaultDictionary.appVersion} : `}
               <b>{stromaeVersion}</b>
