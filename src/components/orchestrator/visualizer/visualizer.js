@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Orchestrator } from 'components/orchestrator/collector';
-import { useAuth, useRemoteData, useVisuQuery } from 'utils/hooks';
+import { useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
 import QuestionnaireForm from './questionnaireForm';
 import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
-import {
-  EventsManager,
-  INIT_ORCHESTRATOR_EVENT,
-  INIT_SESSION_EVENT,
-} from 'utils/events';
+import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
 import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
 
 const useStyles = makeStyles(() => ({
