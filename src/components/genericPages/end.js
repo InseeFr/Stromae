@@ -24,11 +24,6 @@ import {
 import { interpret } from '@inseefr/lunatic';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
-import { END_PAGE } from 'utils/pagination';
-
-const utilInfo = type => {
-  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page: END_PAGE };
-};
 
 const useStyles = makeStyles(theme => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -53,8 +48,16 @@ const EndPage = () => {
     metadata: { inseeContext, variables },
     personalization,
     stateData: { date },
+    currentPage,
   } = useContext(OrchestratorContext);
 
+  const utilInfo = type => {
+    return {
+      ...SIMPLE_CLICK_EVENT,
+      idParadataObject: `${type}-button`,
+      page: currentPage,
+    };
+  };
   const finalDate = date || 0;
 
   const { pathname } = useLocation();

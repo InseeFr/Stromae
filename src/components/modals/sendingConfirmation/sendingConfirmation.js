@@ -9,23 +9,23 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
-import { VALIDATION_PAGE } from 'utils/pagination';
-
-const utilInfo = type => {
-  return {
-    ...SIMPLE_CLICK_EVENT,
-    id: `${type}-sending-modal-button`,
-    page: VALIDATION_PAGE,
-  };
-};
 
 const SendingConfirmation = ({ open, setOpen }) => {
   const {
     metadata: { inseeContext },
     validateQuestionnaire,
+    currentPage,
   } = useContext(OrchestratorContext);
 
   const { title, body } = confirmationDictionary(inseeContext);
+
+  const utilInfo = type => {
+    return {
+      ...SIMPLE_CLICK_EVENT,
+      idParadataObject: `${type}-sending-modal-button`,
+      page: currentPage,
+    };
+  };
 
   const close = () => setOpen(false);
 

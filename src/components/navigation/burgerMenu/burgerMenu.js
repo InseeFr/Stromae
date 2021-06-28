@@ -11,7 +11,7 @@ import './burgerMenu.css';
 import { AppVersion } from 'components/designSystem/AppVersion';
 
 const utilInfo = (type, page) => {
-  return { ...SIMPLE_CLICK_EVENT, id: `${type}-button`, page };
+  return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
 };
 
 const BurgerMenu = ({ title }) => {
@@ -53,7 +53,7 @@ const BurgerMenu = ({ title }) => {
             &nbsp;
             <span className="slideBarButtonText">Contacter l'assistance</span>
           </IconButton>
-          {!isAuthenticated || inseeContext !== HOUSEHOLD || (
+          {isAuthenticated && inseeContext === HOUSEHOLD && (
             <IconButton
               className="burgerMenuButton"
               aria-label="Déconnexion"

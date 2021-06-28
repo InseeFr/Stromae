@@ -15,7 +15,7 @@ import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 const utilInfo = (type, currentPage) => {
   return {
     ...SIMPLE_CLICK_EVENT,
-    id: `${type}-assistance-modal-button`,
+    idParadataObject: `${type}-assistance-modal-button`,
     page: currentPage,
   };
 };
