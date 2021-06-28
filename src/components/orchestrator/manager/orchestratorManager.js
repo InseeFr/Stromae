@@ -5,7 +5,16 @@ import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
-import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import {
+  EventsManager,
+  INIT_ORCHESTRATOR_EVENT,
+  INIT_SESSION_EVENT,
+} from 'utils/events';
+import {
+  ORCHESTRATOR_COLLECT,
+  ORCHESTRATOR_READONLY,
+  READ_ONLY,
+} from 'utils/constants';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,9 +27,15 @@ const useStyles = makeStyles(theme => ({
 const OrchestratorManger = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
-  const { /*readonly,*/ idQ, idSU } = useParams();
+  const { readonly, idQ, idSU } = useParams();
 
-  const LOGGER = EventsManager.createEventLogger(idQ, idSU);
+  const LOGGER = EventsManager.createEventLogger({
+    idQuestionnaire: idQ,
+    idSurveyUnit: idSU,
+    idOrchestrator:
+      readonly === READ_ONLY ? ORCHESTRATOR_READONLY : ORCHESTRATOR_COLLECT,
+  });
+
   const {
     suData,
     questionnaire,
@@ -28,8 +43,9 @@ const OrchestratorManger = () => {
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
-  const { putSuData } = useAPI(idSU, idQ);
-  const { logout } = useAuth();
+  const { putSuData, postParadata } = useAPI(idSU, idQ);
+  const { logout, oidcUser } = useAuth();
+  const isAuthenticated = !!oidcUser?.profile;
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -38,13 +54,24 @@ const OrchestratorManger = () => {
     setErrorSending(null);
     setSending(true);
     const { /*status,*/ error } = await putSuData(dataToSave);
+    const paradatas = LOGGER.getEventsToSend();
+    const { error: paradataPostError } = await postParadata(paradatas);
     setSending(false);
-    if (error) setErrorSending('Error during sending');
+    if (error || paradataPostError) setErrorSending('Error during sending');
+    if (!paradataPostError) LOGGER.clear();
   };
 
   const logoutAndClose = async surveyUnit => {
     logout();
   };
+
+  useEffect(() => {
+    if (isAuthenticated && questionnaire) {
+      LOGGER.addMetadata({ idSession: oidcUser?.session_state });
+      LOGGER.log(INIT_SESSION_EVENT);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, LOGGER, questionnaire]);
 
   useEffect(() => {
     if (!loading && questionnaire) {
