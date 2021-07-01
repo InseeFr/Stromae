@@ -45,6 +45,7 @@ export const Orchestrator = ({
   preferences,
   features,
   pagination,
+  readonly,
 }) => {
   const classes = useStyles();
   const topRef = useRef();
@@ -133,7 +134,7 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: {
-        state: 'INIT',
+        state: state,
         date: new Date().getTime(),
         currentPage: currentPage,
       },
@@ -170,6 +171,7 @@ export const Orchestrator = ({
     logoutAndClose,
     ...stromaeData,
     currentPage,
+    readonly,
     lunaticOptions: { preferences, features, pagination },
   };
 
@@ -258,6 +260,8 @@ export const Orchestrator = ({
               features={features}
               bindings={bindings}
               writable
+              readOnly={readonly}
+              disabled={readonly}
               unitPosition="AFTER"
               currentPage={page}
               setPage={setPage}

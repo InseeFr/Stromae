@@ -30,7 +30,7 @@ const Visualizer = () => {
 
   const history = useHistory();
 
-  const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
+  const { questionnaireUrl, metadataUrl, dataUrl, readonly } = useVisuQuery();
   const {
     suData,
     questionnaire,
@@ -75,6 +75,7 @@ const Visualizer = () => {
               features={['VTL', 'MD']}
               logoutAndClose={logoutAndClose}
               pagination={true}
+              readonly={readonly}
             />
           )}
         </Box>
