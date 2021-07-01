@@ -46,7 +46,22 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
-  return { getQuestionnaire, getMetadata, getSuData, getPDF, putSuData };
+  const postParadata = useCallback(
+    body => {
+      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      return API.postParadata(apiUrl)(token)(body);
+    },
+    [apiUrl, authenticationType, oidcUser]
+  );
+
+  return {
+    getQuestionnaire,
+    getMetadata,
+    getSuData,
+    getPDF,
+    putSuData,
+    postParadata,
+  };
 };
 
 export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {

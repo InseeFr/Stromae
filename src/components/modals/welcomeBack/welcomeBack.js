@@ -12,7 +12,7 @@ import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 const utilInfo = type => {
   return {
     ...SIMPLE_CLICK_EVENT,
-    id: `${type}-welcomeBack-modal-button`,
+    idParadataObject: `${type}-welcomeBack-modal-button`,
   };
 };
 

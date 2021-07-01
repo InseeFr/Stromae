@@ -15,6 +15,7 @@ import {
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
+import { simpleLog } from 'utils/events';
 
 export const OrchestratorContext = React.createContext();
 
@@ -147,6 +148,8 @@ export const Orchestrator = ({
     goToTop();
   };
 
+  const logFunction = e => simpleLog({ ...e, page: currentPage });
+
   useEffect(() => {
     if (isLunaticPage(currentPage)) setCurrentPage(page);
   }, [currentPage, page]);
@@ -260,6 +263,7 @@ export const Orchestrator = ({
               setPage={setPage}
               flow={flow}
               pagination={pagination}
+              logFunction={logFunction}
             />
             {displaySubComponents(componentsStructure, componentType, id)}
           </div>

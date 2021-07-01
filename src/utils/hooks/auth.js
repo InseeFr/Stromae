@@ -21,5 +21,5 @@ export const useAuth = () => {
     const { oidcUser, login, logout } = useReactOidc();
     return { authenticationType, oidcUser, login, logout };
   }
-  throw new Error(`Auth type ${authenticationType} is nor recognized`);
+  throw new Error(`Auth type ${authenticationType} is not recognized`);
 };

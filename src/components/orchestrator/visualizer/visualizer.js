@@ -7,6 +7,7 @@ import QuestionnaireForm from './questionnaireForm';
 import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
 import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,11 +18,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const LOGGER = EventsManager.createEventLogger({
+  idQuestionnaire: 'fake q',
+  idSurveyUnit: 'fake Su',
+  idOrchestrator: ORCHESTRATOR_VIZUALISATION,
+});
+
 const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
 
-  const LOGGER = EventsManager.createEventLogger('fake q', 'fake Su');
   const history = useHistory();
 
   const { questionnaireUrl, metadataUrl, dataUrl } = useVisuQuery();
@@ -37,9 +43,10 @@ const Visualizer = () => {
 
   const logoutAndClose = async surveyUnit => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
-    const paradatas = EventsManager.getLogger().getEventsToSend();
+    const paradatas = LOGGER.getEventsToSend();
     downloadDataAsJson(paradatas, `paradata-${surveyUnit?.stateData?.date}`);
     history.push('/');
+    LOGGER.clear();
   };
 
   useEffect(() => {
@@ -49,7 +56,7 @@ const Visualizer = () => {
       setSource(questionnaire);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading, LOGGER]);
+  }, [questionnaire, loading]);
 
   return (
     <>

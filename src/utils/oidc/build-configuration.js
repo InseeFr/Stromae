@@ -25,3 +25,20 @@ export const buildOidcConfiguration = ({ oidcConf, conf }) => {
   };
   return config;
 };
+
+export const buildOidcConfigurationFromKeycloak = ({ keycloakConf, conf }) => {
+  const { origin, pathname } = window.location;
+  const { portail } = conf;
+  const { realm, 'auth-server-url': authServer, resource } = keycloakConf;
+  return {
+    authority: `${authServer}/realms/${realm}`,
+    client_id: resource,
+    redirect_uri: `${origin}/authentication/callback`,
+    response_type: 'code',
+    post_logout_redirect_uri: `${portail}/${getCurrentSurvey(pathname)}`,
+    scope: 'openid profile email',
+    silent_redirect_uri: `${origin}/authentication/silent_callback`,
+    automaticSilentRenew: true,
+    loadUserInfo: true,
+  };
+};
