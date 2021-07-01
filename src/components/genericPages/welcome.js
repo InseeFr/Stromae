@@ -39,7 +39,6 @@ const WelcomePage = () => {
       bindingDependencies: legalTermsDetailsDeps,
     },
   } = welcomePageDictionary(inseeContext);
-  console.log(legalTermsDetailsDeps);
 
   const getBodyWithVariables = (myBody, bindingDependencies) =>
     interpret(['VTL'])({
