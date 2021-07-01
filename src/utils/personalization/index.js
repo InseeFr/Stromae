@@ -11,6 +11,16 @@ export const buildBuidings = variables => {
   return {};
 };
 
+export const buildDefaultBindings = bindingDependencies => {
+  if (Array.isArray(bindingDependencies)) {
+    return bindingDependencies.reduce((acc, name) => {
+      acc[name] = null;
+      return acc;
+    }, {});
+  }
+  return {};
+};
+
 export const dateFnsLocal = getLang() === 'fr' ? fr : enUS;
 
 export const formatLocal =
