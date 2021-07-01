@@ -32,12 +32,9 @@ const WelcomePage = () => {
   } = useContext(OrchestratorContext);
   const {
     title,
-    body: { value: body, bindingDependencies: bodyDeps },
+    body,
     legalTermsTitle,
-    legalTermsDetails: {
-      value: legalTermsDetails,
-      bindingDependencies: legalTermsDetailsDeps,
-    },
+    legalTermsDetails,
   } = welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = (myBody, bindingDependencies) =>
@@ -55,12 +52,15 @@ const WelcomePage = () => {
       <CardHeader title={getFinalLabel(title)} />
       <Divider />
       <CardContent>
-        {body.map((line, i) => (
+        {body?.value?.map((line, i) => (
           <React.Fragment key={`line-${i}`}>
             <MarkdownTypo>
-              {getBodyWithVariables(getFinalLabel(line), bodyDeps)}
+              {getBodyWithVariables(
+                getFinalLabel(line),
+                body?.bindingDependencies
+              )}
             </MarkdownTypo>
-            {i !== body.length - 1 && <br />}
+            {i !== body?.value?.length - 1 && <br />}
           </React.Fragment>
         ))}
         {legalTermsTitle && (
@@ -73,10 +73,13 @@ const WelcomePage = () => {
               <Typography>{legalTermsTitle}</Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.accordionDetails}>
-              {legalTermsDetails.map((line, i) => (
+              {legalTermsDetails?.value?.map((line, i) => (
                 <React.Fragment key={`line-${i}`}>
                   <MarkdownTypo>
-                    {getBodyWithVariables(line, legalTermsDetailsDeps)}
+                    {getBodyWithVariables(
+                      line,
+                      legalTermsDetails?.bindingDependencies
+                    )}
                   </MarkdownTypo>
                   {i !== legalTermsDetails.length - 1 && <br />}
                 </React.Fragment>
