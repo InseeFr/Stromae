@@ -66,7 +66,8 @@ const QuestionnaireForm = () => {
   const goToQuestionnaire = e => {
     history.push({
       pathname: '/visualize',
-      search: `?questionnaire=${encodeURIComponent(questionnaire)}${
+      search: `?questionnaire=${encodeURIComponent(questionnaire)}
+      ${metadata ? `&metadata=${encodeURIComponent(metadata)}` : ''}${
         data ? `&data=${encodeURIComponent(data)}` : ''
       }${readonly ? `&readonly=${readonly}` : ''}`,
     });
