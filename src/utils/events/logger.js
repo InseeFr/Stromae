@@ -15,7 +15,7 @@ class Logger {
 
   getEventsToSend() {
     return {
-      idSurveyUnit: this._idSurveyUnit,
+      idSU: this._metadata?.idSurveyUnit,
       events: this._events,
     };
   }

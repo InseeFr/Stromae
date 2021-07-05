@@ -18,17 +18,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LOGGER = EventsManager.createEventLogger({
-  idQuestionnaire: 'fake q',
-  idSurveyUnit: 'fake Su',
-  idOrchestrator: ORCHESTRATOR_VIZUALISATION,
-});
-
 const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
 
   const history = useHistory();
+
+  const LOGGER = EventsManager.createEventLogger({
+    idQuestionnaire: 'fake q',
+    idSurveyUnit: 'fake Su',
+    idOrchestrator: ORCHESTRATOR_VIZUALISATION,
+  });
 
   const { questionnaireUrl, metadataUrl, dataUrl, readonly } = useVisuQuery();
   const {
@@ -56,6 +56,7 @@ const Visualizer = () => {
       setSource(questionnaire);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questionnaire, loading]);
 
   return (
