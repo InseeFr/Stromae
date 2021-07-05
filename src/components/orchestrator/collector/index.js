@@ -58,6 +58,9 @@ export const Orchestrator = ({
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [waiting /*, setWaiting*/] = useState(false);
+
+  const logFunction = e => simpleLog({ ...e, page: currentPage });
+
   const {
     questionnaire,
     components,
@@ -77,6 +80,7 @@ export const Orchestrator = ({
     preferences,
     features,
     pagination,
+    logFunction,
   });
 
   const [state, setState] = useQuestionnaireState(
@@ -147,8 +151,6 @@ export const Orchestrator = ({
     }
     goToTop();
   };
-
-  const logFunction = e => simpleLog({ ...e, page: currentPage });
 
   useEffect(() => {
     if (isLunaticPage(currentPage)) setCurrentPage(page);
