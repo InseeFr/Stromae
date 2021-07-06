@@ -88,9 +88,9 @@ export const Orchestrator = ({
     stateData?.state
   );
 
-  const updateStateData = () => {
+  const updateStateData = lastState => {
     const newStateData = {
-      state: state,
+      state: lastState || state,
       date: new Date().getTime(),
       currentPage: currentPage,
     };
@@ -131,7 +131,7 @@ export const Orchestrator = ({
     setState(VALIDATED);
     const dataToSave = {
       ...stromaeData,
-      stateData: updateStateData(),
+      stateData: updateStateData(VALIDATED),
       data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
