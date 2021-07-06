@@ -10,7 +10,9 @@ import {
 } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 import {
+  Checkbox,
   Container,
+  FormControlLabel,
   makeStyles,
   TextField,
   Typography,
@@ -49,6 +51,7 @@ const QuestionnaireForm = () => {
   const [questionnaire, setQuestionnaire] = useState('');
   const [metadata, setMetadata] = useState('');
   const [data, setData] = useState('');
+  const [readonly, setReadonly] = useState(false);
 
   const [selected, setSelected] = useState('');
 
@@ -63,9 +66,10 @@ const QuestionnaireForm = () => {
   const goToQuestionnaire = e => {
     history.push({
       pathname: '/visualize',
-      search: `?questionnaire=${encodeURIComponent(questionnaire)}${
-        metadata ? `&metadata=${encodeURIComponent(metadata)}` : ''
-      }${data ? `&data=${encodeURIComponent(data)}` : ''}`,
+      search: `?questionnaire=${encodeURIComponent(questionnaire)}
+      ${metadata ? `&metadata=${encodeURIComponent(metadata)}` : ''}${
+        data ? `&data=${encodeURIComponent(data)}` : ''
+      }${readonly ? `&readonly=${readonly}` : ''}`,
     });
     e.preventDefault();
   };
@@ -124,6 +128,17 @@ const QuestionnaireForm = () => {
             setData(v);
           }}
           variant="outlined"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={readonly}
+              onChange={({ target: { checked } }) => setReadonly(checked)}
+              name="readonly"
+              color="primary"
+            />
+          }
+          label={visualizeDictionary.labelReadonly}
         />
         <div className={classes.selectionParent}>
           <Typography>{visualizeDictionary.chooseExamples}</Typography>

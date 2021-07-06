@@ -15,7 +15,7 @@ import { ExpandMore } from '@material-ui/icons';
 import { welcomePageDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 import { OrchestratorContext } from 'components/orchestrator/collector';
-import { buildBuidings } from 'utils/personalization';
+import { buildBuidings, buildDefaultBindings } from 'utils/personalization';
 
 const useStyles = makeStyles(theme => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -37,8 +37,9 @@ const WelcomePage = () => {
     legalTermsDetails,
   } = welcomePageDictionary(inseeContext);
 
-  const getBodyWithVariables = myBody =>
+  const getBodyWithVariables = (myBody, bindingDependencies) =>
     interpret(['VTL'])({
+      ...buildDefaultBindings(bindingDependencies),
       ...buildBuidings(variables),
       ...buildBuidings(personalization),
     })(myBody);
@@ -51,12 +52,15 @@ const WelcomePage = () => {
       <CardHeader title={getFinalLabel(title)} />
       <Divider />
       <CardContent>
-        {body.map((line, i) => (
+        {body?.value?.map((line, i) => (
           <React.Fragment key={`line-${i}`}>
             <MarkdownTypo>
-              {getBodyWithVariables(getFinalLabel(line))}
+              {getBodyWithVariables(
+                getFinalLabel(line),
+                body?.bindingDependencies
+              )}
             </MarkdownTypo>
-            {i !== body.length - 1 && <br />}
+            {i !== body?.value?.length - 1 && <br />}
           </React.Fragment>
         ))}
         {legalTermsTitle && (
@@ -69,10 +73,15 @@ const WelcomePage = () => {
               <Typography>{legalTermsTitle}</Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.accordionDetails}>
-              {legalTermsDetails.map((line, i) => (
+              {legalTermsDetails?.value?.map((line, i) => (
                 <React.Fragment key={`line-${i}`}>
-                  <MarkdownTypo>{getBodyWithVariables(line)}</MarkdownTypo>
-                  {i !== body.length - 1 && <br />}
+                  <MarkdownTypo>
+                    {getBodyWithVariables(
+                      line,
+                      legalTermsDetails?.bindingDependencies
+                    )}
+                  </MarkdownTypo>
+                  {i !== legalTermsDetails.length - 1 && <br />}
                 </React.Fragment>
               ))}
             </AccordionDetails>

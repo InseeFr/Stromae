@@ -97,6 +97,7 @@ const OrchestratorManger = () => {
           preferences={['PREVIOUS', 'COLLECTED']}
           features={['VTL', 'MD']}
           pagination={true}
+          readonly={readonly}
         />
       )}
       {errorSending && <h2>Error lors de l'envoie</h2>}

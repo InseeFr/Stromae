@@ -8,5 +8,6 @@ export const useVisuQuery = () => {
   const questionnaireUrl = searchUrl.get('questionnaire');
   const metadataUrl = searchUrl.get('metadata');
   const dataUrl = searchUrl.get('data');
-  return { questionnaireUrl, metadataUrl, dataUrl };
+  const readonly = searchUrl.get('readonly') === 'true';
+  return { questionnaireUrl, metadataUrl, dataUrl, readonly };
 };

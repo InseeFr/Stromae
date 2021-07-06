@@ -45,6 +45,7 @@ export const Orchestrator = ({
   preferences,
   features,
   pagination,
+  readonly,
 }) => {
   const classes = useStyles();
   const topRef = useRef();
@@ -54,8 +55,12 @@ export const Orchestrator = ({
   const { stateData, data } = stromaeData;
 
   const [validated, setValidated] = useState(stateData?.state === 'VALIDATED');
+  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [waiting /*, setWaiting*/] = useState(false);
+
+  const logFunction = e => simpleLog({ ...e, page: currentPage });
+
   const {
     questionnaire,
     components,
@@ -75,6 +80,7 @@ export const Orchestrator = ({
     preferences,
     features,
     pagination,
+    logFunction,
   });
 
   const [state, setState] = useQuestionnaireState(
@@ -82,14 +88,20 @@ export const Orchestrator = ({
     stateData?.state
   );
 
+  const updateStateData = () => {
+    const newStateData = {
+      state: state,
+      date: new Date().getTime(),
+      currentPage: currentPage,
+    };
+    setCurrentStateData(newStateData);
+    return newStateData;
+  };
+
   const logoutAndClose = () => {
     quit({
       ...stromaeData,
-      stateData: {
-        state: state,
-        date: new Date().getTime(),
-        currentPage: currentPage,
-      },
+      stateData: updateStateData(),
       data: lunatic.getState(questionnaire),
     });
   };
@@ -119,11 +131,7 @@ export const Orchestrator = ({
     setState(VALIDATED);
     const dataToSave = {
       ...stromaeData,
-      stateData: {
-        state: VALIDATED,
-        date: new Date().getTime(),
-        currentPage: currentPage,
-      },
+      stateData: updateStateData(),
       data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
@@ -132,11 +140,7 @@ export const Orchestrator = ({
   const onNext = () => {
     const dataToSave = {
       ...stromaeData,
-      stateData: {
-        state: 'INIT',
-        date: new Date().getTime(),
-        currentPage: currentPage,
-      },
+      stateData: updateStateData(),
       data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
@@ -147,8 +151,6 @@ export const Orchestrator = ({
     }
     goToTop();
   };
-
-  const logFunction = e => simpleLog({ ...e, page: currentPage });
 
   useEffect(() => {
     if (isLunaticPage(currentPage)) setCurrentPage(page);
@@ -169,7 +171,9 @@ export const Orchestrator = ({
     setValidationConfirmation,
     logoutAndClose,
     ...stromaeData,
+    stateData: currentStateData,
     currentPage,
+    readonly,
     lunaticOptions: { preferences, features, pagination },
   };
 
@@ -258,6 +262,8 @@ export const Orchestrator = ({
               features={features}
               bindings={bindings}
               writable
+              readOnly={readonly}
+              disabled={readonly}
               unitPosition="AFTER"
               currentPage={page}
               setPage={setPage}
@@ -319,7 +325,10 @@ export const Orchestrator = ({
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
-        goToFirstPage={() => setPage('1')}
+        goToFirstPage={() => {
+          setCurrentPage(WELCOME_PAGE);
+          setPage('1');
+        }}
       />
       <SendingConfirmation
         open={validationConfirmation}
