@@ -1,8 +1,8 @@
 {
   "id": "i6vwi2506qf2mms",
   "modele": "SIMPSONS",
-  "enoCoreVersion": "2.2.8",
-  "lunaticModelVersion": "2.1.2",
+  "enoCoreVersion": "2.2.9-dev-lunatic-singleloop-scope",
+  "lunaticModelVersion": "2.2.1",
   "pagination": "question",
   "maxPage": "37",
   "label": "Questionnaire SIMPSONS 20201215",
@@ -1169,7 +1169,6 @@
 
         [
           { "colspan": 2, "value": "E", "label": "\"Total\"" },
-
           { "headerCell": false }
         ]
       ]
@@ -2554,6 +2553,7 @@
       "id": "kiq7bjam",
       "componentType": "Loop",
       "page": "34",
+      "depth": 1,
       "paginatedLoop": false,
       "label": "\"Add a character\"",
       "conditionFilter": {
@@ -2567,7 +2567,9 @@
           "label": "\"VI - Favourite characters (Loop)\""
         }
       },
-      "bindingDependencies": ["NAME_CHAR", "AGE_CHAR"],
+      "bindingDependencies": ["NB_CHAR", "NAME_CHAR", "AGE_CHAR"],
+      "loopDependencies": ["NB_CHAR"],
+      "lines": { "min": "1", "max": "cast(NB_CHAR,integer)" },
       "components": [
         {
           "id": "kiq5u8d5",

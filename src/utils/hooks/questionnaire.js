@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getNotNullCollectedState } from 'utils/questionnaire';
+import { getNotNullCollectedState, secureCopy } from 'utils/questionnaire';
 
 export const NOT_STARTED = null;
 export const INIT = 'INIT';
@@ -9,22 +9,36 @@ export const VALIDATED = 'VALIDATED';
 export const useQuestionnaireState = (questionnaire, initialState) => {
   const [state, setState] = useState(initialState);
 
+  const [initialResponse] = useState(() =>
+    JSON.stringify(getNotNullCollectedState(questionnaire))
+  );
+
   // Analyse collected variables to update state (only to STARTED state)
   useEffect(() => {
     if (questionnaire && (state === NOT_STARTED || state === VALIDATED)) {
       const dataCollected = getNotNullCollectedState(questionnaire);
       // TODO : make a better copy without mutate questionnaire object (spread doesn't work)
       const dataWithoutNullArray = Object.entries(
-        JSON.parse(JSON.stringify(dataCollected))
+        secureCopy(dataCollected)
       ).filter(([, value]) => {
         if (Array.isArray(value)) {
           if ((value.length = 1 && value[0] === null)) return false;
         }
         return true;
       });
-      if (dataWithoutNullArray.length > 0) setState(INIT);
+      if (
+        (state === VALIDATED &&
+          dataWithoutNullArray.length > 0 &&
+          JSON.stringify(dataCollected) !== initialResponse) ||
+        (state === NOT_STARTED && dataWithoutNullArray.length > 0)
+      ) {
+        setState(INIT);
+      }
     }
-  }, [questionnaire, state]);
+
+    // Assume we want to update only this when questionnaire is updated
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questionnaire]);
 
   return [state, setState];
 };

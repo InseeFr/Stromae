@@ -1,8 +1,8 @@
 {
   "id": "kbvzifjj",
   "modele": "v1",
-  "enoCoreVersion": "2.2.8",
-  "lunaticModelVersion": "2.1.2",
+  "enoCoreVersion": "2.2.9-dev-lunatic-singleloop-scope",
+  "lunaticModelVersion": "2.2.1",
   "pagination": "question",
   "maxPage": "77",
   "label": "Enquête annuelle auprès des ménages sur les technologies de l'information et de la communication 2021 (WEB)",
@@ -1536,7 +1536,7 @@
       "componentType": "Dropdown",
       "mandatory": false,
       "page": "13",
-      "label": "\"➡ 12. Quelle est votre \" || cast(cast(if (cast(NATIO1N1,integer) = \"\" and cast(NATIO1N2,integer) = \"\") then \"\" else \"autre\",string),string) || \" nationalité ? \"",
+      "label": "\"➡ 12. Quelle est votre \" || cast(cast(plusieurnatio,string),string) || \" nationalité ? \"",
       "declarations": [
         {
           "id": "kbwanqdo-kjldkcju",
@@ -1556,7 +1556,7 @@
           "label": "\"I - Caractéristiques socio-démographiques\""
         }
       },
-      "bindingDependencies": ["NATIO1N1", "NATIO1N2", "NATIO2N"],
+      "bindingDependencies": ["plusieurnatio", "NATIO2N"],
       "options": [
         { "value": "660-AFGHANE", "label": "\"AFGHANE\"" },
 
@@ -2215,7 +2215,7 @@
       "positioning": "HORIZONTAL",
       "label": "\"➡ 14. Toujours sans vous compter, parmi les personnes que vous avez déclarées à la question précédente, combien ont :\"",
       "conditionFilter": {
-        "value": "(not(cast(NBHAB,number) = 0))",
+        "value": "(not(cast(NBHAB,integer) = 0))",
         "bindingDependencies": ["NBHAB"]
       },
       "hierarchy": {
@@ -5731,7 +5731,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "69",
-      "label": "\"➡ 60. Dans votre \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"emploi actuel, êtes-vous \" else \"dernier emploi, étiez-vous\",string),string) || \" ? \"",
+      "label": "\"➡ 60. Dans votre \" || cast(cast(emploi,string),string) || \" ? \"",
       "declarations": [
         {
           "id": "kc0nbhww-kc0nojf1",
@@ -5748,7 +5748,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "STATUT"],
+      "bindingDependencies": ["emploi", "STATUT"],
       "options": [
         {
           "value": "1",
@@ -5830,7 +5830,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "70",
-      "label": "\"➡ 61. Votre tâche principale \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"est\" else \"était\",string),string) || \"-elle de superviser le travail d’autres salariés (hors apprentis et stagiaires) ?\"",
+      "label": "\"➡ 61. Votre tâche principale \" || cast(cast(emploi2,string),string) || \"-elle de superviser le travail d’autres salariés (hors apprentis et stagiaires) ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5842,7 +5842,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "ENCADR"],
+      "bindingDependencies": ["emploi2", "ENCADR"],
       "options": [
         { "value": "1", "label": "\"Oui\"" },
 
@@ -5856,7 +5856,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "71",
-      "label": "\"➡ 62. Quel \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"est\" else \"était\",string),string) || \" votre type d’emploi ? \"",
+      "label": "\"➡ 62. Quel \" || cast(cast(emploi2,string),string) || \" votre type d’emploi ? \"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5868,7 +5868,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "CONTRAT"],
+      "bindingDependencies": ["emploi2", "CONTRAT"],
       "options": [
         {
           "value": "1",
@@ -5888,7 +5888,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "72",
-      "label": "\"➡ 63. \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"Êtes\" else \"Étiez\",string),string) || \"-vous ? \"",
+      "label": "\"➡ 63. \" || cast(cast(emploi3,string),string) || \"-vous ? \"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5900,7 +5900,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "CLASSIF"],
+      "bindingDependencies": ["emploi3", "CLASSIF"],
       "options": [
         {
           "value": "1",
@@ -5948,7 +5948,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "73",
-      "label": "\"➡ 64. \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"Travaillez\" else \"Travailliez\",string),string) || \"-vous ?\"",
+      "label": "\"➡ 64. \" || cast(cast(emploi4,string),string) || \"-vous ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
@@ -5960,7 +5960,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "DUREE_EMP"],
+      "bindingDependencies": ["emploi4", "DUREE_EMP"],
       "options": [
         { "value": "1", "label": "\" À temps complet\"" },
 
@@ -5978,7 +5978,7 @@
       "mandatory": false,
       "page": "74",
       "maxLength": 50,
-      "label": "\"➡ 65. Quelle \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"est\" else \"était\",string),string) || \" \" || cast(cast(if (cast(STATUT,string) = \"10\" and cast(SITUA,string) = \"1\" ) then \"la profession principale de la personne que vous aidez\" else if (cast(STATUT,string) = \"10\" and cast(SITUA,string) = \"2\" ) then \"la profession principale de la personne que vous aidez\" else if (cast(STATUT,string) = \"10\" and cast(SITUA,string) > 2 ) then \"la profession principale de la personne que vous aidiez\" else if (cast(STATUT,string) = \"10\" and cast(SITUA,string) = \"\" ) then \"la profession principale de la personne que vous aidiez\" else \"votre profession principale\",string),string) || \" ?​\"",
+      "label": "\"➡ 65. Quelle \" || cast(cast(emploi2,string),string) || \" \" || cast(cast(emploi5,string),string) || \" ?​\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
@@ -5990,7 +5990,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "STATUT", "PROFESSION"],
+      "bindingDependencies": ["emploi2", "emploi5", "PROFESSION"],
       "response": { "name": "PROFESSION" }
     },
 
@@ -6000,7 +6000,7 @@
       "mandatory": false,
       "page": "75",
       "maxLength": 50,
-      "label": "\"➡ 66. Quelle \" || cast(cast(if (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) then \"est\" else \"était\",string),string) || \" l’activité de l’établissement ou du site \" || cast(cast(if ( cast(STATUT,string)  <>  \"\" and cast(STATUT,string) < 8 and ( cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) ) then \"où vous travaillez\" else if ( cast(STATUT,string)  <>  \"\" and cast(STATUT,string) < 8 and ( cast(SITUA,string) > 2 or cast(SITUA,string) = \"\" ) ) then \"où vous travailliez\" else if ( (cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" ) and (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\") ) then \"que vous dirigez\" else if ( (cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" ) and (cast(SITUA,string) > 2 or cast(SITUA,string) = \"\") ) then \"que vous dirigiez\" else if ( cast(STATUT,string) = \"10\" and ( cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) ) then \"que dirige la personne que vous aidez\" else if ( cast(STATUT,string) = \"10\" and ( cast(SITUA,string) > 2 or cast(SITUA,string) = \"\" ) ) then \"que dirige la personne que vous aidiez\" else if ( cast(STATUT,string) = \"\" and ( cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) ) then \"où vous travaillez\" else if ( cast(STATUT,string) = \"\" and ( cast(SITUA,string)  <>  \"\" and cast(SITUA,string) > 2 ) ) then \"où vous travailliez\" else \"où vous travailliez\",string),string) || \" ?​\"",
+      "label": "\"➡ 66. Quelle \" || cast(cast(emploi2,string),string) || \" l’activité de l’établissement ou du site \" || cast(cast(emploi6,string),string) || \" ?​\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
@@ -6012,7 +6012,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["SITUA", "STATUT", "ACTILIB"],
+      "bindingDependencies": ["emploi2", "emploi6", "ACTILIB"],
       "response": { "name": "ACTILIB" }
     },
 
@@ -6040,7 +6040,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "76",
-      "label": "\"➡ 67. \" || cast(cast(if ( (cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" ) and (cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\") ) then \"Combien de salariés employez-vous\" else if ( (cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" ) and (cast(SITUA,string) > 2 or cast(SITUA,string) = \"\") ) then \"Combien de salariés employiez-vous\" else if ( cast(STATUT,string) = \"10\" and ( cast(SITUA,string) = \"1\" or cast(SITUA,string) = \"2\" ) ) then \"Combien de salariés emploie la personne que vous aidez\" else if ( cast(STATUT,string) = \"10\" and ( cast(SITUA,string) > 2 or cast(SITUA,string) = \"\" ) ) then \"Combien de salariés employait la personne que vous aidiez\" else \"\",string),string) || \" ?\"",
+      "label": "\"➡ 67. \" || cast(cast(emploi7,string),string) || \" ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) < 8 or cast(STATUT,string) = \"11\" or cast(STATUT,string) = \"\"))",
         "bindingDependencies": ["STATUT"]
@@ -6052,7 +6052,7 @@
           "label": "\"IX - Votre situation professionnelle\""
         }
       },
-      "bindingDependencies": ["STATUT", "SITUA", "NOMBRSAL"],
+      "bindingDependencies": ["emploi7", "NOMBRSAL"],
       "options": [
         { "value": "1", "label": "\" Aucun salarié\"" },
 
@@ -8755,7 +8755,7 @@
     {
       "variableType": "CALCULATED",
       "name": "AGE",
-      "expression": "if ( cast(number(substr(string(current-date()),6,2) || substr(string(current-date()),9,2)),number) >= cast(if (string()  <>  \"\") then number(substr(string(),6,2) || substr(string(),9,2)) else 0,number) and cast(number(substr(string(current-date()),1,4)),number) > cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,number)) then cast(number(substr(string(current-date()),1,4)),number)-cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,number) else if (cast(number(substr(string(current-date()),6,2) || substr(string(current-date()),9,2)),number) < cast(if (string()  <>  \"\") then number(substr(string(),6,2) || substr(string(),9,2)) else 0,number) and cast(number(substr(string(current-date()),1,4)),number) > cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,number)) then cast(number(substr(string(current-date()),1,4)),number)-cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,number)-1 else 0",
+      "expression": "if ( cast(number(substr(string(current-date()),6,2) || substr(string(current-date()),9,2)),integer) >= cast(if (string()  <>  \"\") then number(substr(string(),6,2) || substr(string(),9,2)) else 0,integer) and cast(number(substr(string(current-date()),1,4)),integer) > cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,integer)) then cast(number(substr(string(current-date()),1,4)),integer)-cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,integer) else if (cast(number(substr(string(current-date()),6,2) || substr(string(current-date()),9,2)),integer) < cast(if (string()  <>  \"\") then number(substr(string(),6,2) || substr(string(),9,2)) else 0,integer) and cast(number(substr(string(current-date()),1,4)),integer) > cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,integer)) then cast(number(substr(string(current-date()),1,4)),integer)-cast(if (string()  <>  \"\") then number(substr(string(),1,4)) else 1900,integer)-1 else 0",
       "bindingDependencies": ["DATENAIS"]
     },
 
