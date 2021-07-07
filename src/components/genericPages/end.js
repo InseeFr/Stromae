@@ -107,6 +107,7 @@ const EndPage = () => {
               color="primary"
               endIcon={<GetApp />}
               onClick={paradataHandler(download)(utilInfo('download'))}
+              disabled
             >
               {buttonDictionary.download}
             </Button>
