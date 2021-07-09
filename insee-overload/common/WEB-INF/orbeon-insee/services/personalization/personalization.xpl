@@ -14,7 +14,7 @@
         </p:input>
         <p:input name="submission" transform="oxf:unsafe-xslt" href="#parameters">
             <xf:submission xsl:version="2.0" method="get"
-                resource="{p:property('server-exist-orbeon')}/restxq/{p:property('preremplissage-service')}/{/parameters/survey}/{/parameters/modele}/{/parameters/surveyUnit}"/>
+                resource="{p:property('server-exist-orbeon')}/apps/orbeon/{p:property('preremplissage-service')}/{/parameters/survey}/{/parameters/modele}/{/parameters/surveyUnit}"/>
         </p:input>
         <p:output name="response" id="instance"/>
     </p:processor>
@@ -57,7 +57,7 @@
                 </p:input>
                 <p:input name="submission" transform="oxf:unsafe-xslt" href="#parameters-bis">
                     <xf:submission xsl:version="2.0" method="get"
-                        resource="{p:property('server-exist-pilotage')}/restxq/interrogations/{/parameters/survey}/{/parameters/surveyUnit}"
+                        resource="{p:property('server-exist-pilotage')}/apps/Pilotage/interrogations/{/parameters/survey}/{/parameters/surveyUnit}"
                     />
                 </p:input>
                 <p:output name="response" id="interrogation"/>
@@ -97,7 +97,7 @@
         </p:input>
         <p:input name="submission" transform="oxf:unsafe-xslt" href="#parameters-ter">
             <xf:submission xsl:version="2.0" method="get"
-                resource="{p:property('server-exist-pilotage')}/restxq/{p:property('informations-service')}/{/parameters/survey}?idUe={/parameters/surveyUnit}&amp;idContact={/parameters/identifiant}"
+                resource="{p:property('server-exist-pilotage')}/apps/Pilotage/{p:property('informations-service')}/{/parameters/survey}?idUe={/parameters/surveyUnit}&amp;idContact={/parameters/identifiant}"
             />
         </p:input>
         <p:output name="response" id="informations"/>
