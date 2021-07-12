@@ -1252,25 +1252,26 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.1.0-experimental":
-  version "0.1.0-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.0-experimental.tgz#5abc35864bffedee03171f0d81e9ed4a2323c8fd"
-  integrity sha512-lYQ0aOo1ixXrlkEXhayK2knizCcpD7shBKncdgnS6kN/Cxc/CxSd68wjY8mlvTDJOHrbAuuosxIovHDeCIAixg==
+"@inseefr/lunatic@^0.1.1-experimental":
+  version "0.1.1-experimental"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.1-experimental.tgz#f438aeda779992d0ad277f9339f9e706906a20d7"
+  integrity sha512-heseahZvNPdicpRPWS1ScD9D7YrVCTUF/QJ2kDiF7LP96LcoXKE7qvHsfbn4dfShDLysEqh9rxccHBDKSskMgw==
   dependencies:
-    "@inseefr/trevas" "^0.1.3"
+    "@inseefr/trevas" "^0.1.4"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
     prop-types "^15.7.2"
+    react-keyboard-event-handler "^1.5.4"
     react-markdown "^5.0.3"
     react-tooltip "^4.2.15"
     remove-accents "^0.4.2"
     sass "^1.32.2"
 
-"@inseefr/trevas@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.3.tgz#0f430d29b95d9a522b3ed0c55e4387391222b3a7"
-  integrity sha512-aP36k+4rE2RuzBBfpNOxSpw+A9IBkBmajFDcRqFL1IkGnwIlz/+UPI6X6xpZiC9U5+V1REeyajQRUrnFFA2eYQ==
+"@inseefr/trevas@^0.1.4":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.6.tgz#8bf9f28f5534114cb74208271261562784978eed"
+  integrity sha512-xyd18jPn+H63uI7Z6QwwLwFEij5qGJujZdomotRDRpK5+y7V2zpwbsejcLh+lpwEYRm1BS63J38unia0mviH9g==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
@@ -9723,6 +9724,11 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-keyboard-event-handler@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-keyboard-event-handler/-/react-keyboard-event-handler-1.5.4.tgz#bd0ccafbf62a96f605ddac78828f22efc54181f0"
+  integrity sha512-MSOxU/sQ5q9XWNHhXAJxzh4xVLZjKORGNC2Pzvx3qUo24TQeztGB0tq8oSArwX6vfKSIVijiw8wBmkN5pJOB4w==
 
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"
