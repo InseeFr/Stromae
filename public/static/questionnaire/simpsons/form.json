@@ -461,7 +461,7 @@
       "componentType": "Radio",
       "mandatory": true,
       "page": "15",
-      "label": "\"➡ 16. In which city do the Simpsons reside?\"",
+      "label": "\"➡ 1. In which city do the Simpsons reside?\"",
       "declarations": [
         {
           "id": "j3343clt-d3",
@@ -497,7 +497,7 @@
       "componentType": "CheckboxOne",
       "mandatory": false,
       "page": "16",
-      "label": "\"➡ 17. Who is the Simpsons city mayor?\"",
+      "label": "\"➡ 2. Who is the Simpsons city mayor?\"",
       "declarations": [
         {
           "id": "j6qdfhvw-d4",
@@ -535,7 +535,7 @@
       "componentType": "Dropdown",
       "mandatory": false,
       "page": "17",
-      "label": "\"➡ 18. In which state do The Simpsons reside?\"",
+      "label": "\"➡ 3. In which state do The Simpsons reside?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -600,7 +600,7 @@
       "id": "j334akov",
       "componentType": "CheckboxGroup",
       "page": "19",
-      "label": "\"➡ 19. What are the pet names that the Simpsons family had?\"",
+      "label": "\"➡ 1. What are the pet names that the Simpsons family had?\"",
       "declarations": [
         {
           "id": "j334akov-d5",
@@ -654,7 +654,7 @@
       "mandatory": false,
       "page": "20",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 20. Does Jay like the following ice cream flavours?\"",
+      "label": "\"➡ 2. Does Jay like the following ice cream flavours?\"",
       "declarations": [
         {
           "id": "d12-SI",
@@ -753,7 +753,7 @@
       "mandatory": false,
       "page": "21",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 21. Which character works in the nuclear power plant?\"",
+      "label": "\"➡ 3. Which character works in the nuclear power plant?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -844,7 +844,7 @@
       "mandatory": false,
       "page": "22",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 22. In which city each character was born?\"",
+      "label": "\"➡ 4. In which city each character was born?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -1023,7 +1023,7 @@
       "mandatory": false,
       "page": "24",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 23. Please, specify the percentage of Jay’s expenses in the Kwik-E-Mart for each product?\"",
+      "label": "\"➡ 1. Please, specify the percentage of Jay’s expenses in the Kwik-E-Mart for each product?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -1169,6 +1169,7 @@
 
         [
           { "colspan": 2, "value": "E", "label": "\"Total\"" },
+
           { "headerCell": false }
         ]
       ]
@@ -1180,7 +1181,7 @@
       "mandatory": false,
       "page": "25",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 24. Please specify if Jay has bought each product in his last food shopping\"",
+      "label": "\"➡ 2. Please specify if Jay has bought each product in his last food shopping\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -1395,7 +1396,7 @@
       "mandatory": false,
       "page": "26",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 25. Who did these clownings and tell us what you remember?\"",
+      "label": "\"➡ 3. Who did these clownings and tell us what you remember?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -1580,7 +1581,7 @@
       "mandatory": false,
       "page": "27",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 26. Which of the following means of transport were used by the hero and in which country?\"",
+      "label": "\"➡ 4. Which of the following means of transport were used by the hero and in which country?\"",
       "declarations": [
         {
           "id": "j6p2lwuj-d10",
@@ -1858,7 +1859,7 @@
       "mandatory": false,
       "page": "29",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 27. Please, complete the following grid with your favourite characters\"",
+      "label": "\"➡ 1. Please, complete the following grid with your favourite characters\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -2243,7 +2244,7 @@
       "mandatory": false,
       "page": "30",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 28. How has your feeling about the following characters evolved over time?\"",
+      "label": "\"➡ 2. How has your feeling about the following characters evolved over time?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -2342,7 +2343,7 @@
       "mandatory": false,
       "page": "31",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 29. Can you tell how long Bart Simpson has been on leave for each type and whether there has been another type?\"",
+      "label": "\"➡ 3. Can you tell how long Bart Simpson has been on leave for each type and whether there has been another type?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -2533,7 +2534,7 @@
       "min": 0,
       "max": 20,
       "decimals": 0,
-      "label": "\"➡ 30. How many characters from the Simpsons family could you precisely describe?\"",
+      "label": "\"➡ 1. How many characters from the Simpsons family could you precisely describe?\"",
       "conditionFilter": {
         "value": "(not(cast(READY,integer)  <>  1))",
         "bindingDependencies": ["READY"]
@@ -2601,7 +2602,7 @@
           "mandatory": false,
           "page": "34",
           "maxLength": 30,
-          "label": "\"➡ 31. What is the first name of this character?\"",
+          "label": "\"➡ 2. What is the first name of this character?\"",
           "conditionFilter": {
             "value": "(not(cast(READY,integer)  <>  1))",
             "bindingDependencies": ["READY"]
@@ -2630,7 +2631,7 @@
           "min": 0,
           "max": 120,
           "decimals": 0,
-          "label": "\"➡ 32. How old is this character in the first episode of the Simpsons family?\"",
+          "label": "\"➡ 3. How old is this character in the first episode of the Simpsons family?\"",
           "conditionFilter": {
             "value": "(not(cast(READY,integer)  <>  1))",
             "bindingDependencies": ["READY"]
@@ -2692,7 +2693,7 @@
           "componentType": "CheckboxOne",
           "mandatory": false,
           "page": "35.2",
-          "label": "\"➡ 33. Is character named \" || cast(cast(NAME_CHAR,string),string) || \" your favourite one ? \"",
+          "label": "\"➡ 1. Is character named \" || cast(cast(NAME_CHAR,string),string) || \" your favourite one ? \"",
           "conditionFilter": {
             "value": "(not(cast(READY,integer)  <>  1))",
             "bindingDependencies": ["READY"]
@@ -2719,7 +2720,7 @@
           "mandatory": false,
           "page": "35.3",
           "maxLength": 255,
-          "label": "\"➡ 34. What is your best memory about character named \" || cast(cast(NAME_CHAR,string),string) || \" ? \"",
+          "label": "\"➡ 2. What is your best memory about character named \" || cast(cast(NAME_CHAR,string),string) || \" ? \"",
           "conditionFilter": {
             "value": "(not(cast(READY,integer)  <>  1))",
             "bindingDependencies": ["READY"]
@@ -2758,7 +2759,7 @@
       "mandatory": false,
       "page": "37",
       "maxLength": 255,
-      "label": "\"➡ 35. Do you have any comment about the survey?\"",
+      "label": "\"➡ 1. Do you have any comment about the survey?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -4488,6 +4489,227 @@
         "EDITED": null,
         "INPUTED": null
       }
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_COMMENT",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_READY",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PRODUCER",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SEASON_NUMBER",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DATEFIRST",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DATEYYYYMM",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DATEYYYY",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DURATIONH",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DURATIOND",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DURATIONM",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DURATIONY",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_AUDIENCE_SHARE",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CITY",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_MAYOR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_STATE",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PET",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ICE_FLAVOUR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NUCLEAR_CHARACTER",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_BIRTH_CHARACTER",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PERCENTAGE_EXPENSES",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_LAST_FOOD_SHOPPING",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CLOWNING",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_TRAVEL",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_FAVOURITE_CHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_FEELCHAREV",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_LEAVDURATION",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NB_CHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NAME_CHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_AGE_CHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_FAVCHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_MEMORY_CHAR",
+      "expression": "(not(cast(READY,integer)  <>  1))",
+      "bindingDependencies": ["READY"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SURVEY_COMMENT",
+      "expression": "true"
     }
   ]
 }

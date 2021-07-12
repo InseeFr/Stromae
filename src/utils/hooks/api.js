@@ -46,6 +46,22 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, oidcUser]
   );
 
+  const putData = useCallback(
+    body => {
+      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      return API.putData(apiUrl)(surveyUnitID)(token)(body);
+    },
+    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  );
+
+  const putStateData = useCallback(
+    body => {
+      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      return API.putStateData(apiUrl)(surveyUnitID)(token)(body);
+    },
+    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  );
+
   const postParadata = useCallback(
     body => {
       const token = authenticationType === OIDC ? oidcUser?.access_token : null;
@@ -61,6 +77,8 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     getPDF,
     putSuData,
     postParadata,
+    putData,
+    putStateData,
   };
 };
 

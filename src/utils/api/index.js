@@ -10,6 +10,12 @@ const getSuData = apiUrl => id => token =>
 const putSuData = apiUrl => id => token => body =>
   putRequest(`${apiUrl}/api/survey-unit/${id}`)(token)(body);
 
+const putData = apiUrl => id => token => body =>
+  putRequest(`${apiUrl}/api/survey-unit/${id}/data`)(token)(body);
+
+const putStateData = apiUrl => id => token => body =>
+  putRequest(`${apiUrl}/api/survey-unit/${id}/state-data`)(token)(body);
+
 /* Questionnaire's resource */
 const getQuestionnaire = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/questionnaire/${id}`)(token);
@@ -32,4 +38,6 @@ export const API = {
   getMetadata,
   getDepositProof,
   postParadata,
+  putData,
+  putStateData,
 };

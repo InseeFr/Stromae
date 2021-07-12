@@ -43,7 +43,7 @@ const OrchestratorManger = () => {
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
-  const { putSuData, postParadata } = useAPI(idSU, idQ);
+  const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
   const { logout, oidcUser } = useAuth();
   const isAuthenticated = !!oidcUser?.profile;
 
@@ -53,11 +53,14 @@ const OrchestratorManger = () => {
   const sendData = async dataToSave => {
     setErrorSending(null);
     setSending(true);
-    const { /*status,*/ error } = await putSuData(dataToSave);
+    const { data, stateData } = dataToSave;
+    const { /*status,*/ error: dataError } = await putData(data);
+    const { /*status,*/ error: stateDataError } = await putStateData(stateData);
     const paradatas = LOGGER.getEventsToSend();
     const { error: paradataPostError } = await postParadata(paradatas);
     setSending(false);
-    if (error || paradataPostError) setErrorSending('Error during sending');
+    if (dataError || stateDataError || paradataPostError)
+      setErrorSending('Error during sending');
     if (!paradataPostError) LOGGER.clear();
   };
 
