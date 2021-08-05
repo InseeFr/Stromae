@@ -45,19 +45,11 @@ jobs:
           name: war
           path: target/
 
-      - name: Get current version
-        id: version
-        run: echo "::set-output name=prop::$(mvn -f pom.xml help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      - run: echo ${{steps.version.outputs.prop}}
-
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: opherogel/stromae
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          tags: |
-           ${{steps.version.outputs.prop}}
-           ${{ github.ref == 'refs/heads/master' && 'inseefr/pogues-back-office:latest' || '' }}
 
   
