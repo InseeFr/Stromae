@@ -1,4 +1,4 @@
-name: Build docker
+name: CI build docker Stromae v1
 
 on: workflow_dispatch
 
