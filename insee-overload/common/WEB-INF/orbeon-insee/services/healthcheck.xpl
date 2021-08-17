@@ -304,7 +304,7 @@
                 </xsl:template>
                 <xsl:template match="body">
                     <xsl:element name="body">
-                        <div>Tomcat Orbeon: ok</div>
+                        <div>Tomcat Orbeon: OK</div>
                         <div>
                             <p>Base eXist Orbeon:</p>
                             <li>
@@ -318,13 +318,16 @@
                                         select="concat('get reponse: ',$responseO/baseOrbeon/retourGet)"
                                     />
                                 </xsl:element>
+                                <xsl:if test="p:property('insee-context')='business'">
                                 <xsl:element name="ul">
                                     <xsl:value-of
                                         select="concat('post reponse: ',$responseO/baseOrbeon/retourPost)"
                                     />
                                 </xsl:element>
+                                </xsl:if>    
                             </li>
                         </div>
+                        <xsl:if test="p:property('insee-context')='business'">
                         <div>
                             <p>Base eXist Pilotage:</p>
                             <li>
@@ -340,22 +343,7 @@
                                 </xsl:element>
                             </li>                            
                         </div>
-                        <!--<xsl:if test="$req='debug'">
-                            <div>
-                                <p>DEBUG</p>                                
-                                <li>
-                                    <xsl:element name="ul">
-                                        <xsl:value-of select="concat('get reponse cible: ',$parametresO/parametres/get)"/>
-                                    </xsl:element>
-                                    <xsl:element name="ul">
-                                        <xsl:value-of select="concat('post reponse cible: ',$parametresO/parametres/post)"/>
-                                    </xsl:element>
-                                    <xsl:element name="ul">
-                                        <xsl:value-of select="concat('get info cible: ',$parametresP/parametres/pilotage)"/>
-                                    </xsl:element>
-                                </li>
-                            </div>
-                        </xsl:if>-->
+                        </xsl:if>
                     </xsl:element>
                 </xsl:template>
             </xsl:stylesheet>
