@@ -30,6 +30,10 @@
         <action action="services/error.xpl"/>
     </page>
 
+    <page path="/healthcheck">
+        <action action="services/healthcheck.xpl"/>
+    </page>
+
     <!-- ==== Pages ================================================================================================ -->
 
     <page path="/fr/.*" model="apps/fr/page-flow.xml" public-methods="#all"/>
