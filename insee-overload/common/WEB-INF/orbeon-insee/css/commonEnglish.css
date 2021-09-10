@@ -900,12 +900,3 @@ label.radio {
     width: 97%;
   }
 }
-
-/*---------------------------- Accessibilité --------------------------*/
-
-div.xbl-fr-section.xforms-case-deselected {
-  visibility: hidden;
-}
-div.xbl-fr-section.xforms-case-deselected-subsequent {
-  visibility: hidden;
-}
