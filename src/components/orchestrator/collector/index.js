@@ -63,16 +63,12 @@ export const Orchestrator = ({
   const [waiting /*, setWaiting*/] = useState(false);
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = e => simpleLog({ ...e, page: currentPage });
-  console.log('suggesters');
-  console.log(JSON.stringify(suggesters));
   suggesters = {
     'cog-communes': {
       url:
         'https://api-questionnaire-enqueteurs.dev.insee.io/api/nomenclature/cog-communes',
     },
   };
-  console.log('suggesters');
-  console.log(JSON.stringify(suggesters));
   const {
     questionnaire,
     components,
