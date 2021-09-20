@@ -95,6 +95,7 @@ const OrchestratorManger = () => {
           source={source}
           metadata={metadata}
           logoutAndClose={logoutAndClose}
+          autoSuggesterLoading={true}
           save={sendData}
           savingType="COLLECTED"
           preferences={['PREVIOUS', 'COLLECTED']}

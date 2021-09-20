@@ -4,6 +4,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
 import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
+import { getFetcherForLunatic } from 'utils/api/fetcher';
 
 const getErrorMessage = (response, type = 'q') => {
   const { status } = response;
@@ -12,6 +13,20 @@ const getErrorMessage = (response, type = 'q') => {
   if (status === 404) return errorDictionary.getError404(type);
   if (status >= 500 && status < 600) return errorDictionary.getErrorServeur;
   return errorDictionary.getUnknownError;
+};
+
+export const useLunaticFetcher = () => {
+  const { authenticationType, oidcUser } = useAuth();
+
+  const lunaticFetcher = useCallback(
+    (url, options) => {
+      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      return getFetcherForLunatic(token)(url, options);
+    },
+    [authenticationType, oidcUser]
+  );
+
+  return { lunaticFetcher };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {

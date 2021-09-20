@@ -6,6 +6,7 @@ import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
 import { ButtonsNavigation } from '../navigation';
+import { useLunaticFetcher } from 'utils/hooks';
 import { SendingConfirmation } from 'components/modals/sendingConfirmation';
 import {
   WELCOME_PAGE,
@@ -46,6 +47,8 @@ export const Orchestrator = ({
   features,
   pagination,
   readonly,
+  suggesters,
+  autoSuggesterLoading,
 }) => {
   const classes = useStyles();
   const topRef = useRef();
@@ -58,9 +61,18 @@ export const Orchestrator = ({
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [waiting /*, setWaiting*/] = useState(false);
-
+  const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = e => simpleLog({ ...e, page: currentPage });
-
+  console.log('suggesters');
+  console.log(JSON.stringify(suggesters));
+  suggesters = {
+    'cog-communes': {
+      url:
+        'https://api-questionnaire-enqueteurs.dev.insee.io/api/nomenclature/cog-communes',
+    },
+  };
+  console.log('suggesters');
+  console.log(JSON.stringify(suggesters));
   const {
     questionnaire,
     components,
@@ -80,6 +92,9 @@ export const Orchestrator = ({
     preferences,
     features,
     pagination,
+    suggesters,
+    autoSuggesterLoading,
+    suggesterFetcher,
     logFunction,
   });
 

@@ -70,3 +70,13 @@ export const fetcherFile = async (url, token) => {
     return { error: true, statusText: error.message };
   }
 };
+
+export const getFetcherForLunatic = token => async (url, options) => {
+  const otherHeader = options?.headers || {};
+  return fetch(url, {
+    ...options,
+    headers: token
+      ? { ...otherHeader, Authorization: `Bearer ${token}` }
+      : otherHeader,
+  });
+};
