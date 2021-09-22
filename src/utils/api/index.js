@@ -20,6 +20,12 @@ const putStateData = apiUrl => id => token => body =>
 const getQuestionnaire = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/questionnaire/${id}`)(token);
 
+const getRequiredNomenclatures = apiUrl => id => token =>
+  getRequest(`${apiUrl}/api/questionnaire/${id}/required-nomenclatures`)(token);
+
+const getNomenclature = apiUrl => id => token =>
+  getRequest(`${apiUrl}/api/nomenclature/${id}`)(token);
+
 const getMetadata = apiUrl => id => token =>
   getRequest(`${apiUrl}/api/questionnaire/${id}/metadata`)(token);
 
@@ -35,6 +41,8 @@ export const API = {
   getSuData,
   putSuData,
   getQuestionnaire,
+  getRequiredNomenclatures,
+  getNomenclature,
   getMetadata,
   getDepositProof,
   postParadata,

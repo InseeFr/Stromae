@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAPI, useAPIRemoteData, useAuth } from 'utils/hooks';
+import { AppContext } from 'App';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
@@ -15,6 +16,7 @@ import {
   ORCHESTRATOR_READONLY,
   READ_ONLY,
 } from 'utils/constants';
+import { buildSuggesterFromNomenclatures } from 'utils/questionnaire/nomenclatures';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const OrchestratorManger = () => {
+  const { apiUrl } = useContext(AppContext);
+
   const classes = useStyles();
   const [source, setSource] = useState(false);
   const { readonly, idQ, idSU } = useParams();
@@ -39,6 +43,7 @@ const OrchestratorManger = () => {
   const {
     suData,
     questionnaire,
+    nomenclatures,
     metadata,
     loading,
     errorMessage,
@@ -46,6 +51,8 @@ const OrchestratorManger = () => {
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
   const { logout, oidcUser } = useAuth();
   const isAuthenticated = !!oidcUser?.profile;
+
+  const [suggesters, setSuggesters] = useState(null);
 
   const [, /*sending*/ setSending] = useState(false);
   const [errorSending, setErrorSending] = useState(false);
@@ -77,33 +84,43 @@ const OrchestratorManger = () => {
   }, [isAuthenticated, LOGGER, questionnaire]);
 
   useEffect(() => {
-    if (!loading && questionnaire) {
+    if (!loading && questionnaire && nomenclatures) {
       const { label: questionnaireTitle } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
+      const suggestersBuilt = buildSuggesterFromNomenclatures(apiUrl)(
+        nomenclatures
+      );
+      setSuggesters(suggestersBuilt);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading, LOGGER]);
+  }, [questionnaire, loading, nomenclatures, apiUrl, LOGGER]);
 
   return (
     <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-      {!loading && metadata && suData && questionnaire && source && (
-        <Orchestrator
-          stromaeData={suData}
-          source={source}
-          metadata={metadata}
-          logoutAndClose={logoutAndClose}
-          autoSuggesterLoading={true}
-          save={sendData}
-          savingType="COLLECTED"
-          preferences={['PREVIOUS', 'COLLECTED']}
-          features={['VTL', 'MD']}
-          pagination={true}
-          readonly={readonly}
-        />
-      )}
+      {!loading &&
+        metadata &&
+        suData &&
+        questionnaire &&
+        suggesters &&
+        source && (
+          <Orchestrator
+            stromaeData={suData}
+            source={source}
+            metadata={metadata}
+            logoutAndClose={logoutAndClose}
+            autoSuggesterLoading={true}
+            suggesters={suggesters}
+            save={sendData}
+            savingType="COLLECTED"
+            preferences={['PREVIOUS', 'COLLECTED']}
+            features={['VTL', 'MD']}
+            pagination={true}
+            readonly={readonly}
+          />
+        )}
       {errorSending && <h2>Error lors de l'envoie</h2>}
       <CookieConsent />
     </Box>

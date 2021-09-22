@@ -33,6 +33,16 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
   const { authenticationType, oidcUser } = useAuth();
   const { apiUrl } = useContext(AppContext);
 
+  const getRequiredNomenclatures = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getRequiredNomenclatures(apiUrl)(questionnaireID)(token);
+  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+
+  const getNomenclature = useCallback(() => {
+    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+    return API.getNomenclature(apiUrl)(questionnaireID)(token);
+  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+
   const getQuestionnaire = useCallback(() => {
     const token = authenticationType === OIDC ? oidcUser?.access_token : null;
     return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
@@ -86,6 +96,8 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
   );
 
   return {
+    getRequiredNomenclatures,
+    getNomenclature,
     getQuestionnaire,
     getMetadata,
     getSuData,
@@ -101,22 +113,26 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [suData, setSuData] = useState(null);
-
+  const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const { getSuData, getQuestionnaire, getMetadata } = useAPI(
-    surveyUnitID,
-    questionnaireID
-  );
+  const {
+    getSuData,
+    getRequiredNomenclatures,
+    getQuestionnaire,
+    getMetadata,
+  } = useAPI(surveyUnitID, questionnaireID);
 
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {
       setErrorMessage(null);
+      setNomenclatures(null);
       const load = async () => {
         const qR = await getQuestionnaire();
+        const nR = await getRequiredNomenclatures();
         if (!qR.error) {
           setQuestionnaire(qR.data.value);
+          setNomenclatures(nR.data);
           const mR = await getMetadata();
           if (!mR.error) {
             setMetadata(mR.data);
@@ -137,14 +153,21 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyUnitID, questionnaireID]);
 
-  return { loading, errorMessage, suData, questionnaire, metadata };
+  return {
+    loading,
+    errorMessage,
+    suData,
+    questionnaire,
+    metadata,
+    nomenclatures,
+  };
 };
 
 export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [suData, setSuData] = useState(null);
-
+  const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -152,12 +175,14 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     if (questionnaireUrl) {
       setErrorMessage(null);
       setQuestionnaire(null);
+      setNomenclatures(null);
       setSuData(null);
       const fakeToken = null;
       const load = async () => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
         if (!qR.error) {
           setQuestionnaire(qR.data);
+          setNomenclatures([]); // fake nomenclatures for vizu
           const mR = await API.getRequest(metadataUrl || DEFAULT_METADATA_URL)(
             fakeToken
           );
@@ -180,5 +205,12 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     }
   }, [questionnaireUrl, metadataUrl, dataUrl]);
 
-  return { loading, errorMessage, suData, questionnaire, metadata };
+  return {
+    loading,
+    errorMessage,
+    suData,
+    questionnaire,
+    metadata,
+    nomenclatures,
+  };
 };
