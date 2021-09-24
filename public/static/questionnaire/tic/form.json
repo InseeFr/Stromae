@@ -1,8 +1,10 @@
 {
   "id": "kbvzifjj",
   "modele": "v1",
-  "enoCoreVersion": "2.2.9-dev-lunatic-singleloop-scope",
-  "lunaticModelVersion": "2.2.1",
+  "enoCoreVersion": "2.2.11",
+  "lunaticModelVersion": "2.2.3",
+  "generatingDate": "16-09-2021 09:10:12",
+  "missing": false,
   "pagination": "question",
   "maxPage": "77",
   "label": "Enquête annuelle auprès des ménages sur les technologies de l'information et de la communication 2021 (WEB)",
@@ -37,8 +39,25 @@
       "page": "2",
       "min": "1900-01-01",
       "max": "2021-12-31",
-      "label": "\"➡ 1. Quelle est votre date de naissance?\"",
+      "label": "\"Quelle est votre date de naissance?\"",
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kbw7j25e-CI-0",
+          "criticality": "INFO",
+          "control": "not(cast(AGE,integer) < 15)",
+          "errorMessage": "\"Pour répondre à l’enquête, vous devez avoir plus de 14 ans.\"",
+          "bindingDependencies": ["AGE"]
+        },
+
+        {
+          "id": "kbw7j25e-CI-1",
+          "criticality": "WARN",
+          "control": "not(cast(AGE,integer) > 120)",
+          "errorMessage": "\"Votre âge est supérieur à 120 ans, merci de corriger\"",
+          "bindingDependencies": ["AGE"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kbw7j01m",
@@ -56,7 +75,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "3",
-      "label": "\"➡ 2. Vous êtes …\"",
+      "label": "\"Vous êtes …\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -79,7 +98,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "4",
-      "label": "\"➡ 3. Quel est le diplôme le plus élevé que vous ayez obtenu ?\"",
+      "label": "\"Quel est le diplôme le plus élevé que vous ayez obtenu ?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -162,7 +181,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "5",
-      "label": "\"➡ 4. Quel est votre niveau d’étude ?\"",
+      "label": "\"Quel est votre niveau d’étude ?\"",
       "conditionFilter": {
         "value": "(not(cast(DIPLOME,string) > 3))",
         "bindingDependencies": ["DIPLOME"]
@@ -210,7 +229,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "6",
-      "label": "\"➡ 5. Êtes-vous actuellement en couple ?\"",
+      "label": "\"Êtes-vous actuellement en couple ?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -241,7 +260,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "7",
-      "label": "\"➡ 6. Êtes-vous ?\"",
+      "label": "\"Êtes-vous ?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -290,7 +309,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "8",
-      "label": "\"➡ 7. Êtes-vous pacsé(e) ?\"",
+      "label": "\"Êtes-vous pacsé(e) ?\"",
       "conditionFilter": {
         "value": "(not(cast(ETAMATRI,string) = \"2\"))",
         "bindingDependencies": ["ETAMATRI"]
@@ -316,7 +335,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "9",
-      "label": "\"➡ 8. Êtes-vous né(e) ?\"",
+      "label": "\"Êtes-vous né(e) ?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -387,7 +406,7 @@
       "componentType": "Dropdown",
       "mandatory": false,
       "page": "10",
-      "label": "\"➡ 9. Dans quel département ?\"",
+      "label": "\"Dans quel département ?\"",
       "declarations": [
         {
           "id": "kbw9r169-kbw9za31",
@@ -659,7 +678,7 @@
       "componentType": "Dropdown",
       "mandatory": false,
       "page": "11",
-      "label": "\"➡ 10. Dans quel pays ?\"",
+      "label": "\"Dans quel pays ?\"",
       "declarations": [
         {
           "id": "kbwanueu-kbwaxysc",
@@ -1470,7 +1489,7 @@
       "id": "kbwafrus",
       "componentType": "CheckboxGroup",
       "page": "12",
-      "label": "\"➡ 11. Êtes-vous …\"",
+      "label": "\"Êtes-vous …\"",
       "declarations": [
         {
           "id": "kbwafrus-kbwataew",
@@ -1480,6 +1499,20 @@
         }
       ],
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kbwafrus-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(NATIO1N4,integer) = '1' and (cast(NATIO1N1,integer) = '1' or cast(NATIO1N2,integer) = '1' or cast(NATIO1N3,integer) = '1'))",
+          "errorMessage": "\"Votre réponse - « Apatride » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "NATIO1N4",
+            "NATIO1N1",
+            "NATIO1N2",
+            "NATIO1N3"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kbw7j01m",
@@ -1536,7 +1569,7 @@
       "componentType": "Dropdown",
       "mandatory": false,
       "page": "13",
-      "label": "\"➡ 12. Quelle est votre \" || cast(cast(plusieurnatio,string),string) || \" nationalité ? \"",
+      "label": "\"Quelle est votre \" || cast(cast(plusieurnatio,string),string) || \" nationalité ? \"",
       "declarations": [
         {
           "id": "kbwanqdo-kjldkcju",
@@ -2178,8 +2211,17 @@
       "min": 0,
       "max": 20,
       "decimals": 0,
-      "label": "\"➡ 13. Sans vous compter, combien de personnes vivent habituellement avec vous dans le logement (y compris les étudiants qui ne rentrent que le week-end) ?\"",
+      "label": "\"Sans vous compter, combien de personnes vivent habituellement avec vous dans le logement (y compris les étudiants qui ne rentrent que le week-end) ?\"",
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kbwbok7p-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(NBHAB,integer) = 0 and cast(COUPLE,string) = '1')",
+          "errorMessage": "\"Vous avez déclaré être en couple avec une personne qui vit dans le logement, le nombre de personnes vivant avec vous devrait être supérieur ou égal à 1.\"",
+          "bindingDependencies": ["NBHAB", "COUPLE"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kbw7j01m",
@@ -2213,7 +2255,7 @@
       "mandatory": false,
       "page": "15",
       "positioning": "HORIZONTAL",
-      "label": "\"➡ 14. Toujours sans vous compter, parmi les personnes que vous avez déclarées à la question précédente, combien ont :\"",
+      "label": "\"Toujours sans vous compter, parmi les personnes que vous avez déclarées à la question précédente, combien ont :\"",
       "conditionFilter": {
         "value": "(not(cast(NBHAB,integer) = 0))",
         "bindingDependencies": ["NBHAB"]
@@ -2339,7 +2381,7 @@
       "componentType": "Radio",
       "mandatory": true,
       "page": "17",
-      "label": "\"➡ 15. Votre ménage a-t-il accès à Internet depuis son domicile ?\"",
+      "label": "\"Votre ménage a-t-il accès à Internet depuis son domicile ?\"",
       "declarations": [
         {
           "id": "kc0gq6qv-kc0h5ajs",
@@ -2385,7 +2427,7 @@
       "id": "kc0gvvrz",
       "componentType": "CheckboxGroup",
       "page": "18",
-      "label": "\"➡ 16. Votre connexion à Internet est-elle ?\"",
+      "label": "\"Votre connexion à Internet est-elle ?\"",
       "declarations": [
         {
           "id": "kc0gvvrz-kc0h4j6r",
@@ -2398,6 +2440,15 @@
         "value": "(not(( cast(NET,string) = \"2\" or cast(NET,string) = \"\" )))",
         "bindingDependencies": ["NET"]
       },
+      "controls": [
+        {
+          "id": "kc0gvvrz-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(DEBITX1,integer) = '' and cast(DEBITX2,integer) = '' and cast(DEBITX3,integer) = '' and cast(DEBITX4,integer) = '')",
+          "errorMessage": "\"Vous n’avez pas répondu à cette question. Si c’est un oubli, complétez votre réponse. \"",
+          "bindingDependencies": ["DEBITX1", "DEBITX2", "DEBITX3", "DEBITX4"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0h2x4z",
@@ -2461,7 +2512,7 @@
       "componentType": "Radio",
       "mandatory": true,
       "page": "20",
-      "label": "\"➡ 17. Personnellement, quand avez-vous utilisé Internet pour la dernière fois ?\"",
+      "label": "\"Personnellement, quand avez-vous utilisé Internet pour la dernière fois ?\"",
       "declarations": [
         {
           "id": "kc0h7448-kc0htor3",
@@ -2471,6 +2522,15 @@
         }
       ],
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kc0h7448-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(NUSEWEB,string) = '')",
+          "errorMessage": "\"Vous n’avez pas répondu à cette question. Si c’est un oubli, complétez votre réponse.\"",
+          "bindingDependencies": ["NUSEWEB"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0h9y1j",
@@ -2528,7 +2588,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "21",
-      "label": "\"➡ 18. Au cours des trois derniers mois, en moyenne, vous avez utilisé Internet...\"",
+      "label": "\"Au cours des trois derniers mois, en moyenne, vous avez utilisé Internet...\"",
       "declarations": [
         {
           "id": "kc0haj1j-kc0hqlhc",
@@ -2541,6 +2601,15 @@
         "value": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
         "bindingDependencies": ["NUSEWEB"]
       },
+      "controls": [
+        {
+          "id": "kc0haj1j-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(USEWEB,string) = '')",
+          "errorMessage": "\"Vous n’avez pas répondu à cette question. Si c’est un oubli, complétez votre réponse. \"",
+          "bindingDependencies": ["USEWEB"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0h9y1j",
@@ -2586,7 +2655,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "22",
-      "label": "\"➡ 19. En général, avez-vous utilisé Internet plusieurs fois par jour ?\"",
+      "label": "\"En général, avez-vous utilisé Internet plusieurs fois par jour ?\"",
       "declarations": [
         {
           "id": "kc0hudx9-kc0hifaz",
@@ -2619,7 +2688,7 @@
       "id": "kc0hsh54",
       "componentType": "CheckboxGroup",
       "page": "23",
-      "label": "\"➡ 20. Au cours des trois derniers mois, avez-vous utilisé Internet sur les appareils suivants ?\"",
+      "label": "\"Au cours des trois derniers mois, avez-vous utilisé Internet sur les appareils suivants ?\"",
       "declarations": [
         {
           "id": "kc0hsh54-kh3q51ny",
@@ -2690,7 +2759,7 @@
       "id": "kc0hyu5k",
       "componentType": "CheckboxGroup",
       "page": "24",
-      "label": "\"➡ 21. Au cours des trois derniers mois, hors usage professionnel, avez-vous utilisé Internet (y compris viades applications) pour …\"",
+      "label": "\"Au cours des trois derniers mois, hors usage professionnel, avez-vous utilisé Internet (y compris viades applications) pour …\"",
       "declarations": [
         {
           "id": "kc0hyu5k-kc0hwdd6",
@@ -2810,7 +2879,7 @@
       "id": "kc0hwk4s",
       "componentType": "CheckboxGroup",
       "page": "25",
-      "label": "\"➡ 22. Concernant l’apprentissage par Internet (que ce soit pour un usage privé ou professionnel), au cours des trois derniers mois, avez-vous déjà personnellement…\"",
+      "label": "\"Concernant l’apprentissage par Internet (que ce soit pour un usage privé ou professionnel), au cours des trois derniers mois, avez-vous déjà personnellement…\"",
       "declarations": [
         {
           "id": "kc0hwk4s-kc0i1n7z",
@@ -2823,6 +2892,15 @@
         "value": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
         "bindingDependencies": ["NUSEWEB"]
       },
+      "controls": [
+        {
+          "id": "kc0hwk4s-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(EDUPROX3,integer) = '1' and ( cast(EDUPROX1,integer) = '1' or cast(EDUPROX2,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « vous n’avez pratiqué aucune activité de formation sur Internet » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": ["EDUPROX3", "EDUPROX1", "EDUPROX2"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0h9y1j",
@@ -2879,7 +2957,7 @@
       "id": "kc0i0jec",
       "componentType": "CheckboxGroup",
       "page": "27",
-      "label": "\"➡ 23. Au cours des douze derniers mois, hors usage professionnel et quel que soit le lieu d’utilisation, avez-vous personnellement utilisé Internet pour contacter une administration ou un service public pour …\"",
+      "label": "\"Au cours des douze derniers mois, hors usage professionnel et quel que soit le lieu d’utilisation, avez-vous personnellement utilisé Internet pour contacter une administration ou un service public pour …\"",
       "declarations": [
         {
           "id": "kc0i0jec-kc0ik811",
@@ -2899,6 +2977,15 @@
         "value": "(not(cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\"))",
         "bindingDependencies": ["NUSEWEB"]
       },
+      "controls": [
+        {
+          "id": "kc0i0jec-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(ADMX5,integer) = '1' and ( cast(ADMX1,integer) = '1' or cast(ADMX2,integer) = '1' or cast(ADMX3,integer) = '1' or cast(ADMX4,integer) = '1' ))",
+          "errorMessage": "\"La réponse « Aucun contact par Internet avec une administration ou un service public » n’est pas compatible avec les autres items.\"",
+          "bindingDependencies": ["ADMX5", "ADMX1", "ADMX2", "ADMX3", "ADMX4"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0i2t9p",
@@ -2963,7 +3050,7 @@
       "id": "kc0i8uqf",
       "componentType": "CheckboxGroup",
       "page": "28",
-      "label": "\"➡ 24. Pour quelles raisons n’avez-vous pas transmis de formulaires administratifs par Internet au cours des douze derniers mois ?\"",
+      "label": "\"Pour quelles raisons n’avez-vous pas transmis de formulaires administratifs par Internet au cours des douze derniers mois ?\"",
       "declarations": [
         {
           "id": "kc0i8uqf-kc0if0sf",
@@ -2976,6 +3063,27 @@
         "value": "(not(cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\")) and (not(cast(ADMX3,integer) = 1 or cast(ADMX4,integer) = 1))",
         "bindingDependencies": ["NUSEWEB", "ADMX3", "ADMX4"]
       },
+      "controls": [
+        {
+          "id": "kc0i8uqf-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(RAISADMX10,integer) = '1' and ( cast(RAISADMX1,integer) = '1' or cast(RAISADMX2,integer) = '1' or cast(RAISADMX3,integer) = '1' or cast(RAISADMX4,integer) = '1' or cast(RAISADMX5,integer) = '1' or cast(RAISADMX6,integer) = '1' or cast(RAISADMX7,integer) = '1' or cast(RAISADMX8,integer) = '1' or cast(RAISADMX9,integer) = '1' or cast(RAISADMX11,integer) = '1' ))",
+          "errorMessage": "\"La réponse « Vous n’aviez pas de formulaire à envoyer » n’est pas compatible avec les autres items.\"",
+          "bindingDependencies": [
+            "RAISADMX10",
+            "RAISADMX1",
+            "RAISADMX2",
+            "RAISADMX3",
+            "RAISADMX4",
+            "RAISADMX5",
+            "RAISADMX6",
+            "RAISADMX7",
+            "RAISADMX8",
+            "RAISADMX9",
+            "RAISADMX11"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0i2t9p",
@@ -3069,7 +3177,7 @@
       "id": "kc0i7d8t",
       "componentType": "CheckboxGroup",
       "page": "29",
-      "label": "\"➡ 25. Au cours des douze derniers mois, avez-vous demandé de l’aide pour effectuer une démarche administrative sur Internet (par exemple pour prendre un RDV, obtenir une information, faire une demande de droit, toucher une allocation ou une prestation sociale, accéder à un compte personnel, etc. )?\"",
+      "label": "\"Au cours des douze derniers mois, avez-vous demandé de l’aide pour effectuer une démarche administrative sur Internet (par exemple pour prendre un RDV, obtenir une information, faire une demande de droit, toucher une allocation ou une prestation sociale, accéder à un compte personnel, etc. )?\"",
       "declarations": [
         {
           "id": "kc0i7d8t-kc0is7qk",
@@ -3079,6 +3187,21 @@
         }
       ],
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kc0i7d8t-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(AIDADMX5,integer) = '1' and (cast(AIDADMX1,integer) = '1' or cast(AIDADMX2,integer) = '1' or cast(AIDADMX3,integer) = '1' or cast(AIDADMX4,integer) = '1' ))",
+          "errorMessage": "\"La réponse « Non » n’est pas compatible avec les autres items.\"",
+          "bindingDependencies": [
+            "AIDADMX5",
+            "AIDADMX1",
+            "AIDADMX2",
+            "AIDADMX3",
+            "AIDADMX4"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0i2t9p",
@@ -3130,7 +3253,7 @@
       "id": "kc0is12p",
       "componentType": "CheckboxGroup",
       "page": "30",
-      "label": "\"➡ 26. Au cours des douze derniers mois, avez-vous renoncé à faire des démarches administratives sur Internet ?\"",
+      "label": "\"Au cours des douze derniers mois, avez-vous renoncé à faire des démarches administratives sur Internet ?\"",
       "declarations": [
         {
           "id": "kc0is12p-kc0iid7i",
@@ -3140,6 +3263,25 @@
         }
       ],
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kc0is12p-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(RENADMX9,integer) = '1' and ( cast(RENADMX1,integer) = '1' or cast(RENADMX2,integer) = '1' or cast(RENADMX3,integer) = '1' or cast(RENADMX4,integer) = '1' or cast(RENADMX5,integer) = '1' or cast(RENADMX6,integer) = '1' or cast(RENADMX7,integer) = '1' or cast(RENADMX8,integer) = '1' ))",
+          "errorMessage": "\"La réponse « Non » n’est pas compatible avec les autres items.\"",
+          "bindingDependencies": [
+            "RENADMX9",
+            "RENADMX1",
+            "RENADMX2",
+            "RENADMX3",
+            "RENADMX4",
+            "RENADMX5",
+            "RENADMX6",
+            "RENADMX7",
+            "RENADMX8"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0i2t9p",
@@ -3252,7 +3394,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "31",
-      "label": "\"➡ 27. Avez-vous pu effectuer ces démarches d’une autre façon (sur place, par téléphone, etc.) ?\"",
+      "label": "\"Avez-vous pu effectuer ces démarches d’une autre façon (sur place, par téléphone, etc.) ?\"",
       "conditionFilter": {
         "value": "(not((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1) or ((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))",
         "bindingDependencies": [
@@ -3353,7 +3495,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "33",
-      "label": "\"➡ 28. Avez-vous déjà, personnellement, acheté ou commandé des produits ou des services sur Internet pour un usage privé (c’est-à-dire hors usage professionnel) ?\"",
+      "label": "\"Avez-vous déjà, personnellement, acheté ou commandé des produits ou des services sur Internet pour un usage privé (c’est-à-dire hors usage professionnel) ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1))))",
         "bindingDependencies": [
@@ -3418,7 +3560,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "34",
-      "label": "\"➡ 29. La dernière fois, était-ce...\"",
+      "label": "\"La dernière fois, était-ce...\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\"))",
         "bindingDependencies": [
@@ -3486,7 +3628,7 @@
       "id": "kc0ijn79",
       "componentType": "CheckboxGroup",
       "page": "35",
-      "label": "\"➡ 30. Au cours des trois derniers mois, hors usage professionnel, avez-vous personnellement acheté ou commandé sur Internet ou via une application…\"",
+      "label": "\"Au cours des trois derniers mois, hors usage professionnel, avez-vous personnellement acheté ou commandé sur Internet ou via une application…\"",
       "declarations": [
         {
           "id": "kc0ijn79-kc0ivga8",
@@ -3646,7 +3788,7 @@
       "id": "kc0iq8u1",
       "componentType": "CheckboxGroup",
       "page": "36",
-      "label": "\"➡ 31. Les achats que vous avez déclarés étaient-ils effectués auprès de…\"",
+      "label": "\"Les achats que vous avez déclarés étaient-ils effectués auprès de…\"",
       "declarations": [
         {
           "id": "kc0iq8u1-kc0isx9s",
@@ -3716,7 +3858,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "37",
-      "label": "\"➡ 32. Avez-vous acheté certains de ces produits auprès de particuliers sur Internet ou via une application(eBay, Facebook Marketplace, LeBonCoin, etc.)?\"",
+      "label": "\"Avez-vous acheté certains de ces produits auprès de particuliers sur Internet ou via une application(eBay, Facebook Marketplace, LeBonCoin, etc.)?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
         "bindingDependencies": [
@@ -3753,7 +3895,7 @@
       "id": "kc0jcnvt",
       "componentType": "CheckboxGroup",
       "page": "38",
-      "label": "\"➡ 33. Au cours des trois derniers mois, hors usage professionnel, avez-vous souscrit à un abonnement ou téléchargésur Internet ou via une application …\"",
+      "label": "\"Au cours des trois derniers mois, hors usage professionnel, avez-vous souscrit à un abonnement ou téléchargésur Internet ou via une application …\"",
       "declarations": [
         {
           "id": "kc0jcnvt-kc0j9km0",
@@ -3778,6 +3920,24 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0jcnvt-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(NUMACHAX8,integer) ='1' and (cast(NUMACHAX1,integer) ='1' or cast(NUMACHAX2,integer) ='1' or cast(NUMACHAX3,integer) ='1' or cast(NUMACHAX4,integer) ='1' or cast(NUMACHAX5,integer) ='1' or cast(NUMACHAX6,integer) ='1' or cast(NUMACHAX7,integer) ='1'))",
+          "errorMessage": "\"Votre réponse - « Aucun de ces produits » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "NUMACHAX8",
+            "NUMACHAX1",
+            "NUMACHAX2",
+            "NUMACHAX3",
+            "NUMACHAX4",
+            "NUMACHAX5",
+            "NUMACHAX6",
+            "NUMACHAX7"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -3850,7 +4010,7 @@
       "id": "kc0ix4pz",
       "componentType": "CheckboxGroup",
       "page": "39",
-      "label": "\"➡ 34. Au cours des trois derniers mois, hors usage professionnel, avez-vous acheté sur un site Internet ou via une application…\"",
+      "label": "\"Au cours des trois derniers mois, hors usage professionnel, avez-vous acheté sur un site Internet ou via une application…\"",
       "declarations": [
         {
           "id": "kc0ix4pz-kc0jflg6",
@@ -3875,6 +4035,22 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0ix4pz-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(SERVACHAX6,integer) ='1' and ( cast(SERVACHAX1,integer) = '1' or cast(SERVACHAX2,integer) = '1' or cast(SERVACHAX3,integer) = '1' or cast(SERVACHAX4,integer) = '1' or cast(SERVACHAX5,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « Aucun de ces produits » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "SERVACHAX6",
+            "SERVACHAX1",
+            "SERVACHAX2",
+            "SERVACHAX3",
+            "SERVACHAX4",
+            "SERVACHAX5"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -3965,7 +4141,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "40",
-      "label": "\"➡ 35. Avez-vous fait appel à des particuliers pour obtenir l’un des services domestiques mentionnés (sur Facebook Marketplace, LeBonCoin, Youpijob, etc.) ?\"",
+      "label": "\"Avez-vous fait appel à des particuliers pour obtenir l’un des services domestiques mentionnés (sur Facebook Marketplace, LeBonCoin, Youpijob, etc.) ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\")) and (not(cast(SERVACHAX5,integer) = \"\"))",
         "bindingDependencies": [
@@ -4003,7 +4179,7 @@
       "id": "kc0jjdn7",
       "componentType": "CheckboxGroup",
       "page": "41",
-      "label": "\"➡ 36. Au cours des trois derniers mois, à titre privé, avez-vous fait appel à un service de transport via un site Web ou une application ?\"",
+      "label": "\"Au cours des trois derniers mois, à titre privé, avez-vous fait appel à un service de transport via un site Web ou une application ?\"",
       "declarations": [
         {
           "id": "kc0jjdn7-kc0j5qds",
@@ -4028,6 +4204,15 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0jjdn7-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(SHARTX3,integer) = '1' and ( cast(SHARTX1,integer) = '1' or cast(SHARTX2,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « Non » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": ["SHARTX3", "SHARTX1", "SHARTX2"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -4061,7 +4246,7 @@
       "id": "kc0ja8z6",
       "componentType": "CheckboxGroup",
       "page": "42",
-      "label": "\"➡ 37. Au cours des trois derniers mois, à titre privé, avez-vous loué un logement via un site web ou une application ?\"",
+      "label": "\"Au cours des trois derniers mois, à titre privé, avez-vous loué un logement via un site web ou une application ?\"",
       "declarations": [
         {
           "id": "kc0ja8z6-kc0jfsm5",
@@ -4086,6 +4271,15 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0ja8z6-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(SHARAX3,integer) ='1' and ( cast(SHARAX2,integer) = '1' or cast(SHARAX2,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « Non » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": ["SHARAX3", "SHARAX2"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -4120,7 +4314,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "43",
-      "label": "\"➡ 38. Au cours des trois derniers mois, combien de fois avez-vous acheté des produits ou des services à titre privé sur Internet ?\"",
+      "label": "\"Au cours des trois derniers mois, combien de fois avez-vous acheté des produits ou des services à titre privé sur Internet ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
         "bindingDependencies": [
@@ -4162,7 +4356,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "44",
-      "label": "\"➡ 39. Au cours des trois derniers mois, à combien estimez-vous la somme de vos achats réalisés via un site Internet ou une application à titre privé ?\"",
+      "label": "\"Au cours des trois derniers mois, à combien estimez-vous la somme de vos achats réalisés via un site Internet ou une application à titre privé ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
         "bindingDependencies": [
@@ -4209,7 +4403,7 @@
       "id": "kc0jhlsv",
       "componentType": "CheckboxGroup",
       "page": "45",
-      "label": "\"➡ 40. Au cours des trois derniers mois, lors de vos achats ou commandes sur Internet ou via une application, avez-vous rencontré les problèmes suivants :\"",
+      "label": "\"Au cours des trois derniers mois, lors de vos achats ou commandes sur Internet ou via une application, avez-vous rencontré les problèmes suivants :\"",
       "declarations": [
         {
           "id": "kc0jhlsv-kc0jem2e",
@@ -4234,6 +4428,27 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0jhlsv-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(PBACHAX11,integer) = '1' and ( cast(PBACHAX1,integer) = '1' or cast(PBACHAX2,integer) = '1' or cast(PBACHAX3,integer) = '1' or cast(PBACHAX4,integer) = '1' or cast(PBACHAX5,integer) = '1' or cast(PBACHAX6,integer) = '1' or cast(PBACHAX7,integer) = '1' or cast(PBACHAX8,integer) = '1' or cast(PBACHAX9,integer) = '1' or cast(PBACHAX10,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « Vous n’avez pas rencontré de problème » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "PBACHAX11",
+            "PBACHAX1",
+            "PBACHAX2",
+            "PBACHAX3",
+            "PBACHAX4",
+            "PBACHAX5",
+            "PBACHAX6",
+            "PBACHAX7",
+            "PBACHAX8",
+            "PBACHAX9",
+            "PBACHAX10"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -4327,7 +4542,7 @@
       "id": "kc0juxed",
       "componentType": "CheckboxGroup",
       "page": "46",
-      "label": "\"➡ 41. Au cours des trois derniers mois, dans un but privé, avez-vous effectué les activités financières suivantes sur un site Internet ou une application :\"",
+      "label": "\"Au cours des trois derniers mois, dans un but privé, avez-vous effectué les activités financières suivantes sur un site Internet ou une application :\"",
       "declarations": [
         {
           "id": "kc0juxed-kc0jlwsz",
@@ -4350,6 +4565,20 @@
           "RENADMX8"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0juxed-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(FINANCEX4,integer) = '1' and ( cast(FINANCEX1,integer) = '1' or cast(FINANCEX2,integer) = '1' or cast(FINANCEX3,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - « Aucune de ces activités financières » - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "FINANCEX4",
+            "FINANCEX1",
+            "FINANCEX2",
+            "FINANCEX3"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0ir8tk",
@@ -4452,7 +4681,7 @@
       "id": "kc0jvlb9",
       "componentType": "CheckboxGroup",
       "page": "47",
-      "label": "\"➡ 42. Pourquoi n’avez-vous rien acheté via un site web ou application au cours des trois derniers mois ?\"",
+      "label": "\"Pourquoi n’avez-vous rien acheté via un site web ou application au cours des trois derniers mois ?\"",
       "declarations": [
         {
           "id": "kc0jvlb9-kc0jov5x",
@@ -4625,7 +4854,7 @@
       "id": "kc0jw8fh",
       "componentType": "CheckboxGroup",
       "page": "49",
-      "label": "\"➡ 43. Concernant vos compétences en informatique, au cours des trois derniers mois, avez-vous déjà …\"",
+      "label": "\"Concernant vos compétences en informatique, au cours des trois derniers mois, avez-vous déjà …\"",
       "declarations": [
         {
           "id": "kc0jw8fh-kc0k5m8e",
@@ -4650,6 +4879,43 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0jw8fh-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(COMPINFX1,integer) = '' and cast(COMPINFX2,integer) = '' and cast(COMPINFX3,integer) = '' and cast(COMPINFX4,integer) = '' and cast(COMPINFX5,integer) = '' and cast(COMPINFX6,integer) = '' and cast(COMPINFX7,integer) = '' and cast(COMPINFX8,integer) = '' and cast(COMPINFX9,integer) = '')",
+          "errorMessage": "\"Au moins une modalité doit être cochée à cette question\"",
+          "bindingDependencies": [
+            "COMPINFX1",
+            "COMPINFX2",
+            "COMPINFX3",
+            "COMPINFX4",
+            "COMPINFX5",
+            "COMPINFX6",
+            "COMPINFX7",
+            "COMPINFX8",
+            "COMPINFX9"
+          ]
+        },
+
+        {
+          "id": "kc0jw8fh-CI-1",
+          "criticality": "WARN",
+          "control": "not(cast(COMPINFX9,integer) = '1' and ( cast(COMPINFX2,integer) = '1' or cast(COMPINFX3,integer) = '1' or cast(COMPINFX4,integer) = '1' or cast(COMPINFX5,integer) = '1' or cast(COMPINFX6,integer) = '1' or cast(COMPINFX7,integer) = '1' or cast(COMPINFX8,integer) = '1' or cast(COMPINFX1,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse « Aucune de ces compétences » est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "COMPINFX9",
+            "COMPINFX2",
+            "COMPINFX3",
+            "COMPINFX4",
+            "COMPINFX5",
+            "COMPINFX6",
+            "COMPINFX7",
+            "COMPINFX8",
+            "COMPINFX1"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0k0bku",
@@ -4761,7 +5027,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "50",
-      "label": "\"➡ 44. Vous vous êtes servi(e) d’un tableur au cours des trois derniers mois. Avez-vous utilisé des fonctionnalités avancées (fonctions, formules, macros, Visual Basic) pour organiser, analyser, structurer ou modifier les données ?\"",
+      "label": "\"Vous vous êtes servi(e) d’un tableur au cours des trois derniers mois. Avez-vous utilisé des fonctionnalités avancées (fonctions, formules, macros, Visual Basic) pour organiser, analyser, structurer ou modifier les données ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(COMPINFX6,integer) = \"\" ))",
         "bindingDependencies": [
@@ -4800,7 +5066,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "51",
-      "label": "\"➡ 45. Avez-vous vu des informations ou du contenu (par exemple, des vidéos, des images) que vous considérez comme faux ou peu fiables sur des sites d’information ou des médias sociaux (par exemple, Facebook, Instagram, YouTube, Twitter) au cours des trois derniers mois ?\"",
+      "label": "\"Avez-vous vu des informations ou du contenu (par exemple, des vidéos, des images) que vous considérez comme faux ou peu fiables sur des sites d’information ou des médias sociaux (par exemple, Facebook, Instagram, YouTube, Twitter) au cours des trois derniers mois ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
         "bindingDependencies": [
@@ -4869,7 +5135,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "52",
-      "label": "\"➡ 46. Avez-vous vérifié la fiabilité de ces informations ou contenus ?\"",
+      "label": "\"Avez-vous vérifié la fiabilité de ces informations ou contenus ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(INFOX,string) = \"2\" or cast(INFOX,string) = \"\"))",
         "bindingDependencies": [
@@ -4939,7 +5205,7 @@
       "id": "kc0jycut",
       "componentType": "CheckboxGroup",
       "page": "53",
-      "label": "\"➡ 47. Comment avez-vous vérifié la véracité de ces informations ou contenus ?\"",
+      "label": "\"Comment avez-vous vérifié la véracité de ces informations ou contenus ?\"",
       "declarations": [
         {
           "id": "kc0jycut-kc0kbifu",
@@ -5038,7 +5304,7 @@
       "id": "kc0k4daj",
       "componentType": "CheckboxGroup",
       "page": "54",
-      "label": "\"➡ 48. Pourquoi n’avez-vous pas vérifié la véracité de ces informations ou contenus ?\"",
+      "label": "\"Pourquoi n’avez-vous pas vérifié la véracité de ces informations ou contenus ?\"",
       "declarations": [
         {
           "id": "kc0k4daj-kc0kdmlx",
@@ -5136,7 +5402,7 @@
       "id": "kc0kbnid",
       "componentType": "CheckboxGroup",
       "page": "56",
-      "label": "\"➡ 49. Au cours des trois derniers mois, avez-vous effectué une ou plusieurs des actions suivantes pour gérer l’accès à vos données personnelles (nom, date de naissance, numéro de carte d’identité, coordonnées, numéro de carte de crédit, photos, situation géographique, etc.) sur Internet ?\"",
+      "label": "\"Au cours des trois derniers mois, avez-vous effectué une ou plusieurs des actions suivantes pour gérer l’accès à vos données personnelles (nom, date de naissance, numéro de carte d’identité, coordonnées, numéro de carte de crédit, photos, situation géographique, etc.) sur Internet ?\"",
       "declarations": [
         {
           "id": "kc0kbnid-kc0kk90z",
@@ -5161,6 +5427,23 @@
           "DATECOM"
         ]
       },
+      "controls": [
+        {
+          "id": "kc0kbnid-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(ACCESX7,integer) = '1' and ( cast(ACCESX1,integer) = '1' or cast(ACCESX2,integer) = '1' or cast(ACCESX3,integer) = '1' or cast(ACCESX4,integer) = '1' or cast(ACCESX5,integer) = '1' or cast(ACCESX6,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse « Aucune de ces actions» est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "ACCESX7",
+            "ACCESX1",
+            "ACCESX2",
+            "ACCESX3",
+            "ACCESX4",
+            "ACCESX5",
+            "ACCESX6"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0k7y1b",
@@ -5227,7 +5510,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "57",
-      "label": "\"➡ 50. Saviez-vous que les cookies peuvent être utilisés pour connaître les centres d’intérêt des internautes afin de leur envoyer des publicités ciblées ?\"",
+      "label": "\"Saviez-vous que les cookies peuvent être utilisés pour connaître les centres d’intérêt des internautes afin de leur envoyer des publicités ciblées ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
         "bindingDependencies": [
@@ -5265,7 +5548,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "58",
-      "label": "\"➡ 51. Avez-vous changé les paramètres de votre navigateur Internet afin d’interdire ou de limiter les cookies sur l’un de vos appareils ?\"",
+      "label": "\"Avez-vous changé les paramètres de votre navigateur Internet afin d’interdire ou de limiter les cookies sur l’un de vos appareils ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
         "bindingDependencies": [
@@ -5303,7 +5586,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "59",
-      "label": "\"➡ 52. Êtes-vous préoccupé(e) par le fait que vos activités en ligne soient enregistrées pour vous proposer des publicités ciblées ?\"",
+      "label": "\"Êtes-vous préoccupé(e) par le fait que vos activités en ligne soient enregistrées pour vous proposer des publicités ciblées ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
         "bindingDependencies": [
@@ -5343,7 +5626,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "60",
-      "label": "\"➡ 53. Utilisez-vous un logiciel de protection contre le tracking (logiciel qui limite la capacité à suivre vos actions sur Internet) sur l’un de vos appareils ?\"",
+      "label": "\"Utilisez-vous un logiciel de protection contre le tracking (logiciel qui limite la capacité à suivre vos actions sur Internet) sur l’un de vos appareils ?\"",
       "conditionFilter": {
         "value": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
         "bindingDependencies": [
@@ -5404,7 +5687,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "62",
-      "label": "\"➡ 54. De combien de numéros de téléphone fixe disposez-vous dans votre ménage(numéros commençant par 01 à 05 ou par 09)?\"",
+      "label": "\"De combien de numéros de téléphone fixe disposez-vous dans votre ménage(numéros commençant par 01 à 05 ou par 09)?\"",
       "conditionFilter": { "value": "true" },
       "hierarchy": {
         "sequence": {
@@ -5447,7 +5730,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "63",
-      "label": "\"➡ 55. Décrochez-vous ou une personne de votre ménage décroche-t-elle lorsque votre téléphone fixe sonne ?\"",
+      "label": "\"Décrochez-vous ou une personne de votre ménage décroche-t-elle lorsque votre téléphone fixe sonne ?\"",
       "conditionFilter": {
         "value": "(not(cast(NUMEROS,string) = \"1\" or cast(NUMEROS,string) = \"\" ))",
         "bindingDependencies": ["NUMEROS"]
@@ -5482,7 +5765,7 @@
       "id": "kc0mzowl",
       "componentType": "CheckboxGroup",
       "page": "64",
-      "label": "\"➡ 56. Pour votre usage privé, utilisez-vous ?\"",
+      "label": "\"Pour votre usage privé, utilisez-vous ?\"",
       "declarations": [
         {
           "id": "kc0mzowl-kc0n7j03",
@@ -5492,6 +5775,19 @@
         }
       ],
       "conditionFilter": { "value": "true" },
+      "controls": [
+        {
+          "id": "kc0mzowl-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(SMARTPHONEX3,integer) = '1' and ( cast(SMARTPHONEX1,integer) = '1' or cast(SMARTPHONEX2,integer) = '1' ))",
+          "errorMessage": "\"Votre réponse - «Aucun de  ces appareils» - est incompatible avec les autres réponses\"",
+          "bindingDependencies": [
+            "SMARTPHONEX3",
+            "SMARTPHONEX1",
+            "SMARTPHONEX2"
+          ]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0mpozo",
@@ -5542,7 +5838,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "65",
-      "label": "\"➡ 57. Décrochez-vous lorsque votre téléphone mobile sonne ?\"",
+      "label": "\"Décrochez-vous lorsque votre téléphone mobile sonne ?\"",
       "conditionFilter": {
         "value": "(not(cast(SMARTPHONEX3,integer) = 1 or ( cast(SMARTPHONEX1,integer) = \"\" and cast(SMARTPHONEX2,integer) = \"\" and cast(SMARTPHONEX3,integer) = \"\" )))",
         "bindingDependencies": ["SMARTPHONEX3", "SMARTPHONEX1", "SMARTPHONEX2"]
@@ -5577,7 +5873,7 @@
       "id": "kebbns0s",
       "componentType": "CheckboxGroup",
       "page": "66",
-      "label": "\"➡ 58. Quel est votre opérateur mobile ?\"",
+      "label": "\"Quel est votre opérateur mobile ?\"",
       "declarations": [
         {
           "id": "kebbns0s-kispywjo",
@@ -5665,7 +5961,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "68",
-      "label": "\"➡ 59. Quelle est actuellement votre situation principale vis-à-vis du travail ?\"",
+      "label": "\"Quelle est actuellement votre situation principale vis-à-vis du travail ?\"",
       "declarations": [
         {
           "id": "kc0n6snm-kc0my1wg",
@@ -5731,7 +6027,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "69",
-      "label": "\"➡ 60. Dans votre \" || cast(cast(emploi,string),string) || \" ? \"",
+      "label": "\"Dans votre \" || cast(cast(emploi,string),string) || \" ? \"",
       "declarations": [
         {
           "id": "kc0nbhww-kc0nojf1",
@@ -5830,7 +6126,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "70",
-      "label": "\"➡ 61. Votre tâche principale \" || cast(cast(emploi2,string),string) || \"-elle de superviser le travail d’autres salariés (hors apprentis et stagiaires) ?\"",
+      "label": "\"Votre tâche principale \" || cast(cast(emploi2,string),string) || \"-elle de superviser le travail d’autres salariés (hors apprentis et stagiaires) ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5856,7 +6152,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "71",
-      "label": "\"➡ 62. Quel \" || cast(cast(emploi2,string),string) || \" votre type d’emploi ? \"",
+      "label": "\"Quel \" || cast(cast(emploi2,string),string) || \" votre type d’emploi ? \"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5888,7 +6184,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "72",
-      "label": "\"➡ 63. \" || cast(cast(emploi3,string),string) || \"-vous ? \"",
+      "label": "\"\" || cast(cast(emploi3,string),string) || \"-vous ? \"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
         "bindingDependencies": ["STATUT"]
@@ -5948,7 +6244,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "73",
-      "label": "\"➡ 64. \" || cast(cast(emploi4,string),string) || \"-vous ?\"",
+      "label": "\"\" || cast(cast(emploi4,string),string) || \"-vous ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
@@ -5978,11 +6274,20 @@
       "mandatory": false,
       "page": "74",
       "maxLength": 50,
-      "label": "\"➡ 65. Quelle \" || cast(cast(emploi2,string),string) || \" \" || cast(cast(emploi5,string),string) || \" ?​\"",
+      "label": "\"Quelle \" || cast(cast(emploi2,string),string) || \" \" || cast(cast(emploi5,string),string) || \" ?​\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
       },
+      "controls": [
+        {
+          "id": "kc0ofjt7-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(PROFESSION,string) = '')",
+          "errorMessage": "\"Vous n’avez pas répondu à cette question. Si c’est un oubli, veuillez compléter votre réponse. \"",
+          "bindingDependencies": ["PROFESSION"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0n110n",
@@ -6000,11 +6305,20 @@
       "mandatory": false,
       "page": "75",
       "maxLength": 50,
-      "label": "\"➡ 66. Quelle \" || cast(cast(emploi2,string),string) || \" l’activité de l’établissement ou du site \" || cast(cast(emploi6,string),string) || \" ?​\"",
+      "label": "\"Quelle \" || cast(cast(emploi2,string),string) || \" l’activité de l’établissement ou du site \" || cast(cast(emploi6,string),string) || \" ?​\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\"))",
         "bindingDependencies": ["STATUT"]
       },
+      "controls": [
+        {
+          "id": "kc0p4jga-CI-0",
+          "criticality": "WARN",
+          "control": "not(cast(ACTILIB,string) = '')",
+          "errorMessage": "\"Vous n’avez pas répondu à cette question. Si c’est un oubli, veuillez compléter votre réponse. \"",
+          "bindingDependencies": ["ACTILIB"]
+        }
+      ],
       "hierarchy": {
         "sequence": {
           "id": "kc0n110n",
@@ -6040,7 +6354,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "76",
-      "label": "\"➡ 67. \" || cast(cast(emploi7,string),string) || \" ?\"",
+      "label": "\"\" || cast(cast(emploi7,string),string) || \" ?\"",
       "conditionFilter": {
         "value": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) < 8 or cast(STATUT,string) = \"11\" or cast(STATUT,string) = \"\"))",
         "bindingDependencies": ["STATUT"]
@@ -6070,7 +6384,7 @@
       "componentType": "Radio",
       "mandatory": false,
       "page": "77",
-      "label": "\"➡ 68. Une dernière question, quel est le revenu mensuelde votre ménage en euros ?\"",
+      "label": "\"Une dernière question, quel est le revenu mensuelde votre ménage en euros ?\"",
       "declarations": [
         {
           "id": "kc0qz959-kc0r6wgt",
@@ -8724,6 +9038,789 @@
         "EDITED": null,
         "INPUTED": null
       }
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DATENAIS",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SEXE",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DIPLOME",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ETUDE",
+      "expression": "(not(cast(DIPLOME,string) > 3))",
+      "bindingDependencies": ["DIPLOME"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_COUPLE",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ETAMATRI",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PACS",
+      "expression": "(not(cast(ETAMATRI,string) = \"2\"))",
+      "bindingDependencies": ["ETAMATRI"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_LNAIS",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DEPNAIS",
+      "expression": "(not(cast(LNAIS,string) = \"\")) and (not(cast(LNAIS,string) = \"2\"))",
+      "bindingDependencies": ["LNAIS"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PAYSNAIS",
+      "expression": "(not(cast(LNAIS,string) = \"\")) and (not((cast(LNAIS,string) = \"1\") and not ((cast(LNAIS,string) = \"2\"))))",
+      "bindingDependencies": ["LNAIS"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NATIO1N",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NATIO2N",
+      "expression": "(not(cast(NATIO1N3,integer)  <>  1 ))",
+      "bindingDependencies": ["NATIO1N3"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NBHAB",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_REPARTHAB",
+      "expression": "(not(cast(NBHAB,integer) = 0))",
+      "bindingDependencies": ["NBHAB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NET",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DEBITX",
+      "expression": "(not(( cast(NET,string) = \"2\" or cast(NET,string) = \"\" )))",
+      "bindingDependencies": ["NET"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NUSEWEB",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_USEWEB",
+      "expression": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
+      "bindingDependencies": ["NUSEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SEVWEB",
+      "expression": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" ))) and (not(cast(USEWEB,string)  <>  1))",
+      "bindingDependencies": ["NUSEWEB", "USEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DEVICEX",
+      "expression": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
+      "bindingDependencies": ["NUSEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PRATINTXX",
+      "expression": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
+      "bindingDependencies": ["NUSEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_EDUPROX",
+      "expression": "(not((cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" or cast(NUSEWEB,string) = \"\") or (cast(NUSEWEB,string) = \"2\" )))",
+      "bindingDependencies": ["NUSEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ADMX",
+      "expression": "(not(cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\"))",
+      "bindingDependencies": ["NUSEWEB"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_RAISADMX",
+      "expression": "(not(cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\")) and (not(cast(ADMX3,integer) = 1 or cast(ADMX4,integer) = 1))",
+      "bindingDependencies": ["NUSEWEB", "ADMX3", "ADMX4"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_AIDADMX",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_RENADMX",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_AUTADM",
+      "expression": "(not((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1) or ((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))",
+      "bindingDependencies": [
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "NUSEWEB"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ECOM",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DATECOM",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ACHATXX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ORIGINEX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PARTACHA",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NUMACHAX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SERVACHAX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PARTJOB",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\")) and (not(cast(SERVACHAX5,integer) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM",
+        "SERVACHAX5"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SHARTX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SHARAX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NBCOM",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SOMCOM",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PBACHAX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(ECOM,string) = \"2\" or cast(ECOM,string) = \"\")) and (not(cast(DATECOM,string) > 1 or cast(DATECOM,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_FINANCEX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_RAISACHAX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )) or (cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_COMPINFX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_EXCEL",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(COMPINFX6,integer) = \"\" ))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM",
+        "COMPINFX6"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_INFOX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_VERIFINFO",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(INFOX,string) = \"2\" or cast(INFOX,string) = \"\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM",
+        "INFOX"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_MOYINFO",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(INFOX,string) = \"2\" or cast(INFOX,string) = \"\")) and (not(cast(VERIFINFO,string) = \"2\"))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM",
+        "INFOX",
+        "VERIFINFO"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_RAISINFO",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" ))))) and (not(cast(INFOX,string) = \"2\" or cast(INFOX,string) = \"\")) and (not((cast(VERIFINFO,string) = \"1\" ) and not ((cast(VERIFINFO,string) = \"2\"))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM",
+        "INFOX",
+        "VERIFINFO"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ACCESX",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SECOOK",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SECUNAV",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PREOCC",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_TRACKING",
+      "expression": "(not((cast(NUSEWEB,string)=\"3\" or cast(NUSEWEB,string)=\"4\" or cast(NUSEWEB,string)=\"\") and cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)) and (not((cast(NUSEWEB,string) =\"3\" or cast(NUSEWEB,string) =\"4\" or cast(NUSEWEB,string) =\"\") and not ((cast(RENADMX1,integer)  <>  1 and cast(RENADMX2,integer)  <>  1 and cast(RENADMX3,integer)  <>  1 and cast(RENADMX4,integer)  <>  1 and cast(RENADMX5,integer)  <>  1 and cast(RENADMX6,integer)  <>  1 and cast(RENADMX7,integer)  <>  1 and cast(RENADMX8,integer)  <>  1)))) and (not(cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\")) and (not((cast(NUSEWEB,string) = \"2\" or cast(NUSEWEB,string) = \"3\" or cast(NUSEWEB,string) = \"4\" ) and not ((( cast(ECOM,string) = \"1\" ) and ( cast(DATECOM,string) =\"1\" )))))",
+      "bindingDependencies": [
+        "NUSEWEB",
+        "RENADMX1",
+        "RENADMX2",
+        "RENADMX3",
+        "RENADMX4",
+        "RENADMX5",
+        "RENADMX6",
+        "RENADMX7",
+        "RENADMX8",
+        "ECOM",
+        "DATECOM"
+      ]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NUMEROS",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DECROCHEF",
+      "expression": "(not(cast(NUMEROS,string) = \"1\" or cast(NUMEROS,string) = \"\" ))",
+      "bindingDependencies": ["NUMEROS"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SMARTPHONEX",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DECROCHEM",
+      "expression": "(not(cast(SMARTPHONEX3,integer) = 1 or ( cast(SMARTPHONEX1,integer) = \"\" and cast(SMARTPHONEX2,integer) = \"\" and cast(SMARTPHONEX3,integer) = \"\" )))",
+      "bindingDependencies": ["SMARTPHONEX3", "SMARTPHONEX1", "SMARTPHONEX2"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_OPERATEUR",
+      "expression": "(not(cast(SMARTPHONEX3,integer) = 1 or ( cast(SMARTPHONEX1,integer) = \"\" and cast(SMARTPHONEX2,integer) = \"\" and cast(SMARTPHONEX3,integer) = \"\" )))",
+      "bindingDependencies": ["SMARTPHONEX3", "SMARTPHONEX1", "SMARTPHONEX2"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SITUA",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_STATUT",
+      "expression": "true"
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ENCADR",
+      "expression": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CONTRAT",
+      "expression": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CLASSIF",
+      "expression": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) = \"8\" or cast(STATUT,string) = \"9\" or cast(STATUT,string) = \"10\" ))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_DUREE_EMP",
+      "expression": "(not(cast(STATUT,string) = \"11\"))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_PROFESSION",
+      "expression": "(not(cast(STATUT,string) = \"11\"))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_ACTILIB",
+      "expression": "(not(cast(STATUT,string) = \"11\"))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_NOMBRSAL",
+      "expression": "(not(cast(STATUT,string) = \"11\")) and (not(cast(STATUT,string) < 8 or cast(STATUT,string) = \"11\" or cast(STATUT,string) = \"\"))",
+      "bindingDependencies": ["STATUT"]
+    },
+
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_TRANCHREVENU",
+      "expression": "true"
     },
 
     {
