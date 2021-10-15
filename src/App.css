@@ -65,13 +65,6 @@ body {
   color: #154783;
 }
 
-#main
-  .radio-modality.radio-modality-block:focus-within
-  > .list-icon-wrapper
-  > .modality-label,
-#main .radio-modality.radio-modality-block:focus-within {
-  color: #154783;
-}
 
 #main .radio-modality.radio-modality-block.content-checked {
   border: 1px solid #154783;
@@ -163,10 +156,7 @@ body {
   border: 1px solid #154783;
 }
 
-#main .checkbox-modality:focus-within > .list-icon-wrapper > .modality-label,
-#main .checkbox-modality:focus-within {
-  color: #154783;
-}
+
 
 #main .list-icon-wrapper > .modality-label,
 #main .checkbox-modality {
