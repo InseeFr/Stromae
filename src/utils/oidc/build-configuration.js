@@ -13,6 +13,13 @@ const getCurrentSurvey = path => {
   return window.localStorage.getItem(LAST_SURVEY) || '';
 };
 
+const getKc_idp_hintActive = path => {
+  if (!path.startsWith('/read-only')) {
+    return '';
+  }
+  return '{"kc_idp_hint":"sso-insee"}';
+};
+
 export const buildOidcConfiguration = ({ oidcConf, conf }) => {
   const { origin, pathname } = window.location;
   const { portail } = conf;
@@ -38,6 +45,7 @@ export const buildOidcConfigurationFromKeycloak = ({ keycloakConf, conf }) => {
     post_logout_redirect_uri: `${portail}/${getCurrentSurvey(pathname)}`,
     scope: 'openid profile email',
     silent_redirect_uri: `${origin}/authentication/silent_callback`,
+    extraQueryParams: `${getKc_idp_hintActive(pathname)}`,
     automaticSilentRenew: true,
     loadUserInfo: true,
   };
