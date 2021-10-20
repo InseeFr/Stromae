@@ -59,13 +59,24 @@ export const buildOidcConfigurationFromBuildConfig = ({ oidcConf, conf }) => {
   return config;
 };
 
-export const buildOidcConfigurationFromBuildConfigAfterKeycloakReading = ({
-  oidcConf,
+export const buildOidcConfigurationFromKeycloakWithOidc = ({
+  keycloakConf,
   conf,
+  oidcConf,
 }) => {
-  const config = {
-    ...conf,
+  const { origin, pathname } = window.location;
+  const { portail } = conf;
+  const { realm, 'auth-server-url': authServer } = keycloakConf;
+  return {
+    authority: `${authServer}/realms/${realm}`,
     client_id: oidcConf.client_id,
+    redirect_uri: `${origin}/authentication/callback`,
+    response_type: 'code',
+    post_logout_redirect_uri: `${portail}/${getCurrentSurvey(pathname)}`,
+    scope: 'openid profile email',
+    silent_redirect_uri: `${origin}/authentication/silent_callback`,
+    extraQueryParams: `${getKc_idp_hintActive(pathname)}`,
+    automaticSilentRenew: true,
+    loadUserInfo: true,
   };
-  return config;
 };
