@@ -134,9 +134,11 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
           setQuestionnaire(qR.data.value);
           setNomenclatures(nR.data);
           const mR = await getMetadata();
+          console.log(mR);
           if (!mR.error) {
             setMetadata(mR.data);
             const dR = await getSuData();
+            console.log(dR);
             if (!dR.error) {
               setSuData(dR.data);
               setLoading(false);

@@ -1,7 +1,7 @@
 {
   "authenticationType": "NONE",
   "_authenticationType_comment_": "Authentication type : OIDC or NONE",
-  "apiUrl": "http://localhost:8080",
+  "apiUrl": "https://api-questionnaire-enqueteurs.kub.sspcloud.fr",
   "inseeContext": "household",
   "portail": "https://particuliers.recette.insee.fr"
 }
