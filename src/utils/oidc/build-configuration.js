@@ -58,3 +58,14 @@ export const buildOidcConfigurationFromBuildConfig = ({ oidcConf, conf }) => {
   };
   return config;
 };
+
+export const buildOidcConfigurationFromBuildConfigAfterKeycloakReading = ({
+  oidcConf,
+  conf,
+}) => {
+  const config = {
+    ...conf,
+    client_id: oidcConf.client_id,
+  };
+  return config;
+};
