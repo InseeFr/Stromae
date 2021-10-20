@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0',
     paddingTop: '1em',
     paddingBottom: '3em',
+    marginBottom: '30px',
   },
   component: {
     padding: '10px',
