@@ -19,6 +19,11 @@ const App = () => {
         .then(r => {
           setConfiguration(r);
         });
+      fetch(`${window.location.origin}/build-configuration.json`)
+        .then(r => r.json())
+        .then(r => {
+          setConfiguration(r);
+        });
     }
   }, [configuration]);
 

@@ -8,6 +8,7 @@ import { LoaderLogo } from 'components/shared/loader';
 import {
   buildOidcConfiguration,
   buildOidcConfigurationFromKeycloak,
+  buildOidcConfigurationFromBuildConfig,
 } from 'utils/oidc/build-configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
@@ -29,6 +30,23 @@ const AuthProviderOIDC = ({ children }) => {
           })
         );
         setLoading(false);
+      })
+      .catch(() => {
+        fetch(`${window.location.origin}/build-oidc.json`)
+          .then(r => r.json())
+          .then(r => {
+            setOidcConf(
+              buildOidcConfigurationFromBuildConfig({
+                oidcConf: r.config,
+                conf: conf,
+              })
+            );
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+            setError(new Error(errorDictionary.noAuthFile));
+          });
       })
       .catch(() => {
         fetch(`${window.location.origin}/oidc.json`)

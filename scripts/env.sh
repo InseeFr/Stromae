@@ -19,6 +19,10 @@ do
   
 done < .env
 envsubst < "./configuration.json" > "configuration.temp"
+envsubst < "./build-configuration.json" > "build-configuration.temp"
+envsubst < "./build-oidc.json" > "build-oidc.temp"
 envsubst < "./oidc.json" > "oidc.temp"
 mv configuration.temp configuration.json
+mv build-configuration.temp build-configuration.json
+mv build-oidc.temp build-oidc.json
 mv oidc.temp oidc.json
