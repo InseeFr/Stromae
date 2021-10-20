@@ -50,3 +50,11 @@ export const buildOidcConfigurationFromKeycloak = ({ keycloakConf, conf }) => {
     loadUserInfo: true,
   };
 };
+
+export const buildOidcConfigurationFromBuildConfig = ({ oidcConf, conf }) => {
+  const config = {
+    ...oidcConf,
+    client_id: conf.client_id,
+  };
+  return config;
+};
