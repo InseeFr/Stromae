@@ -9,7 +9,7 @@ import {
   buildOidcConfiguration,
   buildOidcConfigurationFromKeycloak,
   buildOidcConfigurationFromBuildConfig,
-  buildOidcConfigurationFromBuildConfigAfterKeycloakReading,
+  buildOidcConfigurationFromKeycloakWithOidc,
 } from 'utils/oidc/build-configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
@@ -24,12 +24,25 @@ const AuthProviderOIDC = ({ children }) => {
     fetch(`${window.location.origin}/keycloak.json`)
       .then(r => r.json())
       .then(r => {
-        setOidcConf(
-          buildOidcConfigurationFromKeycloak({
-            keycloakConf: r,
-            conf: conf,
+        fetch(`${window.location.origin}/build-oidc.json`)
+          .then(r2 => r2.json())
+          .then(r2 => {
+            setOidcConf(
+              buildOidcConfigurationFromKeycloakWithOidc({
+                keycloakConf: r,
+                oidcConf: r2,
+                conf: conf,
+              })
+            );
           })
-        );
+          .catch(() => {
+            setOidcConf(
+              buildOidcConfigurationFromKeycloak({
+                keycloakConf: r,
+                conf: conf,
+              })
+            );
+          });
         setLoading(false);
       })
       .catch(() => {
@@ -68,22 +81,7 @@ const AuthProviderOIDC = ({ children }) => {
         setLoading(false);
         setError(new Error(errorDictionary.noAuthFile));
       });
-    fetch(`${window.location.origin}/build-oidc.json`)
-      .then(r => r.json())
-      .then(r => {
-        setOidcConf(
-          buildOidcConfigurationFromBuildConfigAfterKeycloakReading({
-            oidcConf: r.config,
-            conf: oidcConf,
-          })
-        );
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-        setError(new Error(errorDictionary.noAuthFile));
-      });
-  }, [conf, oidcConf]);
+  }, [conf]);
 
   if (loading) return <LoaderLogo />;
   if (error) return <ErrorFallback error={error} />;
