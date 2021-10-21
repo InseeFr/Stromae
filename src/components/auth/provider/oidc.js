@@ -5,12 +5,7 @@ import {
   InMemoryWebStorage,
 } from '@axa-fr/react-oidc-context';
 import { LoaderLogo } from 'components/shared/loader';
-import {
-  buildOidcConfiguration,
-  buildOidcConfigurationFromKeycloak,
-  buildOidcConfigurationFromBuildConfig,
-  buildOidcConfigurationFromKeycloakWithOidc,
-} from 'utils/oidc/build-configuration';
+import { buildOidcConfiguration } from 'utils/oidc/build-configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
 
@@ -21,63 +16,18 @@ const AuthProviderOIDC = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${window.location.origin}/keycloak.json`)
+    fetch(`${window.location.origin}/oidc.json`)
       .then(r => r.json())
       .then(r => {
-        fetch(`${window.location.origin}/build-oidc.json`)
-          .then(r2 => r2.json())
-          .then(r2 => {
-            setOidcConf(
-              buildOidcConfigurationFromKeycloakWithOidc({
-                keycloakConf: r,
-                oidcConf: r2,
-                conf: conf,
-              })
-            );
+        setOidcConf(
+          buildOidcConfiguration({
+            oidcConf: r.config,
+            conf: conf,
           })
-          .catch(() => {
-            setOidcConf(
-              buildOidcConfigurationFromKeycloak({
-                keycloakConf: r,
-                conf: conf,
-              })
-            );
-          });
+        );
         setLoading(false);
       })
       .catch(() => {
-        fetch(`${window.location.origin}/build-oidc.json`)
-          .then(r => r.json())
-          .then(r => {
-            setOidcConf(
-              buildOidcConfigurationFromBuildConfig({
-                oidcConf: r.config,
-                conf: conf,
-              })
-            );
-            setLoading(false);
-          })
-          .catch(() => {
-            setLoading(false);
-            setError(new Error(errorDictionary.noAuthFile));
-          });
-        fetch(`${window.location.origin}/oidc.json`)
-          .then(r => r.json())
-          .then(r => {
-            setOidcConf(
-              buildOidcConfiguration({
-                oidcConf: r.config,
-                conf: conf,
-              })
-            );
-            setLoading(false);
-          })
-          .catch(() => {
-            setLoading(false);
-            setError(new Error(errorDictionary.noAuthFile));
-          });
-      })
-      .catch(e => {
         setLoading(false);
         setError(new Error(errorDictionary.noAuthFile));
       });
