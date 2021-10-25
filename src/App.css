@@ -65,7 +65,6 @@ body {
   color: #154783;
 }
 
-
 #main .radio-modality.radio-modality-block.content-checked {
   border: 1px solid #154783;
 }
@@ -156,8 +155,6 @@ body {
   border: 1px solid #154783;
 }
 
-
-
 #main .list-icon-wrapper > .modality-label,
 #main .checkbox-modality {
   background: #edeaea;
@@ -243,7 +240,7 @@ input.checkbox-lunatic {
   color: black;
   font-family: 'Open Sans', sans-serif;
   line-height: 16px;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .checkbox-group-list > legend,
@@ -264,11 +261,14 @@ input.checkbox-lunatic {
 
 #main
   .lunatic-component:not(.outerContainer-Sequence, .outerContainer-Subsequence)
-  .declaration-lunatic {
+  > .declaration-lunatic {
   color: black !important;
 }
-
-#main .outerContainer-Sequence > .declarations-lunatic > .declaration-comment {
+#main
+  .outerContainer-Subsequence
+  > .declarations-lunatic
+  > .declaration-lunatic,
+#main .outerContainer-Sequence > .declarations-lunatic > .declaration-lunatic {
   color: #0f417a;
 }
 
