@@ -259,11 +259,10 @@ input.checkbox-lunatic {
   font-style: normal;
 }
 
-#main
-  .lunatic-component:not(.outerContainer-Sequence, .outerContainer-Subsequence)
-  > .declaration-lunatic {
-  color: black !important;
+#main .lunatic-component .declarations-lunatic .declaration-lunatic {
+  color: black ;
 }
+
 #main
   .outerContainer-Subsequence
   > .declarations-lunatic
