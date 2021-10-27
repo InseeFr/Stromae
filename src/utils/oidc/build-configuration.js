@@ -4,7 +4,8 @@ const getCurrentSurvey = path => {
   if (!path.startsWith('/authentication')) {
     const temp = path.split('/questionnaire/');
     if (temp.length > 1) {
-      const survey = temp[1].slice(0, temp[1].indexOf('/'));
+      const idQ = temp[1].slice(0, temp[1].indexOf('/'));
+      const survey = idQ.substr(0, idQ.indexOf('2'));
       window.localStorage.setItem(LAST_SURVEY, survey);
       return survey;
     }

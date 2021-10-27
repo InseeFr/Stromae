@@ -35,7 +35,7 @@ const Assistance = ({ open, setOpen }) => {
     setOpen(false);
     if (inseeContext === HOUSEHOLD && idQ) {
       window.open(
-        `${portail}/${idQ.split('-')[0]}/contacter-assistance`,
+        `${portail}/${idQ.substr(0, idQ.indexOf('2'))}/contacter-assistance`,
         '_blank'
       );
     }
