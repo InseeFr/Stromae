@@ -119,6 +119,7 @@ const OrchestratorManger = () => {
             features={['VTL', 'MD']}
             pagination={true}
             readonly={readonly}
+            placeholderList="Rechercher ici ..."
           />
         )}
       {errorSending && <h2>Error lors de l'envoie</h2>}
