@@ -229,10 +229,6 @@ input.checkbox-lunatic {
   width: 50px;
 }
 
-#main input[type='date' i]::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
 /* Question labels */
 
 #main .label-top > label {
