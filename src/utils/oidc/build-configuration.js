@@ -5,7 +5,7 @@ const getCurrentSurvey = path => {
     const temp = path.split('/questionnaire/');
     if (temp.length > 1) {
       const idQ = temp[1].slice(0, temp[1].indexOf('/'));
-      const survey = idQ.substr(0, idQ.indexOf('2'));
+      const survey = idQ.substr(0, idQ.indexOf('2')).toLowerCase();
       window.localStorage.setItem(LAST_SURVEY, survey);
       return survey;
     }
