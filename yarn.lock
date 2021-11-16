@@ -1252,12 +1252,13 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.1.0-hackathon":
-  version "0.1.0-hackathon"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.0-hackathon.tgz#c6b6d3994af0188f7496071206ec96890fad032f"
-  integrity sha512-IHqCmoLVQ1qQdtmhMkxdl+Crp4zUoC9prYsKWq9eP1JOeza6i1IxbXQZMX52QrV4/ZU4FrQbZTfrk+/ncykNvg==
+"@inseefr/lunatic@^0.1.1-hackathon":
+  version "0.1.1-hackathon"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.1-hackathon.tgz#42518ec173ebab56dfb63162d35a949d5d936478"
+  integrity sha512-Rl20h5e1NkPBHmD1kqAGjBiS0VDHKaIcbz1XhUZA2tC2I+dciyumdzxVy6TNn6A1sH9FyvcLI6oER/uJGqtJVA==
   dependencies:
     "@inseefr/trevas" "^0.1.10"
+    date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
@@ -4196,6 +4197,11 @@ date-fns@^2.17.0:
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.17.0.tgz#afa55daea539239db0a64e236ce716ef3d681ba1"
   integrity sha512-ZEhqxUtEZeGgg9eHNSOAJ8O9xqSgiJdrL0lzSSfMF54x6KXWJiOH/xntSJ9YomJPrYH/p08t6gWjGWq1SDJlSA==
+
+date-fns@^2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
+  integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
 
 dayjs@^1.8.12:
   version "1.10.7"
