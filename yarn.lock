@@ -1252,10 +1252,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.1.2-hackathon":
-  version "0.1.2-hackathon"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.2-hackathon.tgz#b91f025d6a92bccef9de486a7d1c9aa73b9bc3ee"
-  integrity sha512-U+sim5/S2XwYCFFQcCtmKUPqh6g4i6b4eGYL582gwMyzFlnIiSRXJ+kdzkRQ+dnxylBlgkaeNX8WYJhkxPj0lA==
+"@inseefr/lunatic@^0.1.3-hackathon":
+  version "0.1.3-hackathon"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.3-hackathon.tgz#3ae363d97b0f74bbdca092b129f44cf6f441c5cf"
+  integrity sha512-v6OOzNWhoc614FsMhInlX9Lj3AYm25D9gmIiBXFaPQVp6795BBargH4JZlY1r2CB/xRzhapM6wj3AougqEgpyg==
   dependencies:
     "@inseefr/trevas" "^0.1.10"
     date-fns "^2.25.0"
