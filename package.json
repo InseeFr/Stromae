@@ -1,10 +1,10 @@
 {
   "name": "stromae",
-  "version": "2.1.27",
+  "version": "2.1.28",
   "private": true,
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^0.1.3-hackathon",
+    "@inseefr/lunatic": "^0.1.4-hackathon",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
