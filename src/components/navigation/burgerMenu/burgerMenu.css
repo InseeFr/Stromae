@@ -31,7 +31,11 @@
   height: 138px;
   width: 55px;
   border-left: 1px solid #5181b8;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
 }
 
 #burgerMenu.closed {

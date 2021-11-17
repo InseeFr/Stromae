@@ -2,6 +2,7 @@ import { createDictionary, getLang } from './build-dictionary';
 import dictionary from './dictionary';
 import errorMessage from './errorMessage';
 import buttonMessage from './buttonMessage';
+import burgerMessage from './burgerMenu';
 import visualizeMessage from './visualizeMessage';
 import {
   getWelcomePageMessage,
@@ -16,6 +17,8 @@ export const visualizeDictionary = createDictionary(getLang())(
   visualizeMessage
 );
 export const defaultDictionary = createDictionary(getLang())(dictionary);
+
+export const burgerDictionary = createDictionary(getLang())(burgerMessage);
 
 export const welcomePageDictionary = inseeContext =>
   createDictionary(getLang())(getWelcomePageMessage(inseeContext));
