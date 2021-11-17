@@ -1252,12 +1252,13 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@0.2.0-experimental":
-  version "0.2.0-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.2.0-experimental.tgz#59a72d4dce7e09f11287304b71a52fc65173f08e"
-  integrity sha512-qmeYyL4fKACoYKrhjJuT989+/waEYt4kcamB/d8YRCTBTVTx3i+g/QmQxtsG8NRUQwcdY2z132Vvl1O7fbpkkg==
+"@inseefr/lunatic@^0.1.5-hackathon":
+  version "0.1.5-hackathon"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.1.5-hackathon.tgz#2174816e3cf621a9ef0c087c14ef670c861988fd"
+  integrity sha512-uUDIipbACme0j5MSFwNzU1Koi33HLizrH6lJ8G8FgVFDZ/qcA/5Nexruni+5G/FmPUJkYDJi4fUDsREXZykU9g==
   dependencies:
-    "@inseefr/trevas" "^0.1.9"
+    "@inseefr/trevas" "^0.1.10"
+    date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
@@ -1268,10 +1269,10 @@
     remove-accents "^0.4.2"
     sass "^1.32.2"
 
-"@inseefr/trevas@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.9.tgz#206002fdeff59785864a45ceec9c70ea7e0f4951"
-  integrity sha512-A7PTn0wkletyleRoha410Xfe5EbqPzk63EeChR0Wm6+vwhDbILjksOVxK4MwvdXRXHJIe2XptMKe4/zJtDnLSQ==
+"@inseefr/trevas@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.10.tgz#78cc502a8b44a98152840820085dc1f09a3ee066"
+  integrity sha512-ZTaSV+IqFknn9KjIoPEh4TsGtLHedZfkdk5HuzHZvoj728uxLlZWXdlGzfSDeh3qu80IQii5R0POioWaD/Yh0A==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
@@ -4196,6 +4197,11 @@ date-fns@^2.17.0:
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.17.0.tgz#afa55daea539239db0a64e236ce716ef3d681ba1"
   integrity sha512-ZEhqxUtEZeGgg9eHNSOAJ8O9xqSgiJdrL0lzSSfMF54x6KXWJiOH/xntSJ9YomJPrYH/p08t6gWjGWq1SDJlSA==
+
+date-fns@^2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
+  integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
 
 dayjs@^1.8.12:
   version "1.10.7"

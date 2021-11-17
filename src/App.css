@@ -229,14 +229,10 @@ input.checkbox-lunatic {
   width: 50px;
 }
 
-#main input[type='date' i]::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
 /* Question labels */
 
 #main .label-top > label {
-  font-size: 11pt;
+  font-size: 10pt;
   color: black;
   font-family: 'Open Sans', sans-serif;
   line-height: 16px;
@@ -259,11 +255,10 @@ input.checkbox-lunatic {
   font-style: normal;
 }
 
-#main
-  .lunatic-component:not(.outerContainer-Sequence, .outerContainer-Subsequence)
-  > .declaration-lunatic {
-  color: black !important;
+#main .lunatic-component .declarations-lunatic .declaration-lunatic {
+  color: black;
 }
+
 #main
   .outerContainer-Subsequence
   > .declarations-lunatic
