@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Help, ExitToApp, Close } from '@material-ui/icons';
 import { AssistanceConfirm } from 'components/modals/assistance';
@@ -9,6 +9,7 @@ import { OrchestratorContext } from 'components/orchestrator/collector';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 import './burgerMenu.css';
 import { AppVersion } from 'components/designSystem/AppVersion';
+import { burgerDictionary } from 'i18n';
 
 const utilInfo = (type, page) => {
   return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
@@ -51,7 +52,7 @@ const BurgerMenu = ({ title }) => {
           >
             <Help />
             &nbsp;
-            <span className="slideBarButtonText">Contacter l'assistance</span>
+            <span className="slideBarButtonText">{burgerDictionary.help}</span>
           </IconButton>
           {isAuthenticated && inseeContext === HOUSEHOLD && (
             <IconButton
@@ -62,12 +63,17 @@ const BurgerMenu = ({ title }) => {
             >
               <ExitToApp />
               &nbsp;
-              <span className="slideBarButtonText">Déconnexion</span>
+              <span className="slideBarButtonText">
+                {burgerDictionary.exit}
+              </span>
             </IconButton>
           )}
           <AppVersion className="appVersion" />
         </div>
         <div id="burgerMenuToggleTab">
+          <Typography id="toggleSlidebarText">
+            {burgerDictionary.menu}
+          </Typography>
           <IconButton
             id="toggleSlidebarButton"
             edge="start"
