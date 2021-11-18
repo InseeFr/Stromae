@@ -3,9 +3,11 @@ const welcomeHousehold = {
   body: {
     fr: {
       value: [
-        `"Bienvenue sur le questionnaire de réponse à l'" || Enq_LibelleEnquete || ".\n\n" || Enq_ObjectifsCourts`,
-        `"Qui doit répondre à ce questionnaire ?"`,
-        `whoAnswers1 || "\n\n" || whoAnswers2 || "\n\n" || whoAnswers3`,
+        `"Bienvenue sur le questionnaire de réponse à l'" || Enq_LibelleEnquete || ".\n\n"`,
+        `Enq_ObjectifsCourts`,
+        `"**Qui doit répondre à ce questionnaire ?**"`,
+        `whoAnswers1 || "\n\n" || whoAnswers2 || "\n\n" || whoAnswers3 || "\n\n"`,
+        `""`,
       ],
       bindingDependencies: [
         'Enq_LibelleEnquete',
@@ -17,9 +19,11 @@ const welcomeHousehold = {
     },
     en: {
       value: [
-        `"Welcome to ''" || Enq_LibelleEnquete || "'' questionnaire. \n\n" || Enq_ObjectifsCourts`,
-        `"Who should answer this questionnaire ?"`,
-        `whoAnswers1 || "\n\n" || whoAnswers2 || "\n\n" || whoAnswers3`,
+        `"Welcome to ''" || Enq_LibelleEnquete || "'' questionnaire. \n\n"`,
+        `Enq_ObjectifsCourts`,
+        `"**Who should answer this questionnaire ?**"`,
+        `whoAnswers1 || "\n\n" || whoAnswers2 || "\n\n" || whoAnswers3 || "\n\n"`,
+        `""`,
       ],
       bindingDependencies: [
         'Enq_LibelleEnquete',
