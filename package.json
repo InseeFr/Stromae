@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^0.1.13-hackathon",
+    "@craco/craco": "^6.4.0",
+    "@inseefr/lunatic": "^0.1.14-hackathon",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -34,6 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-dev": "craco start",
     "build": "react-scripts build && copy-and-watch configuration/* build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -98,6 +100,7 @@
     ]
   },
   "devDependencies": {
+    "@welldone-software/why-did-you-render": "^6.2.3",
     "copy-and-watch": "^0.1.5",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "18.2.1",
