@@ -266,6 +266,7 @@ export const Orchestrator = ({
               {...comp}
               handleChange={handleChange}
               labelPosition="TOP"
+              savingType={savingType}
               preferences={preferences}
               features={features}
               bindings={bindings}
