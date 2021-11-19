@@ -14,15 +14,16 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     position: 'fixed',
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flex: '0 0 auto',
     borderTop: '1px solid grey',
     paddingTop: '3px',
     paddingBottom: '2px',
+    zIndex: '100',
   },
   navButton: {
-    '&:last-child': {
+    '&:first-child': {
       marginRight: '5px',
       marginLeft: '5px',
     },
