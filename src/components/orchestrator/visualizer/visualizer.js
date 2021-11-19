@@ -76,6 +76,7 @@ const Visualizer = () => {
               features={['VTL', 'MD']}
               logoutAndClose={logoutAndClose}
               pagination={true}
+              modalForControls={true}
               readonly={readonly}
             />
           )}

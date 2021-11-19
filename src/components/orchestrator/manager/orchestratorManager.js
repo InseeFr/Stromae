@@ -118,6 +118,7 @@ const OrchestratorManger = () => {
             preferences={['PREVIOUS', 'COLLECTED']}
             features={['VTL', 'MD']}
             pagination={true}
+            modalForControls={true}
             readonly={readonly}
             placeholderList="Rechercher ici ..."
           />
