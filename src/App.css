@@ -15,6 +15,10 @@ body {
   margin: 20px;
 }
 
+#main .lunatic-component .lunatic-modal > .lunatic-modal-content {
+  top: 100px;
+}
+
 /* Boutons radio */
 #main .radio-modality.radio-modality-block {
   padding: 0px 10px;

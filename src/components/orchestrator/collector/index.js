@@ -327,7 +327,6 @@ export const Orchestrator = ({
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
-
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
