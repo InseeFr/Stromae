@@ -1,10 +1,16 @@
 {
   "name": "stromae",
-  "version": "2.1.29",
-  "private": true,
+  "version": "2.1.38",
+  "description": "Web application for the management of questionnaires powered by Lunatic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/InseeFr/Stromae.git"
+  },
+  "author": "INSEE (http://www.insee.fr)",
+  "license": "MIT",
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^0.1.5-hackathon",
+    "@inseefr/lunatic": "^0.3.0-experimental",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",

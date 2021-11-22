@@ -72,10 +72,11 @@ const Visualizer = () => {
               metadata={metadata}
               save={sendData}
               savingType="COLLECTED"
-              preferences={['PREVIOUS', 'COLLECTED']}
+              preferences={['COLLECTED']}
               features={['VTL', 'MD']}
               logoutAndClose={logoutAndClose}
               pagination={true}
+              modalForControls={true}
               readonly={readonly}
             />
           )}

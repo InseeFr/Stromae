@@ -22,6 +22,8 @@ const useStyles = makeStyles(theme => ({
   accordionDetails: {
     display: 'block',
   },
+  accordion: { backgroundColor: '#b9b9b969' },
+  legalTermsTitle: { fontWeight: 'bold' },
 }));
 
 const WelcomePage = () => {
@@ -64,13 +66,15 @@ const WelcomePage = () => {
           </React.Fragment>
         ))}
         {legalTermsTitle && (
-          <Accordion>
+          <Accordion className={classes.accordion}>
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>{legalTermsTitle}</Typography>
+              <Typography className={classes.legalTermsTitle}>
+                {legalTermsTitle}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.accordionDetails}>
               {legalTermsDetails?.value?.map((line, i) => (

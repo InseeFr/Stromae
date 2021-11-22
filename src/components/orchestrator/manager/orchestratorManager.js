@@ -115,9 +115,10 @@ const OrchestratorManger = () => {
             suggesters={suggesters}
             save={sendData}
             savingType="COLLECTED"
-            preferences={['PREVIOUS', 'COLLECTED']}
+            preferences={['COLLECTED']}
             features={['VTL', 'MD']}
             pagination={true}
+            modalForControls={true}
             readonly={readonly}
             placeholderList="Rechercher ici ..."
           />

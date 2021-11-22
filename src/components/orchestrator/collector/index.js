@@ -47,6 +47,7 @@ export const Orchestrator = ({
   preferences,
   features,
   pagination,
+  modalForControls,
   readonly,
   suggesters,
   autoSuggesterLoading,
@@ -83,6 +84,7 @@ export const Orchestrator = ({
     preferences,
     features,
     pagination,
+    modalForControls,
     suggesters,
     autoSuggesterLoading,
     suggesterFetcher,
@@ -264,6 +266,7 @@ export const Orchestrator = ({
               {...comp}
               handleChange={handleChange}
               labelPosition="TOP"
+              savingType={savingType}
               preferences={preferences}
               features={features}
               bindings={bindings}
@@ -327,7 +330,6 @@ export const Orchestrator = ({
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
-
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={o => setInit(!o)}
