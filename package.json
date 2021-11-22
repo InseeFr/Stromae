@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.1.37",
+  "version": "2.1.38",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@axa-fr/react-oidc-context": "^3.1.6",
-    "@inseefr/lunatic": "^0.1.13-hackathon",
+    "@inseefr/lunatic": "^0.3.0-experimental",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
