@@ -129,7 +129,7 @@
                             <xsl:value-of select="//xhtml:a[@id='URLSpecimen' and parent::xhtml:div[contains(@class,'perso-formulaire')]]/@href"/>
                         </xsl:variable>
                         <xsl:if test="not($url2/text()='')">
-                            <xhtml:a id="pdf" href="{$url2}" target="_blank">Visualiser le questionnaire PDF</xhtml:a>
+                            <xhtml:a id="pdf" href="{$url2}" target="_blank">Exemple de questionnaire</xhtml:a>
                             
                         </xsl:if>
                         <xsl:variable name="url3">
