@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     position: 'fixed',
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     flex: '0 0 auto',
     borderTop: '1px solid grey',
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: '100',
   },
   navButton: {
-    '&:first-child': {
+    '&:last-child': {
       marginRight: '5px',
       marginLeft: '5px',
     },
