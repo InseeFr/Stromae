@@ -1,4 +1,8 @@
-import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
+import {
+  DEFAULT_DATA_URL,
+  DEFAULT_METADATA_URL,
+  FULL_METADATA_URL,
+} from 'utils/constants';
 import buttonMessage from './buttonMessage';
 
 const visualizeMessage = {
@@ -43,8 +47,8 @@ const visualizeMessage = {
     en: 'How do I preview a questionnaire ?',
   },
   accordionHelperBody: {
-    fr: `Seul le champ "Questionnaire" est obligatoire, si aucune valeur n'est renseignée pour les autres champs, les valeurs par défaut sont appliquées. \n\n Les valeurs par défaut des json sont disponible ici : \n - [metadonnées](${DEFAULT_METADATA_URL}) \n - [données](${DEFAULT_DATA_URL}) \n\n Vous pouvez également choisir un exemple de questionnaire directement. \n\n Une fois les valeurs renseignées, il vous suffit de cliquer sur le bouton "${buttonMessage?.visualize?.fr}".`,
-    en: `Only the "Questionnaire" field is mandatory, if no value is filled in for the other fields, the default values are applied. \n\n Default json values are available here : \n - [metadata](${DEFAULT_METADATA_URL}) \n - [data](${DEFAULT_DATA_URL}) \n\n You can also choose an example questionnaire directly. \n\n Once you have filled in the values, just click on the "${buttonMessage?.visualize?.en}" button.`,
+    fr: `Seul le champ "Questionnaire" est obligatoire, si aucune valeur n'est renseignée pour les autres champs, les valeurs par défaut sont appliquées. \n\n Les valeurs par défaut des json sont disponible ici : \n - [metadonnées](${DEFAULT_METADATA_URL}) \n - [métadonnées complètes](${FULL_METADATA_URL}) \n - [données](${DEFAULT_DATA_URL}) \n\n Vous pouvez également choisir un exemple de questionnaire directement. \n\n Une fois les valeurs renseignées, il vous suffit de cliquer sur le bouton "${buttonMessage?.visualize?.fr}".`,
+    en: `Only the "Questionnaire" field is mandatory, if no value is filled in for the other fields, the default values are applied. \n\n Default json values are available here : \n - [metadata](${DEFAULT_METADATA_URL}) \n - [full metadata](${FULL_METADATA_URL}) \n - [data](${DEFAULT_DATA_URL}) \n\n You can also choose an example questionnaire directly. \n\n Once you have filled in the values, just click on the "${buttonMessage?.visualize?.en}" button.`,
   },
   chooseExamples: {
     fr: 'Ou choisir un exemple :',

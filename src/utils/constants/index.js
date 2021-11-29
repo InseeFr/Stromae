@@ -31,5 +31,6 @@ export const DATA_EXAMPLE_URL = q =>
 
 export const DEFAULT_DATA_URL = DATA_EXAMPLE_URL(DEFAULT);
 export const DEFAULT_METADATA_URL = METADATA_EXAMPLE_URL(DEFAULT);
+export const FULL_METADATA_URL = `${window.location.origin}/static/metadata/full.json`;
 
 export * from './paradata';
