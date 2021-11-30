@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { addStyleSheet } from 'utils/style';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export const StyleContext = React.createContext();
@@ -25,11 +25,7 @@ const StyleProvider = ({ children }) => {
     if (Array.isArray(styleSheets) && styleSheets.length > 0) {
       styleSheets.forEach(styleSheetUrl => {
         if (styleSheetUrl.endsWith('.css')) {
-          const styleSheet = document.createElement('link');
-          styleSheet.rel = 'stylesheet';
-          styleSheet.href = styleSheetUrl;
-          document.head.appendChild(styleSheet);
-          //addStyleSheet(styleSheetUrl);
+          addStyleSheet(styleSheetUrl);
         }
       });
     }

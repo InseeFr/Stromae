@@ -1,7 +1,13 @@
-const loadStyleSheetAsText = async url => {
-  const response = await fetch(url);
-  const text = await response.text();
-  return text;
+//This method works with style sheet serve as octet-stream like with S3 server (minio for example)
+const loadStyleSheetAsText = url => {
+  fetch(url)
+    .then(response => response.text())
+    .then(text => {
+      const styleSheet = document.createElement('style');
+      styleSheet.type = 'text/css';
+      styleSheet.innerText = text;
+      document.head.appendChild(styleSheet);
+    });
 };
 
 const loadStyleSheetWithLink = url => {
@@ -11,6 +17,10 @@ const loadStyleSheetWithLink = url => {
   document.head.appendChild(styleSheet);
 };
 
-export const addStyleSheet = async url => {
-  loadStyleSheetWithLink(url);
+export const addStyleSheet = url => {
+  try {
+    loadStyleSheetWithLink(url);
+  } catch (e) {
+    loadStyleSheetAsText(url);
+  }
 };

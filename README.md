@@ -98,7 +98,7 @@ There is 4 part for this page :
 ## Main Logo
 
 You can overload the mainLogo in the `metadata.json` file.
-You juste write the url of image in the file like this :
+You just have to write the url of image in the file like this :
 
 ```json
 {
