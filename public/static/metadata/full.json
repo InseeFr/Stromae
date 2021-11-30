@@ -50,7 +50,6 @@
         }
       }
     },
-    "styleSheets": ["https://laurentc35.github.io/static/stromae.css"],
-    "useless": "https://minio.lab.sspcloud.fr/lcaouissin/style/stromae.css"
+    "styleSheets": ["https://laurentc35.github.io/static/stromae.css"]
   }
 }
