@@ -231,13 +231,13 @@
     </xsl:template>
     
     <!-- Add uri assitance in error dialog -->
-    <xsl:template match="xhtml:div[contains(@class,'xforms-error-dialogs')]//xhtml:a[@id='error-assistance']">
+    <!--<xsl:template match="xhtml:div[contains(@class,'xforms-error-dialogs')]//xhtml:a[@id='error-assistance']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="href" select="$uri-assistance"/>
             <xsl:apply-templates select="text()"/>
         </xsl:copy>
-    </xsl:template>
+    </xsl:template>-->
     
     
     <!-- A11y : web accessibility -->
