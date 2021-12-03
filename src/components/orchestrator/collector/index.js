@@ -5,6 +5,7 @@ import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
+import { StyleWrapper } from '../styleWrapper';
 import { ButtonsNavigation } from '../navigation';
 import { useLunaticFetcher } from 'utils/hooks';
 import { SendingConfirmation } from 'components/modals/sendingConfirmation';
@@ -306,43 +307,45 @@ export const Orchestrator = ({
   };
 
   return (
-    <OrchestratorContext.Provider value={context}>
-      <BurgerMenu title={questionnaire?.label} />
-      <AppBar title={questionnaire?.label} />
-      <Container
-        maxWidth="md"
-        component="main"
-        role="main"
-        id="main"
-        ref={topRef}
-        className={classes.root}
-      >
-        {currentPage === WELCOME_PAGE && <WelcomePage />}
-        {isLunaticPage(currentPage) && displayComponents()}
-        {currentPage === VALIDATION_PAGE && <ValidationPage />}
-        {currentPage === END_PAGE && <EndPage />}
-      </Container>
-      {!validated && (
-        <ButtonsNavigation
-          onNext={onNext}
-          onPrevious={onPrevious}
-          currentPage={currentPage}
-          validateQuestionnaire={() => setValidationConfirmation(true)}
+    <StyleWrapper metadata={metadata}>
+      <OrchestratorContext.Provider value={context}>
+        <BurgerMenu title={questionnaire?.label} />
+        <AppBar title={questionnaire?.label} />
+        <Container
+          maxWidth="md"
+          component="main"
+          role="main"
+          id="main"
+          ref={topRef}
+          className={classes.root}
+        >
+          {currentPage === WELCOME_PAGE && <WelcomePage />}
+          {isLunaticPage(currentPage) && displayComponents()}
+          {currentPage === VALIDATION_PAGE && <ValidationPage />}
+          {currentPage === END_PAGE && <EndPage />}
+        </Container>
+        {!validated && (
+          <ButtonsNavigation
+            onNext={onNext}
+            onPrevious={onPrevious}
+            currentPage={currentPage}
+            validateQuestionnaire={() => setValidationConfirmation(true)}
+          />
+        )}
+        <WelcomeBack
+          open={!init && !validated && !!stateData?.currentPage}
+          setOpen={o => setInit(!o)}
+          goToFirstPage={() => {
+            setCurrentPage(WELCOME_PAGE);
+            setPage('1');
+          }}
         />
-      )}
-      <WelcomeBack
-        open={!init && !validated && !!stateData?.currentPage}
-        setOpen={o => setInit(!o)}
-        goToFirstPage={() => {
-          setCurrentPage(WELCOME_PAGE);
-          setPage('1');
-        }}
-      />
-      <SendingConfirmation
-        open={validationConfirmation}
-        setOpen={setValidationConfirmation}
-      />
-      {waiting && <LoaderSimple />}
-    </OrchestratorContext.Provider>
+        <SendingConfirmation
+          open={validationConfirmation}
+          setOpen={setValidationConfirmation}
+        />
+        {waiting && <LoaderSimple />}
+      </OrchestratorContext.Provider>
+    </StyleWrapper>
   );
 };
