@@ -59,7 +59,9 @@ export const Orchestrator = ({
 
   const { stateData, data } = stromaeData;
 
-  const [validated, setValidated] = useState(stateData?.state === 'VALIDATED');
+  const [validated, setValidated] = useState(
+    stateData?.state === 'VALIDATED' || stateData?.state === 'EXTRACTED'
+  );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [waiting /*, setWaiting*/] = useState(false);
