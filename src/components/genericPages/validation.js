@@ -28,11 +28,12 @@ const useStyles = makeStyles(theme => ({
 const ValidationPage = () => {
   const classes = useStyles();
   const {
-    metadata: { inseeContext },
+    metadata: { inseeContext, genericPages },
     setValidationConfirmation,
     currentPage,
   } = useContext(OrchestratorContext);
-  const { title, body } = validationPageDictionary(inseeContext);
+  const { title, body } =
+    genericPages?.validation || validationPageDictionary(inseeContext);
   const utilInfo = {
     ...SIMPLE_CLICK_EVENT,
     idParadataObject: 'validate-button',
