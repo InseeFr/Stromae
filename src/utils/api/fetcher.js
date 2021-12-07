@@ -55,7 +55,7 @@ export const fetcherFile = async (url, token) => {
         const file = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = file;
-        a.download = getFilenameFromHeader(headers.get('Content-Disposition'));
+        a.download = getFilenameFromHeader(headers.get('Content-disposition'));
         a.click();
         a.remove();
         return { status, statusText };
