@@ -42,7 +42,7 @@ const welcomeHousehold = {
     fr: {
       value: [
         `"Vu l'avis favorable du Conseil national de l'information statistique, cette enquête" || (if cast(Enq_CaractereObligatoire, boolean) then ", reconnue d’intérêt général et de qualité statistique, est obligatoire" else " est reconnue d'intérêt général et de qualité statistique sans avoir de caractère obligatoire") || ", en application de la [loi n° 51-711 du 7 juin 1951](" || Loi_statistique ||") sur l'obligation, la coordination et le secret en matière de statistiques."`,
-        `"Visa n°" || Enq_NumeroVisa || " du Ministre " || Enq_MinistereTutelle || ", valable pour l'année " || Enq_AnneeVisa || " - Arrêté en " || (if cast(Enq_ParutionJo,boolean) then (" date du " || Enq_DateParutionJo) else "cours de parution") || "."`,
+        `"Visa n°" || Enq_NumeroVisa || " du Ministre " || Enq_MinistereTutelle || ", valable pour l'année " || cast(Enq_AnneeVisa, string) || " - Arrêté en " || (if cast(Enq_ParutionJo,boolean) then (" date du " || Enq_DateParutionJo) else "cours de parution") || "."`,
         `"Les réponses à ce questionnaire sont protégées par le secret statistique et destinées à " || Enq_RespOperationnel || ". Le [règlement général 2016/679 du 27 avril 2016 sur la protection des données (RGPD)](" || Loi_rgpd || ") ainsi que la [loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés](" || Loi_informatique || "), s'appliquent à la présente enquête. Les droits des personnes,  rappelés dans la lettre-avis, peuvent être exercés auprès de " || Enq_RespTraitement || "."`,
       ],
       bindingDependencies: [
