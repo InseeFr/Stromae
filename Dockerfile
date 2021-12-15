@@ -5,5 +5,9 @@ RUN rm -rf $CATALINA_HOME/webapps/*
 ADD config/ $CATALINA_HOME/webapps/
 ADD ./target/*.war $CATALINA_HOME/webapps/rmesstromae.war
 
-CMD ["/bin/bash", "-c", "catalina.sh run"]
+COPY ./script/env.sh $CATALINA_HOME
+
+RUN chmod +x $CATALINA_HOME/env.sh
+
+CMD ["/bin/bash", "-c", "$CATALINA_HOME/env.sh && catalina.sh run"]
 
