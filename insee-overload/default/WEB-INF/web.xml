@@ -56,7 +56,7 @@
     <!--Set location of properties.xml-->
     <context-param>
         <param-name>oxf.properties</param-name>
-        <param-value>oxf:/config/properties-prod.xml</param-value>
+        <param-value>oxf:/config/properties-${oxf.run-mode}.xml</param-value>
     </context-param>
     <!--Determine whether logging initialization must take place-->
     <context-param>
