@@ -51,12 +51,12 @@
     <!-- Set run mode ("dev" or "prod")-->
     <context-param>
         <param-name>oxf.run-mode</param-name>
-        <param-value>prod</param-value>
+        <param-value>dev</param-value>
     </context-param>
     <!--Set location of properties.xml-->
     <context-param>
         <param-name>oxf.properties</param-name>
-        <param-value>oxf:/config/properties-${oxf.run-mode}.xml</param-value>
+        <param-value>oxf:/config/properties-prod.xml</param-value>
     </context-param>
     <!--Determine whether logging initialization must take place-->
     <context-param>
