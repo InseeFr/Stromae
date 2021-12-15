@@ -18,5 +18,5 @@ do
   export $varname=$value  
   
 done < $CATALINA_HOME/.env
-envsubst < "$CATALINA_HOME/webapps/properties/config/properties-local.xml" > props.temp
-mv props.temp "$CATALINA_HOME/webapps/properties/config/properties-local.xml"
+envsubst < "$CATALINA_HOME/webapps/properties/config/properties-local-dev.xml" > props.temp
+mv props.temp "$CATALINA_HOME/webapps/properties/config/properties-local-dev.xml"
