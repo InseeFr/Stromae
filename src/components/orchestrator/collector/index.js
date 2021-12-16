@@ -82,7 +82,7 @@ export const Orchestrator = ({
       isLastPage,
       flow,
     },
-  } = lunatic.useLunatic(source, data, {
+  } = lunatic.useLunaticSplit(source, data, {
     savingType,
     preferences,
     features,
