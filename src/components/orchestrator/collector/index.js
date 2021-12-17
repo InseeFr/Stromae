@@ -83,6 +83,7 @@ export const Orchestrator = ({
       isLastPage,
       flow,
     },
+    state: { getState },
   } = lunatic.useLunaticSplit(source, data, {
     savingType,
     preferences,
@@ -116,7 +117,7 @@ export const Orchestrator = ({
     quit({
       ...stromaeData,
       stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     });
   };
 
@@ -146,24 +147,27 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
   };
   const onNext = () => {
-    if (componentType === 'Sequence') {
-      const dataToSave = {
-        ...stromaeData,
-        stateData: updateStateData(),
-        data: lunatic.getState(questionnaire),
-      };
-      save(dataToSave);
-    }
+    const dataToSave = {
+      ...stromaeData,
+      stateData: updateStateData(),
+      data: getState(questionnaire),
+    };
+
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      if (!isLastPage) goNext();
-      else setCurrentPage(VALIDATION_PAGE);
+      if (!isLastPage) {
+        if (componentType === 'Sequence') save(dataToSave);
+        goNext();
+      } else {
+        save(dataToSave);
+        setCurrentPage(VALIDATION_PAGE);
+      }
     }
     goToTop();
   };
