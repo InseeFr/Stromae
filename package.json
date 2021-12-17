@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.1.44",
+  "version": "2.1.45",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
