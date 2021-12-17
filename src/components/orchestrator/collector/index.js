@@ -15,6 +15,7 @@ import {
   isLunaticPage,
   VALIDATION_PAGE,
 } from 'utils/pagination';
+import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
@@ -82,6 +83,7 @@ export const Orchestrator = ({
       isLastPage,
       flow,
     },
+    state: { getState },
   } = lunatic.useLunaticSplit(source, data, {
     savingType,
     preferences,
@@ -99,6 +101,8 @@ export const Orchestrator = ({
     stateData?.state
   );
 
+  const { componentType } = getCurrentComponent(components)(page);
+
   const updateStateData = lastState => {
     const newStateData = {
       state: lastState || state,
@@ -113,7 +117,7 @@ export const Orchestrator = ({
     quit({
       ...stromaeData,
       stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     });
   };
 
@@ -143,7 +147,7 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
@@ -152,13 +156,18 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     };
-    save(dataToSave);
+
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      if (!isLastPage) goNext();
-      else setCurrentPage(VALIDATION_PAGE);
+      if (!isLastPage) {
+        if (componentType === 'Sequence') save(dataToSave);
+        goNext();
+      } else {
+        save(dataToSave);
+        setCurrentPage(VALIDATION_PAGE);
+      }
     }
     goToTop();
   };
