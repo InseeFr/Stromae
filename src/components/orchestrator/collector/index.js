@@ -148,13 +148,19 @@ export const Orchestrator = ({
     save(dataToSave);
     setCurrentPage(END_PAGE);
   };
-  const onNext = () => {
+  const onNewSequence = () => {
+    /*
+     * At Eatch start of a new Sequence we try to save data into database.
+     */
+
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(),
       data: lunatic.getState(questionnaire),
     };
     save(dataToSave);
+  };
+  const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
       if (!isLastPage) goNext();
@@ -255,6 +261,7 @@ export const Orchestrator = ({
   const displayComponent = function (componentsStructure, comp) {
     const { id, componentType } = comp;
     const Component = lunatic[componentType];
+    componentType === 'Sequence' && onNewSequence();
     if (componentType !== 'FilterDescription') {
       return (
         <Card
