@@ -15,6 +15,7 @@ import {
   isLunaticPage,
   VALIDATION_PAGE,
 } from 'utils/pagination';
+import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
@@ -99,6 +100,8 @@ export const Orchestrator = ({
     stateData?.state
   );
 
+  const { componentType } = getCurrentComponent(components)(page);
+
   const updateStateData = lastState => {
     const newStateData = {
       state: lastState || state,
@@ -149,12 +152,14 @@ export const Orchestrator = ({
     setCurrentPage(END_PAGE);
   };
   const onNext = () => {
-    const dataToSave = {
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
-    };
-    save(dataToSave);
+    if (componentType === 'Sequence') {
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: lunatic.getState(questionnaire),
+      };
+      save(dataToSave);
+    }
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
       if (!isLastPage) goNext();
