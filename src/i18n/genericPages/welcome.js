@@ -68,6 +68,7 @@ const welcomeHousehold = {
       ],
       bindingDependencies: [
         'Enq_CaractereObligatoire',
+        'Enq_QualiteStatistique',
         'Loi_statistique',
         'Enq_NumeroVisa',
         'Enq_MinistereTutelle',
