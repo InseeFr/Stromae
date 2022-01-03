@@ -153,14 +153,13 @@ export const Orchestrator = ({
     setCurrentPage(END_PAGE);
   };
   const onNext = () => {
-    const dataToSave = {
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: getState(questionnaire),
-    };
-
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: getState(questionnaire),
+      };
       if (!isLastPage) {
         if (componentType === 'Sequence') save(dataToSave);
         goNext();
