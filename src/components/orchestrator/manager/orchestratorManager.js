@@ -48,7 +48,9 @@ const OrchestratorManger = () => {
     loading,
     errorMessage,
   } = useAPIRemoteData(idSU, idQ);
+
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
+
   const { logout, oidcUser } = useAuth();
   const isAuthenticated = !!oidcUser?.profile;
 
