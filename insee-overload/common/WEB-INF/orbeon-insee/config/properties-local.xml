@@ -48,7 +48,7 @@
     <property as="xs:string" name="informations-service" value="informations/questionnaire"/>
 
     <!-- The version number -->
-    <property as="xs:string" name="numero-version" value="2.0.2"/>
+    <property as="xs:string" name="numero-version" value="2.0.3"/>
 
     <!-- The end of the path of the My Account section on the portal side -->
     <property as="xs:string" name="mon-compte" value="/mesEnquetes/MonCompteAction"/>
