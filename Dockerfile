@@ -6,7 +6,6 @@ ADD config/ $CATALINA_HOME/webapps/
 ADD ./target/*.war $CATALINA_HOME/webapps/rmesstromae.war
 
 COPY ./script/env.sh $CATALINA_HOME
-COPY ./script/.env $CATALINA_HOME
 
 RUN chmod +x $CATALINA_HOME/env.sh
 
