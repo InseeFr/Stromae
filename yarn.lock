@@ -1274,12 +1274,12 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.3.2-experimental":
-  version "0.3.2-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.2-experimental.tgz#8c49fe4293d240fcc5bc1e592f8437726f012043"
-  integrity sha512-Gfze/tNzdEU5i7dgDfmX2JsvMkBlP5qIymmNWyX0N2rw7rhjzBDAFH89yRf/wVyKNVKk+oUGg++wRsCgZNOd/A==
+"@inseefr/lunatic@^0.3.3-experimental":
+  version "0.3.3-experimental"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.3-experimental.tgz#3a36341ba8b37872b1b2f80bd7d66c38957ef148"
+  integrity sha512-3UubHZcvY0vcrbX85a8aXno869eK25UxNYmV2+WKb0/alJyZ2i9TLooh9LWvWj0sIVgJw+eqrBIMZYO+Ch5QQw==
   dependencies:
-    "@inseefr/trevas" "^0.1.11"
+    "@inseefr/trevas" "^0.1.12"
     date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
@@ -1291,10 +1291,10 @@
     remove-accents "^0.4.2"
     sass "^1.32.2"
 
-"@inseefr/trevas@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.11.tgz#2dcde8f5b1412f5a5934aac918a84ebcb02d152d"
-  integrity sha512-of7uIEUNmrtnu+BL8HDiPmpywKQLXU428cnu6yMxGSCmf/slxrbpqSL4x2xTXeRfmKqLx9ml0b8BUJ7BnZqlKQ==
+"@inseefr/trevas@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.12.tgz#06b6a64a133493da3af0febfffe4852d47aac6f4"
+  integrity sha512-pzrMFIId+V0sbni1C4QuBy0F/fiwwDx281QGhGmRX60GhFhZ6w7d9WkFZbPwCALEXWrG+Daq3S5y/PQMUxNbZg==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
