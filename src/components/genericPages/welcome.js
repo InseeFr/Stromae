@@ -29,15 +29,11 @@ const useStyles = makeStyles(theme => ({
 const WelcomePage = () => {
   const classes = useStyles();
   const {
-    metadata: { inseeContext, variables },
+    metadata: { inseeContext, variables, genericPages },
     personalization,
   } = useContext(OrchestratorContext);
-  const {
-    title,
-    body,
-    legalTermsTitle,
-    legalTermsDetails,
-  } = welcomePageDictionary(inseeContext);
+  const { title, body, legalTermsTitle, legalTermsDetails } =
+    genericPages?.welcome || welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = (myBody, bindingDependencies) =>
     interpret(['VTL'])({

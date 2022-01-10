@@ -5,6 +5,7 @@ import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
+import { StyleWrapper } from '../styleWrapper';
 import { ButtonsNavigation } from '../navigation';
 import { useLunaticFetcher } from 'utils/hooks';
 import { SendingConfirmation } from 'components/modals/sendingConfirmation';
@@ -14,6 +15,7 @@ import {
   isLunaticPage,
   VALIDATION_PAGE,
 } from 'utils/pagination';
+import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
@@ -59,7 +61,9 @@ export const Orchestrator = ({
 
   const { stateData, data } = stromaeData;
 
-  const [validated, setValidated] = useState(stateData?.state === 'VALIDATED');
+  const [validated, setValidated] = useState(
+    stateData?.state === 'VALIDATED' || stateData?.state === 'EXTRACTED'
+  );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [waiting /*, setWaiting*/] = useState(false);
@@ -79,7 +83,8 @@ export const Orchestrator = ({
       isLastPage,
       flow,
     },
-  } = lunatic.useLunatic(source, data, {
+    state: { getState },
+  } = lunatic.useLunaticSplit(source, data, {
     savingType,
     preferences,
     features,
@@ -96,6 +101,8 @@ export const Orchestrator = ({
     stateData?.state
   );
 
+  const { componentType } = getCurrentComponent(components)(page);
+
   const updateStateData = lastState => {
     const newStateData = {
       state: lastState || state,
@@ -110,7 +117,7 @@ export const Orchestrator = ({
     quit({
       ...stromaeData,
       stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     });
   };
 
@@ -140,22 +147,26 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: lunatic.getState(questionnaire),
+      data: getState(questionnaire),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
   };
   const onNext = () => {
-    const dataToSave = {
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: lunatic.getState(questionnaire),
-    };
-    save(dataToSave);
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      if (!isLastPage) goNext();
-      else setCurrentPage(VALIDATION_PAGE);
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: getState(questionnaire),
+      };
+      if (!isLastPage) {
+        if (componentType === 'Sequence') save(dataToSave);
+        goNext();
+      } else {
+        save(dataToSave);
+        setCurrentPage(VALIDATION_PAGE);
+      }
     }
     goToTop();
   };
@@ -306,43 +317,45 @@ export const Orchestrator = ({
   };
 
   return (
-    <OrchestratorContext.Provider value={context}>
-      <BurgerMenu title={questionnaire?.label} />
-      <AppBar title={questionnaire?.label} />
-      <Container
-        maxWidth="md"
-        component="main"
-        role="main"
-        id="main"
-        ref={topRef}
-        className={classes.root}
-      >
-        {currentPage === WELCOME_PAGE && <WelcomePage />}
-        {isLunaticPage(currentPage) && displayComponents()}
-        {currentPage === VALIDATION_PAGE && <ValidationPage />}
-        {currentPage === END_PAGE && <EndPage />}
-      </Container>
-      {!validated && (
-        <ButtonsNavigation
-          onNext={onNext}
-          onPrevious={onPrevious}
-          currentPage={currentPage}
-          validateQuestionnaire={() => setValidationConfirmation(true)}
+    <StyleWrapper metadata={metadata}>
+      <OrchestratorContext.Provider value={context}>
+        <BurgerMenu title={questionnaire?.label} />
+        <AppBar title={questionnaire?.label} />
+        <Container
+          maxWidth="md"
+          component="main"
+          role="main"
+          id="main"
+          ref={topRef}
+          className={classes.root}
+        >
+          {currentPage === WELCOME_PAGE && <WelcomePage />}
+          {isLunaticPage(currentPage) && displayComponents()}
+          {currentPage === VALIDATION_PAGE && <ValidationPage />}
+          {currentPage === END_PAGE && <EndPage />}
+        </Container>
+        {!validated && (
+          <ButtonsNavigation
+            onNext={onNext}
+            onPrevious={onPrevious}
+            currentPage={currentPage}
+            validateQuestionnaire={() => setValidationConfirmation(true)}
+          />
+        )}
+        <WelcomeBack
+          open={!init && !validated && !!stateData?.currentPage}
+          setOpen={o => setInit(!o)}
+          goToFirstPage={() => {
+            setCurrentPage(WELCOME_PAGE);
+            setPage('1');
+          }}
         />
-      )}
-      <WelcomeBack
-        open={!init && !validated && !!stateData?.currentPage}
-        setOpen={o => setInit(!o)}
-        goToFirstPage={() => {
-          setCurrentPage(WELCOME_PAGE);
-          setPage('1');
-        }}
-      />
-      <SendingConfirmation
-        open={validationConfirmation}
-        setOpen={setValidationConfirmation}
-      />
-      {waiting && <LoaderSimple />}
-    </OrchestratorContext.Provider>
+        <SendingConfirmation
+          open={validationConfirmation}
+          setOpen={setValidationConfirmation}
+        />
+        {waiting && <LoaderSimple />}
+      </OrchestratorContext.Provider>
+    </StyleWrapper>
   );
 };

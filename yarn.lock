@@ -1274,13 +1274,12 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.3.0-experimental":
-  version "0.3.0-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.0-experimental.tgz#b67e49afc101cd61d2bfb6dc36ac6010880c6aef"
-  integrity sha512-RBIg4EadNE970GIevVMM45JxosWG7vDNMrTmjIAK7CZjwlTGF0m1MXWQCaIYrdK7SE5LhDg+DygYwk5g6fss4g==
-
+"@inseefr/lunatic@^0.3.3-experimental":
+  version "0.3.3-experimental"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.3-experimental.tgz#3a36341ba8b37872b1b2f80bd7d66c38957ef148"
+  integrity sha512-3UubHZcvY0vcrbX85a8aXno869eK25UxNYmV2+WKb0/alJyZ2i9TLooh9LWvWj0sIVgJw+eqrBIMZYO+Ch5QQw==
   dependencies:
-    "@inseefr/trevas" "^0.1.10"
+    "@inseefr/trevas" "^0.1.12"
     date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
@@ -1292,15 +1291,15 @@
     remove-accents "^0.4.2"
     sass "^1.32.2"
 
-"@inseefr/trevas@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.10.tgz#78cc502a8b44a98152840820085dc1f09a3ee066"
-  integrity sha512-ZTaSV+IqFknn9KjIoPEh4TsGtLHedZfkdk5HuzHZvoj728uxLlZWXdlGzfSDeh3qu80IQii5R0POioWaD/Yh0A==
+"@inseefr/trevas@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.12.tgz#06b6a64a133493da3af0febfffe4852d47aac6f4"
+  integrity sha512-pzrMFIId+V0sbni1C4QuBy0F/fiwwDx281QGhGmRX60GhFhZ6w7d9WkFZbPwCALEXWrG+Daq3S5y/PQMUxNbZg==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
     data-forge "^1.8.8"
-    moment "^2.26.0"
+    date-fns "^2.27.0"
 
 "@inseefr/vtl-2.0-antlr-tools@0.1.0":
   version "0.1.0"
@@ -4253,6 +4252,11 @@ date-fns@^2.25.0:
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
   integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
+
+date-fns@^2.27.0:
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.27.0.tgz#e1ff3c3ddbbab8a2eaadbb6106be2929a5a2d92b"
+  integrity sha512-sj+J0Mo2p2X1e306MHq282WS4/A8Pz/95GIFcsPNMPMZVI3EUrAdSv90al1k+p74WGLCruMXk23bfEDZa71X9Q==
 
 dayjs@^1.8.12:
   version "1.10.7"
@@ -8003,11 +8007,6 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
-
-moment@^2.26.0:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
