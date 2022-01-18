@@ -14,12 +14,12 @@ const App = () => {
 
   useEffect(() => {
     if (!configuration) {
-      fetch(`${window.location.origin}/configuration.json`)
+      fetch(`${process.env.PUBLIC_URL}/configuration.json`)
         .then(r => r.json())
         .then(r => {
           setConfiguration(r);
         });
-      fetch(`${window.location.origin}/build-configuration.json`)
+      fetch(`${process.env.PUBLIC_URL}/build-configuration.json`)
         .then(r => r.json())
         .then(r => {
           setConfiguration(r);
@@ -37,7 +37,7 @@ const App = () => {
         {configuration && (
           <AppContext.Provider value={configuration}>
             <AuthProvider authType={configuration.authenticationType}>
-              <BrowserRouter>
+              <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Router />
               </BrowserRouter>
             </AuthProvider>

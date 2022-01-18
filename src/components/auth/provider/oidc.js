@@ -16,7 +16,7 @@ const AuthProviderOIDC = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${window.location.origin}/oidc.json`)
+    fetch(`${process.env.PUBLIC_URL}/oidc.json`)
       .then(r => r.json())
       .then(r => {
         setOidcConf(
