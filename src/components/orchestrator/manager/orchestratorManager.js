@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useAPI, useAPIRemoteData, useAuth } from 'utils/hooks';
 import { AppContext } from 'App';
 import { Box, makeStyles, Typography } from '@material-ui/core';
-import { CookieConsent } from 'components/shared/cookieConsent';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
 import {
@@ -126,7 +125,6 @@ const OrchestratorManger = () => {
           />
         )}
       {errorSending && <h2>Error lors de l'envoie</h2>}
-      <CookieConsent />
     </Box>
   );
 };
