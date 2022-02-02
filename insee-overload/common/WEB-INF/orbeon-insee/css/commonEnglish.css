@@ -893,3 +893,40 @@ label.radio {
     width: 97%;
   }
 }
+
+/* test pied-de-page */
+.orbeon footer[id=footer] {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 11px;
+    background-color: #BEBEBE;
+}
+
+.orbeon footer[id=footer] div[id=urls] {
+    flex: auto;
+    text-align: center;
+}
+
+.orbeon footer[id=footer] div[id=urls] ul {
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li{
+    display:inline;
+    
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li::after {  
+  content: " | ";
+}
+
+
+.orbeon footer[id=footer] div[id=urls] ul li.a6::after {  
+  content: none;
+}
+
+.orbeon a {
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+color: #0F417A;
+font-size: 12px;
+}
