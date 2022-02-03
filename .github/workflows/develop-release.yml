@@ -45,3 +45,28 @@ jobs:
           release_name: Release Candidate ${{steps.version.outputs.prop}}
           draft: false
           prerelease: false
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download build
+        id: download
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Get current version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package.json'
+          prop_path: 'version'
+      - run: echo ${{steps.version.outputs.prop}}
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: opherogel/stromae
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tags: ${{steps.version.outputs.prop}}-rc
