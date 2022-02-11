@@ -122,8 +122,6 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a2">
-                        <!--<xhtml:a
-                            href="https://entreprises.stat-publique.fr/portail/public/conditions-generales">Conditions générales d'utilisation</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="concat($url-portail, '/public/conditions-generales')"/>
@@ -138,8 +136,6 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a3">
-                        <!--<xhtml:a
-                            href="https://entreprises.stat-publique.fr/portail/public/accessibilite">Accessibilité</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="concat($url-portail, '/public/accessibilite')"/>
@@ -154,9 +150,7 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a4">
-                        <!--<xhtml:a
-                            href="https://entreprises.stat-publique.fr/portail/public/mentions-legales">Accéder aux mentions légales et crédits</xhtml:a>-->
-                        <xsl:element name="xhtml:a">
+                       <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="concat($url-portail, '/public/mentions-legales')"/>
                             </xsl:attribute>
@@ -170,8 +164,6 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a5">
-                        <!--<xhtml:a
-                            href="https://entreprises.stat-publique.fr/portail/public/cadre-juridique">Accéder au cadre juridique</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="concat($url-portail, '/public/cadre-juridique')"/>
@@ -186,7 +178,7 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a6">
-                        <xhtml:a href="https://cnis.fr" title="Programme des enquêtes de la                             Statistique publique">cnis.fr</xhtml:a>
+                        <xhtml:a href="https://cnis.fr" title="Programme des enquêtes de la Statistique publique">cnis.fr</xhtml:a>
                     </xhtml:li>
                 </xhtml:ul>
             </xhtml:div>
