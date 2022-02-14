@@ -114,11 +114,13 @@ export const Orchestrator = ({
   };
 
   const logoutAndClose = () => {
-    quit({
+    const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(),
       data: getState(questionnaire),
-    });
+    };
+    save(dataToSave);
+    quit(dataToSave);
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
