@@ -21,8 +21,9 @@ const BurgerMenu = ({ title }) => {
   const {
     metadata: { inseeContext },
     currentPage,
+    logoutAndClose,
   } = useContext(OrchestratorContext);
-  const { oidcUser, logout } = useAuth();
+  const { oidcUser } = useAuth();
   const isAuthenticated = oidcUser?.profile;
 
   useEffect(() => {
@@ -59,7 +60,9 @@ const BurgerMenu = ({ title }) => {
               className="burgerMenuButton"
               aria-label="Déconnexion"
               color="inherit"
-              onClick={paradataHandler(logout)(utilInfo('logout', currentPage))}
+              onClick={paradataHandler(logoutAndClose)(
+                utilInfo('logout', currentPage)
+              )}
             >
               <ExitToApp />
               &nbsp;
