@@ -73,8 +73,7 @@ const OrchestratorManger = () => {
   };
 
   const logoutAndClose = async dataToSave => {
-    sendData(dataToSave);
-    logout();
+    sendData(dataToSave).then(logout());
   };
 
   useEffect(() => {
