@@ -72,7 +72,8 @@ const OrchestratorManger = () => {
     if (!paradataPostError) LOGGER.clear();
   };
 
-  const logoutAndClose = async surveyUnit => {
+  const logoutAndClose = async dataToSave => {
+    sendData(dataToSave);
     logout();
   };
 
