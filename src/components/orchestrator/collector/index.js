@@ -119,7 +119,6 @@ export const Orchestrator = ({
       stateData: updateStateData(),
       data: getState(questionnaire),
     };
-    save(dataToSave);
     quit(dataToSave);
   };
 
