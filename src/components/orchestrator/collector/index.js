@@ -19,6 +19,7 @@ import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
+import '../custom-lunatic.scss';
 
 export const OrchestratorContext = React.createContext();
 
@@ -114,11 +115,12 @@ export const Orchestrator = ({
   };
 
   const logoutAndClose = () => {
-    quit({
+    const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(),
       data: getState(questionnaire),
-    });
+    };
+    quit(dataToSave);
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
