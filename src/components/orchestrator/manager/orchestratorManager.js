@@ -72,9 +72,8 @@ const OrchestratorManger = () => {
     if (!paradataPostError) LOGGER.clear();
   };
 
-  const logoutAndClose = async dataToSave => {
-    await sendData(dataToSave);
-    await logout();
+  const logoutAndClose = () => {
+    logout();
   };
 
   useEffect(() => {

@@ -114,13 +114,16 @@ export const Orchestrator = ({
     return newStateData;
   };
 
-  const logoutAndClose = () => {
-    const dataToSave = {
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: getState(questionnaire),
-    };
-    quit(dataToSave);
+  const logoutAndClose = async () => {
+    if (!validated) {
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: getState(questionnaire),
+      };
+      await save(dataToSave);
+    }
+    quit();
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
