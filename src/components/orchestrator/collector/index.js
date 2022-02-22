@@ -63,7 +63,9 @@ export const Orchestrator = ({
   const { stateData, data } = stromaeData;
 
   const [validated, setValidated] = useState(
-    stateData?.state === 'VALIDATED' || stateData?.state === 'EXTRACTED'
+    stateData?.state === 'VALIDATED' ||
+      stateData?.state === 'EXTRACTED' ||
+      stateData?.state === 'TOEXTRACT'
   );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
@@ -114,13 +116,16 @@ export const Orchestrator = ({
     return newStateData;
   };
 
-  const logoutAndClose = () => {
-    const dataToSave = {
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: getState(questionnaire),
-    };
-    quit(dataToSave);
+  const logoutAndClose = async () => {
+    if (!validated) {
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: getState(questionnaire),
+      };
+      await save(dataToSave);
+    }
+    quit();
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
