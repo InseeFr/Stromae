@@ -1,272 +1,495 @@
-
-  { "id" : "kltmcphf",
-    "modele" : "TESTQR",
-    "enoCoreVersion" : "2.2.11-dev-logement2",
-    "lunaticModelVersion" : "2.2.5",
-    "generatingDate" : "14-10-2021 17:03:32",
-    "missing" : false,
-    "pagination" : "question",
-    "maxPage" : "7",
-    "label" : "questionnaire test QR",
-    "components" : 
-    [ 
-      { "id" : "kltm1h0j",
-        "componentType" : "Sequence",
-        "page" : "1",
-        "label" : "\"I - \" || \"description habitants\"",
-        "declarations" : 
-        [ 
-          { "id" : "kltm1h0j-kur33vi7",
-            "declarationType" : "HELP",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "aide sur séquence" },
-          
-          { "id" : "kltm1h0j-kur33q6n",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne sur séquence" } ],
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } } },
-      
-      { "id" : "ktcm1r9b",
-        "componentType" : "InputNumber",
-        "mandatory" : false,
-        "page" : "2",
-        "min" : 0,
-        "max" : 10000,
-        "decimals" : 0,
-        "label" : "\"➡ \" || \"quest simple nombre\"",
-        "declarations" : 
-        [ 
-          { "id" : "kur32oyd-SI",
-            "declarationType" : "STATEMENT",
-            "position" : "BEFORE_QUESTION_TEXT",
-            "label" : "aide avant libellé question" },
-          
-          { "id" : "ktcm1r9b-kur2og9f",
-            "declarationType" : "HELP",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "aide après libellé question" },
-          
-          { "id" : "ktcm1r9b-kur2r8o1",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne avant libellé question" },
-          
-          { "id" : "ktcm1r9b-kur33ak7",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne après libellé question" } ],
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "NBR" ],
-        "response" : 
-        { "name" : "NBR" } },
-      
-      { "id" : "kup9b5iu",
-        "componentType" : "Radio",
-        "mandatory" : false,
-        "page" : "3",
-        "label" : "\"➡ \" || \"question radio\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "radio" ],
-        "options" : 
-        [ 
-          { "value" : "1",
-            "label" : "oui" },
-          
-          { "value" : "2",
-            "label" : "non" } ],
-        "response" : 
-        { "name" : "radio" } },
-      
-      { "id" : "kup93pg6",
-        "componentType" : "CheckboxOne",
-        "mandatory" : false,
-        "page" : "4",
-        "label" : "\"➡ \" || \"checkboxOne\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "CHECKBOXON" ],
-        "options" : 
-        [ 
-          { "value" : "1",
-            "label" : "oui" },
-          
-          { "value" : "2",
-            "label" : "non" } ],
-        "response" : 
-        { "name" : "CHECKBOXON" } },
-      
-      { "id" : "kup8wn3g",
-        "componentType" : "CheckboxGroup",
-        "page" : "5",
-        "label" : "\"➡ \" || \"checkboxgroup\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "CHECKBOXGR1",
-          "CHECKBOXGR2",
-          "CHECKBOXGR3" ],
-        "responses" : 
-        [ 
-          { "id" : "kup8wn3g-QOP-kup9cdm1",
-            "label" : "hier",
-            "response" : 
-            { "name" : "CHECKBOXGR1" } },
-          
-          { "id" : "kup8wn3g-QOP-kup8wn2g",
-            "label" : "aujourd’hui",
-            "response" : 
-            { "name" : "CHECKBOXGR2" } },
-          
-          { "id" : "kup8wn3g-QOP-kup99691",
-            "label" : "demain",
-            "response" : 
-            { "name" : "CHECKBOXGR3" } } ] },
-      
-      { "id" : "COMMENT-SEQ",
-        "componentType" : "Sequence",
-        "page" : "6",
-        "label" : "\"Commentaire\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "COMMENT-SEQ",
-            "page" : "6",
-            "label" : "\"Commentaire\"" } } },
-      
-      { "id" : "COMMENT-QUESTION",
-        "componentType" : "Textarea",
-        "mandatory" : false,
-        "page" : "7",
-        "maxLength" : 2000,
-        "label" : "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "COMMENT-SEQ",
-            "page" : "6",
-            "label" : "\"Commentaire\"" } },
-        "bindingDependencies" : 
-        [ "COMMENT_QE" ],
-        "response" : 
-        { "name" : "COMMENT_QE" } } ],
-    "variables" : 
-    [ 
-      { "variableType" : "COLLECTED",
-        "name" : "COMMENT_QE",
-        "componentRef" : "COMMENT-QUESTION",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "NBR",
-        "componentRef" : "ktcm1r9b",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "radio",
-        "componentRef" : "kup9b5iu",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXON",
-        "componentRef" : "kup93pg6",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR1",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR2",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR3",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_NBR",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_radio",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_CHECKBOXON",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_CHECKBOXGR",
-        "expression" : "true" } ] }
+{
+  "variables": [
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "COMMENT_QE",
+      "componentRef": "COMMENT-QUESTION"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TESTSURBOO",
+      "componentRef": "kfxmjupm"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "CONTROLESU",
+      "componentRef": "kfxn6f16"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TESTCODE",
+      "componentRef": "kfxn91jl"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TESTDATEA",
+      "componentRef": "kfxnfv4l"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TESTDATEB",
+      "componentRef": "kfxnqc6m"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TESTDATEC",
+      "componentRef": "kfxnk34d"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTSURBOO",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTTEXTE",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTCODE",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTDATEA",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTDATEB",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": "true",
+      "name": "FILTER_RESULT_TESTDATEC",
+      "inFilter": "false"
+    }
+  ],
+  "components": [
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "kfxmfvwj",
+      "page": "1",
+      "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+    },
+    {
+      "componentType": "CheckboxBoolean",
+      "bindingDependencies": [
+        "TESTSURBOO"
+      ],
+      "controls": [
+        {
+          "bindingDependencies": [
+            "TESTSURBOO"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "booleen pas coché et on affiche un messahge un peu long histoire de tester le truc ",
+          "control": "not(TESTSURBOO = false)",
+          "id": "kfxmjupm-CI-0"
+        },
+        {
+          "bindingDependencies": [
+            "TESTSURBOO"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "On a coché le booleen et on met une phrase un peu longue car on veut tester ce qui s’affiche",
+          "control": "not(TESTSURBOO = true)",
+          "id": "kfxmjupm-CI-1"
+        }
+      ],
+      "response": {
+        "name": "TESTSURBOO"
+      },
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "kfxmjupm",
+      "page": "2",
+      "label": "\"➡ 1. \" || \"Controle sur booleen\"",
+      "mandatory": false
+    },
+    {
+      "componentType": "Input",
+      "bindingDependencies": [
+        "CONTROLESU"
+      ],
+      "controls": [
+        {
+          "criticality": "WARN",
+          "errorMessage": "Ca ne peut pas valoir BLABLA",
+          "control": "not($TESTTEXTE= \"BLABLA\")",
+          "id": "kfxn6f16-CI-0"
+        },
+        {
+          "criticality": "WARN",
+          "errorMessage": "Cette phrase un peu longue s’affiche si on a du vide pour la variable sur le texte inférieur à 255 caractères et voilà",
+          "control": "not(isnull($TESTTEXTE$))",
+          "id": "kfxn6f16-CI-1"
+        }
+      ],
+      "response": {
+        "name": "CONTROLESU"
+      },
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "kfxn6f16",
+      "page": "3",
+      "label": "\"➡ 2. \" || \"Controle sur du texte < 255\"",
+      "mandatory": false,
+      "maxLength": 15,
+      "declarations": [
+        {
+          "declarationType": "INSTRUCTION",
+          "id": "kfxn6f16-kfxn36ru",
+          "label": "Tester la saisie de BLABLA",
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "CheckboxOne",
+      "bindingDependencies": [
+        "TESTCODE"
+      ],
+      "controls": [
+        {
+          "bindingDependencies": [
+            "TESTCODE"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "La variable vaut 1",
+          "control": "not(TESTCODE = \"1\")",
+          "id": "kfxn91jl-CI-0"
+        },
+        {
+          "bindingDependencies": [
+            "TESTCODE"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "La variable ne vaut pas 1  et n’est  pas vide",
+          "control": "not(TESTCODE != \"1\" and not(isnull(TESTCODE)))",
+          "id": "kfxn91jl-CI-1"
+        },
+        {
+          "bindingDependencies": [
+            "TESTCODE"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "La variable est vide",
+          "control": "not(isnull(TESTCODE))",
+          "id": "kfxn91jl-CI-2"
+        }
+      ],
+      "response": {
+        "name": "TESTCODE"
+      },
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "options": [
+        {
+          "label": "Code 1",
+          "value": "1"
+        },
+        {
+          "label": "Code 2",
+          "value": "2"
+        },
+        {
+          "label": "Code 3",
+          "value": "3"
+        }
+      ],
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "kfxn91jl",
+      "page": "4",
+      "label": "\"➡ 3. \" || \"Controle sur code\"",
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "INSTRUCTION",
+          "id": "kfxn91jl-kfxn7ugm",
+          "label": "Tester cocher 1, ne rien cocher, cocher 2",
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "Datepicker",
+      "controls": [
+        {
+          "bindingDependencies": [
+            "TESTDATEA"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "Date supérieure à date du jour",
+          "control": "not(cast(TESTDATEA,date,\"YYYY-MM-DD\") > cast(current_date(), date, \"YYYY-MM-DD\"))",
+          "id": "kfxnfv4l-CI-0"
+        }
+      ],
+      "max": "2040-12-31",
+      "dateFormat": "YYYY-MM-DD",
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "label": "\"➡ 4. \" || \"Controle sur date AAAA-MM-JJ (saisie entre 31/12/1990 et 31/12/2040)\"",
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "INSTRUCTION",
+          "id": "kfxnfv4l-kfxnywlg",
+          "label": "saisir une date > date du jour",
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "kfxnfv4l-kzgvf7oe",
+          "label": "cast(TESTDATEA,date)",
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ],
+      "bindingDependencies": [
+        "TESTDATEA"
+      ],
+      "min": "1990-12-31",
+      "response": {
+        "name": "TESTDATEA"
+      },
+      "id": "kfxnfv4l",
+      "page": "5"
+    },
+    {
+      "componentType": "Datepicker",
+      "controls": [
+        {
+          "bindingDependencies": [
+            "TESTDATEB"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "La date est supérieure au 12 2010",
+          "control": "not(TESTDATEB != '' and TESTDATEB > '2010-12')",
+          "id": "kfxnqc6m-CI-0"
+        }
+      ],
+      "max": "2030-12",
+      "dateFormat": "YYYY-MM",
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "label": "\"➡ 5. \" || \"Controle sur date AAAA-MM (manque lunatic)\"",
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "INSTRUCTION",
+          "id": "kfxnqc6m-kfxni8ox",
+          "label": "Date entre 01-2010 et 12-2030",
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ],
+      "bindingDependencies": [
+        "TESTDATEB"
+      ],
+      "min": "2010-01",
+      "response": {
+        "name": "TESTDATEB"
+      },
+      "id": "kfxnqc6m",
+      "page": "6"
+    },
+    {
+      "componentType": "Datepicker",
+      "controls": [
+        {
+          "bindingDependencies": [
+            "TESTDATEC"
+          ],
+          "criticality": "WARN",
+          "errorMessage": "La date est supérieure a 2020",
+          "control": "not(TESTDATEC > '2020' and TESTDATEC != '')",
+          "id": "kfxnk34d-CI-0"
+        }
+      ],
+      "max": "2030",
+      "dateFormat": "YYYY",
+      "hierarchy": {
+        "sequence": {
+          "id": "kfxmfvwj",
+          "page": "1",
+          "label": "\"I - \" || \"TEST SUR BOOLEEN CODE DATE ET TEXTE\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "label": "\"➡ 6. \" || \"Controle sur date AAAA (si supérieur à 2020) manque lunatic\"",
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "INSTRUCTION",
+          "id": "kfxnk34d-kfxnk172",
+          "label": "saisir une date > 2020",
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ],
+      "bindingDependencies": [
+        "TESTDATEC"
+      ],
+      "min": "2010",
+      "response": {
+        "name": "TESTDATEC"
+      },
+      "id": "kfxnk34d",
+      "page": "7"
+    },
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "COMMENT-SEQ",
+          "page": "8",
+          "label": "\"Commentaire\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "COMMENT-SEQ",
+      "page": "8",
+      "label": "\"Commentaire\""
+    },
+    {
+      "componentType": "Textarea",
+      "bindingDependencies": [
+        "COMMENT_QE"
+      ],
+      "response": {
+        "name": "COMMENT_QE"
+      },
+      "hierarchy": {
+        "sequence": {
+          "id": "COMMENT-SEQ",
+          "page": "8",
+          "label": "\"Commentaire\""
+        }
+      },
+      "conditionFilter": {
+        "value": "true"
+      },
+      "id": "COMMENT-QUESTION",
+      "page": "9",
+      "label": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\"",
+      "mandatory": false,
+      "maxLength": 2000
+    }
+  ],
+  "pagination": "question",
+  "lunaticModelVersion": "2.2.10",
+  "modele": "QTESTCONTNONNUM",
+  "enoCoreVersion": "2.3.6",
+  "generatingDate": "17-02-2022 08:52:25",
+  "missing": false,
+  "id": "kzguw1v7",
+  "label": "QNONREG Controles Non Numériques VTL",
+  "maxPage": "9"
+}

@@ -9,7 +9,7 @@
   "author": "INSEE (http://www.insee.fr)",
   "license": "MIT",
   "dependencies": {
-    "@axa-fr/react-oidc-context": "^3.1.6",
+    "@axa-fr/react-oidc-context": "^4.0.0",
     "@craco/craco": "^6.4.0",
     "@inseefr/lunatic": "^0.3.5-experimental",
     "@material-ui/core": "^4.11.2",
@@ -19,6 +19,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "copyfiles": "^2.4.1",
     "date-fns": "^2.17.0",
     "oidc-client": "^1.10.1",
     "react": "^17.0.1",
@@ -34,9 +35,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "copy": "copyfiles -f ./node_modules/@axa-fr/react-oidc-context/dist/OidcServiceWorker.js ./public && copyfiles -f -s ./node_modules/@axa-fr/react-oidc-context/dist/OidcTrustedDomains.js ./public",
     "start": "react-scripts start",
     "start-dev": "craco start",
-    "build": "react-scripts build && copy-and-watch configuration/* build",
+    "build": "yarn copy && react-scripts build && copy-and-watch configuration/* build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

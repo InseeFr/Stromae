@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from 'App';
-import {
-  AuthenticationProvider,
-  InMemoryWebStorage,
-} from '@axa-fr/react-oidc-context';
-import { LoaderLogo } from 'components/shared/loader';
+import { OidcProvider } from '@axa-fr/react-oidc-context';
+import { LoaderSimple } from 'components/shared/loader';
 import { buildOidcConfiguration } from 'utils/oidc/build-configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
@@ -33,20 +30,19 @@ const AuthProviderOIDC = ({ children }) => {
       });
   }, [conf]);
 
-  if (loading) return <LoaderLogo />;
+  if (loading) return <LoaderSimple />;
   if (error) return <ErrorFallback error={error} />;
+
   return (
-    <AuthenticationProvider
+    <OidcProvider
+      loadingComponent={LoaderSimple}
+      // sessionLostComponent={LoaderLogo}
+      authenticating={LoaderSimple}
+      callbackSuccessComponent={LoaderSimple}
       configuration={oidcConf}
-      isEnabled={true}
-      UserStore={InMemoryWebStorage}
-      callbackComponentOverride={LoaderLogo}
-      authenticating={LoaderLogo}
-      //notAuthorized={() => <ErrorFallback error={'r'} />}
-      sessionLostComponent={LoaderLogo}
     >
       {children}
-    </AuthenticationProvider>
+    </OidcProvider>
   );
 };
 
