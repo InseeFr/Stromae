@@ -5,6 +5,7 @@ import { LoaderSimple } from 'components/shared/loader';
 import { buildOidcConfiguration } from 'utils/oidc/build-configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
+import { getOidcFile } from 'utils/configuration';
 
 const AuthProviderOIDC = ({ children }) => {
   const conf = useContext(AppContext);
@@ -13,8 +14,7 @@ const AuthProviderOIDC = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${window.location.origin}/oidc.json`)
-      .then(r => r.json())
+    getOidcFile()
       .then(r => {
         setOidcConf(
           buildOidcConfiguration({

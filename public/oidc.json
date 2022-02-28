@@ -2,10 +2,10 @@
   "origin": "my_origin",
   "isEnabled": true,
   "config": {
-    "client_id": "dev-js",
+    "client_id": "${CLIENT_ID}",
     "redirect_uri": "my_origin/authentication/callback",
     "scope": "openid profile email",
-    "authority": "https://keycloak.dev.insee.io/auth/realms/dev",
+    "authority": " ${AUTHORITY}",
     "service_worker_relative_url": "/OidcServiceWorker.js",
     "service_worker_only": false
   }
