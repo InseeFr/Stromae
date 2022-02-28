@@ -1,6 +1,10 @@
 import { useContext } from 'react';
 import { AppContext } from 'App';
-import { useOidc, useOidcUser } from '@axa-fr/react-oidc-context';
+import {
+  useOidc,
+  useOidcUser,
+  useOidcAccessToken,
+} from '@axa-fr/react-oidc-context';
 import { NONE, OIDC } from 'utils/constants';
 import { useHistory } from 'react-router';
 
@@ -21,8 +25,10 @@ export const useAuth = () => {
     const { login, logout } = useOidc();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { oidcUser } = useOidcUser();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { accessToken } = useOidcAccessToken();
 
-    return { authenticationType, oidcUser, login, logout };
+    return { authenticationType, oidcUser, login, logout, accessToken };
   }
   throw new Error(`Auth type ${authenticationType} is not recognized`);
 };
