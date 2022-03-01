@@ -8,9 +8,6 @@ const readJsonResponse = async response => {
 };
 
 export const fetcher = async (url, token, method, body) => {
-  console.log(`Url fetch : ${url}`);
-  console.log(`Token : ${token}`);
-
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

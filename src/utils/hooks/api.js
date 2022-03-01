@@ -54,8 +54,6 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
   }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
   const getSuData = useCallback(() => {
-    console.log(`accessToken api.js/getSuData : ${accessToken}`);
-    console.log(`authenticationType/getSuData api.js : ${authenticationType}`);
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getSuData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, accessToken]);
