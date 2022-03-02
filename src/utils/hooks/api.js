@@ -1,6 +1,7 @@
+import { useContext, useEffect, useState } from 'react';
+import { useConstCallback } from './useConstCallback';
 import { AppContext } from 'App';
 import { errorDictionary } from 'i18n';
-import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
 import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
@@ -17,8 +18,7 @@ const getErrorMessage = (response, type = 'q') => {
 
 export const useLunaticFetcher = () => {
   const { authenticationType, accessToken } = useAuth();
-
-  const lunaticFetcher = useCallback(
+  const lunaticFetcher = useConstCallback(
     (url, options) => {
       const token = authenticationType === OIDC ? accessToken : null;
       return getFetcherForLunatic(token)(url, options);
@@ -30,40 +30,40 @@ export const useLunaticFetcher = () => {
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { authenticationType, accessToken } = useAuth();
   const { apiUrl } = useContext(AppContext);
+  const { authenticationType, accessToken } = useAuth();
 
-  const getRequiredNomenclatures = useCallback(() => {
+  const getRequiredNomenclatures = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getRequiredNomenclatures(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getNomenclature = useCallback(() => {
+  const getNomenclature = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getNomenclature(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getQuestionnaire = useCallback(() => {
+  const getQuestionnaire = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getMetadata = useCallback(() => {
+  const getMetadata = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getMetadata(apiUrl)(questionnaireID)(token);
   }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getSuData = useCallback(() => {
+  const getSuData = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getSuData(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, accessToken]);
 
-  const getPDF = useCallback(() => {
+  const getPDF = useConstCallback(() => {
     const token = authenticationType === OIDC ? accessToken : null;
     return API.getDepositProof(apiUrl)(surveyUnitID)(token);
   }, [surveyUnitID, apiUrl, authenticationType, accessToken]);
 
-  const putSuData = useCallback(
+  const putSuData = useConstCallback(
     body => {
       const token = authenticationType === OIDC ? accessToken : null;
       return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
@@ -71,7 +71,7 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const putData = useCallback(
+  const putData = useConstCallback(
     body => {
       const token = authenticationType === OIDC ? accessToken : null;
       return API.putData(apiUrl)(surveyUnitID)(token)(body);
@@ -79,7 +79,7 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const putStateData = useCallback(
+  const putStateData = useConstCallback(
     body => {
       const token = authenticationType === OIDC ? accessToken : null;
       return API.putStateData(apiUrl)(surveyUnitID)(token)(body);
@@ -87,7 +87,7 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const postParadata = useCallback(
+  const postParadata = useConstCallback(
     body => {
       const token = authenticationType === OIDC ? accessToken : null;
       return API.postParadata(apiUrl)(token)(body);
