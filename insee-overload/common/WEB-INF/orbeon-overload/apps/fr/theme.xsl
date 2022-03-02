@@ -14,13 +14,10 @@
 <!--
     Regular theme for Form Runner.
 -->
-<xsl:stylesheet version="2.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xi="http://www.w3.org/2001/XInclude"
-    xmlns:p="http://www.orbeon.com/oxf/pipeline"
-    xmlns:xxf="http://orbeon.org/oxf/xml/xforms">
-    
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:xxf="http://orbeon.org/oxf/xml/xforms">
+
     <!-- Just use the plain theme -->
     <xsl:import href="../../config/theme-plain.xsl"/>
 
@@ -33,10 +30,14 @@
     <xsl:variable name="uri-assistance">
         <xsl:choose>
             <xsl:when test="p:property('insee-context') = 'household'">
-                <xsl:value-of select="concat(p:property('url-assistance'), '/', substring-before($survey, '-'), '/contacter-assistance/auth?idue=', $surveyUnit)"/>
+                <xsl:value-of
+                    select="concat(p:property('url-assistance'), '/', substring-before($survey, '-'), '/contacter-assistance/auth?idue=', $surveyUnit)"
+                />
             </xsl:when>
             <xsl:when test="p:property('insee-context') = 'business'">
-                <xsl:value-of select="concat(p:property('url-orbeon'), '/contacter/', $survey, '/', $surveyUnit)"/>
+                <xsl:value-of
+                    select="concat(p:property('url-orbeon'), '/contacter/', $survey, '/', $surveyUnit)"
+                />
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="concat(p:property('url-orbeon'), '/help')"/>
@@ -47,7 +48,9 @@
     <xsl:variable name="uri-pdf">
         <xsl:choose>
             <xsl:when test="p:property('insee-context') = 'household'">
-                <xsl:value-of select="concat('/exporter?survey=',$survey,'&amp;model=',$modele,'&amp;survey-unit=',$surveyUnit)"/>
+                <xsl:value-of
+                    select="concat('/exporter?survey=',$survey,'&amp;model=',$modele,'&amp;survey-unit=',$surveyUnit)"
+                />
             </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="valeur">
@@ -60,7 +63,9 @@
                         </xsl:when>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:value-of select="concat('/', $valeur, '/', $survey, '/', $surveyUnit, '?modele=', $modele)"/>
+                <xsl:value-of
+                    select="concat('/', $valeur, '/', $survey, '/', $surveyUnit, '?modele=', $modele)"
+                />
             </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
@@ -68,7 +73,9 @@
     <xsl:variable name="uri-logout">
         <xsl:choose>
             <xsl:when test="p:property('insee-context') = 'household'">
-                <xsl:value-of select="concat(p:property('url-orbeon'),p:property('logout-uri'),'?survey=',substring-before($survey,'-'),'&amp;survey-unit=',$surveyUnit)"/>
+                <xsl:value-of
+                    select="concat(p:property('url-orbeon'),p:property('logout-uri'),'?survey=',substring-before($survey,'-'),'&amp;survey-unit=',$surveyUnit)"
+                />
             </xsl:when>
             <xsl:when test="p:property('insee-context') = 'business'">
                 <xsl:value-of select="concat(p:property('url-orbeon'), p:property('logout-uri'))"/>
@@ -104,16 +111,16 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:copy>
         <xhtml:footer id="footer" role="contentinfo" class="container">
-            <xhtml:div>© Insee</xhtml:div>
+            <xhtml:div id="insee">© Insee</xhtml:div>
             <xhtml:div id="urls">
                 <xhtml:ul>
                     <xhtml:li class="a1">
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat($url-portail, '/public/securite')"/>
+                                <xsl:value-of select="concat($url-portail,'/public/securite')"/>
                             </xsl:attribute>
-                            <xsl:attribute name="title">
-                                <xsl:value-of select="'Accéder à la sécurité du service'"/>
+                            <xsl:attribute name="aria-label">
+                                <xsl:text>Accéder à la sécurité du service (nouvelle fenêtre)</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
@@ -122,12 +129,14 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a2">
+                        <!--<xhtml:a
+                            href="https://entreprises.stat-publique.fr/portail/public/conditions-generales">Conditions générales d'utilisation</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat($url-portail, '/public/conditions-generales')"/>
+                                <xsl:value-of select="concat($url-portail,'/public/conditions-generales')"/>
                             </xsl:attribute>
-                            <xsl:attribute name="title">
-                                <xsl:text>Accéder aux conditions d'utilisation du service</xsl:text>
+                            <xsl:attribute name="aria-label">
+                                <xsl:text>Accéder aux conditions générales d'utilisation du service (nouvelle fenêtre)</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
@@ -136,12 +145,14 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a3">
+                        <!--<xhtml:a
+                            href="https://entreprises.stat-publique.fr/portail/public/accessibilite">Accessibilité</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat($url-portail, '/public/accessibilite')"/>
+                                <xsl:value-of select="concat($url-portail,'/public/accessibilite')"/>
                             </xsl:attribute>
-                            <xsl:attribute name="title">
-                                <xsl:text>Accéder aux informations sur l'accessibilité du service</xsl:text>
+                           <xsl:attribute name="aria-label">
+                                <xsl:text>Accéder aux informations sur l'accessibilité du service (nouvelle fenêtre)</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
@@ -149,13 +160,17 @@
                             <xsl:value-of select="'Accessibilité'"/>
                         </xsl:element>
                     </xhtml:li>
+                    </xhtml:ul>
+                <xhtml:ul>
                     <xhtml:li class="a4">
-                       <xsl:element name="xhtml:a">
+                        <!--<xhtml:a
+                            href="https://entreprises.stat-publique.fr/portail/public/mentions-legales">Accéder aux mentions légales et crédits</xhtml:a>-->
+                        <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat($url-portail, '/public/mentions-legales')"/>
+                                <xsl:value-of select="concat($url-portail,'/public/mentions-legales')"/>
                             </xsl:attribute>
-                            <xsl:attribute name="title">
-                                <xsl:value-of select="'Accéder aux mentions légales et crédits'"/>
+                            <xsl:attribute name="aria-label">
+                                <xsl:text>Accéder aux mentions légales et crédits (nouvelle fenêtre)</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
@@ -164,12 +179,14 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a5">
+                        <!--<xhtml:a
+                            href="https://entreprises.stat-publique.fr/portail/public/cadre-juridique">Accéder au cadre juridique</xhtml:a>-->
                         <xsl:element name="xhtml:a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat($url-portail, '/public/cadre-juridique')"/>
+                                <xsl:value-of select="concat($url-portail,'/public/cadre-juridique')"/>
                             </xsl:attribute>
-                            <xsl:attribute name="title">
-                                <xsl:value-of select="'Accéder au cadre juridique'"/>
+                            <xsl:attribute name="aria-label">
+                                <xsl:text>Accéder au cadre juridique (nouvelle fenêtre)</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
@@ -178,11 +195,11 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a6">
-                        <xhtml:a href="https://cnis.fr" title="Programme des enquêtes de la Statistique publique">cnis.fr</xhtml:a>
+                        <xhtml:a href="https://cnis.fr" target="_blank" aria-label="cnis.fr (nouvelle fenêtre)">Cnis</xhtml:a>
                     </xhtml:li>
                 </xhtml:ul>
             </xhtml:div>
-            <xhtml:div>Version : <xsl:value-of select="$numero-version"/></xhtml:div>
+            <xhtml:div id="version">Version : <xsl:value-of select="$numero-version"/></xhtml:div>
         </xhtml:footer>
 
     </xsl:template>
@@ -194,44 +211,57 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="xhtml:div[parent::xhtml:div[@class = 'navbar-inner'] and @class = 'container']">
+    <xsl:template
+        match="xhtml:div[parent::xhtml:div[@class = 'navbar-inner'] and @class = 'container']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="*"/>
             <xhtml:div class="menuBandeau">
-                <xhtml:button id="menuButton" class="burger" onclick="showMenu()" type="checkbox">Menu ≡</xhtml:button>
+                <xhtml:button id="menuButton" class="burger" onclick="showMenu()" type="checkbox"
+                    >Menu ≡</xhtml:button>
                 <xhtml:nav id="nav" style="">
                     <!-- <xhtml:a id="myaccount" href="{concat(p:property('url-portail'),p:property('mon-compte'))}" target="_blank">Mon Compte</xhtml:a> -->
                     <xsl:if test="p:property('insee-context') = 'business'">
                         <xsl:variable name="url1">
-                            <xsl:value-of select="//xhtml:a[@id = 'URLNotice' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"/>
+                            <xsl:value-of
+                                select="//xhtml:a[@id = 'URLNotice' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"
+                            />
                         </xsl:variable>
                         <xsl:if test="not($url1/text() = '')">
-                            <xhtml:a id="notice" href="{$url1}" target="_blank">Notice en ligne</xhtml:a>
+                            <xhtml:a id="notice" href="{$url1}" target="_blank">Notice en
+                                ligne</xhtml:a>
                         </xsl:if>
                         <xsl:variable name="url2">
-                            <xsl:value-of select="//xhtml:a[@id = 'URLSpecimen' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"/>
+                            <xsl:value-of
+                                select="//xhtml:a[@id = 'URLSpecimen' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"
+                            />
                         </xsl:variable>
                         <xsl:if test="not($url2/text() = '')">
-                            <xhtml:a id="pdf" href="{$url2}" target="_blank">Exemple de questionnaire</xhtml:a>
+                            <xhtml:a id="pdf" href="{$url2}" target="_blank">Exemple de
+                                questionnaire</xhtml:a>
 
                         </xsl:if>
                         <xsl:variable name="url3">
-                            <xsl:value-of select="//xhtml:a[@id = 'URLDiffusion' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"/>
+                            <xsl:value-of
+                                select="//xhtml:a[@id = 'URLDiffusion' and parent::xhtml:div[contains(@class, 'perso-formulaire')]]/@href"
+                            />
                         </xsl:variable>
                         <xsl:if test="not($url3/text() = '')">
-                            <xhtml:a id="infodiff" href="{$url3}" target="_blank">Informations de diffusion</xhtml:a>
+                            <xhtml:a id="infodiff" href="{$url3}" target="_blank">Informations de
+                                diffusion</xhtml:a>
                         </xsl:if>
                     </xsl:if>
 
-                    <xhtml:a id="contact" href="{$uri-assistance}" target="_blank">Contacter l'assistance</xhtml:a>
+                    <xhtml:a id="contact" href="{$uri-assistance}" target="_blank">Contacter
+                        l'assistance</xhtml:a>
                     <xhtml:a id="deconnexion" href="{$uri-logout}">Déconnexion</xhtml:a>
                 </xhtml:nav>
             </xhtml:div>
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="xhtml:img[parent::xhtml:div[parent::xhtml:div[@class = 'navbar-inner'] and @class = 'container']]">
+    <xsl:template
+        match="xhtml:img[parent::xhtml:div[parent::xhtml:div[@class = 'navbar-inner'] and @class = 'container']]">
         <xsl:copy>
             <xsl:apply-templates select="@*[not(name() = 'alt')]"/>
             <!-- Apostrophe : ' => &#x2019; -->
@@ -242,7 +272,8 @@
 
     <!-- It replaces the message displayed when javascript is disabled -->
     <xsl:template match="xhtml:div[parent::noscript]">
-        <xsl:copy> Vous devez activer javascript si vous souhaitez répondre à cette enquête. </xsl:copy>
+        <xsl:copy> Vous devez activer javascript si vous souhaitez répondre à cette enquête.
+        </xsl:copy>
     </xsl:template>
 
     <!-- This is where we place all the elements that will be moved in this epilogue. We do not copy it -->
@@ -273,9 +304,12 @@
     </xsl:template>
 
     <!-- We move the suffix just after the field -->
-    <xsl:template match="xhtml:input[parent::xhtml:span[following-sibling::*[position() = 1 and substring-after(name(), ':') = 'span' and contains(@class, 'suffixe')]]]">
+    <xsl:template
+        match="xhtml:input[parent::xhtml:span[following-sibling::*[position() = 1 and substring-after(name(), ':') = 'span' and contains(@class, 'suffixe')]]]">
         <xsl:copy-of select="."/>
-        <xsl:copy-of select="./(parent::xhtml:span/following-sibling::xhtml:span[contains(@class, 'suffixe')])[1]"/>
+        <xsl:copy-of
+            select="./(parent::xhtml:span/following-sibling::xhtml:span[contains(@class, 'suffixe')])[1]"
+        />
     </xsl:template>
 
     <!-- Suffixes are not copied because they have been moved. -->
@@ -284,7 +318,8 @@
     <xsl:template match="xhtml:span[contains(@class, 'date')]">
         <xsl:copy>
             <xsl:apply-templates select="@*[not(name() = 'class')]"/>
-            <xsl:attribute name="class" select="replace(@class, 'test-champ-date', 'xforms-type-date')"/>
+            <xsl:attribute name="class"
+                select="replace(@class, 'test-champ-date', 'xforms-type-date')"/>
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
