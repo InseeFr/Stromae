@@ -1,7 +1,7 @@
 {
   "authenticationType": "NONE",
   "_authenticationType_comment_": "Authentication type : OIDC or NONE",
-  "apiUrl": "https://queen-bo-demo.kub.sspcloud.fr",
+  "apiUrl": "http://localhost:8080",
   "inseeContext": "household",
   "portail": "http://localhost:5000"
 }
