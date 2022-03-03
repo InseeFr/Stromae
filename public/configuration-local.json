@@ -1,6 +1,0 @@
-{
-  "authenticationType": "OIDC",
-  "_authenticationType_comment_": "Authentication type : OIDC or NONE",
-  "apiUrl": "https://queen-bo-demo.kub.sspcloud.fr",
-  "portail": "${PORTAIL_URL}"
-}
