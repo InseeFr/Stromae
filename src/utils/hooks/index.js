@@ -21,7 +21,7 @@ export const usePageInUrl = () => {
 
   const history = useHistory();
 
-  const pageInUrl = decodePage(new URLSearchParams(search).get('page'));
+  const pageInUrl = decodePage(new URLSearchParams(search).get('page') || '');
 
   const setPageInUrl = page => {
     const searchUrl = new URLSearchParams(search);
