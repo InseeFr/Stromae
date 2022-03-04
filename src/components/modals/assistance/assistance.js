@@ -21,7 +21,7 @@ const utilInfo = (type, currentPage) => {
 };
 
 const Assistance = ({ open, setOpen }) => {
-  const { idQ } = useParams();
+  const { idQ, idSU } = useParams();
   const { portail } = useContext(AppContext);
   const {
     metadata: { inseeContext },
@@ -37,7 +37,7 @@ const Assistance = ({ open, setOpen }) => {
       window.open(
         `${portail}/${idQ
           .substr(0, idQ.indexOf('2'))
-          .toLowerCase()}/contacter-assistance`,
+          .toLowerCase()}/contacter-assistance/auth?idue=${idSU}`,
         '_blank'
       );
     }

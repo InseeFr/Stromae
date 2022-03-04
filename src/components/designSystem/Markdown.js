@@ -57,5 +57,10 @@ const renderers = {
 };
 
 export const MarkdownTypo = props => (
-  <ReactMarkdown skipHtml={false} renderers={renderers} {...props} />
+  <ReactMarkdown
+    className="stromae-md"
+    skipHtml={false}
+    renderers={renderers}
+    {...props}
+  />
 );
