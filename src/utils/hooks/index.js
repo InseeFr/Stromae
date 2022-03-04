@@ -1,5 +1,4 @@
 import { useHistory, useLocation } from 'react-router-dom';
-import { isLunaticPage, isStromaePage } from 'utils/pagination';
 
 export * from './api';
 export * from './auth';
