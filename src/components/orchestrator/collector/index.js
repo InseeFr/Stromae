@@ -6,13 +6,14 @@ import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { WelcomeBack } from 'components/modals/welcomeBack';
 import { ButtonsNavigation } from '../navigation';
-import { useLunaticFetcher } from 'utils/hooks';
+import { useLunaticFetcher, usePageInUrl } from 'utils/hooks';
 import { SendingConfirmation } from 'components/modals/sendingConfirmation';
 import {
   WELCOME_PAGE,
   END_PAGE,
   isLunaticPage,
   VALIDATION_PAGE,
+  isStromaePage,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
@@ -56,6 +57,8 @@ export const Orchestrator = ({
   const topRef = useRef();
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
+
+  const { pageInUrl, setPageInUrl } = usePageInUrl();
 
   const { stateData, data } = stromaeData;
 
@@ -125,6 +128,20 @@ export const Orchestrator = ({
     return WELCOME_PAGE;
   });
 
+  // Change page only if pageInUrl has changed (with browser navigation)
+  useEffect(() => {
+    if (pageInUrl && currentPage && pageInUrl !== currentPage) {
+      if (isLunaticPage(pageInUrl)) {
+        setPage(pageInUrl);
+      } else if (isStromaePage(pageInUrl)) setCurrentPage(pageInUrl);
+      else {
+        setPage('1');
+        setCurrentPage(WELCOME_PAGE);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageInUrl]);
+
   const goToTop = () => {
     if (topRef && topRef.current) {
       topRef.current.tabIndex = -1;
@@ -163,6 +180,11 @@ export const Orchestrator = ({
   useEffect(() => {
     if (isLunaticPage(currentPage)) setCurrentPage(page);
   }, [currentPage, page]);
+
+  useEffect(() => {
+    setPageInUrl(currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
