@@ -5,8 +5,8 @@ import { AuthProvider } from 'components/auth';
 import { Router } from 'components/router';
 import { StyleProvider } from 'components/style';
 import { ErrorFallback } from 'components/shared/error';
-import { getConfiguration } from 'utils/configuration';
 import './App.css';
+import { getConfiguration } from 'utils/configuration';
 
 export const AppContext = React.createContext();
 
