@@ -5,6 +5,7 @@ import { AuthProvider } from 'components/auth';
 import { Router } from 'components/router';
 import { StyleProvider } from 'components/style';
 import { ErrorFallback } from 'components/shared/error';
+import { getConfiguration } from 'utils/configuration';
 import './App.css';
 
 export const AppContext = React.createContext();
@@ -14,16 +15,7 @@ const App = () => {
 
   useEffect(() => {
     if (!configuration) {
-      fetch(`${window.location.origin}/configuration.json`)
-        .then(r => r.json())
-        .then(r => {
-          setConfiguration(r);
-        });
-      fetch(`${window.location.origin}/build-configuration.json`)
-        .then(r => r.json())
-        .then(r => {
-          setConfiguration(r);
-        });
+      getConfiguration(setConfiguration);
     }
   }, [configuration]);
 
