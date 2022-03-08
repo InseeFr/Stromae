@@ -1,8 +1,14 @@
+import { useContext, useEffect, useState, useCallback } from 'react';
+import { useConstCallback } from './useConstCallback';
 import { AppContext } from 'App';
 import { errorDictionary } from 'i18n';
-import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
+import {
+  DEFAULT_DATA_URL,
+  DEFAULT_METADATA_URL,
+  OIDC,
+  NONE,
+} from 'utils/constants';
 import { useAuth } from './auth';
 import { getFetcherForLunatic } from 'utils/api/fetcher';
 
@@ -16,83 +22,82 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useLunaticFetcher = () => {
-  const { authenticationType, oidcUser } = useAuth();
-
+  const { authenticationType, accessToken } = useAuth();
   const lunaticFetcher = useCallback(
     (url, options) => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      const token = authenticationType === OIDC ? accessToken : null;
       return getFetcherForLunatic(token)(url, options);
     },
-    [authenticationType, oidcUser]
+    [authenticationType, accessToken]
   );
 
   return { lunaticFetcher };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { authenticationType, oidcUser } = useAuth();
   const { apiUrl } = useContext(AppContext);
+  const { authenticationType, accessToken } = useAuth();
 
-  const getRequiredNomenclatures = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getRequiredNomenclatures = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getRequiredNomenclatures(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+  }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getNomenclature = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getNomenclature = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getNomenclature(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+  }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getQuestionnaire = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getQuestionnaire = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+  }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getMetadata = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getMetadata = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getMetadata(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
+  }, [questionnaireID, apiUrl, authenticationType, accessToken]);
 
-  const getSuData = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getSuData = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getSuData(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
+  }, [surveyUnitID, apiUrl, authenticationType, accessToken]);
 
-  const getPDF = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+  const getPDF = useConstCallback(() => {
+    const token = authenticationType === OIDC ? accessToken : null;
     return API.getDepositProof(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
+  }, [surveyUnitID, apiUrl, authenticationType, accessToken]);
 
-  const putSuData = useCallback(
+  const putSuData = useConstCallback(
     body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      const token = authenticationType === OIDC ? accessToken : null;
       return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
     },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+    [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const putData = useCallback(
+  const putData = useConstCallback(
     body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      const token = authenticationType === OIDC ? accessToken : null;
       return API.putData(apiUrl)(surveyUnitID)(token)(body);
     },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+    [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const putStateData = useCallback(
+  const putStateData = useConstCallback(
     body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      const token = authenticationType === OIDC ? accessToken : null;
       return API.putStateData(apiUrl)(surveyUnitID)(token)(body);
     },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+    [surveyUnitID, apiUrl, authenticationType, accessToken]
   );
 
-  const postParadata = useCallback(
+  const postParadata = useConstCallback(
     body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
+      const token = authenticationType === OIDC ? accessToken : null;
       return API.postParadata(apiUrl)(token)(body);
     },
-    [apiUrl, authenticationType, oidcUser]
+    [apiUrl, authenticationType, accessToken]
   );
 
   return {
@@ -116,6 +121,8 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const { accessToken, authenticationType } = useAuth();
+
   const {
     getSuData,
     getRequiredNomenclatures,
@@ -124,7 +131,12 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   } = useAPI(surveyUnitID, questionnaireID);
 
   useEffect(() => {
-    if (questionnaireID && surveyUnitID) {
+    if (
+      questionnaireID &&
+      surveyUnitID &&
+      ((authenticationType === OIDC && accessToken !== null) ||
+        authenticationType === NONE)
+    ) {
       setErrorMessage(null);
       setNomenclatures(null);
       const load = async () => {
@@ -153,7 +165,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     }
     // assume that we don't resend request to get data and questionnaire when token was refreshed
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [surveyUnitID, questionnaireID]);
+  }, [surveyUnitID, questionnaireID, accessToken]);
 
   return {
     loading,
