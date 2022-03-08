@@ -9,7 +9,7 @@
   "author": "INSEE (http://www.insee.fr)",
   "license": "MIT",
   "dependencies": {
-    "@axa-fr/react-oidc-context": "^4.2.9",
+    "@axa-fr/react-oidc-context": "4.2.12-alpha.0",
     "@craco/craco": "^6.4.0",
     "@inseefr/lunatic": "^0.3.6-experimental",
     "@material-ui/core": "^4.11.2",
