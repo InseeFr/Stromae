@@ -15,7 +15,9 @@ const App = () => {
 
   useEffect(() => {
     if (!configuration) {
-      getConfiguration(setConfiguration);
+      getConfiguration().then(conf => {
+        setConfiguration(conf);
+      });
     }
   }, [configuration]);
 
