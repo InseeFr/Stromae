@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@axa-fr/react-oidc-context@4.2.12-alpha.0":
-  version "4.2.12-alpha.0"
-  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-context/-/react-oidc-context-4.2.12-alpha.0.tgz#d7fe4028a62aa392a743137b5f08ccf54e6eac18"
-  integrity sha512-o+QOrmV9q5c5wn5T3m3H2juylBBAeJVrhZ2h0XDvDHDrleaCUfVSfaNOjo82iCdenmRUvLQUUntODDKLOYC6sg==
+"@axa-fr/react-oidc-context@^4.2.12":
+  version "4.2.12"
+  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-context/-/react-oidc-context-4.2.12.tgz#ec5dd650b2de27b34f0a84af81aae260553ff77a"
+  integrity sha512-DI0wbmFWGfZ7J/x/RoLC9GwY6WQEczE8lTxz47DX2uomxhNUEBTkhYES78n4uQh3qrneAaxliHOgk1cSBZ4bCQ==
   dependencies:
     "@openid/appauth" "1.3.1"
     react ">=16.8.6"
