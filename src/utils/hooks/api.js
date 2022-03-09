@@ -3,12 +3,7 @@ import { useConstCallback } from './useConstCallback';
 import { AppContext } from 'App';
 import { errorDictionary } from 'i18n';
 import { API } from 'utils/api';
-import {
-  DEFAULT_DATA_URL,
-  DEFAULT_METADATA_URL,
-  OIDC,
-  NONE,
-} from 'utils/constants';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
 import { useAuth } from './auth';
 import { getFetcherForLunatic } from 'utils/api/fetcher';
 
@@ -121,7 +116,6 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const { accessToken, authenticationType } = useAuth();
 
   const {
     getSuData,
@@ -131,12 +125,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   } = useAPI(surveyUnitID, questionnaireID);
 
   useEffect(() => {
-    if (
-      questionnaireID &&
-      surveyUnitID &&
-      ((authenticationType === OIDC && accessToken !== null) ||
-        authenticationType === NONE)
-    ) {
+    if (questionnaireID && surveyUnitID) {
       setErrorMessage(null);
       setNomenclatures(null);
       const load = async () => {
@@ -165,7 +154,7 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     }
     // assume that we don't resend request to get data and questionnaire when token was refreshed
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [surveyUnitID, questionnaireID, accessToken]);
+  }, [surveyUnitID, questionnaireID]);
 
   return {
     loading,
