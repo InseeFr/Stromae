@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Orchestrator } from 'components/orchestrator/collector';
 import { useRemoteData, useVisuQuery } from 'utils/hooks';
 import { Box, makeStyles, Typography } from '@material-ui/core';
@@ -8,7 +8,7 @@ import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
 import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
 import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
-import { AuthContext } from 'components/auth/provider';
+
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
