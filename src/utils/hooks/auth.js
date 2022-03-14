@@ -22,13 +22,20 @@ export const useAuth = () => {
      * Assume this conditional hook does not break anything
      */
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { login, logout } = useOidc();
+    const { login, logout, isLogged } = useOidc();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { oidcUser } = useOidcUser();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { accessToken } = useOidcAccessToken();
 
-    return { authenticationType, oidcUser, login, logout, accessToken };
+    return {
+      authenticationType,
+      isLogged,
+      oidcUser,
+      login,
+      logout,
+      accessToken,
+    };
   }
   throw new Error(`Auth type ${authenticationType} is not recognized`);
 };

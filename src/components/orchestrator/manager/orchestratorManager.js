@@ -50,8 +50,7 @@ const OrchestratorManger = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const { logout, oidcUser } = useAuth();
-  const isAuthenticated = !!oidcUser?.profile;
+  const { logout, oidcUser, isLogged } = useAuth();
 
   const [suggesters, setSuggesters] = useState(null);
 
@@ -77,12 +76,12 @@ const OrchestratorManger = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated && questionnaire) {
+    if (isLogged && questionnaire) {
       LOGGER.addMetadata({ idSession: oidcUser?.session_state });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, LOGGER, questionnaire]);
+  }, [isLogged, LOGGER, questionnaire]);
 
   useEffect(() => {
     if (!loading && questionnaire && nomenclatures) {
