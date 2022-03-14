@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const OrchestratorManger = () => {
+const OrchestratorManager = () => {
   const { apiUrl } = useContext(AppContext);
 
   const classes = useStyles();
@@ -73,7 +73,7 @@ const OrchestratorManger = () => {
   };
 
   const logoutAndClose = () => {
-    logout();
+    logout('portail');
   };
 
   useEffect(() => {
@@ -128,4 +128,4 @@ const OrchestratorManger = () => {
     </Box>
   );
 };
-export default OrchestratorManger;
+export default OrchestratorManager;
