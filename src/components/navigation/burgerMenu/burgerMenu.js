@@ -24,7 +24,7 @@ const BurgerMenu = ({ title }) => {
     logoutAndClose,
   } = useContext(OrchestratorContext);
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isUserLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     window.addEventListener('scroll', closeMenu);
@@ -55,7 +55,7 @@ const BurgerMenu = ({ title }) => {
             &nbsp;
             <span className="slideBarButtonText">{burgerDictionary.help}</span>
           </IconButton>
-          {isAuthenticated && inseeContext === HOUSEHOLD && (
+          {isUserLoggedIn && inseeContext === HOUSEHOLD && (
             <IconButton
               className="burgerMenuButton"
               aria-label="Déconnexion"

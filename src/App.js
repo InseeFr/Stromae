@@ -30,7 +30,10 @@ const App = () => {
       >
         {configuration && (
           <AppContext.Provider value={configuration}>
-            <AuthProvider authType={configuration.authenticationType}>
+            <AuthProvider
+              authType={configuration.authenticationType}
+              urlPortail={configuration.portail}
+            >
               <BrowserRouter>
                 <Router />
               </BrowserRouter>

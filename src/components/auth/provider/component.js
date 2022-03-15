@@ -9,7 +9,7 @@ import { createKeycloakOidcClient } from 'utils/keycloak';
 
 export const AuthContext = React.createContext();
 
-const AuthProvider = ({ authType, children }) => {
+const AuthProvider = ({ authType, urlPortail, children }) => {
   const [loading, setLoading] = useState(true);
   const [oidcConfig, setOidcConfig] = useState(null);
   const [oidcClient, setOidcClient] = useState(null);
@@ -34,12 +34,12 @@ const AuthProvider = ({ authType, children }) => {
 
   useEffect(() => {
     if (authType === OIDC && oidcConfig) {
-      createKeycloakOidcClient(oidcConfig).then(config => {
+      createKeycloakOidcClient({ ...oidcConfig, urlPortail }).then(config => {
         setLoading(false);
         setOidcClient(config);
       });
     }
-  }, [oidcConfig, authType]);
+  }, [oidcConfig, authType, urlPortail]);
 
   if (loading) return <LoaderSimple />;
   if (error) return <ErrorFallback error={error} />;
