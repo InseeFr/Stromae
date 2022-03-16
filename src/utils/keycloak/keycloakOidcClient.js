@@ -41,10 +41,12 @@ export const createKeycloakOidcClient = async ({
   return {
     isUserLoggedIn: true,
     getAccessToken: async () => {
+      // If the token is still valid for 10 seconds we just return the token
       if (!keycloakInstance.isTokenExpired(10)) {
         return keycloakInstance.token;
       }
 
+      // If not, we try to update Token now with refresh token. If the refresh token is expired, that return an error which lead to login page.
       const error = await keycloakInstance.updateToken(-1).then(
         () => undefined,
         error => error
@@ -54,9 +56,6 @@ export const createKeycloakOidcClient = async ({
         //NOTE: Never resolves
         await login();
       }
-
-      // assert(keycloakInstance.token !== undefined);
-
       return keycloakInstance.token;
     },
 
@@ -78,14 +77,14 @@ export const createKeycloakOidcClient = async ({
     },
     /* 
     * Return a Promise with user Info as bellow
-    { "sub": session_state",
-      "email_verified": true,
-      "name": First + last name,
-      "preferred_username": username,
-      "given_name": first name ,
-      "family_name": last name,
-      "email": email
-    }
+      { "sub": session_state",
+        "email_verified": true,
+        "name": First + last name,
+        "preferred_username": username,
+        "given_name": first name ,
+        "family_name": last name,
+        "email": email
+      }
     */
     oidcUser: await keycloakInstance.loadUserInfo(), ///
   };
