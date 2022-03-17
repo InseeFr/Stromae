@@ -34,7 +34,12 @@ const AuthProvider = ({ authType, urlPortail, children }) => {
 
   useEffect(() => {
     if (authType === OIDC && oidcConfig) {
-      createKeycloakOidcClient({ ...oidcConfig, urlPortail }).then(config => {
+      createKeycloakOidcClient({
+        url: oidcConfig['auth-server-url'],
+        realm: oidcConfig['realm'],
+        clientId: oidcConfig['resource'],
+        urlPortail,
+      }).then(config => {
         setLoading(false);
         setOidcClient(config);
       });
