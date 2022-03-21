@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@craco/craco": "^6.4.0",
-    "@inseefr/lunatic": "0.3.7-experimental",
+    "@inseefr/lunatic": "0.3.8-experimental",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
