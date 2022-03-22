@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NONE, OIDC } from 'utils/constants';
+import { OIDC, NONE } from 'utils/constants';
 import { useHistory } from 'react-router';
 import { LoaderSimple } from 'components/shared/loader';
 import { getOidc } from 'utils/configuration';
@@ -11,62 +11,55 @@ import { listenActivity } from 'utils/events';
 export const AuthContext = React.createContext();
 
 const AuthProvider = ({ authType, urlPortail, children }) => {
-  const [loading, setLoading] = useState(true);
-  const [oidcConfig, setOidcConfig] = useState(null);
-  const [oidcClient, setOidcClient] = useState(null);
-  const [error, setError] = useState(null);
-  const history = useHistory(); //TODO Do not call each time
-
-  useEffect(() => {
-    if (authType === NONE) {
-      setLoading(false);
+  
+  const [oidcClient, setOidcClient] = useState(
+    ()=> {
+      switch(authType){
+        case OIDC: return null;
+        case NONE: return dummyOidcClient;
+        default: throw new Error("Non supported auth type");
+      }
     }
-    if (authType === OIDC && !oidcConfig) {
-      getOidc()
-        .then(oidcConf => {
-          setOidcConfig(oidcConf);
-        })
-        .catch(() => {
-          setLoading(false);
-          setError(new Error(errorDictionary.noAuthFile));
-        });
-    }
-  }, [authType, oidcConfig]);
+  );
+  
+  useEffect(
+     ()=> {
+      
+      if( authType !== OIDC ){
+        return;
+      }
+       
+      (async ()=>{
+        
+          const oidcConf = await getOidc();
+        
+          const oidcClient = await createKeycloakOidcClient({
+            url: oidcConfig['auth-server-url'],
+            realm: oidcConfig['realm'],
+            clientId: oidcConfig['resource'],
+            urlPortail,
+            evtUserActivity: listenActivity,
+          });
+        
+          setOidcClient(oidcClient);
+       
+      })();
+      
+    },
+    []
+  );
 
-  useEffect(() => {
-    if (authType === OIDC && oidcConfig) {
-      createKeycloakOidcClient({
-        url: oidcConfig['auth-server-url'],
-        realm: oidcConfig['realm'],
-        clientId: oidcConfig['resource'],
-        urlPortail,
-        evtUserActivity: listenActivity,
-      }).then(config => {
-        setLoading(false);
-        setOidcClient(config);
-      });
-    }
-  }, [oidcConfig, authType, urlPortail]);
+  if (oidcClient === null) return <LoaderSimple />;
 
-  if (loading) return <LoaderSimple />;
-  if (error) return <ErrorFallback error={error} />;
+  return (
+    <AuthContext.Provider value={oidcClient}>{children}</AuthContext.Provider>
+  );
+};
 
-  if (authType === NONE) {
-    const context = {
-      isUserLoggedIn: true,
-      accessToken: null,
-      logout: () => history.push('/'),
-    };
-    return (
-      <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
-    );
-  }
-  if (authType === OIDC && oidcClient) {
-    return (
-      <AuthContext.Provider value={oidcClient}>{children}</AuthContext.Provider>
-    );
-  }
-  return <div>{`Auth type ${authType} is not recognized`}</div>;
+const dummyOidcClient = {
+   isUserLoggedIn: true,
+   accessToken: null,
+   logout: () => history.push('/'),
 };
 
 export default AuthProvider;
