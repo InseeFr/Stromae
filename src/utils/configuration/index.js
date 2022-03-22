@@ -1,2 +1,2 @@
-export { getOidcFile, getConfiguration } from './get-configuration';
+export { getOidc, getConfiguration } from './get-configuration';
 export { getEnvVar } from './env';

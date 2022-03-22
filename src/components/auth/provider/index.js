@@ -1,1 +1,1 @@
-export { default } from './component';
+export { AuthContext, default } from './component';
