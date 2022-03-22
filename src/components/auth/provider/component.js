@@ -11,40 +11,40 @@ import { listenActivity } from 'utils/events';
 export const AuthContext = React.createContext();
 
 const AuthProvider = ({ authType, urlPortail, children }) => {
-  
+
   const [oidcClient, setOidcClient] = useState(
-    ()=> {
-      switch(authType){
+    () => {
+      switch (authType) {
         case OIDC: return null;
         case NONE: return dummyOidcClient;
         default: throw new Error("Non supported auth type");
       }
     }
   );
-  
+
   useEffect(
-     ()=> {
-      
-      if( authType !== OIDC ){
+    () => {
+
+      if (authType !== OIDC) {
         return;
       }
-       
-      (async ()=>{
-        
-          const oidcConf = await getOidc();
-        
-          const oidcClient = await createKeycloakOidcClient({
-            url: oidcConfig['auth-server-url'],
-            realm: oidcConfig['realm'],
-            clientId: oidcConfig['resource'],
-            urlPortail,
-            evtUserActivity: listenActivity,
-          });
-        
-          setOidcClient(oidcClient);
-       
+
+      (async () => {
+
+        const oidcConf = await getOidc();
+
+        const oidcClient = await createKeycloakOidcClient({
+          url: oidcConf['auth-server-url'],
+          realm: oidcConf['realm'],
+          clientId: oidcConf['resource'],
+          urlPortail,
+          evtUserActivity: listenActivity,
+        });
+
+        setOidcClient(oidcClient);
+
       })();
-      
+
     },
     []
   );
@@ -57,9 +57,9 @@ const AuthProvider = ({ authType, urlPortail, children }) => {
 };
 
 const dummyOidcClient = {
-   isUserLoggedIn: true,
-   accessToken: null,
-   logout: () => history.push('/'),
+  isUserLoggedIn: true,
+  accessToken: null,
+  logout: () => history.push('/'),
 };
 
 export default AuthProvider;
