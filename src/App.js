@@ -15,7 +15,9 @@ const App = () => {
 
   useEffect(() => {
     if (!configuration) {
-      getConfiguration(setConfiguration);
+      getConfiguration().then(conf => {
+        setConfiguration(conf);
+      });
     }
   }, [configuration]);
 
@@ -28,7 +30,10 @@ const App = () => {
       >
         {configuration && (
           <AppContext.Provider value={configuration}>
-            <AuthProvider authType={configuration.authenticationType}>
+            <AuthProvider
+              authType={configuration.authenticationType}
+              urlPortail={configuration.portail}
+            >
               <BrowserRouter>
                 <Router />
               </BrowserRouter>
