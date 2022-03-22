@@ -17,57 +17,57 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useLunaticFetcher = () => {
-  const { accessToken } = useContext(AuthContext);
+  const oidcClient = useContext(AuthContext);
 
-  const lunaticFetcher = useConstCallback(async (url, options) =>
-    getFetcherForLunatic(accessToken)(url, options)
+  const lunaticFetcher = useConstCallback((url, options) =>
+    getFetcherForLunatic(oidcClient.accessToken)(url, options)
   );
 
   return { lunaticFetcher };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { accessToken } = useContext(AuthContext);
+  const oidcClient = useContext(AuthContext);
   const { apiUrl } = useContext(AppContext);
 
-  const getRequiredNomenclatures = useConstCallback(async () =>
-    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(accessToken)
+  const getRequiredNomenclatures = useConstCallback(() =>
+    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getNomenclature = useConstCallback(async () =>
-    API.getNomenclature(apiUrl)(questionnaireID)(accessToken)
+  const getNomenclature = useConstCallback(() =>
+    API.getNomenclature(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getQuestionnaire = useConstCallback(async () =>
-    API.getQuestionnaire(apiUrl)(questionnaireID)(accessToken)
+  const getQuestionnaire = useConstCallback(() =>
+    API.getQuestionnaire(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getMetadata = useConstCallback(async () =>
-    API.getMetadata(apiUrl)(questionnaireID)(accessToken)
+  const getMetadata = useConstCallback(() =>
+    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getSuData = useConstCallback(async () =>
-    API.getSuData(apiUrl)(surveyUnitID)(accessToken)
+  const getSuData = useConstCallback(() =>
+    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
-  const getPDF = useConstCallback(async () =>
-    API.getDepositProof(apiUrl)(surveyUnitID)(accessToken)
+  const getPDF = useConstCallback(() =>
+    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
-  const putSuData = useConstCallback(async body =>
-    API.putSuData(apiUrl)(surveyUnitID)(accessToken)(body)
+  const putSuData = useConstCallback(body =>
+    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putData = useConstCallback(async body =>
-    API.putData(apiUrl)(surveyUnitID)(accessToken)(body)
+  const putData = useConstCallback(body =>
+    API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putStateData = useConstCallback(async body =>
-    API.putStateData(apiUrl)(surveyUnitID)(accessToken)(body)
+  const putStateData = useConstCallback(body =>
+    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const postParadata = useConstCallback(async body =>
-    API.postParadata(apiUrl)(accessToken)(body)
+  const postParadata = useConstCallback(body =>
+    API.postParadata(apiUrl)(oidcClient.accessToken)(body)
   );
 
   return {
