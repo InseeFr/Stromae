@@ -1259,10 +1259,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@0.3.8-experimental":
-  version "0.3.8-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.8-experimental.tgz#691deb956045c18ee294b34aeed76c9221df3112"
-  integrity sha512-KKmaRksjjreqIm1ePI0OrSNT+xeBDvd854isCD9x03DsG6SycCmrTWE1ZB/PwmTwFkRxktsbDJBPSmYp94rAxg==
+"@inseefr/lunatic@0.3.9-experimental":
+  version "0.3.9-experimental"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.9-experimental.tgz#0f3d433a2c3aa1a1db0bc29c3b1b5c5191275a97"
+  integrity sha512-Yd0/f2apbNh4QQ5aBVmTwXoEzbL7VrMBVmMnGERivgDHRYLEfxqdRQBqgV+2b6lmKDPpQ9xpsj/uO8pkH+Y6Zg==
   dependencies:
     "@inseefr/trevas" "^0.1.14"
     array-flat-polyfill "^1.0.1"
