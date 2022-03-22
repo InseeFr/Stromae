@@ -31,7 +31,9 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
   const { apiUrl } = useContext(AppContext);
 
   const getRequiredNomenclatures = useConstCallback(() =>
-    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(oidcClient.accessToken)
+    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
+      oidcClient.accessToken
+    )
   );
 
   const getNomenclature = useConstCallback(() =>
@@ -109,11 +111,9 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
           setQuestionnaire(qR.data.value);
           setNomenclatures(nR.data);
           const mR = await getMetadata();
-          console.log(mR);
           if (!mR.error) {
             setMetadata(mR.data);
             const dR = await getSuData();
-            console.log(dR);
             if (!dR.error) {
               setSuData(dR.data);
               setLoading(false);
