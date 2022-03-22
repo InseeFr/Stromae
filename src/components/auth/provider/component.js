@@ -6,6 +6,7 @@ import { getOidc } from 'utils/configuration';
 import { errorDictionary } from 'i18n';
 import { ErrorFallback } from 'components/shared/error';
 import { createKeycloakOidcClient } from 'utils/keycloak';
+import { listenActivity } from 'utils/events';
 
 export const AuthContext = React.createContext();
 
@@ -39,6 +40,7 @@ const AuthProvider = ({ authType, urlPortail, children }) => {
         realm: oidcConfig['realm'],
         clientId: oidcConfig['resource'],
         urlPortail,
+        evtUserActivity: listenActivity,
       }).then(config => {
         setLoading(false);
         setOidcClient(config);
@@ -52,7 +54,7 @@ const AuthProvider = ({ authType, urlPortail, children }) => {
   if (authType === NONE) {
     const context = {
       isUserLoggedIn: true,
-      getAccessToken: () => null,
+      accessToken: null,
       logout: () => history.push('/'),
     };
     return (

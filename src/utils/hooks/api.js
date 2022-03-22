@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from 'App';
 import { AuthContext } from 'components/auth/provider';
 import { errorDictionary } from 'i18n';
@@ -17,83 +17,57 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useLunaticFetcher = () => {
-  const { getAccessToken } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
 
-  const lunaticFetcher = useConstCallback(
-    async (url, options) => {
-      const token = await getAccessToken();
-      return getFetcherForLunatic(token)(url, options);
-    },
-    [getAccessToken]
+  const lunaticFetcher = useConstCallback(async (url, options) =>
+    getFetcherForLunatic(accessToken)(url, options)
   );
 
   return { lunaticFetcher };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { getAccessToken } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   const { apiUrl } = useContext(AppContext);
 
-  const getRequiredNomenclatures = useCallback(async () => {
-    const token = await getAccessToken();
-    return API.getRequiredNomenclatures(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, getAccessToken]);
-
-  const getNomenclature = useCallback(async () => {
-    const token = getAccessToken();
-    return API.getNomenclature(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, getAccessToken]);
-
-  const getQuestionnaire = useCallback(async () => {
-    const token = await getAccessToken();
-    return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, getAccessToken]);
-
-  const getMetadata = useCallback(async () => {
-    const token = await getAccessToken();
-    return API.getMetadata(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, getAccessToken]);
-
-  const getSuData = useCallback(async () => {
-    const token = await getAccessToken();
-    return API.getSuData(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, getAccessToken]);
-
-  const getPDF = useCallback(async () => {
-    const token = await getAccessToken();
-    return API.getDepositProof(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, getAccessToken]);
-
-  const putSuData = useCallback(
-    async body => {
-      const token = await getAccessToken();
-      return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, getAccessToken]
+  const getRequiredNomenclatures = useConstCallback(async () =>
+    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(accessToken)
   );
 
-  const putData = useCallback(
-    async body => {
-      const token = await getAccessToken();
-      return API.putData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, getAccessToken]
+  const getNomenclature = useConstCallback(async () =>
+    API.getNomenclature(apiUrl)(questionnaireID)(accessToken)
   );
 
-  const putStateData = useCallback(
-    async body => {
-      const token = await getAccessToken();
-      return API.putStateData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, getAccessToken]
+  const getQuestionnaire = useConstCallback(async () =>
+    API.getQuestionnaire(apiUrl)(questionnaireID)(accessToken)
   );
 
-  const postParadata = useCallback(
-    async body => {
-      const token = await getAccessToken();
-      return API.postParadata(apiUrl)(token)(body);
-    },
-    [apiUrl, getAccessToken]
+  const getMetadata = useConstCallback(async () =>
+    API.getMetadata(apiUrl)(questionnaireID)(accessToken)
+  );
+
+  const getSuData = useConstCallback(async () =>
+    API.getSuData(apiUrl)(surveyUnitID)(accessToken)
+  );
+
+  const getPDF = useConstCallback(async () =>
+    API.getDepositProof(apiUrl)(surveyUnitID)(accessToken)
+  );
+
+  const putSuData = useConstCallback(async body =>
+    API.putSuData(apiUrl)(surveyUnitID)(accessToken)(body)
+  );
+
+  const putData = useConstCallback(async body =>
+    API.putData(apiUrl)(surveyUnitID)(accessToken)(body)
+  );
+
+  const putStateData = useConstCallback(async body =>
+    API.putStateData(apiUrl)(surveyUnitID)(accessToken)(body)
+  );
+
+  const postParadata = useConstCallback(async body =>
+    API.postParadata(apiUrl)(accessToken)(body)
   );
 
   return {
