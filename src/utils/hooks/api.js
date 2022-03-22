@@ -30,43 +30,43 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
   const oidcClient = useContext(AuthContext);
   const { apiUrl } = useContext(AppContext);
 
-  const getRequiredNomenclatures = useConstCallback(async () =>
+  const getRequiredNomenclatures = useConstCallback(() =>
     API.getRequiredNomenclatures(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getNomenclature = useConstCallback(async () =>
+  const getNomenclature = useConstCallback(() =>
     API.getNomenclature(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getQuestionnaire = useConstCallback(async () =>
+  const getQuestionnaire = useConstCallback(() =>
     API.getQuestionnaire(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getMetadata = useConstCallback(async () =>
+  const getMetadata = useConstCallback(() =>
     API.getMetadata(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const getSuData = useConstCallback(async () =>
+  const getSuData = useConstCallback(() =>
     API.getSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
-  const getPDF = useConstCallback(async () =>
+  const getPDF = useConstCallback(() =>
     API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
-  const putSuData = useConstCallback(async body =>
+  const putSuData = useConstCallback(body =>
     API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putData = useConstCallback(async body =>
+  const putData = useConstCallback(body =>
     API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putStateData = useConstCallback(async body =>
+  const putStateData = useConstCallback(body =>
     API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const postParadata = useConstCallback(async body =>
+  const postParadata = useConstCallback(body =>
     API.postParadata(apiUrl)(oidcClient.accessToken)(body)
   );
 
