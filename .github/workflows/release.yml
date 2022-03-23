@@ -74,8 +74,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ddecrulle/stromae
+          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           tags: ${{steps.version.outputs.prop}}
-   

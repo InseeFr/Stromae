@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.1.50",
+  "version": "2.1.68",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
@@ -9,9 +9,8 @@
   "author": "INSEE (http://www.insee.fr)",
   "license": "MIT",
   "dependencies": {
-    "@axa-fr/react-oidc-context": "^3.1.6",
     "@craco/craco": "^6.4.0",
-    "@inseefr/lunatic": "^0.3.5-experimental",
+    "@inseefr/lunatic": "0.3.9-experimental",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -20,6 +19,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "date-fns": "^2.17.0",
+    "keycloak-js": "16.1.1",
     "oidc-client": "^1.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

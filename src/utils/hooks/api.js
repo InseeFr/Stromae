@@ -1,10 +1,11 @@
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from 'App';
+import { AuthContext } from 'components/auth/provider';
 import { errorDictionary } from 'i18n';
-import { useCallback, useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL, OIDC } from 'utils/constants';
-import { useAuth } from './auth';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
 import { getFetcherForLunatic } from 'utils/api/fetcher';
+import { useConstCallback } from './useConstCallback';
 
 const getErrorMessage = (response, type = 'q') => {
   const { status } = response;
@@ -16,83 +17,59 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useLunaticFetcher = () => {
-  const { authenticationType, oidcUser } = useAuth();
+  const oidcClient = useContext(AuthContext);
 
-  const lunaticFetcher = useCallback(
-    (url, options) => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return getFetcherForLunatic(token)(url, options);
-    },
-    [authenticationType, oidcUser]
+  const lunaticFetcher = useConstCallback((url, options) =>
+    getFetcherForLunatic(oidcClient.accessToken)(url, options)
   );
 
   return { lunaticFetcher };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { authenticationType, oidcUser } = useAuth();
+  const oidcClient = useContext(AuthContext);
   const { apiUrl } = useContext(AppContext);
 
-  const getRequiredNomenclatures = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getRequiredNomenclatures(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
-
-  const getNomenclature = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getNomenclature(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
-
-  const getQuestionnaire = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getQuestionnaire(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
-
-  const getMetadata = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getMetadata(apiUrl)(questionnaireID)(token);
-  }, [questionnaireID, apiUrl, authenticationType, oidcUser]);
-
-  const getSuData = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getSuData(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
-
-  const getPDF = useCallback(() => {
-    const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-    return API.getDepositProof(apiUrl)(surveyUnitID)(token);
-  }, [surveyUnitID, apiUrl, authenticationType, oidcUser]);
-
-  const putSuData = useCallback(
-    body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putSuData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  const getRequiredNomenclatures = useConstCallback(() =>
+    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
+      oidcClient.accessToken
+    )
   );
 
-  const putData = useCallback(
-    body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  const getNomenclature = useConstCallback(() =>
+    API.getNomenclature(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const putStateData = useCallback(
-    body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.putStateData(apiUrl)(surveyUnitID)(token)(body);
-    },
-    [surveyUnitID, apiUrl, authenticationType, oidcUser]
+  const getQuestionnaire = useConstCallback(() =>
+    API.getQuestionnaire(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
-  const postParadata = useCallback(
-    body => {
-      const token = authenticationType === OIDC ? oidcUser?.access_token : null;
-      return API.postParadata(apiUrl)(token)(body);
-    },
-    [apiUrl, authenticationType, oidcUser]
+  const getMetadata = useConstCallback(() =>
+    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.accessToken)
+  );
+
+  const getSuData = useConstCallback(() =>
+    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)
+  );
+
+  const getPDF = useConstCallback(() =>
+    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
+  );
+
+  const putSuData = useConstCallback(body =>
+    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+  );
+
+  const putData = useConstCallback(body =>
+    API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+  );
+
+  const putStateData = useConstCallback(body =>
+    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+  );
+
+  const postParadata = useConstCallback(body =>
+    API.postParadata(apiUrl)(oidcClient.accessToken)(body)
   );
 
   return {
@@ -134,11 +111,9 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
           setQuestionnaire(qR.data.value);
           setNomenclatures(nR.data);
           const mR = await getMetadata();
-          console.log(mR);
           if (!mR.error) {
             setMetadata(mR.data);
             const dR = await getSuData();
-            console.log(dR);
             if (!dR.error) {
               setSuData(dR.data);
               setLoading(false);

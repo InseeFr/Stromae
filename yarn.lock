@@ -2,21 +2,6 @@
 # yarn lockfile v1
 
 
-"@axa-fr/react-oidc-context@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-context/-/react-oidc-context-3.1.6.tgz#fbcd254f9d3029a51144e01fab7d8f69141d4e33"
-  integrity sha512-xG/lX+VUIP7URndf7TigVYmUjsZ97tukwAAs2d10O0RitKquPbt1ZjmK6Xulg1ztUBC94eAtjELXql16VZptWw==
-  dependencies:
-    "@axa-fr/react-oidc-core" "^3.1.6"
-    prop-types "^15.7.2"
-
-"@axa-fr/react-oidc-core@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-core/-/react-oidc-core-3.1.6.tgz#61d5090afb4cca246d50bc955df62c1facbadd3c"
-  integrity sha512-lYyR5kz5MlgSO903dT+AhePSXBRPa/rcFI16oUFrZCl99eVlWKeZU3RQ1uvyU0dGGslPhElL+JIZVUjFDwj3zQ==
-  dependencies:
-    prop-types "^15.7.2"
-
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -1274,12 +1259,13 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.3.5-experimental":
-  version "0.3.5-experimental"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.5-experimental.tgz#33471cc125605c9d8b89c72b1cc32d70793b52cf"
-  integrity sha512-TXxgKmDQOxFZShIGwoKLNgBvtBfwQy+iys5TtNBGTIDaOxBwbLepv/LkXltX2E/MpqKiTdTn8H42af4tqPL8lQ==
+"@inseefr/lunatic@0.3.9-experimental":
+  version "0.3.9-experimental"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.9-experimental.tgz#0f3d433a2c3aa1a1db0bc29c3b1b5c5191275a97"
+  integrity sha512-Yd0/f2apbNh4QQ5aBVmTwXoEzbL7VrMBVmMnGERivgDHRYLEfxqdRQBqgV+2b6lmKDPpQ9xpsj/uO8pkH+Y6Zg==
   dependencies:
-    "@inseefr/trevas" "^0.1.12"
+    "@inseefr/trevas" "^0.1.14"
+    array-flat-polyfill "^1.0.1"
     date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
@@ -1291,10 +1277,10 @@
     remove-accents "^0.4.2"
     sass "^1.32.2"
 
-"@inseefr/trevas@^0.1.12":
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.12.tgz#06b6a64a133493da3af0febfffe4852d47aac6f4"
-  integrity sha512-pzrMFIId+V0sbni1C4QuBy0F/fiwwDx281QGhGmRX60GhFhZ6w7d9WkFZbPwCALEXWrG+Daq3S5y/PQMUxNbZg==
+"@inseefr/trevas@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.14.tgz#e05081f190467f035044f21da0fbcc3e655ca619"
+  integrity sha512-B4sui0+LZk5GjhDXgvthmb2AQn5uHCs6B7SrIin6X7KjSX5sVaALnvP89ZmprI6EEvPBduEAO95k4mSC7Kgtkg==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
@@ -2554,6 +2540,11 @@ arr-union@^3.1.0:
   resolved "https://registry.yarnpkg.com/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
   integrity sha1-45sJrqne+Gao8gbiiK9jkZuuOcQ=
 
+array-flat-polyfill@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/array-flat-polyfill/-/array-flat-polyfill-1.0.1.tgz#1e3a4255be619dfbffbfd1d635c1cf357cd034e7"
+  integrity sha512-hfJmKupmQN0lwi0xG6FQ5U8Rd97RnIERplymOv/qpq8AoNKPPAnxJadjFA23FNWm88wykh9HmpLJUUwUtNU/iw==
+
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
@@ -2933,6 +2924,11 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+
+base64-js@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
+  integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
 
 base64-js@^1.0.2, base64-js@^1.5.1:
   version "1.5.1"
@@ -7220,6 +7216,11 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
+js-sha256@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -7438,6 +7439,14 @@ jss@10.5.1, jss@^10.5.1:
   dependencies:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
+
+keycloak-js@16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-16.1.1.tgz#e235f212cc336b9752863ebdce7f7a5707b11b8a"
+  integrity sha512-AkRNIJFSMLfQKIBKK31UL4FGI59MQFf68Bf8I+PFbOSKNtnfGVPYLiZeJgy03Kv5ddswHBjVZOY5T0f5RpZpLw==
+  dependencies:
+    base64-js "1.3.1"
+    js-sha256 "0.9.0"
 
 keycode@^2.1.7:
   version "2.2.0"

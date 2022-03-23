@@ -19,6 +19,7 @@ import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
+import '../custom-lunatic.scss';
 
 export const OrchestratorContext = React.createContext();
 
@@ -62,7 +63,9 @@ export const Orchestrator = ({
   const { stateData, data } = stromaeData;
 
   const [validated, setValidated] = useState(
-    stateData?.state === 'VALIDATED' || stateData?.state === 'EXTRACTED'
+    stateData?.state === 'VALIDATED' ||
+      stateData?.state === 'EXTRACTED' ||
+      stateData?.state === 'TOEXTRACT'
   );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
@@ -113,12 +116,16 @@ export const Orchestrator = ({
     return newStateData;
   };
 
-  const logoutAndClose = () => {
-    quit({
-      ...stromaeData,
-      stateData: updateStateData(),
-      data: getState(questionnaire),
-    });
+  const logoutAndClose = async () => {
+    if (!validated) {
+      const dataToSave = {
+        ...stromaeData,
+        stateData: updateStateData(),
+        data: getState(questionnaire),
+      };
+      await save(dataToSave);
+    }
+    quit();
   };
 
   const [currentPage, setCurrentPage] = useState(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAPI, useAPIRemoteData, useAuth } from 'utils/hooks';
+import { useAPI, useAPIRemoteData } from 'utils/hooks';
 import { AppContext } from 'App';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { LoaderSimple } from 'components/shared/loader';
@@ -16,6 +16,7 @@ import {
   READ_ONLY,
 } from 'utils/constants';
 import { buildSuggesterFromNomenclatures } from 'utils/questionnaire/nomenclatures';
+import { AuthContext } from 'components/auth/provider';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const OrchestratorManger = () => {
+const OrchestratorManager = () => {
   const { apiUrl } = useContext(AppContext);
 
   const classes = useStyles();
@@ -50,8 +51,7 @@ const OrchestratorManger = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const { logout, oidcUser } = useAuth();
-  const isAuthenticated = !!oidcUser?.profile;
+  const { logout, oidcUser, isUserLoggedIn } = useContext(AuthContext);
 
   const [suggesters, setSuggesters] = useState(null);
 
@@ -72,17 +72,17 @@ const OrchestratorManger = () => {
     if (!paradataPostError) LOGGER.clear();
   };
 
-  const logoutAndClose = async surveyUnit => {
-    logout();
+  const logoutAndClose = () => {
+    logout('portail');
   };
 
   useEffect(() => {
-    if (isAuthenticated && questionnaire) {
-      LOGGER.addMetadata({ idSession: oidcUser?.session_state });
+    if (isUserLoggedIn && questionnaire) {
+      LOGGER.addMetadata({ idSession: oidcUser?.sub });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, LOGGER, questionnaire]);
+  }, [isUserLoggedIn, LOGGER, questionnaire]);
 
   useEffect(() => {
     if (!loading && questionnaire && nomenclatures) {
@@ -128,4 +128,4 @@ const OrchestratorManger = () => {
     </Box>
   );
 };
-export default OrchestratorManger;
+export default OrchestratorManager;

@@ -1,18 +1,20 @@
 import React, { useContext } from 'react';
-import { AppContext } from 'App';
-import { OidcSecure } from '@axa-fr/react-oidc-context';
-import { NONE, OIDC } from 'utils/constants';
+import { AuthContext } from '../provider';
 
 const secure = WrappedComponent => {
   const Component = props => {
-    const { authenticationType } = useContext(AppContext);
+    const { isUserLoggedIn, login } = useContext(AuthContext);
     const { otherProps } = props;
+
     const ReturnedComponent = <WrappedComponent {...otherProps} />;
-    if (authenticationType === NONE) return ReturnedComponent;
-    if (authenticationType === OIDC)
-      return <OidcSecure>{ReturnedComponent}</OidcSecure>;
-    return <div>{`Auth type ${authenticationType} is nor recognized`}</div>;
+
+    if (isUserLoggedIn) {
+      return ReturnedComponent;
+    }
+    login();
+    return null;
   };
+
   return Component;
 };
 
