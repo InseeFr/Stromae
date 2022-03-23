@@ -15,12 +15,13 @@ export const createKeycloakOidcClient = async ({
   realm,
   clientId,
   urlPortail,
+  evtUserActivity,
 }) => {
   const keycloakInstance = Keycloak({ url, realm, clientId });
 
   const isAuthenticated = await keycloakInstance
     .init({
-      onLoad: 'check-sso', //check-sso
+      onLoad: 'check-sso',
       silentCheckSsoRedirectUri: `${window.location.origin}/silent-sso.html`,
       checkLoginIframe: false,
     })
@@ -38,27 +39,10 @@ export const createKeycloakOidcClient = async ({
     };
   }
 
-  return {
+  const oidcClient = {
     isUserLoggedIn: true,
-    getAccessToken: async () => {
-      // If the token is still valid for 10 seconds we just return the token
-      if (!keycloakInstance.isTokenExpired(10)) {
-        return keycloakInstance.token;
-      }
-
-      // If not, we try to update Token now with refresh token. If the refresh token is expired, that return an error which lead to login page.
-      const error = await keycloakInstance.updateToken(-1).then(
-        () => undefined,
-        error => error
-      );
-
-      if (error) {
-        //NOTE: Never resolves
-        await login();
-      }
-      return keycloakInstance.token;
-    },
-
+    accessToken: keycloakInstance.token,
+    oidcUser: await keycloakInstance.loadUserInfo(),
     logout: async ({ redirectTo }) => {
       await keycloakInstance.logout({
         redirectUri: (() => {
@@ -75,17 +59,39 @@ export const createKeycloakOidcClient = async ({
 
       return new Promise(() => {});
     },
-    /* 
-    * Return a Promise with user Info as bellow
-      { "sub": session_state",
-        "email_verified": true,
-        "name": First + last name,
-        "preferred_username": username,
-        "given_name": first name ,
-        "family_name": last name,
-        "email": email
-      }
-    */
-    oidcUser: await keycloakInstance.loadUserInfo(), ///
   };
+
+  (function callee() {
+    const msBeforeExpiration =
+      keycloakInstance.tokenParsed.exp * 1000 - Date.now();
+
+    setTimeout(async () => {
+      console.log(
+        `OIDC access token will expire in ${minValiditySecond} seconds, waiting for user activity before renewing`
+      );
+
+      await evtUserActivity();
+
+      console.log('User activity detected. Refreshing access token now');
+
+      const error = await keycloakInstance.updateToken(-1).then(
+        () => undefined,
+        error => error
+      );
+
+      if (error) {
+        console.log("Can't refresh OIDC access token, getting a new one");
+        //NOTE: Never resolves
+        await login();
+      }
+
+      oidcClient.accessToken = keycloakInstance.token;
+
+      callee();
+    }, msBeforeExpiration - minValiditySecond * 1000);
+  })();
+
+  return oidcClient;
 };
+
+const minValiditySecond = 25;
