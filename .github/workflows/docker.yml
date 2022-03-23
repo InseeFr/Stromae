@@ -42,7 +42,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ${{ secrets.DOCKERHUB_USERNAME }}/stromae
+          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           tags: ${{steps.extract_branch.outputs.prop}}
