@@ -2,7 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAPI, useAPIRemoteData } from 'utils/hooks';
 import { AppContext } from 'App';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import { LoaderSimple } from 'components/shared/loader';
 import { Orchestrator } from './../collector';
 import {

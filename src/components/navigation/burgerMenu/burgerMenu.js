@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { IconButton, Typography } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Help, ExitToApp, Close } from '@material-ui/icons';
+import Help from '@material-ui/icons/Help';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import Close from '@material-ui/icons/Close';
 import { AssistanceConfirm } from 'components/modals/assistance';
 import { HOUSEHOLD } from 'utils/constants';
 import { OrchestratorContext } from 'components/orchestrator/collector';
