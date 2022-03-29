@@ -1,13 +1,12 @@
 import React from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { OrchestratorManager } from 'components/orchestrator/manager';
 import { secure } from 'components/auth';
 import { READ_ONLY } from 'utils/constants';
 import { Visualizer } from 'components/orchestrator/visualizer';
+import { NotFound } from 'components/pages';
 
 const Router = () => {
-  const { pathname } = useLocation();
-
   return (
     <Switch>
       <Route
@@ -15,7 +14,8 @@ const Router = () => {
         component={secure(OrchestratorManager)}
       />
       <Route path="/visualize" component={Visualizer} />
-      {!pathname.startsWith('/authentication') && <Redirect to="/visualize" />}
+      <Route path="/404" component={NotFound} />
+      <Redirect to="/404" />
     </Switch>
   );
 };
