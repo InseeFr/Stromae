@@ -15,7 +15,7 @@ const Router = () => {
         component={secure(OrchestratorManager)}
       />
       <Route path="/visualize" component={Visualizer} />
-      {/* {!pathname.startsWith('/authentication') && <Redirect to="/visualize" />} */}
+      {!pathname.startsWith('/authentication') && <Redirect to="/visualize" />}
     </Switch>
   );
 };
