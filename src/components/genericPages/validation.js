@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  makeStyles,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import Divider from '@material-ui/core/Divider';
+import Send from '@material-ui/icons/Send';
 import { validationPageDictionary, buttonDictionary } from 'i18n';
-import { Send } from '@material-ui/icons';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';

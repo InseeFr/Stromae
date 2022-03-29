@@ -1,5 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import { Skeleton } from '@material-ui/lab';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import logo from 'img/insee.png';

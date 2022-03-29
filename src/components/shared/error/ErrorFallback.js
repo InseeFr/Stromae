@@ -1,15 +1,13 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Container,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
-import { Button } from 'components/designSystem';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { Button } from 'components/designSystem';
 import { defaultDictionary, errorDictionary, buttonDictionary } from 'i18n';
 import { lunaticVersion, stromaeVersion } from 'utils/app';
 

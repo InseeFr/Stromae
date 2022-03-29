@@ -9,14 +9,13 @@ import {
   DEFAULT_METADATA_URL,
 } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import {
-  Checkbox,
-  Container,
-  FormControlLabel,
-  makeStyles,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Checkbox from '@material-ui/core/Checkbox';
+import Container from '@material-ui/core/Container';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
 import { Button } from 'components/designSystem';
 import Helper from './helper';
 import Examples from './examples';
