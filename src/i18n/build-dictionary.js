@@ -16,9 +16,10 @@ export const createDictionary = lang => dico =>
  * If the lang is not fr, will return en
  * @param {string} lang the lang of the user
  */
-export const getLang = defaultLang =>
-  (defaultLang || navigator.language || navigator.browserLanguage).split(
-    '-'
-  )[0] === 'fr'
-    ? 'fr'
-    : 'en';
+//TODO Support EN mode (translate everything in the App including the survey)
+export const getLang = defaultLang => 'fr';
+// (defaultLang || navigator.language || navigator.browserLanguage).split(
+//   '-'
+// )[0] === 'fr'
+//   ? 'fr'
+//   : 'en';
