@@ -893,3 +893,51 @@ label.radio {
     width: 97%;
   }
 }
+
+/* pied-de-page */
+.orbeon footer[id=footer] {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 11px;
+    background-color: #E6E6E6;
+}
+
+.orbeon footer[id=footer] div[id=urls] {
+    flex: auto;
+    text-align: center;
+    padding-top: 15px;
+    width: 350px;
+}
+
+.orbeon footer[id=footer] div[id=urls] ul {
+    margin: 0;
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li{
+    display:inline;
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li::after {  
+  content: " | ";
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li.a3::after {  
+  content: none;
+}
+
+.orbeon footer[id=footer] div[id=urls] ul li.a6::after {  
+  content: none;
+}
+
+.orbeon footer a {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #0F417A;
+  font-size: 12px;
+  text-decoration: none; 
+}
+
+.orbeon footer[id=footer] div[id=insee], .orbeon footer[id=footer] div[id=version] {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+}
