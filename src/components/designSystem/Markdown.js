@@ -1,5 +1,7 @@
-import { Link as MuiLink, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { default as MuiLink } from '@material-ui/core/Link';
 import ReactMarkdown from 'react-markdown';
 
 const useStyles = makeStyles(theme => ({
