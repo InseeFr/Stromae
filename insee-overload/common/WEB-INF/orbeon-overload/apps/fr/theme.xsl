@@ -195,7 +195,7 @@
                         </xsl:element>
                     </xhtml:li>
                     <xhtml:li class="a6">
-                        <xhtml:a href="https://cnis.fr" target="_blank" aria-label="cnis.fr (nouvelle fenêtre)">Cnis</xhtml:a>
+                        <xhtml:a href="https://www.cnis.fr" target="_blank" aria-label="cnis.fr (nouvelle fenêtre)">Cnis</xhtml:a>
                     </xhtml:li>
                 </xhtml:ul>
             </xhtml:div>
