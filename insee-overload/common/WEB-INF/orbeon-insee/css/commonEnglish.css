@@ -892,6 +892,10 @@ label.radio {
   .orbeon .xforms-error-panel {
     width: 97%;
   }
+ 
+  .orbeon footer[id=footer] {
+   width: 97%;
+	}
 }
 
 /* pied-de-page */
