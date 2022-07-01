@@ -77,7 +77,7 @@ export const Orchestrator = ({
     getComponents,
     waiting,
     getState,
-    pager: { page },
+    pager: { page = '1' },
     goNextPage,
     goPreviousPage,
     isFirstPage,
@@ -315,8 +315,8 @@ export const Orchestrator = ({
   return (
     <StyleWrapper metadata={metadata}>
       <OrchestratorContext.Provider value={context}>
-        <BurgerMenu title={source?.label} />
-        <AppBar title={source?.label} />
+        <BurgerMenu title={source?.label.value} />
+        <AppBar title={source?.label.value} />
         <Container
           maxWidth="md"
           component="main"

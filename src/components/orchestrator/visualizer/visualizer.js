@@ -54,7 +54,9 @@ const Visualizer = () => {
 
   useEffect(() => {
     if (!loading && questionnaire) {
-      const { label: questionnaireTitle } = questionnaire;
+      const {
+        label: { value: questionnaireTitle },
+      } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);

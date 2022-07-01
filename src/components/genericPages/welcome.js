@@ -34,11 +34,11 @@ const WelcomePage = () => {
     genericPages?.welcome || welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = (myBody, bindingDependencies) =>
-    interpret(['VTL'])({
+    interpret(myBody, {
       ...buildDefaultBindings(bindingDependencies),
       ...buildBuidings(variables),
       ...buildBuidings(personalization),
-    })(myBody);
+    });
 
   const getFinalLabel = label =>
     label || `Not yet Implemented for ${inseeContext}`;

@@ -78,11 +78,11 @@ const EndPage = () => {
   })} (${format(finalDate, formatLocal)})`;
 
   const getBodyWithVariables = myBody =>
-    interpret(['VTL'])({
+    interpret(myBody, {
       validatedDate,
       ...buildBuidings(variables),
       ...buildBuidings(personalization),
-    })(myBody);
+    });
 
   return (
     <Card className={classes.card}>
