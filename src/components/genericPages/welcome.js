@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
-import { interpret } from '@inseefr/lunatic';
+import { interpret } from '@inseefr/trevas';
 import { welcomePageDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 import { OrchestratorContext } from 'components/orchestrator/collector';
