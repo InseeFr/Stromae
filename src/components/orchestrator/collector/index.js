@@ -71,29 +71,22 @@ export const Orchestrator = ({
   );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
-  const [waiting /*, setWaiting*/] = useState(false);
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = e => simpleLog({ ...e, page: currentPage });
   const {
-    questionnaire,
-    components,
-    handleChange,
-    bindings,
-    pagination: {
-      goNext,
-      goPrevious,
-      page,
-      setPage,
-      isFirstPage,
-      isLastPage,
-      flow,
-    },
-    state: { getState },
-  } = lunatic.useLunaticSplit(source, data, {
+    getComponents,
+    waiting,
+    getState,
+    pager: { page },
+    goNextPage,
+    goPreviousPage,
+    isFirstPage,
+    isLastPage,
+    setPage = () => console.log('TODO lunatic'),
+  } = lunatic.useLunatic(source, data, {
     savingType,
     preferences,
     features,
-    pagination,
     modalForControls,
     suggesters,
     autoSuggesterLoading,
@@ -101,12 +94,10 @@ export const Orchestrator = ({
     logFunction,
   });
 
-  const [state, setState] = useQuestionnaireState(
-    questionnaire,
-    stateData?.state
-  );
+  //TODO Check compatibility deeper
+  const [state, setState] = useQuestionnaireState(source, stateData?.state);
 
-  const { componentType } = getCurrentComponent(components)(page);
+  const { componentType } = getCurrentComponent(getComponents())(page);
 
   const updateStateData = lastState => {
     const newStateData = {
@@ -123,7 +114,7 @@ export const Orchestrator = ({
       const dataToSave = {
         ...stromaeData,
         stateData: updateStateData(),
-        data: getState(questionnaire),
+        data: getState(),
       };
       await save(dataToSave);
     }
@@ -156,7 +147,7 @@ export const Orchestrator = ({
     const dataToSave = {
       ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: getState(questionnaire),
+      data: getState(),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
@@ -167,11 +158,11 @@ export const Orchestrator = ({
       const dataToSave = {
         ...stromaeData,
         stateData: updateStateData(),
-        data: getState(questionnaire),
+        data: getState(),
       };
       if (!isLastPage) {
         if (componentType === 'Sequence') save(dataToSave);
-        goNext();
+        goNextPage();
       } else {
         save(dataToSave);
         setCurrentPage(VALIDATION_PAGE);
@@ -187,7 +178,7 @@ export const Orchestrator = ({
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
     else {
-      if (!isFirstPage) goPrevious();
+      if (!isFirstPage) goPreviousPage();
       else setCurrentPage(WELCOME_PAGE);
     }
   };
@@ -206,7 +197,7 @@ export const Orchestrator = ({
   };
 
   const displayComponents = function () {
-    const structure = components.reduce((acc, curr) => {
+    const structure = getComponents().reduce((acc, curr) => {
       if (curr.componentType === 'Sequence') {
         acc[curr.id] = [];
         return acc;
@@ -237,7 +228,7 @@ export const Orchestrator = ({
       }
       return acc;
     }, {});
-    return components.map(comp => {
+    return getComponents().map(comp => {
       if (shouldBeDisplayed(structure, comp)) {
         return displayComponent(structure, comp);
       }
@@ -284,20 +275,16 @@ export const Orchestrator = ({
           >
             <Component
               {...comp}
-              handleChange={handleChange}
               labelPosition="TOP"
               savingType={savingType}
               preferences={preferences}
               features={features}
-              bindings={bindings}
               writable
               readOnly={readonly}
               disabled={readonly}
               unitPosition="AFTER"
               currentPage={page}
               setPage={setPage}
-              flow={flow}
-              pagination={pagination}
               logFunction={logFunction}
             />
             {displaySubComponents(componentsStructure, componentType, id)}
@@ -328,8 +315,8 @@ export const Orchestrator = ({
   return (
     <StyleWrapper metadata={metadata}>
       <OrchestratorContext.Provider value={context}>
-        <BurgerMenu title={questionnaire?.label} />
-        <AppBar title={questionnaire?.label} />
+        <BurgerMenu title={source?.label} />
+        <AppBar title={source?.label} />
         <Container
           maxWidth="md"
           component="main"
