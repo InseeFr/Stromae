@@ -4,8 +4,7 @@ const getCurrentSurvey = path => {
   const temp = path.split('/questionnaire/');
   if (temp.length > 1) {
     const idQ = temp[1].slice(0, temp[1].indexOf('/'));
-    const survey = idQ.substr(0, idQ.indexOf('2')).toLowerCase();
-    return survey;
+    return idQ.substr(0, idQ.indexOf('2')).toLowerCase();
   }
   return '';
 };
@@ -43,7 +42,7 @@ export const createKeycloakOidcClient = async ({
     isUserLoggedIn: true,
     accessToken: keycloakInstance.token,
     oidcUser: await keycloakInstance.loadUserInfo(),
-    logout: async ({ redirectTo }) => {
+    logout: async redirectTo => {
       await keycloakInstance.logout({
         redirectUri: (() => {
           switch (redirectTo) {
