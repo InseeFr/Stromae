@@ -1259,10 +1259,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.3.4-v2":
-  version "0.3.4-v2"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.4-v2.tgz#84e7ddc7c836bd617c791784a928e0b215d36a2a"
-  integrity sha512-4jbM9+r3plQ0jMchIzqTyYu94D/kcQ8GsAaMj9YJRac3TUO52sSJ1NM+MATa5KR9YY0+gg6QbwRkYnF5MxKtzA==
+"@inseefr/lunatic@^0.3.1-v2":
+  version "0.3.1-v2"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.3.1-v2.tgz#e6d14537a8691fe3a71892b388f633ff645052f4"
+  integrity sha512-8dyB8RPtkXGaWxPmTq+dzuRplXs22QagHsflOQ0MOeLvz88kFBc3Wfrso6knPZwIWpRyWymi16kjRGK/Qa1I+A==
   dependencies:
     "@inseefr/trevas" "^0.1.10"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0"
