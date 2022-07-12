@@ -17,7 +17,6 @@ import {
   isLunaticPage,
   VALIDATION_PAGE,
 } from 'utils/pagination';
-import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
@@ -97,8 +96,6 @@ export const Orchestrator = ({
   //TODO Check compatibility deeper
   const [state, setState] = useQuestionnaireState(source, stateData?.state);
 
-  const { componentType } = getCurrentComponent(getComponents())(page);
-
   const updateStateData = lastState => {
     const newStateData = {
       state: lastState || state,
@@ -161,7 +158,7 @@ export const Orchestrator = ({
         data: getState(),
       };
       if (!isLastPage) {
-        if (componentType === 'Sequence') save(dataToSave);
+        // if (componentType === 'Sequence') save(dataToSave);
         goNextPage();
       } else {
         save(dataToSave);
@@ -196,6 +193,38 @@ export const Orchestrator = ({
     lunaticOptions: { preferences, features, pagination },
   };
 
+  const components = getComponents();
+
+  const lunaticDisplay = () =>
+    components.map(component => {
+      const { id, componentType, response, storeName, ...other } = component;
+      const Component = lunatic[componentType];
+      return (
+        <Card
+          className={`lunatic lunatic-component ${componentType} ${classes.component}`}
+          key={`component-${id}`}
+        >
+          <div className="lunatic lunatic-component" key={`component-${id}`}>
+            <Component
+              id={id}
+              response={response}
+              savingType={savingType}
+              preferences={preferences}
+              readOnly={readonly}
+              writable
+              disabled={readonly}
+              labelPosition="TOP" //For LunaticSuggester
+              logFunction={logFunction}
+              filterDescription={false}
+              {...other}
+              {...component}
+            />
+          </div>
+        </Card>
+      );
+    });
+
+  // eslint-disable-next-line
   const displayComponents = function () {
     const structure = getComponents().reduce((acc, curr) => {
       if (curr.componentType === 'Sequence') {
@@ -326,7 +355,7 @@ export const Orchestrator = ({
           className={classes.root}
         >
           {currentPage === WELCOME_PAGE && <WelcomePage />}
-          {isLunaticPage(currentPage) && displayComponents()}
+          {isLunaticPage(currentPage) && lunaticDisplay()}
           {currentPage === VALIDATION_PAGE && <ValidationPage />}
           {currentPage === END_PAGE && <EndPage />}
         </Container>
