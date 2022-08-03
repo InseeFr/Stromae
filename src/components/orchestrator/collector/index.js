@@ -214,7 +214,6 @@ export const Orchestrator = ({
               savingType={savingType}
               preferences={preferences}
               readOnly={readonly}
-              writable
               disabled={readonly}
               labelPosition="TOP" //For LunaticSuggester
               logFunction={logFunction}
