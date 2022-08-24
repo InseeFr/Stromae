@@ -50,7 +50,7 @@ export const Orchestrator = ({
   savingType,
   preferences,
   features,
-  pagination,
+  activeControls,
   modalForControls,
   readonly,
   suggesters,
@@ -75,18 +75,20 @@ export const Orchestrator = ({
   const {
     getComponents,
     waiting,
-    getState,
     pager: { page = '1' },
     goNextPage,
     goPreviousPage,
     isFirstPage,
     isLastPage,
     setPage = () => console.log('TODO lunatic'),
+    getModalErrors,
+    getCurrentErrors,
+    getData,
   } = lunatic.useLunatic(source, data, {
     savingType,
     preferences,
     features,
-    modalForControls,
+    activeControls,
     suggesters,
     autoSuggesterLoading,
     suggesterFetcher,
@@ -109,9 +111,8 @@ export const Orchestrator = ({
   const logoutAndClose = async () => {
     if (!validated) {
       const dataToSave = {
-        ...stromaeData,
         stateData: updateStateData(),
-        data: getState(),
+        data: getData(),
       };
       await save(dataToSave);
     }
@@ -142,9 +143,8 @@ export const Orchestrator = ({
     setValidated(true);
     setState(VALIDATED);
     const dataToSave = {
-      ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: getState(),
+      data: getData(),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
@@ -153,12 +153,12 @@ export const Orchestrator = ({
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
       const dataToSave = {
-        ...stromaeData,
         stateData: updateStateData(),
-        data: getState(),
+        data: getData(),
       };
       if (!isLastPage) {
-        // if (componentType === 'Sequence') save(dataToSave);
+        const { componentType } = components;
+        if (componentType === 'Sequence') save(dataToSave);
         goNextPage();
       } else {
         save(dataToSave);
@@ -190,10 +190,11 @@ export const Orchestrator = ({
     stateData: currentStateData,
     currentPage,
     readonly,
-    lunaticOptions: { preferences, features, pagination },
   };
 
   const components = getComponents();
+  const modalErrors = getModalErrors();
+  const currentErrors = getCurrentErrors();
 
   const lunaticDisplay = () =>
     components.map(component => {
@@ -218,6 +219,7 @@ export const Orchestrator = ({
               labelPosition="TOP" //For LunaticSuggester
               logFunction={logFunction}
               filterDescription={false}
+              errors={currentErrors}
               {...other}
               {...component}
             />
@@ -250,6 +252,13 @@ export const Orchestrator = ({
             onPrevious={onPrevious}
             currentPage={currentPage}
             validateQuestionnaire={() => setValidationConfirmation(true)}
+          />
+        )}
+        {modalForControls && (
+          <lunatic.Modal
+            title="Des points requièrent votre attention."
+            errors={modalErrors}
+            goNext={goNextPage}
           />
         )}
         <WelcomeBack
