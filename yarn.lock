@@ -1259,12 +1259,12 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.4.7-v2":
-  version "0.4.7-v2"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.4.7-v2.tgz#e263628fbe32fb790174962d9da05327743b5747"
-  integrity sha512-mqQuszi7PRvoF3Xp/hSY5vwRDlSK3om7GVdlWqnKCDex/cbVAAUIXqOMA4A6telr6gTTln/M73F6TpE4bXALVg==
+"@inseefr/lunatic@^0.4.9-v2":
+  version "0.4.9-v2"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.4.9-v2.tgz#5f250a53897529364ec6d431bb4eabfb6f6eb6d0"
+  integrity sha512-b27nxNshoQviaen94e2JiKrSwoBHi9ltMhBPmeu5ZX16dKPdi3ZX3Bseh9vSkwNbd/HMtduwbkf6ohr0O0BdQA==
   dependencies:
-    "@inseefr/trevas" "^0.1.0-bundle"
+    "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
     antlr4 "4.8.0"
     classnames "^2.3.1"
@@ -1282,10 +1282,10 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/trevas@^0.1.0-bundle":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.14.tgz#e05081f190467f035044f21da0fbcc3e655ca619"
-  integrity sha512-B4sui0+LZk5GjhDXgvthmb2AQn5uHCs6B7SrIin6X7KjSX5sVaALnvP89ZmprI6EEvPBduEAO95k4mSC7Kgtkg==
+"@inseefr/trevas@^0.1.15":
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.15.tgz#e12245a6b45027878136de3d61d668b034ed3bbe"
+  integrity sha512-EKY9grC8DjeIiBIpXtJlHpX86eWdvNwZxV+AUXwooNyX8fB1sF1zt6iamgfkrVTPVPE+ySIWU6I+h8YQa0DxEw==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
