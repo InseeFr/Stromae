@@ -1306,10 +1306,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.4.14-v2":
-  "integrity" "sha512-5GAtZPTBoNw/qA3gdUzsYg1K6ILDI2LupFNJjzvVrXAhNEWtF1gcN8SwJzm9Qkrpx3SSY3g3qELsly95rkOzew=="
-  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.14-v2.tgz"
-  "version" "0.4.14-v2"
+"@inseefr/lunatic@^0.4.15-v2":
+  "integrity" "sha512-QJ0GV9ym9Fu4Zw5mKQmkOtYaKAqmo2XtBNvgwhUJ8NzI8GBfcKx/xZrV0q6xT4D7tdKXuGut9vwZwkucp564EQ=="
+  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.15-v2.tgz"
+  "version" "0.4.15-v2"
   dependencies:
     "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
