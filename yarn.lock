@@ -1306,10 +1306,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.4.13-v2":
-  "integrity" "sha512-ipOE4qysEHee+u2F50bzhzvmQFkZ9V/2ipQ+waUcu/AMWHArjaEK17Z3m7D60Fj1iKV3t0i/Yqd8o0GhdvMHFg=="
-  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.13-v2.tgz"
-  "version" "0.4.13-v2"
+"@inseefr/lunatic@^0.4.14-v2":
+  "integrity" "sha512-5GAtZPTBoNw/qA3gdUzsYg1K6ILDI2LupFNJjzvVrXAhNEWtF1gcN8SwJzm9Qkrpx3SSY3g3qELsly95rkOzew=="
+  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.14-v2.tgz"
+  "version" "0.4.14-v2"
   dependencies:
     "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
@@ -5188,22 +5188,7 @@
   "resolved" "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz"
   "version" "4.2.0"
 
-"eslint-plugin-react@^7.20.3":
-  "version" "7.22.0"
-  dependencies:
-    "array-includes" "^3.1.1"
-    "array.prototype.flatmap" "^1.2.3"
-    "doctrine" "^2.1.0"
-    "has" "^1.0.3"
-    "jsx-ast-utils" "^2.4.1 || ^3.0.0"
-    "object.entries" "^1.1.2"
-    "object.fromentries" "^2.0.2"
-    "object.values" "^1.1.1"
-    "prop-types" "^15.7.2"
-    "resolve" "^1.18.1"
-    "string.prototype.matchall" "^4.0.2"
-
-"eslint-plugin-react@^7.21.5", "eslint-plugin-react@7.21.5":
+"eslint-plugin-react@^7.20.3", "eslint-plugin-react@^7.21.5", "eslint-plugin-react@7.21.5":
   "integrity" "sha512-8MaEggC2et0wSF6bUeywF7qQ46ER81irOdWS4QWxnnlAEsnzeBevk1sWh7fhpCghPpXb+8Ks7hvaft6L/xsR6g=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.21.5.tgz"
   "version" "7.21.5"
