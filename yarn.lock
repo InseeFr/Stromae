@@ -1306,10 +1306,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.4.16-v2":
-  "integrity" "sha512-JbdrzhoK0LScynlQ7in2Z2KDhSIz7zqHZXYnglPAYpMGVUArExRTU1eqBobphNzaqxn4r0sAu0Y6cSat0Uj6kQ=="
-  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.16-v2.tgz"
-  "version" "0.4.16-v2"
+"@inseefr/lunatic@^0.4.18-v2":
+  "integrity" "sha512-665vuj6M+RUFkQ/Z3HWgbqqeMlF70pX4Kybhnzddl+QCLJqxuZPsR0QRxjqxla3+HQ/NHk+jYoNxlepQDwqf/Q=="
+  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.18-v2.tgz"
+  "version" "0.4.18-v2"
   dependencies:
     "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
@@ -1323,6 +1323,7 @@
     "prop-types" "^15.7.2"
     "react-keyboard-event-handler" "^1.5.4"
     "react-markdown" "^8.0.3"
+    "react-number-format" "^5.0.0-beta.4"
     "react-tooltip" "^4.2.15"
     "remove-accents" "^0.4.2"
     "sass" "^1.32.2"
@@ -10400,7 +10401,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^18.2.0", "react-dom@>=16.0.0", "react-dom@>=16.6.0":
+"react-dom@*", "react-dom@^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^18.0.0", "react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^18.2.0", "react-dom@>=16.0.0", "react-dom@>=16.6.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -10505,6 +10506,13 @@
     "prop-types" "^15.5.10"
     "react-lifecycles-compat" "^3.0.0"
     "warning" "^4.0.3"
+
+"react-number-format@^5.0.0-beta.4":
+  "integrity" "sha512-uqQ5RvtFB3LmrBZANlh4M46eCIMDVV2btExt7naSg6mC9xZavGgZL+VVgAcVc8YiH3fBQlrxNF1ec4PtOt6U1A=="
+  "resolved" "https://registry.npmjs.org/react-number-format/-/react-number-format-5.0.0-beta.4.tgz"
+  "version" "5.0.0-beta.4"
+  dependencies:
+    "prop-types" "^15.7.2"
 
 "react-refresh@^0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
@@ -10675,7 +10683,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0", "react@^16 || ^17", "react@^16.0 || ^17.0", "react@^16.3.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^18.2.0", "react@>=15", "react@>=16", "react@>=16.0.0", "react@>=16.13.1", "react@>=16.6.0", "react@15.x || 16.x":
+"react@*", "react@^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^18.0.0", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0", "react@^16 || ^17", "react@^16.0 || ^17.0", "react@^16.3.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^18.2.0", "react@>=15", "react@>=16", "react@>=16.0.0", "react@>=16.13.1", "react@>=16.6.0", "react@15.x || 16.x":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
