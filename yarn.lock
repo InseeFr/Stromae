@@ -1306,10 +1306,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@inseefr/lunatic@^0.4.21-v2":
-  "integrity" "sha512-7l7MWrHIMH7W0KK7AUKeFNPXmay5uhLC9dcagVjnpRwoRfn6nhbIClOBz/3YopfkB0MwPxtCvFcDmyvLqTvMdA=="
-  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.21-v2.tgz"
-  "version" "0.4.21-v2"
+"@inseefr/lunatic@^0.4.24-v2":
+  "integrity" "sha512-YyA2pgndt1pHhN4lqI3rNvZXbbaTMF0l5jKzpFL2IkHhEy/I+XPLxsmLChdb+rexJNI4m98uhTWqnG7w7tATJQ=="
+  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.24-v2.tgz"
+  "version" "0.4.24-v2"
   dependencies:
     "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
@@ -10477,8 +10477,6 @@
     "xtend" "^4.0.1"
 
 "react-markdown@^8.0.3":
-  "integrity" "sha512-We36SfqaKoVNpN1QqsZwWSv/OZt5J15LNgTLWynwAN5b265hrQrsjMtlRNwUvS+YyR3yDM8HpTNc4pK9H/Gc0A=="
-  "resolved" "https://registry.npmjs.org/react-markdown/-/react-markdown-8.0.3.tgz"
   "version" "8.0.3"
   dependencies:
     "@types/hast" "^2.0.0"
