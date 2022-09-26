@@ -25,6 +25,7 @@ body {
   padding: 0px 10px;
   border-radius: 5px;
   height: unset !important;
+  /* border: 1px solid grey; */
 }
 
 #main
@@ -75,6 +76,9 @@ body {
 #main .list-icon-wrapper > .modality-label,
 #main .radio-modality.radio-modality-block {
 }
+/* #main .radio-modality.radio-modality-block {
+  background: #edeaea;
+} */
 
 #main label.modality-label,
 #main input.radio-lunatic {
@@ -138,6 +142,7 @@ body {
   padding: 0px 10px;
   border-radius: 5px;
   height: unset !important;
+  /* border: 1px solid grey; */
 }
 
 #main .checkbox-modality > .list-icon-wrapper > .list-icon > svg {
@@ -172,6 +177,9 @@ body {
 #main .list-icon-wrapper > .modality-label,
 #main .checkbox-modality {
 }
+/* #main .checkbox-modality {
+  background: #edeaea;
+} */
 
 #main label.modality-label,
 input.checkbox-lunatic {
@@ -285,6 +293,10 @@ input.checkbox-lunatic {
   color: #0f417a;
 }
 
+#main .field {
+  margin-bottom: 5px;
+}
+
 /* Question responses */
 #main .field > textarea,
 .field > input,
@@ -318,6 +330,7 @@ input.checkbox-lunatic {
 #main div.field-container,
 #main div.declarations-lunatic {
   margin-left: 10px;
+  margin-top: 5px;
 }
 
 /* Sequences / Subsequences */
@@ -384,6 +397,9 @@ input.checkbox-lunatic {
   box-shadow: none;
   padding: 0;
   margin-top: 30px;
+}
+#main .lunatic.lunatic-component {
+  box-shadow: none;
 }
 
 #main .lunatic-component.outerContainer-Sequence > .declarations-lunatic,
