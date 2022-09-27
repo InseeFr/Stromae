@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
   component: {
     padding: '10px',
     overflow: 'visible',
-    // marginBottom: '10px',
     '& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
   },
 }));

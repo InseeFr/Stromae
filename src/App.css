@@ -22,10 +22,9 @@ body {
 
 /* Boutons radio */
 #main .radio-modality.radio-modality-block {
-  padding: 0px 10px;
+  padding: 0px 10px 0px 0px;
   border-radius: 5px;
   height: unset !important;
-  /* border: 1px solid grey; */
 }
 
 #main
@@ -76,9 +75,6 @@ body {
 #main .list-icon-wrapper > .modality-label,
 #main .radio-modality.radio-modality-block {
 }
-/* #main .radio-modality.radio-modality-block {
-  background: #edeaea;
-} */
 
 #main label.modality-label,
 #main input.radio-lunatic {
@@ -142,7 +138,6 @@ body {
   padding: 0px 10px;
   border-radius: 5px;
   height: unset !important;
-  /* border: 1px solid grey; */
 }
 
 #main .checkbox-modality > .list-icon-wrapper > .list-icon > svg {
@@ -177,9 +172,6 @@ body {
 #main .list-icon-wrapper > .modality-label,
 #main .checkbox-modality {
 }
-/* #main .checkbox-modality {
-  background: #edeaea;
-} */
 
 #main label.modality-label,
 input.checkbox-lunatic {
@@ -329,7 +321,6 @@ input.checkbox-lunatic {
 
 #main div.field-container,
 #main div.declarations-lunatic {
-  margin-left: 10px;
   margin-top: 5px;
 }
 
