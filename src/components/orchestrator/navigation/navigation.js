@@ -30,8 +30,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const modalCheck = document.getElementsByClassName('lunatic-modal-controls');
-
 const ButtonsNavigation = ({
   currentPage,
   onPrevious,
@@ -60,7 +58,6 @@ const ButtonsNavigation = ({
         <Button
           className={classes.navButton}
           onClick={paradataHandler(onPrevious)(utilInfo('previous'))}
-          disabled={modalCheck.length > 0 ? true : false}
         >
           {buttonDictionary.back}
         </Button>
@@ -69,7 +66,6 @@ const ButtonsNavigation = ({
         className={classes.navButton}
         onClick={paradataHandler(nextFunction)(utilInfo('next'))}
         id={'next-button'}
-        disabled={modalCheck.length > 0 ? true : false}
       >
         {nextLabel()}
       </Button>
