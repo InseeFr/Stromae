@@ -1307,29 +1307,29 @@
     "@hapi/hoek" "^8.3.0"
 
 "@inseefr/lunatic@^0.4.31-v2":
-  "integrity" "sha512-uIKIh7XZrYVx7EK9d8d7IJgDiujihf0Bd3RPmQPJ+oxSdcg0mpwDIJeQWow2QpyZSsfl5WvqSv+BYHdMgGnbcg=="
-  "resolved" "https://registry.npmjs.org/@inseefr/lunatic/-/lunatic-0.4.31-v2.tgz"
-  "version" "0.4.31-v2"
+  version "0.4.31-v2"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-0.4.31-v2.tgz#151c156f82372a2602dbf39cf78f825bbb1e7e7c"
+  integrity sha512-uIKIh7XZrYVx7EK9d8d7IJgDiujihf0Bd3RPmQPJ+oxSdcg0mpwDIJeQWow2QpyZSsfl5WvqSv+BYHdMgGnbcg==
   dependencies:
     "@inseefr/trevas" "^0.1.15"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
-    "antlr4" "4.8.0"
-    "classnames" "^2.3.1"
-    "date-fns" "^2.25.0"
-    "lodash.camelcase" "^4.3.0"
-    "lodash.debounce" "^4.0.8"
-    "lodash.isequal" "^4.5.0"
-    "object-hash" "^2.2.0"
-    "prop-types" "^15.7.2"
-    "react-keyboard-event-handler" "^1.5.4"
-    "react-markdown" "^8.0.3"
-    "react-number-format" "^5.0.0-beta.4"
-    "react-tooltip" "^4.2.15"
-    "remove-accents" "^0.4.2"
-    "sass" "^1.32.2"
-    "snowball" "^0.3.1"
-    "string-tokenizer" "^0.0.8"
-
+    antlr4 "4.8.0"
+    classnames "^2.3.1"
+    date-fns "^2.25.0"
+    lodash.camelcase "^4.3.0"
+    lodash.debounce "^4.0.8"
+    lodash.isequal "^4.5.0"
+    object-hash "^2.2.0"
+    prop-types "^15.7.2"
+    react-keyboard-event-handler "^1.5.4"
+    react-markdown "^8.0.3"
+    react-number-format "^5.0.0-beta.4"
+    react-tooltip "^4.2.15"
+    remove-accents "^0.4.2"
+    sass "^1.32.2"
+    snowball "^0.3.1"
+    string-tokenizer "^0.0.8"
+    
 "@inseefr/trevas@^0.1.15":
   "integrity" "sha512-EKY9grC8DjeIiBIpXtJlHpX86eWdvNwZxV+AUXwooNyX8fB1sF1zt6iamgfkrVTPVPE+ySIWU6I+h8YQa0DxEw=="
   "resolved" "https://registry.npmjs.org/@inseefr/trevas/-/trevas-0.1.15.tgz"
@@ -10482,45 +10482,45 @@
     "@types/hast" "^2.0.0"
     "@types/prop-types" "^15.0.0"
     "@types/unist" "^2.0.0"
-    "comma-separated-tokens" "^2.0.0"
-    "hast-util-whitespace" "^2.0.0"
-    "prop-types" "^15.0.0"
-    "property-information" "^6.0.0"
-    "react-is" "^18.0.0"
-    "remark-parse" "^10.0.0"
-    "remark-rehype" "^10.0.0"
-    "space-separated-tokens" "^2.0.0"
-    "style-to-object" "^0.3.0"
-    "unified" "^10.0.0"
-    "unist-util-visit" "^4.0.0"
-    "vfile" "^5.0.0"
+    comma-separated-tokens "^2.0.0"
+    hast-util-whitespace "^2.0.0"
+    prop-types "^15.0.0"
+    property-information "^6.0.0"
+    react-is "^18.0.0"
+    remark-parse "^10.0.0"
+    remark-rehype "^10.0.0"
+    space-separated-tokens "^2.0.0"
+    style-to-object "^0.3.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+    vfile "^5.0.0"
 
-"react-modal@^3.12.1":
-  "integrity" "sha512-WGuXn7Fq31PbFJwtWmOk+jFtGC7E9tJVbFX0lts8ZoS5EPi9+WWylUJWLKKVm3H4GlQ7ZxY7R6tLlbSIBQ5oZA=="
-  "resolved" "https://registry.npmjs.org/react-modal/-/react-modal-3.12.1.tgz"
-  "version" "3.12.1"
+react-modal@^3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.12.1.tgz#38c33f70d81c33d02ff1ed115530443a3dc2afd3"
+  integrity sha512-WGuXn7Fq31PbFJwtWmOk+jFtGC7E9tJVbFX0lts8ZoS5EPi9+WWylUJWLKKVm3H4GlQ7ZxY7R6tLlbSIBQ5oZA==
   dependencies:
-    "exenv" "^1.2.0"
-    "prop-types" "^15.5.10"
-    "react-lifecycles-compat" "^3.0.0"
-    "warning" "^4.0.3"
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
 
-"react-number-format@^5.0.0-beta.4":
-  "integrity" "sha512-uqQ5RvtFB3LmrBZANlh4M46eCIMDVV2btExt7naSg6mC9xZavGgZL+VVgAcVc8YiH3fBQlrxNF1ec4PtOt6U1A=="
-  "resolved" "https://registry.npmjs.org/react-number-format/-/react-number-format-5.0.0-beta.4.tgz"
-  "version" "5.0.0-beta.4"
+react-number-format@^5.0.0-beta.4:
+  version "5.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.0.0-beta.4.tgz#3982e947e735a6ab260665f90c63495a5f73ee8a"
+  integrity sha512-uqQ5RvtFB3LmrBZANlh4M46eCIMDVV2btExt7naSg6mC9xZavGgZL+VVgAcVc8YiH3fBQlrxNF1ec4PtOt6U1A==
   dependencies:
-    "prop-types" "^15.7.2"
+    prop-types "^15.7.2"
 
-"react-refresh@^0.8.3":
-  "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
-  "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
-  "version" "0.8.3"
+react-refresh@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
+  integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-"react-router-dom@^5.2.0":
-  "integrity" "sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA=="
-  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.2.0.tgz"
-  "version" "5.2.0"
+react-router-dom@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
+  integrity sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "history" "^4.9.0"
