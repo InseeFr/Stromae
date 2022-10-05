@@ -17,7 +17,6 @@ import {
   isLunaticPage,
   VALIDATION_PAGE,
 } from 'utils/pagination';
-import { getCurrentComponent } from 'utils/questionnaire';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
@@ -37,7 +36,6 @@ const useStyles = makeStyles(theme => ({
   component: {
     padding: '10px',
     overflow: 'visible',
-    marginBottom: '10px',
     '& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
   },
 }));
@@ -51,7 +49,7 @@ export const Orchestrator = ({
   savingType,
   preferences,
   features,
-  pagination,
+  activeControls,
   modalForControls,
   readonly,
   suggesters,
@@ -71,42 +69,33 @@ export const Orchestrator = ({
   );
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
-  const [waiting /*, setWaiting*/] = useState(false);
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = e => simpleLog({ ...e, page: currentPage });
   const {
-    questionnaire,
-    components,
-    handleChange,
-    bindings,
-    pagination: {
-      goNext,
-      goPrevious,
-      page,
-      setPage,
-      isFirstPage,
-      isLastPage,
-      flow,
-    },
-    state: { getState },
-  } = lunatic.useLunaticSplit(source, data, {
+    getComponents,
+    waiting,
+    pager: { page = '1' },
+    goNextPage,
+    goPreviousPage,
+    isFirstPage,
+    isLastPage,
+    setPage = () => console.log('TODO lunatic'),
+    getModalErrors,
+    getCurrentErrors,
+    getData,
+  } = lunatic.useLunatic(source, data, {
     savingType,
     preferences,
     features,
-    pagination,
-    modalForControls,
+    activeControls,
     suggesters,
     autoSuggesterLoading,
     suggesterFetcher,
     logFunction,
   });
 
-  const [state, setState] = useQuestionnaireState(
-    questionnaire,
-    stateData?.state
-  );
-
-  const { componentType } = getCurrentComponent(components)(page);
+  //TODO Check compatibility deeper
+  const [state, setState] = useQuestionnaireState(source, stateData?.state);
 
   const updateStateData = lastState => {
     const newStateData = {
@@ -121,9 +110,8 @@ export const Orchestrator = ({
   const logoutAndClose = async () => {
     if (!validated) {
       const dataToSave = {
-        ...stromaeData,
         stateData: updateStateData(),
-        data: getState(questionnaire),
+        data: getData(),
       };
       await save(dataToSave);
     }
@@ -154,9 +142,8 @@ export const Orchestrator = ({
     setValidated(true);
     setState(VALIDATED);
     const dataToSave = {
-      ...stromaeData,
       stateData: updateStateData(VALIDATED),
-      data: getState(questionnaire),
+      data: getData(),
     };
     save(dataToSave);
     setCurrentPage(END_PAGE);
@@ -165,13 +152,13 @@ export const Orchestrator = ({
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
       const dataToSave = {
-        ...stromaeData,
         stateData: updateStateData(),
-        data: getState(questionnaire),
+        data: getData(),
       };
       if (!isLastPage) {
+        const { componentType } = components;
         if (componentType === 'Sequence') save(dataToSave);
-        goNext();
+        goNextPage();
       } else {
         save(dataToSave);
         setCurrentPage(VALIDATION_PAGE);
@@ -187,7 +174,7 @@ export const Orchestrator = ({
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
     else {
-      if (!isFirstPage) goPrevious();
+      if (!isFirstPage) goPreviousPage();
       else setCurrentPage(WELCOME_PAGE);
     }
   };
@@ -202,77 +189,16 @@ export const Orchestrator = ({
     stateData: currentStateData,
     currentPage,
     readonly,
-    lunaticOptions: { preferences, features, pagination },
   };
 
-  const displayComponents = function () {
-    const structure = components.reduce((acc, curr) => {
-      if (curr.componentType === 'Sequence') {
-        acc[curr.id] = [];
-        return acc;
-      }
-      if (curr.componentType === 'Subsequence') {
-        acc[curr.id] = [];
-        if (
-          curr.hierarchy &&
-          curr.hierarchy.sequence &&
-          !!acc[curr.hierarchy.sequence.id]
-        ) {
-          acc[curr.hierarchy.sequence.id].push(curr);
-        }
-        return acc;
-      }
-      if (
-        curr.hierarchy &&
-        curr.hierarchy.subSequence &&
-        !!acc[curr.hierarchy.sequence.id]
-      ) {
-        acc[curr.hierarchy.subSequence.id].push(curr);
-      } else if (
-        curr.hierarchy &&
-        curr.hierarchy.sequence &&
-        acc[curr.hierarchy.sequence.id]
-      ) {
-        acc[curr.hierarchy.sequence.id].push(curr);
-      }
-      return acc;
-    }, {});
-    return components.map(comp => {
-      if (shouldBeDisplayed(structure, comp)) {
-        return displayComponent(structure, comp);
-      }
-      return null;
-    });
-  };
+  const components = getComponents();
+  const modalErrors = getModalErrors();
+  const currentErrors = getCurrentErrors();
 
-  const shouldBeDisplayed = function (structure, comp) {
-    const { hierarchy } = comp;
-    if (!hierarchy) {
-      return true;
-    }
-    if (!hierarchy.sequence) {
-      if (
-        !hierarchy.subSequence ||
-        !structure[hierarchy.subSequence.id] ||
-        hierarchy.subSequence.id === comp.id
-      ) {
-        return true;
-      }
-      return false;
-    }
-    if (
-      !structure[hierarchy.sequence.id] ||
-      hierarchy.sequence.id === comp.id
-    ) {
-      return true;
-    }
-    return false;
-  };
-
-  const displayComponent = function (componentsStructure, comp) {
-    const { id, componentType } = comp;
-    const Component = lunatic[componentType];
-    if (componentType !== 'FilterDescription') {
+  const lunaticDisplay = () =>
+    components.map(component => {
+      const { id, componentType, response, storeName, ...other } = component;
+      const Component = lunatic[componentType];
       return (
         <Card
           className={`lunatic lunatic-component ${componentType} ${classes.component}`}
@@ -283,53 +209,29 @@ export const Orchestrator = ({
             key={`component-${id}`}
           >
             <Component
-              {...comp}
-              handleChange={handleChange}
-              labelPosition="TOP"
+              id={id}
+              response={response}
               savingType={savingType}
               preferences={preferences}
-              features={features}
-              bindings={bindings}
-              writable
               readOnly={readonly}
               disabled={readonly}
-              unitPosition="AFTER"
-              currentPage={page}
-              setPage={setPage}
-              flow={flow}
-              pagination={pagination}
+              labelPosition="TOP" //For LunaticSuggester
               logFunction={logFunction}
+              filterDescription={false}
+              errors={currentErrors}
+              {...other}
+              {...component}
             />
-            {displaySubComponents(componentsStructure, componentType, id)}
           </div>
         </Card>
       );
-    } else {
-      return null;
-    }
-  };
-
-  const displaySubComponents = function (
-    componentsStructure,
-    componentType,
-    compId
-  ) {
-    const subComponents = componentsStructure[compId];
-    if (subComponents && subComponents.length) {
-      return (
-        <div className={`subElementsInnerContainer-${componentType}`}>
-          {subComponents.map(q => displayComponent(componentsStructure, q))}
-        </div>
-      );
-    }
-    return null;
-  };
+    });
 
   return (
     <StyleWrapper metadata={metadata}>
       <OrchestratorContext.Provider value={context}>
-        <BurgerMenu title={questionnaire?.label} />
-        <AppBar title={questionnaire?.label} />
+        <BurgerMenu title={source?.label.value} />
+        <AppBar title={source?.label.value} />
         <Container
           maxWidth="md"
           component="main"
@@ -339,7 +241,7 @@ export const Orchestrator = ({
           className={classes.root}
         >
           {currentPage === WELCOME_PAGE && <WelcomePage />}
-          {isLunaticPage(currentPage) && displayComponents()}
+          {isLunaticPage(currentPage) && lunaticDisplay()}
           {currentPage === VALIDATION_PAGE && <ValidationPage />}
           {currentPage === END_PAGE && <EndPage />}
         </Container>
@@ -349,6 +251,13 @@ export const Orchestrator = ({
             onPrevious={onPrevious}
             currentPage={currentPage}
             validateQuestionnaire={() => setValidationConfirmation(true)}
+          />
+        )}
+        {modalForControls && (
+          <lunatic.Modal
+            title="Des points requièrent votre attention."
+            errors={modalErrors}
+            goNext={goNextPage}
           />
         )}
         <WelcomeBack

@@ -121,7 +121,7 @@ const OrchestratorManager = () => {
             preferences={['COLLECTED']}
             features={['VTL', 'MD']}
             pagination={true}
-            modalForControls={true}
+            activeControls={true}
             readonly={readonly}
             placeholderList="Rechercher ici ..."
           />

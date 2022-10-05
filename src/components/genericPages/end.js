@@ -20,7 +20,7 @@ import {
   dateFnsLocal,
   formatLocal,
 } from 'utils/personalization';
-import { interpret } from '@inseefr/lunatic';
+import { interpret } from '@inseefr/trevas';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
@@ -78,11 +78,11 @@ const EndPage = () => {
   })} (${format(finalDate, formatLocal)})`;
 
   const getBodyWithVariables = myBody =>
-    interpret(['VTL'])({
+    interpret(myBody, {
       validatedDate,
       ...buildBuidings(variables),
       ...buildBuidings(personalization),
-    })(myBody);
+    });
 
   return (
     <Card className={classes.card}>

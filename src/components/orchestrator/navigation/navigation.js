@@ -52,7 +52,6 @@ const ButtonsNavigation = ({
       page: currentPage,
     };
   };
-
   return (
     <footer role="navigation" className={classes.root}>
       {currentPage !== WELCOME_PAGE && (
@@ -63,7 +62,6 @@ const ButtonsNavigation = ({
           {buttonDictionary.back}
         </Button>
       )}
-
       <Button
         className={classes.navButton}
         onClick={paradataHandler(nextFunction)(utilInfo('next'))}

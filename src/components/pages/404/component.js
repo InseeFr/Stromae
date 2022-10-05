@@ -18,7 +18,7 @@ export const NotFound = () => {
 
       <Typography component="div">
         <Box textAlign="center" fontSize="h3.fontSize" m={1}>
-          Oops! Page non trouvée !
+          Oups! Page non trouvée !
         </Box>
       </Typography>
     </div>

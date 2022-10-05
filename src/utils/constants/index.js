@@ -17,8 +17,10 @@ export const GUEST_USER = {
 export const SIMPSONS = 'simpsons';
 export const TIC = 'tic';
 export const DEFAULT = 'default';
+export const LOGEMENT = 'logement';
 export const TEST = 'test';
-export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, TEST];
+
+export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, TEST];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
 
