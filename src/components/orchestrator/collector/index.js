@@ -21,6 +21,7 @@ import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
 import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
 import { simpleLog } from 'utils/events';
 import '../custom-lunatic.scss';
+import { isNewSequence } from 'utils/questionnaire';
 
 export const OrchestratorContext = React.createContext();
 
@@ -148,18 +149,24 @@ export const Orchestrator = ({
 		save(dataToSave);
 		setCurrentPage(END_PAGE);
 	};
+
 	const onNext = () => {
 		if (currentPage === WELCOME_PAGE) setCurrentPage(page);
 		else {
-			const dataToSave = {
-				stateData: updateStateData(),
-				data: getData(),
-			};
 			if (!isLastPage) {
-				const { componentType } = components;
-				if (componentType === 'Sequence') save(dataToSave);
+				if (isNewSequence(components)) {
+					const dataToSave = {
+						stateData: updateStateData(),
+						data: getData(),
+					};
+					save(dataToSave);
+				}
 				goNextPage();
 			} else {
+				const dataToSave = {
+					stateData: updateStateData(),
+					data: getData(),
+				};
 				save(dataToSave);
 				setCurrentPage(VALIDATION_PAGE);
 			}

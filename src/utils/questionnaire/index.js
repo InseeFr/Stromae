@@ -21,6 +21,9 @@ const filterPageLoop =
 		);
 	};
 
+export const isNewSequence = (components) =>
+	components.some((e) => e.componentType === 'Sequence');
+
 export const getCurrentComponent = (components) => (currentPage) => {
 	const currentPageWithoutIteration = getPageWithoutAnyIteration(currentPage);
 	const filterComponentsLoop = components.filter((c) =>
