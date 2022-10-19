@@ -86,7 +86,6 @@ export const Orchestrator = ({
       currentPage: currentPage,
     };
     setCurrentStateData(newStateData);
-    console.log('newStateData', newStateData);
     return newStateData;
   };
 
