@@ -52,4 +52,4 @@ const endMessage = {
   default: endDefault,
 };
 
-export const getEndPageMessage = inseeContext => endMessage[inseeContext];
+export const getEndPageMessage = (inseeContext) => endMessage[inseeContext];

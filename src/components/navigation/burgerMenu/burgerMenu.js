@@ -46,45 +46,45 @@ const BurgerMenu = ({ title }) => {
 
   return (
     <>
-      <div id="burgerMenu" className={isOpen ? 'opened' : 'closed'}>
-        <div id="burgerMenuSlideBar">
+      <div id='burgerMenu' className={isOpen ? 'opened' : 'closed'}>
+        <div id='burgerMenuSlideBar'>
           <IconButton
-            className="burgerMenuButton"
-            aria-label="Assistance"
-            color="inherit"
+            className='burgerMenuButton'
+            aria-label='Assistance'
+            color='inherit'
             onClick={() => setAssistance(true)}
           >
             <Help />
             &nbsp;
-            <span className="slideBarButtonText">{burgerDictionary.help}</span>
+            <span className='slideBarButtonText'>{burgerDictionary.help}</span>
           </IconButton>
           {isUserLoggedIn && inseeContext === HOUSEHOLD && (
             <IconButton
-              className="burgerMenuButton"
-              aria-label="Déconnexion"
-              color="inherit"
+              className='burgerMenuButton'
+              aria-label='Déconnexion'
+              color='inherit'
               onClick={paradataHandler(logoutAndClose)(
                 utilInfo('logout', currentPage)
               )}
             >
               <ExitToApp />
               &nbsp;
-              <span className="slideBarButtonText">
+              <span className='slideBarButtonText'>
                 {burgerDictionary.exit}
               </span>
             </IconButton>
           )}
-          <AppVersion className="appVersion" />
+          <AppVersion className='appVersion' />
         </div>
-        <div id="burgerMenuToggleTab">
-          <Typography id="toggleSlidebarText">
+        <div id='burgerMenuToggleTab'>
+          <Typography id='toggleSlidebarText'>
             {burgerDictionary.menu}
           </Typography>
           <IconButton
-            id="toggleSlidebarButton"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
+            id='toggleSlidebarButton'
+            edge='start'
+            color='inherit'
+            aria-label='menu'
             onClick={() => toggleMenu()}
           >
             {isOpen ? <Close /> : <MenuIcon />}

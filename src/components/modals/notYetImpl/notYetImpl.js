@@ -15,12 +15,12 @@ const NotYetImpl = ({ open, setOpen }) => {
       disableBackdropClick
       disableEscapeKeyDown
       onClose={close}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle id="alert-dialog-slide-title">{`👷 Nice try 👷`}</DialogTitle>
+      <DialogTitle id='alert-dialog-slide-title'>{`👷 Nice try 👷`}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
+        <DialogContentText id='alert-dialog-slide-description'>
           {`🚧 Cette fonctionnalité est en cours de développement ...🚧`}
         </DialogContentText>
       </DialogContent>

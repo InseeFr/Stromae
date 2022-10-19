@@ -15,7 +15,7 @@ import { MarkdownTypo } from 'components/designSystem';
 import { OrchestratorContext } from 'components/orchestrator/collector';
 import { buildBuidings, buildDefaultBindings } from 'utils/personalization';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
   accordionDetails: {
     display: 'block',
@@ -40,7 +40,7 @@ const WelcomePage = () => {
       ...buildBuidings(personalization),
     });
 
-  const getFinalLabel = label =>
+  const getFinalLabel = (label) =>
     label || `Not yet Implemented for ${inseeContext}`;
 
   return (
@@ -63,8 +63,8 @@ const WelcomePage = () => {
           <Accordion className={classes.accordion}>
             <AccordionSummary
               expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+              aria-controls='panel1a-content'
+              id='panel1a-header'
             >
               <Typography className={classes.legalTermsTitle}>
                 {legalTermsTitle}

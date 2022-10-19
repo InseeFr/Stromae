@@ -24,7 +24,7 @@ import { interpret } from '@inseefr/trevas';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
   root: {
     display: 'flex',
@@ -50,7 +50,7 @@ const EndPage = () => {
     currentPage,
   } = useContext(OrchestratorContext);
 
-  const utilInfo = type => {
+  const utilInfo = (type) => {
     return {
       ...SIMPLE_CLICK_EVENT,
       idParadataObject: `${type}-button`,
@@ -77,7 +77,7 @@ const EndPage = () => {
     locale: dateFnsLocal,
   })} (${format(finalDate, formatLocal)})`;
 
-  const getBodyWithVariables = myBody =>
+  const getBodyWithVariables = (myBody) =>
     interpret(myBody, {
       validatedDate,
       ...buildBuidings(variables),
@@ -101,8 +101,8 @@ const EndPage = () => {
             <Typography>{pdfMessage}</Typography>
             <Button
               className={classes.download}
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               endIcon={<GetApp />}
               onClick={paradataHandler(download)(utilInfo('download'))}
             >

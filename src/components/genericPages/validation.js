@@ -11,7 +11,7 @@ import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
   root: {
     display: 'flex',
@@ -50,8 +50,8 @@ const ValidationPage = () => {
         ))}
         <Button
           className={classes.send}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           endIcon={<Send />}
           onClick={paradataHandler(() => setValidationConfirmation(true))(
             utilInfo

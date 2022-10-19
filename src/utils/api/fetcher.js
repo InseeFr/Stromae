@@ -1,5 +1,5 @@
 // manage empty response during PUT or POST request
-const readJsonResponse = async response => {
+const readJsonResponse = async (response) => {
   try {
     return await response.json();
   } catch (e) {
@@ -37,7 +37,7 @@ export const fetcher = async (url, token, method, body) => {
   }
 };
 
-const getFilenameFromHeader = header => {
+const getFilenameFromHeader = (header) => {
   const res = /filename="(.*)"/.exec(header);
   return res && res.length > 0 ? res[1] : 'default.pdf';
 };
@@ -71,7 +71,7 @@ export const fetcherFile = async (url, token) => {
   }
 };
 
-export const getFetcherForLunatic = token => async (url, options) => {
+export const getFetcherForLunatic = (token) => async (url, options) => {
   const otherHeader = options?.headers || {};
   return fetch(url, {
     ...options,

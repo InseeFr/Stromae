@@ -11,7 +11,7 @@ import { Button } from 'components/designSystem';
 import { defaultDictionary, errorDictionary, buttonDictionary } from 'i18n';
 import { lunaticVersion, stromaeVersion } from 'utils/app';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     top: '3em',
@@ -38,16 +38,16 @@ const useStyles = makeStyles(theme => ({
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const classes = useStyles();
   return (
-    <Container maxWidth="md">
-      <Box className={classes.root} bgcolor="error.main" role="alert">
-        <Typography variant="h4" className={classes.title}>
+    <Container maxWidth='md'>
+      <Box className={classes.root} bgcolor='error.main' role='alert'>
+        <Typography variant='h4' className={classes.title}>
           {errorDictionary.getUnknownError}
         </Typography>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+            aria-controls='panel1a-content'
+            id='panel1a-header'
           >
             <Typography className={classes.heading}>
               {errorDictionary.detailsError}
@@ -61,8 +61,8 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMore />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+            aria-controls='panel2a-content'
+            id='panel2a-header'
           >
             <Typography className={classes.heading}>
               {defaultDictionary.appInfo}

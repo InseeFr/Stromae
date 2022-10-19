@@ -18,27 +18,12 @@ import {
   VALIDATION_PAGE,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
+import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
 import { simpleLog } from 'utils/events';
 import '../custom-lunatic.scss';
+import { isNewSequence } from 'utils/questionnaire';
 
 export const OrchestratorContext = React.createContext();
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flex: '1 1 auto',
-    backgroundColor: 'whitesmoke',
-    padding: '0',
-    paddingTop: '1em',
-    paddingBottom: '3em',
-    marginBottom: '30px',
-  },
-  component: {
-    padding: '10px',
-    overflow: 'visible',
-    '& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
-  },
-}));
 
 export const Orchestrator = ({
   source,
@@ -70,7 +55,7 @@ export const Orchestrator = ({
   const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
-  const logFunction = e => simpleLog({ ...e, page: currentPage });
+  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
@@ -94,12 +79,9 @@ export const Orchestrator = ({
     logFunction,
   });
 
-  //TODO Check compatibility deeper
-  const [state, setState] = useQuestionnaireState(source, stateData?.state);
-
-  const updateStateData = lastState => {
+  const updateStateData = (newState = INIT) => {
     const newStateData = {
-      state: lastState || state,
+      state: newState,
       date: new Date().getTime(),
       currentPage: currentPage,
     };
@@ -140,7 +122,6 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
-    setState(VALIDATED);
     const dataToSave = {
       stateData: updateStateData(VALIDATED),
       data: getData(),
@@ -148,18 +129,24 @@ export const Orchestrator = ({
     save(dataToSave);
     setCurrentPage(END_PAGE);
   };
+
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      const dataToSave = {
-        stateData: updateStateData(),
-        data: getData(),
-      };
       if (!isLastPage) {
-        const { componentType } = components;
-        if (componentType === 'Sequence') save(dataToSave);
+        if (isNewSequence(components)) {
+          const dataToSave = {
+            stateData: updateStateData(),
+            data: getData(),
+          };
+          save(dataToSave);
+        }
         goNextPage();
       } else {
+        const dataToSave = {
+          stateData: updateStateData(),
+          data: getData(),
+        };
         save(dataToSave);
         setCurrentPage(VALIDATION_PAGE);
       }
@@ -195,15 +182,15 @@ export const Orchestrator = ({
   const modalErrors = getModalErrors();
   const currentErrors = getCurrentErrors();
 
-  const lunaticDisplay = () =>
-    components.map(component => {
-      const { id, componentType, response, storeName, ...other } = component;
-      const Component = lunatic[componentType];
-      return (
-        <Card
-          className={`lunatic lunatic-component ${componentType} ${classes.component}`}
-          key={`component-${id}`}
-        >
+  const lunaticDisplay = () => (
+    <Card
+      className={`lunatic lunatic-component ${classes.component}`}
+      key={`component`}
+    >
+      {components.map((component) => {
+        const { id, componentType, response, storeName, ...other } = component;
+        const Component = lunatic[componentType];
+        return (
           <div
             className={`lunatic-component outerContainer-${componentType}`}
             key={`component-${id}`}
@@ -215,7 +202,7 @@ export const Orchestrator = ({
               preferences={preferences}
               readOnly={readonly}
               disabled={readonly}
-              labelPosition="TOP" //For LunaticSuggester
+              labelPosition='TOP' //For LunaticSuggester
               logFunction={logFunction}
               filterDescription={false}
               errors={currentErrors}
@@ -223,9 +210,10 @@ export const Orchestrator = ({
               {...component}
             />
           </div>
-        </Card>
-      );
-    });
+        );
+      })}
+    </Card>
+  );
 
   return (
     <StyleWrapper metadata={metadata}>
@@ -233,10 +221,10 @@ export const Orchestrator = ({
         <BurgerMenu title={source?.label.value} />
         <AppBar title={source?.label.value} />
         <Container
-          maxWidth="md"
-          component="main"
-          role="main"
-          id="main"
+          maxWidth='md'
+          component='main'
+          role='main'
+          id='main'
           ref={topRef}
           className={classes.root}
         >
@@ -255,14 +243,14 @@ export const Orchestrator = ({
         )}
         {modalForControls && (
           <lunatic.Modal
-            title="Des points requièrent votre attention."
+            title='Des points requièrent votre attention.'
             errors={modalErrors}
             goNext={goNextPage}
           />
         )}
         <WelcomeBack
           open={!init && !validated && !!stateData?.currentPage}
-          setOpen={o => setInit(!o)}
+          setOpen={(o) => setInit(!o)}
           goToFirstPage={() => {
             setCurrentPage(WELCOME_PAGE);
             setPage('1');
@@ -277,3 +265,19 @@ export const Orchestrator = ({
     </StyleWrapper>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flex: '1 1 auto',
+    backgroundColor: 'whitesmoke',
+    padding: '0',
+    paddingTop: '1em',
+    paddingBottom: '3em',
+    marginBottom: '30px',
+  },
+  component: {
+    padding: '10px',
+    overflow: 'visible',
+    '& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
+  },
+}));

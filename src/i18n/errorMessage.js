@@ -4,7 +4,7 @@ const errorMessage = {
     en: 'Changing the sequence',
   },
   getError403: {
-    fr: type => {
+    fr: (type) => {
       if (type === 'q')
         return `Vous n'êtes pas autorisé à accéder au questionnaire.`;
       if (type === 'm')
@@ -13,7 +13,7 @@ const errorMessage = {
         return `Vous n'êtes pas autorisé à accéder aux données du répondant.`;
       return '';
     },
-    en: type => {
+    en: (type) => {
       if (type === 'q')
         return `You are not authorized to access the questionnaire.`;
       if (type === 'm')
@@ -24,13 +24,13 @@ const errorMessage = {
     },
   },
   getError404: {
-    fr: type => {
+    fr: (type) => {
       if (type === 'q') return `Le questionnaire n'existe pas.`;
       if (type === 'm') return `Les métadonnées du questionnaire n'existe pas.`;
       if (type === 'd') return `Il n'y a aucune donnée pour ce répondant.`;
       return '';
     },
-    en: type => {
+    en: (type) => {
       if (type === 'q') return `The questionnaire does not exist.`;
       if (type === 'm')
         return `The metadata of the questionnaire does not exist.`;
@@ -51,10 +51,8 @@ const errorMessage = {
     en: `Error details`,
   },
   noAuthFile: {
-    fr:
-      "Aucun fichier de configuration pour l'authentification n'a été trouvé (oidc.json ou keycloak.json).",
-    en:
-      'No configuration file for authentication was found (oidc.json or keycloak.json).',
+    fr: "Aucun fichier de configuration pour l'authentification n'a été trouvé (oidc.json ou keycloak.json).",
+    en: 'No configuration file for authentication was found (oidc.json or keycloak.json).',
   },
 };
 

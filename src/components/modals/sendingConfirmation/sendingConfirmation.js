@@ -19,7 +19,7 @@ const SendingConfirmation = ({ open, setOpen }) => {
 
   const { title, body } = confirmationDictionary(inseeContext);
 
-  const utilInfo = type => {
+  const utilInfo = (type) => {
     return {
       ...SIMPLE_CLICK_EVENT,
       idParadataObject: `${type}-sending-modal-button`,
@@ -40,12 +40,12 @@ const SendingConfirmation = ({ open, setOpen }) => {
       onClose={paradataHandler(close)(utilInfo('close'))}
       disableBackdropClick
       disableEscapeKeyDown
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
+      <DialogTitle id='alert-dialog-slide-title'>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description" component="div">
+        <DialogContentText id='alert-dialog-slide-description' component='div'>
           {body.map((line, i) => (
             <React.Fragment key={`line-${i}`}>
               <MarkdownTypo>{line}</MarkdownTypo>

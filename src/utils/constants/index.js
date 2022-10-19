@@ -24,11 +24,11 @@ export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, TEST];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
 
-export const QUESTIONNAIRE_EXAMPLE_URL = q =>
+export const QUESTIONNAIRE_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/form.json`;
-export const METADATA_EXAMPLE_URL = q =>
+export const METADATA_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/metadata.json`;
-export const DATA_EXAMPLE_URL = q =>
+export const DATA_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/data.json`;
 
 export const DEFAULT_DATA_URL = DATA_EXAMPLE_URL(DEFAULT);

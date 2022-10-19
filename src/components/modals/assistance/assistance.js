@@ -49,14 +49,14 @@ const Assistance = ({ open, setOpen }) => {
       onClose={paradataHandler(disagree)(utilInfo('close', currentPage))}
       disableBackdropClick
       disableEscapeKeyDown
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle id="alert-dialog-slide-title">
+      <DialogTitle id='alert-dialog-slide-title'>
         {defaultDictionary.assistanceTitle}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
+        <DialogContentText id='alert-dialog-slide-description'>
           {defaultDictionary.assistanceBody}
         </DialogContentText>
       </DialogContent>

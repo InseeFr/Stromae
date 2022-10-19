@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { QUESTIONNAIRE_EXAMPLES } from 'utils/constants';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -18,12 +18,12 @@ const useStyles = makeStyles(theme => ({
 
 const Examples = ({ selected, setSelected, className }) => {
   const classes = useStyles();
-  const handleChange = event => {
+  const handleChange = (event) => {
     setSelected(event.target.value);
   };
   return (
     <FormControl className={`${classes.formControl} ${className}`}>
-      <InputLabel htmlFor="native-simple">
+      <InputLabel htmlFor='native-simple'>
         {visualizeDictionary.labelExamples}
       </InputLabel>
       <Select
@@ -35,7 +35,7 @@ const Examples = ({ selected, setSelected, className }) => {
           id: 'native-simple',
         }}
       >
-        <option value="">{visualizeDictionary.labelExamples}</option>
+        <option value=''>{visualizeDictionary.labelExamples}</option>
         {QUESTIONNAIRE_EXAMPLES.map((v, i) => {
           return (
             <option key={v} value={v}>

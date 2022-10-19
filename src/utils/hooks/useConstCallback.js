@@ -5,5 +5,9 @@ import { useState, useRef } from 'react';
 export function useConstCallback(callback) {
   const callbackRef = useRef();
   callbackRef.current = callback;
-  return useState(() => (...args) => callbackRef.current(...args))[0];
+  return useState(
+    () =>
+      (...args) =>
+        callbackRef.current(...args)
+  )[0];
 }

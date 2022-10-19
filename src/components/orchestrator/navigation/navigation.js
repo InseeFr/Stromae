@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { VALIDATION_PAGE, WELCOME_PAGE } from 'utils/pagination';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'whitesmoke',
     bottom: 0,
@@ -45,7 +45,7 @@ const ButtonsNavigation = ({
   const nextFunction =
     currentPage === VALIDATION_PAGE ? validateQuestionnaire : onNext;
 
-  const utilInfo = type => {
+  const utilInfo = (type) => {
     return {
       ...SIMPLE_CLICK_EVENT,
       idParadataObject: `${type}-button`,
@@ -53,7 +53,7 @@ const ButtonsNavigation = ({
     };
   };
   return (
-    <footer role="navigation" className={classes.root}>
+    <footer role='navigation' className={classes.root}>
       {currentPage !== WELCOME_PAGE && (
         <Button
           className={classes.navButton}

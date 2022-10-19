@@ -1,15 +1,15 @@
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-	},
-	extends: ['prettier', 'react-app'],
-	parserOptions: {
-		ecmaFeatures: {
-			jsx: true,
-		},
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-	},
-	rules: {},
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ['prettier', 'react-app'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  rules: {},
 };

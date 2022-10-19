@@ -48,5 +48,5 @@ const validationMessage = {
   default: validationDefault,
 };
 
-export const getValidationPageMessage = inseeContext =>
+export const getValidationPageMessage = (inseeContext) =>
   validationMessage[inseeContext];

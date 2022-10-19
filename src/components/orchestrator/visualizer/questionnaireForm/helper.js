@@ -8,7 +8,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { visualizeDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: '4em',
@@ -29,8 +29,8 @@ const Helper = () => {
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMore />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
+        aria-controls='panel1a-content'
+        id='panel1a-header'
       >
         <MarkdownTypo className={classes.heading}>
           {visualizeDictionary.accordionHelperTitle}

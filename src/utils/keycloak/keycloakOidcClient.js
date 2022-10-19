@@ -1,6 +1,6 @@
 import Keycloak from 'keycloak-js';
 
-const getCurrentSurvey = path => {
+const getCurrentSurvey = (path) => {
   const temp = path.split('/questionnaire/');
   if (temp.length > 1) {
     const idQ = temp[1].slice(0, temp[1].indexOf('/'));
@@ -24,7 +24,7 @@ export const createKeycloakOidcClient = async ({
       silentCheckSsoRedirectUri: `${window.location.origin}/silent-sso.html`,
       checkLoginIframe: false,
     })
-    .catch(error => error);
+    .catch((error) => error);
 
   const login = async () => {
     await keycloakInstance.login({ redirectUri: window.location.href });
@@ -42,7 +42,7 @@ export const createKeycloakOidcClient = async ({
     isUserLoggedIn: true,
     accessToken: keycloakInstance.token,
     oidcUser: await keycloakInstance.loadUserInfo(),
-    logout: async redirectTo => {
+    logout: async (redirectTo) => {
       await keycloakInstance.logout({
         redirectUri: (() => {
           switch (redirectTo) {
@@ -75,7 +75,7 @@ export const createKeycloakOidcClient = async ({
 
       const error = await keycloakInstance.updateToken(-1).then(
         () => undefined,
-        error => error
+        (error) => error
       );
 
       if (error) {

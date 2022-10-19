@@ -7,9 +7,9 @@ import {
 } from 'utils/constants';
 import { EventsManager } from './logger';
 
-export const simpleLog = info => EventsManager.getLogger()?.log(info);
+export const simpleLog = (info) => EventsManager.getLogger()?.log(info);
 
-export const paradataHandler = f => info => e => {
+export const paradataHandler = (f) => (info) => (e) => {
   simpleLog(info);
   f(e);
 };

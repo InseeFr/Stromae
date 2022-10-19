@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../provider';
 
-const secure = WrappedComponent => {
-  const Component = props => {
+const secure = (WrappedComponent) => {
+  const Component = (props) => {
     const { isUserLoggedIn, login } = useContext(AuthContext);
     const { otherProps } = props;
 

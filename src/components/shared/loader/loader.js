@@ -5,7 +5,7 @@ import logo from 'img/Logo-Insee.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const Loader = ({ info }) => {
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
     },
