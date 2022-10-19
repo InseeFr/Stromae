@@ -18,28 +18,12 @@ import {
 	VALIDATION_PAGE,
 } from 'utils/pagination';
 import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { useQuestionnaireState, VALIDATED } from 'utils/hooks/questionnaire';
+import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
 import { simpleLog } from 'utils/events';
 import '../custom-lunatic.scss';
 import { isNewSequence } from 'utils/questionnaire';
 
 export const OrchestratorContext = React.createContext();
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flex: '1 1 auto',
-		backgroundColor: 'whitesmoke',
-		padding: '0',
-		paddingTop: '1em',
-		paddingBottom: '3em',
-		marginBottom: '30px',
-	},
-	component: {
-		padding: '10px',
-		overflow: 'visible',
-		'& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
-	},
-}));
 
 export const Orchestrator = ({
 	source,
@@ -95,16 +79,14 @@ export const Orchestrator = ({
 		logFunction,
 	});
 
-	//TODO Check compatibility deeper
-	const [state, setState] = useQuestionnaireState(source, stateData?.state);
-
-	const updateStateData = (lastState) => {
+	const updateStateData = (newState = INIT) => {
 		const newStateData = {
-			state: lastState || state,
+			state: newState,
 			date: new Date().getTime(),
 			currentPage: currentPage,
 		};
 		setCurrentStateData(newStateData);
+		console.log('newStateData', newStateData);
 		return newStateData;
 	};
 
@@ -141,7 +123,6 @@ export const Orchestrator = ({
 	};
 	const validateQuestionnaire = () => {
 		setValidated(true);
-		setState(VALIDATED);
 		const dataToSave = {
 			stateData: updateStateData(VALIDATED),
 			data: getData(),
@@ -284,3 +265,19 @@ export const Orchestrator = ({
 		</StyleWrapper>
 	);
 };
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flex: '1 1 auto',
+		backgroundColor: 'whitesmoke',
+		padding: '0',
+		paddingTop: '1em',
+		paddingBottom: '3em',
+		marginBottom: '30px',
+	},
+	component: {
+		padding: '10px',
+		overflow: 'visible',
+		'& *': { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' },
+	},
+}));
