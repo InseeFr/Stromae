@@ -183,15 +183,15 @@ export const Orchestrator = ({
 	const modalErrors = getModalErrors();
 	const currentErrors = getCurrentErrors();
 
-	const lunaticDisplay = () =>
-		components.map((component) => {
-			const { id, componentType, response, storeName, ...other } = component;
-			const Component = lunatic[componentType];
-			return (
-				<Card
-					className={`lunatic lunatic-component ${componentType} ${classes.component}`}
-					key={`component-${id}`}
-				>
+	const lunaticDisplay = () => (
+		<Card
+			className={`lunatic lunatic-component ${classes.component}`}
+			key={`component`}
+		>
+			{components.map((component) => {
+				const { id, componentType, response, storeName, ...other } = component;
+				const Component = lunatic[componentType];
+				return (
 					<div
 						className={`lunatic-component outerContainer-${componentType}`}
 						key={`component-${id}`}
@@ -211,9 +211,10 @@ export const Orchestrator = ({
 							{...component}
 						/>
 					</div>
-				</Card>
-			);
-		});
+				);
+			})}
+		</Card>
+	);
 
 	return (
 		<StyleWrapper metadata={metadata}>
