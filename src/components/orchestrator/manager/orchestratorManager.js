@@ -88,7 +88,9 @@ const OrchestratorManager = () => {
 
   useEffect(() => {
     if (!loading && questionnaire && nomenclatures) {
-      const { label: questionnaireTitle } = questionnaire;
+      const {
+        label: { value: questionnaireTitle },
+      } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
       const suggestersBuilt =
