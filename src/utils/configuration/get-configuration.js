@@ -3,7 +3,7 @@ import { getEnvVar } from './env';
 const basePath = `${window.location.origin}`;
 
 const nameConfigFile =
-	getEnvVar('NAME_CONFIG_FILE') ?? 'build-configuration.json';
+  getEnvVar('NAME_CONFIG_FILE') ?? 'build-configuration.json';
 
 const nameOidcFile = getEnvVar('NAME_OIDC_FILE') ?? 'keycloak.json';
 

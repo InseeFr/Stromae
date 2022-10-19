@@ -8,7 +8,7 @@ export const getMenu = (context) => getContent(context)?.menu || {};
 export const getGenericPages = (context) => getContent(context)?.genericPages;
 
 export const getWelcomePage = (context) =>
-	getGenericPages(context)?.welcome || {};
+  getGenericPages(context)?.welcome || {};
 export const getValidationPage = (context) =>
-	getGenericPages(context)?.validation || {};
+  getGenericPages(context)?.validation || {};
 export const getEndPage = (context) => getGenericPages(context)?.end || {};

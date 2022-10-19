@@ -5,10 +5,10 @@
  * @param {string} lang the lang of the user
  */
 export const createDictionary = (lang) => (dico) =>
-	Object.keys(dico).reduce((_, k) => {
-		_[k] = dico[k][lang];
-		return _;
-	}, {});
+  Object.keys(dico).reduce((_, k) => {
+    _[k] = dico[k][lang];
+    return _;
+  }, {});
 
 /**
  * This function will return only the lang part of a locale
