@@ -11,38 +11,38 @@ import './App.css';
 export const AppContext = React.createContext();
 
 const App = () => {
-  const [configuration, setConfiguration] = useState(null);
+	const [configuration, setConfiguration] = useState(null);
 
-  useEffect(() => {
-    if (!configuration) {
-      getConfiguration().then(conf => {
-        setConfiguration(conf);
-      });
-    }
-  }, [configuration]);
+	useEffect(() => {
+		if (!configuration) {
+			getConfiguration().then((conf) => {
+				setConfiguration(conf);
+			});
+		}
+	}, [configuration]);
 
-  return (
-    <StyleProvider>
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-        onReset={() => setConfiguration(null)}
-        resetKeys={[configuration]}
-      >
-        {configuration && (
-          <AppContext.Provider value={configuration}>
-            <AuthProvider
-              authType={configuration.authenticationType}
-              urlPortail={configuration.portail}
-            >
-              <BrowserRouter>
-                <Router />
-              </BrowserRouter>
-            </AuthProvider>
-          </AppContext.Provider>
-        )}
-      </ErrorBoundary>
-    </StyleProvider>
-  );
+	return (
+		<StyleProvider>
+			<ErrorBoundary
+				FallbackComponent={ErrorFallback}
+				onReset={() => setConfiguration(null)}
+				resetKeys={[configuration]}
+			>
+				{configuration && (
+					<AppContext.Provider value={configuration}>
+						<AuthProvider
+							authType={configuration.authenticationType}
+							urlPortail={configuration.portail}
+						>
+							<BrowserRouter>
+								<Router />
+							</BrowserRouter>
+						</AuthProvider>
+					</AppContext.Provider>
+				)}
+			</ErrorBoundary>
+		</StyleProvider>
+	);
 };
 
 export default App;

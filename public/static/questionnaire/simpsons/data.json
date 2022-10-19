@@ -1,11 +1,11 @@
 {
-  "stateData": {
-    "state": null,
-    "date": null,
-    "currentPage": null
-  },
+	"stateData": {
+		"state": null,
+		"date": null,
+		"currentPage": null
+	},
 
-  "personalization": [],
+	"personalization": [],
 
-  "data": {}
+	"data": {}
 }

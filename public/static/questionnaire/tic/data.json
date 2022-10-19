@@ -1,24 +1,24 @@
 {
-  "stateData": {
-    "state": null,
-    "date": null,
-    "currentPage": null
-  },
+	"stateData": {
+		"state": null,
+		"date": null,
+		"currentPage": null
+	},
 
-  "personalization": [
-    {
-      "name": "whoAnswers1",
-      "value": "Mr Dupond"
-    },
-    {
-      "name": "whoAnswers2",
-      "value": ""
-    },
-    {
-      "name": "whoAnswers3",
-      "value": ""
-    }
-  ],
+	"personalization": [
+		{
+			"name": "whoAnswers1",
+			"value": "Mr Dupond"
+		},
+		{
+			"name": "whoAnswers2",
+			"value": ""
+		},
+		{
+			"name": "whoAnswers3",
+			"value": ""
+		}
+	],
 
-  "data": {}
+	"data": {}
 }

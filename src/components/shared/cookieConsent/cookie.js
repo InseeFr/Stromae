@@ -9,38 +9,38 @@ import { COOKIE_CONSENT } from 'utils/constants';
 import { defaultDictionary, buttonDictionary } from 'i18n';
 
 const CookieConsent = () => {
-  const [open, setOpen] = useState(
-    () => !window.localStorage.getItem(COOKIE_CONSENT)
-  );
+	const [open, setOpen] = useState(
+		() => !window.localStorage.getItem(COOKIE_CONSENT)
+	);
 
-  const understand = () => {
-    window.localStorage.setItem(COOKIE_CONSENT, true);
-    setOpen(false);
-  };
+	const understand = () => {
+		window.localStorage.setItem(COOKIE_CONSENT, true);
+		setOpen(false);
+	};
 
-  return (
-    <Dialog
-      open={open}
-      keepMounted
-      disableBackdropClick
-      disableEscapeKeyDown
-      onClose={understand}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
-    >
-      <DialogTitle id="alert-dialog-slide-title">
-        {defaultDictionary.cookieTitle}
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description" component="div">
-          <MarkdownTypo>{defaultDictionary.cookieConsent}</MarkdownTypo>
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={understand}>{buttonDictionary.understand}</Button>
-      </DialogActions>
-    </Dialog>
-  );
+	return (
+		<Dialog
+			open={open}
+			keepMounted
+			disableBackdropClick
+			disableEscapeKeyDown
+			onClose={understand}
+			aria-labelledby='alert-dialog-slide-title'
+			aria-describedby='alert-dialog-slide-description'
+		>
+			<DialogTitle id='alert-dialog-slide-title'>
+				{defaultDictionary.cookieTitle}
+			</DialogTitle>
+			<DialogContent>
+				<DialogContentText id='alert-dialog-slide-description' component='div'>
+					<MarkdownTypo>{defaultDictionary.cookieConsent}</MarkdownTypo>
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={understand}>{buttonDictionary.understand}</Button>
+			</DialogActions>
+		</Dialog>
+	);
 };
 
 export default CookieConsent;

@@ -1,272 +1,323 @@
+{
+	"id": "kltmcphf",
+	"modele": "TESTQR",
+	"enoCoreVersion": "2.2.11-dev-logement2",
+	"lunaticModelVersion": "2.2.5",
+	"generatingDate": "14-10-2021 17:03:32",
+	"missing": false,
+	"pagination": "question",
+	"maxPage": "7",
+	"label": "questionnaire test QR",
+	"components": [
+		{
+			"id": "kltm1h0j",
+			"componentType": "Sequence",
+			"page": "1",
+			"label": "\"I - \" || \"description habitants\"",
+			"declarations": [
+				{
+					"id": "kltm1h0j-kur33vi7",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": "aide sur séquence"
+				},
 
-  { "id" : "kltmcphf",
-    "modele" : "TESTQR",
-    "enoCoreVersion" : "2.2.11-dev-logement2",
-    "lunaticModelVersion" : "2.2.5",
-    "generatingDate" : "14-10-2021 17:03:32",
-    "missing" : false,
-    "pagination" : "question",
-    "maxPage" : "7",
-    "label" : "questionnaire test QR",
-    "components" : 
-    [ 
-      { "id" : "kltm1h0j",
-        "componentType" : "Sequence",
-        "page" : "1",
-        "label" : "\"I - \" || \"description habitants\"",
-        "declarations" : 
-        [ 
-          { "id" : "kltm1h0j-kur33vi7",
-            "declarationType" : "HELP",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "aide sur séquence" },
-          
-          { "id" : "kltm1h0j-kur33q6n",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne sur séquence" } ],
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } } },
-      
-      { "id" : "ktcm1r9b",
-        "componentType" : "InputNumber",
-        "mandatory" : false,
-        "page" : "2",
-        "min" : 0,
-        "max" : 10000,
-        "decimals" : 0,
-        "label" : "\"➡ \" || \"quest simple nombre\"",
-        "declarations" : 
-        [ 
-          { "id" : "kur32oyd-SI",
-            "declarationType" : "STATEMENT",
-            "position" : "BEFORE_QUESTION_TEXT",
-            "label" : "aide avant libellé question" },
-          
-          { "id" : "ktcm1r9b-kur2og9f",
-            "declarationType" : "HELP",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "aide après libellé question" },
-          
-          { "id" : "ktcm1r9b-kur2r8o1",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne avant libellé question" },
-          
-          { "id" : "ktcm1r9b-kur33ak7",
-            "declarationType" : "INSTRUCTION",
-            "position" : "AFTER_QUESTION_TEXT",
-            "label" : "consigne après libellé question" } ],
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "NBR" ],
-        "response" : 
-        { "name" : "NBR" } },
-      
-      { "id" : "kup9b5iu",
-        "componentType" : "Radio",
-        "mandatory" : false,
-        "page" : "3",
-        "label" : "\"➡ \" || \"question radio\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "radio" ],
-        "options" : 
-        [ 
-          { "value" : "1",
-            "label" : "oui" },
-          
-          { "value" : "2",
-            "label" : "non" } ],
-        "response" : 
-        { "name" : "radio" } },
-      
-      { "id" : "kup93pg6",
-        "componentType" : "CheckboxOne",
-        "mandatory" : false,
-        "page" : "4",
-        "label" : "\"➡ \" || \"checkboxOne\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "CHECKBOXON" ],
-        "options" : 
-        [ 
-          { "value" : "1",
-            "label" : "oui" },
-          
-          { "value" : "2",
-            "label" : "non" } ],
-        "response" : 
-        { "name" : "CHECKBOXON" } },
-      
-      { "id" : "kup8wn3g",
-        "componentType" : "CheckboxGroup",
-        "page" : "5",
-        "label" : "\"➡ \" || \"checkboxgroup\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "kltm1h0j",
-            "page" : "1",
-            "label" : "\"I - \" || \"description habitants\"" } },
-        "bindingDependencies" : 
-        [ "CHECKBOXGR1",
-          "CHECKBOXGR2",
-          "CHECKBOXGR3" ],
-        "responses" : 
-        [ 
-          { "id" : "kup8wn3g-QOP-kup9cdm1",
-            "label" : "hier",
-            "response" : 
-            { "name" : "CHECKBOXGR1" } },
-          
-          { "id" : "kup8wn3g-QOP-kup8wn2g",
-            "label" : "aujourd’hui",
-            "response" : 
-            { "name" : "CHECKBOXGR2" } },
-          
-          { "id" : "kup8wn3g-QOP-kup99691",
-            "label" : "demain",
-            "response" : 
-            { "name" : "CHECKBOXGR3" } } ] },
-      
-      { "id" : "COMMENT-SEQ",
-        "componentType" : "Sequence",
-        "page" : "6",
-        "label" : "\"Commentaire\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "COMMENT-SEQ",
-            "page" : "6",
-            "label" : "\"Commentaire\"" } } },
-      
-      { "id" : "COMMENT-QUESTION",
-        "componentType" : "Textarea",
-        "mandatory" : false,
-        "page" : "7",
-        "maxLength" : 2000,
-        "label" : "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\"",
-        "conditionFilter" : 
-        { "value" : "true" },
-        "hierarchy" : 
-        { "sequence" : 
-          { "id" : "COMMENT-SEQ",
-            "page" : "6",
-            "label" : "\"Commentaire\"" } },
-        "bindingDependencies" : 
-        [ "COMMENT_QE" ],
-        "response" : 
-        { "name" : "COMMENT_QE" } } ],
-    "variables" : 
-    [ 
-      { "variableType" : "COLLECTED",
-        "name" : "COMMENT_QE",
-        "componentRef" : "COMMENT-QUESTION",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "NBR",
-        "componentRef" : "ktcm1r9b",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "radio",
-        "componentRef" : "kup9b5iu",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXON",
-        "componentRef" : "kup93pg6",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR1",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR2",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "COLLECTED",
-        "name" : "CHECKBOXGR3",
-        "componentRef" : "kup8wn3g",
-        "values" : 
-        { "PREVIOUS" : null,
-          "COLLECTED" : null,
-          "FORCED" : null,
-          "EDITED" : null,
-          "INPUTED" : null } },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_NBR",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_radio",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_CHECKBOXON",
-        "expression" : "true" },
-      
-      { "variableType" : "CALCULATED",
-        "name" : "FILTER_RESULT_CHECKBOXGR",
-        "expression" : "true" } ] }
+				{
+					"id": "kltm1h0j-kur33q6n",
+					"declarationType": "INSTRUCTION",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": "consigne sur séquence"
+				}
+			],
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kltm1h0j",
+					"page": "1",
+					"label": "\"I - \" || \"description habitants\""
+				}
+			}
+		},
+
+		{
+			"id": "ktcm1r9b",
+			"componentType": "InputNumber",
+			"mandatory": false,
+			"page": "2",
+			"min": 0,
+			"max": 10000,
+			"decimals": 0,
+			"label": "\"➡ \" || \"quest simple nombre\"",
+			"declarations": [
+				{
+					"id": "kur32oyd-SI",
+					"declarationType": "STATEMENT",
+					"position": "BEFORE_QUESTION_TEXT",
+					"label": "aide avant libellé question"
+				},
+
+				{
+					"id": "ktcm1r9b-kur2og9f",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": "aide après libellé question"
+				},
+
+				{
+					"id": "ktcm1r9b-kur2r8o1",
+					"declarationType": "INSTRUCTION",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": "consigne avant libellé question"
+				},
+
+				{
+					"id": "ktcm1r9b-kur33ak7",
+					"declarationType": "INSTRUCTION",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": "consigne après libellé question"
+				}
+			],
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kltm1h0j",
+					"page": "1",
+					"label": "\"I - \" || \"description habitants\""
+				}
+			},
+			"bindingDependencies": ["NBR"],
+			"response": { "name": "NBR" }
+		},
+
+		{
+			"id": "kup9b5iu",
+			"componentType": "Radio",
+			"mandatory": false,
+			"page": "3",
+			"label": "\"➡ \" || \"question radio\"",
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kltm1h0j",
+					"page": "1",
+					"label": "\"I - \" || \"description habitants\""
+				}
+			},
+			"bindingDependencies": ["radio"],
+			"options": [
+				{ "value": "1", "label": "oui" },
+
+				{ "value": "2", "label": "non" }
+			],
+			"response": { "name": "radio" }
+		},
+
+		{
+			"id": "kup93pg6",
+			"componentType": "CheckboxOne",
+			"mandatory": false,
+			"page": "4",
+			"label": "\"➡ \" || \"checkboxOne\"",
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kltm1h0j",
+					"page": "1",
+					"label": "\"I - \" || \"description habitants\""
+				}
+			},
+			"bindingDependencies": ["CHECKBOXON"],
+			"options": [
+				{ "value": "1", "label": "oui" },
+
+				{ "value": "2", "label": "non" }
+			],
+			"response": { "name": "CHECKBOXON" }
+		},
+
+		{
+			"id": "kup8wn3g",
+			"componentType": "CheckboxGroup",
+			"page": "5",
+			"label": "\"➡ \" || \"checkboxgroup\"",
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kltm1h0j",
+					"page": "1",
+					"label": "\"I - \" || \"description habitants\""
+				}
+			},
+			"bindingDependencies": ["CHECKBOXGR1", "CHECKBOXGR2", "CHECKBOXGR3"],
+			"responses": [
+				{
+					"id": "kup8wn3g-QOP-kup9cdm1",
+					"label": "hier",
+					"response": { "name": "CHECKBOXGR1" }
+				},
+
+				{
+					"id": "kup8wn3g-QOP-kup8wn2g",
+					"label": "aujourd’hui",
+					"response": { "name": "CHECKBOXGR2" }
+				},
+
+				{
+					"id": "kup8wn3g-QOP-kup99691",
+					"label": "demain",
+					"response": { "name": "CHECKBOXGR3" }
+				}
+			]
+		},
+
+		{
+			"id": "COMMENT-SEQ",
+			"componentType": "Sequence",
+			"page": "6",
+			"label": "\"Commentaire\"",
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "6",
+					"label": "\"Commentaire\""
+				}
+			}
+		},
+
+		{
+			"id": "COMMENT-QUESTION",
+			"componentType": "Textarea",
+			"mandatory": false,
+			"page": "7",
+			"maxLength": 2000,
+			"label": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\"",
+			"conditionFilter": { "value": "true" },
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "6",
+					"label": "\"Commentaire\""
+				}
+			},
+			"bindingDependencies": ["COMMENT_QE"],
+			"response": { "name": "COMMENT_QE" }
+		}
+	],
+	"variables": [
+		{
+			"variableType": "COLLECTED",
+			"name": "COMMENT_QE",
+			"componentRef": "COMMENT-QUESTION",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "NBR",
+			"componentRef": "ktcm1r9b",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "radio",
+			"componentRef": "kup9b5iu",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "CHECKBOXON",
+			"componentRef": "kup93pg6",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "CHECKBOXGR1",
+			"componentRef": "kup8wn3g",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "CHECKBOXGR2",
+			"componentRef": "kup8wn3g",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "COLLECTED",
+			"name": "CHECKBOXGR3",
+			"componentRef": "kup8wn3g",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_NBR",
+			"expression": "true"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_radio",
+			"expression": "true"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_CHECKBOXON",
+			"expression": "true"
+		},
+
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_CHECKBOXGR",
+			"expression": "true"
+		}
+	]
+}

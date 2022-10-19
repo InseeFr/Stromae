@@ -1,5 +1,5 @@
 {
-  "realm": "${REALM}",
-  "auth-server-url": "${AUTHORITY}",
-  "resource": "${CLIENT_ID}"
+	"realm": "${REALM}",
+	"auth-server-url": "${AUTHORITY}",
+	"resource": "${CLIENT_ID}"
 }

@@ -54,11 +54,10 @@
 			"prettier --write"
 		]
 	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged -v"
+		}
 	},
 	"browserslist": {
 		"production": [

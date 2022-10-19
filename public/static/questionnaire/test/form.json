@@ -1,197 +1,197 @@
 {
-  "cleaning": {},
-  "variables": [
-    {
-      "variableType": "COLLECTED",
-      "values": {
-        "COLLECTED": null,
-        "EDITED": null,
-        "INPUTED": null,
-        "FORCED": null,
-        "PREVIOUS": null
-      },
-      "name": "COMMENT_QE"
-    },
-    {
-      "variableType": "COLLECTED",
-      "values": {
-        "COLLECTED": null,
-        "EDITED": null,
-        "INPUTED": null,
-        "FORCED": null,
-        "PREVIOUS": null
-      },
-      "name": "Q1"
-    },
-    {
-      "variableType": "CALCULATED",
-      "expression": { "type": "VTL", "value": "true" },
-      "name": "FILTER_RESULT_Q1",
-      "inFilter": "false"
-    }
-  ],
-  "components": [
-    {
-      "componentType": "Sequence",
-      "hierarchy": {
-        "sequence": {
-          "id": "kanya0cm",
-          "page": "1",
-          "label": {
-            "type": "VTL|MD",
-            "value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
-          }
-        }
-      },
-      "conditionFilter": { "type": "VTL", "value": "true" },
-      "id": "kanya0cm",
-      "page": "1",
-      "label": {
-        "type": "VTL|MD",
-        "value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
-      },
-      "declarations": [
-        {
-          "declarationType": "INSTRUCTION",
-          "id": "kanya0cm-kanzilet",
-          "label": { "type": "VTL|MD", "value": "consigne de séquence cawi" },
-          "position": "AFTER_QUESTION_TEXT"
-        },
-        {
-          "declarationType": "HELP",
-          "id": "kanya0cm-kzfdtx2b",
-          "label": { "type": "VTL|MD", "value": "aide de séquence cawi" },
-          "position": "AFTER_QUESTION_TEXT"
-        }
-      ]
-    },
-    {
-      "componentType": "Subsequence",
-      "goToPage": "2",
-      "hierarchy": {
-        "sequence": {
-          "id": "kanya0cm",
-          "page": "1",
-          "label": {
-            "type": "VTL|MD",
-            "value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
-          }
-        },
-        "subSequence": {
-          "id": "kzfdxu5g",
-          "page": "2",
-          "label": { "type": "VTL|MD", "value": "Déclarations" }
-        }
-      },
-      "conditionFilter": { "type": "VTL", "value": "true" },
-      "id": "kzfdxu5g",
-      "page": "2",
-      "label": { "type": "VTL|MD", "value": "Déclarations" },
-      "declarations": [
-        {
-          "declarationType": "HELP",
-          "id": "kzfdxu5g-kzfdtfyi",
-          "label": { "type": "VTL|MD", "value": "Aide sous séquence CAWI" },
-          "position": "AFTER_QUESTION_TEXT"
-        },
-        {
-          "declarationType": "INSTRUCTION",
-          "id": "kzfdxu5g-kzfe5gdf",
-          "label": { "type": "VTL|MD", "value": "Consigne sous séquence CAWI" },
-          "position": "AFTER_QUESTION_TEXT"
-        }
-      ]
-    },
-    {
-      "componentType": "Dropdown",
-      "bindingDependencies": ["Q1"],
-      "controls": [
-        {
-          "bindingDependencies": ["Q1"],
-          "criticality": "WARN",
-          "errorMessage": {
-            "type": "VTL|MD",
-            "value": "\"variable est vide\""
-          },
-          "typeOfControl": "CONSISTENCY",
-          "control": { "type": "VTL", "value": "not(isnull(Q1))" },
-          "id": "kanyduey-CI-0"
-        }
-      ],
-      "response": { "name": "Q1" },
-      "hierarchy": {
-        "sequence": {
-          "id": "kanya0cm",
-          "page": "1",
-          "label": {
-            "type": "VTL|MD",
-            "value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
-          }
-        }
-      },
-      "options": [
-        { "label": { "type": "VTL|MD", "value": "\"a\"" }, "value": "1" },
-        { "label": { "type": "VTL|MD", "value": "\"b\"" }, "value": "2" },
-        { "label": { "type": "VTL|MD", "value": "\"c\"" }, "value": "3" }
-      ],
-      "conditionFilter": { "type": "VTL", "value": "true" },
-      "id": "kanyduey",
-      "page": "3",
-      "label": { "type": "VTL|MD", "value": "\"➡ 1. \" || \"Dropdown\"" },
-      "mandatory": false,
-      "declarations": [
-        {
-          "declarationType": "INSTRUCTION",
-          "id": "kanyduey-kanys16a",
-          "label": { "type": "VTL|MD", "value": "je suis la consigne cawi" },
-          "position": "AFTER_QUESTION_TEXT"
-        }
-      ]
-    },
-    {
-      "componentType": "Sequence",
-      "hierarchy": {
-        "sequence": {
-          "id": "COMMENT-SEQ",
-          "page": "4",
-          "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
-        }
-      },
-      "conditionFilter": { "type": "VTL", "value": "true" },
-      "id": "COMMENT-SEQ",
-      "page": "4",
-      "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
-    },
-    {
-      "componentType": "Textarea",
-      "bindingDependencies": ["COMMENT_QE"],
-      "response": { "name": "COMMENT_QE" },
-      "hierarchy": {
-        "sequence": {
-          "id": "COMMENT-SEQ",
-          "page": "4",
-          "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
-        }
-      },
-      "conditionFilter": { "type": "VTL", "value": "true" },
-      "id": "COMMENT-QUESTION",
-      "page": "5",
-      "label": {
-        "type": "VTL|MD",
-        "value": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\""
-      },
-      "mandatory": false,
-      "maxLength": 2000
-    }
-  ],
-  "pagination": "question",
-  "resizing": {},
-  "label": { "type": "VTL|MD", "value": "DROPDOWN" },
-  "lunaticModelVersion": "2.2.14-rc",
-  "modele": "DROPDOWN",
-  "enoCoreVersion": "2.3.10-controls-type",
-  "generatingDate": "13-09-2022 09:38:59",
-  "missing": false,
-  "id": "l7ugetj0",
-  "maxPage": "5"
+	"cleaning": {},
+	"variables": [
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": null,
+				"EDITED": null,
+				"INPUTED": null,
+				"FORCED": null,
+				"PREVIOUS": null
+			},
+			"name": "COMMENT_QE"
+		},
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": null,
+				"EDITED": null,
+				"INPUTED": null,
+				"FORCED": null,
+				"PREVIOUS": null
+			},
+			"name": "Q1"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": { "type": "VTL", "value": "true" },
+			"name": "FILTER_RESULT_Q1",
+			"inFilter": "false"
+		}
+	],
+	"components": [
+		{
+			"componentType": "Sequence",
+			"hierarchy": {
+				"sequence": {
+					"id": "kanya0cm",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
+					}
+				}
+			},
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"id": "kanya0cm",
+			"page": "1",
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
+			},
+			"declarations": [
+				{
+					"declarationType": "INSTRUCTION",
+					"id": "kanya0cm-kanzilet",
+					"label": { "type": "VTL|MD", "value": "consigne de séquence cawi" },
+					"position": "AFTER_QUESTION_TEXT"
+				},
+				{
+					"declarationType": "HELP",
+					"id": "kanya0cm-kzfdtx2b",
+					"label": { "type": "VTL|MD", "value": "aide de séquence cawi" },
+					"position": "AFTER_QUESTION_TEXT"
+				}
+			]
+		},
+		{
+			"componentType": "Subsequence",
+			"goToPage": "2",
+			"hierarchy": {
+				"sequence": {
+					"id": "kanya0cm",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
+					}
+				},
+				"subSequence": {
+					"id": "kzfdxu5g",
+					"page": "2",
+					"label": { "type": "VTL|MD", "value": "Déclarations" }
+				}
+			},
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"id": "kzfdxu5g",
+			"page": "2",
+			"label": { "type": "VTL|MD", "value": "Déclarations" },
+			"declarations": [
+				{
+					"declarationType": "HELP",
+					"id": "kzfdxu5g-kzfdtfyi",
+					"label": { "type": "VTL|MD", "value": "Aide sous séquence CAWI" },
+					"position": "AFTER_QUESTION_TEXT"
+				},
+				{
+					"declarationType": "INSTRUCTION",
+					"id": "kzfdxu5g-kzfe5gdf",
+					"label": { "type": "VTL|MD", "value": "Consigne sous séquence CAWI" },
+					"position": "AFTER_QUESTION_TEXT"
+				}
+			]
+		},
+		{
+			"componentType": "Dropdown",
+			"bindingDependencies": ["Q1"],
+			"controls": [
+				{
+					"bindingDependencies": ["Q1"],
+					"criticality": "WARN",
+					"errorMessage": {
+						"type": "VTL|MD",
+						"value": "\"variable est vide\""
+					},
+					"typeOfControl": "CONSISTENCY",
+					"control": { "type": "VTL", "value": "not(isnull(Q1))" },
+					"id": "kanyduey-CI-0"
+				}
+			],
+			"response": { "name": "Q1" },
+			"hierarchy": {
+				"sequence": {
+					"id": "kanya0cm",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"Questions comportant des déclarations de différents types\""
+					}
+				}
+			},
+			"options": [
+				{ "label": { "type": "VTL|MD", "value": "\"a\"" }, "value": "1" },
+				{ "label": { "type": "VTL|MD", "value": "\"b\"" }, "value": "2" },
+				{ "label": { "type": "VTL|MD", "value": "\"c\"" }, "value": "3" }
+			],
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"id": "kanyduey",
+			"page": "3",
+			"label": { "type": "VTL|MD", "value": "\"➡ 1. \" || \"Dropdown\"" },
+			"mandatory": false,
+			"declarations": [
+				{
+					"declarationType": "INSTRUCTION",
+					"id": "kanyduey-kanys16a",
+					"label": { "type": "VTL|MD", "value": "je suis la consigne cawi" },
+					"position": "AFTER_QUESTION_TEXT"
+				}
+			]
+		},
+		{
+			"componentType": "Sequence",
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "4",
+					"label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+				}
+			},
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"id": "COMMENT-SEQ",
+			"page": "4",
+			"label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+		},
+		{
+			"componentType": "Textarea",
+			"bindingDependencies": ["COMMENT_QE"],
+			"response": { "name": "COMMENT_QE" },
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "4",
+					"label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+				}
+			},
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"id": "COMMENT-QUESTION",
+			"page": "5",
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\""
+			},
+			"mandatory": false,
+			"maxLength": 2000
+		}
+	],
+	"pagination": "question",
+	"resizing": {},
+	"label": { "type": "VTL|MD", "value": "DROPDOWN" },
+	"lunaticModelVersion": "2.2.14-rc",
+	"modele": "DROPDOWN",
+	"enoCoreVersion": "2.3.10-controls-type",
+	"generatingDate": "13-09-2022 09:38:59",
+	"missing": false,
+	"id": "l7ugetj0",
+	"maxPage": "5"
 }
