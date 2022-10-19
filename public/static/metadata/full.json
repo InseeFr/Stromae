@@ -1,55 +1,55 @@
 {
-	"inseeContext": "default",
+  "inseeContext": "default",
 
-	"variables": [],
+  "variables": [],
 
-	"genericPages": {
-		"welcome": {
-			"title": "Welcome !",
-			"body": {
-				"value": [
-					"Welcome everybody !",
-					"You have to answer to the simpsons questionnaire",
-					"![simpsons](https://www.dragees.fr/media/wysiwyg/Dragees/simpsons.jpg)"
-				]
-			},
-			"legalTermsTitle": "Legal terms",
-			"legalTermsDetails": { "value": ["The questionnaire is for fun !"] }
-		},
+  "genericPages": {
+    "welcome": {
+      "title": "Welcome !",
+      "body": {
+        "value": [
+          "Welcome everybody !",
+          "You have to answer to the simpsons questionnaire",
+          "![simpsons](https://www.dragees.fr/media/wysiwyg/Dragees/simpsons.jpg)"
+        ]
+      },
+      "legalTermsTitle": "Legal terms",
+      "legalTermsDetails": { "value": ["The questionnaire is for fun !"] }
+    },
 
-		"validation": {
-			"title": "Validation",
-			"body": [
-				"You have reached the end of the questionnaire. \n\n Please click on the \"Send\" button to send it to the cloud !."
-			]
-		},
+    "validation": {
+      "title": "Validation",
+      "body": [
+        "You have reached the end of the questionnaire. \n\n Please click on the \"Send\" button to send it to the cloud !."
+      ]
+    },
 
-		"end": {
-			"title": "The End !",
-			"body": [
-				"Thanks you.",
-				"We hope you had a good time.",
-				"![End](https://3.bp.blogspot.com/_SAJvk6w4rb0/TGf1KAOBH5I/AAAAAAAAAEI/h2WOlruesbs/s1600/marge.png)"
-			],
-			"pdfMessage": "Download your deposit proof",
-			"youCanQuit": "You can quit this questionnaire"
-		}
-	},
+    "end": {
+      "title": "The End !",
+      "body": [
+        "Thanks you.",
+        "We hope you had a good time.",
+        "![End](https://3.bp.blogspot.com/_SAJvk6w4rb0/TGf1KAOBH5I/AAAAAAAAAEI/h2WOlruesbs/s1600/marge.png)"
+      ],
+      "pdfMessage": "Download your deposit proof",
+      "youCanQuit": "You can quit this questionnaire"
+    }
+  },
 
-	"mainLogo": "https://clipground.com/images/simpsons-donut-png-3.jpg",
+  "mainLogo": "https://clipground.com/images/simpsons-donut-png-3.jpg",
 
-	"style": {
-		"theme": {
-			"palette": {
-				"type": "light",
-				"primary": {
-					"main": "#ffc400"
-				},
-				"secondary": {
-					"main": "#09C500"
-				}
-			}
-		},
-		"styleSheets": ["https://laurentc35.github.io/static/stromae.css"]
-	}
+  "style": {
+    "theme": {
+      "palette": {
+        "type": "light",
+        "primary": {
+          "main": "#ffc400"
+        },
+        "secondary": {
+          "main": "#09C500"
+        }
+      }
+    },
+    "styleSheets": ["https://laurentc35.github.io/static/stromae.css"]
+  }
 }

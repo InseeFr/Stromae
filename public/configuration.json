@@ -1,6 +1,6 @@
 {
-	"authenticationType": "${AUTHENTICATION_TYPE}",
-	"_authenticationType_comment_": "Authentication type : OIDC or NONE",
-	"apiUrl": "${API_URL}",
-	"portail": "${PORTAIL_URL}"
+  "authenticationType": "${AUTHENTICATION_TYPE}",
+  "_authenticationType_comment_": "Authentication type : OIDC or NONE",
+  "apiUrl": "${API_URL}",
+  "portail": "${PORTAIL_URL}"
 }
