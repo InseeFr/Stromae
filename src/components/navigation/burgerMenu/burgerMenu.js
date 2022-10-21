@@ -7,7 +7,6 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 import Close from '@material-ui/icons/Close';
 import { AssistanceConfirm } from 'components/modals/assistance';
 import { HOUSEHOLD } from 'utils/constants';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 import './burgerMenu.css';
 import { AppVersion } from 'components/designSystem/AppVersion';
@@ -18,14 +17,10 @@ const utilInfo = (type, page) => {
   return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
 };
 
-const BurgerMenu = ({ title }) => {
+const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [assistance, setAssistance] = useState(false);
-  const {
-    metadata: { inseeContext },
-    currentPage,
-    logoutAndClose,
-  } = useContext(OrchestratorContext);
+  const { inseeContext } = metadata;
 
   const { isUserLoggedIn } = useContext(AuthContext);
 
@@ -91,7 +86,12 @@ const BurgerMenu = ({ title }) => {
           </IconButton>
         </div>
       </div>
-      <AssistanceConfirm open={assistance} setOpen={setAssistance} />
+      <AssistanceConfirm
+        open={assistance}
+        setOpen={setAssistance}
+        metadata={metadata}
+        currentPage={currentPage}
+      />
     </>
   );
 };

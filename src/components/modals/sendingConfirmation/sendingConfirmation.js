@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button } from 'components/designSystem/Button';
 import { confirmationDictionary, buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,17 +6,16 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 
-const SendingConfirmation = ({ open, setOpen }) => {
-  const {
-    metadata: { inseeContext },
-    validateQuestionnaire,
-    currentPage,
-  } = useContext(OrchestratorContext);
-
+const SendingConfirmation = ({
+  open,
+  setOpen,
+  metadata: { inseeContext },
+  validateQuestionnaire,
+  currentPage,
+}) => {
   const { title, body } = confirmationDictionary(inseeContext);
 
   const utilInfo = (type) => {

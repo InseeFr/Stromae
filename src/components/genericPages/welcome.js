@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -12,7 +12,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { interpret } from '@inseefr/trevas';
 import { welcomePageDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { buildBuidings, buildDefaultBindings } from 'utils/personalization';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +23,11 @@ const useStyles = makeStyles((theme) => ({
   legalTermsTitle: { fontWeight: 'bold' },
 }));
 
-const WelcomePage = () => {
+const WelcomePage = ({
+  metadata: { inseeContext, variables, genericPages },
+  personalization,
+}) => {
   const classes = useStyles();
-  const {
-    metadata: { inseeContext, variables, genericPages },
-    personalization,
-  } = useContext(OrchestratorContext);
   const { title, body, legalTermsTitle, legalTermsDetails } =
     genericPages?.welcome || welcomePageDictionary(inseeContext);
 

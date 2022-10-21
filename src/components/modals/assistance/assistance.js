@@ -9,7 +9,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useParams } from 'react-router-dom';
 import { HOUSEHOLD } from 'utils/constants';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 
 const utilInfo = (type, currentPage) => {
@@ -20,13 +19,14 @@ const utilInfo = (type, currentPage) => {
   };
 };
 
-const Assistance = ({ open, setOpen }) => {
+const Assistance = ({
+  open,
+  setOpen,
+  metadata: { inseeContext },
+  currentPage,
+}) => {
   const { idQ, idSU } = useParams();
   const { portail } = useContext(AppContext);
-  const {
-    metadata: { inseeContext },
-    currentPage,
-  } = useContext(OrchestratorContext);
 
   const disagree = () => {
     setOpen(false);
