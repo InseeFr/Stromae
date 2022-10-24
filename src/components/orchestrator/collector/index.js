@@ -23,8 +23,6 @@ import { simpleLog } from 'utils/events';
 import '../custom-lunatic.scss';
 import { isNewSequence } from 'utils/questionnaire';
 
-export const OrchestratorContext = React.createContext();
-
 export const Orchestrator = ({
   source,
   logoutAndClose: quit,
@@ -45,26 +43,24 @@ export const Orchestrator = ({
   const [init, setInit] = useState(false);
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
-  const { stateData, data } = stromaeData;
+  const { stateData, data, personalization } = stromaeData;
 
   const [validated, setValidated] = useState(
     stateData?.state === 'VALIDATED' ||
       stateData?.state === 'EXTRACTED' ||
       stateData?.state === 'TOEXTRACT'
   );
-  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
-    pager: { page = '1' },
+    pager: { page },
     goNextPage,
     goPreviousPage,
     isFirstPage,
     isLastPage,
-    setPage = () => console.log('TODO lunatic'),
     getModalErrors,
     getCurrentErrors,
     getData,
@@ -79,13 +75,12 @@ export const Orchestrator = ({
     logFunction,
   });
 
-  const updateStateData = (newState = INIT) => {
+  const updateStateData = (newState) => {
     const newStateData = {
-      state: newState,
+      state: newState ?? INIT,
       date: new Date().getTime(),
       currentPage: currentPage,
     };
-    setCurrentStateData(newStateData);
     return newStateData;
   };
 
@@ -101,13 +96,10 @@ export const Orchestrator = ({
   };
 
   const [currentPage, setCurrentPage] = useState(() => {
-    if (!validated && stateData?.currentPage) {
-      if (isLunaticPage(stateData?.currentPage)) {
-        setPage(stateData?.currentPage);
-      }
-      return stateData?.currentPage;
-    }
     if (validated) return END_PAGE;
+    if (stateData.currentPage) {
+      return page;
+    }
     return WELCOME_PAGE;
   });
 
@@ -133,30 +125,22 @@ export const Orchestrator = ({
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
+      const dataToSave = {
+        stateData: updateStateData(),
+        data: getData(),
+      };
       if (!isLastPage) {
         if (isNewSequence(components)) {
-          const dataToSave = {
-            stateData: updateStateData(),
-            data: getData(),
-          };
           save(dataToSave);
         }
         goNextPage();
       } else {
-        const dataToSave = {
-          stateData: updateStateData(),
-          data: getData(),
-        };
         save(dataToSave);
         setCurrentPage(VALIDATION_PAGE);
       }
     }
     goToTop();
   };
-
-  useEffect(() => {
-    if (isLunaticPage(currentPage)) setCurrentPage(page);
-  }, [currentPage, page]);
 
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
@@ -166,17 +150,11 @@ export const Orchestrator = ({
     }
   };
 
-  const context = {
-    metadata,
-    validated,
-    validateQuestionnaire,
-    setValidationConfirmation,
-    logoutAndClose,
-    ...stromaeData,
-    stateData: currentStateData,
-    currentPage,
-    readonly,
-  };
+  useEffect(() => {
+    if (isLunaticPage(currentPage)) {
+      setCurrentPage(page);
+    }
+  }, [currentPage, page]);
 
   const components = getComponents();
   const modalErrors = getModalErrors();
@@ -217,51 +195,72 @@ export const Orchestrator = ({
 
   return (
     <StyleWrapper metadata={metadata}>
-      <OrchestratorContext.Provider value={context}>
-        <BurgerMenu title={source?.label.value} />
-        <AppBar title={source?.label.value} />
-        <Container
-          maxWidth='md'
-          component='main'
-          role='main'
-          id='main'
-          ref={topRef}
-          className={classes.root}
-        >
-          {currentPage === WELCOME_PAGE && <WelcomePage />}
-          {isLunaticPage(currentPage) && lunaticDisplay()}
-          {currentPage === VALIDATION_PAGE && <ValidationPage />}
-          {currentPage === END_PAGE && <EndPage />}
-        </Container>
-        {!validated && (
-          <ButtonsNavigation
-            onNext={onNext}
-            onPrevious={onPrevious}
+      <BurgerMenu
+        title={source?.label.value}
+        metadata={metadata}
+        currentPage={currentPage}
+        logoutAndClose={logoutAndClose}
+      />
+      <AppBar title={source?.label.value} metadata={metadata} />
+      <Container
+        maxWidth='md'
+        component='main'
+        role='main'
+        id='main'
+        ref={topRef}
+        className={classes.root}
+      >
+        {currentPage === WELCOME_PAGE && (
+          <WelcomePage metadata={metadata} personalization={personalization} />
+        )}
+        {isLunaticPage(currentPage) && lunaticDisplay()}
+        {currentPage === VALIDATION_PAGE && (
+          <ValidationPage
+            metadata={metadata}
+            setValidationConfirmation={setValidationConfirmation}
             currentPage={currentPage}
-            validateQuestionnaire={() => setValidationConfirmation(true)}
           />
         )}
-        {modalForControls && (
-          <lunatic.Modal
-            title='Des points requièrent votre attention.'
-            errors={modalErrors}
-            goNext={goNextPage}
+        {currentPage === END_PAGE && (
+          <EndPage
+            logoutAndClose={logoutAndClose}
+            metadata={metadata}
+            stateData={stateData}
+            currentPage={currentPage}
+            personalization={personalization}
           />
         )}
-        <WelcomeBack
-          open={!init && !validated && !!stateData?.currentPage}
-          setOpen={(o) => setInit(!o)}
-          goToFirstPage={() => {
-            setCurrentPage(WELCOME_PAGE);
-            setPage('1');
-          }}
+      </Container>
+      {!validated && (
+        <ButtonsNavigation
+          onNext={onNext}
+          onPrevious={onPrevious}
+          currentPage={currentPage}
+          validateQuestionnaire={() => setValidationConfirmation(true)}
         />
-        <SendingConfirmation
-          open={validationConfirmation}
-          setOpen={setValidationConfirmation}
+      )}
+      {modalForControls && (
+        <lunatic.Modal
+          title='Des points requièrent votre attention.'
+          errors={modalErrors}
+          goNext={goNextPage}
         />
-        {waiting && <LoaderSimple />}
-      </OrchestratorContext.Provider>
+      )}
+      <WelcomeBack
+        open={!init && !validated && !!stateData?.currentPage}
+        setOpen={(o) => setInit(!o)}
+        goToFirstPage={() => {
+          setCurrentPage(WELCOME_PAGE);
+        }}
+      />
+      <SendingConfirmation
+        open={validationConfirmation}
+        setOpen={setValidationConfirmation}
+        metadata={metadata}
+        validateQuestionnaire={validateQuestionnaire}
+        currentPage={currentPage}
+      />
+      {waiting && <LoaderSimple />}
     </StyleWrapper>
   );
 };
