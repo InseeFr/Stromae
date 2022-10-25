@@ -97,7 +97,7 @@ export const Orchestrator = ({
 
   const [currentPage, setCurrentPage] = useState(() => {
     if (validated) return END_PAGE;
-    if (stateData.currentPage) {
+    if (stateData?.currentPage) {
       return page;
     }
     return WELCOME_PAGE;
