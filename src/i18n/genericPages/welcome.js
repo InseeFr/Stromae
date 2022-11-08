@@ -112,5 +112,5 @@ const welcomeMessage = {
   default: welcomeDefault,
 };
 
-export const getWelcomePageMessage = inseeContext =>
+export const getWelcomePageMessage = (inseeContext) =>
   welcomeMessage[inseeContext];

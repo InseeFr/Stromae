@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -9,13 +9,12 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
-import { interpret } from '@inseefr/lunatic';
+import { interpret } from '@inseefr/trevas';
 import { welcomePageDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { buildBuidings, buildDefaultBindings } from 'utils/personalization';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
   accordionDetails: {
     display: 'block',
@@ -24,23 +23,22 @@ const useStyles = makeStyles(theme => ({
   legalTermsTitle: { fontWeight: 'bold' },
 }));
 
-const WelcomePage = () => {
+const WelcomePage = ({
+  metadata: { inseeContext, variables, genericPages },
+  personalization,
+}) => {
   const classes = useStyles();
-  const {
-    metadata: { inseeContext, variables, genericPages },
-    personalization,
-  } = useContext(OrchestratorContext);
   const { title, body, legalTermsTitle, legalTermsDetails } =
     genericPages?.welcome || welcomePageDictionary(inseeContext);
 
   const getBodyWithVariables = (myBody, bindingDependencies) =>
-    interpret(['VTL'])({
+    interpret(myBody, {
       ...buildDefaultBindings(bindingDependencies),
       ...buildBuidings(variables),
       ...buildBuidings(personalization),
-    })(myBody);
+    });
 
-  const getFinalLabel = label =>
+  const getFinalLabel = (label) =>
     label || `Not yet Implemented for ${inseeContext}`;
 
   return (
@@ -63,8 +61,8 @@ const WelcomePage = () => {
           <Accordion className={classes.accordion}>
             <AccordionSummary
               expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+              aria-controls='panel1a-content'
+              id='panel1a-header'
             >
               <Typography className={classes.legalTermsTitle}>
                 {legalTermsTitle}

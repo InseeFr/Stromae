@@ -34,17 +34,12 @@ const Visualizer = () => {
   });
 
   const { questionnaireUrl, metadataUrl, dataUrl, readonly } = useVisuQuery();
-  const {
-    suData,
-    questionnaire,
-    metadata,
-    loading,
-    errorMessage,
-  } = useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
+  const { suData, questionnaire, metadata, loading, errorMessage } =
+    useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
-  const sendData = surveyUnit => {};
+  const sendData = (surveyUnit) => {};
 
-  const logoutAndClose = async surveyUnit => {
+  const logoutAndClose = async (surveyUnit) => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
     const paradatas = LOGGER.getEventsToSend();
     downloadDataAsJson(paradatas, `paradata-${surveyUnit?.stateData?.date}`);
@@ -54,7 +49,9 @@ const Visualizer = () => {
 
   useEffect(() => {
     if (!loading && questionnaire) {
-      const { label: questionnaireTitle } = questionnaire;
+      const {
+        label: { value: questionnaireTitle },
+      } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
@@ -74,11 +71,12 @@ const Visualizer = () => {
               source={source}
               metadata={metadata}
               save={sendData}
-              savingType="COLLECTED"
+              savingType='COLLECTED'
               preferences={['COLLECTED']}
               features={['VTL', 'MD']}
               logoutAndClose={logoutAndClose}
               pagination={true}
+              activeControls={true}
               modalForControls={true}
               readonly={readonly}
             />

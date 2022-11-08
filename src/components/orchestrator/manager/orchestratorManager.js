@@ -20,7 +20,7 @@ import {
 import { buildSuggesterFromNomenclatures } from 'utils/questionnaire/nomenclatures';
 import { AuthContext } from 'components/auth/provider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     minHeight: '100%',
@@ -57,21 +57,17 @@ const OrchestratorManager = () => {
 
   const [suggesters, setSuggesters] = useState(null);
 
-  const [, /*sending*/ setSending] = useState(false);
-  const [errorSending, setErrorSending] = useState(false);
+  const [errorSending, setErrorSending] = useState(null);
 
-  const sendData = async dataToSave => {
-    setErrorSending(null);
-    setSending(true);
+  const sendData = async (dataToSave) => {
     const { data, stateData } = dataToSave;
     const { /*status,*/ error: dataError } = await putData(data);
     const { /*status,*/ error: stateDataError } = await putStateData(stateData);
     const paradatas = LOGGER.getEventsToSend();
     const { error: paradataPostError } = await postParadata(paradatas);
-    setSending(false);
     if (dataError || stateDataError || paradataPostError)
-      setErrorSending('Error during sending');
-    if (!paradataPostError) LOGGER.clear();
+      if (paradataPostError) setErrorSending('Error during sending');
+    LOGGER.clear();
   };
 
   const logoutAndClose = () => {
@@ -88,12 +84,13 @@ const OrchestratorManager = () => {
 
   useEffect(() => {
     if (!loading && questionnaire && nomenclatures) {
-      const { label: questionnaireTitle } = questionnaire;
+      const {
+        label: { value: questionnaireTitle },
+      } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
-      const suggestersBuilt = buildSuggesterFromNomenclatures(apiUrl)(
-        nomenclatures
-      );
+      const suggestersBuilt =
+        buildSuggesterFromNomenclatures(apiUrl)(nomenclatures);
       setSuggesters(suggestersBuilt);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
@@ -117,13 +114,13 @@ const OrchestratorManager = () => {
             autoSuggesterLoading={true}
             suggesters={suggesters}
             save={sendData}
-            savingType="COLLECTED"
+            savingType='COLLECTED'
             preferences={['COLLECTED']}
             features={['VTL', 'MD']}
             pagination={true}
+            activeControls={true}
             modalForControls={true}
             readonly={readonly}
-            placeholderList="Rechercher ici ..."
           />
         )}
       {errorSending && <h2>Error lors de l'envoie</h2>}

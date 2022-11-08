@@ -20,7 +20,7 @@ import { Button } from 'components/designSystem';
 import Helper from './helper';
 import Examples from './examples';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingBottom: theme.spacing(3),
   },
@@ -62,7 +62,7 @@ const QuestionnaireForm = () => {
 
   const history = useHistory();
 
-  const goToQuestionnaire = e => {
+  const goToQuestionnaire = (e) => {
     history.push({
       pathname: '/visualize',
       search: `?questionnaire=${encodeURIComponent(questionnaire)}
@@ -74,19 +74,19 @@ const QuestionnaireForm = () => {
   };
 
   return (
-    <Container maxWidth="lg" className={classes.root}>
-      <Typography variant="h3" className={classes.title}>
+    <Container maxWidth='lg' className={classes.root}>
+      <Typography variant='h3' className={classes.title}>
         {visualizeDictionary.visualizationTitlePage}
       </Typography>
       <form onSubmit={goToQuestionnaire}>
         <TextField
-          id="questionnaire-url-form"
+          id='questionnaire-url-form'
           required
           label={visualizeDictionary.labelQuest}
           placeholder={QUESTIONNAIRE_EXAMPLE_URL(SIMPSONS)}
           helperText={visualizeDictionary.helperTextQuest}
           fullWidth
-          margin="normal"
+          margin='normal'
           InputLabelProps={{
             shrink: true,
           }}
@@ -94,15 +94,15 @@ const QuestionnaireForm = () => {
           onChange={({ target: { value: v } }) => {
             setQuestionnaire(v);
           }}
-          variant="outlined"
+          variant='outlined'
         />
         <TextField
-          id="metadata-url-form"
+          id='metadata-url-form'
           label={visualizeDictionary.labelMetadata}
           placeholder={DEFAULT_METADATA_URL}
           helperText={visualizeDictionary.helperTextMetadata}
           fullWidth
-          margin="normal"
+          margin='normal'
           InputLabelProps={{
             shrink: true,
           }}
@@ -110,15 +110,15 @@ const QuestionnaireForm = () => {
           onChange={({ target: { value: v } }) => {
             setMetadata(v);
           }}
-          variant="outlined"
+          variant='outlined'
         />
         <TextField
-          id="data-url-form"
+          id='data-url-form'
           label={visualizeDictionary.labelData}
           placeholder={DEFAULT_DATA_URL}
           helperText={visualizeDictionary.helperTextData}
           fullWidth
-          margin="normal"
+          margin='normal'
           InputLabelProps={{
             shrink: true,
           }}
@@ -126,15 +126,15 @@ const QuestionnaireForm = () => {
           onChange={({ target: { value: v } }) => {
             setData(v);
           }}
-          variant="outlined"
+          variant='outlined'
         />
         <FormControlLabel
           control={
             <Checkbox
               checked={readonly}
               onChange={({ target: { checked } }) => setReadonly(checked)}
-              name="readonly"
-              color="primary"
+              name='readonly'
+              color='primary'
             />
           }
           label={visualizeDictionary.labelReadonly}
@@ -148,7 +148,7 @@ const QuestionnaireForm = () => {
           />
         </div>
         <div className={classes.buttonParent}>
-          <Button type="submit" className={classes.button}>
+          <Button type='submit' className={classes.button}>
             {buttonDictionary.visualize}
           </Button>
         </div>

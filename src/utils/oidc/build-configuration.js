@@ -1,6 +1,6 @@
 const LAST_SURVEY = 'last-survey';
 
-const getCurrentSurvey = path => {
+const getCurrentSurvey = (path) => {
   if (!path.startsWith('/authentication')) {
     const temp = path.split('/questionnaire/');
     if (temp.length > 1) {
@@ -14,7 +14,7 @@ const getCurrentSurvey = path => {
   return window.localStorage.getItem(LAST_SURVEY) || '';
 };
 
-const getKc_idp_hintActive = path => {
+const getKc_idp_hintActive = (path) => {
   if (!path.startsWith('/read-only')) {
     return '';
   }

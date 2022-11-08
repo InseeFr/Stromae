@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { addStyleSheet } from 'utils/style';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export const StyleContext = React.createContext();
 
@@ -19,11 +19,11 @@ const StyleProvider = ({ children }) => {
   });
   const [styleSheets, setStyleSheets] = useState([]);
 
-  const finalTheme = useMemo(() => createMuiTheme(theme), [theme]);
+  const finalTheme = useMemo(() => createTheme(theme), [theme]);
 
   useEffect(() => {
     if (Array.isArray(styleSheets) && styleSheets.length > 0) {
-      styleSheets.forEach(styleSheetUrl => {
+      styleSheets.forEach((styleSheetUrl) => {
         if (styleSheetUrl.endsWith('.css')) {
           addStyleSheet(styleSheetUrl);
         }

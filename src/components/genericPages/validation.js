@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -7,11 +7,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
 import Send from '@material-ui/icons/Send';
 import { validationPageDictionary, buttonDictionary } from 'i18n';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
   root: {
     display: 'flex',
@@ -23,13 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ValidationPage = () => {
+const ValidationPage = ({
+  metadata: { inseeContext, genericPages },
+  setValidationConfirmation,
+  currentPage,
+}) => {
   const classes = useStyles();
-  const {
-    metadata: { inseeContext, genericPages },
-    setValidationConfirmation,
-    currentPage,
-  } = useContext(OrchestratorContext);
   const { title, body } =
     genericPages?.validation || validationPageDictionary(inseeContext);
   const utilInfo = {
@@ -50,8 +48,8 @@ const ValidationPage = () => {
         ))}
         <Button
           className={classes.send}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           endIcon={<Send />}
           onClick={paradataHandler(() => setValidationConfirmation(true))(
             utilInfo

@@ -6,7 +6,7 @@ export const listenActivity = () => {
     'scroll',
     'touchstart',
   ];
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const listener = () => {
       resolve();
     };
