@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.2.8-feat-nomenclature",
+  "version": "2.2.9",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
