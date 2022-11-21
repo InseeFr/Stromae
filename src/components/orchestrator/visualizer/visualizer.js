@@ -87,7 +87,7 @@ const Visualizer = () => {
               logoutAndClose={logoutAndClose}
               pagination={true}
               activeControls={true}
-              modalForControls={false}
+              modalForControls={true}
               readonly={readonly}
             />
           )}
