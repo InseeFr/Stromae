@@ -1,0 +1,3666 @@
+{
+  "questionnaireId": "FAM2022X02",
+  "personalization": [
+    {
+      "name": "whoAnswers1",
+      "value": ""
+    },
+    {
+      "name": "whoAnswers2",
+      "value": ""
+    },
+    {
+      "name": "whoAnswers3",
+      "value": ""
+    }
+  ],
+  "data": {
+    "EXTERNAL": {
+      "RPNBQUEST": "3",
+      "RPSEXCONJ": ["2", null, null, null],
+      "RPSEXPAR1": ["1", "2", null, null],
+      "RPSEXPAR2": ["2", "1", null, null],
+      "RPANAISCONJ": ["1955", null, null, null],
+      "RPANAISPAR1": ["1920", "1955", null, null],
+      "RPANAISPAR2": ["1925", "1955", null, null],
+      "RPTYPEQUEST": "femmes",
+      "RPPRENOMCONJ": ["Luc", null, null, null],
+      "RPPRENOMPAR1": ["Thomas", "Pauline", null, null],
+      "RPPRENOMPAR2": ["Maria", "Rémi", null, null],
+      "RPLISTEPRENOMS": [
+        "Pauline, Manon, Thérèse",
+        "Pauline, Manon, Thérèse",
+        "Pauline, Manon, Thérèse",
+        null
+      ]
+    },
+    "COLLECTED": {
+      "ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "MARI": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PACS": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COUPLE": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": ["1", null]
+      },
+      "DNAI_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FINETU": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": ["2", null]
+      },
+      "HEBERG": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "MOIS_U": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PNAI_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEPARE": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TRAV_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VITICI": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null, "1"]
+      },
+      "ANNEE_D": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_S": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_U": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENFAV_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "MARI_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "MARI_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PACS_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PACS_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_C2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_CF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_CH": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TRAVACT": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "CBENFAIL": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "CBENFLOG": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEJATRAV": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAIL": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFLOG": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "STATUT_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VIV_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VIV_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_UNION": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DATNAIS_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DATNAIS_X": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ETAB_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ETAB_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_PAR2B": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_PAR2a": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_FRERES": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_SOEURS": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PETIT_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOMREP": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": ["aa", "vv"]
+      },
+      "PRENOM_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEPARE_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEPARE_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TRAV_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TRAV_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_D_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_D_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_MARI": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_PACS": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_S_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_S_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DC_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENFAV_C_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENFAV_C_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "EXIST_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FR_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LIEUNAIS_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NATIO_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NATIO_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENF_ADOP": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_FIN": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR1F": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR1H": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR2F": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR2H": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TYP_PLACE1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TYP_PLACE2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TYP_PLACE3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "TYP_PLACE4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_PLACE": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_RECUE1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_RECUE2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_RECUE3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_RECUE4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "COM_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DEP_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "INTER_TRAV1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "INTER_TRAV2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "INTER_TRAV3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE1_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE2_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LOG_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENF_ADOP1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PAY_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR1_2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROF_PAR2_2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "STATUT_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "STATUT_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_PETIT_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_APPORT1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_APPORT2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_APPORT3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_APPORT4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AIDE_APPORT5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANAI_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_FINEMP": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_FINETU": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "DORT_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_VU_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_VU_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE1_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE1_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE2_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE2_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_AUT_UNION": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_PETIT_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEXE_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DC_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEP_PARENT": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_DC_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_DC_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_EMPLOI1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_MARI_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_MARI_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_PACS_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ANNEE_PACS_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE1_ENTOU": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "LANGUE2_ENTOU": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_FRERES_VIV": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_SOEURS_VIE": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROX_EGO_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROX_EGO_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RESID_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_CONT_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_CONT_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_VENU_C": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_FRERES_VIV1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NB_SOEURS_VIV1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PRENOM_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROX_FRAT_PAR1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PROX_FRAT_PAR2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_11": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_12": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_13": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_14": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_21": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_22": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_23": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_24": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_31": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_32": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_33": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_34": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_41": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_42": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_43": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_APP_44": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_11": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_12": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_13": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_14": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_21": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_22": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_23": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_24": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_31": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_32": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_33": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "QUI_AID_REC_34": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "RAISON_VIE_CJT": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL11": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL12": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL13": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL21": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL22": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL23": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL31": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL32": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL33": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL41": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL42": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL43": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL51": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL52": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL53": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL61": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL62": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL63": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL71": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL72": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL73": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL81": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL82": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFAIL83": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG11": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG12": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG13": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG14": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG21": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG22": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG23": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG24": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG31": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG32": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG33": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG34": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG41": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG42": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG43": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG44": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG51": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG52": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG53": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG54": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG61": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG62": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG63": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG64": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG71": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG72": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG73": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG74": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG81": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG82": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG83": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SANTE_ENFLOG84": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "VECU_JEUNESSE7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AUT_PAR_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENF21_AUTPAR_C1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENF21_AUTPAR_C2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENF21_AUTPAR_C3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "ENF21_AUTPAR_C4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_VENU_C1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NEFRANCE_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "AG_DEPART_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_VU_PETIT_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C_VENU_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C_VENU_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FR_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C1_VENU_U1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "NBENFAV_C1_VENU_U2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_COM_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DEP_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_PAY_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VIT_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "FREQ_CONT_PETIT_ENF": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_DORT_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_FREQ_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "PARENT_VECU_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFAIL8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG1": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG2": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG3": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG4": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG5": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG6": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG7": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      },
+      "SEP_AUT_PAR_ENFLOG8": {
+        "EDITED": null,
+        "FORCED": null,
+        "INPUTED": null,
+        "PREVIOUS": null,
+        "COLLECTED": [null]
+      }
+    },
+    "CALCULATED": {}
+  },
+  "comment": {},
+  "stateData": {
+    "state": "INIT",
+    "date": 1668677099410,
+    "currentPage": "2"
+  }
+}

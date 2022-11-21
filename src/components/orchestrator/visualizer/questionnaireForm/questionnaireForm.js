@@ -6,6 +6,7 @@ import {
   DATA_EXAMPLE_URL,
   SIMPSONS,
   DEFAULT_DATA_URL,
+  DEFAULT_NOMENCLATURE_URL,
   DEFAULT_METADATA_URL,
 } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
@@ -50,6 +51,7 @@ const QuestionnaireForm = () => {
   const [questionnaire, setQuestionnaire] = useState('');
   const [metadata, setMetadata] = useState('');
   const [data, setData] = useState('');
+  const [nomenclature, setNomenclature] = useState('');
   const [readonly, setReadonly] = useState(false);
 
   const [selected, setSelected] = useState('');
@@ -68,7 +70,10 @@ const QuestionnaireForm = () => {
       search: `?questionnaire=${encodeURIComponent(questionnaire)}
       ${metadata ? `&metadata=${encodeURIComponent(metadata)}` : ''}${
         data ? `&data=${encodeURIComponent(data)}` : ''
-      }${readonly ? `&readonly=${readonly}` : ''}`,
+      }${
+        nomenclature ? `&nomenclature=${encodeURIComponent(nomenclature)}` : ''
+      }
+      ${readonly ? `&readonly=${readonly}` : ''}`,
     });
     e.preventDefault();
   };
@@ -125,6 +130,22 @@ const QuestionnaireForm = () => {
           value={data}
           onChange={({ target: { value: v } }) => {
             setData(v);
+          }}
+          variant='outlined'
+        />
+        <TextField
+          id='nomenclature-url-form'
+          label={visualizeDictionary.labelNomenclature}
+          placeholder={JSON.stringify(DEFAULT_NOMENCLATURE_URL)}
+          helperText={visualizeDictionary.helperTextNomenclature}
+          fullWidth
+          margin='normal'
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={nomenclature}
+          onChange={({ target: { value: v } }) => {
+            setNomenclature(v);
           }}
           variant='outlined'
         />
