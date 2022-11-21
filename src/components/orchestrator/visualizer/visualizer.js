@@ -47,9 +47,6 @@ const Visualizer = () => {
         }, {})
       : null;
 
-  console.log(nomenclatures);
-  console.log(buildSuggester(nomenclatures));
-
   const logoutAndClose = async (surveyUnit) => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
     const paradatas = LOGGER.getEventsToSend();
@@ -83,7 +80,7 @@ const Visualizer = () => {
               metadata={metadata}
               save={sendData}
               autoSuggesterLoading={true}
-              suggesters={nomenclatures}
+              suggesters={buildSuggester(nomenclatures)}
               savingType='COLLECTED'
               preferences={['COLLECTED']}
               features={['VTL', 'MD']}
