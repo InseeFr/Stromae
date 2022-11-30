@@ -1,7 +1,25 @@
 # Stromae
 
 Web application for the management of questionnaires powered by Lunatic (https://github.com/InseeFr/Lunatic)
+## View a survey
 
+You can view a questionnaire in stromae by going to `https://url-of-application/visualize`.
+
+Then you just have to add the survey url, metadata url (not mandatory), data url (not mandatory) and nomenclatures urls.
+
+Nomenclatures are not mandatory too, they are used by suggester component to allow autocompletion on large lists. 
+
+You must add nomenclature as follow :
+
+```json
+{ 
+"idNomenclature1":"https://url_of_the_nomenclature1.json",
+"idNomenclature2":"https://url_of_the_nomenclature2.json",
+...
+} 
+```
+
+with "idNomenclature1" is the nomenclature id given in the survey for suggester component.
 ## Style overload
 
 You have two ways to overload the stromae styles. These methods are done through the `metadata.json` file. You can of course combine these two methods.
