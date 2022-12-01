@@ -20,14 +20,14 @@ export const defaultDictionary = createDictionary(getLang())(dictionary);
 
 export const burgerDictionary = createDictionary(getLang())(burgerMessage);
 
-export const welcomePageDictionary = inseeContext =>
+export const welcomePageDictionary = (inseeContext) =>
   createDictionary(getLang())(getWelcomePageMessage(inseeContext));
 
-export const validationPageDictionary = inseeContext =>
+export const validationPageDictionary = (inseeContext) =>
   createDictionary(getLang())(getValidationPageMessage(inseeContext));
 
-export const endPageDictionary = inseeContext =>
+export const endPageDictionary = (inseeContext) =>
   createDictionary(getLang())(getEndPageMessage(inseeContext));
 
-export const confirmationDictionary = inseeContext =>
+export const confirmationDictionary = (inseeContext) =>
   createDictionary(getLang())(getConfirmationMessage(inseeContext));

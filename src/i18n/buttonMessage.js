@@ -19,7 +19,10 @@ const buttonMessage = {
     fr: `Revenir à la dernière page accédée`,
     en: `Return to the last accessed page`,
   },
-  goToFirstPage: { fr: `Aller à la première page`, en: `Go to the first page` },
+  goToFirstPage: {
+    fr: `Aller à la première page`,
+    en: `Go to the first page`,
+  },
   visualize: { fr: `Visualiser`, en: `Visualize` },
 };
 

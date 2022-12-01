@@ -56,19 +56,19 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
-  const putSuData = useConstCallback(body =>
+  const putSuData = useConstCallback((body) =>
     API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putData = useConstCallback(body =>
+  const putData = useConstCallback((body) =>
     API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const putStateData = useConstCallback(body =>
+  const putStateData = useConstCallback((body) =>
     API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
-  const postParadata = useConstCallback(body =>
+  const postParadata = useConstCallback((body) =>
     API.postParadata(apiUrl)(oidcClient.accessToken)(body)
   );
 
@@ -93,12 +93,8 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const {
-    getSuData,
-    getRequiredNomenclatures,
-    getQuestionnaire,
-    getMetadata,
-  } = useAPI(surveyUnitID, questionnaireID);
+  const { getSuData, getRequiredNomenclatures, getQuestionnaire, getMetadata } =
+    useAPI(surveyUnitID, questionnaireID);
 
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {

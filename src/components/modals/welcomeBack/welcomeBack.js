@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { MarkdownTypo } from 'components/designSystem';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 
-const utilInfo = type => {
+const utilInfo = (type) => {
   return {
     ...SIMPLE_CLICK_EVENT,
     idParadataObject: `${type}-welcomeBack-modal-button`,
@@ -32,14 +32,14 @@ const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
       disableBackdropClick
       disableEscapeKeyDown
       onClose={paradataHandler(goToCurrentPage)(utilInfo('close'))}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle id="alert-dialog-slide-title">
+      <DialogTitle id='alert-dialog-slide-title'>
         {defaultDictionary.welcomeBackTitle}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description" component="div">
+        <DialogContentText id='alert-dialog-slide-description' component='div'>
           <MarkdownTypo>{defaultDictionary.welcomeBackBody}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>

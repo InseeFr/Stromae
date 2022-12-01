@@ -149,4 +149,4 @@ const welcomeMessage = {
 };
 
 export const getWelcomePageMessage = (inseeContext) =>
-	welcomeMessage[inseeContext];
+welcomeMessage[inseeContext];

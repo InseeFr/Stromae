@@ -7,7 +7,6 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 import Close from '@material-ui/icons/Close';
 import { AssistanceConfirm } from 'components/modals/assistance';
 import { HOUSEHOLD } from 'utils/constants';
-import { OrchestratorContext } from 'components/orchestrator/collector';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 import './burgerMenu.css';
 import { AppVersion } from 'components/designSystem/AppVersion';
@@ -18,14 +17,10 @@ const utilInfo = (type, page) => {
   return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
 };
 
-const BurgerMenu = ({ title }) => {
+const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [assistance, setAssistance] = useState(false);
-  const {
-    metadata: { inseeContext },
-    currentPage,
-    logoutAndClose,
-  } = useContext(OrchestratorContext);
+  const { inseeContext } = metadata;
 
   const { isUserLoggedIn } = useContext(AuthContext);
 
@@ -46,52 +41,57 @@ const BurgerMenu = ({ title }) => {
 
   return (
     <>
-      <div id="burgerMenu" className={isOpen ? 'opened' : 'closed'}>
-        <div id="burgerMenuSlideBar">
+      <div id='burgerMenu' className={isOpen ? 'opened' : 'closed'}>
+        <div id='burgerMenuSlideBar'>
           <IconButton
-            className="burgerMenuButton"
-            aria-label="Assistance"
-            color="inherit"
+            className='burgerMenuButton'
+            aria-label='Assistance'
+            color='inherit'
             onClick={() => setAssistance(true)}
           >
             <Help />
             &nbsp;
-            <span className="slideBarButtonText">{burgerDictionary.help}</span>
+            <span className='slideBarButtonText'>{burgerDictionary.help}</span>
           </IconButton>
           {isUserLoggedIn && inseeContext === HOUSEHOLD && (
             <IconButton
-              className="burgerMenuButton"
-              aria-label="Déconnexion"
-              color="inherit"
+              className='burgerMenuButton'
+              aria-label='Déconnexion'
+              color='inherit'
               onClick={paradataHandler(logoutAndClose)(
                 utilInfo('logout', currentPage)
               )}
             >
               <ExitToApp />
               &nbsp;
-              <span className="slideBarButtonText">
+              <span className='slideBarButtonText'>
                 {burgerDictionary.exit}
               </span>
             </IconButton>
           )}
-          <AppVersion className="appVersion" />
+          <AppVersion className='appVersion' />
         </div>
-        <div id="burgerMenuToggleTab">
-          <Typography id="toggleSlidebarText">
+        <div id='burgerMenuToggleTab'>
+          <Typography id='toggleSlidebarText'>
             {burgerDictionary.menu}
           </Typography>
           <IconButton
-            id="toggleSlidebarButton"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
+            id='toggleSlidebarButton'
+            edge='start'
+            color='inherit'
+            aria-label='menu'
             onClick={() => toggleMenu()}
           >
             {isOpen ? <Close /> : <MenuIcon />}
           </IconButton>
         </div>
       </div>
-      <AssistanceConfirm open={assistance} setOpen={setAssistance} />
+      <AssistanceConfirm
+        open={assistance}
+        setOpen={setAssistance}
+        metadata={metadata}
+        currentPage={currentPage}
+      />
     </>
   );
 };

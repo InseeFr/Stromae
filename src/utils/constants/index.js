@@ -18,22 +18,26 @@ export const SIMPSONS = 'simpsons';
 export const TIC = 'tic';
 export const DEFAULT = 'default';
 export const LOGEMENT = 'logement';
-export const TEST = 'test';
+export const FAMILLE = 'famille';
 
-export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, TEST];
+export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, FAMILLE];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
 
-export const QUESTIONNAIRE_EXAMPLE_URL = q =>
+export const QUESTIONNAIRE_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/form.json`;
-export const METADATA_EXAMPLE_URL = q =>
+export const METADATA_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/metadata.json`;
-export const DATA_EXAMPLE_URL = q =>
+export const DATA_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/data.json`;
 
+export const NOMENCLATURE_EXAMPLE_URL = (q) => ({
+  'L_DEPNAIS-1-0-0': `${window.location.origin}/static/questionnaire/${q}/nomenclatures/L_DEPNAIS-1-0-0.json`,
+});
 export const DEFAULT_DATA_URL = DATA_EXAMPLE_URL(DEFAULT);
 export const DEFAULT_METADATA_URL = METADATA_EXAMPLE_URL(DEFAULT);
 export const FULL_METADATA_URL = `${window.location.origin}/static/metadata/full.json`;
+export const DEFAULT_NOMENCLATURE_URL = NOMENCLATURE_EXAMPLE_URL(DEFAULT);
 
 export const FULL_OVERLOAD_EXAMPLE_URL = `${
   window.location.origin

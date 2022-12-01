@@ -34,5 +34,5 @@ const confirmMessage = {
   default: confirmDefault,
 };
 
-export const getConfirmationMessage = inseeContext =>
+export const getConfirmationMessage = (inseeContext) =>
   confirmMessage[inseeContext];

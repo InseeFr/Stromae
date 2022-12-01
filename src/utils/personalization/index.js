@@ -1,7 +1,7 @@
 import { getLang } from 'i18n/build-dictionary';
 import { fr, enUS } from 'date-fns/locale';
 
-export const buildBuidings = variables => {
+export const buildBuidings = (variables) => {
   if (Array.isArray(variables)) {
     return variables.reduce((acc, { name, value }) => {
       acc[name] = value;
@@ -11,7 +11,7 @@ export const buildBuidings = variables => {
   return {};
 };
 
-export const buildDefaultBindings = bindingDependencies => {
+export const buildDefaultBindings = (bindingDependencies) => {
   if (Array.isArray(bindingDependencies)) {
     return bindingDependencies.reduce((acc, name) => {
       acc[name] = null;

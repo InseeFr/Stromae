@@ -25,14 +25,14 @@ const CookieConsent = () => {
       disableBackdropClick
       disableEscapeKeyDown
       onClose={understand}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle id="alert-dialog-slide-title">
+      <DialogTitle id='alert-dialog-slide-title'>
         {defaultDictionary.cookieTitle}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description" component="div">
+        <DialogContentText id='alert-dialog-slide-description' component='div'>
           <MarkdownTypo>{defaultDictionary.cookieConsent}</MarkdownTypo>
         </DialogContentText>
       </DialogContent>

@@ -4,17 +4,17 @@ import Typography from '@material-ui/core/Typography';
 import { default as MuiLink } from '@material-ui/core/Link';
 import ReactMarkdown from 'react-markdown';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   header: {
     marginTop: theme.spacing(2),
   },
 }));
 
-const MarkdownParagraph = props => {
+const MarkdownParagraph = (props) => {
   return <Typography>{props.children}</Typography>;
 };
 
-const MarkdownHeading = props => {
+const MarkdownHeading = (props) => {
   const classes = useStyles();
   let variant;
   switch (props.level) {
@@ -41,12 +41,12 @@ const MarkdownHeading = props => {
   );
 };
 
-const Link = props => <MuiLink target="_blank" {...props} />;
+const Link = (props) => <MuiLink target='_blank' {...props} />;
 
-const MarkdownListItem = props => {
+const MarkdownListItem = (props) => {
   return (
     <li>
-      <Typography component="span">{props.children}</Typography>
+      <Typography component='span'>{props.children}</Typography>
     </li>
   );
 };
@@ -58,9 +58,9 @@ const renderers = {
   listItem: MarkdownListItem,
 };
 
-export const MarkdownTypo = props => (
+export const MarkdownTypo = (props) => (
   <ReactMarkdown
-    className="stromae-md"
+    className='stromae-md'
     skipHtml={false}
     renderers={renderers}
     {...props}
