@@ -24,7 +24,6 @@ const useStyles = makeStyles(() => ({
 const Visualizer = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
-
   const history = useHistory();
 
   const LOGGER = EventsManager.createEventLogger({
@@ -33,11 +32,20 @@ const Visualizer = () => {
     idOrchestrator: ORCHESTRATOR_VIZUALISATION,
   });
 
-  const { questionnaireUrl, metadataUrl, dataUrl, readonly } = useVisuQuery();
+  const { questionnaireUrl, metadataUrl, dataUrl, readonly, nomenclatures } =
+    useVisuQuery();
+
   const { suData, questionnaire, metadata, loading, errorMessage } =
     useRemoteData(questionnaireUrl, metadataUrl, dataUrl);
 
   const sendData = (surveyUnit) => {};
+
+  const buildSuggester = (nomenclatures) =>
+    nomenclatures
+      ? Object.entries(nomenclatures).reduce((newObj, [key, val]) => {
+          return { ...newObj, [key]: { url: val } };
+        }, {})
+      : null;
 
   const logoutAndClose = async (surveyUnit) => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
@@ -71,6 +79,8 @@ const Visualizer = () => {
               source={source}
               metadata={metadata}
               save={sendData}
+              autoSuggesterLoading={true}
+              suggesters={buildSuggester(nomenclatures)}
               savingType='COLLECTED'
               preferences={['COLLECTED']}
               features={['VTL', 'MD']}

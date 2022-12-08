@@ -1,30 +1,20 @@
 {
-  "inseeContext": "household",
-
   "variables": [
     {
       "name": "Enq_LibelleEnquete",
-      "value": "Enquête statistique sur les technologies de l’information et de la communication 2021"
+      "value": "Enquête Familles 2023"
     },
     {
       "name": "Enq_ObjectifsCourts",
-      "value": "Cette enquête permet de connaître l'équipement et les usages des personnes dans le domaine des technologies de l'information et de la communication (téléphone fixe et mobile, informatique, internet sur support fixe et mobile)."
+      "value": "Cette enquête permet de connaître les situations familiales et le mode de vie des familles en France."
     },
     {
       "name": "Enq_CaractereObligatoire",
-      "value": true
-    },
-    {
-      "name": "Enq_QualiteStatistique",
-      "value": true
+      "value": false
     },
     {
       "name": "Enq_NumeroVisa",
-      "value": "2021A054EC"
-    },
-    {
-      "name": "Enq_TestNonLabellise",
-      "value": false
+      "value": ""
     },
     {
       "name": "Enq_MinistereTutelle",
@@ -32,11 +22,11 @@
     },
     {
       "name": "Enq_ParutionJo",
-      "value": true
+      "value": false
     },
     {
       "name": "Enq_DateParutionJo",
-      "value": "23/11/2020"
+      "value": ""
     },
     {
       "name": "Enq_RespOperationnel",
@@ -48,7 +38,7 @@
     },
     {
       "name": "Enq_AnneeVisa",
-      "value": "2021"
+      "value": 2023
     },
     {
       "name": "Loi_statistique",
@@ -61,6 +51,11 @@
     {
       "name": "Loi_informatique",
       "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
+    },
+    {
+      "name": "Enq_QualiteStatistique",
+      "value": false
     }
-  ]
+  ],
+  "inseeContext": "household"
 }

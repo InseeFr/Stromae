@@ -19,6 +19,10 @@ const visualizeMessage = {
     fr: `L'url d'un json de questionnaire au format Lunatic-model`,
     en: `The url of a json of questionnaire in Lunatic-model format`,
   },
+  helperTextNomenclature: {
+    fr: "Dictionnaire avec en clé le nom de la nomenclaure et en valeur l'url",
+    en: 'Dictionary with the name of the nomenclature as key and the url as value',
+  },
   labelMetadata: {
     fr: 'Metadonnées',
     en: 'Metadata',
@@ -60,6 +64,10 @@ const visualizeMessage = {
     en: 'Examples',
   },
   labelNone: { fr: 'Aucun', en: 'None' },
+  labelNomenclature: {
+    fr: ' Dictionnaire de nomenclatures',
+    en: 'Nomenclature dictionnary',
+  },
 };
 
 export default visualizeMessage;
