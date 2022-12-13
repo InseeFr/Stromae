@@ -84,13 +84,14 @@ export const Orchestrator = ({
       currentPage: currentPage,
     };
     setCurrentStateData(newStateData);
+    return newStateData;
   };
 
   const logoutAndClose = async () => {
     if (!validated) {
-      updateStateData();
+      const logoutAndCloseUpdateState = updateStateData();
       const dataToSave = {
-        stateData: currentStateData,
+        stateData: logoutAndCloseUpdateState,
         data: getData(),
       };
       await save(dataToSave);
@@ -117,9 +118,9 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
-    updateStateData(VALIDATED);
+    const validateUpdateState = updateStateData(VALIDATED);
     const dataToSave = {
-      stateData: currentStateData,
+      stateData: validateUpdateState,
       data: getData(),
     };
     save(dataToSave);
@@ -129,9 +130,9 @@ export const Orchestrator = ({
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
-      updateStateData();
+      const onNextUpdateState = updateStateData();
       const dataToSave = {
-        stateData: currentStateData,
+        stateData: onNextUpdateState,
         data: getData(),
       };
       if (!isLastPage) {
