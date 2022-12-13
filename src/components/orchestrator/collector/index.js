@@ -44,11 +44,13 @@ export const Orchestrator = ({
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
   const { stateData, data, personalization } = stromaeData;
+  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [validated, setValidated] = useState(
-    stateData?.state === 'VALIDATED' ||
-      stateData?.state === 'EXTRACTED' ||
-      stateData?.state === 'TOEXTRACT'
+    stateData &&
+      (stateData.state === 'VALIDATED' ||
+        stateData.state === 'EXTRACTED' ||
+        stateData.state === 'TOEXTRACT')
   );
 
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
@@ -81,13 +83,14 @@ export const Orchestrator = ({
       date: new Date().getTime(),
       currentPage: currentPage,
     };
-    return newStateData;
+    setCurrentStateData(newStateData);
   };
 
   const logoutAndClose = async () => {
     if (!validated) {
+      updateStateData();
       const dataToSave = {
-        stateData: updateStateData(),
+        stateData: currentStateData,
         data: getData(),
       };
       await save(dataToSave);
@@ -114,8 +117,9 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
+    updateStateData(VALIDATED);
     const dataToSave = {
-      stateData: updateStateData(VALIDATED),
+      stateData: currentStateData,
       data: getData(),
     };
     save(dataToSave);
@@ -125,8 +129,9 @@ export const Orchestrator = ({
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
+      updateStateData();
       const dataToSave = {
-        stateData: updateStateData(),
+        stateData: currentStateData,
         data: getData(),
       };
       if (!isLastPage) {
@@ -225,7 +230,7 @@ export const Orchestrator = ({
           <EndPage
             logoutAndClose={logoutAndClose}
             metadata={metadata}
-            stateData={stateData}
+            stateData={currentStateData}
             currentPage={currentPage}
             personalization={personalization}
           />
