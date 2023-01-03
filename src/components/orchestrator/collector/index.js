@@ -44,11 +44,13 @@ export const Orchestrator = ({
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
   const { stateData, data, personalization } = stromaeData;
+  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [validated, setValidated] = useState(
-    stateData?.state === 'VALIDATED' ||
-      stateData?.state === 'EXTRACTED' ||
-      stateData?.state === 'TOEXTRACT'
+    stateData &&
+      (stateData.state === 'VALIDATED' ||
+        stateData.state === 'EXTRACTED' ||
+        stateData.state === 'TOEXTRACT')
   );
 
   const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
@@ -81,13 +83,15 @@ export const Orchestrator = ({
       date: new Date().getTime(),
       currentPage: currentPage,
     };
+    setCurrentStateData(newStateData);
     return newStateData;
   };
 
   const logoutAndClose = async () => {
     if (!validated) {
+      const logoutAndCloseUpdateState = updateStateData();
       const dataToSave = {
-        stateData: updateStateData(),
+        stateData: logoutAndCloseUpdateState,
         data: getData(),
       };
       await save(dataToSave);
@@ -114,8 +118,9 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
+    const validateUpdateState = updateStateData(VALIDATED);
     const dataToSave = {
-      stateData: updateStateData(VALIDATED),
+      stateData: validateUpdateState,
       data: getData(),
     };
     save(dataToSave);
@@ -125,8 +130,9 @@ export const Orchestrator = ({
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
+      const onNextUpdateState = updateStateData();
       const dataToSave = {
-        stateData: updateStateData(),
+        stateData: onNextUpdateState,
         data: getData(),
       };
       if (!isLastPage) {
@@ -225,7 +231,7 @@ export const Orchestrator = ({
           <EndPage
             logoutAndClose={logoutAndClose}
             metadata={metadata}
-            stateData={stateData}
+            stateData={currentStateData}
             currentPage={currentPage}
             personalization={personalization}
           />
