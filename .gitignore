@@ -18,13 +18,6 @@
 .env.test.local
 .env.production.local
 
-configuration-local.json
-oidc-local.json
-keycloak-local.json
-
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-.eslintcache

@@ -1,129 +1,46 @@
-# Stromae
+# Getting Started with Create React App
 
-Web application for the management of questionnaires powered by Lunatic (https://github.com/InseeFr/Lunatic)
-## View a survey
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-You can view a questionnaire in stromae by going to `https://url-of-application/visualize`.
+## Available Scripts
 
-Then you just have to add the survey url, metadata url (not mandatory), data url (not mandatory) and nomenclatures urls.
+In the project directory, you can run:
 
-Nomenclatures are not mandatory too, they are used by suggester component to allow autocompletion on large lists. 
+### `npm start`
 
-You must add nomenclature as follow :
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```json
-{ 
-"idNomenclature1":"https://url_of_the_nomenclature1.json",
-"idNomenclature2":"https://url_of_the_nomenclature2.json",
-...
-} 
-```
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-with "idNomenclature1" is the nomenclature id given in the survey for suggester component.
-## Style overload
+### `npm test`
 
-You have two ways to overload the stromae styles. These methods are done through the `metadata.json` file. You can of course combine these two methods.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### External style sheets
+### `npm run build`
 
-You can add external style sheet to html page in order to overload styles. You juste have to pass an styleSheets array of URL of external stylesheet.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Here is an example below :
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-```json
-{
-    "inseeContext": "...",
-    ...,
-    "style": {
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-        "styleSheets": [
-            "https://mylink.to.my/stylesheet_1.css",
-            "https://mylink.to.my/stylesheet_2.css"
-        ]
-    }
-}
-```
+### `npm run eject`
 
-_**Notice :**_ Your style sheets have to be served as "text/css" file (not octet-stream). Please use static server like nginx, apache, github pages, ...
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### Define main colors
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Thanks to the `metadata.json` file, you can also define the main colors of the application. You have to respect the expect object called "theme".
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Here you have a example :
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-```json
-{
-    "inseeContext": "...",
-    ...,
-    "style": {
-        "theme": {
-            "palette": {
-                "type": "light",
-                "primary": {
-                    "main": "#0f417a" //only hexacolor
-                },
-                "secondary": {
-                    "main": "#ffc400" //only hexacolor
-                }
-            }
-        },
+## Learn More
 
-        "styleSheets": [...]
-    }
-}
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-_For more details, you can see [Material-UI customization here](https://mui.com/customization/theming)._
-
-## Generic Pages overload
-
-In Stromae, there is 3 generic pages :
-
-- The welcome page
-- The validation page
-- The end page
-
-Thanks the `metadata.json`, you can customize these pages.
-
-These pages can be written in [VTL](https://github.com/InseeFr/Trevas-JS) x [Markdown](https://fr.wikipedia.org/wiki/Markdown).
-
-### Welcome Page
-
-There is 4 part for this page :
-
-- title : the title of page
-- body : Array, each item is a line
-- legalTermsTitle : title of the box
-- legalTermsBody : body of the box (array)
-
-### Validation Page
-
-There is 2 part for this page :
-
-- title : the title of page
-- body : Array, each item is a line
-
-### End Page
-
-There is 4 part for this page :
-
-- title : title of the page
-- body : Array, each item is a line
-- pdfMessage : A sentence near to the "download" button (deposit proof),
-- youCanQuit: the last sentence, to tell the user that he can logout and quit (if null, there is no logout button on this page)
-
-## Main Logo
-
-You can overload the mainLogo in the `metadata.json` file.
-You just have to write the url of image in the file like this :
-
-```json
-{
-    "inseeContext": "...",
-    ...,
-    "mainLogo" : "https://static.insee.fr/static/img/Logo_Insee_TailleMINI.jpg"
-}
-```
-
-You have an full example of metadata.json file [here](./public/static/metadata/full.json).
+To learn React, check out the [React documentation](https://reactjs.org/).
