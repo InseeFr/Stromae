@@ -60,14 +60,18 @@ const OrchestratorManager = () => {
   const [errorSending, setErrorSending] = useState(null);
 
   const sendData = async (dataToSave) => {
-    const { data, stateData } = dataToSave;
-    const { /*status,*/ error: dataError } = await putData(data);
-    const { /*status,*/ error: stateDataError } = await putStateData(stateData);
-    const paradatas = LOGGER.getEventsToSend();
-    const { error: paradataPostError } = await postParadata(paradatas);
-    if (dataError || stateDataError || paradataPostError)
-      if (paradataPostError) setErrorSending('Error during sending');
-    LOGGER.clear();
+    if (!readonly) {
+      const { data, stateData } = dataToSave;
+      const { /*status,*/ error: dataError } = await putData(data);
+      const { /*status,*/ error: stateDataError } = await putStateData(
+        stateData
+      );
+      const paradatas = LOGGER.getEventsToSend();
+      const { error: paradataPostError } = await postParadata(paradatas);
+      if (dataError || stateDataError || paradataPostError)
+        if (paradataPostError) setErrorSending('Error during sending');
+      LOGGER.clear();
+    }
   };
 
   const logoutAndClose = () => {
