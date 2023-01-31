@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import * as lunatic from "@inseefr/lunatic";
 import Welcome from "./pages/welcome";
 import ErrorPage from "./pages/error";
 
