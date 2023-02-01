@@ -1,71 +1,49 @@
-import { 
-  useEffect,
-  useState 
-} from "react"; 
-
-import { Header as HeaderDSFR } from "@codegouvfr/react-dsfr/Header"; 
+import { Header as HeaderDSFR } from "@codegouvfr/react-dsfr/Header";
 import { HeaderType } from "../../lib/surveys/getMetadataSurvey";
 
 interface HeaderProps {
-  header?: HeaderType
+  header?: HeaderType;
 }
 
-function Header(props: HeaderProps) {
-//   useEffect(function(){
-//     async function init() {
-//       const data = await surveys.getMetadataSurvey(survey)
-//         if (data) { 
-//           const { Header } = data; 
-//           setHeader(Header);
-//         } 
-//     };
-//     init();
-// },
-//     [ survey ]
-// )
-  console.log(props)
-  // if (props.header) {
-    // const { brandTop } = props.header;
-  // }
-  const { header, setHeader } = useState(undefined);
+const DEFAULT_HEADER = {
+  brandTop: "valeur par défaut.",
+};
 
-  useEffect(function({header, setHeader, props}:{header: HeaderProps | undefined, setHeader: Function, props: HeaderProps})  {
-    if (!header) {
-      setHeader(props.header)
-    }
-  },[props])
+function Header(props: HeaderProps) {
+  const { brandTop } = props.header || DEFAULT_HEADER;
 
   return (
     <HeaderDSFR
       brandTop={brandTop}
       homeLinkProps={{
-        href: '/',
-        title: 'Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)'
+        href: "/",
+        title:
+          "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
       }}
       serviceTitle="Le recensement de la population"
       operatorLogo={{
-        alt: '[À MODIFIER - texte alternatif de l’image]',
-        imgUrl: process.env.PUBLIC_URL + "/logoINSEE.png" as string,
-        orientation: 'horizontal'
+        alt: "[À MODIFIER - texte alternatif de l’image]",
+        imgUrl: (process.env.PUBLIC_URL + "/logoINSEE.png") as string,
+        orientation: "horizontal",
       }}
       quickAccessItems={[
         {
-          iconId: 'fr-icon-add-circle-line',
+          iconId: "fr-icon-add-circle-line",
           linkProps: {
-            href: '#'
+            href: "#",
           },
-          text: 'Contacter l’assistance'
+          text: "Contacter l’assistance",
         },
         {
-          iconId: 'fr-icon-lock-line',
+          iconId: "fr-icon-lock-line",
           linkProps: {
-            href: '#'
+            href: "#",
           },
-          text: 'Me déconnecter'
+          text: "Me déconnecter",
         },
       ]}
     />
-  ) ;
+  );
 }
 
 export default Header;
