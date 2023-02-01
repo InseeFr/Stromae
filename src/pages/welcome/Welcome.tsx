@@ -1,18 +1,12 @@
-import { useParams } from "react-router-dom";
 import "./Welcome.scss";
-
-type WelcomeParams = {
-  survey?: string;
-};
+import Header from "../../components/header/Header"
 
 interface WelcomeProps {}
 
 function Welcome(props: WelcomeProps) {
-  let { survey } = useParams<WelcomeParams>();
-  console.log({ survey });
-
   return (
     <div data-id="welcome" className="stromae-welcome">
+      <Header />
       Welcome
     </div>
   );
