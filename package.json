@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@codegouvfr/react-dsfr": "^0.28.0",
+    "@inseefr/lunatic": "^2.0.6-v2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -20,9 +21,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "postinstall": "copy-dsfr-to-public",
     "prestart": "only-include-used-icons",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@types/react-router-dom": "^5.3.3",
     "node-sass": "^8.0.0"
   }
