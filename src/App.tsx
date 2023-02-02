@@ -1,13 +1,19 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AuthProvider } from "./components/auth";
+import WelcomeSurvey from "./pages/WelcomeSurvey";
 import Welcome from "./pages/welcome";
 import ErrorPage from "./pages/error";
+ import { AuthProvider } from "./components/auth";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Welcome />,
-    children: [{ path: "/:survey", element: <Welcome /> }],
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/:survey",
+    element: <WelcomeSurvey />,
     errorElement: <ErrorPage />,
   },
 ]);
