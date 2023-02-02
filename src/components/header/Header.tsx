@@ -14,6 +14,9 @@ function Header(props: HeaderProps) {
 
   return (
     <HeaderDSFR
+      // TODO: Passer les variables dans props (qui sont extrait du fichier parametres.json) dans le composant
+      // pensez a inclure des variables par defaut dans DEFAULT_HEADER 
+      // Le premier variable brandTop est fait comme exemple
       brandTop={brandTop}
       homeLinkProps={{
         href: "/",

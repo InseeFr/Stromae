@@ -21,9 +21,11 @@ export interface MetadataSurvey {
 
   async function getMetadataSurvey(survey: string): Promise<MetadataSurvey | undefined>{
     try {
-        const {data, status } = await axios.get<MetadataSurvey>("/rp/parametres.json")  
-        console.log("status: " + status) 
-        console.log("data: " + data) 
+        // TODO: Faire en sorte que l'on puisse acceder aux fichiers externe de Stromae 
+        const {
+            data, 
+            // status 
+        } = await axios.get<MetadataSurvey>("/rp/parametres.json")  
         return data; 
     } catch(error) {
         if (axios.isAxiosError(error)) {
