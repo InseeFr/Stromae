@@ -1,0 +1,10 @@
+{ 
+    "Header": {
+        "brandTop": "République Française", 
+        "operatorLogo": { 
+            "alt": "Logo de l'Insee", 
+            "imgUrl": "/logoINSEE.png", 
+            "orientation": "horizontal"
+        }
+    }
+}
