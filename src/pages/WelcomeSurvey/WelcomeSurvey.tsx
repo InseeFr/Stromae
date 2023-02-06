@@ -35,9 +35,6 @@ function WelcomeSurvey(props: WelcomeSurveyProps) {
   return (
     <div data-id="welcome" className="stromae-welcome">
       <SkipLinks
-        classes={{
-          root: 'fr-mt-9v'
-        }}
         links={[
           {
             anchor: '#contenu',
@@ -46,7 +43,7 @@ function WelcomeSurvey(props: WelcomeSurveyProps) {
         ]}
       /> 
       <Header header={header} />
-      <main id="contenu" style={{height: "100vh"}}>Welcome {survey}</main>
+      <main id="contenu">Welcome {survey}</main>
       <Footer footer={footer} />
     </div>
   );
