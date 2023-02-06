@@ -1,10 +1,17 @@
-{ 
-    "Header": {
-        "brandTop": "République Française", 
-        "operatorLogo": { 
-            "alt": "Logo de l'Insee", 
-            "imgUrl": "/logoINSEE.png", 
-            "orientation": "horizontal"
-        }
-    }
+{
+  "Header": {
+    "brandTop": "République Française",
+    "operatorLogo": {
+      "alt": "Logo de l'Insee",
+      "imgUrl": "/logoINSEE.png",
+      "orientation": "horizontal"
+    },
+    "quickAccessItems": [
+      {
+        "iconId": "fr-icon-add-circle-line",
+        "text": "Contacter l’assistance",
+        "linkProps": { "href": "#", "target": "_self" }
+      }
+    ]
+  }
 }

@@ -1,19 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import WelcomeSurvey from "./pages/WelcomeSurvey";
-import Welcome from "./pages/welcome";
+import Questionnaire from "./pages/questionnaire";
+import Portail from "./pages/deconnexion";
 import ErrorPage from "./pages/error";
- import { AuthProvider } from "./components/auth";
-
+import { AuthProvider } from "./components/auth";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Welcome />,
+    path: "/questionnaire/:survey/deconnexion",
+    element: <Portail />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/:survey",
-    element: <WelcomeSurvey />,
+    path: "/questionnaire/:survey",
+    element: <Questionnaire />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/",
+    element: <ErrorPage />,
     errorElement: <ErrorPage />,
   },
 ]);

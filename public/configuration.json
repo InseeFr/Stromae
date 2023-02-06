@@ -1,5 +1,5 @@
 {
-  "client_id": "sugoi",
+  "client_id": "localhost-frontend",
   "redirect_uri": "http://localhost:3000/",
   "response_type": "code",
   "post_logout_redirect_uri": "https://comptes-utilisateurs.recette.insee.fr",

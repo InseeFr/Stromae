@@ -1,16 +1,33 @@
+import { useState, useEffect, useCallback } from "react";
 import { Header as HeaderDSFR } from "@codegouvfr/react-dsfr/Header";
-import { HeaderType } from "../../lib/surveys/getMetadataSurvey";
+import HeaderType, { QuickAccessItem } from "./HeaderType";
 
-interface HeaderProps {
+export type HeaderProps = {
   header?: HeaderType;
-}
+  readonly handleOidcAuth?: () => void;
+  isAuthenticated?: boolean;
+};
 
-const DEFAULT_HEADER = {
-  brandTop: "valeur par défaut.",
+const DEFAULT_HEADER: HeaderType = {
+  brandTop: "Sous-titre logo",
+  quickAccessItems: [],
 };
 
 function Header(props: HeaderProps) {
-  const { brandTop } = props.header || DEFAULT_HEADER;
+  const { header, handleOidcAuth, isAuthenticated = false } = props;
+  const [quickAccess, setQuickAccess] = useState([]);
+  const [brandTop, setBrandTop] = useState(DEFAULT_HEADER.brandTop);
+
+  const onClickAuth = useCallback(function () {}, []);
+
+  useEffect(
+    function () {
+      if (header) {
+        const { brandTop: bt, quickAccessItems: qaci } = header;
+      }
+    },
+    [header]
+  );
 
   return (
     <HeaderDSFR
@@ -27,17 +44,11 @@ function Header(props: HeaderProps) {
         orientation: "horizontal",
       }}
       quickAccessItems={[
-        {
-          iconId: "fr-icon-add-circle-line",
-          linkProps: {
-            href: "#",
-          },
-          text: "Contacter l’assistance",
-        },
+        ...quickAccess,
         {
           iconId: "fr-icon-lock-line",
-          linkProps: {
-            href: "#",
+          buttonProps: {
+            onClick: onClickAuth,
           },
           text: "Me déconnecter",
         },
