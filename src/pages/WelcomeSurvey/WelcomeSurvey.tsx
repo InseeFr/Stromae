@@ -4,7 +4,7 @@ import { HeaderType, FooterType } from "../../lib/surveys/getMetadataSurvey";
 import surveys from "../../lib/surveys/surveys";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-
+import SkipLinks from "@codegouvfr/react-dsfr/SkipLinks";
 export type WelcomeSurveyParams = {
   survey: string;
 };
@@ -34,8 +34,19 @@ function WelcomeSurvey(props: WelcomeSurveyProps) {
 
   return (
     <div data-id="welcome" className="stromae-welcome">
+      <SkipLinks
+        classes={{
+          root: 'fr-mt-9v'
+        }}
+        links={[
+          {
+            anchor: '#contenu',
+            label: 'Contenu'
+          }
+        ]}
+      /> 
       <Header header={header} />
-      <main>Welcome {survey}</main>
+      <main id="contenu" style={{height: "100vh"}}>Welcome {survey}</main>
       <Footer footer={footer} />
     </div>
   );
