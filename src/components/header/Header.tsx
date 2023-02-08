@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Header as HeaderDSFR } from "@codegouvfr/react-dsfr/Header";
-import HeaderType, { QuickAccessItem } from "./HeaderType";
+import HeaderType from "./HeaderType";
+import DEFAULT_HEADER from "./default-header";
 
 function getAuthLabel(isAuthenticated: boolean): string {
   if (isAuthenticated) {
@@ -15,25 +16,9 @@ export type HeaderProps = {
   isAuthenticated?: boolean;
 };
 
-const DEFAULT_HEADER: HeaderType = {
-  brandTop: "Sous-titre logo",
-  quickAccessItems: [],
-  homeLinkProps: {
-    href: "/",
-    title:
-      "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
-  },
-  serviceTitle: "Le recensement de la population",
-  operatorLogo: {
-    alt: "[À MODIFIER - texte alternatif de l’image]",
-    imgUrl: `${process.env.PUBLIC_URL}/logoINSEE.png`,
-    orientation: "horizontal",
-  },
-};
-
 function Header(props: HeaderProps) {
   const { header, handleOidcAuth, isAuthenticated = false } = props;
-  const [config, setConfig] = useState(DEFAULT_HEADER);
+  const [config, setConfig] = useState<HeaderType>(DEFAULT_HEADER);
 
   const {
     brandTop,

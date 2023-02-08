@@ -1,8 +1,32 @@
+import { FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { RegisteredLinkProps } from "@codegouvfr/react-dsfr/link";
 import axios from "axios";
+import { ReactNode } from "react";
 import HeaderType from "../../components/header/HeaderType";
+
+export type FooterType = {
+  brandTop: string;
+  accessibility: "non compliant" | "partially compliant" | "fully compliant";
+  contentDescription?: string;
+  websiteMapLinkProps?: RegisteredLinkProps;
+  accessibilityLinkProps?: RegisteredLinkProps;
+  termsLinkProps?: RegisteredLinkProps;
+  personalDataLinkProps?: RegisteredLinkProps;
+  homeLinkProps: RegisteredLinkProps & {
+    title: string;
+  };
+  bottomItems?: FooterProps.BottomItem[];
+  license?: ReactNode;
+  operatorLogo?: {
+    alt: string;
+    imgUrl: string;
+    orientation: "horizontal" | "vertical";
+  };
+};
 
 export interface MetadataSurvey {
   Header: HeaderType;
+  Footer: FooterType;
 }
 
 /**
