@@ -1,9 +1,3 @@
-.fr-icon-add-circle-line::before,
-.fr-icon-add-circle-line::after {
-    -webkit-mask-image: url("../../icons/system/add-circle-line.svg");
-    mask-image: url("../../icons/system/add-circle-line.svg");
-}
-
 .fr-icon-lock-line::before,
 .fr-icon-lock-line::after {
     -webkit-mask-image: url("../../icons/system/lock-line.svg");
@@ -29,11 +23,6 @@
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .fr-icon-add-circle-line::before,
-    .fr-icon-add-circle-line::after {
-        background-image: url("../../icons/system/add-circle-line.svg");
-    }
-    
     .fr-icon-lock-line::before,
     .fr-icon-lock-line::after {
         background-image: url("../../icons/system/lock-line.svg");

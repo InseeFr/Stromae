@@ -20,12 +20,14 @@ export type QuickAccessItem = {
 
 type HeaderType = {
   brandTop: string;
-  operatorLogo?: {
-    alt?: string;
+  operatorLogo: {
+    alt: string;
     imgUrl: string;
     orientation: "horizontal" | "vertical";
   };
+  homeLinkProps: { href: string; title: string };
   quickAccessItems?: Array<QuickAccessItem>;
+  serviceTitle?: string;
 };
 
 export default HeaderType;

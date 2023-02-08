@@ -12,11 +12,11 @@ function Questionnaire(props: QuestionnaireProps) {
   const { survey } = useParams<QuestionnaireParams>();
 
   return (
-    <Layout survey={survey}>
-      <OidcSecure>
+    <OidcSecure>
+      <Layout survey={survey}>
         <div>Questionnaire : {survey}</div>
-      </OidcSecure>
-    </Layout>
+      </Layout>
+    </OidcSecure>
   );
 }
 

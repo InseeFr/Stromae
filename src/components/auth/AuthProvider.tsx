@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { OidcProvider, OidcConfiguration } from "@axa-fr/react-oidc";
+import {
+  OidcProvider,
+  OidcConfiguration,
+  TokenRenewMode,
+} from "@axa-fr/react-oidc";
 import axios from "axios";
 
 function Pending() {
@@ -28,12 +32,12 @@ function AuthProvider({ children }: AuthProviderProps) {
   >(undefined);
   useEffect(function () {
     (async function () {
-      const { location } = window;
-      const { origin } = location;
       const conf = await fetchConfig();
       setConfiguration({
         ...conf,
-        redirect_uri: `${origin}/welcome`,
+        redirect_uri: `${window.location.origin}/login`,
+        token_renew_mode: TokenRenewMode.access_token_invalid,
+        refresh_time_before_tokens_expiration_in_second: 40,
       });
     })();
   }, []);
