@@ -6,12 +6,12 @@ import { AuthProvider } from "./components/auth";
 
 const router = createBrowserRouter([
   {
-    path: "/questionnaire/:survey/deconnexion",
+    path: "/questionnaire/:survey/unite-enquetee/:unit/deconnexion",
     element: <Portail />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/questionnaire/:survey",
+    path: "/questionnaire/:survey/unite-enquetee/:unit",
     element: <Questionnaire />,
     errorElement: <ErrorPage />,
   },

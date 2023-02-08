@@ -9,17 +9,21 @@ type HeaderAuthProps = {
 
 function HeaderAuth({ children }: HeaderAuthProps) {
   const { login, logout, isAuthenticated } = useOidc();
-  const { survey } = useParams();
+  const { survey, unit } = useParams();
 
   const handleOidcAuth = useCallback(
     function () {
       if (isAuthenticated) {
-        logout(`${window.origin}/questionnaire/${survey}/deconnexion`);
+        logout(
+          `${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`
+        );
       } else {
-        login(`${window.origin}/questionnaire/${survey}/deconnexion`);
+        login(
+          `${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}`
+        );
       }
     },
-    [isAuthenticated, login, logout, survey]
+    [isAuthenticated, login, logout, survey, unit]
   );
 
   return (

@@ -43,11 +43,10 @@ function Header(props: HeaderProps) {
     operatorLogo,
   } = config;
 
-  const onClickAuth = useCallback(function () {}, []);
-
   useEffect(
     function () {
       if (header) {
+        // TODO
       }
     },
     [header]
