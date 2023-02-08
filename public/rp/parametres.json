@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "Header": {
     "brandTop": "République Française",
@@ -7,44 +6,26 @@
       "imgUrl": "/logoINSEE.png",
       "orientation": "horizontal"
     },
-    "quickAccessItems": [
-      {
-        "iconId": "fr-icon-add-circle-line",
-        "text": "Contacter l’assistance",
-        "linkProps": { "href": "#", "target": "_self" }
-      }
-    ]
-  }
-=======
-{ 
-    "Header": {
-        "brandTop": "République Française", 
-        "operatorLogo": { 
-            "alt": "Logo de l'Insee", 
-            "imgUrl": "/logoINSEE.png", 
-            "orientation": "horizontal"
-        },
-        "serviceTitle": "Le recensement de la population"
+    "serviceTitle": "Le recensement de la population"
+  },
+  "Footer": {
+    "brandTop": "République Française",
+    "operatorLogo": {
+      "alt": "Logo de l'Insee",
+      "imgUrl": "/logoINSEE.png",
+      "orientation": "horizontal"
     },
-    "Footer": {
-        "brandTop": "République Française", 
-        "operatorLogo": { 
-            "alt": "Logo de l'Insee", 
-            "imgUrl": "/logoINSEE.png", 
-            "orientation": "horizontal"
-        },
-        "accessibility": "fully compliant",
-        "homeLinkProps" : {
-            "title": "Accueil - Le recensement de la population"
-        },
-        "termsLinkProps": {
-            "href" : "urlamodifier"
-        },
-        "websiteMapLinkProps": {
-            "href" : "urlamodifier"
-        },
-        "contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
-        "license": "Les contenus de ce site sont sous"
-    }
->>>>>>> b8bbbdddb359753b3d7a842a8ce1acfd613ea18a
+    "accessibility": "fully compliant",
+    "homeLinkProps": {
+      "title": "Accueil - Le recensement de la population"
+    },
+    "termsLinkProps": {
+      "href": "urlamodifier"
+    },
+    "websiteMapLinkProps": {
+      "href": "urlamodifier"
+    },
+    "contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
+    "license": "Les contenus de ce site sont sous"
+  }
 }

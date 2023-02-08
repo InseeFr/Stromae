@@ -1,11 +1,7 @@
 import { Footer as FooterDSFR } from "@codegouvfr/react-dsfr/Footer";
-import { FooterType } from "../../lib/surveys/getMetadataSurvey";
+import FooterType from "../footer/FooterType";
 
-interface FooterProps {
-  footer?: FooterType;
-}
-
-const DEFAULT_FOOTER:FooterType = {
+const DEFAULT_FOOTER: FooterType = {
   brandTop: "valeur par defaut",
   accessibility: "fully compliant",
   contentDescription: undefined,
@@ -15,15 +11,28 @@ const DEFAULT_FOOTER:FooterType = {
   personalDataLinkProps: undefined,
   homeLinkProps: {
     href: "/",
-    title: "Accueil"
+    title: "Accueil",
   },
   bottomItems: undefined,
   license: undefined,
-  operatorLogo: undefined
+  operatorLogo: undefined,
 };
 
+type FooterProps = { footer?: FooterType };
+
 function Footer(props: FooterProps) {
-  const { brandTop, accessibility, homeLinkProps, contentDescription, personalDataLinkProps, termsLinkProps, websiteMapLinkProps, bottomItems, license, operatorLogo } = props.footer || DEFAULT_FOOTER;
+  const {
+    brandTop,
+    accessibility,
+    homeLinkProps,
+    contentDescription,
+    personalDataLinkProps,
+    termsLinkProps,
+    websiteMapLinkProps,
+    bottomItems,
+    license,
+    operatorLogo,
+  } = props.footer || DEFAULT_FOOTER;
 
   return (
     <FooterDSFR
@@ -32,7 +41,7 @@ function Footer(props: FooterProps) {
       homeLinkProps={homeLinkProps}
       termsLinkProps={termsLinkProps}
       websiteMapLinkProps={websiteMapLinkProps}
-      license= {license}
+      license={license}
       personalDataLinkProps={personalDataLinkProps}
       contentDescription={contentDescription}
       operatorLogo={operatorLogo}
