@@ -1,8 +1,0 @@
-{
-  "realm": "recensement-questionnaire-menage",
-  "auth-server-url": "https://auth.insee.test/auth/",
-  "ssl-required": "external",
-  "resource": "homere-menage",
-  "public-client": true,
-  "confidential-port": 0
-}

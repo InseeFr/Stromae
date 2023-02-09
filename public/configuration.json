@@ -1,0 +1,8 @@
+{
+  "client_id": "${CLIENT_ID}",
+  "redirect_uri": "${REDIRECT_URI}",
+  "scope": "openid profile email offline_access",
+  "authority": "${AUTHORITY}",
+  "service_worker_relative_url": "/OidcServiceWorker.js",
+  "service_worker_only": true
+}
