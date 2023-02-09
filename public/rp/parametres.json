@@ -6,7 +6,17 @@
       "imgUrl": "/logoINSEE.png",
       "orientation": "horizontal"
     },
-    "serviceTitle": "Le recensement de la population"
+    "serviceTitle": "Le recensement de la population",
+    "quickAccessItems": [
+      {
+        "iconId": "fr-icon-account-line",
+        "linkProps": {
+          "href": "https://www.insee.fr/fr/accueil",
+          "target": "self"
+        },
+        "text": "Créer un espace"
+      }
+    ]
   },
   "Footer": {
     "brandTop": "République Française",
