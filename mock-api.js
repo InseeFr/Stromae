@@ -5,6 +5,6 @@ var apiMocker = require("connect-api-mocker");
 var app = express();
 
 app.use(cors());
-app.use("/local-api", apiMocker("local-api"));
+app.use("/mock-api", apiMocker("mock-api"));
 
 app.listen(9000);
