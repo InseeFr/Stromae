@@ -5,7 +5,7 @@
   "dependencies": {
     "@axa-fr/react-oidc": "^6.14.0",
     "@codegouvfr/react-dsfr": "^0.29.0",
-    "@inseefr/lunatic": "^2.0.6-v2",
+    "@inseefr/lunatic": "2.0.7-v2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,6 +16,7 @@
     "axios": "^1.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^3.1.4",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.4",
@@ -26,6 +27,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "start-local-api": "node ./mock-api.js",
     "postinstall": "copy-dsfr-to-public",
     "prestart": "only-include-used-icons",
     "prebuild": "only-include-used-icons"
@@ -51,6 +53,9 @@
   "devDependencies": {
     "@craco/craco": "^7.0.0",
     "@types/react-router-dom": "^5.3.3",
+    "connect-api-mocker": "^1.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "node-sass": "^8.0.0"
   },
   "homepage": "http://localhost:3000"

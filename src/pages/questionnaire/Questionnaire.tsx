@@ -4,12 +4,13 @@ import Layout from "../../components/layout";
 
 export type QuestionnaireParams = {
   survey: string;
+  unit: string;
 };
 
 type QuestionnaireProps = {};
 
 function Questionnaire(props: QuestionnaireProps) {
-  const { survey } = useParams<QuestionnaireParams>();
+  const { survey, unit } = useParams<QuestionnaireParams>();
 
   return (
     <OidcSecure>

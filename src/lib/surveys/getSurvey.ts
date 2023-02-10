@@ -4,7 +4,8 @@ export interface Survey {
 }
 
 /**
- * Un endpoint vers stromae-api pour recup les url spécifique à l'enquête plutôt que les coller dans l'url.
+ * Un endpoint vers stromae-api pour recup les url des resources.
+ *
  * @param survey
  * @returns
  */

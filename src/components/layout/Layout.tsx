@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { FooterType } from "../../lib/surveys/getMetadataSurvey";
+import FooterType from "../footer/FooterType";
 import HeaderType from "../header/HeaderType";
-import surveys from "../../lib/surveys/surveys";
+import surveys from "../../lib/surveys/surveysApi";
 import Header from "../../components/header/Header";
 import HeaderAuth from "../../components/header/HeaderAuth";
 import Footer from "../../components/footer/Footer";
@@ -29,32 +29,33 @@ function Layout({ children, survey }: LayoutProps) {
 
   useEffect(
     function () {
-      async function init() {
+      (async function () {
         if (survey) {
-          const data = await surveys.getMetadataSurvey(survey);
-          if (data) {
-            const { Header, Footer } = data;
-            setHeader(Header);
-            setFooter(Footer);
+          try {
+            const data = await surveys.getMetadataSurvey(survey);
+            if (data) {
+              const { Header, Footer } = data;
+              setHeader(Header);
+              setFooter(Footer);
+            }
+          } catch (e) {
+            // TODO
           }
         }
-      }
-      init();
+      })();
     },
     [survey]
   );
 
   return (
-    <div data-id="welcome" className="stromae-welcome">
+    <>
       <HeaderAuth>
         <Header header={header} />
       </HeaderAuth>
-      <main>{children}</main>
-      <footer>TODO</footer>
       <SkipLinks links={defaultLinks} />
-      <main id="contenu">Welcome {survey}</main>
+      <main>{children}</main>
       <Footer footer={footer} />
-    </div>
+    </>
   );
 }
 
