@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LayoutSkeleton from "../skeleton/Layout";
 import {
   OidcProvider,
   OidcConfiguration,
@@ -7,7 +8,7 @@ import {
 import axios from "axios";
 
 function Pending() {
-  return <div>Please waiting...</div>;
+  return <LayoutSkeleton />;
 }
 
 type AuthProviderProps = {
