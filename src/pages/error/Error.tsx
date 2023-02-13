@@ -11,7 +11,6 @@ function Error() {
   useDocumentTitle("Page non trouvée");
   return (
     <div className="fr-container">
-      <title>Page non trouvée</title>
       <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-6w fr-mt-md-12w ">
         <div className="fr-col-lg-6 fr-col-12">
           <h1>Page non trouvée</h1>
