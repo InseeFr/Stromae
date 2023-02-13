@@ -1,5 +1,10 @@
 import axios, { AxiosError } from "axios";
 
+export const HTTP_VERBS = {
+  get: "get",
+  post: "post",
+};
+
 function errorHandler(error: AxiosError) {
   if (axios.isAxiosError(error)) {
     if (!error?.response) {
