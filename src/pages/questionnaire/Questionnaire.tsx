@@ -14,7 +14,7 @@ function Questionnaire(props: QuestionnaireProps) {
   return (
     <OidcSecure>
       <Layout survey={survey}>
-        <div>Questionnaire : {survey}</div>
+        <div className="fr-container fr-my-12w">Questionnaire : {survey}</div>
       </Layout>
     </OidcSecure>
   );

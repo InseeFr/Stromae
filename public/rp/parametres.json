@@ -1,10 +1,17 @@
 {
   "Header": {
-    "brandTop": "République Française",
+    "brandTop": {
+      "value": "République<br />française",
+      "type": "html"
+    },
     "operatorLogo": {
       "alt": "Logo de l'Insee",
       "imgUrl": "/logoINSEE.png",
       "orientation": "horizontal"
+    },
+    "homeLinkProps": {
+      "title": "Accueil - Le recensement de la population",
+      "href": "http://localhost:3000/questionnaire/tyty/unite-enquetee/tutu/"
     },
     "serviceTitle": "Le recensement de la population",
     "quickAccessItems": [
@@ -19,7 +26,10 @@
     ]
   },
   "Footer": {
-    "brandTop": "République Française",
+    "brandTop": {
+      "value": "République<br />française",
+      "type": "html"
+    },
     "operatorLogo": {
       "alt": "Logo de l'Insee",
       "imgUrl": "/logoINSEE.png",
@@ -27,7 +37,8 @@
     },
     "accessibility": "fully compliant",
     "homeLinkProps": {
-      "title": "Accueil - Le recensement de la population"
+      "title": "Accueil - Le recensement de la population",
+      "href": "http://localhost:3000/questionnaire/tyty/unite-enquetee/tutu/"
     },
     "termsLinkProps": {
       "href": "urlamodifier"
@@ -36,6 +47,9 @@
       "href": "urlamodifier"
     },
     "contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
-    "license": "Les contenus de ce site sont sous"
+    "license": {
+      "value": "Les contenus de ce site sont sous <a href='https://www.insee.fr/fr/accueil'> license</a>.",
+      "type": "html"
+    }
   }
 }

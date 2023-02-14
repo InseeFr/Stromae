@@ -1,7 +1,7 @@
 import HeaderType from "../header/HeaderType";
 
 const DEFAULT_HEADER: HeaderType = {
-  brandTop: "Sous-titre logo",
+  brandTop: "Intitulé",
   quickAccessItems: [],
   homeLinkProps: {
     href: "/",

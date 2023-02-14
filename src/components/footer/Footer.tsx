@@ -1,5 +1,6 @@
 import { Footer as FooterDSFR } from "@codegouvfr/react-dsfr/Footer";
 import FooterType from "../footer/FooterType";
+import ConvertContent from "../../convertContent";
 
 const DEFAULT_FOOTER: FooterType = {
   brandTop: "valeur par defaut",
@@ -37,11 +38,11 @@ function Footer(props: FooterProps) {
   return (
     <FooterDSFR
       accessibility={accessibility}
-      brandTop={brandTop}
+      brandTop={<ConvertContent content={brandTop} />}
       homeLinkProps={homeLinkProps}
       termsLinkProps={termsLinkProps}
       websiteMapLinkProps={websiteMapLinkProps}
-      license={license}
+      license={<ConvertContent content={license} />}
       personalDataLinkProps={personalDataLinkProps}
       contentDescription={contentDescription}
       operatorLogo={operatorLogo}

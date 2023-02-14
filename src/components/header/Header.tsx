@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Header as HeaderDSFR } from "@codegouvfr/react-dsfr/Header";
 import HeaderType from "./HeaderType";
 import DEFAULT_HEADER from "./default-header";
+import ConvertContent from "../../convertContent";
 
 function getAuthLabel(isAuthenticated: boolean): string {
   if (isAuthenticated) {
@@ -58,7 +59,7 @@ function Header(props: HeaderProps) {
 
   return (
     <HeaderDSFR
-      brandTop={brandTop}
+      brandTop={<ConvertContent content={brandTop} />}
       homeLinkProps={homeLinkProps}
       serviceTitle={serviceTitle}
       operatorLogo={operatorLogo}
