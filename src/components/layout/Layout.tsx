@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import FooterType from "../footer/FooterType";
 import HeaderType from "../header/HeaderType";
 import surveys from "../../lib/surveys/surveysApi";
@@ -24,13 +24,15 @@ const defaultLinks = [
 ];
 
 function Layout({ children, survey }: LayoutProps) {
+  const alreadyLoad = useRef(false);
   const [header, setHeader] = useState<HeaderType | undefined>(undefined);
   const [footer, setFooter] = useState<FooterType | undefined>(undefined);
 
   useEffect(
     function () {
-      (async function () {
-        if (survey) {
+      if (survey && !alreadyLoad.current) {
+        alreadyLoad.current = true;
+        (async function () {
           try {
             const data = await surveys.getMetadataSurvey(survey);
             if (data) {
@@ -41,10 +43,10 @@ function Layout({ children, survey }: LayoutProps) {
           } catch (e) {
             // TODO
           }
-        }
-      })();
+        })();
+      }
     },
-    [survey]
+    [survey, alreadyLoad]
   );
 
   return (
