@@ -7,12 +7,13 @@ import Orchestrator from "./Orchestrator";
 type LoadSourceDataProps = {
   survey?: string;
   unit?: string;
+  onChange: (...ars: any) => void;
   children?: JSX.Element | Array<JSX.Element>;
 };
 
 function LoadSourceData(props: LoadSourceDataProps) {
+  const { survey, children, onChange } = props;
   const alreadyDone = useRef(false);
-  const { survey, children } = props;
   const [source, setSource] = useState<LunaticSource | undefined>(undefined);
   const { accessToken } = useOidcAccessToken();
 
@@ -31,9 +32,13 @@ function LoadSourceData(props: LoadSourceDataProps) {
   );
 
   if (source) {
-    return <Orchestrator source={source}>{children}</Orchestrator>;
+    return (
+      <Orchestrator source={source} onChange={onChange}>
+        {children}
+      </Orchestrator>
+    );
   }
-  return <>Skelleton please</>;
+  return <>Skeleton please</>;
 }
 
 export default LoadSourceData;

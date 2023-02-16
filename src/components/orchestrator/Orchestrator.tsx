@@ -8,6 +8,7 @@ import {
 
 export type OrchestratorProps = {
   source: LunaticSource;
+  onChange?: (...args: any) => void;
   children?: JSX.Element | Array<JSX.Element>;
 };
 
@@ -24,8 +25,8 @@ export type OrchestratedElement = {
   readonly isLastPage?: boolean;
   // pager,
   // waiting,
+  readonly onChange?: (...args: any) => void;
   readonly getData?: () => any;
-  readonly onChange?: () => void;
 };
 
 /**
@@ -42,7 +43,7 @@ const empty = {};
 const args = {};
 
 function Orchestrator(props: OrchestratorProps) {
-  const { source, children } = props;
+  const { source, children, onChange } = props;
 
   const {
     getComponents,
@@ -52,10 +53,10 @@ function Orchestrator(props: OrchestratorProps) {
     isLastPage,
     goToPage,
     getCurrentErrors,
-    onChange,
+
     getData,
     Provider = MockProvider,
-  } = useLunatic(source, empty, args);
+  } = useLunatic(source, empty, { onChange });
 
   if (children) {
     const effective: Array<JSX.Element> = Array.isArray(children)
@@ -76,8 +77,8 @@ function Orchestrator(props: OrchestratorProps) {
               goToPage,
               getCurrentErrors,
               key,
-              onChange,
               getData,
+              onChange,
             }
           );
         })}

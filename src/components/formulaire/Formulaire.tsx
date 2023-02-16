@@ -2,30 +2,13 @@ import { OrchestratedElement } from "../../components/orchestrator";
 import * as lunatic from "@inseefr/lunatic";
 import { useEffect, useState } from "react";
 import { ComponentType } from "../../typeLunatic/type-source";
+import LunaticComponentContainer from "./LunaticComponentContainer";
 
-export enum ComponentEnum {
-  Sequence = "Sequence", //
-  Subsequence = "Subsequence",
-  RosterForLoop = "RosterForLoop",
-  Loop = "Loop",
-  Table = "Table",
-  Input = "Input",
-  InputNumber = "InputNumber",
-  Datepicker = "Datepicker",
-  CheckboxGroup = "CheckboxGroup",
-  CheckboxOne = "CheckboxOne",
-  CheckboxBoolean = "CheckboxBoolean",
-  Radio = "Radio",
-  Dropdown = "Dropdown",
-  Textarea = "Textarea",
-  FilterDescription = "FilterDescription",
-  PairwiseLinks = "PairwiseLinks",
-  Suggester = "Suggester",
-}
+type FormulaireProps = {};
 
-function Formulaire(props: OrchestratedElement) {
-  const [components, setComponents] = useState<Array<ComponentType>>([]);
+function Formulaire(props: OrchestratedElement & FormulaireProps) {
   const { getComponents } = props;
+  const [components, setComponents] = useState<Array<ComponentType>>([]);
 
   useEffect(
     function () {
@@ -45,9 +28,9 @@ function Formulaire(props: OrchestratedElement) {
           const Component = lunatic[componentType];
 
           return (
-            <div className="lunatic lunatic-component" key={`component-${id}`}>
+            <LunaticComponentContainer key={id} id={id}>
               <Component key={id} {...component} />
-            </div>
+            </LunaticComponentContainer>
           );
         }
         return null;
@@ -57,5 +40,3 @@ function Formulaire(props: OrchestratedElement) {
 }
 
 export default Formulaire;
-
-// declarations, label, id, style

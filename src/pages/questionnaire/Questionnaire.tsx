@@ -11,17 +11,19 @@ export type QuestionnaireParams = {
   unit: string;
 };
 
-type QuestionnaireProps = {
-  onChange?: () => void;
-};
+type QuestionnaireProps = {};
+
+function onChange(...args: any) {
+  console.log("change", ...args);
+}
 
 function Questionnaire(props: QuestionnaireProps) {
-  const { survey } = useParams<QuestionnaireParams>();
+  const { survey, unit } = useParams<QuestionnaireParams>();
   useDocumentTitle("Questionnaire");
   return (
     <OidcSecure>
       <Layout survey={survey}>
-        <Orchestrator survey={survey}>
+        <Orchestrator survey={survey} unit={unit} onChange={onChange}>
           <Formulaire />
           <Navigation />
         </Orchestrator>
