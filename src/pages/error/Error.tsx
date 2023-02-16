@@ -1,12 +1,14 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { ReactComponent as TechnicalError } from "../../assets/technical_error.svg";
+import useDocumentTitle from "../../useDocumentTitle";
 
 function Error() {
   const error = useRouteError();
   console.error(error);
 
   const errorStatus = isRouteErrorResponse(error) && error.status;
+  useDocumentTitle("Page non trouvée");
   return (
     <div className="fr-container">
       <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-6w fr-mt-md-12w ">

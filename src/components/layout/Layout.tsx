@@ -6,6 +6,7 @@ import Header from "../../components/header/Header";
 import HeaderAuth from "../../components/header/HeaderAuth";
 import Footer from "../../components/footer/Footer";
 import SkipLinks from "@codegouvfr/react-dsfr/SkipLinks";
+import LayoutPlaceholder from "../skeleton/Layout";
 
 export type WelcomeSurveyParams = {
   survey: string;
@@ -48,17 +49,20 @@ function Layout({ children, survey }: LayoutProps) {
     },
     [survey, alreadyLoad]
   );
-
-  return (
-    <>
-      <HeaderAuth>
-        <Header header={header} />
-      </HeaderAuth>
-      <SkipLinks links={defaultLinks} />
-      <main>{children}</main>
-      <Footer footer={footer} />
-    </>
-  );
+  if (header && footer) {
+    return (
+      <div data-id="welcome" className="stromae-welcome">
+        <SkipLinks links={defaultLinks} />
+        <HeaderAuth>
+          <Header header={header} />
+        </HeaderAuth>
+        <main id="contenu">{children}</main>
+        <Footer footer={footer} />
+      </div>
+    );
+  } else {
+    return <LayoutPlaceholder />;
+  }
 }
 
 export default Layout;

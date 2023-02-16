@@ -4,17 +4,20 @@ import Orchestrator from "../../components/orchestrator";
 import Layout from "../../components/layout";
 import Navigation from "../../components/navigation";
 import Formulaire from "../../components/formulaire";
+import useDocumentTitle from "../../useDocumentTitle";
 
 export type QuestionnaireParams = {
   survey: string;
   unit: string;
 };
 
-type QuestionnaireProps = {};
+type QuestionnaireProps = {
+  onChange?: () => void;
+};
 
 function Questionnaire(props: QuestionnaireProps) {
   const { survey } = useParams<QuestionnaireParams>();
-
+  useDocumentTitle("Questionnaire");
   return (
     <OidcSecure>
       <Layout survey={survey}>

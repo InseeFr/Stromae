@@ -37,10 +37,6 @@ function MockProvider({ children }: { children?: PropsWithChildren }) {
   return <>{children}</>;
 }
 
-function onChange(args: any) {
-  console.log(...args);
-}
-
 const empty = {};
 
 const args = {};
