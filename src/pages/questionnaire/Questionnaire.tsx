@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { OidcSecure } from "../../lib/oidc";
 import Orchestrator from "../../components/orchestrator";
 import Layout from "../../components/layout";
-import Pager from "./Pager";
-import Page from "./Page";
+import Navigation from "../../components/navigation";
+import Formulaire from "../../components/formulaire";
 
 export type QuestionnaireParams = {
   survey: string;
@@ -19,8 +19,8 @@ function Questionnaire(props: QuestionnaireProps) {
     <OidcSecure>
       <Layout survey={survey}>
         <Orchestrator survey={survey}>
-          <Page />
-          <Pager />
+          <Formulaire />
+          <Navigation />
         </Orchestrator>
       </Layout>
     </OidcSecure>

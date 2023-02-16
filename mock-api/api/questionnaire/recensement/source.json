@@ -12,198 +12,183 @@
       "page": "1"
     },
     {
-      "id": "how",
-      "componentType": "InputNumber",
-      "mandatory": false,
-      "page": "2",
-      "min": 1,
-      "max": 10,
-      "decimals": 0,
-      "label": {
-        "value": "\"Combien de personnes vivent habituellement à votre adresse ?\"",
-        "type": "VTL|MD"
-      },
+      "id": "loop-prenom",
+      "componentType": "RosterForLoop",
+      "label": { "value": "\"Ajouter un individu\"", "type": "VTL|MD" },
       "conditionFilter": { "value": "true", "type": "VTL" },
-      "response": { "name": "NB_HAB" }
-    },
-    {
-      "id": "loop",
-      "componentType": "Loop",
-      "page": "3",
-      "depth": 1,
-      "paginatedLoop": false,
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "loopDependencies": ["NHAB"],
       "lines": {
-        "min": { "value": "NB_HAB", "type": "VTL" },
-        "max": { "value": "NB_HAB", "type": "VTL" }
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "10", "type": "VTL" }
       },
+      "page": "1",
       "components": [
         {
-          "id": "prenom",
           "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 20,
-          "label": {
-            "value": "\"Prénom\"))",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "response": { "name": "PRENOMS" }
-        },
+          "label": { "value": "\"Prénom\"", "type": "VTL|MD" },
+          "conditionFilter": { "value": "true", "type": "VTL" },
+          "maxLength": 30,
+          "id": "prenom",
+          "response": {
+            "name": "PRENOM"
+          }
+        }
+      ]
+    },
+    {
+      "id": "age-loop",
+      "componentType": "Loop",
+      "paginatedLoop": true,
+      "iterations": { "value": "count(PRENOM)", "type": "VTL" },
+      "page": "2",
+      "maxPage": "1",
+      "conditionFilter": { "value": "true", "type": "VTL" },
+      "loopDependencies": ["PRENOM"],
+      "components": [
         {
-          "id": "age",
+          "id": "age-quest",
+          "label": { "value": "\"Âge de \" || PRENOM", "type": "VTL|MD" },
+          "conditionFilter": { "type": "VTL", "value": "true" },
           "componentType": "InputNumber",
-          "maxLength": 3,
-          "label": {
-            "value": "\"Age\"))",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
+          "page": "2.1",
           "response": { "name": "AGE" }
         }
       ]
     },
     {
-      "id": "roundabout",
-      "componentType": "Roundabout",
-      "page": "4",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "iterations": { "value": "NB_HAB", "type": "VTL" },
-      "label": { "value": "\"Libellé du rondpoint\"", "type": "VTL" },
-      "locked": true,
-      "expressions": {
-        "unnecessary": {
-          "value": "AGE < 13",
-          "type": "VTL"
-        },
-        "complete": {
-          "value": "not(isnull(KNOWREC)) and not(isnull(SEXE)) and not(isnull(SOMETHING))",
-          "type": "VTL"
-        },
-        "partial": {
-          "value": "not(isnull(KNOWREC)) or not(isnull(SEXE)) or not(isnull(SOMETHING))",
-          "type": "VTL"
-        },
-        "label": {
-          "value": "\"Série de question pour \" || PRENOMS",
-          "type": "VTL"
+      "id": "pairwise-links",
+      "componentType": "PairwiseLinks",
+      "conditionFilter": { "value": "true" },
+      "xAxisIterations": { "value": "count(PRENOM)", "type": "VTL" },
+      "yAxisIterations": { "value": "count(PRENOM)", "type": "VTL" },
+      "page": "3",
+      "symLinks": {
+        "LINKS": {
+          "1": "1",
+          "2": "3",
+          "3": "2",
+          "4": "4",
+          "5": "6",
+          "6": "5",
+          "7": "8",
+          "8": "7",
+          "9": "10",
+          "10": "9",
+          "11": "13",
+          "12": "12",
+          "13": "11",
+          "14": null,
+          "15": "15",
+          "16": "16",
+          "17": "17",
+          "18": "18"
         }
       },
       "components": [
         {
-          "id": "radio",
-          "componentType": "Radio",
-          "mandatory": false,
-          "page": "4.1",
+          "componentType": "Dropdown",
+          "id": "dropdown-1",
+          "conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
           "label": {
-            "value": "\"Connaissez-vous le recensement de la population ?\"",
+            "value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
             "type": "VTL|MD"
           },
-
-          "conditionFilter": { "value": "true", "type": "VTL" },
-
-          "options": [
-            { "value": "1", "label": { "value": "\"oui\"", "type": "VTL|MD" } },
-
-            { "value": "2", "label": { "value": "\"non\"", "type": "VTL|MD" } }
-          ],
-          "response": { "name": "KNOWREC" }
-        },
-        {
-          "id": "jsygk7m7",
-          "componentType": "Subsequence",
-          "page": "4.2",
-          "label": {
-            "value": "\"Deuxième page de questions pour \"|| PRENOMS",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": { "value": "true", "type": "VTL" }
-        },
-        {
-          "id": "sexe",
-          "componentType": "Radio",
-          "page": "4.2",
-          "label": {
-            "value": "\"Sexe\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
+          "response": {
+            "name": "LINKS"
           },
           "options": [
+            { "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
+            { "value": "2", "label": "\"Sa mère, son père\"" },
+            { "value": "3", "label": "\"Sa fille, son fils\"" },
             {
-              "value": "1",
-              "label": { "value": "\"Homme\"", "type": "VTL|MD" }
+              "value": "4",
+              "label": "\"Sa soeur, son frère (y compris demi et quasi)\""
             },
             {
-              "value": "2",
-              "label": { "value": "\"Femme\"", "type": "VTL|MD" }
+              "value": "5",
+              "label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
+            },
+            {
+              "value": "6",
+              "label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
+            },
+            {
+              "value": "7",
+              "label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
+            },
+            {
+              "value": "8",
+              "label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
+            },
+            { "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
+            { "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
+            { "value": "11", "label": "\"Sa tante, son oncle\"" },
+            { "value": "12", "label": "\"Sa cousine, son cousin\"" },
+            { "value": "13", "label": "\"Sa nièce, son neveu\"" },
+            {
+              "value": "14",
+              "label": "\"Un enfant placé en famille d'accueil\""
+            },
+            { "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
+            { "value": "16", "label": "\"Un autre lien familial\"" },
+            { "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
+            {
+              "value": "18",
+              "label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
             }
-          ],
-          "response": { "name": "SEXE" }
+          ]
         },
         {
-          "id": "jsygk7m7",
-          "componentType": "Subsequence",
-          "page": "4.3",
+          "componentType": "Textarea",
+
           "label": {
-            "value": "\"Troisième page de questions \" || PRENOMS",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": { "value": "true", "type": "VTL" }
-        },
-        {
-          "id": "kmno1n7m",
-          "componentType": "Input",
-          "maxLength": 30,
-          "page": "4.3",
-          "label": {
-            "value": "\"Dites quelque chose.\"))",
+            "value": "\"Pouvez-vous décrire le lien entre \" || xAxis || \" et \" || yAxis || \" ?\"",
             "type": "VTL|MD"
           },
           "conditionFilter": {
-            "value": "true",
+            "value": "LINKS = \"17\"",
             "type": "VTL"
           },
-          "response": { "name": "SOMETHING" }
+          "id": "other",
+          "response": {
+            "name": "OTHER"
+          }
         }
       ]
     },
-
     {
-      "id": "seq",
-      "componentType": "Sequence",
-      "label": {
-        "value": "\"Merci !\"",
-        "type": "VTL|MD"
-      },
+      "id": "pariwise-block",
+      "componentType": "Loop",
+      "paginatedLoop": true,
+      "iterations": { "value": "count(PRENOM)", "type": "VTL" },
+      "page": "4",
+      "maxPage": "1",
       "conditionFilter": { "value": "true", "type": "VTL" },
-      "page": "5"
-    }
+      "loopDependencies": ["PRENOM"],
+      "components": [
+        {
+          "componentType": "Textarea",
+          "page": "4.1",
+          "label": {
+            "value": "PRENOM || \", why do you live without your parents?\"",
+            "type": "VTL|MD"
+          },
+          "conditionFilter": {
+            "value": "\"3\" not_in LINKS and AGE < 18",
+            "type": "VTL"
+          },
+          "id": "why",
+          "response": {
+            "name": "WHY"
+          }
+        }
+      ]
+    },
+    { "componentType": "Sequence", "label": "\"END\"", "page": 5 }
   ],
   "variables": [
     {
       "variableType": "COLLECTED",
-      "name": "NB_HAB",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "SOMETHING",
+      "name": "PRENOM",
       "values": {
         "PREVIOUS": [null],
         "COLLECTED": [null],
@@ -225,29 +210,29 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "SEXE",
+      "name": "LINKS",
       "values": {
-        "PREVIOUS": [null],
-        "COLLECTED": [null],
-        "FORCED": [null],
-        "EDITED": [null],
-        "INPUTED": [null]
+        "PREVIOUS": [[null]],
+        "COLLECTED": [[null]],
+        "FORCED": [[null]],
+        "EDITED": [[null]],
+        "INPUTED": [[null]]
       }
     },
     {
       "variableType": "COLLECTED",
-      "name": "PRENOMS",
+      "name": "OTHER",
       "values": {
-        "PREVIOUS": [null],
-        "COLLECTED": [null],
-        "FORCED": [null],
-        "EDITED": [null],
-        "INPUTED": [null]
+        "PREVIOUS": [[null]],
+        "COLLECTED": [[null]],
+        "FORCED": [[null]],
+        "EDITED": [[null]],
+        "INPUTED": [[null]]
       }
     },
     {
       "variableType": "COLLECTED",
-      "name": "KNOWREC",
+      "name": "WHY",
       "values": {
         "PREVIOUS": [null],
         "COLLECTED": [null],
@@ -258,16 +243,25 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "PRENOMREF",
-      "expression": { "value": "first_value(PRENOMS over())", "type": "VTL" },
-      "bindingDependencies": ["PRENOMS"],
-      "inFilter": "true"
+      "name": "xAxis",
+      "expression": { "value": "PRENOM", "type": "VTL" },
+      "bindingDependencies": ["PRENOM"],
+      "shapeFrom": "PRENOM",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "name": "yAxis",
+      "expression": { "value": "PRENOM", "type": "VTL" },
+      "bindingDependencies": ["PRENOM"],
+      "shapeFrom": "PRENOM",
+      "inFilter": "false"
     }
   ],
   "resizing": {
-    "NB_HAB": {
-      "size": "NB_HAB",
-      "variables": ["PRENOMS", "AGE", "SEXE", "SOMETHING", "DATNAIS"]
+    "PRENOM": {
+      "sizeForLinksVariables": ["count(PRENOM)", "count(PRENOM)"],
+      "linksVariables": ["LINKS"]
     }
   }
 }

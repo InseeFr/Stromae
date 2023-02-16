@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 /**
  * Types used for source data (lunatic models and data.json)
  *
@@ -306,4 +308,13 @@ export type LunaticSource = {
       variables: string[];
     };
   };
+};
+
+export type LunaticError = Pick<
+  ControlType,
+  "id" | "criticality" | "typeOfControl"
+> & {
+  formula: string;
+  labelFormula: string;
+  errorMessage: ReactNode;
 };

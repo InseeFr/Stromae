@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ComponentType } from "../../typeLunatic/type-source";
 
 export enum ComponentEnum {
-  Sequence = "Sequence",
+  Sequence = "Sequence", //
   Subsequence = "Subsequence",
   RosterForLoop = "RosterForLoop",
   Loop = "Loop",
@@ -23,9 +23,10 @@ export enum ComponentEnum {
   Suggester = "Suggester",
 }
 
-function Page(props: OrchestratedElement) {
+function Formulaire(props: OrchestratedElement) {
   const [components, setComponents] = useState<Array<ComponentType>>([]);
   const { getComponents } = props;
+
   useEffect(
     function () {
       if (typeof getComponents === "function") {
@@ -36,32 +37,25 @@ function Page(props: OrchestratedElement) {
   );
 
   return (
-    <div>
+    <form>
       {components.map(function (component: ComponentType) {
-        const { componentType, declarations, label, id } = component;
-        switch (componentType) {
-          case ComponentEnum.Sequence:
-            return (
-              <lunatic.Sequence
-                key={id}
-                id={id}
-                declarations={declarations}
-                label={label}
-              />
-            );
-          default:
-            return null;
-        }
-        // if (componentType in lunatic) {
-        //   const Component = lunatic[componentType];
+        const { componentType, id } = component;
 
-        //   return <Component key={id} />;
-        // }
+        if (componentType in lunatic) {
+          const Component = lunatic[componentType];
+
+          return (
+            <div className="lunatic lunatic-component" key={`component-${id}`}>
+              <Component key={id} {...component} />
+            </div>
+          );
+        }
+        return null;
       })}
-    </div>
+    </form>
   );
 }
 
-export default Page;
+export default Formulaire;
 
 // declarations, label, id, style

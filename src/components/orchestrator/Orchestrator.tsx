@@ -1,28 +1,31 @@
 import { useLunatic } from "@inseefr/lunatic";
 import { cloneElement, PropsWithChildren } from "react";
-import { LunaticSource, ComponentType } from "../../typeLunatic/type-source";
+import {
+  LunaticSource,
+  ComponentType,
+  LunaticError,
+} from "../../typeLunatic/type-source";
 
 export type OrchestratorProps = {
   source: LunaticSource;
   children?: JSX.Element | Array<JSX.Element>;
 };
 
-const empty = {};
-
 export type OrchestratedElement = {
   readonly getComponents?: () => Array<ComponentType>;
   readonly goPreviousPage?: () => void;
   readonly goNextPage?: () => void;
-  // goToPage,
+  readonly goToPage?: () => void;
   // getErrors,
   // getModalErrors,
-  // getCurrentErrors,
+  readonly getCurrentErrors?: () => Array<LunaticError>;
   // pageTag,
   readonly isFirstPage?: boolean;
   readonly isLastPage?: boolean;
   // pager,
   // waiting,
-  // getData,
+  readonly getData?: () => any;
+  readonly onChange?: () => void;
 };
 
 /**
@@ -34,16 +37,29 @@ function MockProvider({ children }: { children?: PropsWithChildren }) {
   return <>{children}</>;
 }
 
+function onChange(args: any) {
+  console.log(...args);
+}
+
+const empty = {};
+
+const args = {};
+
 function Orchestrator(props: OrchestratorProps) {
   const { source, children } = props;
+
   const {
     getComponents,
     goPreviousPage,
     goNextPage,
     isFirstPage,
     isLastPage,
+    goToPage,
+    getCurrentErrors,
+    onChange,
+    getData,
     Provider = MockProvider,
-  } = useLunatic(source, empty, empty);
+  } = useLunatic(source, empty, args);
 
   if (children) {
     const effective: Array<JSX.Element> = Array.isArray(children)
@@ -61,7 +77,11 @@ function Orchestrator(props: OrchestratorProps) {
               goNextPage,
               isFirstPage,
               isLastPage,
+              goToPage,
+              getCurrentErrors,
               key,
+              onChange,
+              getData,
             }
           );
         })}

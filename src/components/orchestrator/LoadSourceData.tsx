@@ -4,10 +4,13 @@ import { useOidcAccessToken } from "../../lib/oidc";
 import surveyApi from "../../lib/surveys/surveysApi";
 import Orchestrator from "./Orchestrator";
 
-function ReadyToOrchestre(props: {
+type LoadSourceDataProps = {
   survey?: string;
+  unit?: string;
   children?: JSX.Element | Array<JSX.Element>;
-}) {
+};
+
+function LoadSourceData(props: LoadSourceDataProps) {
   const alreadyDone = useRef(false);
   const { survey, children } = props;
   const [source, setSource] = useState<LunaticSource | undefined>(undefined);
@@ -30,7 +33,7 @@ function ReadyToOrchestre(props: {
   if (source) {
     return <Orchestrator source={source}>{children}</Orchestrator>;
   }
-  return null;
+  return <>Skelleton please</>;
 }
 
-export default ReadyToOrchestre;
+export default LoadSourceData;
