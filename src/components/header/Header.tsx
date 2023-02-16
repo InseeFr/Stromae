@@ -59,7 +59,7 @@ function Header(props: HeaderProps) {
 
   return (
     <HeaderDSFR
-      brandTop={<ConvertContent content={brandTop} />}
+      brandTop={<ConvertContent content={brandTop as any} />}
       homeLinkProps={homeLinkProps}
       serviceTitle={serviceTitle}
       operatorLogo={operatorLogo}

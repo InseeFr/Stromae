@@ -1,19 +1,24 @@
 
-type ConvertContentProps = { content?: any };
+type ConvertContentProps = { content?: string | { value: string, type: "html" | "string" } };
 
 function ConvertContent(props: ConvertContentProps) {
-    if (!props.content.type) {
-        return props.content;
+    if (!props.content) {
+        return (<></>);
     }
-    if (props.content.type && props.content.type == "string") {
-        return props.content?.value;
+    if (typeof props.content === "string") {
+        return (<>props.content</>);
     }
-    else if (props.content.type && props.content.type == "html") {
+    if (props.content.type && props.content.type === "string") {
+        return (<span>props.content.valuet</span >);;
+    }
+    else if (props.content.type && props.content.type === "html") {
         return (
             <span dangerouslySetInnerHTML={{ __html: props.content?.value }
             } />
         )
     }
+
+    return (<></>);
 }
 
 export default ConvertContent;

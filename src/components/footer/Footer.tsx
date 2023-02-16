@@ -38,11 +38,11 @@ function Footer(props: FooterProps) {
   return (
     <FooterDSFR
       accessibility={accessibility}
-      brandTop={<ConvertContent content={brandTop} />}
+      brandTop={<ConvertContent content={brandTop as any} />}
       homeLinkProps={homeLinkProps}
       termsLinkProps={termsLinkProps}
       websiteMapLinkProps={websiteMapLinkProps}
-      license={<ConvertContent content={license} />}
+      license={<ConvertContent content={license as any} />}
       personalDataLinkProps={personalDataLinkProps}
       contentDescription={contentDescription}
       operatorLogo={operatorLogo}
