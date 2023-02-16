@@ -5,8 +5,6 @@ import useDocumentTitle from "../../useDocumentTitle";
 
 function Error() {
   const error = useRouteError();
-  console.error(error);
-
   const errorStatus = isRouteErrorResponse(error) && error.status;
   useDocumentTitle("Page non trouvée");
   return (
