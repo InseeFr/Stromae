@@ -1,41 +1,41 @@
 {
-  "Header": {
-    "brandTop": "République Française",
-    "operatorLogo": {
-      "alt": "Logo de l'Insee",
-      "imgUrl": "/logoINSEE.png",
-      "orientation": "horizontal"
-    },
-    "serviceTitle": "Le recensement de la population",
-    "quickAccessItems": [
-      {
-        "iconId": "fr-icon-account-line",
-        "linkProps": {
-          "href": "https://www.insee.fr/fr/accueil",
-          "target": "self"
-        },
-        "text": "Créer un espace"
-      }
-    ]
-  },
-  "Footer": {
-    "brandTop": "République Française",
-    "operatorLogo": {
-      "alt": "Logo de l'Insee",
-      "imgUrl": "/logoINSEE.png",
-      "orientation": "horizontal"
-    },
-    "accessibility": "fully compliant",
-    "homeLinkProps": {
-      "title": "Accueil - Le recensement de la population"
-    },
-    "termsLinkProps": {
-      "href": "urlamodifier"
-    },
-    "websiteMapLinkProps": {
-      "href": "urlamodifier"
-    },
-    "contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
-    "license": "Les contenus de ce site sont sous"
-  }
+	"Header": {
+		"brandTop": "République Française",
+		"operatorLogo": {
+			"alt": "Logo de l'Insee",
+			"imgUrl": "/logoINSEE.png",
+			"orientation": "horizontal"
+		},
+		"serviceTitle": "Le recensement de la population",
+		"quickAccessItems": [
+			{
+				"iconId": "fr-icon-account-line",
+				"linkProps": {
+					"href": "https://www.insee.fr/fr/accueil",
+					"target": "self"
+				},
+				"text": "Créer un espace"
+			}
+		]
+	},
+	"Footer": {
+		"brandTop": "République Française",
+		"operatorLogo": {
+			"alt": "Logo de l'Insee",
+			"imgUrl": "/logoINSEE.png",
+			"orientation": "horizontal"
+		},
+		"accessibility": "fully compliant",
+		"homeLinkProps": {
+			"title": "Accueil - Le recensement de la population"
+		},
+		"termsLinkProps": {
+			"href": "urlamodifier"
+		},
+		"websiteMapLinkProps": {
+			"href": "urlamodifier"
+		},
+		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
+		"license": "Les contenus de ce site sont sous"
+	}
 }

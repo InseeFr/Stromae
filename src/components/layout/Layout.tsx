@@ -61,9 +61,8 @@ function Layout({ children, survey }: LayoutProps) {
         <Footer footer={footer} />
       </>
     );
-  } else {
-    return <LayoutPlaceholder />;
   }
+  return <LayoutPlaceholder />;
 }
 
 export default Layout;
