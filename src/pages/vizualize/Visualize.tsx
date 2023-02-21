@@ -1,4 +1,7 @@
-import LocalLoadSourceData from './LocalLoadSourceData';
+import LoadFromUrl from '../../components/loadSourceData/LoadFromUrl';
+import Orchestrator from '../../components/orchestrator';
+import Formulaire from '../../components/formulaire';
+import Navigation from '../../components/navigation';
 
 const RP = {
 	source: '/rp/source.json',
@@ -8,19 +11,14 @@ const RP = {
 
 function onChange() {}
 
-function Hello() {
-	return <>Hello!</>;
-}
-
 function Visualize() {
 	return (
-		<LocalLoadSourceData
-			hrefSource={RP.source}
-			hrefData={RP.data}
-			onChange={onChange}
-		>
-			<Hello />
-		</LocalLoadSourceData>
+		<LoadFromUrl urlSource={RP.source} urlData={RP.data}>
+			<Orchestrator onChange={onChange}>
+				<Formulaire />
+				<Navigation />
+			</Orchestrator>
+		</LoadFromUrl>
 	);
 }
 

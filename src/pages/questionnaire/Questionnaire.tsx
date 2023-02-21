@@ -5,6 +5,7 @@ import Layout from '../../components/layout';
 import Navigation from '../../components/navigation';
 import Formulaire from '../../components/formulaire';
 import useDocumentTitle from '../../useDocumentTitle';
+import LoadFromApi from '../../components/loadSourceData/LoadFromApi';
 
 export type QuestionnaireParams = {
 	survey: string;
@@ -23,10 +24,12 @@ function Questionnaire(props: QuestionnaireProps) {
 	return (
 		<OidcSecure>
 			<Layout survey={survey}>
-				<Orchestrator survey={survey} unit={unit} onChange={onChange}>
-					<Formulaire />
-					<Navigation />
-				</Orchestrator>
+				<LoadFromApi survey={survey} unit={unit}>
+					<Orchestrator onChange={onChange}>
+						<Formulaire />
+						<Navigation />
+					</Orchestrator>
+				</LoadFromApi>
 			</Layout>
 		</OidcSecure>
 	);

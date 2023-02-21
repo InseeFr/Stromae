@@ -1,18 +1,18 @@
-import { useEffect, useState, useRef, PropsWithChildren } from 'react';
+import { useEffect, useState, useRef, ReactElement, cloneElement } from 'react';
 import type { LunaticSource } from '../../typeLunatic/type-source';
 import type { SurveyUnitData } from '../../typeStromae/type';
 import { useOidcAccessToken } from '../../lib/oidc';
 import surveyApi from '../../lib/surveys/surveysApi';
-import Orchestrator from './Orchestrator';
+import { OrchestratorProps } from '../orchestrator/Orchestrator';
 
-type LoadSourceDataProps = {
+type LoadFromApiProps = {
 	survey?: string;
 	unit?: string;
-	onChange: (...ars: any) => void;
+	children?: ReactElement<OrchestratorProps>;
 };
 
-function LoadSourceData(props: PropsWithChildren<LoadSourceDataProps>) {
-	const { survey, unit, children, onChange } = props;
+function LoadFromApi(props: LoadFromApiProps) {
+	const { survey, unit, children } = props;
 	const alreadyDone = useRef(false);
 	const [source, setSource] = useState<LunaticSource | undefined>(undefined);
 	const [surveyUnitData, setSurveyUnitData] = useState<
@@ -39,14 +39,13 @@ function LoadSourceData(props: PropsWithChildren<LoadSourceDataProps>) {
 		[survey, accessToken, alreadyDone, unit]
 	);
 
-	if (source && surveyUnitData) {
-		return (
-			<Orchestrator source={source} data={surveyUnitData} onChange={onChange}>
-				{children}
-			</Orchestrator>
-		);
+	if (source && surveyUnitData && children) {
+		return cloneElement(children, {
+			source,
+			data: surveyUnitData,
+		});
 	}
 	return <>Skeleton please</>;
 }
 
-export default LoadSourceData;
+export default LoadFromApi;

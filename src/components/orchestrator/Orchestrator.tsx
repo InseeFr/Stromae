@@ -9,8 +9,8 @@ import {
 import { SurveyUnitData } from '../../typeStromae/type';
 
 export type OrchestratorProps = {
-	source: LunaticSource;
-	data: SurveyUnitData;
+	source?: LunaticSource;
+	data?: SurveyUnitData;
 	onChange?: (...args: any) => void;
 };
 
