@@ -12,7 +12,6 @@ export type OrchestratorProps = {
 	source: LunaticSource;
 	data: SurveyUnitData;
 	onChange?: (...args: any) => void;
-	// children?: PropsWithChildren<any>;
 };
 
 export type OrchestratedElement = {
@@ -40,8 +39,6 @@ export type OrchestratedElement = {
 function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
 	return <>{children}</>;
 }
-
-const empty = {};
 
 function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 	const { source, data, children, onChange } = props;

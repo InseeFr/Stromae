@@ -9,7 +9,6 @@ type LoadSourceDataProps = {
 	survey?: string;
 	unit?: string;
 	onChange: (...ars: any) => void;
-	// children?: PropsWithChildren;
 };
 
 function LoadSourceData(props: PropsWithChildren<LoadSourceDataProps>) {
