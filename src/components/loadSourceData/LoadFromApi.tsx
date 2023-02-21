@@ -1,51 +1,54 @@
-import { useEffect, useState, useRef, ReactElement, cloneElement } from 'react';
-import type { LunaticSource } from '../../typeLunatic/type-source';
-import type { SurveyUnitData } from '../../typeStromae/type';
+import { PropsWithChildren, useCallback } from 'react';
+import { loadSourceDataContext } from './LoadSourceDataContext';
 import { useOidcAccessToken } from '../../lib/oidc';
 import surveyApi from '../../lib/surveys/surveysApi';
-import { OrchestratorProps } from '../orchestrator/Orchestrator';
 
 type LoadFromApiProps = {
 	survey?: string;
 	unit?: string;
-	children?: ReactElement<OrchestratorProps>;
 };
 
-function LoadFromApi(props: LoadFromApiProps) {
-	const { survey, unit, children } = props;
-	const alreadyDone = useRef(false);
-	const [source, setSource] = useState<LunaticSource | undefined>(undefined);
-	const [surveyUnitData, setSurveyUnitData] = useState<
-		SurveyUnitData | undefined
-	>(undefined);
+function LoadFromApi({
+	survey,
+	unit,
+	children,
+}: PropsWithChildren<LoadFromApiProps>) {
 	const { accessToken } = useOidcAccessToken();
 
-	useEffect(
-		function () {
-			if (!alreadyDone.current) {
-				(async function () {
-					if (survey && unit && accessToken) {
-						alreadyDone.current = true;
-						const [pSource, pData] = await Promise.all([
-							surveyApi.getSurvey(survey, accessToken),
-							surveyApi.getSurveyUnitData(unit, accessToken),
-						]);
-						setSource(pSource);
-						setSurveyUnitData(pData);
-					}
-				})();
+	const getMetadata = useCallback(
+		async function () {
+			if (survey) {
+				return await surveyApi.getMetadataSurvey(survey);
 			}
 		},
-		[survey, accessToken, alreadyDone, unit]
+		[survey]
 	);
 
-	if (source && surveyUnitData && children) {
-		return cloneElement(children, {
-			source,
-			data: surveyUnitData,
-		});
-	}
-	return <>Skeleton please</>;
+	const getSurvey = useCallback(
+		async function () {
+			if (survey && accessToken) {
+				return await surveyApi.getSurvey(survey, accessToken);
+			}
+		},
+		[survey, accessToken]
+	);
+
+	const getSurveyUnitData = useCallback(
+		async function () {
+			if (accessToken && unit) {
+				return await surveyApi.getSurveyUnitData(unit, accessToken);
+			}
+		},
+		[unit, accessToken]
+	);
+
+	return (
+		<loadSourceDataContext.Provider
+			value={{ getMetadata, getSurvey, getSurveyUnitData }}
+		>
+			{children}
+		</loadSourceDataContext.Provider>
+	);
 }
 
 export default LoadFromApi;

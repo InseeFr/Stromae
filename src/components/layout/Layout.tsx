@@ -1,68 +1,65 @@
-import { useEffect, useState, useRef } from "react";
-import FooterType from "../footer/FooterType";
-import HeaderType from "../header/HeaderType";
-import surveys from "../../lib/surveys/surveysApi";
-import Header from "../../components/header/Header";
-import HeaderAuth from "../../components/header/HeaderAuth";
-import Footer from "../../components/footer/Footer";
-import SkipLinks from "@codegouvfr/react-dsfr/SkipLinks";
-import LayoutPlaceholder from "../skeleton/Layout";
-import Main from "./Main";
+import {
+	useEffect,
+	useState,
+	useRef,
+	useContext,
+	PropsWithChildren,
+} from 'react';
+import FooterType from '../footer/FooterType';
+import HeaderType from '../header/HeaderType';
+import Header from '../../components/header/Header';
+import HeaderAuth from '../../components/header/HeaderAuth';
+import Footer from '../../components/footer/Footer';
+import SkipLinks from '@codegouvfr/react-dsfr/SkipLinks';
+import LayoutPlaceholder from '../skeleton/Layout';
+import Main from './Main';
+import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
-export type WelcomeSurveyParams = {
-  survey: string;
-};
-
-type LayoutProps = {
-  survey?: string;
-  children: JSX.Element | JSX.Element[];
-};
+type LayoutProps = {};
 
 const defaultLinks = [
-  {
-    anchor: "#contenu",
-    label: "Contenu",
-  },
+	{
+		anchor: '#contenu',
+		label: 'Contenu',
+	},
 ];
 
-function Layout({ children, survey }: LayoutProps) {
-  const alreadyLoad = useRef(false);
-  const [header, setHeader] = useState<HeaderType | undefined>(undefined);
-  const [footer, setFooter] = useState<FooterType | undefined>(undefined);
+function Layout({ children }: PropsWithChildren<LayoutProps>) {
+	const alreadyLoad = useRef(false);
+	const [header, setHeader] = useState<HeaderType | undefined>(undefined);
+	const [footer, setFooter] = useState<FooterType | undefined>(undefined);
+	const { getMetadata } = useContext(loadSourceDataContext);
 
-  useEffect(
-    function () {
-      if (survey && !alreadyLoad.current) {
-        alreadyLoad.current = true;
-        (async function () {
-          try {
-            const data = await surveys.getMetadataSurvey(survey);
-            if (data) {
-              const { Header, Footer } = data;
-              setHeader(Header);
-              setFooter(Footer);
-            }
-          } catch (e) {
-            // TODO
-          }
-        })();
-      }
-    },
-    [survey, alreadyLoad]
-  );
-  if (header && footer) {
-    return (
-      <>
-        <SkipLinks links={defaultLinks} />
-        <HeaderAuth>
-          <Header header={header} />
-        </HeaderAuth>
-        <Main id="contenu">{children}</Main>
-        <Footer footer={footer} />
-      </>
-    );
-  }
-  return <LayoutPlaceholder />;
+	useEffect(
+		function () {
+			if (getMetadata && !alreadyLoad.current) {
+				alreadyLoad.current = true;
+				(async function () {
+					const data = await getMetadata();
+					if (data) {
+						const { Header, Footer } = data;
+						setHeader(Header);
+						setFooter(Footer);
+					} else throw new Error('metadata missing.');
+				})();
+			}
+		},
+		[getMetadata, alreadyLoad]
+	);
+
+	if (header && footer) {
+		return (
+			<>
+				<SkipLinks links={defaultLinks} />
+				<HeaderAuth>
+					<Header header={header} />
+				</HeaderAuth>
+				<Main id="contenu">{children}</Main>
+				<Footer footer={footer} />
+			</>
+		);
+	}
+	return <LayoutPlaceholder />;
 }
 
 export default Layout;

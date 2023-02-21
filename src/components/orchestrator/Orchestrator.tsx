@@ -10,7 +10,7 @@ import { SurveyUnitData } from '../../typeStromae/type';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
-	data?: SurveyUnitData;
+	surveyUnitData?: SurveyUnitData;
 	onChange?: (...args: any) => void;
 };
 
@@ -41,9 +41,9 @@ function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
 }
 
 function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
-	const { source, data, children, onChange } = props;
+	const { source, surveyUnitData, children, onChange } = props;
 	const [args, setArgs] = useState({ onChange });
-
+	const { data } = surveyUnitData || {};
 	useEffect(
 		function () {
 			setArgs({ onChange });

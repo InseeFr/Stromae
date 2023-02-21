@@ -23,14 +23,14 @@ function Questionnaire(props: QuestionnaireProps) {
 	useDocumentTitle('Questionnaire');
 	return (
 		<OidcSecure>
-			<Layout survey={survey}>
-				<LoadFromApi survey={survey} unit={unit}>
+			<LoadFromApi survey={survey} unit={unit}>
+				<Layout>
 					<Orchestrator onChange={onChange}>
 						<Formulaire />
 						<Navigation />
 					</Orchestrator>
-				</LoadFromApi>
-			</Layout>
+				</Layout>
+			</LoadFromApi>
 		</OidcSecure>
 	);
 }
