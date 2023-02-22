@@ -13,6 +13,7 @@ export const createKeycloakOidcClient = async ({
   url,
   realm,
   clientId,
+  identityProvider,
   urlPortail,
   evtUserActivity,
 }) => {
@@ -27,7 +28,13 @@ export const createKeycloakOidcClient = async ({
     .catch((error) => error);
 
   const login = async () => {
-    await keycloakInstance.login({ redirectUri: window.location.href });
+    await keycloakInstance.login({
+      redirectUri: window.location.href,
+      // Readonly mode : Internal user login
+      idpHint: window.location.pathname.startsWith(`/404`)
+        ? identityProvider
+        : null,
+    });
     return new Promise(() => {});
   };
 

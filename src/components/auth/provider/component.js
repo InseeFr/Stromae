@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { OIDC, NONE } from 'utils/constants';
+import { AppContext } from 'App';
 import { LoaderSimple } from 'components/shared/loader';
-import { getOidc } from 'utils/configuration';
 import { errorDictionary } from 'i18n';
-import { createKeycloakOidcClient } from 'utils/keycloak';
+import React, { useContext, useEffect, useState } from 'react';
+import { getOidc } from 'utils/configuration';
+import { NONE, OIDC } from 'utils/constants';
 import { listenActivity } from 'utils/events';
+import { createKeycloakOidcClient } from 'utils/keycloak';
 
 export const AuthContext = React.createContext();
 
-const AuthProvider = ({ authType, urlPortail, children }) => {
+const AuthProvider = ({ children }) => {
+  const {
+    authenticationType: authType,
+    urlPortail,
+    identityProvider,
+  } = useContext(AppContext);
+
   const [oidcClient, setOidcClient] = useState(() => {
     switch (authType) {
       case OIDC:
@@ -32,13 +39,14 @@ const AuthProvider = ({ authType, urlPortail, children }) => {
         url: oidcConf['auth-server-url'],
         realm: oidcConf['realm'],
         clientId: oidcConf['resource'],
+        identityProvider: identityProvider,
         urlPortail,
         evtUserActivity: listenActivity,
       });
 
       setOidcClient(oidcClient);
     })();
-  }, [authType, urlPortail]);
+  }, [authType, identityProvider, urlPortail]);
 
   if (oidcClient === null) return <LoaderSimple />;
 
