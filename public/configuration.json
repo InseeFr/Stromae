@@ -1,5 +1,5 @@
 {
-  "authenticationType": "${AUTHENTICATION_TYPE}",
+  "authenticationType": "NONE",
   "_authenticationType_comment_": "Authentication type : OIDC or NONE",
   "apiUrl": "${API_URL}",
   "portail": "${PORTAIL_URL}",
