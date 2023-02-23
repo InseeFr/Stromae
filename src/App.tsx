@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Questionnaire from './pages/questionnaire';
 import Portail from './pages/deconnexion';
 import ErrorPage from './pages/error';
-import Visualize from './pages/vizualize/Visualize';
+import Visualize from './pages/visualize/Visualize';
 import { AuthProvider } from './components/auth';
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: '/',
+		path: '/visualize',
 		element: <Visualize />,
 		errorElement: <ErrorPage />,
 	},

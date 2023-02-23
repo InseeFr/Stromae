@@ -1,38 +1,29 @@
 import { useParams } from 'react-router-dom';
-import { OidcSecure } from '../../lib/oidc';
-import Orchestrator from '../../components/orchestrator';
-import Layout from '../../components/layout';
-import Navigation from '../../components/navigation';
-import Formulaire from '../../components/formulaire';
 import useDocumentTitle from '../../useDocumentTitle';
-import LoadFromApi from '../../components/loadSourceData/LoadFromApi';
+import QuestionnairePublic from './QuestionnairePublic';
+import QuestionnairePrive from './QuestionnairePrive';
 
 export type QuestionnaireParams = {
-	survey: string;
-	unit: string;
+	survey?: string;
+	unit?: string;
 };
 
-type QuestionnaireProps = {};
-
-function onChange(...args: any) {
-	console.log('change', ...args);
-}
+export type QuestionnaireProps = {
+	isPublic?: boolean;
+	onChange?: (args: any) => void;
+};
 
 function Questionnaire(props: QuestionnaireProps) {
 	const { survey, unit } = useParams<QuestionnaireParams>();
+	const { isPublic, onChange } = props;
 	useDocumentTitle('Questionnaire');
-	return (
-		<OidcSecure>
-			<LoadFromApi survey={survey} unit={unit}>
-				<Layout>
-					<Orchestrator onChange={onChange}>
-						<Formulaire />
-						<Navigation />
-					</Orchestrator>
-				</Layout>
-			</LoadFromApi>
-		</OidcSecure>
-	);
+
+	if (isPublic) {
+		return (
+			<QuestionnairePublic survey={survey} unit={unit} onChange={onChange} />
+		);
+	}
+	return <QuestionnairePrive survey={survey} unit={unit} onChange={onChange} />;
 }
 
 export default Questionnaire;

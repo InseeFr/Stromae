@@ -11,7 +11,7 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import Orchestrator from './Orchestrator';
 
 type LoadSourceDataProps = {
-	onChange?: () => void;
+	onChange?: (args: any) => void;
 };
 //
 function LoadSourceData({
