@@ -54,7 +54,11 @@ function LoadFromApi({
 					required.map(function (name) {
 						return surveyApi.getNomenclature(name, accessToken);
 					})
-				);
+				).then(function (results) {
+					return results.reduce(function (a, data, index) {
+						return { ...a, [required[index]]: data };
+					}, {});
+				});
 
 				return nomenclatures;
 			}

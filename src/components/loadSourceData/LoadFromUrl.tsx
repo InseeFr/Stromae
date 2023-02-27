@@ -57,14 +57,18 @@ function LoadFromUrl({
 
 				const nomenclatures = await Promise.all(
 					required.map(function (name) {
-						debugger;
-						const url =
-							urlNomenclatures && name in urlNomenclatures
-								? urlNomenclatures[name]
-								: `/not-privided-url/${name}`;
-						return publicRequest<Array<string>>(HTTP_VERBS.get, url);
+						if (urlNomenclatures && name in urlNomenclatures) {
+							const url = urlNomenclatures[name];
+							return publicRequest<Array<string>>(HTTP_VERBS.get, url);
+						}
+						console.warn(`unprovided nomenclature's url for ${name}`);
+						return [];
 					})
-				);
+				).then(function (results) {
+					return results.reduce(function (a, data, index) {
+						return { ...a, [required[index]]: data };
+					}, {});
+				});
 
 				return nomenclatures;
 			}

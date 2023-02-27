@@ -7,7 +7,9 @@ export type LoadSourceDataContextType = {
 	getMetadata?: () => Promise<MetadataSurvey | undefined>;
 	getSurvey?: () => Promise<LunaticSource | undefined>;
 	getSurveyUnitData?: () => Promise<SurveyUnitData | undefined>;
-	getRequiredNomenclatures?: () => Promise<any | undefined>;
+	getRequiredNomenclatures?: () => Promise<
+		Record<string, Array<any>> | undefined
+	>;
 };
 
 export const loadSourceDataContext = createContext<LoadSourceDataContextType>(

@@ -11,6 +11,7 @@ import { SurveyUnitData } from '../../typeStromae/type';
 export type OrchestratorProps = {
 	source?: LunaticSource;
 	surveyUnitData?: SurveyUnitData;
+	suggesterFetcher?: any;
 	onChange?: (...args: any) => void;
 };
 
