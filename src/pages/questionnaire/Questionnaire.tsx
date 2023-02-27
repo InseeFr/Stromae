@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 import useDocumentTitle from '../../useDocumentTitle';
-import QuestionnairePublic from './QuestionnairePublic';
-import QuestionnairePrive from './QuestionnairePrive';
+import Orchestrator from '../../components/orchestrator';
+import Layout from '../../components/layout';
+import Navigation from '../../components/navigation';
+import Formulaire from '../../components/formulaire';
+import LoadFromApi from '../../components/loadSourceData/LoadFromApi';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -13,17 +16,19 @@ export type QuestionnaireProps = {
 	onChange?: (args: any) => void;
 };
 
-function Questionnaire(props: QuestionnaireProps) {
-	const { survey, unit } = useParams<QuestionnaireParams>();
-	const { isPublic, onChange } = props;
+function Questionnaire({ onChange }: QuestionnaireProps) {
+	const { survey, unit } = useParams();
 	useDocumentTitle('Questionnaire');
-
-	if (isPublic) {
-		return (
-			<QuestionnairePublic survey={survey} unit={unit} onChange={onChange} />
-		);
-	}
-	return <QuestionnairePrive survey={survey} unit={unit} onChange={onChange} />;
+	return (
+		<LoadFromApi survey={survey} unit={unit}>
+			<Layout>
+				<Orchestrator onChange={onChange}>
+					<Formulaire />
+					<Navigation />
+				</Orchestrator>
+			</Layout>
+		</LoadFromApi>
+	);
 }
 
 export default Questionnaire;
