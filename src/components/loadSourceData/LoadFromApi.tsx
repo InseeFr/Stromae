@@ -42,9 +42,34 @@ function LoadFromApi({
 		[unit, accessToken]
 	);
 
+	const getRequiredNomenclatures = useCallback(
+		async function () {
+			if (survey && accessToken) {
+				const required = await surveyApi.getRequiredNomenclatures(
+					survey,
+					accessToken
+				);
+
+				const nomenclatures = await Promise.all(
+					required.map(function (name) {
+						return surveyApi.getNomenclature(name, accessToken);
+					})
+				);
+
+				return nomenclatures;
+			}
+		},
+		[survey, accessToken]
+	);
+
 	return (
 		<loadSourceDataContext.Provider
-			value={{ getMetadata, getSurvey, getSurveyUnitData }}
+			value={{
+				getMetadata,
+				getSurvey,
+				getSurveyUnitData,
+				getRequiredNomenclatures,
+			}}
 		>
 			{children}
 		</loadSourceDataContext.Provider>

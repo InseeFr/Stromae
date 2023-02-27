@@ -9,6 +9,8 @@ type LoadFromUrlProps = {
 	urlSource?: string;
 	urlData?: string;
 	urlMetadata?: string;
+	urlRequiredNomenclatures?: string;
+	urlNomenclatures?: Record<string, string>;
 };
 
 function LoadFromUrl({
@@ -16,6 +18,8 @@ function LoadFromUrl({
 	urlSource,
 	urlMetadata,
 	urlData,
+	urlRequiredNomenclatures,
+	urlNomenclatures,
 }: PropsWithChildren<LoadFromUrlProps>) {
 	const getMetadata = useCallback(
 		async function () {
@@ -43,9 +47,39 @@ function LoadFromUrl({
 		[urlData]
 	);
 
+	const getRequiredNomenclatures = useCallback(
+		async function () {
+			if (urlRequiredNomenclatures) {
+				const required = await publicRequest<Array<string>>(
+					HTTP_VERBS.get,
+					urlRequiredNomenclatures
+				);
+
+				const nomenclatures = await Promise.all(
+					required.map(function (name) {
+						debugger;
+						const url =
+							urlNomenclatures && name in urlNomenclatures
+								? urlNomenclatures[name]
+								: `/not-privided-url/${name}`;
+						return publicRequest<Array<string>>(HTTP_VERBS.get, url);
+					})
+				);
+
+				return nomenclatures;
+			}
+		},
+		[urlRequiredNomenclatures, urlNomenclatures]
+	);
+
 	return (
 		<loadSourceDataContext.Provider
-			value={{ getMetadata, getSurvey, getSurveyUnitData }}
+			value={{
+				getMetadata,
+				getSurvey,
+				getSurveyUnitData,
+				getRequiredNomenclatures,
+			}}
 		>
 			{children}
 		</loadSourceDataContext.Provider>

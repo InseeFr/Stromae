@@ -8,6 +8,10 @@ const RP = {
 	source: '/rp/source.json',
 	data: '/rp/data.json',
 	metadata: '/rp/metadata.json',
+	requiredNomenclatures: '/rp/required-nomenclatures.json',
+	nomenclatures: {
+		'libelles-PCS2020': '/rp/nomenclatures/libelles-PCS2020.json',
+	},
 };
 
 function onChange() {}
@@ -18,6 +22,8 @@ function Visualize() {
 			urlSource={RP.source}
 			urlData={RP.data}
 			urlMetadata={RP.metadata}
+			urlRequiredNomenclatures={RP.requiredNomenclatures}
+			urlNomenclatures={RP.nomenclatures}
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
