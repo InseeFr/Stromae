@@ -35,9 +35,11 @@ function LoadFromApi({
 
 	const getSurveyUnitData = useCallback(
 		async function () {
-			if (accessToken && unit) {
-				return await surveyApi.getSurveyUnitData(unit, accessToken);
-			}
+			try {
+				if (accessToken && unit) {
+					return await surveyApi.getSurveyUnitData(unit, accessToken);
+				}
+			} catch (e) {}
 		},
 		[unit, accessToken]
 	);
@@ -54,11 +56,16 @@ function LoadFromApi({
 					required.map(function (name) {
 						return surveyApi.getNomenclature(name, accessToken);
 					})
-				).then(function (results) {
-					return results.reduce(function (a, data, index) {
-						return { ...a, [required[index]]: data };
-					}, {});
-				});
+				)
+					.then(function (results) {
+						return results.reduce(function (a, data, index) {
+							return { ...a, [required[index]]: data };
+						}, {});
+					})
+					.catch(function (e) {
+						// TODO notifier l'utilisateur : voir avec Julia.
+						throw e;
+					});
 
 				return nomenclatures;
 			}

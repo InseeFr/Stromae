@@ -13,6 +13,8 @@ function errorHandler(error: AxiosError) {
 			console.error('Missing Username or Password');
 		} else if (error.response?.status === 401) {
 			console.error('Unauthorized');
+		} else if (error.response?.status === 404) {
+			console.error('Missing resource');
 		} else {
 			console.error('Login Failed');
 		}
@@ -40,7 +42,7 @@ export async function publicRequest<T>(method: string, url: string) {
 		return data;
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
-		throw new Error('Failled!');
+		throw new Error(`Request fail : ${url}`);
 	}
 }
 
@@ -55,6 +57,6 @@ export async function authenticatedRequest<T>(
 		return data;
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
-		throw new Error('Failled!');
+		throw new Error(`Request fail : ${url}`);
 	}
 }

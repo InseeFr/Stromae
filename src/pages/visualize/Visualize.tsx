@@ -11,6 +11,7 @@ const RP = {
 	requiredNomenclatures: '/rp/required-nomenclatures.json',
 	nomenclatures: {
 		'libelles-PCS2020': '/rp/nomenclatures/libelles-PCS2020.json',
+		'communes-2019': '/rp/nomenclatures/communes-2019.json',
 	},
 };
 

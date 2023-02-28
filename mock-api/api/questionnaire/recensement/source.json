@@ -22,6 +22,16 @@
 				}
 			},
 			"version": "1"
+		},
+		{
+			"name": "communes-2019",
+			"fields": [
+				{ "name": "label", "rules": "soft" },
+				{ "name": "nccenr", "rules": "soft" },
+				{ "name": "id", "rules": "soft" }
+			],
+			"queryParser": { "type": "soft" },
+			"version": "1"
 		}
 	],
 	"components": [

@@ -22,6 +22,7 @@ const STATUS = {
 	waiting: 'waiting',
 	working: 'working',
 	terminated: 'terminated',
+	fail: 'fail',
 };
 
 function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
@@ -44,13 +45,12 @@ function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
 	useEffect(
 		function () {
 			if (!done.current) {
-				done.current = true;
-				const [ap, ab] = createAppendTask(store, 1, track);
-				setAppend(() => ap);
-				setAbort(() => ab);
-
 				(async function () {
+					done.current = true;
 					await initStore(store);
+					const [ap, ab] = createAppendTask(store, 1, track);
+					setAppend(() => ap);
+					setAbort(() => ab);
 				})();
 			}
 		},
@@ -75,6 +75,15 @@ function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
 		[abort, append, status, data]
 	);
 
+	useEffect(
+		function () {
+			if (!data) {
+				setStatus(STATUS.fail);
+			}
+		},
+		[data]
+	);
+
 	switch (status) {
 		case STATUS.waiting:
 		case STATUS.working:
@@ -91,6 +100,15 @@ function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
 					isClosable
 					onClose={noRefCheck}
 					title={`Votre référentiel est disponible : ${name}`}
+				/>
+			);
+
+		case STATUS.fail:
+			return (
+				<Notice
+					isClosable
+					onClose={noRefCheck}
+					title={`Impossible de charger un référentiel : ${name}`}
 				/>
 			);
 		default:
@@ -115,29 +133,6 @@ function IndexSuggesters(props: PropsWithChildren<IndexSuggestersProps>) {
 			</>
 		);
 	}
-
-	// useEffect(
-	// 	function () {
-	// 		if (requiredNomenclatures && suggesters && load && !done.current) {
-	// 			done.current = true;
-	// 			Object.entries<Array<any>>(requiredNomenclatures).forEach(function ([
-	// 				name,
-	// 				data,
-	// 			]) {
-	// 				const store = getSuggester(suggesters, name);
-
-	// 				if (store) {
-	// 					(async () => {
-	// 						await initStore(store);
-	// 						const [append] = await createAppendTask(store, 1);
-	// 						await append(requiredNomenclatures[name]);
-	// 					})();
-	// 				}
-	// 			});
-	// 		}
-	// 	},
-	// 	[load, requiredNomenclatures, done, suggesters]
-	// );
 
 	return <>{children}</>;
 }

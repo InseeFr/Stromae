@@ -18,7 +18,7 @@ function LoadSourceData({
 		loadSourceDataContext
 	);
 
-	const requiredNomenclatures = useRemote<Record<string, Array<any>>>(
+	const requiredNomenclatures = useRemote<Record<string, Array<unknown>>>(
 		getRequiredNomenclatures
 	);
 	const source = useRemote<LunaticSource>(getSurvey);
