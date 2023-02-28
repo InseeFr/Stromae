@@ -3,7 +3,7 @@ import { LunaticSource } from '../../typeLunatic/type-source';
 import { getMetadataSurvey, MetadataSurvey } from './getMetadataSurvey';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnitData';
-import { getRequiredNomenclatures } from './getRequiredNomenclautes';
+import { getRequiredNomenclatures } from './getRequiredNomenclatures';
 import { getNomenclature } from './getNomenclature';
 
 const BASE_URL: string = process.env.REACT_APP_SURVEY_API_BASE_URL || '';
