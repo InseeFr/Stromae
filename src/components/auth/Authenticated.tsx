@@ -1,5 +1,3 @@
-function Authenticated() {
-  return <></>;
+export function Authenticated() {
+	return <></>;
 }
-
-export default Authenticated;

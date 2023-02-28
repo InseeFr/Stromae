@@ -4,8 +4,6 @@ type OidcSecureProps = {
 	children: Array<JSX.Element> | JSX.Element;
 };
 
-function OidcSecure({ children }: OidcSecureProps) {
+export function OidcSecure({ children }: OidcSecureProps) {
 	return <OidcSecureAxa>{children}</OidcSecureAxa>;
 }
-
-export default OidcSecure;

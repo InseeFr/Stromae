@@ -1,1 +1,1 @@
-export { default } from './surveysApi';
+export { surveyApi } from './surveysApi';

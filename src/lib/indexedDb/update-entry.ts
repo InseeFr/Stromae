@@ -1,4 +1,4 @@
-function updateEntry<T>(db: IDBDatabase, name: string, entry: T) {
+export function updateEntry<T>(db: IDBDatabase, name: string, entry: T) {
 	return new Promise(function (resolve, reject) {
 		try {
 			const transaction = db.transaction(name, 'readwrite');
@@ -17,5 +17,3 @@ function updateEntry<T>(db: IDBDatabase, name: string, entry: T) {
 		}
 	});
 }
-
-export default updateEntry;

@@ -1,1 +1,1 @@
-export { default } from "./Deconnexion";
+export { Deconnexion } from './Deconnexion';

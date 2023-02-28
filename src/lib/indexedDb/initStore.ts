@@ -1,10 +1,10 @@
 import { SuggesterType } from '../../typeLunatic/type-source';
-import openStorage from './openStorage';
-import clearStore from './clearStore';
-import updateEntry from './update-entry';
-import CONSTANTES from './constantes';
+import { openStorage } from './openStorage';
+import { clearStore } from './clearStore';
+import { updateEntry } from './update-entry';
+import { CONSTANTES } from './constantes';
 
-async function initStore(storeInfo: SuggesterType) {
+export async function initStore(storeInfo: SuggesterType) {
 	const { version, name } = storeInfo;
 	const db = await openStorage(name, version);
 	if (db) {
@@ -13,5 +13,3 @@ async function initStore(storeInfo: SuggesterType) {
 		await updateEntry<SuggesterType>(db, CONSTANTES.STORE_INFO_NAME, storeInfo);
 	}
 }
-
-export default initStore;

@@ -1,4 +1,4 @@
-async function clearStore(db: IDBDatabase, name: string) {
+export async function clearStore(db: IDBDatabase, name: string) {
 	new Promise(function (resolve, reject) {
 		try {
 			const transaction = db.transaction(name, 'readwrite');
@@ -12,5 +12,3 @@ async function clearStore(db: IDBDatabase, name: string) {
 		}
 	});
 }
-
-export default clearStore;

@@ -8,7 +8,7 @@ import { LunaticSource } from '../../typeLunatic/type-source';
  * @param survey
  * @returns
  */
-const getSurvey =
+export const getSurvey =
 	(BASE_URL: string) =>
 	async (survey: string, token: string): Promise<LunaticSource> => {
 		return await authenticatedRequest<LunaticSource>(
@@ -17,5 +17,3 @@ const getSurvey =
 			token
 		);
 	};
-
-export default getSurvey;

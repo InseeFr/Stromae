@@ -18,7 +18,7 @@ function consoleLogging(...args: Array<any>) {
 /**
  * Only with Worker
  */
-function createAppendTask<T>(
+export function createAppendTask<T>(
 	info: SuggesterType,
 	version: number,
 	log = consoleLogging
@@ -55,5 +55,3 @@ function createAppendTask<T>(
 
 	return [launch, terminate];
 }
-
-export default createAppendTask;

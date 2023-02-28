@@ -13,7 +13,7 @@ type LoadFromUrlProps = {
 	urlNomenclatures?: Record<string, string>;
 };
 
-function LoadFromUrl({
+export function LoadFromUrl({
 	children,
 	urlSource,
 	urlMetadata,
@@ -89,5 +89,3 @@ function LoadFromUrl({
 		</loadSourceDataContext.Provider>
 	);
 }
-
-export default LoadFromUrl;

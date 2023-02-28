@@ -1,1 +1,1 @@
-export { default } from './Visualize';
+export { Visualize } from './Visualize';

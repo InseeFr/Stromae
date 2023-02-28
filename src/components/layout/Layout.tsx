@@ -5,14 +5,14 @@ import {
 	useContext,
 	PropsWithChildren,
 } from 'react';
-import FooterType from '../footer/FooterType';
-import HeaderType from '../header/HeaderType';
-import Header from '../../components/header/Header';
-import HeaderAuth from '../../components/header/HeaderAuth';
-import Footer from '../../components/footer/Footer';
+import { FooterType } from '../footer/FooterType';
+import { HeaderType } from '../header/HeaderType';
+import { Header } from '../../components/header/Header';
+import { HeaderAuth } from '../../components/header/HeaderAuth';
+import { Footer } from '../../components/footer/Footer';
 import SkipLinks from '@codegouvfr/react-dsfr/SkipLinks';
-import LayoutPlaceholder from '../skeleton/Layout';
-import Main from './Main';
+import { Layout as LayoutSkeleton } from '../skeleton/Layout';
+import { Main } from './Main';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
 type LayoutProps = {};
@@ -24,7 +24,7 @@ const defaultLinks = [
 	},
 ];
 
-function Layout({ children }: PropsWithChildren<LayoutProps>) {
+export function Layout({ children }: PropsWithChildren<LayoutProps>) {
 	const alreadyLoad = useRef(false);
 	const [header, setHeader] = useState<HeaderType | undefined>(undefined);
 	const [footer, setFooter] = useState<FooterType | undefined>(undefined);
@@ -59,7 +59,5 @@ function Layout({ children }: PropsWithChildren<LayoutProps>) {
 			</>
 		);
 	}
-	return <LayoutPlaceholder />;
+	return <LayoutSkeleton />;
 }
-
-export default Layout;

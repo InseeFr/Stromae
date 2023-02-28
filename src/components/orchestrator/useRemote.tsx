@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 
-function useRemote<T>(
+export function useRemote<T>(
 	cally: (() => Promise<T | undefined>) | undefined
 ): T | undefined {
 	const [result, setResult] = useState<T | undefined>(undefined);
@@ -25,5 +25,3 @@ function useRemote<T>(
 
 	return result;
 }
-
-export default useRemote;
