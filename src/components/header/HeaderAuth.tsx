@@ -1,6 +1,6 @@
 import { useCallback, cloneElement } from "react";
 import { useParams } from "react-router";
-import { useOidc } from "@axa-fr/react-oidc";
+import { useOidc } from "../../lib/oidc";
 import { HeaderProps } from "./Header";
 
 type HeaderAuthProps = {
