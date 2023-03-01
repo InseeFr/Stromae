@@ -6,9 +6,9 @@ import {
 	useCallback,
 } from 'react';
 import { Notice } from '@codegouvfr/react-dsfr/Notice';
-import initStore from '../../lib/indexedDb/initStore';
+import { initStore } from '../../lib/indexedDb/initStore';
 import { SuggesterType } from '../../typeLunatic/type-source';
-import createAppendTask from '../../lib/indexedDb/createAppendTask';
+import { createAppendTask } from '../../lib/indexedDb/createAppendTask';
 
 type IndexSuggestersProps = {
 	requiredNomenclatures?: Record<string, Array<any>>;
@@ -116,7 +116,9 @@ function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
 	}
 }
 
-function IndexSuggesters(props: PropsWithChildren<IndexSuggestersProps>) {
+export function IndexSuggesters(
+	props: PropsWithChildren<IndexSuggestersProps>
+) {
 	const { children, load = true, requiredNomenclatures, suggesters } = props;
 
 	if (load && requiredNomenclatures && suggesters) {
@@ -136,5 +138,3 @@ function IndexSuggesters(props: PropsWithChildren<IndexSuggestersProps>) {
 
 	return <>{children}</>;
 }
-
-export default IndexSuggesters;

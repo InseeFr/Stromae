@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-globals */
-import CONSTANTE from './constantes';
-import getIDB from './get-idb';
+import { CONSTANTES } from './constantes';
+import { getIDB } from './get-idb';
 
 const IDB_REF = getIDB();
 
-function openStorage(
+export function openStorage(
 	name: string,
 	idbVersion: number = 1
 ): Promise<IDBDatabase> {
@@ -19,13 +19,13 @@ function openStorage(
 		request.onupgradeneeded = function (e: IDBVersionChangeEvent) {
 			doIt = false;
 			db = this.result;
-			const store = db.createObjectStore(CONSTANTE.STORE_DATA_NAME, {
+			const store = db.createObjectStore(CONSTANTES.STORE_DATA_NAME, {
 				keyPath: 'id',
 			});
-			db.createObjectStore(CONSTANTE.STORE_INFO_NAME, {
+			db.createObjectStore(CONSTANTES.STORE_INFO_NAME, {
 				keyPath: 'name',
 			});
-			store.createIndex(CONSTANTE.STORE_INDEX_NAME, 'tokens', {
+			store.createIndex(CONSTANTES.STORE_INDEX_NAME, 'tokens', {
 				multiEntry: true,
 			});
 
@@ -48,5 +48,3 @@ function openStorage(
 		};
 	});
 }
-
-export default openStorage;

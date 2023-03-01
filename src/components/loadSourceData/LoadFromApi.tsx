@@ -1,14 +1,14 @@
 import { PropsWithChildren, useCallback } from 'react';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 import { useOidcAccessToken } from '../../lib/oidc';
-import surveyApi from '../../lib/surveys/surveysApi';
+import { surveyApi } from '../../lib/surveys/surveysApi';
 
 type LoadFromApiProps = {
 	survey?: string;
 	unit?: string;
 };
 
-function LoadFromApi({
+export function LoadFromApi({
 	survey,
 	unit,
 	children,
@@ -39,7 +39,9 @@ function LoadFromApi({
 				if (accessToken && unit) {
 					return await surveyApi.getSurveyUnitData(unit, accessToken);
 				}
-			} catch (e) {}
+			} catch (e) {
+				// TODO
+			}
 		},
 		[unit, accessToken]
 	);
@@ -86,5 +88,3 @@ function LoadFromApi({
 		</loadSourceDataContext.Provider>
 	);
 }
-
-export default LoadFromApi;

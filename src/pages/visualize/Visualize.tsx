@@ -1,8 +1,8 @@
-import LoadFromUrl from '../../components/loadSourceData/LoadFromUrl';
-import Orchestrator from '../../components/orchestrator';
-import Formulaire from '../../components/formulaire';
-import Navigation from '../../components/navigation';
-import Layout from '../../components/layout/Layout';
+import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
+import { Orchestrator } from '../../components/orchestrator';
+import { Formulaire } from '../../components/formulaire';
+import { Navigation } from '../../components/navigation';
+import { Layout } from '../../components/layout/Layout';
 
 const RP = {
 	source: '/rp/source.json',
@@ -17,7 +17,7 @@ const RP = {
 
 function onChange() {}
 
-function Visualize() {
+export function Visualize() {
 	return (
 		<LoadFromUrl
 			urlSource={RP.source}
@@ -35,5 +35,3 @@ function Visualize() {
 		</LoadFromUrl>
 	);
 }
-
-export default Visualize;

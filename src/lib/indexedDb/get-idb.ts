@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-function getIDB(): IDBFactory {
+export function getIDB(): IDBFactory {
 	const what: any = self || window;
 	return (
 		what.indexedDB ||
@@ -8,5 +8,3 @@ function getIDB(): IDBFactory {
 		what.msIndexedDB
 	);
 }
-
-export default getIDB;

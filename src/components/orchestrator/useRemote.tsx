@@ -1,6 +1,17 @@
 import { useRef, useEffect, useState } from 'react';
 
-function useRemote<T>(
+const controller = new AbortController();
+
+function abortRequest() {
+	controller.abort();
+}
+
+/**
+ * A hook to prevent dual fetch by using useRef.
+ * @param cally
+ * @returns
+ */
+export function useRemote<T>(
 	cally: (() => Promise<T | undefined>) | undefined
 ): T | undefined {
 	const [result, setResult] = useState<T | undefined>(undefined);
@@ -17,7 +28,7 @@ function useRemote<T>(
 				}
 			}
 			return () => {
-				// TODO
+				abortRequest();
 			};
 		},
 		[cally]
@@ -25,5 +36,3 @@ function useRemote<T>(
 
 	return result;
 }
-
-export default useRemote;

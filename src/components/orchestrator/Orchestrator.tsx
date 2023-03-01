@@ -41,7 +41,7 @@ function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
 	return <>{children}</>;
 }
 
-function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
+export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 	const { source, surveyUnitData, children, onChange } = props;
 	const [args, setArgs] = useState({ onChange });
 	const { data } = surveyUnitData || {};
@@ -92,5 +92,3 @@ function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 	}
 	return null;
 }
-
-export default Orchestrator;

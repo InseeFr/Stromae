@@ -1,7 +1,7 @@
 import { authenticatedRequest, HTTP_VERBS } from '../commons/axios-utils';
 import { requiredNomenclature } from './api';
 
-const getRequiredNomenclatures =
+export const getRequiredNomenclatures =
 	(BASE_URL: string) =>
 	async (survey: string, token: string): Promise<Array<string>> => {
 		return await authenticatedRequest<Array<string>>(
@@ -10,5 +10,3 @@ const getRequiredNomenclatures =
 			token
 		);
 	};
-
-export default getRequiredNomenclatures;

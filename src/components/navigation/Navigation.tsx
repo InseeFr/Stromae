@@ -1,7 +1,7 @@
 import { OrchestratedElement } from '../orchestrator';
 import { ButtonsGroup } from '@codegouvfr/react-dsfr/ButtonsGroup';
 
-function Navigation(props: OrchestratedElement) {
+export function Navigation(props: OrchestratedElement) {
 	const { goNextPage, goPreviousPage, isFirstPage, isLastPage } = props;
 
 	return (
@@ -24,5 +24,3 @@ function Navigation(props: OrchestratedElement) {
 		/>
 	);
 }
-
-export default Navigation;

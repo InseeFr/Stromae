@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import Layout from '../../components/layout';
+import { Layout } from '../../components/layout';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { ReactComponent as Information } from '../../assets/information.svg';
-import useDocumentTitle from '../../useDocumentTitle';
-import LoadFromApi from '../../components/loadSourceData/LoadFromApi';
+import { useDocumentTitle } from '../../useDocumentTitle';
+import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
 type PortailProps = {};
 
@@ -11,7 +11,7 @@ export type QuestionnaireParams = {
 	survey: string;
 };
 
-function Deconnexion(props: PortailProps) {
+export function Deconnexion(props: PortailProps) {
 	const { survey } = useParams<QuestionnaireParams>();
 	useDocumentTitle('Page de déconnexion');
 	return (
@@ -48,5 +48,3 @@ function Deconnexion(props: PortailProps) {
 		</LoadFromApi>
 	);
 }
-
-export default Deconnexion;

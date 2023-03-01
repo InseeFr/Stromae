@@ -1,13 +1,11 @@
-import { useOidcAccessToken as useOidcAccessTokenAxa } from "@axa-fr/react-oidc";
+import { useOidcAccessToken as useOidcAccessTokenAxa } from '@axa-fr/react-oidc';
 
 /** */
-function useOidcAccessToken(): {
-  accessToken: string;
-  accessTokenPayload: string;
+export function useOidcAccessToken(): {
+	accessToken: string;
+	accessTokenPayload: string;
 } {
-  const { accessToken, accessTokenPayload } = useOidcAccessTokenAxa();
+	const { accessToken, accessTokenPayload } = useOidcAccessTokenAxa();
 
-  return { accessToken, accessTokenPayload };
+	return { accessToken, accessTokenPayload };
 }
-
-export default useOidcAccessToken;

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-import useDocumentTitle from '../../useDocumentTitle';
-import Orchestrator from '../../components/orchestrator';
-import Layout from '../../components/layout';
-import Navigation from '../../components/navigation';
-import Formulaire from '../../components/formulaire';
-import LoadFromApi from '../../components/loadSourceData/LoadFromApi';
+import { useDocumentTitle } from '../../useDocumentTitle';
+import { Orchestrator } from '../../components/orchestrator';
+import { Layout } from '../../components/layout';
+import { Navigation } from '../../components/navigation';
+import { Formulaire } from '../../components/formulaire';
+import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -16,7 +16,7 @@ export type QuestionnaireProps = {
 	onChange?: (args: any) => void;
 };
 
-function Questionnaire({ onChange }: QuestionnaireProps) {
+export function Questionnaire({ onChange }: QuestionnaireProps) {
 	const { survey, unit } = useParams();
 	useDocumentTitle('Questionnaire');
 	return (
@@ -30,5 +30,3 @@ function Questionnaire({ onChange }: QuestionnaireProps) {
 		</LoadFromApi>
 	);
 }
-
-export default Questionnaire;

@@ -2,15 +2,15 @@ import { PropsWithChildren, useContext } from 'react';
 import { LunaticSource } from '../../typeLunatic/type-source';
 import { SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
-import IndexSuggesters from './IndexSuggesters';
-import Orchestrator from './Orchestrator';
-import useRemote from './useRemote';
+import { IndexSuggesters } from './IndexSuggesters';
+import { Orchestrator } from './Orchestrator';
+import { useRemote } from './useRemote';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
 };
 //
-function LoadSourceData({
+export function LoadSourceData({
 	children,
 	onChange,
 }: PropsWithChildren<LoadSourceDataProps>) {
@@ -43,5 +43,3 @@ function LoadSourceData({
 	}
 	return null;
 }
-
-export default LoadSourceData;

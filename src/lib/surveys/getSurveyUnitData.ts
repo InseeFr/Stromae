@@ -3,7 +3,7 @@ import type { SurveyUnitData } from '../../typeStromae/type';
 import { authenticatedRequest, HTTP_VERBS } from '../commons/axios-utils';
 import { surveyUnitData } from './api';
 
-const getSurveyUnitData =
+export const getSurveyUnitData =
 	(BASE_URL: string) =>
 	async (unit: string, token: string): Promise<SurveyUnitData> => {
 		const data = await authenticatedRequest<LunaticData>(
@@ -16,5 +16,3 @@ const getSurveyUnitData =
 
 		return { data };
 	};
-
-export default getSurveyUnitData;

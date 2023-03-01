@@ -1,3 +1,3 @@
-export { default as useOidcAccessToken } from "./useOidcAccessToken ";
-export { default as OidcSecure } from "./OidcSecure";
-export { default as useOidc } from "./useOidc";
+export { useOidcAccessToken } from './useOidcAccessToken ';
+export { OidcSecure } from './OidcSecure';
+export { useOidc } from './useOidc';

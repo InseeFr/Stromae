@@ -8,7 +8,7 @@ export const SEARCH_TYPES = {
 	tokens: 'search/tokens',
 };
 
-const CONSTANTES = {
+export const CONSTANTES = {
 	STORE_DATA_NAME,
 	STORE_INDEX_NAME,
 	STORE_INDEX_PATH,
@@ -16,5 +16,3 @@ const CONSTANTES = {
 	SEARCH_TYPES,
 	STORE_INFO_NAME,
 };
-
-export default CONSTANTES;
