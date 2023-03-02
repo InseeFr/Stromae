@@ -14,25 +14,17 @@ type AsyncRequestProps<T> = {
 	};
 };
 
-function noRefCheck() {}
+function nothing() {}
 
 function getAlert(severity: AlertProps.Severity, message?: string) {
 	if (message) {
-		return (
-			<Alert
-				closable
-				onClose={noRefCheck}
-				severity={severity}
-				description={message}
-				small
-			/>
-		);
+		return <Alert closable severity={severity} description={message} small />;
 	}
 	return null;
 }
 
 export function AsyncRequest<T>(props: AsyncRequestProps<T>) {
-	const { request, label = {}, onSuccess, abort } = props;
+	const { request, label = {}, onSuccess, abort = nothing } = props;
 	const { idle, pending, error: errorLabel, success } = label;
 	const { status, execute, error, value } = useAsync(request);
 
@@ -40,9 +32,7 @@ export function AsyncRequest<T>(props: AsyncRequestProps<T>) {
 		function () {
 			execute();
 			return () => {
-				if (abort) {
-					abort();
-				}
+				abort();
 			};
 		},
 		[execute, abort]
