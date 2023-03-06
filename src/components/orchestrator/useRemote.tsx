@@ -6,13 +6,16 @@ function abortRequest() {
 	controller.abort();
 }
 
+function nothing() {}
+
 /**
  * A hook to prevent dual fetch by using useRef.
  * @param cally
  * @returns
  */
 export function useRemote<T>(
-	cally: (() => Promise<T | undefined>) | undefined
+	cally: (() => Promise<T | undefined>) | undefined,
+	onfail: () => void = nothing
 ): T | undefined {
 	const [result, setResult] = useState<T | undefined>(undefined);
 	const alreadyDone = useRef(false);
@@ -23,7 +26,11 @@ export function useRemote<T>(
 				if (typeof cally === 'function') {
 					alreadyDone.current = true;
 					(async function () {
-						setResult(await cally());
+						try {
+							setResult(await cally());
+						} catch (e) {
+							onfail();
+						}
 					})();
 				}
 			}
@@ -31,7 +38,7 @@ export function useRemote<T>(
 				abortRequest();
 			};
 		},
-		[cally]
+		[cally, onfail]
 	);
 
 	return result;

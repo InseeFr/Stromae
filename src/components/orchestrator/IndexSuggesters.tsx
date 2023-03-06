@@ -1,14 +1,8 @@
-import {
-	PropsWithChildren,
-	useEffect,
-	useRef,
-	useState,
-	useCallback,
-} from 'react';
-import { Notice } from '@codegouvfr/react-dsfr/Notice';
+import { PropsWithChildren, useState, useCallback } from 'react';
 import { initStore } from '../../lib/indexedDb/initStore';
 import { SuggesterType } from '../../typeLunatic/type-source';
 import { createAppendTask } from '../../lib/indexedDb/createAppendTask';
+import { AsyncRequest } from '../AsyncRequest/AsyncRequest';
 
 type IndexSuggestersProps = {
 	requiredNomenclatures?: Record<string, Array<any>>;
@@ -16,104 +10,39 @@ type IndexSuggestersProps = {
 	suggesters?: Array<SuggesterType>;
 };
 
-function noRefCheck() {}
-
-const STATUS = {
-	waiting: 'waiting',
-	working: 'working',
-	terminated: 'terminated',
-	fail: 'fail',
-};
+function getLabel(name: string) {
+	return {
+		pending: `Votre référentiel est en cours de chargement : ${name}.`,
+		error: 'error',
+		success: `Le chargement de votre référentiel est terminé : ${name}.`,
+	};
+}
 
 function LoadOne({ store, data }: { store: SuggesterType; data: Array<any> }) {
-	const done = useRef(false);
-	const { name } = store;
-	const [status, setStatus] = useState(STATUS.waiting);
-	const [append, setAppend] = useState<
-		undefined | ((entities: Array<any>) => void)
-	>(undefined);
 	const [abort, setAbort] = useState<undefined | (() => void)>(undefined);
+	const { name } = store;
 
-	const track = useCallback(function (s: any = {}) {
-		const { message } = s;
-
-		if (message && message.type === 'fill-store/done') {
-			setStatus(STATUS.terminated);
-		}
-	}, []);
-
-	useEffect(
-		function () {
-			if (!done.current) {
-				(async function () {
-					done.current = true;
-					await initStore(store);
-					const [ap, ab] = createAppendTask(store, 1, track);
-					setAppend(() => ap);
-					setAbort(() => ab);
-				})();
+	const request = useCallback(
+		async function () {
+			if (data) {
+				const [append, ab] = createAppendTask(store, 1, () => null);
+				setAbort(() => ab);
+				await initStore(store);
+				return await append(data);
 			}
 		},
-		[store, done, track]
+		[data, store]
 	);
+	const onSuccess = useCallback(function () {}, []);
 
-	useEffect(
-		function () {
-			if (status === STATUS.waiting && append && data) {
-				setStatus(STATUS.working);
-				(async function () {
-					await append(data);
-				})();
-			}
-			return () => {
-				if (abort && status === STATUS.working) {
-					abort();
-					setStatus(STATUS.terminated);
-				}
-			};
-		},
-		[abort, append, status, data]
+	return (
+		<AsyncRequest<any>
+			request={request}
+			onSuccess={onSuccess}
+			abort={abort}
+			label={getLabel(name)}
+		/>
 	);
-
-	useEffect(
-		function () {
-			if (!data) {
-				setStatus(STATUS.fail);
-			}
-		},
-		[data]
-	);
-
-	switch (status) {
-		case STATUS.waiting:
-		case STATUS.working:
-			return (
-				<Notice
-					isClosable
-					onClose={noRefCheck}
-					title={`Votre référentiel est en cours de chargement : ${name}`}
-				/>
-			);
-		case STATUS.terminated:
-			return (
-				<Notice
-					isClosable
-					onClose={noRefCheck}
-					title={`Votre référentiel est disponible : ${name}`}
-				/>
-			);
-
-		case STATUS.fail:
-			return (
-				<Notice
-					isClosable
-					onClose={noRefCheck}
-					title={`Impossible de charger un référentiel : ${name}`}
-				/>
-			);
-		default:
-			return null;
-	}
 }
 
 export function IndexSuggesters(
@@ -130,8 +59,8 @@ export function IndexSuggesters(
 
 		return (
 			<>
-				{loading}
 				{children}
+				{loading}
 			</>
 		);
 	}

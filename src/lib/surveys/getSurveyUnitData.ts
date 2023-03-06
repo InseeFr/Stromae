@@ -6,13 +6,17 @@ import { surveyUnitData } from './api';
 export const getSurveyUnitData =
 	(BASE_URL: string) =>
 	async (unit: string, token: string): Promise<SurveyUnitData> => {
-		const data = await authenticatedRequest<LunaticData>(
-			HTTP_VERBS.get,
-			surveyUnitData(BASE_URL, unit),
-			token
-		);
+		try {
+			const data = await authenticatedRequest<LunaticData>(
+				HTTP_VERBS.get,
+				surveyUnitData(BASE_URL, unit),
+				token
+			);
 
-		// TODO get personalization and stateData
+			// TODO get personalization and stateData
 
-		return { data };
+			return { data };
+		} catch (e) {
+			throw e;
+		}
 	};

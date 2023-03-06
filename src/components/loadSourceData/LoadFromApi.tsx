@@ -35,12 +35,8 @@ export function LoadFromApi({
 
 	const getSurveyUnitData = useCallback(
 		async function () {
-			try {
-				if (accessToken && unit) {
-					return await surveyApi.getSurveyUnitData(unit, accessToken);
-				}
-			} catch (e) {
-				// TODO
+			if (accessToken && unit) {
+				return await surveyApi.getSurveyUnitData(unit, accessToken);
 			}
 		},
 		[unit, accessToken]
@@ -58,16 +54,11 @@ export function LoadFromApi({
 					required.map(function (name) {
 						return surveyApi.getNomenclature(name, accessToken);
 					})
-				)
-					.then(function (results) {
-						return results.reduce(function (a, data, index) {
-							return { ...a, [required[index]]: data };
-						}, {});
-					})
-					.catch(function (e) {
-						// TODO notifier l'utilisateur : voir avec Julia.
-						throw e;
-					});
+				).then(function (results) {
+					return results.reduce(function (a, data, index) {
+						return { ...a, [required[index]]: data };
+					}, {});
+				});
 
 				return nomenclatures;
 			}
