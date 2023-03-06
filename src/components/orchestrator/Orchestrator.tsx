@@ -13,8 +13,13 @@ export type OrchestratorProps = {
 	surveyUnitData?: SurveyUnitData;
 	suggesterFetcher?: any;
 	onChange?: (...args: any) => void;
+	getReferentiel: (name: string) => Promise<Array<unknown>>;
 };
 
+/**
+ * Type pour tous les enfants de Orchestrator, qui vont recevoir les fonctions
+ * générées par useLunatic.
+ */
 export type OrchestratedElement = {
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
@@ -42,14 +47,14 @@ function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
 }
 
 export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
-	const { source, surveyUnitData, children, onChange } = props;
-	const [args, setArgs] = useState({ onChange });
+	const { source, surveyUnitData, children, onChange, getReferentiel } = props;
+	const [args, setArgs] = useState({ onChange, getReferentiel });
 	const { data } = surveyUnitData || {};
 	useEffect(
 		function () {
-			setArgs({ onChange });
+			setArgs({ onChange, getReferentiel });
 		},
-		[onChange]
+		[onChange, getReferentiel]
 	);
 
 	const {
@@ -60,7 +65,6 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 		isLastPage,
 		goToPage,
 		getCurrentErrors,
-
 		getData,
 		Provider = MockProvider,
 	} = useLunatic(source, data, args);
