@@ -4,14 +4,18 @@ import { SurveyUnitData } from '../../typeStromae/type';
 import { createContext } from 'react';
 
 export type LoadSourceDataContextType = {
-	getMetadata?: () => Promise<MetadataSurvey | undefined>;
-	getSurvey?: () => Promise<LunaticSource | undefined>;
+	getMetadata: () => Promise<MetadataSurvey | undefined>;
+	getSurvey: () => Promise<LunaticSource | undefined>;
 	getSurveyUnitData?: () => Promise<SurveyUnitData | undefined>;
-	getRequiredNomenclatures?: () => Promise<
-		Record<string, Array<any>> | undefined
-	>;
+	getReferentiel: (name: string) => Promise<Array<unknown>>;
 };
 
-export const loadSourceDataContext = createContext<LoadSourceDataContextType>(
-	{}
-);
+const DEFAULT = {
+	getReferentiel: async (name: string) => [],
+	getMetadata: async () => undefined,
+	getSurvey: async () => undefined,
+	getSurveyUnitData: async () => undefined,
+};
+
+export const loadSourceDataContext =
+	createContext<LoadSourceDataContextType>(DEFAULT);

@@ -42,28 +42,11 @@ export function LoadFromApi({
 		[unit, accessToken]
 	);
 
-	const getRequiredNomenclatures = useCallback(
-		async function () {
-			if (survey && accessToken) {
-				const required = await surveyApi.getRequiredNomenclatures(
-					survey,
-					accessToken
-				);
-
-				const nomenclatures = await Promise.all(
-					required.map(function (name) {
-						return surveyApi.getNomenclature(name, accessToken);
-					})
-				).then(function (results) {
-					return results.reduce(function (a, data, index) {
-						return { ...a, [required[index]]: data };
-					}, {});
-				});
-
-				return nomenclatures;
-			}
+	const getReferentiel = useCallback(
+		async function (name: string) {
+			return surveyApi.getNomenclature(name, accessToken);
 		},
-		[survey, accessToken]
+		[accessToken]
 	);
 
 	return (
@@ -72,7 +55,7 @@ export function LoadFromApi({
 				getMetadata,
 				getSurvey,
 				getSurveyUnitData,
-				getRequiredNomenclatures,
+				getReferentiel,
 			}}
 		>
 			{children}

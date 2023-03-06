@@ -13,13 +13,14 @@ type LoadFromUrlProps = {
 	urlNomenclatures?: Record<string, string>;
 };
 
+const empty = {};
+
 export function LoadFromUrl({
 	children,
 	urlSource,
 	urlMetadata,
 	urlData,
-	urlRequiredNomenclatures,
-	urlNomenclatures,
+	urlNomenclatures = empty,
 }: PropsWithChildren<LoadFromUrlProps>) {
 	const getMetadata = useCallback(
 		async function () {
@@ -47,33 +48,16 @@ export function LoadFromUrl({
 		[urlData]
 	);
 
-	const getRequiredNomenclatures = useCallback(
-		async function () {
-			if (urlRequiredNomenclatures) {
-				const required = await publicRequest<Array<string>>(
-					HTTP_VERBS.get,
-					urlRequiredNomenclatures
-				);
-
-				const nomenclatures = await Promise.all(
-					required.map(function (name) {
-						if (urlNomenclatures && name in urlNomenclatures) {
-							const url = urlNomenclatures[name];
-							return publicRequest<Array<string>>(HTTP_VERBS.get, url);
-						}
-						console.warn(`unprovided nomenclature's url for ${name}`);
-						return [];
-					})
-				).then(function (results) {
-					return results.reduce(function (a, data, index) {
-						return { ...a, [required[index]]: data };
-					}, {});
-				});
-
-				return nomenclatures;
+	const getReferentiel = useCallback(
+		async function (name: string): Promise<Array<unknown>> {
+			if (name in urlNomenclatures) {
+				const url = urlNomenclatures[name];
+				return await publicRequest<Array<unknown>>(HTTP_VERBS.get, url);
 			}
+
+			return [];
 		},
-		[urlRequiredNomenclatures, urlNomenclatures]
+		[urlNomenclatures]
 	);
 
 	return (
@@ -82,7 +66,7 @@ export function LoadFromUrl({
 				getMetadata,
 				getSurvey,
 				getSurveyUnitData,
-				getRequiredNomenclatures,
+				getReferentiel,
 			}}
 		>
 			{children}
