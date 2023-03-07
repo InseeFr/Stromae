@@ -46,6 +46,36 @@
 			"page": "1"
 		},
 		{
+			"id": "age-quest",
+			"label": { "value": "\"Test controls\"", "type": "VTL|MD" },
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"componentType": "InputNumber",
+			"page": "1",
+			"response": { "name": "NUMBER" },
+			"controls": [
+				{
+					"id": "age-controls",
+					"criticality": "INFO",
+					"typeOfControl": "CONSISTENCY",
+					"control": { "value": "NUMBER >= 15", "type": "VTL" },
+					"errorMessage": {
+						"value": "\"Number is less than 15.\"",
+						"type": "VTL|MD"
+					}
+				},
+				{
+					"id": "age-controls",
+					"criticality": "INFO",
+					"typeOfControl": "CONSISTENCY",
+					"control": { "value": "NUMBER < 15", "type": "VTL" },
+					"errorMessage": {
+						"value": "\"Number is greater or equal to 15.\"",
+						"type": "VTL|MD"
+					}
+				}
+			]
+		},
+		{
 			"id": "loop-prenom",
 			"componentType": "RosterForLoop",
 			"label": { "value": "\"Ajouter un individu\"", "type": "VTL|MD" },
@@ -84,16 +114,7 @@
 					"conditionFilter": { "type": "VTL", "value": "true" },
 					"componentType": "InputNumber",
 					"page": "2.1",
-					"response": { "name": "AGE" },
-					"controls": {
-						"id": "age-controls",
-						"criticality": "INFO",
-						"control": { "value": "AGE > 15", "type": "VTL" },
-						"errorMessage": {
-							"value": "AGE || \" est inférieur à la limite de 15.\"",
-							"type": "VTL|MD"
-						}
-					}
+					"response": { "name": "AGE" }
 				}
 			]
 		},
@@ -229,6 +250,17 @@
 		{ "componentType": "Sequence", "label": "\"END\"", "page": 5 }
 	],
 	"variables": [
+		{
+			"variableType": "COLLECTED",
+			"name": "NUMBER",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
 		{
 			"variableType": "COLLECTED",
 			"name": "PRENOM",

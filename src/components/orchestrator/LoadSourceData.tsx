@@ -8,11 +8,13 @@ import { useRemote } from './useRemote';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
+	activeControls?: boolean;
 };
 //
 export function LoadSourceData({
 	children,
 	onChange,
+	activeControls,
 }: PropsWithChildren<LoadSourceDataProps>) {
 	const navigate = useNavigate();
 	const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
@@ -36,6 +38,7 @@ export function LoadSourceData({
 				surveyUnitData={surveyUnitData}
 				getReferentiel={getReferentiel}
 				onChange={onChange}
+				activeControls={activeControls}
 			>
 				{children}
 			</Orchestrator>

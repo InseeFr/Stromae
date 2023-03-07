@@ -25,7 +25,7 @@ export function Questionnaire({ onChange }: QuestionnaireProps) {
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
-					<Orchestrator onChange={onChange}>
+					<Orchestrator onChange={onChange} activeControls={true}>
 						<Controles />
 						<Formulaire />
 						<Navigation />

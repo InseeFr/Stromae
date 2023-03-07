@@ -14,6 +14,7 @@ export type OrchestratorProps = {
 	suggesterFetcher?: any;
 	onChange?: (...args: any) => void;
 	getReferentiel: (name: string) => Promise<Array<unknown>>;
+	activeControls?: boolean;
 };
 
 /**
@@ -25,9 +26,9 @@ export type OrchestratedElement = {
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: () => void;
 	readonly goToPage?: () => void;
-	// getErrors,
+	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
 	getModalErrors?: unknown;
-	readonly getCurrentErrors?: () => Array<LunaticError>;
+	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
 	// pageTag,
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
@@ -47,14 +48,24 @@ function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
 }
 
 export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
-	const { source, surveyUnitData, children, onChange, getReferentiel } = props;
-	const [args, setArgs] = useState({ onChange, getReferentiel });
+	const {
+		source,
+		surveyUnitData,
+		children,
+		onChange,
+		getReferentiel,
+		activeControls,
+	} = props;
+	const [args, setArgs] = useState<Record<string, unknown>>({
+		onChange,
+		getReferentiel,
+	});
 	const { data } = surveyUnitData || {};
 	useEffect(
 		function () {
-			setArgs({ onChange, getReferentiel });
+			setArgs({ onChange, getReferentiel, activeControls });
 		},
-		[onChange, getReferentiel]
+		[onChange, getReferentiel, activeControls]
 	);
 
 	const {
@@ -66,6 +77,7 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 		goToPage,
 		getCurrentErrors,
 		getModalErrors,
+		getErrors,
 		getData,
 		Provider = MockProvider,
 	} = useLunatic(source, data, args);
@@ -87,6 +99,7 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 							goToPage,
 							getCurrentErrors,
 							getModalErrors,
+							getErrors,
 							key,
 							getData,
 							onChange,

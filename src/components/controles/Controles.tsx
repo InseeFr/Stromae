@@ -10,6 +10,5 @@ export function Controles(props: OrchestratedElement) {
 	if (typeof getModalErrors === 'function') {
 		// const modalErrors = getModalErrors();
 	}
-	debugger;
 	return <></>;
 }
