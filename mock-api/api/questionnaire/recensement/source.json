@@ -84,7 +84,16 @@
 					"conditionFilter": { "type": "VTL", "value": "true" },
 					"componentType": "InputNumber",
 					"page": "2.1",
-					"response": { "name": "AGE" }
+					"response": { "name": "AGE" },
+					"controls": {
+						"id": "age-controls",
+						"criticality": "INFO",
+						"control": { "value": "AGE > 15", "type": "VTL" },
+						"errorMessage": {
+							"value": "AGE || \" est inférieur à la limite de 15.\"",
+							"type": "VTL|MD"
+						}
+					}
 				}
 			]
 		},

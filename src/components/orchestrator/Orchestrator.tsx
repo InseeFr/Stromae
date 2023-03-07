@@ -26,7 +26,7 @@ export type OrchestratedElement = {
 	readonly goNextPage?: () => void;
 	readonly goToPage?: () => void;
 	// getErrors,
-	// getModalErrors,
+	getModalErrors?: unknown;
 	readonly getCurrentErrors?: () => Array<LunaticError>;
 	// pageTag,
 	readonly isFirstPage?: boolean;
@@ -65,6 +65,7 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 		isLastPage,
 		goToPage,
 		getCurrentErrors,
+		getModalErrors,
 		getData,
 		Provider = MockProvider,
 	} = useLunatic(source, data, args);
@@ -85,6 +86,7 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 							isLastPage,
 							goToPage,
 							getCurrentErrors,
+							getModalErrors,
 							key,
 							getData,
 							onChange,
