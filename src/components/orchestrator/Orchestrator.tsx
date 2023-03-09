@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import { cloneElement, PropsWithChildren } from 'react';
 import {
@@ -27,7 +27,7 @@ export type OrchestratedElement = {
 	readonly goNextPage?: () => void;
 	readonly goToPage?: () => void;
 	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
-	getModalErrors?: unknown;
+	getModalErrors?: () => Record<string, Array<LunaticError>>;
 	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
 	// pageTag,
 	readonly isFirstPage?: boolean;
@@ -36,7 +36,15 @@ export type OrchestratedElement = {
 	// waiting,
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
+	readonly activeControls?: boolean;
 };
+
+/**
+ * Element with a child of type OrchestratedElement
+ */
+export type NestedOrchestratedElement<T> = {
+	children: ReactElement<OrchestratedElement>;
+} & T;
 
 /**
  * Provider pas encore à dispo dans la version en ligne de lunatic.
@@ -100,7 +108,7 @@ export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
 							getCurrentErrors,
 							getModalErrors,
 							getErrors,
-							key,
+							activeControls,
 							getData,
 							onChange,
 						}

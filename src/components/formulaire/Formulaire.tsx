@@ -6,7 +6,7 @@ import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 type FormulaireProps = {};
 
-function getErrors_(
+function getErrors(
 	getCurrentErrors?: () => Record<string, Array<LunaticError>>
 ) {
 	if (typeof getCurrentErrors === 'function') {
@@ -19,7 +19,7 @@ function getErrors_(
 export function Formulaire(props: OrchestratedElement & FormulaireProps) {
 	const { getComponents, getCurrentErrors } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
-	const errors = getErrors_(getCurrentErrors);
+	const errors = getErrors(getCurrentErrors);
 
 	useEffect(
 		function () {

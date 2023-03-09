@@ -1,1 +1,0 @@
-export { Controles } from './Controles';
