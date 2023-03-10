@@ -24,6 +24,7 @@ export type OrchestratorProps = {
  * générées par useLunatic.
  */
 export type OrchestratedElement = {
+	// useLunatic interface
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
@@ -39,6 +40,9 @@ export type OrchestratedElement = {
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
 	readonly activeControls?: boolean;
+	// controls errors
+	modalErrors?: Array<LunaticError>;
+	criticality?: boolean;
 };
 
 /**

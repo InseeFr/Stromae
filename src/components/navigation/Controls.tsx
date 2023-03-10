@@ -64,7 +64,7 @@ export function Controls(
 
 	const modalErrors = flatErrors(getModalErrors());
 	const criticality = getCriticality(modalErrors);
-	console.log({ modalErrors, criticality });
+
 	function skip() {
 		goNextPage({ block: true });
 	}
@@ -75,6 +75,8 @@ export function Controls(
 			{cloneElement(children, {
 				goNextPage: modalErrors && criticality ? skip : goNextPage,
 				goPreviousPage,
+				modalErrors,
+				criticality,
 			})}
 		</>
 	);

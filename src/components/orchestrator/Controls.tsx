@@ -1,4 +1,4 @@
-import { cloneElement, PropsWithChildren } from 'react';
+import { cloneElement, PropsWithChildren, useEffect, useState } from 'react';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 
@@ -38,6 +38,20 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 
 	const modalErrors = flatErrors(getModalErrors());
 	const criticality = getCriticality(modalErrors);
+	const [onErrors, setOnErrors] = useState<boolean>(false);
+
+	useEffect(
+		function () {
+			if (modalErrors) {
+				setOnErrors(true);
+			}
+			if (!modalErrors && onErrors) {
+				// trick for modal
+				goNextPage();
+			}
+		},
+		[modalErrors, onErrors, goNextPage]
+	);
 
 	function skip() {
 		goNextPage({ block: true });
@@ -52,6 +66,8 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 					element as React.ReactElement<OrchestratedElement>,
 					{
 						...props,
+						modalErrors,
+						criticality,
 						goNextPage: modalErrors && criticality ? skip : goNextPage,
 					}
 				);
