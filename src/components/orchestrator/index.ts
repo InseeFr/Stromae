@@ -1,2 +1,2 @@
-export { LoadSourceData as Orchestrator } from './LoadSourceData';
+export { Orchestrator } from './Orchestrator';
 export type { OrchestratedElement } from './Orchestrator';

@@ -6,6 +6,7 @@ import { Navigation } from '../../components/navigation';
 import { Formulaire } from '../../components/formulaire';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
+import { AlertesControles } from '../../components/AlertesControles';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -13,7 +14,6 @@ export type QuestionnaireParams = {
 };
 
 export type QuestionnaireProps = {
-	isPublic?: boolean;
 	onChange?: (args: any) => void;
 };
 
@@ -24,7 +24,8 @@ export function Questionnaire({ onChange }: QuestionnaireProps) {
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
-					<Orchestrator onChange={onChange}>
+					<Orchestrator onChange={onChange} activeControls={true}>
+						<AlertesControles />
 						<Formulaire />
 						<Navigation />
 					</Orchestrator>

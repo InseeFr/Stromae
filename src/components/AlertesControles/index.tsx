@@ -1,0 +1,1 @@
+export { AlertesControles } from './AlertesControles';

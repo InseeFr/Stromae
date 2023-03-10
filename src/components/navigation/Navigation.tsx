@@ -1,8 +1,17 @@
-import { OrchestratedElement } from '../orchestrator';
 import { ButtonsGroup } from '@codegouvfr/react-dsfr/ButtonsGroup';
+import { OrchestratedElement } from '../orchestrator';
 
 export function Navigation(props: OrchestratedElement) {
-	const { goNextPage, goPreviousPage, isFirstPage, isLastPage } = props;
+	const {
+		goNextPage = () => null,
+		goPreviousPage,
+		isFirstPage,
+		isLastPage,
+	} = props;
+
+	function handleClick() {
+		goNextPage();
+	}
 
 	return (
 		<ButtonsGroup
@@ -16,7 +25,7 @@ export function Navigation(props: OrchestratedElement) {
 				{
 					children: 'Page Suivante',
 					iconId: 'fr-icon-arrow-right-line',
-					onClick: goNextPage,
+					onClick: handleClick,
 					disabled: isLastPage,
 				},
 			]}

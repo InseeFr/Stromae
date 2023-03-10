@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useLunatic } from '@inseefr/lunatic';
-import { cloneElement, PropsWithChildren } from 'react';
+import { JSXElementConstructor, ReactElement } from 'react';
+import { PropsWithChildren } from 'react';
 import {
 	LunaticSource,
 	ComponentType,
 	LunaticError,
 } from '../../typeLunatic/type-source';
 import { SurveyUnitData } from '../../typeStromae/type';
+import { LoadSourceData } from './LoadSourceData';
+import { UseLunatic } from './UseLunatic';
+import { Controls } from './Controls';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
 	surveyUnitData?: SurveyUnitData;
 	suggesterFetcher?: any;
 	onChange?: (...args: any) => void;
-	getReferentiel: (name: string) => Promise<Array<unknown>>;
+	getReferentiel?: (name: string) => Promise<Array<unknown>>;
+	activeControls?: boolean;
 };
 
 /**
@@ -21,13 +24,14 @@ export type OrchestratorProps = {
  * générées par useLunatic.
  */
 export type OrchestratedElement = {
+	// useLunatic interface
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
-	readonly goNextPage?: () => void;
+	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: () => void;
-	// getErrors,
-	// getModalErrors,
-	readonly getCurrentErrors?: () => Array<LunaticError>;
+	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
+	getModalErrors?: () => Record<string, Array<LunaticError>>;
+	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
 	// pageTag,
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
@@ -35,64 +39,29 @@ export type OrchestratedElement = {
 	// waiting,
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
+	readonly activeControls?: boolean;
+	// controls errors
+	modalErrors?: Array<LunaticError>;
+	criticality?: boolean;
 };
 
 /**
- * Provider pas encore à dispo dans la version en ligne de lunatic.
- * @param param0
- * @returns
+ * Element with a child of type OrchestratedElement
  */
-function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
-	return <>{children}</>;
-}
+export type NestedOrchestratedElement<T> = {
+	children: ReactElement<OrchestratedElement, JSXElementConstructor<T>>;
+} & T;
 
-export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
-	const { source, surveyUnitData, children, onChange, getReferentiel } = props;
-	const [args, setArgs] = useState({ onChange, getReferentiel });
-	const { data } = surveyUnitData || {};
-	useEffect(
-		function () {
-			setArgs({ onChange, getReferentiel });
-		},
-		[onChange, getReferentiel]
+export function Orchestrator({
+	children,
+	onChange,
+	activeControls,
+}: PropsWithChildren<OrchestratorProps>) {
+	return (
+		<LoadSourceData onChange={onChange} activeControls={activeControls}>
+			<UseLunatic>
+				<Controls>{children}</Controls>
+			</UseLunatic>
+		</LoadSourceData>
 	);
-
-	const {
-		getComponents,
-		goPreviousPage,
-		goNextPage,
-		isFirstPage,
-		isLastPage,
-		goToPage,
-		getCurrentErrors,
-		getData,
-		Provider = MockProvider,
-	} = useLunatic(source, data, args);
-
-	if (children) {
-		const effective = Array.isArray(children) ? children : [children];
-
-		return (
-			<Provider>
-				{effective.map(function (element, key) {
-					return cloneElement(
-						element as React.ReactElement<OrchestratedElement>,
-						{
-							getComponents,
-							goPreviousPage,
-							goNextPage,
-							isFirstPage,
-							isLastPage,
-							goToPage,
-							getCurrentErrors,
-							key,
-							getData,
-							onChange,
-						}
-					);
-				})}
-			</Provider>
-		);
-	}
-	return null;
 }
