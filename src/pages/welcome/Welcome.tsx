@@ -1,0 +1,22 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import { Layout } from '../../components/layout';
+import { Button } from '@codegouvfr/react-dsfr/Button';
+import { useDocumentTitle } from '../../useDocumentTitle';
+import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
+import { WelcomeContainer } from "./WelcomeContainer"
+
+
+export function Welcome() {
+	const { survey, unit } = useParams();
+
+
+	useDocumentTitle('Page d\'accueil');
+
+	return (
+		<LoadFromApi survey={survey} unit={unit}>
+			<Layout>
+				<WelcomeContainer />
+			</Layout>
+		</LoadFromApi>
+	);
+}

@@ -1,8 +1,8 @@
 {
-	"client_id": "",
-	"redirect_uri": "",
-	"scope": "",
-	"authority": "",
-	"service_worker_relative_url": "",
+	"client_id": "localhost-frontend",
+	"redirect_uri": "http://localhost:3000/",
+	"scope": "openid profile email offline_access",
+	"authority": "https://auth.insee.test/auth/realms/recensement-questionnaire-menage",
+	"service_worker_relative_url": "/OidcServiceWorker.js",
 	"service_worker_only": false
 }
