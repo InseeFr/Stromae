@@ -49,5 +49,5 @@ export function LoadSourceData({
 			</>
 		);
 	}
-	return null;
+	return null; // skeleton
 }

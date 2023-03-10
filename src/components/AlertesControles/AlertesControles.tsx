@@ -14,7 +14,7 @@ export function AlertesControles(props: OrchestratedElement) {
 		});
 		return (
 			<div className={fr.cx('fr-alert', type)}>
-				<h3 className="fr-alert__title">Il y a un problème</h3>
+				<h3 className={fr.cx('fr-alert__title')}>Il y a un problème</h3>
 				{content}
 			</div>
 		);
