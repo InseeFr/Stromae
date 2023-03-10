@@ -1,19 +1,21 @@
-import { ReactElement, useEffect, useState } from 'react';
-import { useLunatic } from '@inseefr/lunatic';
-import { cloneElement, PropsWithChildren } from 'react';
+import { JSXElementConstructor, ReactElement } from 'react';
+import { PropsWithChildren } from 'react';
 import {
 	LunaticSource,
 	ComponentType,
 	LunaticError,
 } from '../../typeLunatic/type-source';
 import { SurveyUnitData } from '../../typeStromae/type';
+import { LoadSourceData } from './LoadSourceData';
+import { UseLunatic } from './UseLunatic';
+import { Controls } from './Controls';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
 	surveyUnitData?: SurveyUnitData;
 	suggesterFetcher?: any;
 	onChange?: (...args: any) => void;
-	getReferentiel: (name: string) => Promise<Array<unknown>>;
+	getReferentiel?: (name: string) => Promise<Array<unknown>>;
 	activeControls?: boolean;
 };
 
@@ -24,7 +26,7 @@ export type OrchestratorProps = {
 export type OrchestratedElement = {
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
-	readonly goNextPage?: () => void;
+	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: () => void;
 	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
 	getModalErrors?: () => Record<string, Array<LunaticError>>;
@@ -43,79 +45,19 @@ export type OrchestratedElement = {
  * Element with a child of type OrchestratedElement
  */
 export type NestedOrchestratedElement<T> = {
-	children: ReactElement<OrchestratedElement>;
+	children: ReactElement<OrchestratedElement, JSXElementConstructor<T>>;
 } & T;
 
-/**
- * Provider pas encore à dispo dans la version en ligne de lunatic.
- * @param param0
- * @returns
- */
-function MockProvider({ children }: { children?: PropsWithChildren<{}> }) {
-	return <>{children}</>;
-}
-
-export function Orchestrator(props: PropsWithChildren<OrchestratorProps>) {
-	const {
-		source,
-		surveyUnitData,
-		children,
-		onChange,
-		getReferentiel,
-		activeControls,
-	} = props;
-	const [args, setArgs] = useState<Record<string, unknown>>({
-		onChange,
-		getReferentiel,
-	});
-	const { data } = surveyUnitData || {};
-	useEffect(
-		function () {
-			setArgs({ onChange, getReferentiel, activeControls });
-		},
-		[onChange, getReferentiel, activeControls]
+export function Orchestrator({
+	children,
+	onChange,
+	activeControls,
+}: PropsWithChildren<OrchestratorProps>) {
+	return (
+		<LoadSourceData onChange={onChange} activeControls={activeControls}>
+			<UseLunatic>
+				<Controls>{children}</Controls>
+			</UseLunatic>
+		</LoadSourceData>
 	);
-
-	const {
-		getComponents,
-		goPreviousPage,
-		goNextPage,
-		isFirstPage,
-		isLastPage,
-		goToPage,
-		getCurrentErrors,
-		getModalErrors,
-		getErrors,
-		getData,
-		Provider = MockProvider,
-	} = useLunatic(source, data, args);
-
-	if (children) {
-		const effective = Array.isArray(children) ? children : [children];
-
-		return (
-			<Provider>
-				{effective.map(function (element, key) {
-					return cloneElement(
-						element as React.ReactElement<OrchestratedElement>,
-						{
-							getComponents,
-							goPreviousPage,
-							goNextPage,
-							isFirstPage,
-							isLastPage,
-							goToPage,
-							getCurrentErrors,
-							getModalErrors,
-							getErrors,
-							activeControls,
-							getData,
-							onChange,
-						}
-					);
-				})}
-			</Provider>
-		);
-	}
-	return null;
 }

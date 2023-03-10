@@ -1,8 +1,51 @@
-import { useCallback, cloneElement, useState, useEffect, useRef } from 'react';
+import { fr } from '@codegouvfr/react-dsfr';
+import { cloneElement } from 'react';
 import { LunaticError } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../orchestrator';
 import { NestedOrchestratedElement } from '../orchestrator/Orchestrator';
-import { ModalErrors } from './ModalErrors';
+
+export enum CriticalityEnum {
+	FORMAT = 'FORMAT',
+	ERROR = 'ERROR',
+	WARN = 'WARN',
+}
+
+function flatErrors(errors: Record<string, Array<LunaticError>> | null) {
+	if (errors) {
+		return Object.values(errors).flat();
+	}
+}
+
+function getCriticality(errors?: Array<LunaticError>) {
+	if (errors) {
+		return errors.reduce(function (status, { criticality, typeOfControl }) {
+			return (
+				status ||
+				(typeOfControl === CriticalityEnum.FORMAT &&
+					criticality.startsWith(CriticalityEnum.ERROR))
+			);
+		}, false);
+	}
+	return false;
+}
+
+function AlertErrors({
+	errors,
+	criticality,
+}: {
+	errors?: Array<LunaticError>;
+	criticality: boolean;
+}) {
+	if (errors) {
+		return (
+			<div className={fr.cx('fr-alert', 'fr-alert--error')}>
+				<h3 className="fr-alert__title">Erreur : titre du message</h3>
+				<p>Les erreurs à afficher</p>
+			</div>
+		);
+	}
+	return null;
+}
 
 /**
  *
@@ -15,47 +58,24 @@ export function Controls(
 	const {
 		children,
 		getModalErrors = () => null,
-		goNextPage: gnpOriginal = () => null,
-		goPreviousPage: gppOriginal = () => null,
+		goNextPage = () => null,
+		goPreviousPage = () => null,
 	} = props;
-	const [displayModal, setDisplayModal] = useState<boolean>(false);
-	// const [errors, setErrors] = useState<Array<LunaticError>>();
-	const errors = useRef<Array<LunaticError>>();
 
-	const goNextPage = useCallback(
-		function () {
-			gnpOriginal();
-		},
-		[gnpOriginal]
-	);
-
-	const goPreviousPage = useCallback(
-		function () {
-			gppOriginal();
-		},
-		[gppOriginal]
-	);
-
-	function onClose() {
-		setDisplayModal(false);
+	const modalErrors = flatErrors(getModalErrors());
+	const criticality = getCriticality(modalErrors);
+	console.log({ modalErrors, criticality });
+	function skip() {
+		goNextPage({ block: true });
 	}
-
-	function onSkip() {
-		goNextPage();
-	}
-
-	const modalErrors = getModalErrors();
-	console.log({ modalErrors });
 
 	return (
 		<>
-			<ModalErrors
-				display={false}
-				errors={errors.current}
-				onClose={onClose}
-				onSkip={onSkip}
-			/>
-			{cloneElement(children, { goNextPage, goPreviousPage })}
+			<AlertErrors errors={modalErrors} criticality={criticality} />
+			{cloneElement(children, {
+				goNextPage: modalErrors && criticality ? skip : goNextPage,
+				goPreviousPage,
+			})}
 		</>
 	);
 }

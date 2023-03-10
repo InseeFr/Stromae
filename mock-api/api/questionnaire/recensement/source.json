@@ -55,8 +55,8 @@
 			"controls": [
 				{
 					"id": "age-controls",
-					"criticality": "ERROR",
-					"typeOfControl": "CONSISTENCY",
+					"criticality": "ERRORS",
+					"typeOfControl": "FORMAT",
 					"control": { "value": "NUMBER = 5", "type": "VTL" },
 					"errorMessage": {
 						"value": "\"Number !== 5.\"",
