@@ -1,8 +1,9 @@
 import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
 import { Orchestrator } from '../../components/orchestrator';
 import { Formulaire } from '../../components/formulaire';
-import { Navigation } from '../../components/navigation';
 import { Layout } from '../../components/layout/Layout';
+import { Precedent } from '../../components/navigation/Precedent';
+import { Continuer } from '../../components/navigation/Continuer';
 
 const RP = {
 	source: '/rp/source.json',
@@ -26,8 +27,9 @@ export function Visualize() {
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
+					<Precedent />
 					<Formulaire />
-					<Navigation />
+					<Continuer />
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>
