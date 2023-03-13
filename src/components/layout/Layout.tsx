@@ -4,7 +4,6 @@ import {
 	useRef,
 	useContext,
 	PropsWithChildren,
-	cloneElement,
 } from 'react';
 import { FooterType } from '../footer/FooterType';
 import { HeaderType } from '../header/HeaderType';
