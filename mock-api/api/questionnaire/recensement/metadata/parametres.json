@@ -53,7 +53,7 @@
 		"Enq_QualiteStatistique": false,
 		"Enq_NumeroVisa": "2021A054EC",
 		"Enq_MinistereTutelle": "de l'Économie, des Finances et de la Relance",
-		"Enq_ParutionJo": true,
+		"Enq_ParutionJo": false,
 		"Enq_DateParutionJo": "23/11/2020",
 		"Enq_RespOperationnel": "l’Institut national de la statistique et des études économiques (Insee)",
 		"Enq_RespTraitement": "l'Insee",
