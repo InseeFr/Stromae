@@ -60,6 +60,11 @@
 		"Enq_AnneeVisa": "2021",
 		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
 		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
-		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
+		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+		"whoAnswers": [
+			"Personne 1",
+			"Personne 2",
+			"Personne 3"
+		]
 	}
 }
