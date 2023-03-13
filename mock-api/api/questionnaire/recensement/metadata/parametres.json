@@ -49,13 +49,13 @@
 	"Welcome": {
 		"Enq_LibelleEnquete": "Enquête statistique sur les technologies de l’information et de la communication 2021",
 		"Enq_ObjectifsCourts": "Cette enquête permet de connaître l'équipement et les usages des personnes dans le domaine des technologies de l'information et de la communication (téléphone fixe et mobile, informatique, internet sur support fixe et mobile).",
-		"Enq_CaractereObligatoire": true,
-		"Enq_QualiteStatistique": true,
+		"Enq_CaractereObligatoire": false,
+		"Enq_QualiteStatistique": false,
 		"Enq_NumeroVisa": "2021A054EC",
 		"Enq_MinistereTutelle": "de l'Économie, des Finances et de la Relance",
 		"Enq_ParutionJo": true,
 		"Enq_DateParutionJo": "23/11/2020",
-		"Enq_RespOperationnel": "L’Institut national de la statistique et des études économiques (Insee)",
+		"Enq_RespOperationnel": "l’Institut national de la statistique et des études économiques (Insee)",
 		"Enq_RespTraitement": "l'Insee",
 		"Enq_AnneeVisa": "2021",
 		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
@@ -65,6 +65,16 @@
 			"Personne 1",
 			"Personne 2",
 			"Personne 3"
+		],
+		"Enq_QuestionsAdditionnelles": [
+			{
+				"question": "A quoi sert le recensement de la population?",
+				"contenu": "La connaissance précise de la répartition de la population et de son évolution sur le territoire permet d’ajuster l’action publique aux besoins de tous en matières d’équipements collectifs (écoles, maisons de retraite, etc...) ou encore de transports à développer."
+			},
+			{
+				"question": "Comment mes données sont protégées ?",
+				"contenu": "Le recensement se déroule selon des procédures approuvées par la Cnil (Commission nationale de l'informatique et des libertés). L'Insee est le seul organisme habilité à exploiter les questionnaires, et cela de façon anonyme. Ils ne peuvent donc donner lieu à aucun contrôle administratif ou fiscal."
+			}
 		]
 	}
 }
