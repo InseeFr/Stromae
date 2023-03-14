@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { useRemote } from '../orchestrator/useRemote';
 import { useContext } from 'react';
