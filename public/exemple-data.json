@@ -1,0 +1,14 @@
+{
+	"stateData": {
+		"state": "null | INIT | VALIDATED",
+		"date": 1676625394105,
+		"currentPage": "1.5#2"
+	},
+	"data": {},
+
+	"personalization": [
+		{ "name": "whoAnswer1", "value": "Mr Dupont" },
+		{ "name": "whoAnswer2", "value": "Mme Dupond" },
+		{ "name": "whoAnswer3", "value": "Leurs enfants" }
+	]
+}
