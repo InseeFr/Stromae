@@ -10,7 +10,7 @@ export function Continuer(props: OrchestratedElement) {
 
 	if (!isLastPage) {
 		return (
-			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-md-4w">
+			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-md-4w fr-mb-2v">
 				<div className="fr-col-lg-6 fr-col-12">
 					<Button priority="primary" onClick={handleClick}>
 						Continuer
