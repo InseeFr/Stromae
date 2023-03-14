@@ -1,24 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
-import { cloneElement, PropsWithChildren } from 'react';
+import * as custom from '@inseefr/lunatic-dsfr';
+import { cloneElement } from 'react';
 import {
 	OrchestratedElement,
 	OrchestratorProps,
 	NestedOrchestratedElement,
 } from './Orchestrator';
-
-/**
- * Provider pas encore à dispo dans la version en ligne de lunatic.
- * @param param0
- * @returns
- */
-export function MockProvider({
-	children,
-}: {
-	children?: PropsWithChildren<{}>;
-}) {
-	return <>{children}</>;
-}
 
 export function UseLunatic(
 	props: NestedOrchestratedElement<OrchestratorProps>
@@ -34,12 +22,13 @@ export function UseLunatic(
 	const [args, setArgs] = useState<Record<string, unknown>>({
 		onChange,
 		getReferentiel,
+		custom,
 	});
 	const { data } = surveyUnitData || {};
 
 	useEffect(
 		function () {
-			setArgs({ onChange, getReferentiel, activeControls });
+			setArgs({ onChange, getReferentiel, activeControls, custom });
 		},
 		[onChange, getReferentiel, activeControls]
 	);
@@ -55,7 +44,7 @@ export function UseLunatic(
 		getModalErrors,
 		getErrors,
 		getData,
-		Provider = MockProvider,
+		Provider,
 	} = useLunatic(source, data, args);
 
 	return (

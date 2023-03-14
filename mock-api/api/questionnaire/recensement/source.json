@@ -36,6 +36,14 @@
 	],
 	"components": [
 		{
+			"id": "age-quest-totot",
+			"label": { "value": "\"Test controls\"", "type": "VTL|MD" },
+			"conditionFilter": { "type": "VTL", "value": "true" },
+			"componentType": "Input",
+			"page": "1",
+			"response": { "name": "NUMBER" }
+		},
+		{
 			"id": "seq",
 			"componentType": "Sequence",
 			"label": {

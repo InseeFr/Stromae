@@ -7,7 +7,7 @@ export function LunaticComponentContainer({
 	id,
 }: LunaticComponentContainerProps) {
 	return (
-		<div className="lunatic lunatic-component" id={`lunatic-component-${id}`}>
+		<div className="" id={`lunatic-component-${id}`}>
 			{children}
 		</div>
 	);
