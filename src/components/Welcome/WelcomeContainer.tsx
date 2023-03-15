@@ -31,7 +31,7 @@ export function WelcomeContainer() {
                 <RespondantsList respondants={welcome.whoAnswers} />
                 {/* To do: rediriger vers la première question */}
                 <Button
-                    className="fr-col-12 fr-mt-2w"
+                    className="fr-mt-2w"
                     size="large"
                     linkProps={{
                         href: '/',
