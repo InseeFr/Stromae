@@ -1,4 +1,10 @@
-import { cloneElement, PropsWithChildren, useEffect, useState } from 'react';
+import {
+	cloneElement,
+	PropsWithChildren,
+	useCallback,
+	useEffect,
+	useState,
+} from 'react';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 
@@ -8,6 +14,16 @@ export enum CriticalityEnum {
 	FORMAT = 'FORMAT',
 	ERROR = 'ERROR',
 	WARN = 'WARN',
+}
+
+function getErrors(
+	getCurrentErrors?: () => Record<string, Array<LunaticError>>
+) {
+	if (typeof getCurrentErrors === 'function') {
+		return getCurrentErrors();
+	}
+
+	return undefined;
 }
 
 function flatErrors(errors: Record<string, Array<LunaticError>> | null) {
@@ -33,12 +49,17 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 	const {
 		children = [],
 		getModalErrors = () => null,
+		getCurrentErrors,
 		goNextPage = () => null,
 	} = props;
 
 	const modalErrors = flatErrors(getModalErrors());
 	const criticality = getCriticality(modalErrors);
 	const [onErrors, setOnErrors] = useState<boolean>(false);
+	const [currentErrors, setCurrentsErrors] =
+		useState<Record<string, Array<LunaticError>>>();
+
+	const errors = getErrors(getCurrentErrors);
 
 	useEffect(
 		function () {
@@ -59,6 +80,16 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 
 	const effective = Array.isArray(children) ? children : [children];
 
+	const handleGoNextPage = useCallback(
+		function () {
+			if (errors) {
+				setCurrentsErrors(errors);
+			}
+			goNextPage();
+		},
+		[goNextPage, errors]
+	);
+
 	return (
 		<>
 			{effective.map(function (element, key) {
@@ -68,7 +99,8 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 						...props,
 						modalErrors,
 						criticality,
-						goNextPage: modalErrors && criticality ? skip : goNextPage,
+						goNextPage: modalErrors && criticality ? skip : handleGoNextPage,
+						currentErrors,
 					}
 				);
 			})}

@@ -1,23 +1,12 @@
 import { OrchestratedElement } from '../../components/orchestrator';
 import * as lunatic from '@inseefr/lunatic';
 import { useEffect, useState } from 'react';
-import { ComponentType, LunaticError } from '../../typeLunatic/type-source';
+import { ComponentType } from '../../typeLunatic/type-source';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
-function getErrors(
-	getCurrentErrors?: () => Record<string, Array<LunaticError>>
-) {
-	if (typeof getCurrentErrors === 'function') {
-		return getCurrentErrors();
-	}
-
-	return [];
-}
-
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, getCurrentErrors } = props;
+	const { getComponents, currentErrors } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
-	const errors = getErrors(getCurrentErrors);
 
 	useEffect(
 		function () {
@@ -40,7 +29,7 @@ export function Formulaire(props: OrchestratedElement) {
 
 							return (
 								<LunaticComponentContainer key={id} id={id}>
-									<Component key={id} {...component} errors={errors} />
+									<Component key={id} {...component} errors={currentErrors} />
 								</LunaticComponentContainer>
 							);
 						}
