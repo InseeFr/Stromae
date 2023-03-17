@@ -17,6 +17,8 @@ export type OrchestratorProps = {
 	onChange?: (...args: any) => void;
 	getReferentiel?: (name: string) => Promise<Array<unknown>>;
 	activeControls?: boolean;
+	features?: Array<string>;
+	preferences?: Array<string>;
 };
 
 /**
@@ -57,10 +59,12 @@ export function Orchestrator({
 	children,
 	onChange,
 	activeControls,
+	features,
+	preferences,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData onChange={onChange} activeControls={activeControls}>
-			<UseLunatic>
+			<UseLunatic features={features} preferences={preferences}>
 				<Controls>{children}</Controls>
 			</UseLunatic>
 		</LoadSourceData>
