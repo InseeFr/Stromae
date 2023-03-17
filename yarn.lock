@@ -1377,6 +1377,39 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@inseefr/lunatic-dsfr@^0.0.4":
+  version "0.0.4"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.4.tgz#85c8e2d22ba94953752ab26ff4b6330e7e5417c8"
+  integrity sha512-SGWCMYoLvj+Hb7aUdFF9SSeMHy1BDk/mx8jtpMFP02AuDZbraCB7BBnij+F/s4NCuT67usvL1/o9xxHM7IDKtg==
+  dependencies:
+    "@inseefr/lunatic" "2.0.7-v2"
+    classnames "^2.3.2"
+    sass-loader "^13.2.0"
+
+"@inseefr/lunatic@2.0.6-v2-v2-label-position-rc2":
+  version "2.0.6-v2-v2-label-position-rc2"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.0.6-v2-v2-label-position-rc2.tgz#cf27318f077a64e0de7bc8b13083d871b83e7de9"
+  integrity sha512-1hY9Yx6xznFmIjv9CTkg/uVH2q3aC4rpkzcD0zTCd5RQ1BUpez/Jqd01T9MlL5opz17B/F6Nl2jETYfGmB2uHg==
+  dependencies:
+    "@inseefr/trevas" "^0.1.16"
+    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
+    antlr4 "4.11.0"
+    classnames "^2.3.1"
+    date-fns "^2.25.0"
+    lodash.camelcase "^4.3.0"
+    lodash.debounce "^4.0.8"
+    lodash.isequal "^4.5.0"
+    object-hash "^2.2.0"
+    prop-types "^15.7.2"
+    react-keyboard-event-handler "^1.5.4"
+    react-markdown "^8.0.3"
+    react-number-format "^5.0.0-beta.4"
+    react-tooltip "^4.2.15"
+    remove-accents "^0.4.2"
+    sass "^1.32.2"
+    snowball "^0.3.1"
+    string-tokenizer "^0.0.8"
+
 "@inseefr/lunatic@2.0.7-v2":
   version "2.0.7-v2"
   resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.0.7-v2.tgz#98b818c4f8e76735d3e0e1d7dc1ae0c847c9886e"
@@ -2902,6 +2935,11 @@ ansi-styles@^5.0.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
+
+antlr4@4.11.0:
+  version "4.11.0"
+  resolved "https://nexus.insee.fr/repository/npm-public/antlr4/-/antlr4-4.11.0.tgz#d7466f5044fa6e333c0ec821b30c6157f6b004ae"
+  integrity sha512-GUGlpE2JUjAN+G8G5vY+nOoeyNhHsXoIJwP1XF1oRw89vifA1K46T6SEkwLwr7drihN7I/lf0DIjKc4OZvBX8w==
 
 antlr4@4.8.0:
   version "4.8.0"

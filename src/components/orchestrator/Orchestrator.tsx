@@ -42,6 +42,7 @@ export type OrchestratedElement = {
 	readonly activeControls?: boolean;
 	// controls errors
 	modalErrors?: Array<LunaticError>;
+	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
 };
 

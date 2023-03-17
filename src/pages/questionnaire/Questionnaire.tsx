@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useDocumentTitle } from '../../useDocumentTitle';
 import { Orchestrator } from '../../components/orchestrator';
-import { Layout } from '../../components/layout';
-import { Navigation } from '../../components/navigation';
+import { Layout } from '../../components/layout'; 
+import { Precedent } from '../../components/navigation/Precedent';
+import { Continuer } from '../../components/navigation/Continuer';
 import { Formulaire } from '../../components/formulaire';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
@@ -25,9 +26,10 @@ export function Questionnaire({ onChange }: QuestionnaireProps) {
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator onChange={onChange} activeControls={true}>
+						<Precedent />
 						<AlertesControles />
 						<Formulaire />
-						<Navigation />
+						<Continuer />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
