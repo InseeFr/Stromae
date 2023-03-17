@@ -62,7 +62,7 @@
 			"controls": [
 				{
 					"id": "age-controls",
-					"criticality": "WARN",
+					"criticality": "ERRORS",
 					"typeOfControl": "FORMAT",
 					"control": {
 						"value": "not(nvl(NUMBER, \"\") = \"TOTO\")",

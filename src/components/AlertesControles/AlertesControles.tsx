@@ -13,9 +13,16 @@ export function AlertesControles(props: OrchestratedElement) {
 			);
 		});
 		return (
-			<div className={fr.cx('fr-alert', type)}>
-				<h3 className={fr.cx('fr-alert__title')}>Il y a un problème</h3>
-				{content}
+			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-6w">
+				<div
+					className="fr-col-lg-6 fr-col-12"
+					style={{ marginBottom: fr.spacing('4v') }}
+				>
+					<div className={fr.cx('fr-alert', type)}>
+						<h3 className={fr.cx('fr-alert__title')}>Il y a un problème</h3>
+						{content}
+					</div>
+				</div>
 			</div>
 		);
 	}
