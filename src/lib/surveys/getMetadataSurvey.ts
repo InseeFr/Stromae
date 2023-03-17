@@ -10,7 +10,7 @@ export interface MetadataSurvey {
 
 export const getMetadataSurvey =
 	(BASE_URL: string) =>
-	async (survey: string): Promise<MetadataSurvey> => {
-		const url = API.surveyMetada(BASE_URL, survey);
-		return publicRequest<MetadataSurvey>(HTTP_VERBS.get, url);
-	};
+		async (survey: string): Promise<MetadataSurvey> => {
+			const url = API.surveyMetada(BASE_URL, survey);
+			return publicRequest<MetadataSurvey>(HTTP_VERBS.get, url);
+		};
