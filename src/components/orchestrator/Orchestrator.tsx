@@ -17,8 +17,10 @@ export type OrchestratorProps = {
 	onChange?: (...args: any) => void;
 	getReferentiel?: (name: string) => Promise<Array<unknown>>;
 	activeControls?: boolean;
+	autoSuggesterLoading?: boolean;
 	features?: Array<string>;
 	preferences?: Array<string>;
+	savingType?: string;
 };
 
 /**
@@ -31,18 +33,18 @@ export type OrchestratedElement = {
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: () => void;
-	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
-	getModalErrors?: () => Record<string, Array<LunaticError>>;
+	readonly getErrors?: () => Record<
+		string,
+		Record<string, Array<LunaticError>>
+	>;
+	readonly getModalErrors?: () => Record<string, Array<LunaticError>>;
 	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
-	// pageTag,
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
-	// pager,
-	// waiting,
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
 	readonly activeControls?: boolean;
-	// controls errors
+	// Elements added after controls errors
 	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
@@ -61,10 +63,15 @@ export function Orchestrator({
 	activeControls,
 	features,
 	preferences,
+	autoSuggesterLoading,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData onChange={onChange} activeControls={activeControls}>
-			<UseLunatic features={features} preferences={preferences}>
+			<UseLunatic
+				features={features}
+				preferences={preferences}
+				autoSuggesterLoading={autoSuggesterLoading}
+			>
 				<Controls>{children}</Controls>
 			</UseLunatic>
 		</LoadSourceData>

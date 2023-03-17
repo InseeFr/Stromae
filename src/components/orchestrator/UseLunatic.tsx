@@ -20,6 +20,8 @@ export function UseLunatic(
 		activeControls,
 		preferences,
 		features,
+		savingType,
+		autoSuggesterLoading,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
@@ -33,9 +35,19 @@ export function UseLunatic(
 				custom,
 				preferences,
 				features,
+				savingType,
+				autoSuggesterLoading,
 			});
 		},
-		[onChange, getReferentiel, activeControls, preferences, features]
+		[
+			onChange,
+			getReferentiel,
+			activeControls,
+			preferences,
+			features,
+			savingType,
+			autoSuggesterLoading,
+		]
 	);
 
 	const {

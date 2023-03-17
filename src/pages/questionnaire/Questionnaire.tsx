@@ -19,6 +19,7 @@ export type QuestionnaireProps = {
 };
 
 const FEATURES = ['VTL', 'MD'];
+const COLLECTED = 'COLLECTED';
 
 export function Questionnaire({ onChange }: QuestionnaireProps) {
 	const { survey, unit } = useParams();
@@ -31,6 +32,8 @@ export function Questionnaire({ onChange }: QuestionnaireProps) {
 						onChange={onChange}
 						activeControls={true}
 						features={FEATURES}
+						savingType={COLLECTED}
+						autoSuggesterLoading={true}
 					>
 						<Precedent />
 						<AlertesControles />
