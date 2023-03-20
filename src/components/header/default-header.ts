@@ -1,6 +1,6 @@
 import { HeaderType } from '../header/HeaderType';
 
-const DEFAULT_HEADER: HeaderType = {
+export const DEFAULT_HEADER: HeaderType = {
   brandTop: "Intitulé",
   quickAccessItems: [],
   homeLinkProps: {
