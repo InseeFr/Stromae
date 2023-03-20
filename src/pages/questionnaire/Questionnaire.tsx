@@ -1,23 +1,38 @@
-import { useParams } from "react-router-dom";
-import { OidcSecure } from "@axa-fr/react-oidc";
-import Layout from "../../components/layout";
+import { useParams } from 'react-router-dom';
+import { useDocumentTitle } from '../../useDocumentTitle';
+import { Orchestrator } from '../../components/orchestrator';
+import { Layout } from '../../components/layout';
+import { Precedent } from '../../components/navigation/Precedent';
+import { Continuer } from '../../components/navigation/Continuer';
+import { Formulaire } from '../../components/formulaire';
+import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
+import { OidcSecure } from '../../lib/oidc';
+import { AlertesControles } from '../../components/AlertesControles';
 
 export type QuestionnaireParams = {
-  survey: string;
+	survey?: string;
+	unit?: string;
 };
 
-type QuestionnaireProps = {};
+export type QuestionnaireProps = {
+	onChange?: (args: any) => void;
+};
 
-function Questionnaire(props: QuestionnaireProps) {
-  const { survey } = useParams<QuestionnaireParams>();
-
-  return (
-    <OidcSecure>
-      <Layout survey={survey}>
-        <div className="fr-container fr-my-12w">Questionnaire : {survey}</div>
-      </Layout>
-    </OidcSecure>
-  );
+export function Questionnaire({ onChange }: QuestionnaireProps) {
+	const { survey, unit } = useParams();
+	useDocumentTitle('Questionnaire');
+	return (
+		<OidcSecure>
+			<LoadFromApi survey={survey} unit={unit}>
+				<Layout>
+					<Orchestrator onChange={onChange} activeControls={true}>
+						<Precedent />
+						<AlertesControles />
+						<Formulaire />
+						<Continuer />
+					</Orchestrator>
+				</Layout>
+			</LoadFromApi>
+		</OidcSecure>
+	);
 }
-
-export default Questionnaire;

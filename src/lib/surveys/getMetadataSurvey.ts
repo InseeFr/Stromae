@@ -1,56 +1,16 @@
-import { FooterProps } from "@codegouvfr/react-dsfr/Footer";
-import { RegisteredLinkProps } from "@codegouvfr/react-dsfr/link";
-import axios from "axios";
-import { ReactNode } from "react";
-import HeaderType from "../../components/header/HeaderType";
-
-export type FooterType = {
-  brandTop: string;
-  accessibility: "non compliant" | "partially compliant" | "fully compliant";
-  contentDescription?: string;
-  websiteMapLinkProps?: RegisteredLinkProps;
-  accessibilityLinkProps?: RegisteredLinkProps;
-  termsLinkProps?: RegisteredLinkProps;
-  personalDataLinkProps?: RegisteredLinkProps;
-  homeLinkProps: RegisteredLinkProps & {
-    title: string;
-  };
-  bottomItems?: FooterProps.BottomItem[];
-  license?: ReactNode;
-  operatorLogo?: {
-    alt: string;
-    imgUrl: string;
-    orientation: "horizontal" | "vertical";
-  };
-};
+import { HeaderType } from '../../components/header/HeaderType';
+import { FooterType } from '../../components/footer/FooterType';
+import { publicRequest, HTTP_VERBS } from '../commons/axios-utils';
+import * as API from './api';
 
 export interface MetadataSurvey {
-  Header: HeaderType;
-  Footer: FooterType;
+	Header: HeaderType;
+	Footer: FooterType;
 }
 
-/**
- * Un endpoint vers stromae-api pour recup les url spécifique à l'enquête plutôt que les coller dans l'url.
- * @param survey
- * @returns
- */
-
-async function getMetadataSurvey(
-  survey: string
-): Promise<MetadataSurvey | undefined> {
-  try {
-    // TODO: Faire en sorte que l'on puisse acceder aux fichiers externe de Stromae
-    const {
-      data,
-      // status
-    } = await axios.get<MetadataSurvey>("/rp/parametres.json");
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("error message: ", error.message);
-    }
-    return undefined;
-  }
-}
-
-export default getMetadataSurvey;
+export const getMetadataSurvey =
+	(BASE_URL: string) =>
+		async (survey: string): Promise<MetadataSurvey> => {
+			const url = API.surveyMetada(BASE_URL, survey);
+			return publicRequest<MetadataSurvey>(HTTP_VERBS.get, url);
+		};

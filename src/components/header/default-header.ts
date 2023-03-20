@@ -1,4 +1,4 @@
-import HeaderType from "../header/HeaderType";
+import { HeaderType } from '../header/HeaderType';
 
 const DEFAULT_HEADER: HeaderType = {
   brandTop: "Intitulé",
@@ -15,5 +15,3 @@ const DEFAULT_HEADER: HeaderType = {
     orientation: "horizontal",
   },
 };
-
-export default DEFAULT_HEADER;
