@@ -9,6 +9,7 @@ import { SurveyUnitData } from '../../typeStromae/type';
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
+import { Saving } from './Saving';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
@@ -72,7 +73,9 @@ export function Orchestrator({
 				preferences={preferences}
 				autoSuggesterLoading={autoSuggesterLoading}
 			>
-				<Controls>{children}</Controls>
+				<Controls>
+					<Saving>{children}</Saving>
+				</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);

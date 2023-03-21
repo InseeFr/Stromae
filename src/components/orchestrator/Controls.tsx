@@ -1,10 +1,5 @@
-import {
-	cloneElement,
-	PropsWithChildren,
-	useCallback,
-	useEffect,
-	useState,
-} from 'react';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { CloneElements } from './CloneElements';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 
@@ -44,8 +39,8 @@ function getCriticality(errors?: Array<LunaticError>) {
 }
 
 export function Controls(props: PropsWithChildren<OrchestratedElement>) {
+	const { children = [], ...rest } = props;
 	const {
-		children = [],
 		getModalErrors = () => null,
 		getCurrentErrors,
 		goNextPage = () => null,
@@ -76,33 +71,25 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		goNextPage({ block: true });
 	}
 
-	const effective = Array.isArray(children) ? children : [children];
-
 	const handleGoNextPage = useCallback(
 		function () {
 			if (errors) {
 				setCurrentsErrors(errors);
 			}
-			console.log({ errors });
 			goNextPage();
 		},
 		[goNextPage, errors]
 	);
 
 	return (
-		<>
-			{effective.map(function (element, key) {
-				return cloneElement(
-					element as React.ReactElement<OrchestratedElement>,
-					{
-						...props,
-						modalErrors,
-						criticality,
-						goNextPage: modalErrors && criticality ? skip : handleGoNextPage,
-						currentErrors,
-					}
-				);
-			})}
-		</>
+		<CloneElements
+			{...rest}
+			goNextPage={modalErrors && criticality ? skip : handleGoNextPage}
+			modalErrors={modalErrors}
+			criticality={criticality}
+			currentErrors={currentErrors}
+		>
+			{children}
+		</CloneElements>
 	);
 }
