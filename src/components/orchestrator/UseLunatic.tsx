@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import { cloneElement } from 'react';
@@ -15,7 +15,6 @@ export function UseLunatic(
 		source,
 		surveyUnitData,
 		children,
-		onChange,
 		getReferentiel,
 		activeControls,
 		preferences,
@@ -25,11 +24,15 @@ export function UseLunatic(
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
+	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
+
+	const onChange = useCallback(function ({ name }: { name: string }) {
+		setCurrrentChange({ name });
+	}, []);
 
 	useEffect(
 		function () {
 			setArgs({
-				onChange,
 				getReferentiel,
 				activeControls,
 				custom,
@@ -37,16 +40,17 @@ export function UseLunatic(
 				features,
 				savingType,
 				autoSuggesterLoading,
+				onChange,
 			});
 		},
 		[
-			onChange,
 			getReferentiel,
 			activeControls,
 			preferences,
 			features,
 			savingType,
 			autoSuggesterLoading,
+			onChange,
 		]
 	);
 
@@ -78,7 +82,7 @@ export function UseLunatic(
 				getErrors,
 				activeControls,
 				getData,
-				onChange,
+				currentChange,
 			})}
 		</Provider>
 	);

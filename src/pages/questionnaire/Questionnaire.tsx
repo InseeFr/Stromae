@@ -14,14 +14,12 @@ export type QuestionnaireParams = {
 	unit?: string;
 };
 
-export type QuestionnaireProps = {
-	onChange?: (args: any) => void;
-};
+export type QuestionnaireProps = {};
 
 const FEATURES = ['VTL', 'MD'];
 const COLLECTED = 'COLLECTED';
 
-export function Questionnaire({ onChange }: QuestionnaireProps) {
+export function Questionnaire() {
 	const { survey, unit } = useParams();
 	useDocumentTitle('Questionnaire');
 	return (
@@ -29,7 +27,6 @@ export function Questionnaire({ onChange }: QuestionnaireProps) {
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator
-						onChange={onChange}
 						activeControls={true}
 						features={FEATURES}
 						savingType={COLLECTED}

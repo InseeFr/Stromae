@@ -8,8 +8,6 @@ import {
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 
-type ControlsType = {} & OrchestratedElement;
-
 export enum CriticalityEnum {
 	FORMAT = 'FORMAT',
 	ERROR = 'ERROR',
@@ -45,7 +43,7 @@ function getCriticality(errors?: Array<LunaticError>) {
 	return false;
 }
 
-export function Controls(props: PropsWithChildren<ControlsType>) {
+export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	const {
 		children = [],
 		getModalErrors = () => null,

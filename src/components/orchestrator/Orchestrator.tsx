@@ -48,6 +48,7 @@ export type OrchestratedElement = {
 	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
+	currentChange?: { name: string };
 };
 
 /**
@@ -59,14 +60,13 @@ export type NestedOrchestratedElement<T> = {
 
 export function Orchestrator({
 	children,
-	onChange,
 	activeControls,
 	features,
 	preferences,
 	autoSuggesterLoading,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
-		<LoadSourceData onChange={onChange} activeControls={activeControls}>
+		<LoadSourceData activeControls={activeControls}>
 			<UseLunatic
 				features={features}
 				preferences={preferences}
