@@ -85,6 +85,7 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 			if (errors) {
 				setCurrentsErrors(errors);
 			}
+			console.log({ errors });
 			goNextPage();
 		},
 		[goNextPage, errors]
