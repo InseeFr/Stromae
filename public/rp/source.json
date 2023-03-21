@@ -1,301 +1,462 @@
 {
+	"id": "lf19tudf",
+	"modele": "TESTRANI",
+	"enoCoreVersion": "2.4.1-pairwise",
+	"lunaticModelVersion": "2.3.2-rc4",
+	"generatingDate": "21-03-2023 14:13:40",
+	"missing": false,
+	"pagination": "question",
 	"maxPage": "5",
-	"suggesters": [
-		{
-			"name": "libelles-PCS2020",
-			"fields": [
-				{
-					"name": "libm",
-					"rules": ["[\\w]+"],
-					"language": "French",
-					"min": 2
-				},
-				{
-					"name": "id"
-				}
-			],
-			"queryParser": {
-				"type": "tokenized",
-				"params": {
-					"language": "French",
-					"pattern": "[\\w.]+"
-				}
-			},
-			"version": "1"
-		},
-		{
-			"name": "communes-2019",
-			"fields": [
-				{ "name": "label", "rules": "soft" },
-				{ "name": "nccenr", "rules": "soft" },
-				{ "name": "id", "rules": "soft" }
-			],
-			"queryParser": { "type": "soft" },
-			"version": "1"
-		}
-	],
+	"label": {
+		"value": "Test - Rani",
+		"type": "VTL|MD"
+	},
 	"components": [
 		{
-			"id": "seq",
+			"id": "lf1ac2fg",
 			"componentType": "Sequence",
+			"page": "1",
 			"label": {
-				"value": "\"Description des individus de votre logement\"",
+				"value": "Bienvue sur le test 1 de Stromae 3",
 				"type": "VTL|MD"
 			},
-			"conditionFilter": { "value": "true", "type": "VTL" },
-			"page": "1"
-		},
-		{
-			"id": "loop-prenom",
-			"componentType": "RosterForLoop",
-			"label": { "value": "\"Ajouter un individu\"", "type": "VTL|MD" },
-			"conditionFilter": { "value": "true", "type": "VTL" },
-			"lines": {
-				"min": { "value": "1", "type": "VTL" },
-				"max": { "value": "10", "type": "VTL" }
-			},
-			"page": "1",
-			"components": [
+			"declarations": [
 				{
-					"componentType": "Input",
-					"label": { "value": "\"Prénom\"", "type": "VTL|MD" },
-					"conditionFilter": { "value": "true", "type": "VTL" },
-					"maxLength": 30,
-					"id": "prenom",
-					"response": {
-						"name": "PRENOM"
+					"id": "lf1ac2fg-lf19zpfi",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "La description d’une séquence.",
+						"type": "VTL|MD"
 					}
 				}
-			]
-		},
-		{
-			"id": "age-loop",
-			"componentType": "Loop",
-			"paginatedLoop": true,
-			"iterations": { "value": "count(PRENOM)", "type": "VTL" },
-			"page": "2",
-			"maxPage": "1",
-			"conditionFilter": { "value": "true", "type": "VTL" },
-			"loopDependencies": ["PRENOM"],
-			"components": [
-				{
-					"id": "age-quest",
-					"label": { "value": "\"Âge de \" || PRENOM", "type": "VTL|MD" },
-					"conditionFilter": { "type": "VTL", "value": "true" },
-					"componentType": "InputNumber",
-					"page": "2.1",
-					"response": { "name": "AGE" }
-				}
-			]
-		},
-		{
-			"id": "pairwise-links",
-			"componentType": "PairwiseLinks",
-			"conditionFilter": { "value": "true" },
-			"xAxisIterations": { "value": "count(PRENOM)", "type": "VTL" },
-			"yAxisIterations": { "value": "count(PRENOM)", "type": "VTL" },
-			"page": "3",
-			"symLinks": {
-				"LINKS": {
-					"1": "1",
-					"2": "3",
-					"3": "2",
-					"4": "4",
-					"5": "6",
-					"6": "5",
-					"7": "8",
-					"8": "7",
-					"9": "10",
-					"10": "9",
-					"11": "13",
-					"12": "12",
-					"13": "11",
-					"14": null,
-					"15": "15",
-					"16": "16",
-					"17": "17",
-					"18": "18"
-				}
+			],
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
 			},
-			"components": [
-				{
-					"componentType": "Dropdown",
-					"id": "dropdown-1",
-					"conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
+			"hierarchy": {
+				"sequence": {
+					"id": "lf1ac2fg",
+					"page": "1",
 					"label": {
-						"value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
+						"value": "Bienvue sur le test 1 de Stromae 3",
+						"type": "VTL|MD"
+					}
+				}
+			}
+		},
+		{
+			"id": "lf1afo7e",
+			"componentType": "Dropdown",
+			"mandatory": false,
+			"page": "2",
+			"label": {
+				"value": "\"Quel est votre fruit préféré?\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"controls": [
+				{
+					"id": "lf1afo7e-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(PARMILESFR  <>  \"\")",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "\"Veuillez sélectionner un fruit.\"",
 						"type": "VTL|MD"
 					},
-					"response": {
-						"name": "LINKS"
-					},
-					"options": [
-						{ "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
-						{ "value": "2", "label": "\"Sa mère, son père\"" },
-						{ "value": "3", "label": "\"Sa fille, son fils\"" },
-						{
-							"value": "4",
-							"label": "\"Sa soeur, son frère (y compris demi et quasi)\""
-						},
-						{
-							"value": "5",
-							"label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
-						},
-						{
-							"value": "6",
-							"label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
-						},
-						{
-							"value": "7",
-							"label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
-						},
-						{
-							"value": "8",
-							"label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
-						},
-						{ "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
-						{ "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
-						{ "value": "11", "label": "\"Sa tante, son oncle\"" },
-						{ "value": "12", "label": "\"Sa cousine, son cousin\"" },
-						{ "value": "13", "label": "\"Sa nièce, son neveu\"" },
-						{
-							"value": "14",
-							"label": "\"Un enfant placé en famille d'accueil\""
-						},
-						{ "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
-						{ "value": "16", "label": "\"Un autre lien familial\"" },
-						{ "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
-						{
-							"value": "18",
-							"label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
-						}
+					"bindingDependencies": [
+						"PARMILESFR"
 					]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "lf1ac2fg",
+					"page": "1",
+					"label": {
+						"value": "Bienvue sur le test 1 de Stromae 3",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"PARMILESFR"
+			],
+			"options": [
+				{
+					"value": "0",
+					"label": {
+						"value": "\"Poire\"",
+						"type": "VTL|MD"
+					}
 				},
 				{
-					"componentType": "Textarea",
-
+					"value": "2",
 					"label": {
-						"value": "\"Pouvez-vous décrire le lien entre \" || xAxis || \" et \" || yAxis || \" ?\"",
+						"value": "\"Pêche\"",
 						"type": "VTL|MD"
-					},
-					"conditionFilter": {
-						"value": "LINKS = \"17\"",
+					}
+				},
+				{
+					"value": "1",
+					"label": {
+						"value": "\"Pomme\"",
+						"type": "VTL|MD"
+					}
+				}
+			],
+			"response": {
+				"name": "PARMILESFR"
+			}
+		},
+		{
+			"id": "lf1a9p2y",
+			"componentType": "Input",
+			"mandatory": false,
+			"page": "3",
+			"maxLength": 249,
+			"label": {
+				"value": "Quel est votre prénom?",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"controls": [
+				{
+					"id": "lf1a9p2y-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "INFO",
+					"control": {
+						"value": "not(QUELESTVOT  <>  \"\")",
 						"type": "VTL"
 					},
-					"id": "other",
+					"errorMessage": {
+						"value": "Veuillez entrer votre prénom. ",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": [
+						"QUELESTVOT"
+					]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "lf1ac2fg",
+					"page": "1",
+					"label": {
+						"value": "Bienvue sur le test 1 de Stromae 3",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"QUELESTVOT"
+			],
+			"response": {
+				"name": "QUELESTVOT"
+			}
+		},
+		{
+			"id": "lf1aj84n",
+			"componentType": "CheckboxGroup",
+			"page": "4",
+			"label": {
+				"value": "\"Quelle(s) villes sont situées en France?\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"controls": [
+				{
+					"id": "lf1aj84n-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(NB_COCHE_Q2 < 1)",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "\"Veuillez sélectionner au moins une réponse\"",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": [
+						"NB_COCHE_Q2"
+					]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "lf1ac2fg",
+					"page": "1",
+					"label": {
+						"value": "Bienvue sur le test 1 de Stromae 3",
+						"type": "VTL|MD"
+					}
+				}
+			},
+			"bindingDependencies": [
+				"COMBIENDEN1",
+				"COMBIENDEN2",
+				"COMBIENDEN3",
+				"COMBIENDEN4"
+			],
+			"responses": [
+				{
+					"id": "lf1aj84n-QOP-lfia265c",
+					"label": {
+						"value": "\"Paris\"",
+						"type": "VTL|MD"
+					},
 					"response": {
-						"name": "OTHER"
+						"name": "COMBIENDEN1"
+					}
+				},
+				{
+					"id": "lf1aj84n-QOP-lfi9rgr1",
+					"label": {
+						"value": "\"Genève\"",
+						"type": "VTL|MD"
+					},
+					"response": {
+						"name": "COMBIENDEN2"
+					}
+				},
+				{
+					"id": "lf1aj84n-QOP-lfi9se46",
+					"label": {
+						"value": "\"Londres\"",
+						"type": "VTL|MD"
+					},
+					"response": {
+						"name": "COMBIENDEN3"
+					}
+				},
+				{
+					"id": "lf1aj84n-QOP-lfia91f9",
+					"label": {
+						"value": "\"Lyon\"",
+						"type": "VTL|MD"
+					},
+					"response": {
+						"name": "COMBIENDEN4"
 					}
 				}
 			]
 		},
 		{
-			"id": "pariwise-block",
-			"componentType": "Loop",
-			"paginatedLoop": true,
-			"iterations": { "value": "count(PRENOM)", "type": "VTL" },
-			"page": "4",
-			"maxPage": "1",
-			"conditionFilter": { "value": "true", "type": "VTL" },
-			"loopDependencies": ["PRENOM"],
-			"components": [
+			"id": "lfi1z7j0",
+			"componentType": "Radio",
+			"mandatory": false,
+			"page": "5",
+			"label": {
+				"value": "\"Dans la liste suivante, quel pays est situé en Afrique?\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"controls": [
 				{
-					"componentType": "Textarea",
-					"page": "4.1",
-					"label": {
-						"value": "PRENOM || \", why do you live without your parents?\"",
-						"type": "VTL|MD"
-					},
-					"conditionFilter": {
-						"value": "\"3\" not_in LINKS and AGE < 18",
+					"id": "lfi1z7j0-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(QUELESTLEP  <> \"\")",
 						"type": "VTL"
 					},
-					"id": "why",
-					"response": {
-						"name": "WHY"
+					"errorMessage": {
+						"value": "\"Veuillez sélectionner au moins une réponse\"",
+						"type": "VTL|MD"
+					},
+					"bindingDependencies": [
+						"QUELESTLEP"
+					]
+				}
+			],
+			"hierarchy": {
+				"sequence": {
+					"id": "lf1ac2fg",
+					"page": "1",
+					"label": {
+						"value": "Bienvenue sur le test 1 de Stromae 3",
+						"type": "VTL|MD"
 					}
 				}
-			]
-		},
-		{ "componentType": "Sequence", "label": "\"END\"", "page": 5 }
+			},
+			"bindingDependencies": [
+				"QUELESTLEP"
+			],
+			"options": [
+				{
+					"value": "1",
+					"label": {
+						"value": "\"France\"",
+						"type": "VTL|MD"
+					}
+				},
+				{
+					"value": "2",
+					"label": {
+						"value": "\"Sénégal\"",
+						"type": "VTL|MD"
+					}
+				},
+				{
+					"value": "3",
+					"label": {
+						"value": "\"Thaïlande\"",
+						"type": "VTL|MD"
+					}
+				}
+			],
+			"response": {
+				"name": "QUELESTLEP"
+			}
+		}
 	],
 	"variables": [
 		{
 			"variableType": "COLLECTED",
-			"name": "PRENOM",
+			"name": "PARMILESFR",
 			"values": {
-				"PREVIOUS": [null],
-				"COLLECTED": [null],
-				"FORCED": [null],
-				"EDITED": [null],
-				"INPUTED": [null]
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
 			}
 		},
 		{
 			"variableType": "COLLECTED",
-			"name": "AGE",
+			"name": "QUELESTVOT",
 			"values": {
-				"PREVIOUS": [null],
-				"COLLECTED": [null],
-				"FORCED": [null],
-				"EDITED": [null],
-				"INPUTED": [null]
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
 			}
 		},
 		{
 			"variableType": "COLLECTED",
-			"name": "LINKS",
+			"name": "COMBIENDEN1",
 			"values": {
-				"PREVIOUS": [[null]],
-				"COLLECTED": [[null]],
-				"FORCED": [[null]],
-				"EDITED": [[null]],
-				"INPUTED": [[null]]
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
 			}
 		},
 		{
 			"variableType": "COLLECTED",
-			"name": "OTHER",
+			"name": "COMBIENDEN2",
 			"values": {
-				"PREVIOUS": [[null]],
-				"COLLECTED": [[null]],
-				"FORCED": [[null]],
-				"EDITED": [[null]],
-				"INPUTED": [[null]]
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
 			}
 		},
 		{
 			"variableType": "COLLECTED",
-			"name": "WHY",
+			"name": "COMBIENDEN3",
 			"values": {
-				"PREVIOUS": [null],
-				"COLLECTED": [null],
-				"FORCED": [null],
-				"EDITED": [null],
-				"INPUTED": [null]
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "COMBIENDEN4",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "QUELESTLEP",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
 			}
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "xAxis",
-			"expression": { "value": "PRENOM", "type": "VTL" },
-			"bindingDependencies": ["PRENOM"],
-			"shapeFrom": "PRENOM",
+			"name": "FILTER_RESULT_PARMILESFR",
+			"expression": {
+				"value": "true",
+				"type": "VTL"
+			},
 			"inFilter": "false"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "yAxis",
-			"expression": { "value": "PRENOM", "type": "VTL" },
-			"bindingDependencies": ["PRENOM"],
-			"shapeFrom": "PRENOM",
+			"name": "FILTER_RESULT_QUELESTVOT",
+			"expression": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"inFilter": "false"
+		},
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_COMBIENDEN",
+			"expression": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"inFilter": "false"
+		},
+		{
+			"variableType": "CALCULATED",
+			"name": "FILTER_RESULT_QUELESTLEP",
+			"expression": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"inFilter": "false"
+		},
+		{
+			"variableType": "CALCULATED",
+			"name": "NB_COCHE_Q2",
+			"expression": {
+				"value": "(if nvl(COMBIENDEN1, false) then 1 else 0) + (if nvl(COMBIENDEN2, false) then 1 else 0) + (if nvl(COMBIENDEN3, false) then 1 else 0) + (if nvl(COMBIENDEN4, false) then 1 else 0)",
+				"type": "VTL"
+			},
+			"bindingDependencies": [
+				"COMBIENDEN1",
+				"COMBIENDEN2",
+				"COMBIENDEN3",
+				"COMBIENDEN4"
+			],
 			"inFilter": "false"
 		}
 	],
-	"resizing": {
-		"PRENOM": {
-			"sizeForLinksVariables": ["count(PRENOM)", "count(PRENOM)"],
-			"linksVariables": ["LINKS"]
-		}
-	}
+	"cleaning": {},
+	"resizing": {}
 }

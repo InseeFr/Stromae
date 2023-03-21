@@ -4,6 +4,7 @@ import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
 import ConvertContent from "../../convertContent";
 
+
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
 		return 'Me déconnecter';

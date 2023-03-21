@@ -18,7 +18,7 @@ export function Formulaire(props: OrchestratedElement) {
 	);
 
 	return (
-		<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-6w fr-mt-md-12w">
+		<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-5w fr-mt-md-7w">
 			<div className="fr-col-lg-6 fr-col-12">
 				<form>
 					{components.map(function (component: ComponentType) {
