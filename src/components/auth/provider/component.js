@@ -12,7 +12,7 @@ export const AuthContext = React.createContext();
 const AuthProvider = ({ children }) => {
   const {
     authenticationType: authType,
-    urlPortail,
+    portail: urlPortail,
     identityProvider,
   } = useContext(AppContext);
 
