@@ -6,10 +6,10 @@ function ConvertContent(props: ConvertContentProps) {
         return (<></>);
     }
     if (typeof props.content === "string") {
-        return (<>props.content</>);
+        return (<>{props.content}</>);
     }
     if (props.content.type && props.content.type === "string") {
-        return (<span>props.content.valuet</span >);;
+        return (<span>{props.content.value}</span >);;
     }
     else if (props.content.type && props.content.type === "html") {
         return (
