@@ -1,7 +1,11 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { CloneElements } from './CloneElements';
+=======
+>>>>>>> v3-develop
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
+import { CloneElements } from './CloneElements';
 
 export enum CriticalityEnum {
 	FORMAT = 'FORMAT',
@@ -39,11 +43,12 @@ function getCriticality(errors?: Array<LunaticError>) {
 }
 
 export function Controls(props: PropsWithChildren<OrchestratedElement>) {
-	const { children = [], ...rest } = props;
 	const {
+		children,
 		getModalErrors = () => null,
 		getCurrentErrors,
 		goNextPage = () => null,
+		...rest
 	} = props;
 
 	const modalErrors = flatErrors(getModalErrors());
