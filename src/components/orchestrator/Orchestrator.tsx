@@ -1,5 +1,4 @@
-import { JSXElementConstructor, ReactElement } from 'react';
-import { PropsWithChildren } from 'react';
+import { JSXElementConstructor, ReactElement, PropsWithChildren } from 'react';
 import {
 	LunaticSource,
 	ComponentType,
@@ -29,10 +28,10 @@ export type OrchestratedElement = {
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: () => void;
-	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>;
+	getErrors?: () => Record<string, Array<LunaticError>>;
 	getModalErrors?: () => Record<string, Array<LunaticError>>;
 	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
-	// pageTag,
+	readonly pageTag?: string;
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
 	// pager,
@@ -40,9 +39,10 @@ export type OrchestratedElement = {
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
 	readonly activeControls?: boolean;
+	readonly compileControls?: () => void;
 	// controls errors
 	modalErrors?: Array<LunaticError>;
-	currentErrors?: Record<string, Array<LunaticError>>;
+	currentErrors?: Array<LunaticError>;
 	criticality?: boolean;
 };
 

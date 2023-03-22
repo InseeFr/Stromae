@@ -2,10 +2,10 @@ import { fr } from '@codegouvfr/react-dsfr';
 import { OrchestratedElement } from '../orchestrator/Orchestrator';
 
 export function AlertesControles(props: OrchestratedElement) {
-	const { modalErrors, criticality } = props;
+	const { currentErrors, criticality } = props;
 	const type = criticality ? 'fr-alert--error' : 'fr-alert--warning';
-	if (modalErrors && modalErrors.length) {
-		const content = modalErrors.map(function ({ errorMessage, id }) {
+	if (currentErrors && currentErrors.length) {
+		const content = currentErrors.map(function ({ errorMessage, id }) {
 			return (
 				<div key={id} className="message-error">
 					{errorMessage}

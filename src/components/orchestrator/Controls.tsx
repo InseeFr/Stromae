@@ -16,20 +16,18 @@ export enum CriticalityEnum {
 	WARN = 'WARN',
 }
 
-function getErrors(
-	getCurrentErrors?: () => Record<string, Array<LunaticError>>
+function extractErrors(
+	getErrors?: () => Record<string, Array<LunaticError>>,
+	pageTag?: string
 ) {
-	if (typeof getCurrentErrors === 'function') {
-		return getCurrentErrors();
+	if (typeof getErrors === 'function') {
+		const errors = getErrors();
+		if (pageTag && pageTag in errors) {
+			return Object.values(errors[pageTag]).flat();
+		}
 	}
 
 	return undefined;
-}
-
-function flatErrors(errors: Record<string, Array<LunaticError>> | null) {
-	if (errors) {
-		return Object.values(errors).flat();
-	}
 }
 
 function getCriticality(errors?: Array<LunaticError>) {
@@ -46,50 +44,44 @@ function getCriticality(errors?: Array<LunaticError>) {
 }
 
 export function Controls(props: PropsWithChildren<ControlsType>) {
+	const [askForTurn, setAskForturn] = useState<boolean>(false);
+	const [currentErrors, setCurrentErrors] = useState<Array<LunaticError>>();
+	const [criticality, setCriticality] = useState<boolean>();
 	const {
 		children = [],
-		getModalErrors = () => null,
-		getCurrentErrors,
+		pageTag,
+		getErrors,
 		goNextPage = () => null,
+		compileControls = () => console.error('compileControls is not a function!'),
 	} = props;
 
-	const modalErrors = flatErrors(getModalErrors());
-	const criticality = getCriticality(modalErrors);
-	const [onErrors, setOnErrors] = useState<boolean>(false);
-	const [currentErrors, setCurrentsErrors] =
-		useState<Record<string, Array<LunaticError>>>();
-
-	const errors = getErrors(getCurrentErrors);
+	const handleGoNext = useCallback(
+		function () {
+			compileControls();
+			setAskForturn(true);
+		},
+		[compileControls]
+	);
 
 	useEffect(
 		function () {
-			if (modalErrors) {
-				setOnErrors(true);
-			}
-			if (!modalErrors && onErrors) {
-				// trick for modal
-				goNextPage();
+			if (askForTurn) {
+				const errors = extractErrors(getErrors, pageTag);
+				setAskForturn(false);
+				if (errors && errors.length) {
+					setCurrentErrors(errors);
+					setCriticality(getCriticality(errors));
+				} else {
+					goNextPage();
+					setCurrentErrors(undefined);
+					setCriticality(undefined);
+				}
 			}
 		},
-		[modalErrors, onErrors, goNextPage]
+		[askForTurn, getErrors, pageTag, goNextPage]
 	);
-
-	function skip() {
-		goNextPage({ block: true });
-	}
 
 	const effective = Array.isArray(children) ? children : [children];
-
-	const handleGoNextPage = useCallback(
-		function () {
-			if (errors) {
-				setCurrentsErrors(errors);
-			}
-			goNextPage();
-		},
-		[goNextPage, errors]
-	);
-
 	return (
 		<>
 			{effective.map(function (element, key) {
@@ -97,10 +89,10 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 					element as React.ReactElement<OrchestratedElement>,
 					{
 						...props,
-						modalErrors,
+						goNextPage: handleGoNext,
 						criticality,
-						goNextPage: modalErrors && criticality ? skip : handleGoNextPage,
 						currentErrors,
+						key,
 					}
 				);
 			})}
