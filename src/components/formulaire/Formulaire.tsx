@@ -23,7 +23,6 @@ export function Formulaire(props: OrchestratedElement) {
 				<form>
 					{components.map(function (component: ComponentType) {
 						const { componentType, id } = component;
-
 						if (componentType in lunatic) {
 							const Component = lunatic[componentType];
 

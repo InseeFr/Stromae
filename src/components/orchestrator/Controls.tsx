@@ -1,12 +1,7 @@
-import {
-	cloneElement,
-	PropsWithChildren,
-	useCallback,
-	useEffect,
-	useState,
-} from 'react';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
+import { CloneElements } from './CloneElements';
 
 type ControlsType = {} & OrchestratedElement;
 
@@ -17,7 +12,7 @@ export enum CriticalityEnum {
 }
 
 function extractErrors(
-	getErrors?: () => Record<string, Array<LunaticError>>,
+	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>,
 	pageTag?: string
 ) {
 	if (typeof getErrors === 'function') {
@@ -53,6 +48,7 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 		getErrors,
 		goNextPage = () => null,
 		compileControls = () => console.error('compileControls is not a function!'),
+		...rest
 	} = props;
 
 	const handleGoNext = useCallback(
@@ -81,21 +77,14 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 		[askForTurn, getErrors, pageTag, goNextPage]
 	);
 
-	const effective = Array.isArray(children) ? children : [children];
 	return (
-		<>
-			{effective.map(function (element, key) {
-				return cloneElement(
-					element as React.ReactElement<OrchestratedElement>,
-					{
-						...props,
-						goNextPage: handleGoNext,
-						criticality,
-						currentErrors,
-						key,
-					}
-				);
-			})}
-		</>
+		<CloneElements
+			{...rest}
+			goNextPage={handleGoNext}
+			criticality={criticality}
+			currentErrors={currentErrors}
+		>
+			{children}
+		</CloneElements>
 	);
 }
