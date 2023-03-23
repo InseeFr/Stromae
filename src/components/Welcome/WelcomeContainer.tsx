@@ -24,7 +24,7 @@ export function WelcomeContainer() {
     const welcome = metadata.Welcome;
 
     return (
-        <div className="fr-grid-row">
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-6w">
             <div className="fr-col-12">
                 <h1>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</ h1>
                 <p className="fr-text--lead">{welcome.Enq_ObjectifsCourts}</ p>
