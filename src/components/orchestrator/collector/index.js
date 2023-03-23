@@ -78,15 +78,28 @@ export const Orchestrator = ({
     logFunction,
   });
 
-  const updateStateData = (newState) => {
-    const newStateData = {
-      state: newState ?? INIT,
-      date: new Date().getTime(),
-      currentPage: currentPage,
-    };
-    setCurrentStateData(newStateData);
-    return newStateData;
-  };
+  const components = getComponents();
+
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (validated) return END_PAGE;
+    if (stateData?.currentPage) {
+      return page;
+    }
+    return WELCOME_PAGE;
+  });
+
+  const updateStateData = useCallback(
+    (newState) => {
+      const newStateData = {
+        state: newState ?? INIT,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      };
+      setCurrentStateData(newStateData);
+      return newStateData;
+    },
+    [currentPage]
+  );
 
   const logoutAndClose = async () => {
     if (!validated) {
@@ -99,14 +112,6 @@ export const Orchestrator = ({
     }
     quit();
   };
-
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (validated) return END_PAGE;
-    if (stateData?.currentPage) {
-      return page;
-    }
-    return WELCOME_PAGE;
-  });
 
   const goToTop = () => {
     if (topRef && topRef.current) {
@@ -130,35 +135,56 @@ export const Orchestrator = ({
 
   const [errorActive, setErrorActive] = useState({});
   const [errorsForModal, setErrorsForModal] = useState(null);
+  const closeErrorsModal = useCallback(() => setErrorsForModal(undefined), []);
 
-  const handleGoNext = useCallback(() => {
-    const { currentErrors, isCritical } = compileControls();
-    if (currentErrors && Object.keys(currentErrors).length > 0) {
-      setErrorActive({ ...errorActive, [pageTag]: currentErrors });
-      setErrorsForModal({ currentErrors, isCritical });
-    } else goNextPage();
-  }, [compileControls, errorActive, goNextPage, pageTag]);
-
-  const onNext = () => {
-    if (currentPage === WELCOME_PAGE) setCurrentPage(page);
-    else {
-      const onNextUpdateState = updateStateData();
-      const dataToSave = {
-        stateData: onNextUpdateState,
-        data: getData(),
-      };
-      if (!isLastPage) {
-        if (isNewSequence(components)) {
-          save(dataToSave);
-        }
-        goNextPage();
-      } else {
-        save(dataToSave);
-        setCurrentPage(VALIDATION_PAGE);
+  const handleGoNext = useCallback(
+    (skipValidation) => {
+      if (skipValidation) goNextPage();
+      else {
+        const { currentErrors, isCritical } = compileControls();
+        if (currentErrors && Object.keys(currentErrors).length > 0) {
+          setErrorActive({ ...errorActive, [pageTag]: currentErrors });
+          setErrorsForModal({ currentErrors, isCritical });
+        } else goNextPage();
       }
-    }
-    goToTop();
-  };
+    },
+    [compileControls, errorActive, goNextPage, pageTag]
+  );
+
+  const onNext = useCallback(
+    (event, skipValidation = false) => {
+      closeErrorsModal();
+      if (currentPage === WELCOME_PAGE) setCurrentPage(page);
+      else {
+        const onNextUpdateState = updateStateData();
+        const dataToSave = {
+          stateData: onNextUpdateState,
+          data: getData(),
+        };
+        if (!isLastPage) {
+          if (isNewSequence(components)) {
+            save(dataToSave);
+          }
+          handleGoNext(skipValidation);
+        } else {
+          save(dataToSave);
+          setCurrentPage(VALIDATION_PAGE);
+        }
+      }
+      goToTop();
+    },
+    [
+      closeErrorsModal,
+      components,
+      currentPage,
+      getData,
+      handleGoNext,
+      isLastPage,
+      page,
+      save,
+      updateStateData,
+    ]
+  );
 
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
@@ -173,8 +199,6 @@ export const Orchestrator = ({
       setCurrentPage(page);
     }
   }, [currentPage, page]);
-
-  const components = getComponents();
 
   const lunaticDisplay = () => (
     <Card
@@ -255,13 +279,14 @@ export const Orchestrator = ({
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
-      <ErrorsModal
-        currentPage={currentPage}
-        errors={errorsForModal}
-        goNext={onNext}
-        open={errorsForModal}
-        onClose={() => setErrorsForModal(undefined)}
-      />
+      {errorsForModal && (
+        <ErrorsModal
+          currentPage={currentPage}
+          errors={errorsForModal}
+          goNext={onNext}
+          onClose={closeErrorsModal}
+        />
+      )}
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={(o) => setInit(!o)}
