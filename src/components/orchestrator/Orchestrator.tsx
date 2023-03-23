@@ -43,7 +43,10 @@ export type OrchestratedElement = {
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
 	readonly activeControls?: boolean;
-	readonly compileControls?: () => void;
+	readonly compileControls?: () => {
+		isCritical: boolean;
+		currentErrors?: Record<string, Array<LunaticError>>;
+	};
 	// controls errors
 	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;

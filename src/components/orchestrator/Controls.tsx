@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { PropsWithChildren, useCallback, useState } from 'react';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 import { CloneElements } from './CloneElements';
@@ -9,80 +9,39 @@ export enum CriticalityEnum {
 	WARN = 'WARN',
 }
 
-function extractErrors(
-	getErrors?: () => Record<string, Record<string, Array<LunaticError>>>,
-	pageTag?: string
-) {
-	if (typeof getErrors === 'function') {
-		const errors = getErrors();
-		if (pageTag && pageTag in errors) {
-			return errors[pageTag];
-		}
-	}
-
-	return undefined;
-}
-
-function flatErrors(errors?: Record<string, Array<LunaticError>>) {
-	if (errors) {
-		return Object.values(errors).flat();
-	}
-
-	return [];
-}
-
-function getCriticality(errors?: Array<LunaticError>) {
-	if (errors) {
-		return errors.reduce(function (status, { criticality, typeOfControl }) {
-			return (
-				status ||
-				(typeOfControl === CriticalityEnum.FORMAT &&
-					criticality.startsWith(CriticalityEnum.ERROR))
-			);
-		}, false);
-	}
-	return false;
-}
-
 export function Controls(props: PropsWithChildren<OrchestratedElement>) {
-	const [askForTurn, setAskForturn] = useState<boolean>(false);
 	const [currentErrors, setCurrentErrors] =
 		useState<Record<string, Array<LunaticError>>>();
+	const [warning, setWarning] = useState<boolean>(false);
 	const [criticality, setCriticality] = useState<boolean>();
 	const {
 		children = [],
 		pageTag,
 		getErrors,
 		goNextPage = () => null,
-		compileControls = () => console.error('compileControls is not a function!'),
+		compileControls,
 		...rest
 	} = props;
 
 	const handleGoNext = useCallback(
 		function () {
-			compileControls();
-			setAskForturn(true);
-		},
-		[compileControls]
-	);
-
-	useEffect(
-		function () {
-			if (askForTurn) {
-				const errors = extractErrors(getErrors, pageTag);
-				const flat = flatErrors(errors);
-				setAskForturn(false);
-				if (flat.length) {
-					setCurrentErrors(errors);
-					setCriticality(getCriticality(flat));
-				} else {
+			if (warning) {
+				setWarning(false);
+				setCurrentErrors(undefined);
+				setCriticality(false);
+				goNextPage();
+			} else if (compileControls) {
+				const errors = compileControls();
+				setCriticality(errors.isCritical);
+				setCurrentErrors(errors.currentErrors);
+				if (errors.currentErrors && !errors.isCritical) {
+					setWarning(true);
+				} else if (!errors.currentErrors) {
 					goNextPage();
-					setCurrentErrors(undefined);
-					setCriticality(undefined);
 				}
 			}
 		},
-		[askForTurn, getErrors, pageTag, goNextPage]
+		[compileControls, goNextPage, warning]
 	);
 
 	return (

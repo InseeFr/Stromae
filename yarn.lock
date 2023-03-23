@@ -1424,8 +1424,8 @@
 
 "@inseefr/lunatic@2.4.0-fix-controls":
   version "2.4.0-fix-controls"
-  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-fix-controls.tgz#55483e8f0ebe0959e0ef6dfe8bc92bf791ca44bb"
-  integrity sha512-LIRfDKdXYKQ4vbNS10zBywytgtIPPqx5O58jsNgkL3W24mH85UQTxwcXGpYEnmK8DpiF4KlZY8ItX6HtrsnnlQ==
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-fix-controls.tgz#e2c8e2c3ab992d5ee797b54a5dc9c0eba9c30f45"
+  integrity sha512-ibeh4AZQvTMiBqIyrN0zqXtxguXM8XR2T9hy1IQEuW/juWpSIFAxL18lSOvsyRWPXYkTswHWzaR8YTkBBzSzhg==
   dependencies:
     "@inseefr/trevas" "^0.1.16"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
@@ -2487,9 +2487,9 @@
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
 "@types/scheduler@*":
-  version "0.16.2"
-  resolved "https://nexus.insee.fr/repository/npm-public/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
-  integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
+  version "0.16.3"
+  resolved "https://nexus.insee.fr/repository/npm-public/@types/scheduler/-/scheduler-0.16.3.tgz#cef09e3ec9af1d63d2a6cc5b383a737e24e6dcf5"
+  integrity sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==
 
 "@types/semver@^7.3.12":
   version "7.3.13"
@@ -4440,9 +4440,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.335"
-  resolved "https://nexus.insee.fr/repository/npm-public/electron-to-chromium/-/electron-to-chromium-1.4.335.tgz#69c08baa608bbb58e290d83320190fa82c835efe"
-  integrity sha512-l/eowQqTnrq3gu+WSrdfkhfNHnPgYqlKAwxz7MTOj6mom19vpEDHNXl6dxDxyTiYuhemydprKr/HCrHfgk+OfQ==
+  version "1.4.337"
+  resolved "https://nexus.insee.fr/repository/npm-public/electron-to-chromium/-/electron-to-chromium-1.4.337.tgz#710168240b2dc5fe5eb5f8e4ef9c16d70aedc0ba"
+  integrity sha512-W8gdzXG86mVPoc56eM8YA+QiLxaAxJ8cmDjxZgfhLLWVvZQxyA918w5tX2JEWApZta45T1/sYcmFHTsTOUE3nw==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -10303,9 +10303,9 @@ webpack-sources@^3.2.3:
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
 webpack@^5.64.4:
-  version "5.76.2"
-  resolved "https://nexus.insee.fr/repository/npm-public/webpack/-/webpack-5.76.2.tgz#6f80d1c1d1e3bf704db571b2504a0461fac80230"
-  integrity sha512-Th05ggRm23rVzEOlX8y67NkYCHa9nTNcwHPBhdg+lKG+mtiW7XgggjAeeLnADAe7mLjJ6LUNfgHAuRRh+Z6J7w==
+  version "5.76.3"
+  resolved "https://nexus.insee.fr/repository/npm-public/webpack/-/webpack-5.76.3.tgz#dffdc72c8950e5b032fddad9c4452e7787d2f489"
+  integrity sha512-18Qv7uGPU8b2vqGeEEObnfICyw2g39CHlDEK4I7NK13LOur1d0HGmGNKGT58Eluwddpn3oEejwvBPoP4M7/KSA==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
