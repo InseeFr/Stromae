@@ -46,7 +46,7 @@ export type OrchestratedElement = {
 	readonly compileControls?: () => void;
 	// controls errors
 	modalErrors?: Array<LunaticError>;
-	currentErrors?: Array<LunaticError>;
+	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
 	pageTag?: string;
 };

@@ -3,8 +3,6 @@ import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 
-type ControlsType = {} & OrchestratedElement;
-
 export enum CriticalityEnum {
 	FORMAT = 'FORMAT',
 	ERROR = 'ERROR',
@@ -18,11 +16,19 @@ function extractErrors(
 	if (typeof getErrors === 'function') {
 		const errors = getErrors();
 		if (pageTag && pageTag in errors) {
-			return Object.values(errors[pageTag]).flat();
+			return errors[pageTag];
 		}
 	}
 
 	return undefined;
+}
+
+function flatErrors(errors?: Record<string, Array<LunaticError>>) {
+	if (errors) {
+		return Object.values(errors).flat();
+	}
+
+	return [];
 }
 
 function getCriticality(errors?: Array<LunaticError>) {
@@ -38,9 +44,10 @@ function getCriticality(errors?: Array<LunaticError>) {
 	return false;
 }
 
-export function Controls(props: PropsWithChildren<ControlsType>) {
+export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	const [askForTurn, setAskForturn] = useState<boolean>(false);
-	const [currentErrors, setCurrentErrors] = useState<Array<LunaticError>>();
+	const [currentErrors, setCurrentErrors] =
+		useState<Record<string, Array<LunaticError>>>();
 	const [criticality, setCriticality] = useState<boolean>();
 	const {
 		children = [],
@@ -63,10 +70,11 @@ export function Controls(props: PropsWithChildren<ControlsType>) {
 		function () {
 			if (askForTurn) {
 				const errors = extractErrors(getErrors, pageTag);
+				const flat = flatErrors(errors);
 				setAskForturn(false);
-				if (errors && errors.length) {
+				if (flat.length) {
 					setCurrentErrors(errors);
-					setCriticality(getCriticality(errors));
+					setCriticality(getCriticality(flat));
 				} else {
 					goNextPage();
 					setCurrentErrors(undefined);
