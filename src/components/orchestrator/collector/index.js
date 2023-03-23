@@ -34,7 +34,6 @@ export const Orchestrator = ({
   preferences,
   features,
   activeControls,
-  modalForControls,
   readonly,
   suggesters,
   autoSuggesterLoading,

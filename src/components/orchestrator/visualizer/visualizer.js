@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Orchestrator } from 'components/orchestrator/collector';
-import { useRemoteData, useVisuQuery } from 'utils/hooks';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { Orchestrator } from 'components/orchestrator/collector';
+import { useEffect, useState } from 'react';
+import { useRemoteData, useVisuQuery } from 'utils/hooks';
 
 import { LoaderSimple } from 'components/shared/loader';
-import QuestionnaireForm from './questionnaireForm';
-import { downloadDataAsJson } from 'utils/questionnaire';
 import { useHistory } from 'react-router';
-import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
 import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
+import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
+import { downloadDataAsJson } from 'utils/questionnaire';
+import QuestionnaireForm from './questionnaireForm';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -45,7 +45,7 @@ const Visualizer = () => {
       ? Object.entries(nomenclatures).reduce((newObj, [key, val]) => {
           return { ...newObj, [key]: { url: val } };
         }, {})
-      : null;
+      : {};
 
   const logoutAndClose = async (surveyUnit) => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
@@ -87,7 +87,6 @@ const Visualizer = () => {
               logoutAndClose={logoutAndClose}
               pagination={true}
               activeControls={true}
-              modalForControls={true}
               readonly={readonly}
             />
           )}

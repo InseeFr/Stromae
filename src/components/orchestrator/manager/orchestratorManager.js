@@ -1,24 +1,24 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAPI, useAPIRemoteData } from 'utils/hooks';
-import { AppContext } from 'App';
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { AppContext } from 'App';
+import { AuthContext } from 'components/auth/provider';
 import { LoaderSimple } from 'components/shared/loader';
-import { Orchestrator } from './../collector';
-import {
-  EventsManager,
-  INIT_ORCHESTRATOR_EVENT,
-  INIT_SESSION_EVENT,
-} from 'utils/events';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
   READ_ONLY,
 } from 'utils/constants';
+import {
+  EventsManager,
+  INIT_ORCHESTRATOR_EVENT,
+  INIT_SESSION_EVENT,
+} from 'utils/events';
+import { useAPI, useAPIRemoteData } from 'utils/hooks';
 import { buildSuggesterFromNomenclatures } from 'utils/questionnaire/nomenclatures';
-import { AuthContext } from 'components/auth/provider';
+import { Orchestrator } from './../collector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,7 +123,6 @@ const OrchestratorManager = () => {
             features={['VTL', 'MD']}
             pagination={true}
             activeControls={true}
-            modalForControls={true}
             readonly={readonly}
           />
         )}
