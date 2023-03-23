@@ -1418,14 +1418,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic@2.0.6-v2":
-  version "2.0.6-v2"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.0.6-v2.tgz#64cc92f973b470d5ef997cf5d8449b71bbf90ccc"
-  integrity sha512-+RlrvU97O/VRc+2Ihn8ESmVFaGvazbL0UeSktI0yAymH/94Ppjg7vEhx7WHlWvjSbYjvUmjCIXf+Eav2jlIIcg==
+"@inseefr/lunatic@2.4.0-fix-controls":
+  version "2.4.0-fix-controls"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-fix-controls.tgz#e2c8e2c3ab992d5ee797b54a5dc9c0eba9c30f45"
+  integrity sha512-ibeh4AZQvTMiBqIyrN0zqXtxguXM8XR2T9hy1IQEuW/juWpSIFAxL18lSOvsyRWPXYkTswHWzaR8YTkBBzSzhg==
   dependencies:
     "@inseefr/trevas" "^0.1.16"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
-    antlr4 "4.8.0"
+    antlr4 "4.11.0"
     classnames "^2.3.1"
     date-fns "^2.25.0"
     lodash.camelcase "^4.3.0"
@@ -1435,10 +1435,10 @@
     prop-types "^15.7.2"
     react-keyboard-event-handler "^1.5.4"
     react-markdown "^8.0.3"
-    react-number-format "^5.0.0-beta.4"
+    react-number-format "^5.1.3"
     react-tooltip "^4.2.15"
     remove-accents "^0.4.2"
-    sass "^1.32.2"
+    sass "^1.58.3"
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
@@ -2932,6 +2932,11 @@ ansi-styles@^6.0.0:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.1.1.tgz#63cd61c72283a71cb30bd881dbb60adada74bc70"
   integrity sha512-qDOv24WjnYuL+wbwHdlsYZFy+cgPtrYw0Tn7GLORicQp9BkQLzrgI3Pm4VyR9ERZ41YTn7KlMPuL1n05WdZvmg==
+
+antlr4@4.11.0:
+  version "4.11.0"
+  resolved "https://nexus.insee.fr/repository/npm-public/antlr4/-/antlr4-4.11.0.tgz#d7466f5044fa6e333c0ec821b30c6157f6b004ae"
+  integrity sha512-GUGlpE2JUjAN+G8G5vY+nOoeyNhHsXoIJwP1XF1oRw89vifA1K46T6SEkwLwr7drihN7I/lf0DIjKc4OZvBX8w==
 
 antlr4@4.8.0:
   version "4.8.0"
@@ -11231,10 +11236,10 @@ react-modal@^3.12.1:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-number-format@^5.0.0-beta.4:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.0.1.tgz#23a3a693c978c7be328fa9c00dee5135111ca32b"
-  integrity sha512-Tyv5Ygb77ZbC5vUNNAfXwE+zQKaN0LsTo7GwjudU/MckXa7beVAlFddq7QQnGobEglyq+4zsBltKvM9HMQD0GA==
+react-number-format@^5.1.3:
+  version "5.1.4"
+  resolved "https://nexus.insee.fr/repository/npm-public/react-number-format/-/react-number-format-5.1.4.tgz#23057d94a4f1b08e12ee41328e86be929b60a791"
+  integrity sha512-QV7QHzHrk9ZS9V0bWkIwu6ywiXJt0www4/cXWEVEgwaNqthmOZl/Cf5O0ukEPlGZJJr06Jh3+CM4rZsvXn8cOg==
   dependencies:
     prop-types "^15.7.2"
 
@@ -11953,10 +11958,19 @@ sass-loader@8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
-sass@^1.32.2, sass@^1.32.6:
+sass@^1.32.6:
   version "1.55.0"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.55.0.tgz#0c4d3c293cfe8f8a2e8d3b666e1cf1bff8065d1c"
   integrity sha512-Pk+PMy7OGLs9WaxZGJMn7S96dvlyVBwwtToX895WmCpAOr5YiJYEUJfiJidMuKb613z2xNWcXCHEuOvjZbqC6A==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
+sass@^1.58.3:
+  version "1.59.3"
+  resolved "https://nexus.insee.fr/repository/npm-public/sass/-/sass-1.59.3.tgz#a1ddf855d75c70c26b4555df4403e1bbf8e4403f"
+  integrity sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"

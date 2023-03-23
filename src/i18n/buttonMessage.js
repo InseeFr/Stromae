@@ -4,6 +4,8 @@ const buttonMessage = {
     fr: `Enregistrer et continuer`,
     en: `Save and continue`,
   },
+  MODAL_IGNORE: { fr: 'Poursuivre', en: 'Ignore' },
+  MODAL_CORRECT: { fr: 'Corriger ma réponse', en: 'Correct' },
   back: {
     fr: `Retour`,
     en: `Go back`,

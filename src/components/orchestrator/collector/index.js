@@ -1,27 +1,28 @@
-import React, { useEffect, useState, useRef } from 'react';
 import * as lunatic from '@inseefr/lunatic';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
+import { ErrorsModal } from 'components/modals/errors';
+import { SendingConfirmation } from 'components/modals/sendingConfirmation';
+import { WelcomeBack } from 'components/modals/welcomeBack';
 import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
-import { WelcomeBack } from 'components/modals/welcomeBack';
-import { StyleWrapper } from '../styleWrapper';
-import { ButtonsNavigation } from '../navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { simpleLog } from 'utils/events';
 import { useLunaticFetcher } from 'utils/hooks';
-import { SendingConfirmation } from 'components/modals/sendingConfirmation';
 import {
-  WELCOME_PAGE,
   END_PAGE,
   isLunaticPage,
   VALIDATION_PAGE,
+  WELCOME_PAGE,
 } from 'utils/pagination';
-import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
-import { simpleLog } from 'utils/events';
-import '../custom-lunatic.scss';
 import { isNewSequence } from 'utils/questionnaire';
+import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
+import '../custom-lunatic.scss';
+import { ButtonsNavigation } from '../navigation';
+import { StyleWrapper } from '../styleWrapper';
 
 export const Orchestrator = ({
   source,
@@ -58,13 +59,13 @@ export const Orchestrator = ({
   const {
     getComponents,
     waiting,
+    pageTag,
     pager: { page },
     goNextPage,
     goPreviousPage,
     isFirstPage,
     isLastPage,
-    getModalErrors,
-    getCurrentErrors,
+    compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
     savingType,
@@ -127,6 +128,17 @@ export const Orchestrator = ({
     setCurrentPage(END_PAGE);
   };
 
+  const [errorActive, setErrorActive] = useState({});
+  const [errorsForModal, setErrorsForModal] = useState(null);
+
+  const handleGoNext = useCallback(() => {
+    const { currentErrors, isCritical } = compileControls();
+    if (currentErrors && Object.keys(currentErrors).length > 0) {
+      setErrorActive({ ...errorActive, [pageTag]: currentErrors });
+      setErrorsForModal({ currentErrors, isCritical });
+    } else goNextPage();
+  }, [compileControls, errorActive, goNextPage, pageTag]);
+
   const onNext = () => {
     if (currentPage === WELCOME_PAGE) setCurrentPage(page);
     else {
@@ -163,8 +175,6 @@ export const Orchestrator = ({
   }, [currentPage, page]);
 
   const components = getComponents();
-  const modalErrors = getModalErrors();
-  const currentErrors = getCurrentErrors();
 
   const lunaticDisplay = () => (
     <Card
@@ -189,7 +199,7 @@ export const Orchestrator = ({
               labelPosition='TOP' //For LunaticSuggester
               logFunction={logFunction}
               filterDescription={false}
-              errors={currentErrors}
+              errors={errorActive[pageTag]}
               {...other}
               {...component}
             />
@@ -245,13 +255,13 @@ export const Orchestrator = ({
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
-      {modalForControls && (
-        <lunatic.Modal
-          title='Des points requièrent votre attention.'
-          errors={modalErrors}
-          goNext={goNextPage}
-        />
-      )}
+      <ErrorsModal
+        currentPage={currentPage}
+        errors={errorsForModal}
+        goNext={onNext}
+        open={errorsForModal}
+        onClose={() => setErrorsForModal(undefined)}
+      />
       <WelcomeBack
         open={!init && !validated && !!stateData?.currentPage}
         setOpen={(o) => setInit(!o)}
