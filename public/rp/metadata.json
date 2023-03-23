@@ -1,6 +1,13 @@
 {
 	"Header": {
-		"brandTop": "République Française bob",
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
+		"homeLinkProps": {
+			"title": "Accueil - Le recensement de la population",
+			"href": "http://localhost:3000/visualize"
+		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",
 			"imgUrl": "/logoINSEE.png",
@@ -9,17 +16,20 @@
 		"serviceTitle": "Le recensement de la population",
 		"quickAccessItems": [
 			{
-				"iconId": "fr-icon-account-line",
+				"iconId": "fr-icon-questionnaire-fill",
 				"linkProps": {
-					"href": "https://www.insee.fr/fr/accueil",
+					"href": "mailto:julia.dirand@insee.fr",
 					"target": "self"
 				},
-				"text": "Créer un espace"
+				"text": "Nous contacter"
 			}
 		]
 	},
 	"Footer": {
-		"brandTop": "République Française",
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",
 			"imgUrl": "/logoINSEE.png",
@@ -27,7 +37,8 @@
 		},
 		"accessibility": "fully compliant",
 		"homeLinkProps": {
-			"title": "Accueil - Le recensement de la population"
+			"title": "Accueil - Le recensement de la population",
+			"href": "http://localhost:3000/visualize"
 		},
 		"termsLinkProps": {
 			"href": "urlamodifier"
@@ -36,6 +47,40 @@
 			"href": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
-		"license": "Les contenus de ce site sont sous"
+		"license": {
+			"value": "Les contenus de ce site sont sous <a href='https://www.insee.fr/fr/accueil'> license [nom de la license]</a>.",
+			"type": "html"
+		}
+	},
+	"Welcome": {
+		"Enq_LibelleEnquete": "Enquête statistique sur les technologies de l’information et de la communication 2021",
+		"Enq_ObjectifsCourts": "Cette enquête permet de connaître l'équipement et les usages des personnes dans le domaine des technologies de l'information et de la communication (téléphone fixe et mobile, informatique, internet sur support fixe et mobile).",
+		"Enq_CaractereObligatoire": false,
+		"Enq_QualiteStatistique": false,
+		"Enq_NumeroVisa": "2021A054EC",
+		"Enq_MinistereTutelle": "de l'Économie, des Finances et de la Relance",
+		"Enq_ParutionJo": false,
+		"Enq_DateParutionJo": "23/11/2020",
+		"Enq_RespOperationnel": "l’Institut national de la statistique et des études économiques (Insee)",
+		"Enq_RespTraitement": "l'Insee",
+		"Enq_AnneeVisa": "2021",
+		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
+		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
+		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+		"whoAnswers": [
+			"Personne 1",
+			"Personne 2",
+			"Personne 3"
+		],
+		"Enq_QuestionsAdditionnelles": [
+			{
+				"question": "A quoi sert le recensement de la population?",
+				"contenu": "La connaissance précise de la répartition de la population et de son évolution sur le territoire permet d’ajuster l’action publique aux besoins de tous en matières d’équipements collectifs (écoles, maisons de retraite, etc...) ou encore de transports à développer."
+			},
+			{
+				"question": "Comment mes données sont protégées ?",
+				"contenu": "Le recensement se déroule selon des procédures approuvées par la Cnil (Commission nationale de l'informatique et des libertés). L'Insee est le seul organisme habilité à exploiter les questionnaires, et cela de façon anonyme. Ils ne peuvent donc donner lieu à aucun contrôle administratif ou fiscal."
+			}
+		]
 	}
 }

@@ -6,7 +6,7 @@ function abortRequest() {
 	controller.abort();
 }
 
-function nothing() {}
+function nothing() { }
 
 /**
  * A hook to prevent dual fetch by using useRef.

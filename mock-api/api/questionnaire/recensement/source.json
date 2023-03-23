@@ -36,14 +36,6 @@
 	],
 	"components": [
 		{
-			"id": "age-quest-totot",
-			"label": { "value": "\"Test controls\"", "type": "VTL|MD" },
-			"conditionFilter": { "type": "VTL", "value": "true" },
-			"componentType": "Input",
-			"page": "1",
-			"response": { "name": "NUMBER" }
-		},
-		{
 			"id": "seq",
 			"componentType": "Sequence",
 			"label": {
@@ -54,10 +46,17 @@
 			"page": "1"
 		},
 		{
-			"id": "age-quest",
-			"label": { "value": "\"Test controls\"", "type": "VTL|MD" },
+			"id": "Controle-TEST",
+			"label": {
+				"value": "\"Test pour les contrôles.\"",
+				"type": "VTL|MD"
+			},
+			"description": {
+				"value": "\"Tout sauf TOTO !\"",
+				"type": "VTL|MD"
+			},
 			"conditionFilter": { "type": "VTL", "value": "true" },
-			"componentType": "InputNumber",
+			"componentType": "Input",
 			"page": "1",
 			"response": { "name": "NUMBER" },
 			"controls": [
@@ -65,9 +64,12 @@
 					"id": "age-controls",
 					"criticality": "ERRORS",
 					"typeOfControl": "FORMAT",
-					"control": { "value": "NUMBER = 5", "type": "VTL" },
+					"control": {
+						"value": "not(nvl(NUMBER, \"\") = \"TOTO\")",
+						"type": "VTL"
+					},
 					"errorMessage": {
-						"value": "\"Number !== 5.\"",
+						"value": "\"TOTO n'est pas le bienvenue ici !\"",
 						"type": "VTL|MD"
 					}
 				}

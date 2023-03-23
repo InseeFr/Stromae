@@ -18,19 +18,36 @@ export function UseLunatic(
 		onChange,
 		getReferentiel,
 		activeControls,
+		preferences,
+		features,
+		savingType,
+		autoSuggesterLoading,
 	} = props;
-	const [args, setArgs] = useState<Record<string, unknown>>({
-		onChange,
-		getReferentiel,
-		custom,
-	});
+	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
 
 	useEffect(
 		function () {
-			setArgs({ onChange, getReferentiel, activeControls, custom });
+			setArgs({
+				onChange,
+				getReferentiel,
+				activeControls,
+				custom,
+				preferences,
+				features,
+				savingType,
+				autoSuggesterLoading,
+			});
 		},
-		[onChange, getReferentiel, activeControls]
+		[
+			onChange,
+			getReferentiel,
+			activeControls,
+			preferences,
+			features,
+			savingType,
+			autoSuggesterLoading,
+		]
 	);
 
 	const {
