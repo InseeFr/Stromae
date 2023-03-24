@@ -1,33 +1,35 @@
 {
 	"Header": {
-		"brandTop": "République Française",
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
+		"homeLinkProps": {
+			"title": "Accueil - Le recensement de la population",
+			"href": "http://localhost:3000/visualize"
+		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",
 			"imgUrl": "/logoINSEE.png",
 			"orientation": "horizontal"
 		},
-		"serviceTitle": "Le recensement de la population TITI",
+		"serviceTitle": "Le recensement de la population",
 		"quickAccessItems": [
 			{
-				"iconId": "fr-icon-account-line",
+				"iconId": "fr-icon-questionnaire-fill",
 				"linkProps": {
-					"href": "https://www.insee.fr/fr/accueil",
+					"href": "mailto:julia.dirand@insee.fr",
 					"target": "self"
 				},
-				"text": "Créer un espace"
-			},
-			{
-				"iconId": "ri-mail-download-line",
-				"linkProps": {
-					"href": "https://www.insee.fr/fr/accueil",
-					"target": "self"
-				},
-				"text": "Contactez nous"
+				"text": "Nous contacter"
 			}
 		]
 	},
 	"Footer": {
-		"brandTop": "République Française",
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",
 			"imgUrl": "/logoINSEE.png",
@@ -35,7 +37,8 @@
 		},
 		"accessibility": "fully compliant",
 		"homeLinkProps": {
-			"title": "Accueil - Le recensement de la population"
+			"title": "Accueil - Le recensement de la population",
+			"href": "http://localhost:3000/visualize"
 		},
 		"termsLinkProps": {
 			"href": "urlamodifier"
@@ -44,7 +47,10 @@
 			"href": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
-		"license": "Les contenus de ce site sont sous"
+		"license": {
+			"value": "Les contenus de ce site sont sous <a href='https://www.insee.fr/fr/accueil'> license [nom de la license]</a>.",
+			"type": "html"
+		}
 	},
 	"Welcome": {
 		"Enq_LibelleEnquete": "Enquête statistique sur les technologies de l’information et de la communication 2021",
