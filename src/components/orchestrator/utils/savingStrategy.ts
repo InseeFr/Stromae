@@ -18,7 +18,7 @@ async function partial(s: Strategy) {
 			}
 			return values;
 		}, {});
-		console.log('Data to save', dataToSave);
+		console.log('Data to save (partial)', dataToSave);
 		// TODO const result = await api.save(data)...
 		// TODO save state-data
 		clean();
@@ -28,6 +28,15 @@ async function partial(s: Strategy) {
 }
 
 async function complete(s: Strategy) {
+	const { getData } = s;
+	if (getData) {
+		const vFromL = getData(true);
+		const variables = Object.assign(vFromL.COLLECTED, vFromL.CALCULATED);
+
+		console.log('Data to save (complete)', variables);
+		// TODO const result = await api.save(data)...
+		// TODO save state-data
+	}
 	return true;
 }
 
