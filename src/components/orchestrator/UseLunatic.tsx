@@ -66,11 +66,13 @@ export function UseLunatic(
 		getErrors,
 		getData,
 		Provider,
+		compileControls,
 	} = useLunatic(source, data, args);
 
 	return (
 		<Provider>
 			{cloneElement(children as React.ReactElement<OrchestratedElement>, {
+				compileControls,
 				getComponents,
 				goPreviousPage,
 				goNextPage,
