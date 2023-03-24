@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { ErrorBoundary } from 'react-error-boundary';
 import { AuthProvider } from 'components/auth';
 import { Router } from 'components/router';
-import { StyleProvider } from 'components/style';
 import { ErrorFallback } from 'components/shared/error';
+import { StyleProvider } from 'components/style';
+import React, { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter } from 'react-router-dom';
 import { getConfiguration } from 'utils/configuration';
 import './App.css';
 
@@ -30,10 +30,7 @@ const App = () => {
       >
         {configuration && (
           <AppContext.Provider value={configuration}>
-            <AuthProvider
-              authType={configuration.authenticationType}
-              urlPortail={configuration.portail}
-            >
+            <AuthProvider>
               <BrowserRouter>
                 <Router />
               </BrowserRouter>

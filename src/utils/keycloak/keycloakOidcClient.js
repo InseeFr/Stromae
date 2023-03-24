@@ -1,4 +1,5 @@
 import Keycloak from 'keycloak-js';
+import { READ_ONLY } from 'utils/constants';
 
 const getCurrentSurvey = (path) => {
   const temp = path.split('/questionnaire/');
@@ -13,6 +14,7 @@ export const createKeycloakOidcClient = async ({
   url,
   realm,
   clientId,
+  identityProvider,
   urlPortail,
   evtUserActivity,
 }) => {
@@ -27,7 +29,13 @@ export const createKeycloakOidcClient = async ({
     .catch((error) => error);
 
   const login = async () => {
-    await keycloakInstance.login({ redirectUri: window.location.href });
+    await keycloakInstance.login({
+      redirectUri: window.location.href,
+      // Readonly mode : Internal user login
+      idpHint: window.location.pathname.startsWith(`/${READ_ONLY}`)
+        ? identityProvider
+        : null,
+    });
     return new Promise(() => {});
   };
 
