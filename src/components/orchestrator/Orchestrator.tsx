@@ -1,5 +1,4 @@
-import { JSXElementConstructor, ReactElement } from 'react';
-import { PropsWithChildren } from 'react';
+import { JSXElementConstructor, ReactElement, PropsWithChildren } from 'react';
 import {
 	LunaticSource,
 	ComponentType,
@@ -44,10 +43,15 @@ export type OrchestratedElement = {
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: () => any;
 	readonly activeControls?: boolean;
-	// Elements added after controls errors
+	readonly compileControls?: () => {
+		isCritical: boolean;
+		currentErrors?: Record<string, Array<LunaticError>>;
+	};
+	// controls errors
 	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
+	pageTag?: string;
 };
 
 /**

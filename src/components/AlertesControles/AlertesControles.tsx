@@ -2,16 +2,18 @@ import { fr } from '@codegouvfr/react-dsfr';
 import { OrchestratedElement } from '../orchestrator/Orchestrator';
 
 export function AlertesControles(props: OrchestratedElement) {
-	const { modalErrors, criticality } = props;
+	const { currentErrors, criticality } = props;
 	const type = criticality ? 'fr-alert--error' : 'fr-alert--warning';
-	if (modalErrors && modalErrors.length) {
-		const content = modalErrors.map(function ({ errorMessage, id }) {
-			return (
-				<div key={id} className="message-error">
-					{errorMessage}
-				</div>
-			);
-		});
+	if (currentErrors) {
+		const content = Object.values(currentErrors)
+			.flat()
+			.map(function ({ errorMessage, id }) {
+				return (
+					<div key={id} className="message-error">
+						{errorMessage}
+					</div>
+				);
+			});
 		return (
 			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-6w">
 				<div
