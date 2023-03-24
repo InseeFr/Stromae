@@ -44,7 +44,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	);
 
 	return (
-		<CloneElements
+		<CloneElements<OrchestratedElement>
 			{...rest}
 			goNextPage={handleGoNext}
 			criticality={criticality}

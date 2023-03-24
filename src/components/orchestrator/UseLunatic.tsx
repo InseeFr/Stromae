@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { cloneElement } from 'react';
 import {
-	OrchestratedElement,
 	OrchestratorProps,
 	NestedOrchestratedElement,
+	OrchestratedElement,
 } from './Orchestrator';
+import { CloneElements } from './CloneElements';
 
 export function UseLunatic(
 	props: NestedOrchestratedElement<OrchestratorProps>
@@ -61,9 +61,6 @@ export function UseLunatic(
 		isFirstPage,
 		isLastPage,
 		goToPage,
-		getCurrentErrors,
-		getModalErrors,
-		getErrors,
 		getData,
 		Provider,
 		compileControls,
@@ -71,21 +68,19 @@ export function UseLunatic(
 
 	return (
 		<Provider>
-			{cloneElement(children as React.ReactElement<OrchestratedElement>, {
-				compileControls,
-				getComponents,
-				goPreviousPage,
-				goNextPage,
-				isFirstPage,
-				isLastPage,
-				goToPage,
-				getCurrentErrors,
-				getModalErrors,
-				getErrors,
-				activeControls,
-				getData,
-				currentChange,
-			})}
+			<CloneElements<OrchestratedElement>
+				compileControls={compileControls}
+				getComponents={getComponents}
+				goPreviousPage={goPreviousPage}
+				goNextPage={goNextPage}
+				isFirstPage={isFirstPage}
+				isLastPage={isLastPage}
+				goToPage={goToPage}
+				getData={getData}
+				currentChange={currentChange}
+			>
+				{children}
+			</CloneElements>
 		</Provider>
 	);
 }

@@ -9,6 +9,13 @@ import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
 import { Saving } from './Saving';
+import type { LunaticVariable } from '../../typeLunatic/type';
+
+type VariablesType = {
+	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
+	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
+	CALCULATED: Record<string, LunaticVariable & { variableType: 'CALCULATED' }>;
+};
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
@@ -42,7 +49,7 @@ export type OrchestratedElement = {
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
 	readonly onChange?: (...args: any) => void;
-	readonly getData?: () => any;
+	readonly getData?: (refreshCalculated: boolean) => VariablesType;
 	readonly activeControls?: boolean;
 	readonly compileControls?: () => {
 		isCritical: boolean;
