@@ -6,7 +6,7 @@
 	"generatingDate": "22-03-2023 13:48:30",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "5",
+	"maxPage": "6",
 	"label": {
 		"value": "Test - Rani",
 		"type": "VTL|MD"
@@ -34,16 +34,6 @@
 			"conditionFilter": {
 				"value": "true",
 				"type": "VTL"
-			},
-			"hierarchy": {
-				"sequence": {
-					"id": "lf1ac2fg",
-					"page": "1",
-					"label": {
-						"value": "\"Bienvue sur le test 1 de Stromae 3\"",
-						"type": "VTL"
-					}
-				}
 			}
 		},
 		{
@@ -308,6 +298,30 @@
 			],
 			"response": {
 				"name": "QUELESTLEP"
+			}
+		},
+		{
+			"id": "lf1ac2fg",
+			"componentType": "Sequence",
+			"page": "6",
+			"label": {
+				"value": "\"Changement de séquence, pour test Sauvegarde\"",
+				"type": "VTL"
+			},
+			"declarations": [
+				{
+					"id": "lf1ac2fg-lf19zpfi",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "\"La description d’une séquence.\"",
+						"type": "VTL"
+					}
+				}
+			],
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
 			}
 		}
 	],

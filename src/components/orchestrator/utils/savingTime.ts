@@ -23,6 +23,7 @@ function isComponentsContainSequence(
 function atChangeSequence(s: Strategy) {
 	const { getComponents = () => [], criticality } = s;
 	const components = getComponents();
+	console.log('ici');
 	if (criticality) {
 		return false;
 	}

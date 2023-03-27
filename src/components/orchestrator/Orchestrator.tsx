@@ -11,7 +11,7 @@ import { Controls } from './Controls';
 import { Saving } from './Saving';
 import type { LunaticVariable } from '../../typeLunatic/type';
 
-type VariablesType = {
+export type VariablesType = {
 	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
 	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
 	CALCULATED: Record<string, LunaticVariable & { variableType: 'CALCULATED' }>;
