@@ -1,43 +1,17 @@
-import {
-  Criticality,
-  TypeOfControl,
-} from '@inseefr/lunatic/lib/use-lunatic/type-source';
-import { List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
+import { List, ListItem } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { ErrorRounded, Warning } from '@material-ui/icons';
 import { Button } from 'components/designSystem/Button';
 import { buttonDictionary, errorDictionary } from 'i18n';
 import { useCallback } from 'react';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
-const useStyles = makeStyles((theme) => ({
-  warn: {
-    color: theme.palette.warning.main,
-  },
-  error: {
-    color: theme.palette.error.main,
-  },
-}));
-
-function Icon({ isCritical, ...props }) {
-  if (isCritical) return <ErrorRounded {...props} />;
-  return <Warning {...props} />;
-}
-
-function Error({ errorMessage, typeOfControl, criticality }) {
-  const classes = useStyles();
-  const isCritical =
-    typeOfControl === TypeOfControl.FORMAT && criticality === Criticality.ERROR;
-  const classesUsed = isCritical ? classes.error : classes.warn;
+function Error({ errorMessage }) {
   return (
-    <ListItem className={classesUsed}>
-      <ListItemIcon>
-        <Icon isCritical={isCritical} className={classesUsed} />
-      </ListItemIcon>
+    <ListItem>
       <div>{errorMessage}</div>
     </ListItem>
   );
@@ -81,9 +55,13 @@ const ErrorsModal = ({
     onClose();
   }, [onClose]);
 
-  const content = Object.entries(currentErrors).map(function ([id, errors]) {
-    return <ComponentErrors errors={errors} key={id} />;
-  }, []);
+  const content = (
+    <ComponentErrors
+      errors={Object.entries(currentErrors).reduce(function (acc, [, errors]) {
+        return [...acc, ...errors];
+      }, [])}
+    />
+  );
 
   return (
     <Dialog
