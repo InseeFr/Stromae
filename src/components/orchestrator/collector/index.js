@@ -141,7 +141,7 @@ export const Orchestrator = ({
       if (skipValidation) goNextPage();
       else {
         const { currentErrors, isCritical } = compileControls();
-        setErrorActive({ ...errorActive, [pageTag]: currentErrors || [] });
+        setErrorActive({ ...errorActive, [pageTag]: currentErrors || {} });
         if (currentErrors && Object.keys(currentErrors).length > 0) {
           setErrorsForModal({ currentErrors, isCritical });
         } else goNextPage();
