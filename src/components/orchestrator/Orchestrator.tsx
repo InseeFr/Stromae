@@ -8,6 +8,16 @@ import { SurveyUnitData } from '../../typeStromae/type';
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
+import { Saving } from './Saving';
+import type { LunaticVariable } from '../../typeLunatic/type';
+
+export type SavingFailure = { status: 200 | 400 | 500 };
+
+export type VariablesType = {
+	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
+	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
+	CALCULATED: Record<string, LunaticVariable & { variableType: 'CALCULATED' }>;
+};
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
@@ -41,17 +51,19 @@ export type OrchestratedElement = {
 	readonly isFirstPage?: boolean;
 	readonly isLastPage?: boolean;
 	readonly onChange?: (...args: any) => void;
-	readonly getData?: () => any;
+	readonly getData?: (refreshCalculated: boolean) => VariablesType;
 	readonly activeControls?: boolean;
 	readonly compileControls?: () => {
 		isCritical: boolean;
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	// controls errors
-	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
-	pageTag?: string;
+	// handleChange
+	currentChange?: { name: string };
+	// saving
+	savingFailure?: SavingFailure;
 };
 
 /**
@@ -63,20 +75,21 @@ export type NestedOrchestratedElement<T> = {
 
 export function Orchestrator({
 	children,
-	onChange,
 	activeControls,
 	features,
 	preferences,
 	autoSuggesterLoading,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
-		<LoadSourceData onChange={onChange} activeControls={activeControls}>
+		<LoadSourceData activeControls={activeControls}>
 			<UseLunatic
 				features={features}
 				preferences={preferences}
 				autoSuggesterLoading={autoSuggesterLoading}
 			>
-				<Controls>{children}</Controls>
+				<Controls>
+					<Saving>{children}</Saving>
+				</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);

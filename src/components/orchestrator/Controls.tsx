@@ -1,7 +1,7 @@
 import { PropsWithChildren, useCallback, useState } from 'react';
+import { CloneElements } from './CloneElements';
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from './Orchestrator';
-import { CloneElements } from './CloneElements';
 
 export enum CriticalityEnum {
 	FORMAT = 'FORMAT',
@@ -16,7 +16,6 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	const [criticality, setCriticality] = useState<boolean>();
 	const {
 		children = [],
-		pageTag,
 		getErrors,
 		goNextPage = () => null,
 		compileControls,
@@ -45,7 +44,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	);
 
 	return (
-		<CloneElements
+		<CloneElements<OrchestratedElement>
 			{...rest}
 			goNextPage={handleGoNext}
 			criticality={criticality}

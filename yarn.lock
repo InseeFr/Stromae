@@ -1390,10 +1390,10 @@
   resolved "https://nexus.insee.fr/repository/npm-public/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@^0.0.5":
-  version "0.0.5"
-  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.5.tgz#641ee3e24210d341d15fed372ed86d99a4d706fb"
-  integrity sha512-2nEP5bxTxCFt7mr8dPoDJz/xfyfoYsWez7u1L4IJ1o0DCUFVkdED9iQbo+q6xpIpAOCVpEoOvrBraEUJ2DhaUQ==
+"@inseefr/lunatic-dsfr@^0.0.6":
+  version "0.0.6"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.6.tgz#c7f945d28f7faa97cb8e1e42a0d75cd86934080e"
+  integrity sha512-RytnD1y+/0ke6WT/C9A1Lu7Rz+fSNygVnL4jF3abIqGXlf4BgriLBbA57N92GkjfxaZx0bYCoH+O6lUfwU7WNg==
   dependencies:
     "@inseefr/lunatic" "2.0.7-v2"
     classnames "^2.3.2"
@@ -1422,12 +1422,12 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/lunatic@2.4.0-fix-controls":
-  version "2.4.0-fix-controls"
-  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-fix-controls.tgz#6809cf12286c02cd432541e0734d1bef2dfc9c38"
-  integrity sha512-XtfJrrNyloR8+9Crq1xs+EKRqzipLyCChXZSClboI8iwk5tNTvINnTmRKQQbQvUgx2xVnieWE2XI83c9qM9dKw==
+"@inseefr/lunatic@2.4.0-develop":
+  version "2.4.0-develop"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-develop.tgz#88c6354072d9235e41c4dc85272c409d59567ca6"
+  integrity sha512-6v8RBjzccjXObdOGYIePRQTKJJNA8X1NLz2/pynGjpA7e0w1+sJmxrQEjzzyOIqEnyDEaOVcxBPXkkDSR7hMCg==
   dependencies:
-    "@inseefr/trevas" "^0.1.16"
+    "@inseefr/trevas" "^0.1.17"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
     antlr4 "4.11.0"
     classnames "^2.3.1"
@@ -1446,7 +1446,7 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/trevas@^0.1.16":
+"@inseefr/trevas@^0.1.16", "@inseefr/trevas@^0.1.17":
   version "0.1.17"
   resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/trevas/-/trevas-0.1.17.tgz#747ee1b2c712b0d5b277760ea27ce1fb78f65415"
   integrity sha512-hQ6mXtcID6kmbpQPuJpyjiBMzGnsC2MAFKIt3qjHBCpYOXbgzl+VteSi+Sj0q4J2EQAx45drIcIZdX7FOf4EUw==
@@ -2388,9 +2388,9 @@
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*":
-  version "18.15.6"
-  resolved "https://nexus.insee.fr/repository/npm-public/@types/node/-/node-18.15.6.tgz#af98ef4a36e7ac5f2d03040f3109fcce972bf6cb"
-  integrity sha512-YErOafCZpK4g+Rp3Q/PBgZNAsWKGunQTm9FA3/Pbcm0VCriTEzcrutQ/SxSc0rytAp0NoFWue669jmKhEtd0sA==
+  version "18.15.7"
+  resolved "https://nexus.insee.fr/repository/npm-public/@types/node/-/node-18.15.7.tgz#33514fca9bdf136f77027358850c0fb9cd93c669"
+  integrity sha512-LFmUbFunqmBn26wJZgZPYZPrDR1RwGOu2v79Mgcka1ndO6V0/cwjivPTc4yoK6n9kmw4/ls1r8cLrvh2iMibFA==
 
 "@types/node@^16.18.11":
   version "16.18.19"
@@ -5639,9 +5639,9 @@ ignore@^5.2.0:
   integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
 immer@^9.0.7:
-  version "9.0.19"
-  resolved "https://nexus.insee.fr/repository/npm-public/immer/-/immer-9.0.19.tgz#67fb97310555690b5f9cd8380d38fc0aabb6b38b"
-  integrity sha512-eY+Y0qcsB4TZKwgQzLaE/lqYMlKhv5J9dyd2RhhtGhNo2njPXDqU9XPfcNfa3MIDsdtZt5KlkIsirlo4dHsWdQ==
+  version "9.0.21"
+  resolved "https://nexus.insee.fr/repository/npm-public/immer/-/immer-9.0.21.tgz#1e025ea31a40f24fb064f1fef23e931496330176"
+  integrity sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==
 
 immutable@^4.0.0:
   version "4.3.0"

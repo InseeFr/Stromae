@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { cloneElement } from 'react';
 import {
-	OrchestratedElement,
 	OrchestratorProps,
 	NestedOrchestratedElement,
+	OrchestratedElement,
 } from './Orchestrator';
+import { CloneElements } from './CloneElements';
 
 export function UseLunatic(
 	props: NestedOrchestratedElement<OrchestratorProps>
@@ -15,7 +15,6 @@ export function UseLunatic(
 		source,
 		surveyUnitData,
 		children,
-		onChange,
 		getReferentiel,
 		activeControls,
 		preferences,
@@ -25,11 +24,15 @@ export function UseLunatic(
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
+	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
+
+	const onChange = useCallback(function ({ name }: { name: string }) {
+		setCurrrentChange({ name });
+	}, []);
 
 	useEffect(
 		function () {
 			setArgs({
-				onChange,
 				getReferentiel,
 				activeControls,
 				custom,
@@ -37,16 +40,17 @@ export function UseLunatic(
 				features,
 				savingType,
 				autoSuggesterLoading,
+				onChange,
 			});
 		},
 		[
-			onChange,
 			getReferentiel,
 			activeControls,
 			preferences,
 			features,
 			savingType,
 			autoSuggesterLoading,
+			onChange,
 		]
 	);
 
@@ -57,33 +61,26 @@ export function UseLunatic(
 		isFirstPage,
 		isLastPage,
 		goToPage,
-		getCurrentErrors,
-		getModalErrors,
-		getErrors,
 		getData,
 		Provider,
 		compileControls,
-		pageTag,
 	} = useLunatic(source, data, args);
 
 	return (
 		<Provider>
-			{cloneElement(children as React.ReactElement<OrchestratedElement>, {
-				compileControls,
-				getComponents,
-				goPreviousPage,
-				goNextPage,
-				isFirstPage,
-				isLastPage,
-				goToPage,
-				getCurrentErrors,
-				getModalErrors,
-				getErrors,
-				activeControls,
-				getData,
-				onChange,
-				pageTag,
-			})}
+			<CloneElements<OrchestratedElement>
+				compileControls={compileControls}
+				getComponents={getComponents}
+				goPreviousPage={goPreviousPage}
+				goNextPage={goNextPage}
+				isFirstPage={isFirstPage}
+				isLastPage={isLastPage}
+				goToPage={goToPage}
+				getData={getData}
+				currentChange={currentChange}
+			>
+				{children}
+			</CloneElements>
 		</Provider>
 	);
 }

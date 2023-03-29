@@ -6,7 +6,7 @@
 	"generatingDate": "22-03-2023 13:48:30",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "5",
+	"maxPage": "6",
 	"label": {
 		"value": "Test - Rani",
 		"type": "VTL|MD"
@@ -17,8 +17,8 @@
 			"componentType": "Sequence",
 			"page": "1",
 			"label": {
-				"value": "Bienvue sur le test 1 de Stromae 3",
-				"type": "VTL|MD"
+				"value": "\"Bienvue sur le test 1 de Stromae 3\"",
+				"type": "VTL"
 			},
 			"declarations": [
 				{
@@ -26,24 +26,14 @@
 					"declarationType": "HELP",
 					"position": "AFTER_QUESTION_TEXT",
 					"label": {
-						"value": "La description d’une séquence.",
-						"type": "VTL|MD"
+						"value": "\"La description d’une séquence.\"",
+						"type": "VTL"
 					}
 				}
 			],
 			"conditionFilter": {
 				"value": "true",
 				"type": "VTL"
-			},
-			"hierarchy": {
-				"sequence": {
-					"id": "lf1ac2fg",
-					"page": "1",
-					"label": {
-						"value": "Bienvue sur le test 1 de Stromae 3",
-						"type": "VTL|MD"
-					}
-				}
 			}
 		},
 		{
@@ -53,7 +43,7 @@
 			"page": "2",
 			"label": {
 				"value": "\"Quel est votre fruit préféré?\"",
-				"type": "VTL|MD"
+				"type": "VTL"
 			},
 			"conditionFilter": {
 				"value": "true",
@@ -69,10 +59,9 @@
 						"type": "VTL"
 					},
 					"errorMessage": {
-						"value": "\"Veuillez sélectionner un fruit.\"",
-						"type": "VTL|MD"
-					},
-					"bindingDependencies": ["PARMILESFR"]
+						"value": "\"TOTO n'est pas le bienvenue ici !\"",
+						"type": "VTL"
+					}
 				}
 			],
 			"hierarchy": {
@@ -80,8 +69,8 @@
 					"id": "lf1ac2fg",
 					"page": "1",
 					"label": {
-						"value": "Bienvue sur le test 1 de Stromae 3",
-						"type": "VTL|MD"
+						"value": "\"Bienvue sur le test 1 de Stromae 3\"",
+						"type": "VTL"
 					}
 				}
 			},
@@ -91,21 +80,21 @@
 					"value": "0",
 					"label": {
 						"value": "\"Poire\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					}
 				},
 				{
 					"value": "2",
 					"label": {
 						"value": "\"Pêche\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					}
 				},
 				{
 					"value": "1",
 					"label": {
 						"value": "\"Pomme\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					}
 				}
 			],
@@ -120,8 +109,8 @@
 			"page": "3",
 			"maxLength": 249,
 			"label": {
-				"value": "Quel est votre prénom?",
-				"type": "VTL|MD"
+				"value": "\"Quel est votre prénom ?\"",
+				"type": "VTL"
 			},
 			"conditionFilter": {
 				"value": "true",
@@ -137,7 +126,7 @@
 						"type": "VTL"
 					},
 					"errorMessage": {
-						"value": "Veuillez entrer votre prénom. ",
+						"value": "\"Veuillez entrer votre prénom.\"",
 						"type": "VTL"
 					},
 					"bindingDependencies": ["QUELESTVOT"]
@@ -148,8 +137,8 @@
 					"id": "lf1ac2fg",
 					"page": "1",
 					"label": {
-						"value": "Bienvue sur le test 1 de Stromae 3",
-						"type": "VTL|MD"
+						"value": "\"Bienvue sur le test 1 de Stromae 3\"",
+						"type": "VTL"
 					}
 				}
 			},
@@ -163,7 +152,7 @@
 			"componentType": "CheckboxGroup",
 			"page": "4",
 			"label": {
-				"value": "\"Quelle(s) villes sont situées en France?\"",
+				"value": "\"Quelle(s) villes sont situées en France ?\"",
 				"type": "VTL"
 			},
 			"conditionFilter": {
@@ -181,7 +170,7 @@
 					},
 					"errorMessage": {
 						"value": "\"Veuillez sélectionner au moins une réponse\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"bindingDependencies": ["NB_COCHE_Q2"]
 				}
@@ -191,8 +180,8 @@
 					"id": "lf1ac2fg",
 					"page": "1",
 					"label": {
-						"value": "Bienvue sur le test 1 de Stromae 3",
-						"type": "VTL|MD"
+						"value": "\"Bienvue sur le test 1 de Stromae 3\"",
+						"type": "VTL"
 					}
 				}
 			},
@@ -207,7 +196,7 @@
 					"id": "lf1aj84n-QOP-lfi9uc6h",
 					"label": {
 						"value": "\"Paris\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"response": {
 						"name": "COMBIENDEN1"
@@ -217,7 +206,7 @@
 					"id": "lf1aj84n-QOP-lfi9yrge",
 					"label": {
 						"value": "\"Genève\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"response": {
 						"name": "COMBIENDEN2"
@@ -227,7 +216,7 @@
 					"id": "lf1aj84n-QOP-lfia6je0",
 					"label": {
 						"value": "\"Londres\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"response": {
 						"name": "COMBIENDEN3"
@@ -237,7 +226,7 @@
 					"id": "lf1aj84n-QOP-lfi9u7ht",
 					"label": {
 						"value": "\"Lyon\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"response": {
 						"name": "COMBIENDEN4"
@@ -251,8 +240,8 @@
 			"mandatory": false,
 			"page": "5",
 			"label": {
-				"value": "\"Dans la liste suivante, quel pays est situé en Afrique?\"",
-				"type": "VTL|MD"
+				"value": "\"Dans la liste suivante, quel pays est situé en Afrique ?\"",
+				"type": "VTL"
 			},
 			"conditionFilter": {
 				"value": "true",
@@ -269,7 +258,7 @@
 					},
 					"errorMessage": {
 						"value": "\"Veuillez sélectionner au moins une réponse\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"bindingDependencies": ["QUELESTLEP"]
 				}
@@ -279,12 +268,11 @@
 					"id": "lf1ac2fg",
 					"page": "1",
 					"label": {
-						"value": "Bienvue sur le test 1 de Stromae 3",
-						"type": "VTL|MD"
+						"value": "\"Bienvue sur le test 1 de Stromae 3\"",
+						"type": "VTL"
 					}
 				}
 			},
-			"bindingDependencies": ["QUELESTLEP"],
 			"options": [
 				{
 					"value": "1",
@@ -310,6 +298,30 @@
 			],
 			"response": {
 				"name": "QUELESTLEP"
+			}
+		},
+		{
+			"id": "lf1ac2fg",
+			"componentType": "Sequence",
+			"page": "6",
+			"label": {
+				"value": "\"Changement de séquence, pour test Sauvegarde\"",
+				"type": "VTL"
+			},
+			"declarations": [
+				{
+					"id": "lf1ac2fg-lf19zpfi",
+					"declarationType": "HELP",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "\"La description d’une séquence.\"",
+						"type": "VTL"
+					}
+				}
+			],
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
 			}
 		}
 	],
