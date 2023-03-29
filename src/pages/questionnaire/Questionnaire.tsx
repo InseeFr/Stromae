@@ -36,10 +36,10 @@ export function Questionnaire() {
 					>
 						<Precedent />
 						<Grid>
+							<AlertesSaving />
 							<AlertesControles />
 							<Formulaire />
 							<Continuer />
-							<AlertesSaving />
 						</Grid>
 					</Orchestrator>
 				</Layout>
