@@ -9,6 +9,7 @@ import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
 import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
+import { Grid } from '../../components/Grid/Grid';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -34,10 +35,12 @@ export function Questionnaire() {
 						autoSuggesterLoading={true}
 					>
 						<Precedent />
-						<AlertesControles />
-						<Formulaire />
-						<Continuer />
-						<AlertesSaving />
+						<Grid>
+							<AlertesControles />
+							<Formulaire />
+							<Continuer />
+							<AlertesSaving />
+						</Grid>
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
