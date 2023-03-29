@@ -25,7 +25,7 @@ export function useSaving(args: {
 			if (strategy === 'partial') {
 				const keys = Object.keys(changes.current);
 				if (keys.length) {
-					const vFromL = getData(true);
+					const vFromL = getData(false);
 					const variables = Object.assign(vFromL.COLLECTED, vFromL.CALCULATED);
 					toSave = keys.reduce(function (map, name) {
 						if (name in variables) {

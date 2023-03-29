@@ -9,16 +9,14 @@ export function Precedent(props: OrchestratedElement) {
 	}
 	if (!isFirstPage) {
 		return (
-			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-md-2w ">
-				<div className="fr-col-lg-12 fr-col-12">
-					<Button
-						priority="tertiary no outline"
-						iconId="fr-icon-arrow-left-line"
-						onClick={handleClick}
-					>
-						Précédent
-					</Button>
-				</div>
+			<div className="fr-col-12">
+				<Button
+					priority="tertiary no outline"
+					iconId="fr-icon-arrow-left-line"
+					onClick={handleClick}
+				>
+					Précédent
+				</Button>
 			</div>
 		);
 	}

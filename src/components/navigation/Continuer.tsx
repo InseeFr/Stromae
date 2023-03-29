@@ -23,13 +23,11 @@ export function Continuer(props: OrchestratedElement) {
 
 	if (!isLastPage) {
 		return (
-			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-3w fr-mb-5w fr-mb-md-7w">
-				<div className="fr-col-lg-6 fr-col-12">
-					<Button priority="primary" onClick={handleClick}>
-						{buttonContent}
-					</Button>
-				</div>
-			</div>
+
+			<Button priority="primary" onClick={handleClick} className="fr-mt-1w">
+				{buttonContent}
+			</Button>
+
 		);
 	}
 	return null;
