@@ -1,19 +1,10 @@
 import { PropsWithChildren, useEffect } from 'react';
-import { ComponentType } from '../../../typeLunatic/type-source';
 import { CloneElements } from '../CloneElements';
 import { OrchestratedElement } from '../Orchestrator';
 import { useSaving } from './useSaving';
+import { isComponentsContainSequence } from '../../../lib/commons/isComponentscontainSequence';
 
 export const SAVING_STRATEGY = process.env.SAVING_STRATEGY || 'partial'; // or complete
-
-function isComponentsContainSequence(
-	components: Array<ComponentType>
-): boolean {
-	return components.reduce(function (status, component) {
-		const { componentType } = component;
-		return status || componentType === 'Sequence';
-	}, false);
-}
 
 export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
