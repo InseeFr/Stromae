@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { PropsWithChildren } from 'react';
 import { CloneElements } from '../CloneElements';
-import { OrchestratedElement } from '../Orchestrator';
+import { OrchestratedElement, SavingFailure } from '../Orchestrator';
 import { useSaving } from './useSaving';
 
 export const SAVING_STRATEGY = process.env.SAVING_STRATEGY || 'partial'; // or complete
@@ -10,20 +10,25 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
 	const { goNextPage, criticality, currentChange, getData } = rest;
 
+	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ strategy: SAVING_STRATEGY, currentChange, getData });
 
 	const handleNextPage = useCallback(
 		function () {
 			(async function () {
 				if (!criticality) {
-					const result = await save();
-					if (!result) {
-						// TODO warn
-						return;
+					try {
+						setSavingFailure(undefined);
+						const somethingToSave = await save();
+						if (somethingToSave) {
+							setSavingFailure({ status: 200 });
+						}
+						if (goNextPage) {
+							goNextPage();
+						}
+					} catch (e) {
+						setSavingFailure({ status: 500 });
 					}
-				}
-				if (goNextPage) {
-					goNextPage();
 				}
 			})();
 		},
@@ -31,7 +36,11 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	);
 
 	return (
-		<CloneElements<OrchestratedElement> {...rest} goNextPage={handleNextPage}>
+		<CloneElements<OrchestratedElement>
+			{...rest}
+			goNextPage={handleNextPage}
+			savingFailure={savingFailure}
+		>
 			{children}
 		</CloneElements>
 	);

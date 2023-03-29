@@ -37,10 +37,14 @@ export function useSaving(args: {
 			} else if (strategy === 'complete') {
 				toSave = getData(true);
 			}
-			// TODO appel à API
-			console.warn('totSave : call the API please', toSave);
-			changes.current = {}; // seulement si la sauvegarde is good || !complete
+
+			if (toSave && Object.keys(toSave).length) {
+				// TODO something  to save!
+				console.warn('totSave : call the API please', toSave);
+				changes.current = {}; // seulement si la sauvegarde is good || !complete
+				return true;
+			}
+			return false;
 		}
-		return true;
 	};
 }

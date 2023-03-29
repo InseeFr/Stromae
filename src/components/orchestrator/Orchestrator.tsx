@@ -11,6 +11,8 @@ import { Controls } from './Controls';
 import { Saving } from './Saving';
 import type { LunaticVariable } from '../../typeLunatic/type';
 
+export type SavingFailure = { status: 200 | 400 | 500 };
+
 export type VariablesType = {
 	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
 	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
@@ -56,10 +58,12 @@ export type OrchestratedElement = {
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	// controls errors
-	modalErrors?: Array<LunaticError>;
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
+	// handleChange
 	currentChange?: { name: string };
+	// saving
+	savingFailure?: SavingFailure;
 };
 
 /**

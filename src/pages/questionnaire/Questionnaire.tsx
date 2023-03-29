@@ -8,6 +8,7 @@ import { Formulaire } from '../../components/formulaire';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
 import { AlertesControles } from '../../components/AlertesControles';
+import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -36,6 +37,7 @@ export function Questionnaire() {
 						<AlertesControles />
 						<Formulaire />
 						<Continuer />
+						<AlertesSaving />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>

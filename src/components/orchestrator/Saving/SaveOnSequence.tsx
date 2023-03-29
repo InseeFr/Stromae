@@ -27,10 +27,9 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 				const isSequence = isComponentsContainSequence(getComponents());
 				if (isSequence) {
 					(async function () {
-						const result = await save();
-						if (!result) {
-							// TODO
-						}
+						try {
+							await save();
+						} catch (e) {}
 					})();
 				}
 			}
