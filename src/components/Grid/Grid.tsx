@@ -6,7 +6,7 @@ export function Grid(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
 	return (
 		<div className="What you want Julia!">
-			<CloneElements {...rest}>{children}</CloneElements>
+			<CloneElements<OrchestratedElement>{...rest}>{children}</CloneElements>
 		</div>
 	);
 }
