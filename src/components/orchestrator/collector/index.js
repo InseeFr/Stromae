@@ -177,6 +177,7 @@ export const Orchestrator = ({
       components,
       currentPage,
       getData,
+      goNextPage,
       handleGoNext,
       isLastPage,
       page,
