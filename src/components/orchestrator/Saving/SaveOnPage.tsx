@@ -27,6 +27,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 							goNextPage();
 						}
 					} catch (e) {
+						console.error(e);
 						setSavingFailure({ status: 500 });
 					}
 				}
