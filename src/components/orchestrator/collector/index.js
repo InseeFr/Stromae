@@ -137,17 +137,17 @@ export const Orchestrator = ({
   const closeErrorsModal = useCallback(() => setErrorsForModal(undefined), []);
 
   const handleGoNext = useCallback(
-    (skipValidation) => {
-      if (skipValidation) goNextPage();
+    (skipValidation, nextFunction) => {
+      if (skipValidation) nextFunction();
       else {
         const { currentErrors, isCritical } = compileControls();
         setErrorActive({ ...errorActive, [pageTag]: currentErrors || {} });
         if (currentErrors && Object.keys(currentErrors).length > 0) {
           setErrorsForModal({ currentErrors, isCritical });
-        } else goNextPage();
+        } else nextFunction();
       }
     },
-    [compileControls, errorActive, goNextPage, pageTag]
+    [compileControls, errorActive, pageTag]
   );
 
   const onNext = useCallback(
@@ -164,10 +164,10 @@ export const Orchestrator = ({
           if (isNewSequence(components)) {
             save(dataToSave);
           }
-          handleGoNext(skipValidation);
+          handleGoNext(skipValidation, goNextPage);
         } else {
           save(dataToSave);
-          setCurrentPage(VALIDATION_PAGE);
+          handleGoNext(skipValidation, () => setCurrentPage(VALIDATION_PAGE));
         }
       }
       goToTop();
