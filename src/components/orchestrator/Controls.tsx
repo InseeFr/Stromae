@@ -18,6 +18,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		children = [],
 		getErrors,
 		goNextPage = () => null,
+		goPreviousPage = () => null,
 		compileControls,
 		...rest
 	} = props;
@@ -43,10 +44,20 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		[compileControls, goNextPage, warning]
 	);
 
+	const handleGoPrevious: () => void = useCallback(
+		function () {
+			setCriticality(undefined);
+			setCurrentErrors(undefined);
+			goPreviousPage();
+		},
+		[goPreviousPage]
+	);
+
 	return (
 		<CloneElements<OrchestratedElement>
 			{...rest}
 			goNextPage={handleGoNext}
+			goPreviousPage={handleGoPrevious}
 			criticality={criticality}
 			currentErrors={currentErrors}
 		>
