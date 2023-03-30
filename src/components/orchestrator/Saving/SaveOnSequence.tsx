@@ -1,8 +1,8 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { CloneElements } from '../CloneElements';
-import { OrchestratedElement } from '../Orchestrator';
 import { useSaving } from './useSaving';
 import { isComponentsContainSequence } from '../../../lib/commons/isComponentscontainSequence';
+import { OrchestratedElement } from '../../../typeStromae/type';
 
 export const SAVING_STRATEGY = process.env.SAVING_STRATEGY || 'partial'; // or complete
 

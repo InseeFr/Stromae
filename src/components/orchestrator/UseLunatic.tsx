@@ -1,12 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import {
-	OrchestratorProps,
-	NestedOrchestratedElement,
-	OrchestratedElement,
-} from './Orchestrator';
+import { OrchestratorProps, NestedOrchestratedElement } from './Orchestrator';
 import { CloneElements } from './CloneElements';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 export function UseLunatic(
 	props: NestedOrchestratedElement<OrchestratorProps>
