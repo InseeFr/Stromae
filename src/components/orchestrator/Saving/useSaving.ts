@@ -1,12 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { VariablesType } from '../../../typeStromae/type';
 
+export const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
+
 export function useSaving(args: {
-	strategy: string;
 	currentChange?: { name: string };
 	getData?: (refreshCalculated: boolean) => VariablesType;
 }) {
-	const { strategy, currentChange, getData } = args;
+	const { currentChange, getData } = args;
 	const changes = useRef<Record<string, null>>({});
 
 	useEffect(
@@ -22,7 +23,7 @@ export function useSaving(args: {
 	return async function save() {
 		let toSave;
 		if (getData) {
-			if (strategy === 'partial') {
+			if (SAVING_STRATEGY === 'partial') {
 				const keys = Object.keys(changes.current);
 				if (keys.length) {
 					const vFromL = getData(false);
@@ -34,8 +35,8 @@ export function useSaving(args: {
 						return map;
 					}, {});
 				}
-			} else if (strategy === 'complete') {
-				toSave = getData(true);
+			} else if (SAVING_STRATEGY === 'complete') {
+				toSave = getData(true); // false is better
 			}
 
 			if (toSave && Object.keys(toSave).length) {
