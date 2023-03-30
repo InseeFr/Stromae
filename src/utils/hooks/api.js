@@ -30,6 +30,7 @@ export const useGetReferentiel = (nomenclatures) => {
       const finalUrl = nomenclatures[refName];
       return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
     }
+    // No nomenclature, return empty array to lunatic
     return new Promise((resolve) => resolve([]));
   });
 
@@ -97,15 +98,16 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [suData, setSuData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const { getSuData, getRequiredNomenclatures, getQuestionnaire, getMetadata } =
-    useAPI(surveyUnitID, questionnaireID);
+  const { getSuData, getQuestionnaire, getMetadata } = useAPI(
+    surveyUnitID,
+    questionnaireID
+  );
 
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {
       setErrorMessage(null);
       const load = async () => {
         const qR = await getQuestionnaire();
-        const nR = await getRequiredNomenclatures();
         if (!qR.error) {
           setQuestionnaire(qR.data.value);
           const mR = await getMetadata();
