@@ -8,6 +8,7 @@ import {
 import { FooterType } from '../footer/FooterType';
 import { HeaderType } from '../header/HeaderType';
 import { Header } from '../../components/header/Header';
+import { Banner } from '../../components/Banner/Banner';
 import { HeaderAuth } from '../../components/header/HeaderAuth';
 import { Footer } from '../../components/footer/Footer';
 import SkipLinks from '@codegouvfr/react-dsfr/SkipLinks';
@@ -54,6 +55,7 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
 				<HeaderAuth>
 					<Header header={header} />
 				</HeaderAuth>
+				<Banner />
 				<Main id="contenu">{children}</Main>
 				<Footer footer={footer} />
 			</>
