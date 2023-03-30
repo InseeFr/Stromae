@@ -1,4 +1,4 @@
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem, makeStyles } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,9 +9,16 @@ import { buttonDictionary, errorDictionary } from 'i18n';
 import { useCallback } from 'react';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
+const useStyles = makeStyles((theme) => ({
+  error: {
+    color: '#a71616',
+  },
+}));
+
 function Error({ errorMessage }) {
+  const classes = useStyles();
   return (
-    <ListItem>
+    <ListItem className={classes.error}>
       <div>{errorMessage}</div>
     </ListItem>
   );
