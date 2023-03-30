@@ -11,7 +11,6 @@ import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { simpleLog } from 'utils/events';
-import { useLunaticFetcher } from 'utils/hooks';
 import {
   END_PAGE,
   isLunaticPage,
@@ -34,8 +33,8 @@ export const Orchestrator = ({
   preferences,
   features,
   activeControls,
+  getReferentiel,
   readonly,
-  suggesters,
   autoSuggesterLoading,
 }) => {
   const classes = useStyles();
@@ -53,7 +52,6 @@ export const Orchestrator = ({
         stateData.state === 'TOEXTRACT')
   );
 
-  const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
@@ -67,14 +65,13 @@ export const Orchestrator = ({
     compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
-    savingType,
-    preferences,
+    // ToDo : initial page
+    //initialPage,
     features,
-    activeControls,
-    suggesters,
+    preferences,
     autoSuggesterLoading,
-    suggesterFetcher,
-    logFunction,
+    getReferentiel,
+    activeControls,
   });
 
   const components = getComponents();
@@ -250,6 +247,7 @@ export const Orchestrator = ({
         ref={topRef}
         className={classes.root}
       >
+        {/* <Button onClick={compileErrors}>Compiler les controls</Button> */}
         {currentPage === WELCOME_PAGE && (
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}

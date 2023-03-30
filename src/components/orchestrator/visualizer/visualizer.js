@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Orchestrator } from 'components/orchestrator/collector';
 import { useEffect, useState } from 'react';
-import { useRemoteData, useVisuQuery } from 'utils/hooks';
+import { useGetReferentiel, useRemoteData, useVisuQuery } from 'utils/hooks';
 
 import { LoaderSimple } from 'components/shared/loader';
 import { useHistory } from 'react-router';
@@ -40,12 +40,7 @@ const Visualizer = () => {
 
   const sendData = (surveyUnit) => {};
 
-  const buildSuggester = (nomenclatures) =>
-    nomenclatures
-      ? Object.entries(nomenclatures).reduce((newObj, [key, val]) => {
-          return { ...newObj, [key]: { url: val } };
-        }, {})
-      : {};
+  const { getReferentielForVizu } = useGetReferentiel(nomenclatures);
 
   const logoutAndClose = async (surveyUnit) => {
     downloadDataAsJson(surveyUnit, `data-${surveyUnit?.stateData?.date}`);
@@ -80,7 +75,7 @@ const Visualizer = () => {
               metadata={metadata}
               save={sendData}
               autoSuggesterLoading={true}
-              suggesters={buildSuggester(nomenclatures)}
+              getReferentiel={getReferentielForVizu}
               savingType='COLLECTED'
               preferences={['COLLECTED']}
               features={['VTL', 'MD']}

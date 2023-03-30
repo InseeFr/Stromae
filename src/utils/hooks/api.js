@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
 import { AppContext } from 'App';
 import { AuthContext } from 'components/auth/provider';
 import { errorDictionary } from 'i18n';
+import { useContext, useEffect, useState } from 'react';
 import { API } from 'utils/api';
-import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
 import { getFetcherForLunatic } from 'utils/api/fetcher';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
 import { useConstCallback } from './useConstCallback';
 
 const getErrorMessage = (response, type = 'q') => {
@@ -16,14 +16,24 @@ const getErrorMessage = (response, type = 'q') => {
   return errorDictionary.getUnknownError;
 };
 
-export const useLunaticFetcher = () => {
+export const useGetReferentiel = (nomenclatures) => {
   const oidcClient = useContext(AuthContext);
+  const { apiUrl } = useContext(AppContext);
 
-  const lunaticFetcher = useConstCallback((url, options) =>
-    getFetcherForLunatic(oidcClient.accessToken)(url, options)
-  );
+  const getReferentiel = useConstCallback((refName) => {
+    const finalUrl = `${apiUrl}/api/nomenclature/${refName}`;
+    return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
+  });
 
-  return { lunaticFetcher };
+  const getReferentielForVizu = useConstCallback((refName) => {
+    if (nomenclatures && Object.keys(nomenclatures).includes(refName)) {
+      const finalUrl = nomenclatures[refName];
+      return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
+    }
+    return new Promise((resolve) => resolve([]));
+  });
+
+  return { getReferentiel, getReferentielForVizu };
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
@@ -34,10 +44,6 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
     API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
       oidcClient.accessToken
     )
-  );
-
-  const getNomenclature = useConstCallback(() =>
-    API.getNomenclature(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
   const getQuestionnaire = useConstCallback(() =>
@@ -74,7 +80,6 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
 
   return {
     getRequiredNomenclatures,
-    getNomenclature,
     getQuestionnaire,
     getMetadata,
     getSuData,
@@ -90,7 +95,6 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [suData, setSuData] = useState(null);
-  const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const { getSuData, getRequiredNomenclatures, getQuestionnaire, getMetadata } =
@@ -99,13 +103,11 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
   useEffect(() => {
     if (questionnaireID && surveyUnitID) {
       setErrorMessage(null);
-      setNomenclatures(null);
       const load = async () => {
         const qR = await getQuestionnaire();
         const nR = await getRequiredNomenclatures();
         if (!qR.error) {
           setQuestionnaire(qR.data.value);
-          setNomenclatures(nR.data);
           const mR = await getMetadata();
           if (!mR.error) {
             setMetadata(mR.data);
@@ -132,7 +134,6 @@ export const useAPIRemoteData = (surveyUnitID, questionnaireID) => {
     suData,
     questionnaire,
     metadata,
-    nomenclatures,
   };
 };
 
@@ -140,7 +141,6 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
   const [questionnaire, setQuestionnaire] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [suData, setSuData] = useState(null);
-  const [nomenclatures, setNomenclatures] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -148,14 +148,12 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     if (questionnaireUrl) {
       setErrorMessage(null);
       setQuestionnaire(null);
-      setNomenclatures(null);
       setSuData(null);
       const fakeToken = null;
       const load = async () => {
         const qR = await API.getRequest(questionnaireUrl)(fakeToken);
         if (!qR.error) {
           setQuestionnaire(qR.data);
-          setNomenclatures([]); // fake nomenclatures for vizu
           const mR = await API.getRequest(metadataUrl || DEFAULT_METADATA_URL)(
             fakeToken
           );
@@ -184,6 +182,5 @@ export const useRemoteData = (questionnaireUrl, metadataUrl, dataUrl) => {
     suData,
     questionnaire,
     metadata,
-    nomenclatures,
   };
 };
