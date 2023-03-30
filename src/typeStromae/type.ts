@@ -7,8 +7,12 @@ import { ComponentType } from '../typeLunatic/type-source';
 
 export type SurveyUnitData = {
 	data: LunaticData;
-	stateData?: any;
-	personalization?: any;
+	stateData: {
+		state: 'VALIDATED' | 'EXTRACTED' | 'TOEXTRACT';
+		date: number;
+		currentPage: string;
+	};
+	personalization?: unknown;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
