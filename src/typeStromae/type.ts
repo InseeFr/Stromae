@@ -52,3 +52,8 @@ export type OrchestratedElement = {
 	// saving
 	savingFailure?: SavingFailure;
 };
+
+export type QuestionnaireParams = {
+	survey: string;
+	unit?: string;
+};

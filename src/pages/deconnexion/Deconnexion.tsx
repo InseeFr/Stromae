@@ -1,4 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
+import { useOidc } from '@axa-fr/react-oidc';
 import { Layout } from '../../components/layout';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { ReactComponent as Information } from '../../assets/information.svg';
@@ -7,13 +9,33 @@ import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
 type PortailProps = {};
 
-export type QuestionnaireParams = {
-	survey: string;
-};
-
 export function Deconnexion(props: PortailProps) {
-	const { survey } = useParams<QuestionnaireParams>();
+	const { survey, unit } = useParams();
 	useDocumentTitle('Page de déconnexion');
+	const { login, isAuthenticated } = useOidc();
+
+	const navigate = useNavigate();
+
+	const onClick = useCallback(
+		function () {
+			login();
+		},
+		[login]
+	);
+
+	useEffect(
+		function () {
+			if (isAuthenticated) {
+				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
+			}
+		},
+		[isAuthenticated, navigate, survey, unit]
+	);
+
+	if (isAuthenticated) {
+		return <></>;
+	}
+
 	return (
 		<LoadFromApi survey={survey}>
 			<Layout>
@@ -30,12 +52,7 @@ export function Deconnexion(props: PortailProps) {
 								entièrement complété.
 							</p>
 							{/* To do: rediriger vers coltrane ou la page de connexion keycloak */}
-							<Button
-								size="large"
-								linkProps={{
-									href: '/',
-								}}
-							>
+							<Button size="large" onClick={onClick}>
 								Se reconnecter
 							</Button>
 						</div>
