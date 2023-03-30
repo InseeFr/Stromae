@@ -1,5 +1,5 @@
 import Button from '@codegouvfr/react-dsfr/Button';
-import { OrchestratedElement } from '../orchestrator';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 export function Precedent(props: OrchestratedElement) {
 	const { goPreviousPage = () => null, isFirstPage } = props;

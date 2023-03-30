@@ -1,7 +1,7 @@
-import { OrchestratedElement } from '../../components/orchestrator';
 import * as lunatic from '@inseefr/lunatic';
 import { useEffect, useState } from 'react';
 import { ComponentType } from '../../typeLunatic/type-source';
+import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
@@ -18,7 +18,6 @@ export function Formulaire(props: OrchestratedElement) {
 	);
 
 	return (
-
 		<form>
 			{components.map(function (component: ComponentType) {
 				const { componentType, id } = component;
@@ -34,6 +33,5 @@ export function Formulaire(props: OrchestratedElement) {
 				return null;
 			})}
 		</form>
-
 	);
 }

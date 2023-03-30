@@ -1,7 +1,7 @@
 import { Button } from '@codegouvfr/react-dsfr/Button';
-import { OrchestratedElement } from '../orchestrator';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 function getStatus(getComponents?: () => Array<ComponentType>) {
 	if (getComponents) {
@@ -23,11 +23,9 @@ export function Continuer(props: OrchestratedElement) {
 
 	if (!isLastPage) {
 		return (
-
 			<Button priority="primary" onClick={handleClick} className="fr-mt-1w">
 				{buttonContent}
 			</Button>
-
 		);
 	}
 	return null;

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { PropsWithChildren } from 'react';
+import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
-import { OrchestratedElement, SavingFailure } from '../Orchestrator';
 import { useSaving } from './useSaving';
 
 export const SAVING_STRATEGY = process.env.SAVING_STRATEGY || 'partial'; // or complete

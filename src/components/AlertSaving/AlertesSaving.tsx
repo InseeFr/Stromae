@@ -1,5 +1,5 @@
 import { Alert } from '@codegouvfr/react-dsfr/Alert';
-import { OrchestratedElement } from '../orchestrator';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 export function AlertesSaving(props: OrchestratedElement) {
 	const { savingFailure } = props;

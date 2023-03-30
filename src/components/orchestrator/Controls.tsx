@@ -1,7 +1,7 @@
 import { PropsWithChildren, useCallback, useState } from 'react';
 import { CloneElements } from './CloneElements';
 import { LunaticError } from '../../typeLunatic/type';
-import { OrchestratedElement } from './Orchestrator';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 export enum CriticalityEnum {
 	FORMAT = 'FORMAT',

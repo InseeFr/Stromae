@@ -1,5 +1,5 @@
 import { fr } from '@codegouvfr/react-dsfr';
-import { OrchestratedElement } from '../orchestrator/Orchestrator';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 export function AlertesControles(props: OrchestratedElement) {
 	const { currentErrors, criticality } = props;
@@ -15,12 +15,10 @@ export function AlertesControles(props: OrchestratedElement) {
 				);
 			});
 		return (
-
 			<div className={`${fr.cx('fr-alert', type)} fr-mb-3w`}>
 				<h3 className={fr.cx('fr-alert__title')}>Il y a un problème</h3>
 				{content}
 			</div>
-
 		);
 	}
 	return null;

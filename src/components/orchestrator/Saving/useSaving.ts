@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { VariablesType } from '../Orchestrator';
+import { VariablesType } from '../../../typeStromae/type';
 
 export function useSaving(args: {
 	strategy: string;
