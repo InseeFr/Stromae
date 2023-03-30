@@ -67,11 +67,7 @@
 		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
 		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
 		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
-		"whoAnswers": [
-			"Personne 1",
-			"Personne 2",
-			"Personne 3"
-		],
+		"whoAnswers": ["Personne 1", "Personne 2", "Personne 3"],
 		"Enq_QuestionsAdditionnelles": [
 			{
 				"question": "A quoi sert le recensement de la population?",
@@ -82,5 +78,6 @@
 				"contenu": "Le recensement se déroule selon des procédures approuvées par la Cnil (Commission nationale de l'informatique et des libertés). L'Insee est le seul organisme habilité à exploiter les questionnaires, et cela de façon anonyme. Ils ne peuvent donc donner lieu à aucun contrôle administratif ou fiscal."
 			}
 		]
-	}
+	},
+	"Portal": { "if you need": "use it !" }
 }
