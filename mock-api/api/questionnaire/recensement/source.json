@@ -23,16 +23,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -73,16 +63,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "QUELSSONTL_IRIS"
             ],
@@ -128,16 +108,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "QUELSSONTL_RANGA"
             ],
@@ -183,16 +153,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "QUELSSONTL_RANGL"
             ],
@@ -247,16 +207,6 @@
                     }
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "NOMOCCPRINC"
             ],
@@ -292,16 +242,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "MAIL"
@@ -339,16 +279,6 @@
                 "value": "true",
                 "type": "VTL"
             },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_NUMERO"
             ],
@@ -369,16 +299,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "options": [
                 {
@@ -435,16 +355,6 @@
                 "value": "true",
                 "type": "VTL"
             },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_RUE"
             ],
@@ -488,16 +398,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_VOIE"
             ],
@@ -522,16 +422,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "ADRESSE_CODEPOSTAL"
@@ -558,16 +448,6 @@
                 "value": "true",
                 "type": "VTL"
             },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_COMMUNE"
             ],
@@ -592,16 +472,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "ADRESSE_RESIDENCE"
@@ -628,16 +498,6 @@
                 "value": "true",
                 "type": "VTL"
             },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_BATIMENT"
             ],
@@ -662,16 +522,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "ADRESSE_ESCALIER"
@@ -698,16 +548,6 @@
                 "value": "true",
                 "type": "VTL"
             },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ADRESSE_ETAGE"
             ],
@@ -732,16 +572,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "kkxugktl",
-                    "page": "1",
-                    "label": {
-                        "value": "\"I - \" || \"Feuille de logement : Localisation du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "ADRESSE_PORTE"
@@ -781,16 +611,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "TYPL_X"
             ],
@@ -873,16 +693,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ASCEN_X"
             ],
@@ -941,16 +751,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "AACHL_X"
             ],
@@ -1046,16 +846,6 @@
                     }
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "DANSCECASP"
             ],
@@ -1075,16 +865,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "LESOCCUPAN"
@@ -1149,16 +929,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "AEMM_X"
             ],
@@ -1217,16 +987,6 @@
                     }
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "ENQUELLEAN"
             ],
@@ -1241,24 +1001,6 @@
             "label": {
                 "value": "Combien de pièces d’habitation compte ce logement ?",
                 "type": "VTL|MD"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                },
-                "subSequence": {
-                    "id": "l4qr1ufn",
-                    "page": "9",
-                    "label": {
-                        "value": "Combien de pièces d’habitation compte ce logement ?",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -1269,24 +1011,6 @@
             "label": {
                 "value": "Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.",
                 "type": "VTL|MD"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                },
-                "subSequence": {
-                    "id": "l4qr1ufn",
-                    "page": "9",
-                    "label": {
-                        "value": "Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -1297,24 +1021,6 @@
             "label": {
                 "value": "Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.",
                 "type": "VTL|MD"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                },
-                "subSequence": {
-                    "id": "l4qr1ufn",
-                    "page": "9",
-                    "label": {
-                        "value": "Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -1325,24 +1031,6 @@
             "label": {
                 "value": "Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.) ",
                 "type": "VTL|MD"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                },
-                "subSequence": {
-                    "id": "l4qr1ufn",
-                    "page": "9",
-                    "label": {
-                        "value": "Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.) ",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -1405,16 +1093,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "NBPI_X"
             ],
@@ -1479,16 +1157,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "SURF_X"
             ],
@@ -1578,16 +1246,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "STOC_X"
             ],
@@ -1656,16 +1314,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "HLM_X"
             ],
@@ -1720,16 +1368,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "SANI_X"
             ],
@@ -1791,16 +1429,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "CHFL_X"
             ],
@@ -1869,16 +1497,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "CMBL_X"
             ],
@@ -1972,16 +1590,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "VOIT_X"
             ],
@@ -2061,16 +1669,6 @@
                     ]
                 }
             ],
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqr9pyq",
-                    "page": "18",
-                    "label": {
-                        "value": "\"II - \" || \"Feuille logement : Caractéristiques et confort du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
-            },
             "bindingDependencies": [
                 "GARL_X"
             ],
@@ -2206,16 +1804,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqquk6j",
-                    "page": "35",
-                    "label": {
-                        "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -2231,16 +1819,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "klqquk6j",
-                    "page": "35",
-                    "label": {
-                        "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "NOM",
@@ -2271,24 +1849,6 @@
                     "conditionFilter": {
                         "value": "true",
                         "type": "VTL"
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "klqquk6j",
-                            "page": "35",
-                            "label": {
-                                "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r3fsno",
-                            "page": "36",
-                            "label": {
-                                "value": "Description de chaque habitant",
-                                "type": "VTL|MD"
-                            }
-                        }
                     }
                 },
                 {
@@ -2304,24 +1864,6 @@
                     "conditionFilter": {
                         "value": "true",
                         "type": "VTL"
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "klqquk6j",
-                            "page": "35",
-                            "label": {
-                                "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r3fsno",
-                            "page": "36",
-                            "label": {
-                                "value": "Description de chaque habitant",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "NOM"
@@ -2344,24 +1886,6 @@
                         "value": "true",
                         "type": "VTL"
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "klqquk6j",
-                            "page": "35",
-                            "label": {
-                                "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r3fsno",
-                            "page": "36",
-                            "label": {
-                                "value": "Description de chaque habitant",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM"
                     ],
@@ -2381,24 +1905,6 @@
                     "conditionFilter": {
                         "value": "true",
                         "type": "VTL"
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "klqquk6j",
-                            "page": "35",
-                            "label": {
-                                "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r3fsno",
-                            "page": "36",
-                            "label": {
-                                "value": "Description de chaque habitant",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "SEXE"
@@ -2453,24 +1959,6 @@
                             }
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "klqquk6j",
-                            "page": "35",
-                            "label": {
-                                "value": "\"III - \" || \"Liste des personnes vivant habituellement dans le logement\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r3fsno",
-                            "page": "36",
-                            "label": {
-                                "value": "Description de chaque habitant",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "DATENAIS"
                     ],
@@ -2492,16 +1980,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "latv4l3c",
-                    "page": "37",
-                    "label": {
-                        "value": "\"IV - \" || \"Liens ou relations entre les habitants du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -2517,16 +1995,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "latv4l3c",
-                    "page": "37",
-                    "label": {
-                        "value": "\"IV - \" || \"Liens ou relations entre les habitants du logement\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "BONJOURPEU"
@@ -2546,16 +2014,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "l4shtdfa",
-                    "page": "39",
-                    "label": {
-                        "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -2568,16 +2026,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "l4shtdfa",
-                    "page": "39",
-                    "label": {
-                        "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "PRENOM",
@@ -2612,24 +2060,6 @@
                         "value": "true",
                         "type": "VTL"
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM",
                         "NOM",
@@ -2649,24 +2079,6 @@
                     "conditionFilter": {
                         "value": "true",
                         "type": "VTL"
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -2707,24 +2119,6 @@
                     "conditionFilter": {
                         "value": "true",
                         "type": "VTL"
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -2768,24 +2162,6 @@
                         "bindingDependencies": [
                             "VITAILLEURS"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -2844,24 +2220,6 @@
                             "ESTCEQUEIF"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM",
                         "NOM",
@@ -2906,24 +2264,6 @@
                             "ESTCEQUEIF"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM",
                         "NOM",
@@ -2966,24 +2306,6 @@
                         "bindingDependencies": [
                             "ESTCEQUEIF"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -3036,24 +2358,6 @@
                             "LIEUXHABSEP"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "LIB_ILELLE",
                         "LIEUXHABSEP2",
@@ -3097,24 +2401,6 @@
                         "bindingDependencies": [
                             "ESTCEQUEIF"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4shtdfa",
-                            "page": "39",
-                            "label": {
-                                "value": "\"V - \" || \"Les lieux d’habitation des habitants\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95gzr98",
-                            "page": "40.1",
-                            "label": {
-                                "value": "\"Les lieux d’habitation de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -3169,16 +2455,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "l4psx0vv",
-                    "page": "41",
-                    "label": {
-                        "value": "\"VI - \" || \"Les bulletins individuels\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -3191,16 +2467,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "l4psx0vv",
-                    "page": "41",
-                    "label": {
-                        "value": "\"VI - \" || \"Les bulletins individuels\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "PRENOM",
@@ -3302,24 +2568,6 @@
                         "value": "true",
                         "type": "VTL"
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM",
                         "NOM",
@@ -3366,24 +2614,6 @@
                             }
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "AGE",
                         "BI_LIEUNAIS",
@@ -3447,24 +2677,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "CNAI_FRANCE",
                         "NOM",
@@ -3511,24 +2723,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "DPNAI_FRANCE",
                         "NOM",
@@ -3575,24 +2769,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "CNAI_ETRANGER",
                         "NOM",
@@ -3638,24 +2814,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PNAI_ETRANGER",
                         "NOM",
@@ -5363,24 +4521,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "ARRIV",
                         "NOM",
@@ -5423,24 +4563,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "INAT",
                         "NOM",
@@ -5483,24 +4605,6 @@
                         "bindingDependencies": [
                             "INAT"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "INAT2",
@@ -5575,24 +4679,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "NATN",
                         "NOM",
@@ -6999,24 +6085,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "ETUD",
                         "NOM",
@@ -7060,24 +6128,6 @@
                             "ETUD"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "ESTCEUNTAB",
                         "NOM",
@@ -7120,24 +6170,6 @@
                         "bindingDependencies": [
                             "ESTCEUNTAB"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "ILETU",
@@ -7191,24 +6223,6 @@
                             "ILETU"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "CETU",
                         "NOM",
@@ -7238,24 +6252,6 @@
                             "ILETU"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PNAI_CETU",
                         "NOM",
@@ -7283,24 +6279,6 @@
                             "ESTCEUNTAB",
                             "ILETU"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PNAI_TU",
@@ -9009,24 +7987,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "IRAN",
                         "NOM",
@@ -9105,24 +8065,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "COMMAVANTFRANCE",
                         "NOM",
@@ -9171,24 +8113,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "DRAN",
                         "NOM",
@@ -9237,24 +8161,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "COMMAVANTETR",
                         "NOM",
@@ -9283,24 +8189,6 @@
                             "DATENAIS",
                             "IRAN"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l95h8sdw",
-                            "page": "42.1",
-                            "label": {
-                                "value": "\"Bulletin individuel de \" || (if (isnull(PRENOM)) then \"cet habitant\" else PRENOM) || \" \" || (if (isnull(NOM)) then \"\" else NOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PAYSAVANT",
@@ -10990,24 +9878,6 @@
                             "DATENAIS"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "NOM",
                         "PRENOM",
@@ -11050,24 +9920,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "COUPLE",
                         "NOM",
@@ -11126,24 +9978,6 @@
                             }
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "LIB_E",
                         "MATR1",
@@ -11265,24 +10099,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "DIPL1",
                         "DIPL2",
@@ -11459,24 +10275,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "SITUAT",
                         "NOM",
@@ -11575,24 +10373,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "SITRAV",
                         "NOM",
@@ -11657,24 +10437,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "DEJAT",
                         "NOM",
@@ -11740,24 +10502,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "LIB_E",
                         "STATAV",
@@ -11832,24 +10576,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PROFA",
                         "NOM",
@@ -11898,24 +10624,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4qr1ufn",
-                            "page": "42.22",
-                            "label": {
-                                "value": "Pour les personnes agées de 14 ans ou plus",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "RECH",
                         "NOM",
@@ -11979,24 +10687,6 @@
                             "SITUAT",
                             "SITRAV"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "NOM",
@@ -12081,24 +10771,6 @@
                             "SITRAV"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "RS",
                         "NOM",
@@ -12168,24 +10840,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "ACTET",
                         "NOM",
@@ -12254,24 +10908,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "LIEU",
                         "NOM",
@@ -12344,24 +10980,6 @@
                             "LIEU"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "ILT",
                         "NOM",
@@ -12409,24 +11027,6 @@
                             "LIEU",
                             "ILT"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "QUELLEESTL",
@@ -12477,24 +11077,6 @@
                             "ILT"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "CLT",
                         "NOM",
@@ -12529,24 +11111,6 @@
                             "QUELLEESTL"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "STL_COFR",
                         "NOM",
@@ -12579,24 +11143,6 @@
                             "ILT",
                             "QUELLEESTL"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "STL_ETR",
@@ -14308,24 +12854,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "TRANS",
                         "NOM",
@@ -14418,24 +12946,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "TP",
                         "NOM",
@@ -14500,24 +13010,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "STAT",
                         "NOM",
@@ -14578,24 +13070,6 @@
                             "SITRAV",
                             "STAT"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "NBSAL",
@@ -14663,24 +13137,6 @@
                             "STAT"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r01snx",
-                            "page": "42.31",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux personnes qui travaillent actuellement.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PROFI",
                         "NOM",
@@ -14709,24 +13165,6 @@
                             "SITUAT",
                             "SITRAV"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r1cqpj",
-                            "page": "42.45",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux salariés.",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "NOM",
@@ -14773,24 +13211,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r1cqpj",
-                            "page": "42.45",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux salariés.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "EMPL",
                         "NOM",
@@ -14884,24 +13304,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r1cqpj",
-                            "page": "42.45",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux salariés.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "POSP",
                         "NOM",
@@ -15028,24 +13430,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r1cqpj",
-                            "page": "42.45",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux salariés.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PROFS",
                         "NOM",
@@ -15095,24 +13479,6 @@
                             ]
                         }
                     ],
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4r1cqpj",
-                            "page": "42.45",
-                            "label": {
-                                "value": "La suite du questionnaire s’adresse aux salariés.",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "FONC",
                         "NOM",
@@ -15177,24 +13543,6 @@
                             "DATENAIS"
                         ]
                     },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4wv64r9",
-                            "page": "42.49",
-                            "label": {
-                                "value": "\"Fin du questionnaire de \" || (if isnull(PRENOM) then \"cet habitant\" else PRENOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
-                    },
                     "bindingDependencies": [
                         "PRENOM",
                         "NOM",
@@ -15218,24 +13566,6 @@
                             "AGE",
                             "DATENAIS"
                         ]
-                    },
-                    "hierarchy": {
-                        "sequence": {
-                            "id": "l4psx0vv",
-                            "page": "41",
-                            "label": {
-                                "value": "\"VI - \" || \"Les bulletins individuels\"",
-                                "type": "VTL|MD"
-                            }
-                        },
-                        "subSequence": {
-                            "id": "l4wv64r9",
-                            "page": "42.49",
-                            "label": {
-                                "value": "\"Fin du questionnaire de \" || (if isnull(PRENOM) then \"cet habitant\" else PRENOM)",
-                                "type": "VTL|MD"
-                            }
-                        }
                     },
                     "bindingDependencies": [
                         "PRENOM",
@@ -15265,16 +13595,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "COMMENT-SEQ",
-                    "page": "43",
-                    "label": {
-                        "value": "\"Commentaire\"",
-                        "type": "VTL|MD"
-                    }
-                }
             }
         },
         {
@@ -15290,16 +13610,6 @@
             "conditionFilter": {
                 "value": "true",
                 "type": "VTL"
-            },
-            "hierarchy": {
-                "sequence": {
-                    "id": "COMMENT-SEQ",
-                    "page": "43",
-                    "label": {
-                        "value": "\"Commentaire\"",
-                        "type": "VTL|MD"
-                    }
-                }
             },
             "bindingDependencies": [
                 "COMMENT_QE"
