@@ -1,13 +1,9 @@
-import {
-	cloneElement,
-	PropsWithChildren,
-	ReactElement,
-	useContext,
-} from 'react';
+import { PropsWithChildren, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { LunaticSource } from '../../typeLunatic/type-source';
 import { SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
 
@@ -38,16 +34,16 @@ export function LoadSourceData({
 
 	if (source && surveyUnitData) {
 		return (
-			<>
-				{cloneElement(children as ReactElement<OrchestratorProps>, {
-					source,
-					surveyUnitData,
-					getReferentiel,
-					onChange,
-					activeControls,
-				})}
-			</>
+			<CloneElements<OrchestratorProps>
+				source={source}
+				surveyUnitData={surveyUnitData}
+				getReferentiel={getReferentiel}
+				onChange={onChange}
+				activeControls={activeControls}
+			>
+				{children}
+			</CloneElements>
 		);
 	}
-	return null; // skeleton
+	return null; // TODO skeleton
 }

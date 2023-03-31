@@ -5,17 +5,21 @@ import type {
 } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
 
+export type StateData = {
+	state: string | null; //'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	date: number;
+	currentPage: string;
+};
+
 export type SurveyUnitData = {
 	data: LunaticData;
-	stateData: {
-		state: 'VALIDATED' | 'EXTRACTED' | 'TOEXTRACT';
-		date: number;
-		currentPage: string;
-	};
+	stateData: StateData;
 	personalization?: unknown;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
+
+export type DataVariables = Record<string, LunaticVariable>;
 
 export type VariablesType = {
 	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;

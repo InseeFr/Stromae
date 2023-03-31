@@ -2,6 +2,7 @@ import { PropsWithChildren, useCallback } from 'react';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
+import { DataVariables, StateData } from '../../typeStromae/type';
 
 type LoadFromApiProps = {
 	survey?: string;
@@ -49,6 +50,27 @@ export function LoadFromApi({
 		[accessToken]
 	);
 
+	const putSurveyUnitData = useCallback(
+		async function (
+			args: { data: DataVariables; state: StateData } | undefined
+		) {
+			try {
+				if (args) {
+					const { data, state } = args;
+					if (unit) {
+						await surveyApi.putSurveyUnitData(data, unit, accessToken);
+						await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
+					}
+				}
+			} catch (e) {
+				console.warn(e);
+				return false;
+			}
+			return true;
+		},
+		[accessToken, unit]
+	);
+
 	return (
 		<loadSourceDataContext.Provider
 			value={{
@@ -56,6 +78,7 @@ export function LoadFromApi({
 				getSurvey,
 				getSurveyUnitData,
 				getReferentiel,
+				putSurveyUnitData,
 			}}
 		>
 			{children}
