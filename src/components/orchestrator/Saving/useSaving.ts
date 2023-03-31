@@ -29,10 +29,11 @@ export function useSaving(args: {
 				const keys = Object.keys(changes.current);
 				if (keys.length) {
 					const vFromL = getData(false);
+
 					const variables = Object.assign(vFromL.COLLECTED, vFromL.CALCULATED);
 					data = keys.reduce(function (map, name) {
 						if (name in variables) {
-							return { ...map, [name]: variables[name] };
+							return { ...map, [name]: variables[name].COLLECTED };
 						}
 						return map;
 					}, {});

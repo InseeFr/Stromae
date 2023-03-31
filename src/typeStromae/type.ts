@@ -19,12 +19,19 @@ export type SurveyUnitData = {
 
 export type SavingFailure = { status: 200 | 400 | 500 };
 
-export type DataVariables = Record<string, LunaticVariable>;
+export type DataVariables = Record<string, unknown>;
+
+type VariableValue = {
+	EDITED: unknown;
+	FORCED: unknown;
+	PREVIOUS: unknown;
+	COLLECTED: unknown;
+};
 
 export type VariablesType = {
-	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
-	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
-	CALCULATED: Record<string, LunaticVariable & { variableType: 'CALCULATED' }>;
+	EXTERNAL: Record<string, VariableValue>;
+	COLLECTED: Record<string, VariableValue>;
+	CALCULATED: Record<string, VariableValue>;
 };
 
 export type OrchestratedElement = {
