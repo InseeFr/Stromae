@@ -82,5 +82,6 @@
 				"contenu": "Le recensement se déroule selon des procédures approuvées par la Cnil (Commission nationale de l'informatique et des libertés). L'Insee est le seul organisme habilité à exploiter les questionnaires, et cela de façon anonyme. Ils ne peuvent donc donner lieu à aucun contrôle administratif ou fiscal."
 			}
 		]
-	}
+	},
+	"Portal": { "if you need": "use it !" }
 }

@@ -1,7 +1,7 @@
-import { OrchestratedElement } from '../../components/orchestrator';
 import * as lunatic from '@inseefr/lunatic';
 import { useEffect, useState } from 'react';
 import { ComponentType } from '../../typeLunatic/type-source';
+import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
@@ -18,24 +18,20 @@ export function Formulaire(props: OrchestratedElement) {
 	);
 
 	return (
-		<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mt-5w fr-mt-md-7w">
-			<div className="fr-col-lg-6 fr-col-12">
-				<form>
-					{components.map(function (component: ComponentType) {
-						const { componentType, id } = component;
-						if (componentType in lunatic) {
-							const Component = lunatic[componentType];
+		<form>
+			{components.map(function (component: ComponentType) {
+				const { componentType, id } = component;
+				if (componentType in lunatic) {
+					const Component = lunatic[componentType];
 
-							return (
-								<LunaticComponentContainer key={id} id={id}>
-									<Component key={id} {...component} errors={currentErrors} />
-								</LunaticComponentContainer>
-							);
-						}
-						return null;
-					})}
-				</form>
-			</div>
-		</div>
+					return (
+						<LunaticComponentContainer key={id} id={id}>
+							<Component key={id} {...component} errors={currentErrors} />
+						</LunaticComponentContainer>
+					);
+				}
+				return null;
+			})}
+		</form>
 	);
 }

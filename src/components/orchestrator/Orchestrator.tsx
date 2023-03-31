@@ -1,14 +1,10 @@
-import { JSXElementConstructor, ReactElement } from 'react';
-import { PropsWithChildren } from 'react';
-import {
-	LunaticSource,
-	ComponentType,
-	LunaticError,
-} from '../../typeLunatic/type-source';
-import { SurveyUnitData } from '../../typeStromae/type';
+import { JSXElementConstructor, ReactElement, PropsWithChildren } from 'react';
+import { LunaticSource } from '../../typeLunatic/type-source';
+import { OrchestratedElement, SurveyUnitData } from '../../typeStromae/type';
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
+import { Saving } from './Saving';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
@@ -27,28 +23,6 @@ export type OrchestratorProps = {
  * Type pour tous les enfants de Orchestrator, qui vont recevoir les fonctions
  * générées par useLunatic.
  */
-export type OrchestratedElement = {
-	// useLunatic interface
-	readonly getComponents?: () => Array<ComponentType>;
-	readonly goPreviousPage?: () => void;
-	readonly goNextPage?: (arg?: { block: boolean }) => void;
-	readonly goToPage?: () => void;
-	readonly getErrors?: () => Record<
-		string,
-		Record<string, Array<LunaticError>>
-	>;
-	readonly getModalErrors?: () => Record<string, Array<LunaticError>>;
-	readonly getCurrentErrors?: () => Record<string, Array<LunaticError>>;
-	readonly isFirstPage?: boolean;
-	readonly isLastPage?: boolean;
-	readonly onChange?: (...args: any) => void;
-	readonly getData?: () => any;
-	readonly activeControls?: boolean;
-	// Elements added after controls errors
-	modalErrors?: Array<LunaticError>;
-	currentErrors?: Record<string, Array<LunaticError>>;
-	criticality?: boolean;
-};
 
 /**
  * Element with a child of type OrchestratedElement
@@ -59,20 +33,21 @@ export type NestedOrchestratedElement<T> = {
 
 export function Orchestrator({
 	children,
-	onChange,
 	activeControls,
 	features,
 	preferences,
 	autoSuggesterLoading,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
-		<LoadSourceData onChange={onChange} activeControls={activeControls}>
+		<LoadSourceData activeControls={activeControls}>
 			<UseLunatic
 				features={features}
 				preferences={preferences}
 				autoSuggesterLoading={autoSuggesterLoading}
 			>
-				<Controls>{children}</Controls>
+				<Controls>
+					<Saving>{children}</Saving>
+				</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);
