@@ -42,8 +42,12 @@ export function useSaving(args: {
 			}
 
 			if (data && Object.keys(data).length) {
-				// TODO something  to save!
-				const state = { state: 'INIT', date: 0, currentPage: '1' };
+				// TODO remplir state correctement
+				const state = {
+					state: 'INIT',
+					date: new Date().getTime(),
+					currentPage: '1',
+				};
 				const status = await putSurveyUnitData({ data, state });
 				if (status) {
 					changes.current = {}; // seulement si la sauvegarde is good || !complete
