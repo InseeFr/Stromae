@@ -212,7 +212,7 @@ const welcomeBusiness = {
         'Loi_informatique',
         'Enq_RespTraitement',
         'Enq_TestNonLabellise',
-        'SimplificationEntreprises',
+        'Enq_SimplificationEntreprises',
       ],
     },
     en: {

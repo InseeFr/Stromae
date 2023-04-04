@@ -1,0 +1,70 @@
+{
+  "inseeContext": "business",
+
+  "variables": [
+    {
+      "name": "Enq_LibelleEnquete",
+      "value": "Enquête Familles 2023"
+    },
+    {
+      "name": "Enq_ObjectifsCourts",
+      "value": "Cette enquête permet de connaître les situations familiales et le mode de vie des familles en France."
+    },
+    {
+      "name": "Enq_CaractereObligatoire",
+      "value": true
+    },
+    {
+      "name": "Enq_QualiteStatistique",
+      "value": true
+    },
+    {
+      "name": "Enq_NumeroVisa",
+      "value": "2021A054EC"
+    },
+    {
+      "name": "Enq_TestNonLabellise",
+      "value": true
+    },
+    {
+      "name": "Enq_MinistereTutelle",
+      "value": "de l'Économie, des Finances et de la Relance"
+    },
+    {
+      "name": "Enq_ParutionJo",
+      "value": true
+    },
+    {
+      "name": "Enq_DateParutionJo",
+      "value": "23/11/2020"
+    },
+    {
+      "name": "Enq_RespOperationnel",
+      "value": "L’Institut national de la statistique et des études économiques (Insee)"
+    },
+    {
+      "name": "Enq_RespTraitement",
+      "value": "l'Insee"
+    },
+    {
+      "name": "Enq_AnneeVisa",
+      "value": "2022"
+    },
+    {
+      "name": "Loi_statistique",
+      "value": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573"
+    },
+    {
+      "name": "Loi_rgpd",
+      "value": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679"
+    },
+    {
+      "name": "Enq_Notice",
+      "value": "https://www.insee.fr/fr/metadonnees/source/operation/s2094/presentation"
+    },
+    {
+      "name": "SimplificationEntreprises",
+      "value": false
+    }
+  ]
+}

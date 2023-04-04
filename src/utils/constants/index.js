@@ -19,8 +19,15 @@ export const TIC = 'tic';
 export const DEFAULT = 'default';
 export const LOGEMENT = 'logement';
 export const FAMILLE = 'famille';
+export const BUSINESSEXAMPLE = 'businessExample';
 
-export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, FAMILLE];
+export const QUESTIONNAIRE_EXAMPLES = [
+  SIMPSONS,
+  TIC,
+  LOGEMENT,
+  FAMILLE,
+  BUSINESSEXAMPLE,
+];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
 
