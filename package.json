@@ -3,8 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@codegouvfr/react-dsfr": "^0.37.0",
-		"@axa-fr/react-oidc": "6.15.9",
+		"@codegouvfr/react-dsfr": "^0.44.2",
+		"@axa-fr/react-oidc": "6.14.0",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
 		"@inseefr/lunatic": "2.4.0-develop",

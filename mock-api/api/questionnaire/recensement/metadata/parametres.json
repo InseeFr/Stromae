@@ -67,8 +67,12 @@
 		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
 		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
 		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
-		"whoAnswers": ["Personne 1", "Personne 2", "Personne 3"],
-		"Enq_QuestionsAdditionnelles": [
+		"whoAnswers": [
+			"Personne 1",
+			"Personne 2",
+			"Personne 3"
+		],
+		"Enq_Faq_QuestionsAdditionnelles": [
 			{
 				"question": "A quoi sert le recensement de la population?",
 				"contenu": "La connaissance précise de la répartition de la population et de son évolution sur le territoire permet d’ajuster l’action publique aux besoins de tous en matières d’équipements collectifs (écoles, maisons de retraite, etc...) ou encore de transports à développer."

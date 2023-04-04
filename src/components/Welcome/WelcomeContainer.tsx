@@ -24,7 +24,7 @@ export function WelcomeContainer() {
 		navigate('/');
 	}
 
-	const onClick = useCallback(
+  const onClick = useCallback(
 		function () {
 			if (oidcUser && survey && unit) {
 				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
@@ -39,12 +39,11 @@ export function WelcomeContainer() {
 		return <Skeleton />;
 	}
 	return (
-		<div className="fr-grid-row">
+    <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-6w">
 			<div className="fr-col-12">
 				<h1>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h1>
 				<p className="fr-text--lead">{welcome.Enq_ObjectifsCourts}</p>
 				<RespondantsList respondants={welcome.whoAnswers} />
-				{/* To do: rediriger vers la première question */}
 				<Button className="fr-mt-2w" size="large" onClick={onClick}>
 					Commencer
 				</Button>
