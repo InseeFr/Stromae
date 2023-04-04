@@ -1,14 +1,16 @@
 import { useRef, useEffect, useContext } from 'react';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
-import { VariablesType } from '../../../typeStromae/type';
+import { OrchestratedElement } from '../../../typeStromae/type';
 
-export const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
+const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
-export function useSaving(args: {
-	currentChange?: { name: string };
-	getData?: (refreshCalculated: boolean) => VariablesType;
-}) {
-	const { currentChange, getData } = args;
+type SavingArgs = Pick<
+	OrchestratedElement,
+	'currentChange' | 'getData' | 'pageTag'
+>;
+
+export function useSaving(args: SavingArgs) {
+	const { currentChange, getData, pageTag } = args;
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData } = useContext(loadSourceDataContext);
 
@@ -29,8 +31,8 @@ export function useSaving(args: {
 				const keys = Object.keys(changes.current);
 				if (keys.length) {
 					const vFromL = getData(false);
-
 					const variables = Object.assign(vFromL.COLLECTED, vFromL.CALCULATED);
+
 					data = keys.reduce(function (map, name) {
 						if (name in variables) {
 							return { ...map, [name]: variables[name].COLLECTED };
@@ -47,7 +49,7 @@ export function useSaving(args: {
 				const state = {
 					state: 'INIT',
 					date: new Date().getTime(),
-					currentPage: '1',
+					currentPage: pageTag ?? '1',
 				};
 				const status = await putSurveyUnitData({ data, state });
 				if (status) {

@@ -6,7 +6,7 @@ import { useSaving } from './useSaving';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
-	const { goNextPage = () => null, currentChange, getData } = rest;
+	const { goNextPage = () => null, currentChange, getData, pageTag } = rest;
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ currentChange, getData });

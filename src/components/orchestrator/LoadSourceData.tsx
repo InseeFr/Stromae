@@ -23,7 +23,7 @@ export function LoadSourceData({
 	);
 
 	function navigateError() {
-		navigate('/');
+		navigate('/404');
 	}
 
 	const source = useRemote<LunaticSource>(getSurvey, navigateError);

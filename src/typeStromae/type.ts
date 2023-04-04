@@ -55,6 +55,7 @@ export type OrchestratedElement = {
 		isCritical: boolean;
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
+	readonly pageTag?: string;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
