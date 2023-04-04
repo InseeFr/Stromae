@@ -15,9 +15,9 @@ export type LunaticControl = ControlType;
 export type VTLBindings = { [variableName: string]: unknown };
 
 export type LunaticData = {
-	CALCULATED: Record<string, unknown>;
-	EXTERNAL: Record<string, unknown>;
-	COLLECTED: Record<string, LunaticCollectedValue>;
+	CALCULATED?: Record<string, unknown>;
+	EXTERNAL?: Record<string, unknown>;
+	COLLECTED?: Record<string, LunaticCollectedValue>;
 };
 
 export type LunaticValues = {

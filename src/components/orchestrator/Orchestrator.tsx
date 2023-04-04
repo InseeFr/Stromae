@@ -45,9 +45,9 @@ export function Orchestrator({
 				preferences={preferences}
 				autoSuggesterLoading={autoSuggesterLoading}
 			>
-				<Controls>
-					<Saving>{children}</Saving>
-				</Controls>
+				<Saving>
+					<Controls>{children}</Controls>
+				</Saving>
 			</UseLunatic>
 		</LoadSourceData>
 	);

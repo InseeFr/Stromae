@@ -5,7 +5,7 @@ import {
 	OidcConfiguration,
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
-import { publicRequest, HTTP_VERBS } from '../../lib/commons/axios-utils';
+import { publicGetRequest } from '../../lib/commons/axios-utils';
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -16,10 +16,7 @@ type AuthProviderProps = {
 };
 
 function fetchConfig(): Promise<OidcConfiguration> {
-	return publicRequest<OidcConfiguration>(
-		HTTP_VERBS.get,
-		'/configuration.json'
-	);
+	return publicGetRequest<OidcConfiguration>('/configuration.json');
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {

@@ -23,9 +23,13 @@ export function UseLunatic(
 	const { data } = surveyUnitData || {};
 	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
 
-	const onChange = useCallback(function ({ name }: { name: string }) {
+	const onChange = useCallback(function (
+		{ name }: { name: string },
+		value: unknown
+	) {
 		setCurrrentChange({ name });
-	}, []);
+	},
+	[]);
 
 	useEffect(
 		function () {
@@ -61,6 +65,7 @@ export function UseLunatic(
 		getData,
 		Provider,
 		compileControls,
+		pageTag,
 	} = useLunatic(source, data, args);
 
 	return (
@@ -75,6 +80,7 @@ export function UseLunatic(
 				goToPage={goToPage}
 				getData={getData}
 				currentChange={currentChange}
+				pageTag={pageTag}
 			>
 				{children}
 			</CloneElements>
