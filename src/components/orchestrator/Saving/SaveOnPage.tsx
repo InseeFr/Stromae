@@ -9,7 +9,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const { goNextPage = () => null, currentChange, getData, pageTag } = rest;
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
-	const save = useSaving({ currentChange, getData });
+	const save = useSaving({ currentChange, getData, pageTag });
 
 	const handleNextPage = useCallback(
 		function () {
