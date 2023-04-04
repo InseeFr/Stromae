@@ -6,7 +6,6 @@ on:
       - v2-master
       - v3-master
       - v3-develop
-      - feat/addSonar
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
