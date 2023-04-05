@@ -1444,12 +1444,12 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic@2.4.0-fix-controls":
-  version "2.4.0-fix-controls"
-  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.0-fix-controls.tgz#6809cf12286c02cd432541e0734d1bef2dfc9c38"
-  integrity sha512-XtfJrrNyloR8+9Crq1xs+EKRqzipLyCChXZSClboI8iwk5tNTvINnTmRKQQbQvUgx2xVnieWE2XI83c9qM9dKw==
+"@inseefr/lunatic@2.4.1-fix-controls":
+  version "2.4.1-fix-controls"
+  resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/lunatic/-/lunatic-2.4.1-fix-controls.tgz#72c5b3fe646de7c8d530081df021d2a8e723c2e5"
+  integrity sha512-KWv7nbABQFebTQVTMjR6ixI/BrwBuIs/qtz98LyzqtFtcG7s/GYO6mkPaMWgN1V2SxMrnzK4RXk4rP1tDFk3Fg==
   dependencies:
-    "@inseefr/trevas" "^0.1.16"
+    "@inseefr/trevas" "^0.1.17"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
     antlr4 "4.11.0"
     classnames "^2.3.1"
@@ -1468,7 +1468,7 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/trevas@^0.1.16":
+"@inseefr/trevas@^0.1.17":
   version "0.1.17"
   resolved "https://nexus.insee.fr/repository/npm-public/@inseefr/trevas/-/trevas-0.1.17.tgz#747ee1b2c712b0d5b277760ea27ce1fb78f65415"
   integrity sha512-hQ6mXtcID6kmbpQPuJpyjiBMzGnsC2MAFKIt3qjHBCpYOXbgzl+VteSi+Sj0q4J2EQAx45drIcIZdX7FOf4EUw==
@@ -12193,10 +12193,19 @@ sass-loader@8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
-sass@^1.32.6, sass@^1.58.3:
+sass@^1.32.6:
   version "1.59.3"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.59.3.tgz#a1ddf855d75c70c26b4555df4403e1bbf8e4403f"
   integrity sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
+sass@^1.58.3:
+  version "1.60.0"
+  resolved "https://nexus.insee.fr/repository/npm-public/sass/-/sass-1.60.0.tgz#657f0c23a302ac494b09a5ba8497b739fb5b5a81"
+  integrity sha512-updbwW6fNb5gGm8qMXzVO7V4sWf7LMXnMly/JEyfbfERbVH46Fn6q02BX7/eHTdKpE7d+oTkMMQpFWNUMfFbgQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
