@@ -54,6 +54,10 @@ const errorMessage = {
     fr: "Aucun fichier de configuration pour l'authentification n'a été trouvé (oidc.json ou keycloak.json).",
     en: 'No configuration file for authentication was found (oidc.json or keycloak.json).',
   },
+  errorModalTitle: {
+    fr: 'Des points requièrent votre attention.',
+    en: 'Some points need your attention.',
+  },
 };
 
 export default errorMessage;

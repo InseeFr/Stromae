@@ -1,18 +1,16 @@
-import React from 'react';
-import { Button } from 'components/designSystem/Button';
-import { buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Button } from 'components/designSystem/Button';
+import { buttonDictionary } from 'i18n';
 
 const NotYetImpl = ({ open, setOpen }) => {
   const close = () => setOpen(false);
   return (
     <Dialog
       open={open}
-      disableBackdropClick
       disableEscapeKeyDown
       onClose={close}
       aria-labelledby='alert-dialog-slide-title'

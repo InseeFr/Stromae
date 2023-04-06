@@ -1,9 +1,11 @@
 const buttonMessage = {
   start: { fr: `Commencer`, en: `Start` },
   saveAndNext: {
-    fr: `Enregistrer et continuer`,
-    en: `Save and continue`,
+    fr: `Continuer`,
+    en: `Continue`,
   },
+  MODAL_IGNORE: { fr: 'Poursuivre', en: 'Ignore' },
+  MODAL_CORRECT: { fr: 'Corriger ma réponse', en: 'Correct' },
   back: {
     fr: `Retour`,
     en: `Go back`,

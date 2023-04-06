@@ -1,13 +1,12 @@
-import React from 'react';
-import { Button } from 'components/designSystem/Button';
-import { defaultDictionary, buttonDictionary } from 'i18n';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { MarkdownTypo } from 'components/designSystem';
-import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+import { Button } from 'components/designSystem/Button';
+import { buttonDictionary, defaultDictionary } from 'i18n';
+import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
 
 const utilInfo = (type) => {
   return {
@@ -29,7 +28,6 @@ const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
   return (
     <Dialog
       open={open}
-      disableBackdropClick
       disableEscapeKeyDown
       onClose={paradataHandler(goToCurrentPage)(utilInfo('close'))}
       aria-labelledby='alert-dialog-slide-title'

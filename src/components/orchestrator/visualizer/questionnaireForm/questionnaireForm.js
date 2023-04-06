@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { visualizeDictionary, buttonDictionary } from 'i18n';
-import {
-  QUESTIONNAIRE_EXAMPLE_URL,
-  METADATA_EXAMPLE_URL,
-  DATA_EXAMPLE_URL,
-  SIMPSONS,
-  DEFAULT_DATA_URL,
-  DEFAULT_NOMENCLATURE_URL,
-  DEFAULT_METADATA_URL,
-} from 'utils/constants';
-import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Container from '@material-ui/core/Container';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { buttonDictionary, visualizeDictionary } from 'i18n';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import {
+  DATA_EXAMPLE_URL,
+  DEFAULT_DATA_URL,
+  DEFAULT_METADATA_URL,
+  DEFAULT_NOMENCLATURE_URL,
+  METADATA_EXAMPLE_URL,
+  NOMENCLATURE_EXAMPLE_URL,
+  QUESTIONNAIRE_EXAMPLE_URL,
+  SIMPSONS,
+} from 'utils/constants';
 
 import { Button } from 'components/designSystem';
-import Helper from './helper';
 import Examples from './examples';
+import Helper from './helper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +61,7 @@ const QuestionnaireForm = () => {
     setQuestionnaire(selected ? QUESTIONNAIRE_EXAMPLE_URL(selected) : selected);
     setMetadata(selected ? METADATA_EXAMPLE_URL(selected) : selected);
     setData(selected ? DATA_EXAMPLE_URL(selected) : selected);
+    setNomenclature(selected ? NOMENCLATURE_EXAMPLE_URL(selected) : selected);
   }, [selected]);
 
   const history = useHistory();
