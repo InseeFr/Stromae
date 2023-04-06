@@ -16,6 +16,7 @@ export function OrchestratorReadOnly({
 				autoSuggesterLoading={false}
 				paginated={true}
 				activeControls={false}
+				disabled={true}
 			>
 				{children}
 			</UseLunatic>

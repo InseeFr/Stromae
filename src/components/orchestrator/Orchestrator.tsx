@@ -18,6 +18,7 @@ export type OrchestratorProps = {
 	preferences?: Array<string>;
 	savingType?: string;
 	paginated?: boolean;
+	disabled?: boolean;
 };
 
 export function Orchestrator({

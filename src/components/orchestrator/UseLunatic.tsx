@@ -11,12 +11,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		surveyUnitData,
 		children,
 		getReferentiel,
-		activeControls,
 		preferences,
 		features,
 		savingType,
 		autoSuggesterLoading,
 		paginated,
+		disabled,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
@@ -30,7 +30,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		function () {
 			setArgs({
 				getReferentiel,
-				activeControls,
 				custom,
 				preferences,
 				features,
@@ -41,7 +40,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		},
 		[
 			getReferentiel,
-			activeControls,
 			preferences,
 			features,
 			savingType,
@@ -77,6 +75,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				getData={getData}
 				currentChange={currentChange}
 				pageTag={pageTag}
+				disabled={disabled}
 			>
 				{children}
 			</CloneElements>

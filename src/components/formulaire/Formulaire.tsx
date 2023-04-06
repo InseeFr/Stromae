@@ -5,7 +5,7 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, currentErrors } = props;
+	const { getComponents, currentErrors, disabled = false } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
 
 	useEffect(
@@ -26,7 +26,12 @@ export function Formulaire(props: OrchestratedElement) {
 
 					return (
 						<LunaticComponentContainer key={id} id={id}>
-							<Component key={id} {...component} errors={currentErrors} />
+							<Component
+								key={id}
+								{...component}
+								errors={currentErrors}
+								disabled={disabled}
+							/>
 						</LunaticComponentContainer>
 					);
 				}
