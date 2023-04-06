@@ -31,7 +31,7 @@ export const useGetReferentiel = (nomenclatures) => {
       return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
     }
     // No nomenclature, return empty array to lunatic
-    return new Promise((resolve) => resolve([]));
+    return Promise.resolve([]);
   });
 
   return { getReferentiel, getReferentielForVizu };
