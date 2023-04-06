@@ -98,15 +98,11 @@ export const Orchestrator = ({
   );
 
   const logoutAndClose = async () => {
+    let dataToSave = { stateData: currentStateData, data: getData() };
     if (!validated) {
-      const logoutAndCloseUpdateState = updateStateData();
-      const dataToSave = {
-        stateData: logoutAndCloseUpdateState,
-        data: getData(),
-      };
       await save(dataToSave);
     }
-    quit();
+    quit(dataToSave);
   };
 
   const goToTop = () => {
