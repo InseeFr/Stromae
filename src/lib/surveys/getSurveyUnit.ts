@@ -1,15 +1,14 @@
 import type { SurveyUnitData } from '../../typeStromae/type';
-import { authenticatedRequest, HTTP_VERBS } from '../commons/axios-utils';
-import { surveyUnitData } from './api';
+import { authenticatedGetRequest } from '../commons/axios-utils';
+import { surveyUnit } from './api';
 
 export const getSurveyUnitData =
 	(BASE_URL: string) =>
 	async (unit: string, token: string): Promise<SurveyUnitData> => {
 		try {
 			const { data, stateData, personalization } =
-				await authenticatedRequest<SurveyUnitData>(
-					HTTP_VERBS.get,
-					surveyUnitData(BASE_URL, unit),
+				await authenticatedGetRequest<SurveyUnitData>(
+					surveyUnit(BASE_URL, unit),
 					token
 				);
 

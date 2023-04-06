@@ -1,5 +1,5 @@
 import { surveySource } from './api';
-import { authenticatedRequest, HTTP_VERBS } from '../commons/axios-utils';
+import { authenticatedGetRequest } from '../commons/axios-utils';
 import { LunaticSource } from '../../typeLunatic/type-source';
 
 /**
@@ -11,8 +11,7 @@ import { LunaticSource } from '../../typeLunatic/type-source';
 export const getSurvey =
 	(BASE_URL: string) =>
 	async (survey: string, token: string): Promise<LunaticSource> => {
-		return await authenticatedRequest<LunaticSource>(
-			HTTP_VERBS.get,
+		return await authenticatedGetRequest<LunaticSource>(
 			surveySource(BASE_URL, survey),
 			token
 		);
