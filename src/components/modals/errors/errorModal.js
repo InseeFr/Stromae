@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Button } from 'components/designSystem/Button';
 import { buttonDictionary, errorDictionary } from 'i18n';
 import { useCallback } from 'react';
-import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
 
 const useStyles = makeStyles((theme) => ({
   error: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Error({ errorMessage }) {
+function ErrorItem({ errorMessage }) {
   const classes = useStyles();
   return (
     <ListItem className={classes.error}>
@@ -26,7 +26,7 @@ function Error({ errorMessage }) {
 
 function ComponentErrors({ errors }) {
   const content = errors.map(function (error, index) {
-    return <Error {...error} key={index} />;
+    return <ErrorItem {...error} key={index} />;
   }, []);
   return <List>{content}</List>;
 }
