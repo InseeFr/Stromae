@@ -13,9 +13,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { simpleLog } from 'utils/events';
 import {
   END_PAGE,
-  isLunaticPage,
   VALIDATION_PAGE,
   WELCOME_PAGE,
+  isLunaticPage,
 } from 'utils/pagination';
 import { isNewSequence } from 'utils/questionnaire';
 import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
@@ -247,7 +247,6 @@ export const Orchestrator = ({
         ref={topRef}
         className={classes.root}
       >
-        {/* <Button onClick={compileErrors}>Compiler les controls</Button> */}
         {currentPage === WELCOME_PAGE && (
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}
