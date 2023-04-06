@@ -1,13 +1,11 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, PropsWithChildren } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { OrchestratorProps, NestedOrchestratedElement } from './Orchestrator';
+import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 import { OrchestratedElement } from '../../typeStromae/type';
 
-export function UseLunatic(
-	props: NestedOrchestratedElement<OrchestratorProps>
-) {
+export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
 		source,
 		surveyUnitData,
@@ -18,18 +16,15 @@ export function UseLunatic(
 		features,
 		savingType,
 		autoSuggesterLoading,
+		paginated,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data } = surveyUnitData || {};
 	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
 
-	const onChange = useCallback(function (
-		{ name }: { name: string },
-		value: unknown
-	) {
+	const onChange = useCallback(function ({ name }: { name: string }) {
 		setCurrrentChange({ name });
-	},
-	[]);
+	}, []);
 
 	useEffect(
 		function () {
@@ -52,6 +47,7 @@ export function UseLunatic(
 			savingType,
 			autoSuggesterLoading,
 			onChange,
+			paginated,
 		]
 	);
 

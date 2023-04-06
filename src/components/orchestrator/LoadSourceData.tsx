@@ -15,7 +15,6 @@ type LoadSourceDataProps = {
 export function LoadSourceData({
 	children,
 	onChange,
-	activeControls,
 }: PropsWithChildren<LoadSourceDataProps>) {
 	const navigate = useNavigate();
 	const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
@@ -39,7 +38,6 @@ export function LoadSourceData({
 				surveyUnitData={surveyUnitData}
 				getReferentiel={getReferentiel}
 				onChange={onChange}
-				activeControls={activeControls}
 			>
 				{children}
 			</CloneElements>
