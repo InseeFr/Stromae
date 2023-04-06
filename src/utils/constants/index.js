@@ -28,7 +28,7 @@ export const QUESTIONNAIRE_EXAMPLES = [
   LOGEMENT,
   FAMILLE,
   SUGG,
-  BUSINESS,
+  BUSINESS_EXAMPLE,
 ];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
