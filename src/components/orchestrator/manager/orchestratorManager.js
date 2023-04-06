@@ -16,8 +16,7 @@ import {
   INIT_ORCHESTRATOR_EVENT,
   INIT_SESSION_EVENT,
 } from 'utils/events';
-import { useAPI, useAPIRemoteData } from 'utils/hooks';
-import { buildSuggesterFromNomenclatures } from 'utils/questionnaire/nomenclatures';
+import { useAPI, useAPIRemoteData, useGetReferentiel } from 'utils/hooks';
 import { Orchestrator } from './../collector';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,20 +41,14 @@ const OrchestratorManager = () => {
       readonly === READ_ONLY ? ORCHESTRATOR_READONLY : ORCHESTRATOR_COLLECT,
   });
 
-  const {
-    suData,
-    questionnaire,
-    nomenclatures,
-    metadata,
-    loading,
-    errorMessage,
-  } = useAPIRemoteData(idSU, idQ);
+  const { suData, questionnaire, metadata, loading, errorMessage } =
+    useAPIRemoteData(idSU, idQ);
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
   const { logout, oidcUser, isUserLoggedIn } = useContext(AuthContext);
 
-  const [suggesters, setSuggesters] = useState(null);
+  const { getReferentiel } = useGetReferentiel();
 
   const [errorSending, setErrorSending] = useState(null);
 
@@ -87,45 +80,37 @@ const OrchestratorManager = () => {
   }, [isUserLoggedIn, LOGGER, questionnaire]);
 
   useEffect(() => {
-    if (!loading && questionnaire && nomenclatures) {
+    if (!loading && questionnaire) {
       const {
         label: { value: questionnaireTitle },
       } = questionnaire;
       window.document.title = questionnaireTitle;
       setSource(questionnaire);
-      const suggestersBuilt =
-        buildSuggesterFromNomenclatures(apiUrl)(nomenclatures);
-      setSuggesters(suggestersBuilt);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading, nomenclatures, apiUrl, LOGGER]);
+  }, [questionnaire, loading, apiUrl, LOGGER]);
 
   return (
     <Box className={classes.root}>
       {loading && <LoaderSimple />}
       {!loading && errorMessage && <Typography>{errorMessage}</Typography>}
-      {!loading &&
-        metadata &&
-        suData &&
-        questionnaire &&
-        suggesters &&
-        source && (
-          <Orchestrator
-            stromaeData={suData}
-            source={source}
-            metadata={metadata}
-            logoutAndClose={logoutAndClose}
-            autoSuggesterLoading={true}
-            suggesters={suggesters}
-            save={sendData}
-            savingType='COLLECTED'
-            preferences={['COLLECTED']}
-            features={['VTL', 'MD']}
-            pagination={true}
-            activeControls={true}
-            readonly={readonly}
-          />
-        )}
+      {!loading && metadata && suData && questionnaire && source && (
+        <Orchestrator
+          stromaeData={suData}
+          source={source}
+          metadata={metadata}
+          logoutAndClose={logoutAndClose}
+          autoSuggesterLoading={true}
+          getReferentiel={getReferentiel}
+          save={sendData}
+          savingType='COLLECTED'
+          preferences={['COLLECTED']}
+          features={['VTL', 'MD']}
+          pagination={true}
+          activeControls={true}
+          readonly={readonly}
+        />
+      )}
       {errorSending && <h2>Error lors de l'envoie</h2>}
     </Box>
   );

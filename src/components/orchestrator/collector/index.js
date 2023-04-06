@@ -11,12 +11,11 @@ import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { simpleLog } from 'utils/events';
-import { useLunaticFetcher } from 'utils/hooks';
 import {
   END_PAGE,
-  isLunaticPage,
   VALIDATION_PAGE,
   WELCOME_PAGE,
+  isLunaticPage,
 } from 'utils/pagination';
 import { isNewSequence } from 'utils/questionnaire';
 import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
@@ -34,8 +33,8 @@ export const Orchestrator = ({
   preferences,
   features,
   activeControls,
+  getReferentiel,
   readonly,
-  suggesters,
   autoSuggesterLoading,
 }) => {
   const classes = useStyles();
@@ -53,7 +52,6 @@ export const Orchestrator = ({
         stateData.state === 'TOEXTRACT')
   );
 
-  const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
@@ -67,14 +65,13 @@ export const Orchestrator = ({
     compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
-    savingType,
-    preferences,
+    // ToDo : initial page
+    //initialPage,
     features,
-    activeControls,
-    suggesters,
+    preferences,
     autoSuggesterLoading,
-    suggesterFetcher,
-    logFunction,
+    getReferentiel,
+    activeControls,
   });
 
   const components = getComponents();
