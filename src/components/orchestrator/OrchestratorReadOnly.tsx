@@ -15,7 +15,6 @@ export function OrchestratorReadOnly({
 				preferences={preferences}
 				autoSuggesterLoading={false}
 				paginated={true}
-				activeControls={false}
 				disabled={true}
 			>
 				{children}

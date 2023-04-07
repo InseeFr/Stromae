@@ -9,7 +9,6 @@ import { useRemote } from './useRemote';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
-	activeControls?: boolean;
 };
 //
 export function LoadSourceData({
