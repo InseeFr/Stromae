@@ -31,7 +31,6 @@ export function AlertesControles(props: OrchestratedElement) {
 				id="alert-errors"
 				className={`${fr.cx('fr-alert', type)} fr-mb-3w`}
 				tabIndex={-1}
-				onFocus={() => console.log('focus')}
 			>
 				<h3 className={fr.cx('fr-alert__title')}>Il y a un problème</h3>
 				{content}
