@@ -39,6 +39,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 				} else if (!errors.currentErrors) {
 					goNextPage();
 				}
+			} else {
+				goNextPage();
 			}
 		},
 		[compileControls, goNextPage, warning]

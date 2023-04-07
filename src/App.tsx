@@ -8,6 +8,8 @@ import { AuthProvider } from './components/auth';
 import { RoutingPortail } from './pages/portail';
 import { Portail } from './pages/portail';
 
+// PRSMART / mh!*S29wHctG
+
 const router = createBrowserRouter([
 	{
 		path: '/questionnaire/:survey',

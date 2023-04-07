@@ -3,6 +3,7 @@ import axios, { AxiosError } from 'axios';
 export const HTTP_VERBS = {
 	get: 'get',
 	post: 'post',
+	put: 'put',
 };
 
 function errorHandler(error: AxiosError) {
@@ -35,10 +36,10 @@ function publicHeader() {
 	return { 'Content-type': 'application/json; charset=utf-8' };
 }
 
-export async function publicRequest<T>(method: string, url: string) {
+export async function publicGetRequest<T>(url: string) {
 	try {
 		const headers = publicHeader();
-		const { data } = await axios<T>({ method, url, headers });
+		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
 		return data;
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
@@ -46,15 +47,25 @@ export async function publicRequest<T>(method: string, url: string) {
 	}
 }
 
-export async function authenticatedRequest<T>(
-	method: string,
+export async function authenticatedGetRequest<T>(url: string, token: string) {
+	try {
+		const headers = jwtHeaders(token);
+		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
+		return data;
+	} catch (error: AxiosError | any) {
+		errorHandler(error);
+		throw new Error(`Request fail : ${url}`);
+	}
+}
+
+export async function authenticatedPutRequest<T>(
 	url: string,
+	data: T,
 	token: string
 ) {
 	try {
 		const headers = jwtHeaders(token);
-		const { data } = await axios<T>({ method, url, headers });
-		return data;
+		await axios<T>({ method: HTTP_VERBS.put, url, headers, data });
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
 		throw new Error(`Request fail : ${url}`);

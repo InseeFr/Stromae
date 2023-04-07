@@ -1,13 +1,22 @@
 import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
 import { LunaticSource } from '../../typeLunatic/type-source';
-import { SurveyUnitData } from '../../typeStromae/type';
+import {
+	DataVariables,
+	StateData,
+	SurveyUnitData,
+} from '../../typeStromae/type';
 import { createContext } from 'react';
 
 export type LoadSourceDataContextType = {
 	getMetadata: () => Promise<MetadataSurvey | undefined>;
 	getSurvey: () => Promise<LunaticSource | undefined>;
-	getSurveyUnitData: () => Promise<SurveyUnitData | undefined>;
+	getSurveyUnitData?: () => Promise<SurveyUnitData | undefined>;
 	getReferentiel: (name: string) => Promise<Array<unknown>>;
+	/* */
+	putSurveyUnitData: (sud?: {
+		data: DataVariables;
+		state: StateData;
+	}) => Promise<boolean>;
 };
 
 const DEFAULT = {
@@ -15,6 +24,8 @@ const DEFAULT = {
 	getMetadata: async () => undefined,
 	getSurvey: async () => undefined,
 	getSurveyUnitData: async () => undefined,
+	/* */
+	putSurveyUnitData: async () => true,
 };
 
 export const loadSourceDataContext =

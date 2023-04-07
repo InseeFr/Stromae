@@ -5,22 +5,33 @@ import type {
 } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
 
+export type StateData = {
+	state: string | null; //'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	date: number;
+	currentPage: string;
+};
+
 export type SurveyUnitData = {
 	data: LunaticData;
-	stateData: {
-		state: 'VALIDATED' | 'EXTRACTED' | 'TOEXTRACT';
-		date: number;
-		currentPage: string;
-	};
+	stateData: StateData;
 	personalization?: unknown;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
 
+export type DataVariables = Record<string, unknown>;
+
+type VariableValue = {
+	EDITED: unknown;
+	FORCED: unknown;
+	PREVIOUS: unknown;
+	COLLECTED: unknown;
+};
+
 export type VariablesType = {
-	EXTERNAL: Record<string, LunaticVariable & { variableType: 'EXTERNAL' }>;
-	COLLECTED: Record<string, LunaticVariable & { variableType: 'COLLECTED' }>;
-	CALCULATED: Record<string, LunaticVariable & { variableType: 'CALCULATED' }>;
+	EXTERNAL: Record<string, VariableValue>;
+	COLLECTED: Record<string, VariableValue>;
+	CALCULATED: Record<string, VariableValue>;
 };
 
 export type OrchestratedElement = {
@@ -44,6 +55,7 @@ export type OrchestratedElement = {
 		isCritical: boolean;
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
+	readonly pageTag?: string;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;

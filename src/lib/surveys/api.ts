@@ -1,19 +1,27 @@
-export function surveyMetada(apiUrl: string, survey: string): string {
-	return `${apiUrl}/api/questionnaire/${survey}/metadata`;
+export function surveyMetada(domain: string, survey: string): string {
+	return `${domain}/api/questionnaire/${survey}/metadata`;
 }
 
-export function surveySource(apiUrl: string, survey: string) {
-	return `${apiUrl}/api/questionnaire/${survey}`;
+export function surveySource(domain: string, survey: string) {
+	return `${domain}/api/questionnaire/${survey}`;
 }
 
-export function surveyUnitData(apiUrl: string, unit: string) {
-	return `${apiUrl}/api/survey-unit/${unit}`;
+export function surveyUnit(domain: string, unit: string) {
+	return `${domain}/api/survey-unit/${unit}`;
 }
 
-export function requiredNomenclature(apiUrl: string, survey: string) {
-	return `${apiUrl}/api/questionnaire/${survey}/required-nomenclatures`;
+export function surveyUnitDataUrl(domain: string, unit: string) {
+	return `${domain}/api/survey-unit/${unit}/data`;
 }
 
-export function nomenclature(apiUrl: string, nomenclature: string) {
-	return `${apiUrl}/api/nomenclature/${nomenclature}`;
+export function surveyUnitStateDataUrl(domain: string, unit: string) {
+	return `${domain}/api/survey-unit/${unit}/state-data`;
+}
+
+export function requiredNomenclature(domain: string, survey: string) {
+	return `${domain}/api/questionnaire/${survey}/required-nomenclatures`;
+}
+
+export function nomenclature(domain: string, nomenclature: string) {
+	return `${domain}/api/nomenclature/${nomenclature}`;
 }
