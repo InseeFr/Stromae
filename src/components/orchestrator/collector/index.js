@@ -1,27 +1,27 @@
-import React, { useEffect, useState, useRef } from 'react';
 import * as lunatic from '@inseefr/lunatic';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
+import { ErrorsModal } from 'components/modals/errors';
+import { SendingConfirmation } from 'components/modals/sendingConfirmation';
+import { WelcomeBack } from 'components/modals/welcomeBack';
 import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
-import { WelcomeBack } from 'components/modals/welcomeBack';
-import { StyleWrapper } from '../styleWrapper';
-import { ButtonsNavigation } from '../navigation';
-import { useLunaticFetcher } from 'utils/hooks';
-import { SendingConfirmation } from 'components/modals/sendingConfirmation';
-import {
-  WELCOME_PAGE,
-  END_PAGE,
-  isLunaticPage,
-  VALIDATION_PAGE,
-} from 'utils/pagination';
-import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { simpleLog } from 'utils/events';
-import '../custom-lunatic.scss';
+import {
+  END_PAGE,
+  VALIDATION_PAGE,
+  WELCOME_PAGE,
+  isLunaticPage,
+} from 'utils/pagination';
 import { isNewSequence } from 'utils/questionnaire';
+import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
+import '../custom-lunatic.scss';
+import { ButtonsNavigation } from '../navigation';
+import { StyleWrapper } from '../styleWrapper';
 
 export const Orchestrator = ({
   source,
@@ -33,9 +33,8 @@ export const Orchestrator = ({
   preferences,
   features,
   activeControls,
-  modalForControls,
+  getReferentiel,
   readonly,
-  suggesters,
   autoSuggesterLoading,
 }) => {
   const classes = useStyles();
@@ -53,51 +52,29 @@ export const Orchestrator = ({
         stateData.state === 'TOEXTRACT')
   );
 
-  const { lunaticFetcher: suggesterFetcher } = useLunaticFetcher();
   const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
+    pageTag,
     pager: { page },
     goNextPage,
     goPreviousPage,
     isFirstPage,
     isLastPage,
-    getModalErrors,
-    getCurrentErrors,
+    compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
-    savingType,
-    preferences,
+    // ToDo : initial page
+    //initialPage,
     features,
-    activeControls,
-    suggesters,
+    preferences,
     autoSuggesterLoading,
-    suggesterFetcher,
-    logFunction,
+    getReferentiel,
+    activeControls,
   });
 
-  const updateStateData = (newState) => {
-    const newStateData = {
-      state: newState ?? INIT,
-      date: new Date().getTime(),
-      currentPage: currentPage,
-    };
-    setCurrentStateData(newStateData);
-    return newStateData;
-  };
-
-  const logoutAndClose = async () => {
-    if (!validated) {
-      const logoutAndCloseUpdateState = updateStateData();
-      const dataToSave = {
-        stateData: logoutAndCloseUpdateState,
-        data: getData(),
-      };
-      await save(dataToSave);
-    }
-    quit();
-  };
+  const components = getComponents();
 
   const [currentPage, setCurrentPage] = useState(() => {
     if (validated) return END_PAGE;
@@ -106,6 +83,27 @@ export const Orchestrator = ({
     }
     return WELCOME_PAGE;
   });
+
+  const updateStateData = useCallback(
+    (newState) => {
+      const newStateData = {
+        state: newState ?? INIT,
+        date: new Date().getTime(),
+        currentPage: currentPage,
+      };
+      setCurrentStateData(newStateData);
+      return newStateData;
+    },
+    [currentPage]
+  );
+
+  const logoutAndClose = async () => {
+    let dataToSave = { stateData: currentStateData, data: getData() };
+    if (!validated) {
+      await save(dataToSave);
+    }
+    quit(dataToSave);
+  };
 
   const goToTop = () => {
     if (topRef && topRef.current) {
@@ -127,26 +125,59 @@ export const Orchestrator = ({
     setCurrentPage(END_PAGE);
   };
 
-  const onNext = () => {
-    if (currentPage === WELCOME_PAGE) setCurrentPage(page);
-    else {
-      const onNextUpdateState = updateStateData();
-      const dataToSave = {
-        stateData: onNextUpdateState,
-        data: getData(),
-      };
-      if (!isLastPage) {
-        if (isNewSequence(components)) {
-          save(dataToSave);
-        }
-        goNextPage();
-      } else {
-        save(dataToSave);
-        setCurrentPage(VALIDATION_PAGE);
+  const [errorActive, setErrorActive] = useState({});
+  const [errorsForModal, setErrorsForModal] = useState(null);
+  const closeErrorsModal = useCallback(() => setErrorsForModal(undefined), []);
+
+  const handleGoNext = useCallback(
+    (skipValidation, nextFunction) => {
+      if (skipValidation) nextFunction();
+      else {
+        const { currentErrors, isCritical } = compileControls();
+        setErrorActive({ ...errorActive, [pageTag]: currentErrors || {} });
+        if (currentErrors && Object.keys(currentErrors).length > 0) {
+          setErrorsForModal({ currentErrors, isCritical });
+        } else nextFunction();
       }
-    }
-    goToTop();
-  };
+    },
+    [compileControls, errorActive, pageTag]
+  );
+
+  const onNext = useCallback(
+    (event, skipValidation = false) => {
+      closeErrorsModal();
+      if (currentPage === WELCOME_PAGE) setCurrentPage(page);
+      else {
+        const onNextUpdateState = updateStateData();
+        const dataToSave = {
+          stateData: onNextUpdateState,
+          data: getData(),
+        };
+        if (!isLastPage) {
+          if (isNewSequence(components)) {
+            save(dataToSave);
+          }
+          handleGoNext(skipValidation, goNextPage);
+        } else {
+          save(dataToSave);
+          handleGoNext(skipValidation, () => setCurrentPage(VALIDATION_PAGE));
+        }
+      }
+      goToTop();
+    },
+    [
+      closeErrorsModal,
+      components,
+      currentPage,
+      getData,
+      goNextPage,
+      handleGoNext,
+      isLastPage,
+      page,
+      save,
+      updateStateData,
+    ]
+  );
 
   const onPrevious = () => {
     if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
@@ -161,10 +192,6 @@ export const Orchestrator = ({
       setCurrentPage(page);
     }
   }, [currentPage, page]);
-
-  const components = getComponents();
-  const modalErrors = getModalErrors();
-  const currentErrors = getCurrentErrors();
 
   const lunaticDisplay = () => (
     <Card
@@ -189,7 +216,7 @@ export const Orchestrator = ({
               labelPosition='TOP' //For LunaticSuggester
               logFunction={logFunction}
               filterDescription={false}
-              errors={currentErrors}
+              errors={errorActive[pageTag]}
               {...other}
               {...component}
             />
@@ -245,11 +272,12 @@ export const Orchestrator = ({
           validateQuestionnaire={() => setValidationConfirmation(true)}
         />
       )}
-      {modalForControls && (
-        <lunatic.Modal
-          title='Des points requièrent votre attention.'
-          errors={modalErrors}
-          goNext={goNextPage}
+      {errorsForModal && (
+        <ErrorsModal
+          currentPage={currentPage}
+          errors={errorsForModal}
+          goNext={onNext}
+          onClose={closeErrorsModal}
         />
       )}
       <WelcomeBack

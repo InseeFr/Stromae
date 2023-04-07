@@ -19,8 +19,17 @@ export const TIC = 'tic';
 export const DEFAULT = 'default';
 export const LOGEMENT = 'logement';
 export const FAMILLE = 'famille';
+export const BUSINESS_EXAMPLE = 'businessExample';
+export const SUGG = 'sug';
 
-export const QUESTIONNAIRE_EXAMPLES = [SIMPSONS, TIC, LOGEMENT, FAMILLE];
+export const QUESTIONNAIRE_EXAMPLES = [
+  SIMPSONS,
+  TIC,
+  LOGEMENT,
+  FAMILLE,
+  SUGG,
+  BUSINESS_EXAMPLE,
+];
 
 export const AUTHORIZED_ROLES = ['Guest', 'offline_access'];
 
@@ -31,9 +40,13 @@ export const METADATA_EXAMPLE_URL = (q) =>
 export const DATA_EXAMPLE_URL = (q) =>
   `${window.location.origin}/static/questionnaire/${q}/data.json`;
 
-export const NOMENCLATURE_EXAMPLE_URL = (q) => ({
-  'L_DEPNAIS-1-0-0': `${window.location.origin}/static/questionnaire/${q}/nomenclatures/L_DEPNAIS-1-0-0.json`,
-});
+export const NOMENCLATURE_EXAMPLE_URL = (q) => {
+  if (q === SUGG)
+    return JSON.stringify({
+      'cog-communes': `${window.location.origin}/static/nomenclature/communes-2019.json`,
+    });
+  return JSON.stringify({});
+};
 export const DEFAULT_DATA_URL = DATA_EXAMPLE_URL(DEFAULT);
 export const DEFAULT_METADATA_URL = METADATA_EXAMPLE_URL(DEFAULT);
 export const FULL_METADATA_URL = `${window.location.origin}/static/metadata/full.json`;

@@ -71,12 +71,12 @@ export const fetcherFile = async (url, token) => {
   }
 };
 
-export const getFetcherForLunatic = (token) => async (url, options) => {
+export const getFetcherForLunatic = (token) => (url, options) => {
   const otherHeader = options?.headers || {};
   return fetch(url, {
     ...options,
     headers: token
       ? { ...otherHeader, Authorization: `Bearer ${token}` }
       : otherHeader,
-  });
+  }).then((r) => r.json());
 };
