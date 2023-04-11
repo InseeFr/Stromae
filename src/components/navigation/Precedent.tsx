@@ -7,6 +7,7 @@ export function Precedent(props: OrchestratedElement) {
 	function handleClick() {
 		goPreviousPage();
 	}
+
 	if (!isFirstPage) {
 		return (
 			<div className="fr-col-12">

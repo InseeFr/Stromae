@@ -19,7 +19,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data } = surveyUnitData || {};
+	const { data, stateData = { currentPage: '1' } } = surveyUnitData || {};
+	const { currentPage } = stateData;
 	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(function ({ name }: { name: string }) {
@@ -76,6 +77,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				currentChange={currentChange}
 				pageTag={pageTag}
 				disabled={disabled}
+				currentPage={currentPage}
 			>
 				{children}
 			</CloneElements>
