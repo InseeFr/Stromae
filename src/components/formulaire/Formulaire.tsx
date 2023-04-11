@@ -17,6 +17,18 @@ export function Formulaire(props: OrchestratedElement) {
 		[getComponents]
 	);
 
+	useEffect(
+		function () {
+			const focusable = document.querySelectorAll<HTMLElement>(
+				'input, select, textarea, [tabindex]:not([tabindex="-1"])'
+			);
+			if (focusable && focusable.length) {
+				focusable[0]?.focus();
+			}
+		},
+		[components]
+	);
+
 	return (
 		<form>
 			{components.map(function (component: ComponentType) {
