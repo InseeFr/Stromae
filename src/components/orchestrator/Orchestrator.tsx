@@ -1,6 +1,6 @@
-import { JSXElementConstructor, ReactElement, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { LunaticSource } from '../../typeLunatic/type-source';
-import { OrchestratedElement, SurveyUnitData } from '../../typeStromae/type';
+import { SurveyUnitData } from '../../typeStromae/type';
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
@@ -17,33 +17,23 @@ export type OrchestratorProps = {
 	features?: Array<string>;
 	preferences?: Array<string>;
 	savingType?: string;
+	paginated?: boolean;
+	disabled?: boolean;
 };
-
-/**
- * Type pour tous les enfants de Orchestrator, qui vont recevoir les fonctions
- * générées par useLunatic.
- */
-
-/**
- * Element with a child of type OrchestratedElement
- */
-export type NestedOrchestratedElement<T> = {
-	children: ReactElement<OrchestratedElement, JSXElementConstructor<T>>;
-} & T;
 
 export function Orchestrator({
 	children,
-	activeControls,
 	features,
 	preferences,
-	autoSuggesterLoading,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
-		<LoadSourceData activeControls={activeControls}>
+		<LoadSourceData>
 			<UseLunatic
 				features={features}
 				preferences={preferences}
-				autoSuggesterLoading={autoSuggesterLoading}
+				autoSuggesterLoading={true}
+				paginated={true}
+				activeControls={true}
 			>
 				<Saving>
 					<Controls>{children}</Controls>

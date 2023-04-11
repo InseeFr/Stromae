@@ -1,8 +1,4 @@
-import type {
-	LunaticData,
-	LunaticError,
-	LunaticVariable,
-} from '../typeLunatic/type';
+import type { LunaticData, LunaticError } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
 
 export type StateData = {
@@ -50,7 +46,6 @@ export type OrchestratedElement = {
 	readonly isLastPage?: boolean;
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: (refreshCalculated: boolean) => VariablesType;
-	readonly activeControls?: boolean;
 	readonly compileControls?: () => {
 		isCritical: boolean;
 		currentErrors?: Record<string, Array<LunaticError>>;
@@ -63,6 +58,8 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
+	// disabled all components
+	disabled?: boolean;
 };
 
 export type QuestionnaireParams = {

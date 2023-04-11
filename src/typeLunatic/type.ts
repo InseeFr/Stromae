@@ -144,9 +144,6 @@ export type LunaticState = {
 	) => T;
 	// Update the value collected for the variable
 	updateBindings: (variableName: string, value: unknown) => unknown;
-	// Enable controls for data (form validation)
-	activeControls: boolean;
-	// TODO : Explain this
 	management?: boolean;
 	goToPage: (page: {
 		page: string;
