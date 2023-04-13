@@ -78,6 +78,25 @@
       }
     ]
   },
+  "Submit": {
+    "TitleAdditionalInformation": "La démarche du recensement de la population",
+    "DescriptionAdditional": "Si vous avez indiqué une adresse électronique, un accusé de réception vous sera envoyé automatiquement.",
+    "Feedback": {
+      "title": "Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela ne prend que 2 minutes.",
+      "link": {
+        "label": "Je donne mon avis",
+        "href": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
+        "imageSrc": "https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
+      }
+    },
+    "Results": {
+      "title": "Vous souhaitez consulter les résultats du recensement de la population?",
+      "link": {
+        "label": "Voir les résultats",
+        "href": "https://www.insee.fr/fr/information/2008354"
+      }
+    }
+  },
   "Portal": {
     "if you need": "use it !"
   }

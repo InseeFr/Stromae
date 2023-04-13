@@ -72,7 +72,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(QUELSSONTL_IRIS))",
+            "value": "not(isnull(ZC))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -80,9 +80,9 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "QUELSSONTL_IRIS",
-            "QUELSSONTL_RANGA",
-            "QUELSSONTL_RANGL"
+            "ZC",
+            "ADR_RANG",
+            "LOG_RANG"
           ]
         }
       ],
@@ -98,10 +98,10 @@
         }
       ],
       "bindingDependencies": [
-        "QUELSSONTL_IRIS"
+        "ZC"
       ],
       "response": {
-        "name": "QUELSSONTL_IRIS"
+        "name": "ZC"
       }
     },
     {
@@ -128,7 +128,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(QUELSSONTL_RANGA))",
+            "value": "not(isnull(ADR_RANG))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -136,17 +136,17 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "QUELSSONTL_IRIS",
-            "QUELSSONTL_RANGA",
-            "QUELSSONTL_RANGL"
+            "ZC",
+            "ADR_RANG",
+            "LOG_RANG"
           ]
         }
       ],
       "bindingDependencies": [
-        "QUELSSONTL_RANGA"
+        "ADR_RANG"
       ],
       "response": {
-        "name": "QUELSSONTL_RANGA"
+        "name": "ADR_RANG"
       }
     },
     {
@@ -173,7 +173,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(QUELSSONTL_RANGL))",
+            "value": "not(isnull(LOG_RANG))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -181,17 +181,17 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "QUELSSONTL_IRIS",
-            "QUELSSONTL_RANGA",
-            "QUELSSONTL_RANGL"
+            "ZC",
+            "ADR_RANG",
+            "LOG_RANG"
           ]
         }
       ],
       "bindingDependencies": [
-        "QUELSSONTL_RANGL"
+        "LOG_RANG"
       ],
       "response": {
-        "name": "QUELSSONTL_RANGL"
+        "name": "LOG_RANG"
       }
     },
     {
@@ -272,10 +272,10 @@
         }
       ],
       "bindingDependencies": [
-        "TYPL"
+        "TYPC"
       ],
       "response": {
-        "name": "TYPL"
+        "name": "TYPC"
       }
     },
     {
@@ -331,10 +331,10 @@
         }
       ],
       "bindingDependencies": [
-        "TYPL"
+        "TYPC"
       ],
       "response": {
-        "name": "TYPL"
+        "name": "TYPC"
       }
     },
     {
@@ -361,7 +361,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "ERROR",
           "control": {
-            "value": "not(isnull(NOMOCCPRINC))",
+            "value": "not(isnull(NOM_OCC))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -369,7 +369,7 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "NOMOCCPRINC"
+            "NOM_OCC"
           ]
         }
       ],
@@ -394,10 +394,10 @@
         }
       ],
       "bindingDependencies": [
-        "NOMOCCPRINC"
+        "NOM_OCC"
       ],
       "response": {
-        "name": "NOMOCCPRINC"
+        "name": "NOM_OCC"
       }
     },
     {
@@ -411,7 +411,7 @@
         "type": "VTL"
       },
       "description": {
-        "value": "\"Exemple: john.dupont@gmail.com\"",
+        "value": "\"Exemple: john.dupont@gEMAIL_OCC.com\"",
         "type": "VTL"
       },
       "declarations": [
@@ -439,10 +439,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "MAIL"
+        "EMAIL_OCC"
       ],
       "response": {
-        "name": "MAIL"
+        "name": "EMAIL_OCC"
       }
     },
     {
@@ -475,10 +475,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_NUMERO"
+        "NUMVOI_LOC"
       ],
       "response": {
-        "name": "ADRESSE_NUMERO"
+        "name": "NUMVOI_LOC"
       }
     },
     {
@@ -526,10 +526,10 @@
         }
       ],
       "bindingDependencies": [
-        "ADRESSE_BIS"
+        "BISTER_LOC"
       ],
       "response": {
-        "name": "ADRESSE_BIS"
+        "name": "BISTER_LOC"
       }
     },
     {
@@ -551,10 +551,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_RUE"
+        "TYPEVOI_LOC"
       ],
       "response": {
-        "name": "ADRESSE_RUE"
+        "name": "TYPEVOI_LOC"
       }
     },
     {
@@ -581,7 +581,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(ADRESSE_VOIE))",
+            "value": "not(isnull(NOMVOI_LOC))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -589,15 +589,15 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "ADRESSE_VOIE"
+            "NOMVOI_LOC"
           ]
         }
       ],
       "bindingDependencies": [
-        "ADRESSE_VOIE"
+        "NOMVOI_LOC"
       ],
       "response": {
-        "name": "ADRESSE_VOIE"
+        "name": "NOMVOI_LOC"
       }
     },
     {
@@ -619,10 +619,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_CODEPOSTAL"
+        "CPOST_LOC"
       ],
       "response": {
-        "name": "ADRESSE_CODEPOSTAL"
+        "name": "CPOST_LOC"
       }
     },
     {
@@ -642,7 +642,7 @@
         "type": "VTL"
       },
       "response": {
-        "name": "ADRESSE_COMMUNE"
+        "name": "COM_LOC"
       },
       "page": "6"
     },
@@ -665,10 +665,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_RESIDENCE"
+        "RES_LOC"
       ],
       "response": {
-        "name": "ADRESSE_RESIDENCE"
+        "name": "RES_LOC"
       }
     },
     {
@@ -690,10 +690,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_BATIMENT"
+        "BAT_LOC"
       ],
       "response": {
-        "name": "ADRESSE_BATIMENT"
+        "name": "BAT_LOC"
       }
     },
     {
@@ -715,10 +715,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_ESCALIER"
+        "ESC_LOC"
       ],
       "response": {
-        "name": "ADRESSE_ESCALIER"
+        "name": "ESC_LOC"
       }
     },
     {
@@ -740,10 +740,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_ETAGE"
+        "ETAGE_LOC"
       ],
       "response": {
-        "name": "ADRESSE_ETAGE"
+        "name": "ETAGE_LOC"
       }
     },
     {
@@ -765,10 +765,10 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "ADRESSE_PORTE"
+        "N_PORTE_LOC"
       ],
       "response": {
-        "name": "ADRESSE_PORTE"
+        "name": "N_PORTE_LOC"
       }
     },
     {
@@ -790,7 +790,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(TYPL_X))",
+            "value": "not(isnull(TYPL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -798,12 +798,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "TYPL_X"
+            "TYPL"
           ]
         }
       ],
       "bindingDependencies": [
-        "TYPL_X"
+        "TYPL"
       ],
       "options": [
         {
@@ -850,7 +850,7 @@
         }
       ],
       "response": {
-        "name": "TYPL_X"
+        "name": "TYPL"
       }
     },
     {
@@ -872,7 +872,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(ASCEN_X))",
+            "value": "not(isnull(ASCEN))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -880,12 +880,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "ASCEN_X"
+            "ASCEN"
           ]
         }
       ],
       "bindingDependencies": [
-        "ASCEN_X"
+        "ASCEN"
       ],
       "options": [
         {
@@ -904,7 +904,7 @@
         }
       ],
       "response": {
-        "name": "ASCEN_X"
+        "name": "ASCEN"
       }
     },
     {
@@ -930,7 +930,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(AACHL_X))",
+            "value": "not(isnull(ACHL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -938,12 +938,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "AACHL_X"
+            "ACHL"
           ]
         }
       ],
       "bindingDependencies": [
-        "AACHL_X"
+        "ACHL"
       ],
       "options": [
         {
@@ -990,7 +990,7 @@
         }
       ],
       "response": {
-        "name": "AACHL_X"
+        "name": "ACHL"
       }
     },
     {
@@ -1010,7 +1010,7 @@
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "AACHL_X = \"6\"",
+        "value": "ACHL = \"6\"",
         "type": "VTL"
       },
       "controls": [
@@ -1019,7 +1019,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(isnull(DANSCECASP)) and (cast(DANSCECASP,integer>2006) or cast(DANSCECASP,integer)<2024)",
+            "value": "not(isnull(AACHL)) and (cast(AACHL,integer>2006) or cast(AACHL,integer)<2024)",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1032,7 +1032,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(isnull(DANSCECASP))  and (round(DANSCECASP,0)<>DANSCECASP))",
+            "value": "not(isnull(AACHL))  and (round(AACHL,0)<>AACHL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1042,10 +1042,10 @@
         }
       ],
       "bindingDependencies": [
-        "DANSCECASP"
+        "AACHL"
       ],
       "response": {
-        "name": "DANSCECASP"
+        "name": "AACHL"
       }
     },
     {
@@ -1062,7 +1062,7 @@
         "type": "VTL"
       },
       "bindingDependencies": [
-        "LESOCCUPAN"
+        "IAEMM"
       ],
       "options": [
         {
@@ -1081,7 +1081,7 @@
         }
       ],
       "response": {
-        "name": "LESOCCUPAN"
+        "name": "IAEMM"
       }
     },
     {
@@ -1099,10 +1099,10 @@
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "(LESOCCUPAN = \"1\")",
+        "value": "(IAEMM = \"1\")",
         "type": "VTL",
         "bindingDependencies": [
-          "LESOCCUPAN"
+          "IAEMM"
         ]
       },
       "controls": [
@@ -1111,7 +1111,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(cast(AEMM_X,integer) < cast(AACHL_X,integer))",
+            "value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1119,8 +1119,8 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "AEMM_X",
-            "AACHL_X"
+            "AEMM_OCC",
+            "ACHL"
           ]
         }
       ],
@@ -1136,10 +1136,10 @@
         }
       ],
       "bindingDependencies": [
-        "AEMM_X"
+        "AEMM_OCC"
       ],
       "response": {
-        "name": "AEMM_X"
+        "name": "AEMM_OCC"
       }
     },
     {
@@ -1159,10 +1159,10 @@
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "(LESOCCUPAN = \"2\")",
+        "value": "(IAEMM = \"2\")",
         "type": "VTL",
         "bindingDependencies": [
-          "LESOCCUPAN"
+          "IAEMM"
         ]
       },
       "declarations": [
@@ -1182,7 +1182,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(not(isnull(ENQUELLEAN)) and (1900>ENQUELLEAN or 2024<ENQUELLEAN))",
+            "value": "not(not(isnull(AEMM)) and (1900>AEMM or 2024<AEMM))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1195,7 +1195,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(not(isnull(ENQUELLEAN))  and round(ENQUELLEAN,0)<>ENQUELLEAN)",
+            "value": "not(not(isnull(AEMM))  and round(AEMM,0)<>AEMM)",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1205,10 +1205,10 @@
         }
       ],
       "bindingDependencies": [
-        "ENQUELLEAN"
+        "AEMM"
       ],
       "response": {
-        "name": "ENQUELLEAN"
+        "name": "AEMM"
       }
     },
     {
@@ -1271,7 +1271,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(not(isnull(NBPI_X)) and (0>NBPI_X or 200<NBPI_X))",
+            "value": "not(not(isnull(NBPI)) and (0>NBPI or 200<NBPI))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1284,7 +1284,7 @@
           "typeOfControl": "FORMAT",
           "criticality": "ERROR",
           "control": {
-            "value": "not(not(isnull(NBPI_X))  and round(NBPI_X,0)<>NBPI_X)",
+            "value": "not(not(isnull(NBPI))  and round(NBPI,0)<>NBPI)",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1297,7 +1297,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(NBPI_X))",
+            "value": "not(isnull(NBPI))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1305,15 +1305,15 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "NBPI_X"
+            "NBPI"
           ]
         }
       ],
       "bindingDependencies": [
-        "NBPI_X"
+        "NBPI"
       ],
       "response": {
-        "name": "NBPI_X"
+        "name": "NBPI"
       }
     },
     {
@@ -1339,7 +1339,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(SURF_X))",
+            "value": "not(isnull(SURF))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1347,12 +1347,12 @@
             "type": "VTL|MD"
           },
           "bindingDependencies": [
-            "SURF_X"
+            "SURF"
           ]
         }
       ],
       "bindingDependencies": [
-        "SURF_X"
+        "SURF"
       ],
       "options": [
         {
@@ -1406,7 +1406,7 @@
         }
       ],
       "response": {
-        "name": "SURF_X"
+        "name": "SURF"
       }
     },
     {
@@ -1428,7 +1428,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(STOC_X))",
+            "value": "not(isnull(STOC))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1436,12 +1436,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "STOC_X"
+            "STOC"
           ]
         }
       ],
       "bindingDependencies": [
-        "STOC_X"
+        "STOC"
       ],
       "options": [
         {
@@ -1474,7 +1474,7 @@
         }
       ],
       "response": {
-        "name": "STOC_X"
+        "name": "STOC"
       }
     },
     {
@@ -1496,7 +1496,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(HLM_X))",
+            "value": "not(isnull(HLML))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1504,12 +1504,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "HLM_X"
+            "HLML"
           ]
         }
       ],
       "bindingDependencies": [
-        "HLM_X"
+        "HLML"
       ],
       "options": [
         {
@@ -1528,7 +1528,7 @@
         }
       ],
       "response": {
-        "name": "HLM_X"
+        "name": "HLML"
       }
     },
     {
@@ -1541,7 +1541,7 @@
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "true",
+        "value": "\"IS_DOM = true\"",
         "type": "VTL"
       },
       "controls": [
@@ -1550,7 +1550,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(SANI_X))",
+            "value": "not(isnull(SANI))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1558,12 +1558,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "SANI_X"
+            "SANI"
           ]
         }
       ],
       "bindingDependencies": [
-        "SANI_X"
+        "SANI"
       ],
       "options": [
         {
@@ -1589,7 +1589,7 @@
         }
       ],
       "response": {
-        "name": "SANI_X"
+        "name": "SANI"
       }
     },
     {
@@ -1611,7 +1611,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(CHFL_X))",
+            "value": "not(isnull(CHFL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1619,12 +1619,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "CHFL_X"
+            "CHFL"
           ]
         }
       ],
       "bindingDependencies": [
-        "CHFL_X"
+        "CHFL"
       ],
       "options": [
         {
@@ -1657,7 +1657,7 @@
         }
       ],
       "response": {
-        "name": "CHFL_X"
+        "name": "CHFL"
       }
     },
     {
@@ -1670,10 +1670,10 @@
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "(CHFL_X = \"1\") or (CHFL_X = \"2\") or (CHFL_X = \"4\")",
+        "value": "(CHFL = \"1\") or (CHFL = \"2\") or (CHFL = \"4\")",
         "type": "VTL",
         "bindingDependencies": [
-          "CHFL_X"
+          "CHFL"
         ]
       },
       "controls": [
@@ -1682,7 +1682,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(CMBL_X))",
+            "value": "not(isnull(CMBL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1690,12 +1690,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "CMBL_X"
+            "CMBL"
           ]
         }
       ],
       "bindingDependencies": [
-        "CMBL_X"
+        "CMBL"
       ],
       "options": [
         {
@@ -1742,7 +1742,7 @@
         }
       ],
       "response": {
-        "name": "CMBL_X"
+        "name": "CMBL"
       }
     },
     {
@@ -1775,7 +1775,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(VOIT_X))",
+            "value": "not(isnull(VOIT))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1783,12 +1783,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "VOIT_X"
+            "VOIT"
           ]
         }
       ],
       "bindingDependencies": [
-        "VOIT_X"
+        "VOIT"
       ],
       "options": [
         {
@@ -1821,7 +1821,7 @@
         }
       ],
       "response": {
-        "name": "VOIT_X"
+        "name": "VOIT"
       }
     },
     {
@@ -1854,7 +1854,7 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(GARL_X))",
+            "value": "not(isnull(GARL))",
             "type": "VTL"
           },
           "errorMessage": {
@@ -1862,12 +1862,12 @@
             "type": "VTL"
           },
           "bindingDependencies": [
-            "GARL_X"
+            "GARL"
           ]
         }
       ],
       "bindingDependencies": [
-        "GARL_X"
+        "GARL"
       ],
       "options": [
         {
@@ -1886,7 +1886,7 @@
         }
       ],
       "response": {
-        "name": "GARL_X"
+        "name": "GARL"
       }
     },
     {
@@ -2618,6 +2618,11 @@
   ],
   "variables": [
     {
+      "variableType": "EXTERNAL",
+      "name": "IS_DOM",
+      "value": null
+    },
+    {
       "variableType": "COLLECTED",
       "name": "COUNT_PERSONS",
       "values": {
@@ -3055,7 +3060,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "QUELSSONTL_IRIS",
+      "name": "ZC",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3077,6 +3082,182 @@
     },
     {
       "variableType": "COLLECTED",
+      "name": "TYPC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "ADR_RANG",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "LOG_RANG",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "NOM_OCC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "EMAIL_OCC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "NUMVOI_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "BISTER_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "TYPEVOI_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "NOMVOI_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "RES_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "BAT_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "ESC_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "ETAGE_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "N_PORTE_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "CPOST_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "COM_LOC",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
       "name": "TYPL",
       "values": {
         "PREVIOUS": null,
@@ -3088,7 +3269,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "QUELSSONTL_RANGA",
+      "name": "ASCEN",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3099,7 +3280,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "QUELSSONTL_RANGL",
+      "name": "ACHL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3110,7 +3291,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "NOMOCCPRINC",
+      "name": "AACHL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3121,7 +3302,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "MAIL",
+      "name": "IAEMM",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3132,7 +3313,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_NUMERO",
+      "name": "AEMM_OCC",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3143,7 +3324,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_BIS",
+      "name": "AEMM",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3154,7 +3335,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_RUE",
+      "name": "NBPI",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3165,7 +3346,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_VOIE",
+      "name": "SURF",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3176,7 +3357,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_RESIDENCE",
+      "name": "STOC",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3187,7 +3368,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_BATIMENT",
+      "name": "HLML",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3198,7 +3379,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_ESCALIER",
+      "name": "SANI",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3209,7 +3390,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_ETAGE",
+      "name": "CHFL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3220,7 +3401,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_PORTE",
+      "name": "CMBL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3231,7 +3412,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_CODEPOSTAL",
+      "name": "VOIT",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3242,183 +3423,7 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "ADRESSE_COMMUNE",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "TYPL_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "ASCEN_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "AACHL_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "DANSCECASP",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "LESOCCUPAN",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "AEMM_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "ENQUELLEAN",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "NBPI_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "SURF_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "STOC_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "HLM_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "SANI_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CHFL_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CMBL_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "VOIT_X",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "GARL_X",
+      "name": "GARL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -3450,7 +3455,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_QUELSSONTL_IRIS",
+      "name": "FILTER_RESULT_ZC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3459,7 +3464,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_QUELSSONTL_RANGA",
+      "name": "FILTER_RESULT_ADR_RANG",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3468,7 +3473,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_QUELSSONTL_RANGL",
+      "name": "FILTER_RESULT_LOG_RANG",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3477,7 +3482,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_NOMOCCPRINC",
+      "name": "FILTER_RESULT_NOM_OCC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3486,7 +3491,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_MAIL",
+      "name": "FILTER_RESULT_EMAIL_OCC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3495,7 +3500,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_NUMERO",
+      "name": "FILTER_RESULT_NUMVOI_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3504,7 +3509,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_BIS",
+      "name": "FILTER_RESULT_BISTER_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3513,7 +3518,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_RUE",
+      "name": "FILTER_RESULT_TYPEVOI_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3522,7 +3527,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_VOIE",
+      "name": "FILTER_RESULT_NOMVOI_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3531,7 +3536,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_RESIDENCE",
+      "name": "FILTER_RESULT_RES_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3540,7 +3545,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_BATIMENT",
+      "name": "FILTER_RESULT_BAT_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3549,7 +3554,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_ESCALIER",
+      "name": "FILTER_RESULT_ESC_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3558,7 +3563,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_ETAGE",
+      "name": "FILTER_RESULT_ETAGE_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3567,7 +3572,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_PORTE",
+      "name": "FILTER_RESULT_N_PORTE_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3576,7 +3581,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_CODEPOSTAL",
+      "name": "FILTER_RESULT_CPOST_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3585,7 +3590,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ADRESSE_COMMUNE",
+      "name": "FILTER_RESULT_COM_LOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3594,7 +3599,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_TYPL_X",
+      "name": "FILTER_RESULT_TYPC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3603,7 +3608,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ASCEN_X",
+      "name": "FILTER_RESULT_ASCEN",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3612,7 +3617,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_AACHL_X",
+      "name": "FILTER_RESULT_ACHL",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3630,7 +3635,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_DANSCECASP",
+      "name": "FILTER_RESULT_AACHL",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3639,7 +3644,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_LESOCCUPAN",
+      "name": "FILTER_RESULT_IAEMM",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3648,31 +3653,31 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_AEMM_X",
+      "name": "FILTER_RESULT_AEMM_OCC",
       "expression": {
-        "value": "(LESOCCUPAN = \"1\")",
+        "value": "(IAEMM = \"1\")",
         "type": "VTL"
       },
       "bindingDependencies": [
-        "LESOCCUPAN"
+        "IAEMM"
       ],
       "inFilter": "false"
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_ENQUELLEAN",
+      "name": "FILTER_RESULT_AEMM",
       "expression": {
-        "value": "(LESOCCUPAN = \"2\")",
+        "value": "(IAEMM = \"2\")",
         "type": "VTL"
       },
       "bindingDependencies": [
-        "LESOCCUPAN"
+        "IAEMM"
       ],
       "inFilter": "false"
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_NBPI_X",
+      "name": "FILTER_RESULT_NBPI",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3681,7 +3686,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_SURF_X",
+      "name": "FILTER_RESULT_SURF",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3690,7 +3695,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_STOC_X",
+      "name": "FILTER_RESULT_STOC",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3699,7 +3704,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_HLM_X",
+      "name": "FILTER_RESULT_HLML",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3708,7 +3713,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_SANI_X",
+      "name": "FILTER_RESULT_SANI",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3717,7 +3722,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_CHFL_X",
+      "name": "FILTER_RESULT_CHFL",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3726,7 +3731,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_CMBL_X",
+      "name": "FILTER_RESULT_CMBL",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3735,7 +3740,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_VOIT_X",
+      "name": "FILTER_RESULT_VOIT",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -3744,7 +3749,7 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "FILTER_RESULT_GARL_X",
+      "name": "FILTER_RESULT_GARL",
       "expression": {
         "value": "true",
         "type": "VTL"
@@ -4609,9 +4614,9 @@
     "SEPARATIONS": {
       "NUIT_ICIS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\") and (SEPARATIONS = \"2\")"
     },
-    "LESOCCUPAN": {
-      "AEMM_X": "(LESOCCUPAN = \"1\")",
-      "ENQUELLEAN": "(LESOCCUPAN = \"2\")"
+    "IAEMM": {
+      "AEMM_OCC": "(IAEMM = \"1\")",
+      "AEMM": "(IAEMM = \"2\")"
     },
     "VITAILLEURS": {
       "ESTCEQUEIF": "(VITAILLEURS = \"1\")"
