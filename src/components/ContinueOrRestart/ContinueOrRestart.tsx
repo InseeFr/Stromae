@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ModalContinueOrRestart } from './ModalContinueOrRestart';
-
-function checkPageTag(pageTag?: string) {
-	if (pageTag) {
-		const [page, iteration] = pageTag.split('#');
-		return { page, iteration };
-	}
-	return { page: '1', iteration: undefined };
-}
+import { parsePageTag } from '../../lib/commons/parsePageTag';
 
 export function ContinueOrRestart(props: OrchestratedElement) {
 	const { currentPage, goToPage } = props;
-	const [init, setInit] = useState<boolean>(false);
-	const [display, setDisplay] = useState<boolean>(false);
-	const { page, iteration } = checkPageTag(currentPage);
+	const [init, setInit] = useState(false);
+	const [display, setDisplay] = useState(false);
+	const { page, iteration } = parsePageTag(currentPage);
 
 	useEffect(
 		function () {

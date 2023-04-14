@@ -19,7 +19,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data, stateData = { currentPage: '1' } } = surveyUnitData || {};
+	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
 	const { currentPage } = stateData;
 	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
 
