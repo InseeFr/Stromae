@@ -33,6 +33,7 @@
 		"test": "craco test",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
+		"check": "tsc",
 		"eject": "react-scripts eject",
 		"start-mock-api": "node ./mock-api.js",
 		"postinstall": "copy-dsfr-to-public",

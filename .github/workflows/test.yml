@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+    branches: [v3-develop]
+  pull_request_target:
+      branches: [v3-develop]
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: bahmutov/npm-install@v1
+      - run: yarn
+      - name: Check Typing
+        run: yarn run check
+      - name: Unit Tests
+        run: yarn run lint
