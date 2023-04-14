@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/react",
+    "prettier",
+    "react-app"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "react/react-in-jsx-scope": "off",
+    "id-length": "off",
+    "@typescript-eslint/consistent-indexed-object-style": "off",
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/ban-types": "off",
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
+      }
+    ],
+    "jsx-a11y/href-no-hash": "off",
+    "@shopify/prefer-early-return": "error",
+    "jsx-a11y/anchor-is-valid": [
+      "warn",
+      {
+        "aspects": [
+          "invalidHref"
+        ]
+      }
+    ]
+  }
+}
