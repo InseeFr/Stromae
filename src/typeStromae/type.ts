@@ -35,7 +35,7 @@ export type OrchestratedElement = {
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
-	readonly goToPage?: () => void;
+	readonly goToPage?: (page: { page: string; iteration?: number }) => void;
 	readonly getErrors?: () => Record<
 		string,
 		Record<string, Array<LunaticError>>
@@ -60,6 +60,7 @@ export type OrchestratedElement = {
 	savingFailure?: SavingFailure;
 	// disabled all components
 	disabled?: boolean;
+	currentPage?: string;
 };
 
 export type QuestionnaireParams = {
