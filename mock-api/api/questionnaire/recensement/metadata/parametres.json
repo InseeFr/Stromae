@@ -79,8 +79,8 @@
     ]
   },
   "Submit": {
-    "TitleAdditionalInformation": "La démarche du recensement de la population",
     "DescriptionAdditional": "Si vous avez indiqué une adresse électronique, un accusé de réception vous sera envoyé automatiquement.",
+    "TitleAdditionalInformation": "La démarche du recensement de la population",
     "Feedback": {
       "title": "Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela ne prend que 2 minutes.",
       "link": {
