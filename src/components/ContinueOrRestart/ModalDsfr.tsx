@@ -32,7 +32,7 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 						<div className={fr.cx('fr-modal__body')}>
 							<div className={fr.cx('fr-modal__header')}>
 								<button
-									className={fr.cx('fr-btn', 'fr-btn--tertiary-no-outline')}
+									className={fr.cx('fr-link--close', 'fr-link')}
 									title="Fermer"
 									onClick={close}
 									ref={first}
