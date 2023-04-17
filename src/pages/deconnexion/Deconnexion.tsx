@@ -1,15 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
 import { useOidc } from '@axa-fr/react-oidc';
-import { Layout } from '../../components/layout';
 import { Button } from '@codegouvfr/react-dsfr/Button';
+
+import { Layout } from '../../components/layout';
 import { ReactComponent as Information } from '../../assets/information.svg';
 import { useDocumentTitle } from '../../useDocumentTitle';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
-type PortailProps = {};
-
-export function Deconnexion(props: PortailProps) {
+export function Deconnexion() {
 	const { survey, unit } = useParams();
 	useDocumentTitle('Page de déconnexion');
 	const { login, isAuthenticated } = useOidc();
@@ -17,14 +16,14 @@ export function Deconnexion(props: PortailProps) {
 	const navigate = useNavigate();
 
 	const onClick = useCallback(
-		function () {
+		() => {
 			login();
 		},
 		[login]
 	);
 
 	useEffect(
-		function () {
+		() => {
 			if (isAuthenticated) {
 				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
 			}

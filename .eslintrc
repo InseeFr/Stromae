@@ -4,6 +4,7 @@
     "prettier",
     "react-app"
   ],
+  "ignorePatterns": ["**/*.d.ts"],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
     "react/react-in-jsx-scope": "off",
@@ -23,6 +24,12 @@
       }
     ],
     "jsx-a11y/href-no-hash": "off",
+    "no-process-env": "off",
+    "import/no-cycle": "off",
+    "no-warning-comments": "off",
+    "import/order": "off",
+    "@shopify/images-no-direct-imports": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
     "@shopify/jsx-no-hardcoded-content": "off",
     "@shopify/strict-component-boundaries": "off",
     "@typescript-eslint/naming-convention": "off",

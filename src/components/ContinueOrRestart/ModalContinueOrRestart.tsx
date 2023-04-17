@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { fr } from '@codegouvfr/react-dsfr';
+
 import { ModalDsfr } from './ModalDsfr';
 
 export function ModalContinueOrRestart(props: {

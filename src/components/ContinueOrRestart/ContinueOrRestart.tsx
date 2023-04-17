@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import { OrchestratedElement } from '../../typeStromae/type';
-import { ModalContinueOrRestart } from './ModalContinueOrRestart';
 import { parsePageTag } from '../../lib/commons/parsePageTag';
+
+import { ModalContinueOrRestart } from './ModalContinueOrRestart';
 
 export function ContinueOrRestart(props: OrchestratedElement) {
 	const { currentPage, goToPage } = props;
@@ -15,7 +17,7 @@ export function ContinueOrRestart(props: OrchestratedElement) {
 				close={() => setDisplay(false)}
 				goToPage={goToPage}
 				currentPage={page}
-				iteration={iteration ? parseInt(iteration) : undefined}
+				iteration={iteration ? parseInt(iteration, 10) : undefined}
 			/>
 		);
 	}

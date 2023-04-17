@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Header as HeaderDSFR } from '@codegouvfr/react-dsfr/Header';
+
+import ConvertContent from "../../convertContent";
+
 import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
-import ConvertContent from "../../convertContent";
 
 
 function getAuthLabel(isAuthenticated: boolean): string {
@@ -30,19 +32,20 @@ export function Header(props: HeaderProps) {
 	const [quickAccessItems, setQuickAccessItems] = useState<Array<any>>([]);
 
 	useEffect(
-		function () {
-			if (header) {
-				setBrandTop(header.brandTop || DEFAULT_HEADER.brandTop);
-				setHomeLinkProps(header.homeLinkProps || DEFAULT_HEADER.homeLinkProps);
-				setServiceTitle(header.serviceTitle || DEFAULT_HEADER.serviceTitle);
-				setOperatorLogo(header.operatorLogo || DEFAULT_HEADER.operatorLogo);
+		() => {
+			if (!header) {
+				return;
 			}
+			setBrandTop(header.brandTop || DEFAULT_HEADER.brandTop);
+			setHomeLinkProps(header.homeLinkProps || DEFAULT_HEADER.homeLinkProps);
+			setServiceTitle(header.serviceTitle || DEFAULT_HEADER.serviceTitle);
+			setOperatorLogo(header.operatorLogo || DEFAULT_HEADER.operatorLogo);
 		},
 		[header]
 	);
 
 	useEffect(
-		function () {
+		() => {
 			const others = header?.quickAccessItems || [];
 			setQuickAccessItems([
 				...others,

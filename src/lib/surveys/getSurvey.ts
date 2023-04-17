@@ -1,17 +1,15 @@
-import { surveySource } from './api';
 import { authenticatedGetRequest } from '../commons/axios-utils';
 import { LunaticSource } from '../../typeLunatic/type-source';
 
+import { surveySource } from './api';
+
 /**
- * Un endpoint vers stromae-api pour recup les url des resources.
- *
- * @param survey
- * @returns
+ * An endpoint to stromae-api for retrieving resource URLs.
  */
 export const getSurvey =
 	(BASE_URL: string) =>
-	async (survey: string, token: string): Promise<LunaticSource> => {
-		return await authenticatedGetRequest<LunaticSource>(
+	(survey: string, token: string): Promise<LunaticSource> => {
+		return authenticatedGetRequest<LunaticSource>(
 			surveySource(BASE_URL, survey),
 			token
 		);

@@ -1,4 +1,4 @@
-import { HeaderType } from '../header/HeaderType';
+import { HeaderType } from "./HeaderType";
 
 export const DEFAULT_HEADER: HeaderType = {
   brandTop: "Intitulé",
