@@ -1,7 +1,6 @@
 {
   "extends": [
     "plugin:@shopify/typescript",
-    "plugin:@shopify/react",
     "prettier",
     "react-app"
   ],
@@ -13,6 +12,7 @@
     "@typescript-eslint/consistent-indexed-object-style": "off",
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/ban-types": "off",
+    "react/no-unescaped-entities": "off",
     "react/jsx-filename-extension": [
       "warn",
       {
@@ -23,6 +23,9 @@
       }
     ],
     "jsx-a11y/href-no-hash": "off",
+    "@shopify/jsx-no-hardcoded-content": "off",
+    "@shopify/strict-component-boundaries": "off",
+    "@typescript-eslint/naming-convention": "off",
     "@shopify/prefer-early-return": "error",
     "jsx-a11y/anchor-is-valid": [
       "warn",
