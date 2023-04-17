@@ -71,7 +71,7 @@ export function Header(props: HeaderProps) {
                   </p>
                 </div>
                 <div className="fr-header__operator">
-                  <img className="fr-responsive-img" style={{ maxWidth: '9.0625rem' }} src={operatorLogo?.imgUrl} alt={operatorLogo?.alt} />
+                  <img className="fr-responsive-img" style={{ maxWidth: '3.5rem' }} src={operatorLogo?.imgUrl} alt={operatorLogo?.alt} />
                 </div>
                 <div className="fr-header__navbar">
                   <button className="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-577" aria-haspopup="menu" id="button-578" title="Menu">
