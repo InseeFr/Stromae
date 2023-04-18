@@ -9,6 +9,7 @@ import { Skeleton } from '@mui/material';
 import { RespondantsList } from './RespondantsList';
 import { WelcomeQuestions } from './WelcomeQuestions';
 import { useOidcUser } from '@axa-fr/react-oidc';
+import { useDocumentTitle } from '../../useDocumentTitle';
 
 export function WelcomeContainer() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export function WelcomeContainer() {
   const { getMetadata } = useContext(loadSourceDataContext);
   const metadata = useRemote<any>(getMetadata, navigateError);
   const welcome = metadata?.Welcome;
+  useDocumentTitle('Page d\'accueil');
 
   function navigateError() {
     navigate('/');
