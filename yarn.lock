@@ -1409,30 +1409,6 @@
     react-number-format "^5.1.4"
     sass-loader "^13.2.0"
 
-"@inseefr/lunatic@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.4.0.tgz#3235a5081bf3302311c575123cbede0088f862d2"
-  integrity sha512-+IKI+wG6RPmxVBhqBEPB8u0Gl429ztf7BFIF4AiEYTKwyTgqxRCuZhjfq/Kc+1VMewaigXN/ZWC6WZVKSjXq5w==
-  dependencies:
-    "@inseefr/trevas" "^0.1.17"
-    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
-    antlr4 "4.11.0"
-    classnames "^2.3.1"
-    date-fns "^2.25.0"
-    lodash.camelcase "^4.3.0"
-    lodash.debounce "^4.0.8"
-    lodash.isequal "^4.5.0"
-    object-hash "^2.2.0"
-    prop-types "^15.7.2"
-    react-keyboard-event-handler "^1.5.4"
-    react-markdown "^8.0.3"
-    react-number-format "^5.1.3"
-    react-tooltip "^4.2.15"
-    remove-accents "^0.4.2"
-    sass "^1.58.3"
-    snowball "^0.3.1"
-    string-tokenizer "^0.0.8"
-
 "@inseefr/lunatic@2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.4.1.tgz#52908aeb688130821cb0a68bf53f3652a5232056"
