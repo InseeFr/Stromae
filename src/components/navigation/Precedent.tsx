@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import Button from '@codegouvfr/react-dsfr/Button';
-
 import { OrchestratedElement } from '../../typeStromae/type';
 import { usePrevious } from '../../lib/commons/usePrevious';
 
@@ -10,14 +9,11 @@ export function Precedent(props: OrchestratedElement) {
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const previousPage = usePrevious<string>(pageTag);
 
-	useEffect(
-		() => {
-			if (pageTag !== previousPage && buttonRef.current) {
-				buttonRef.current.focus();
-			}
-		},
-		[pageTag, previousPage]
-	);
+	useEffect(() => {
+		if (pageTag !== previousPage && buttonRef.current) {
+			buttonRef.current.focus();
+		}
+	}, [pageTag, previousPage]);
 
 	function handleClick() {
 		goPreviousPage();
