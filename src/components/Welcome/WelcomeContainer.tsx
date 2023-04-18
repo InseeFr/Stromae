@@ -11,47 +11,47 @@ import { WelcomeQuestions } from './WelcomeQuestions';
 import { useOidcUser } from '@axa-fr/react-oidc';
 
 export function WelcomeContainer() {
-	const navigate = useNavigate();
-	const { survey, unit } = useParams();
-	const { oidcUser } = useOidcUser();
-	const { login } = useOidc();
+  const navigate = useNavigate();
+  const { survey, unit } = useParams();
+  const { oidcUser } = useOidcUser();
+  const { login } = useOidc();
 
-	const { getMetadata } = useContext(loadSourceDataContext);
-	const metadata = useRemote<any>(getMetadata, navigateError);
-	const welcome = metadata?.Welcome;
+  const { getMetadata } = useContext(loadSourceDataContext);
+  const metadata = useRemote<any>(getMetadata, navigateError);
+  const welcome = metadata?.Welcome;
 
-	function navigateError() {
-		navigate('/');
-	}
+  function navigateError() {
+    navigate('/');
+  }
 
   const onClick = useCallback(
-		function () {
-			if (oidcUser && survey && unit) {
-				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
-			} else {
-				login();
-			}
-		},
-		[oidcUser, login, survey, unit, navigate]
-	);
+    function () {
+      if (oidcUser && survey && unit) {
+        navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
+      } else {
+        login();
+      }
+    },
+    [oidcUser, login, survey, unit, navigate]
+  );
 
-	if (!metadata) {
-		return <Skeleton />;
-	}
-	return (
-    <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-6w">
-			<div className="fr-col-12">
-				<h1>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h1>
-				<p className="fr-text--lead">{welcome.Enq_ObjectifsCourts}</p>
-				<RespondantsList respondants={welcome.whoAnswers} />
-				<Button className="fr-mt-2w" size="large" onClick={onClick}>
-					Commencer
-				</Button>
-				<h3 className="fr-mt-5w">
-					En savoir plus sur l'{welcome.Enq_LibelleEnquete}
-				</h3>
-				<WelcomeQuestions welcome={metadata.Welcome} />
-			</div>
-		</div>
-	);
+  if (!metadata) {
+    return <Skeleton />;
+  }
+  return (
+    <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w fr-my-lg-6w">
+      <div className="fr-col-12 fr-col-lg-8">
+        <h1>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h1>
+        <p className="fr-text--lead">{welcome.Enq_ObjectifsCourts}</p>
+        <RespondantsList respondants={welcome.whoAnswers} />
+        <Button size="large" onClick={onClick}>
+          Commencer
+        </Button>
+        <h3 className="fr-mt-5w">
+          En savoir plus sur l'{welcome.Enq_LibelleEnquete}
+        </h3>
+        <WelcomeQuestions welcome={metadata.Welcome} />
+      </div>
+    </div>
+  );
 }

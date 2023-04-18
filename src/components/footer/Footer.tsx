@@ -1,4 +1,3 @@
-import { Footer as FooterDSFR } from '@codegouvfr/react-dsfr/Footer';
 import { FooterType } from '../footer/FooterType';
 import ConvertContent from "../../convertContent";
 

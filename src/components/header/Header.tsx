@@ -89,7 +89,6 @@ export function Header(props: HeaderProps) {
             </div>
             <div className="fr-header__tools">
               <div className="fr-header__tools-links">
-
                 <ul className="fr-btns-group">
                   <li>
                     <button className="fr-btn fr-fi-theme-fill fr-link--icon-left" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
@@ -120,12 +119,19 @@ export function Header(props: HeaderProps) {
           </button>
           <div className="fr-header__menu-links">
             <ul className="fr-btns-group">
+              <li>
+                <button className="fr-btn fr-fi-theme-fill fr-link--icon-left" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+              </li>
               {quickAccessItems && quickAccessItems.map(function (quickAccessItem, index) {
                 return (
                   <li key={index}>
-                    <a className={`fr-btn ${quickAccessItem.iconId}`} href={quickAccessItem.linkProps?.href}>
-                      {quickAccessItem.text}
-                    </a>
+                    {quickAccessItem.buttonProps ?
+                      <Button iconId={quickAccessItem.iconId} onClick={quickAccessItem.buttonProps.onClick}>{quickAccessItem.text}</Button>
+                      :
+                      <a className={`fr-btn ${quickAccessItem.iconId}`} href={quickAccessItem.linkProps?.href}>
+                        {quickAccessItem.text}
+                      </a>
+                    }
                   </li>
                 );
               })}
