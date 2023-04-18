@@ -1,10 +1,11 @@
-import { nomenclature } from './api';
 import { authenticatedGetRequest } from '../commons/axios-utils';
+
+import { nomenclature } from './api';
 
 export const getNomenclature =
 	(BASE_URL: string) =>
-	async (name: string, token: string): Promise<Array<unknown>> => {
-		return await authenticatedGetRequest<Array<unknown>>(
+	(name: string, token: string): Promise<Array<unknown>> => {
+		return authenticatedGetRequest<Array<unknown>>(
 			nomenclature(BASE_URL, name),
 			token
 		);

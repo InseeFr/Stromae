@@ -2,7 +2,8 @@ import type { LunaticData, LunaticError } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
 
 export type StateData = {
-	state: string | null; //'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	// 'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	state: string | null;
 	date: number;
 	currentPage: string;
 };

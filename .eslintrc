@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "plugin:@shopify/typescript",
+    "prettier",
+    "react-app"
+  ],
+  "ignorePatterns": ["**/*.d.ts"],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "react/react-in-jsx-scope": "off",
+    "id-length": "off",
+    "react/no-array-index-key": "off",
+    "@typescript-eslint/consistent-indexed-object-style": "off",
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/ban-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
+      }
+    ],
+    "jsx-a11y/href-no-hash": "off",
+    "no-process-env": "off",
+    "import/no-cycle": "off",
+    "no-warning-comments": "off",
+    "import/order": "off",
+    "@shopify/images-no-direct-imports": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@shopify/jsx-no-hardcoded-content": "off",
+    "@shopify/strict-component-boundaries": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "@shopify/prefer-early-return": "error",
+    "jsx-a11y/anchor-is-valid": [
+      "warn",
+      {
+        "aspects": [
+          "invalidHref"
+        ]
+      }
+    ]
+  }
+}

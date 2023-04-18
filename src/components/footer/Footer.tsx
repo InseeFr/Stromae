@@ -1,6 +1,8 @@
 import { Footer as FooterDSFR } from '@codegouvfr/react-dsfr/Footer';
-import { FooterType } from '../footer/FooterType';
+
 import ConvertContent from "../../convertContent";
+
+import { FooterType } from "./FooterType";
 
 const DEFAULT_FOOTER: FooterType = {
 	brandTop: 'valeur par defaut',

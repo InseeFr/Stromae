@@ -7,7 +7,7 @@ export function RoutingPortail() {
 	const navigate = useNavigate();
 
 	useEffect(
-		function () {
+		() => {
 			if (DEFAULT_SURVEY) {
 				navigate(`/questionnaire/${DEFAULT_SURVEY}`);
 			} else {

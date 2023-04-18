@@ -1,4 +1,5 @@
 import { Button } from '@codegouvfr/react-dsfr/Button';
+
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';

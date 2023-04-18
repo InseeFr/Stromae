@@ -1,5 +1,6 @@
 import { StateData } from '../../typeStromae/type';
 import { authenticatedPutRequest } from '../commons/axios-utils';
+
 import { surveyUnitStateDataUrl } from './api';
 
 export const putSurveyUnitStateData =

@@ -1,48 +1,47 @@
 import { useCallback, useState, useRef } from 'react';
 
 export enum AsyncRequestStatus {
-	idle,
-	pending,
-	success,
-	error,
+  Idle,
+  Pending,
+  Success,
+  Error,
 }
 
 type AsyncRequest<T, E> = {
-	value?: T | null;
-	error?: E | null;
-	status: AsyncRequestStatus;
-	execute: () => void;
+  value?: T | null;
+  error?: E | null;
+  status: AsyncRequestStatus;
+  execute: () => void;
 };
 
-export function useAsync<T, E = any>(
-	request?: () => Promise<T>
+export function useAsync<T, E = any> (
+  request?: () => Promise<T>
 ): AsyncRequest<T, E> {
-	const done = useRef(false);
-	const [value, setValue] = useState<T | null>();
-	const [error, setError] = useState<E | null>();
-	const [status, setStatus] = useState<AsyncRequestStatus>(
-		AsyncRequestStatus.idle
-	);
+  const done = useRef(false);
+  const [value, setValue] = useState<T | null>();
+  const [error, setError] = useState<E | null>();
+  const [status, setStatus] = useState<AsyncRequestStatus>(
+    AsyncRequestStatus.Idle
+  );
 
-	const execute = useCallback(
-		function () {
-			if (!done.current && request) {
-				done.current = true;
-				setStatus(AsyncRequestStatus.pending);
-				setValue(null);
-				(async function () {
-					try {
-						setValue(await request());
-						setStatus(AsyncRequestStatus.success);
-					} catch (e: any) {
-						setError(e);
-						setStatus(AsyncRequestStatus.error);
-					}
-				})();
-			}
-		},
-		[request, done]
-	);
+  const execute = useCallback(
+    async () => {
+      if (done.current || !request) {
+        return;
+      }
+      done.current = true;
+      setStatus(AsyncRequestStatus.Pending);
+      setValue(null);
+      try {
+        setValue(await request());
+        setStatus(AsyncRequestStatus.Success);
+      } catch (e: any) {
+        setError(e);
+        setStatus(AsyncRequestStatus.Error);
+      }
+    },
+    [request, done]
+  );
 
-	return { value, error, status, execute };
+  return { value, error, status, execute };
 }

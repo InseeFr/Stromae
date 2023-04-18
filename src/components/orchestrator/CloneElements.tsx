@@ -5,7 +5,7 @@ export function CloneElements<T>(props: PropsWithChildren<T>) {
 	const effective = Array.isArray(children) ? children : [children];
 	return (
 		<>
-			{effective.map(function (element, key) {
+			{effective.map((element, key) => {
 				return cloneElement(element as React.ReactElement<T>, {
 					...(rest as T),
 					key,

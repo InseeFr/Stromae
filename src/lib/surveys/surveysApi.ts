@@ -4,6 +4,7 @@ import type {
 	SurveyUnitData,
 } from '../../typeStromae/type';
 import { LunaticSource } from '../../typeLunatic/type-source';
+
 import { getMetadataSurvey, MetadataSurvey } from './getMetadataSurvey';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnit';
@@ -15,7 +16,8 @@ import { putSurveyUnitData } from './putSurveyUnitData';
 const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
 
 export interface SurveyApi {
-	getSurvey: (survey: string, token: string) => Promise<LunaticSource>; // any type JSon lunatic
+	// any type JSon lunatic
+	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
 	getSurveyUnitData: (unit: string, token: string) => Promise<SurveyUnitData>;
 	getMetadataSurvey: (survey: string) => Promise<MetadataSurvey>;
 	getRequiredNomenclatures: (
@@ -23,7 +25,6 @@ export interface SurveyApi {
 		token: string
 	) => Promise<Array<string>>;
 	getNomenclature: (name: string, token: string) => Promise<Array<any>>;
-	/* */
 	putSurveyUnitData: (
 		data: DataVariables,
 		unit: string,
@@ -42,7 +43,6 @@ export const surveyApi: SurveyApi = {
 	getSurveyUnitData: getSurveyUnitData(DOMAIN),
 	getRequiredNomenclatures: getRequiredNomenclatures(DOMAIN),
 	getNomenclature: getNomenclature(DOMAIN),
-	/* */
 	putSurveyUnitData: putSurveyUnitData(DOMAIN),
 	putSurveyUnitStateData: putSurveyUnitStateData(DOMAIN),
 };

@@ -1,7 +1,9 @@
 import * as lunatic from '@inseefr/lunatic';
 import { useEffect, useState } from 'react';
+
 import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';
+
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
@@ -9,7 +11,7 @@ export function Formulaire(props: OrchestratedElement) {
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
 
 	useEffect(
-		function () {
+		() => {
 			if (typeof getComponents === 'function') {
 				setComponents(getComponents());
 			}
@@ -19,7 +21,7 @@ export function Formulaire(props: OrchestratedElement) {
 
 	return (
 		<form>
-			{components.map(function (component: ComponentType) {
+			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
 				if (componentType in lunatic) {
 					const Component = lunatic[componentType];

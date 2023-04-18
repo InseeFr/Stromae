@@ -1,8 +1,10 @@
 import { PropsWithChildren, useCallback } from 'react';
-import { loadSourceDataContext } from './LoadSourceDataContext';
+
 import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
+
+import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromApiProps = {
 	survey?: string;
@@ -17,43 +19,46 @@ export function LoadFromApi({
 	const { accessToken } = useOidcAccessToken();
 
 	const getMetadata = useCallback(
-		async function () {
+		async () => {
 			if (survey) {
-				return await surveyApi.getMetadataSurvey(survey);
+				return surveyApi.getMetadataSurvey(survey);
 			}
+			return undefined;
 		},
 		[survey]
 	);
 
 	const getSurvey = useCallback(
-		async function () {
+		async () => {
 			if (survey && accessToken) {
-				return await surveyApi.getSurvey(survey, accessToken);
+				return surveyApi.getSurvey(survey, accessToken);
 			}
+			return undefined;
 		},
 		[survey, accessToken]
 	);
 
 	const getSurveyUnitData = useCallback(
-		async function () {
+		async () => {
 			if (accessToken && unit) {
-				return await surveyApi.getSurveyUnitData(unit, accessToken);
+				return surveyApi.getSurveyUnitData(unit, accessToken);
 			}
+			return undefined;
 		},
 		[unit, accessToken]
 	);
 
 	const getReferentiel = useCallback(
-		async function (name: string) {
+		async (name: string) => {
 			return surveyApi.getNomenclature(name, accessToken);
 		},
 		[accessToken]
 	);
 
 	const putSurveyUnitData = useCallback(
-		async function (
+		async (
 			args: { data: DataVariables; state: StateData } | undefined
-		) {
+		) => {
 			try {
 				if (args) {
 					const { data, state } = args;
@@ -63,6 +68,7 @@ export function LoadFromApi({
 					}
 				}
 			} catch (e) {
+				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}

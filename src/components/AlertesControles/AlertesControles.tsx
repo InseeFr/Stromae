@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { fr } from '@codegouvfr/react-dsfr';
+
 import { OrchestratedElement } from '../../typeStromae/type';
 
 export function AlertesControles(props: OrchestratedElement) {
@@ -7,7 +8,7 @@ export function AlertesControles(props: OrchestratedElement) {
 	const type = criticality ? 'fr-alert--error' : 'fr-alert--warning';
 
 	useEffect(
-		function () {
+		() => {
 			if (currentErrors) {
 				document.getElementById('alert-errors')?.focus();
 			}
@@ -18,7 +19,7 @@ export function AlertesControles(props: OrchestratedElement) {
 	if (currentErrors) {
 		const content = Object.values(currentErrors)
 			.flat()
-			.map(function ({ errorMessage, id }) {
+			.map(({ errorMessage, id }) => {
 				return (
 					<div key={id} className="message-error">
 						{errorMessage}
