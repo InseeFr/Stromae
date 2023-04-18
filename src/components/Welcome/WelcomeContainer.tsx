@@ -1,14 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useOidc } from '@axa-fr/react-oidc';
+import { useOidc, useOidcUser } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-import { useRemote } from '../orchestrator/useRemote';
-import { useContext } from 'react';
-import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Skeleton } from '@mui/material';
+
+import { useRemote } from '../orchestrator/useRemote';
+import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+
+
 import { RespondantsList } from './RespondantsList';
 import { WelcomeQuestions } from './WelcomeQuestions';
-import { useOidcUser } from '@axa-fr/react-oidc';
 import { useDocumentTitle } from '../../useDocumentTitle';
 
 export function WelcomeContainer() {
@@ -27,7 +28,7 @@ export function WelcomeContainer() {
   }
 
   const onClick = useCallback(
-    function () {
+    () => {
       if (oidcUser && survey && unit) {
         navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
       } else {

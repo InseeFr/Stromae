@@ -1,11 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useRef, useState } from 'react';
+import { OidcConfiguration, OidcProvider, TokenRenewMode } from '@axa-fr/react-oidc';
+
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
-import {
-	OidcProvider,
-	OidcConfiguration,
-	TokenRenewMode,
-} from '@axa-fr/react-oidc';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { useAsyncEffect } from '../../hooks/useAsyncEffect'
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -24,23 +22,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 	const [configuration, setConfiguration] = useState<
 		OidcConfiguration | undefined
 	>(undefined);
-	useEffect(
-		function () {
-			if (!alreadyLoad.current) {
-				alreadyLoad.current = true;
-				(async function () {
-					const conf = await fetchConfig();
-					setConfiguration({
-						...conf,
-						redirect_uri: `${window.location.origin}/login`,
-						token_renew_mode: TokenRenewMode.access_token_invalid,
-						refresh_time_before_tokens_expiration_in_second: 40,
-					});
-				})();
-			}
-		},
-		[alreadyLoad]
-	);
+	useAsyncEffect(async () => {
+		if (alreadyLoad.current) {
+			return;
+		}
+		alreadyLoad.current = true;
+		const conf = await fetchConfig();
+		setConfiguration({
+			...conf,
+			redirect_uri: `${window.location.origin}/login`,
+			token_renew_mode: TokenRenewMode.access_token_invalid,
+			refresh_time_before_tokens_expiration_in_second: 40,
+		});
+	}, [alreadyLoad])
 
 	if (configuration !== undefined) {
 		return (

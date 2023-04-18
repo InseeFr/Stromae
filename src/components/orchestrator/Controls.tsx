@@ -1,13 +1,9 @@
 import { PropsWithChildren, useCallback, useState } from 'react';
-import { CloneElements } from './CloneElements';
+
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from '../../typeStromae/type';
 
-export enum CriticalityEnum {
-	FORMAT = 'FORMAT',
-	ERROR = 'ERROR',
-	WARN = 'WARN',
-}
+import { CloneElements } from './CloneElements';
 
 export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	const [currentErrors, setCurrentErrors] =
@@ -24,7 +20,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	} = props;
 
 	const handleGoNext = useCallback(
-		function () {
+		() => {
 			if (warning) {
 				setWarning(false);
 				setCurrentErrors(undefined);
@@ -47,7 +43,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	);
 
 	const handleGoPrevious: () => void = useCallback(
-		function () {
+		() => {
 			setCriticality(undefined);
 			setCurrentErrors(undefined);
 			goPreviousPage();

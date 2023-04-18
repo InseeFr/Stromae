@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import {
 	ComponentType,
 	ControlType,
@@ -40,7 +41,8 @@ export type LunaticExpression = {
 	type: ExpressionType;
 	bindingDependencies?: string[];
 };
-export type TODO = unknown; // Temporary type to mark types as unresolved
+// Temporary type to mark types as unresolved
+export type TODO = unknown;
 
 export type LunaticVariable = Variable;
 export type LunaticCollectedValue = {
@@ -133,7 +135,7 @@ export type LunaticState = {
 		args: Record<string, unknown>
 	) => void;
 	// Run and expression using the value from the state
-	executeExpression: <T extends unknown = unknown>(
+	executeExpression: <T = unknown>(
 		expression: unknown,
 		args?: {
 			iteration?: number;

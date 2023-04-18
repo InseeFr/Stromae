@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react';
-import { PropsWithChildren } from 'react';
+import { useCallback, useState , PropsWithChildren } from 'react';
+
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
+
 import { useSaving } from './useSaving';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
@@ -12,7 +13,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const save = useSaving({ currentChange, getData, pageTag });
 
 	const handleNextPage = useCallback(
-		function () {
+		() => {
 			(async function () {
 				try {
 					setSavingFailure(undefined);
@@ -23,6 +24,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 					}
 					goNextPage();
 				} catch (e) {
+					// eslint-disable-next-line no-console
 					console.error(e);
 					setSavingFailure({ status: 500 });
 				}

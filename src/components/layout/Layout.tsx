@@ -1,20 +1,16 @@
-import {
-  useEffect,
-  useState,
-  useRef,
-  useContext,
-  PropsWithChildren,
-} from 'react';
-import { FooterType } from '../footer/FooterType';
-import { HeaderType } from '../header/HeaderType';
-import { Header } from '../../components/header/Header';
-import { Banner } from '../../components/Banner/Banner';
-import { HeaderAuth } from '../../components/header/HeaderAuth';
-import { Footer } from '../../components/footer/Footer';
+import { PropsWithChildren, useContext, useRef, useState } from 'react';
 import SkipLinks from '@codegouvfr/react-dsfr/SkipLinks';
+
+import { useAsyncEffect } from '../../hooks/useAsyncEffect'
+import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+import { FooterType } from '../footer/FooterType';
+import { HeaderType } from '../Header/HeaderType';
+import { Header } from '../Header';
+import { Banner } from '../Banner/Banner';
+import { HeaderAuth } from '../Header/HeaderAuth';
+import { Footer } from '../footer/Footer';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 import { Main } from './Main';
-import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Display } from '@codegouvfr/react-dsfr/Display'
 
 type LayoutProps = {};
@@ -22,8 +18,8 @@ type LayoutProps = {};
 const defaultLinks = [
   {
     anchor: '#contenu',
-    label: 'Contenu',
-  },
+    label: 'Contenu'
+  }
 ];
 
 export function Layout({ children }: PropsWithChildren<LayoutProps>) {
@@ -32,36 +28,36 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
   const [footer, setFooter] = useState<FooterType | undefined>(undefined);
   const { getMetadata } = useContext(loadSourceDataContext);
 
-  useEffect(
-    function () {
-      if (getMetadata && !alreadyLoad.current) {
-        alreadyLoad.current = true;
-        (async function () {
-          const data = await getMetadata();
-          if (data) {
-            const { Header, Footer } = data;
-            setHeader(Header);
-            setFooter(Footer);
-          } else throw new Error('metadata missing.');
-        })();
+  useAsyncEffect(
+    async () => {
+      if (!getMetadata || alreadyLoad.current) {
+        return;
       }
+      alreadyLoad.current = true;
+      const data = await getMetadata();
+      if (data) {
+        const { Header, Footer } = data;
+        setHeader(Header);
+        setFooter(Footer);
+      } else throw new Error('metadata missing.');
     },
     [getMetadata, alreadyLoad]
   );
 
-  if (header && footer) {
-    return (
-      <>
-        <SkipLinks links={defaultLinks} />
-        <HeaderAuth>
-          <Header header={header} />
-        </HeaderAuth>
-        <Banner />
-        <Main id="contenu">{children}</Main>
-        <Footer footer={footer} />
-        <Display />
-      </>
-    );
+  if (!header || !footer) {
+    return <LayoutSkeleton />;
   }
-  return <LayoutSkeleton />;
+
+  return (
+    <>
+      <SkipLinks links={defaultLinks} />
+      <HeaderAuth>
+        <Header header={header} />
+      </HeaderAuth>
+      <Banner />
+      <Main id="contenu">{children}</Main>
+      <Footer footer={footer} />
+      <Display />
+    </>
+  );
 }

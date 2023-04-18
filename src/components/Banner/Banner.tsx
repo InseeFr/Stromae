@@ -1,4 +1,5 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice"
+
 export function Banner() {
     return (
         <Notice

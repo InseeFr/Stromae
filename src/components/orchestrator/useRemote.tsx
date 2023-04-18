@@ -21,7 +21,7 @@ export function useRemote<T>(
 	const alreadyDone = useRef(false);
 
 	useEffect(
-		function () {
+		() => {
 			if (!alreadyDone.current) {
 				if (typeof cally === 'function') {
 					alreadyDone.current = true;

@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import { Questionnaire } from './pages/questionnaire';
 import { QuestionnaireReadOnly } from './pages/questionnaireReadOnly';
 import { Deconnexion } from './pages/deconnexion';
@@ -6,8 +7,7 @@ import { Welcome } from './pages/welcome';
 import { Error } from './pages/error';
 import { Visualize } from './pages/visualize/Visualize';
 import { AuthProvider } from './components/auth';
-import { RoutingPortail } from './pages/portail';
-import { Portail } from './pages/portail';
+import { RoutingPortail , Portail } from './pages/portail';
 
 const router = createBrowserRouter([
 	{
