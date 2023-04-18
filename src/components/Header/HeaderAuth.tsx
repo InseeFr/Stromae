@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
+
 import { useOidc } from '../../lib/oidc';
-import { HeaderProps } from './Header';
 import { CloneElements } from '../orchestrator/CloneElements';
+
+import { HeaderProps } from './Header';
 
 type HeaderAuthProps = {
 	children: JSX.Element;
@@ -24,7 +26,7 @@ export function HeaderAuth({ children }: HeaderAuthProps) {
 	const { survey, unit } = useParams();
 
 	const handleOidcAuth = useCallback(
-		function () {
+		() => {
 			if (isAuthenticated) {
 				logout(
 					`${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`

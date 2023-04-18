@@ -1,8 +1,10 @@
 import { PropsWithChildren, useState, useCallback } from 'react';
+
 import { CloneElements } from '../CloneElements';
-import { useSaving } from './useSaving';
 import { isComponentsContainSequence } from '../../../lib/commons/isComponentscontainSequence';
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
+
+import { useSaving } from './useSaving';
 
 export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
@@ -14,7 +16,7 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const isSequence = isComponentsContainSequence(components);
 
 	const handleGoNext = useCallback(
-		function () {
+		() => {
 			if (goNextPage) {
 				if (isSequence) {
 					(async function () {
@@ -27,6 +29,7 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 							}
 							goNextPage();
 						} catch (e) {
+							// eslint-disable-next-line no-console
 							console.error(e);
 							setSavingFailure({ status: 500 });
 						}

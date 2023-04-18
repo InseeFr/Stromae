@@ -1,4 +1,5 @@
 import { Skeleton } from '@mui/material';
+
 import { useDocumentTitle } from '../../useDocumentTitle';
 
 export function Content() {

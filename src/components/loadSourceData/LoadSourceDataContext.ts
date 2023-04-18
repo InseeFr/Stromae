@@ -1,3 +1,5 @@
+import { createContext } from 'react';
+
 import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
 import { LunaticSource } from '../../typeLunatic/type-source';
 import {
@@ -5,7 +7,6 @@ import {
 	StateData,
 	SurveyUnitData,
 } from '../../typeStromae/type';
-import { createContext } from 'react';
 
 export type LoadSourceDataContextType = {
 	getMetadata: () => Promise<MetadataSurvey | undefined>;

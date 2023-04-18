@@ -1,5 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { Button } from '@codegouvfr/react-dsfr/Button';
+
 import { ReactComponent as TechnicalError } from '../../assets/technical_error.svg';
 import { useDocumentTitle } from '../../useDocumentTitle';
 

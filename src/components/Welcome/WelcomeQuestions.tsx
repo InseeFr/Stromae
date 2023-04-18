@@ -1,6 +1,7 @@
-import { WelcomeType } from "./WelcomeType";
 import { Accordion } from '@codegouvfr/react-dsfr/Accordion';
 import { fr } from "@codegouvfr/react-dsfr";
+
+import { WelcomeType } from "./WelcomeType";
 
 export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 
