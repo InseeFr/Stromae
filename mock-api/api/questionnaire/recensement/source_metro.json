@@ -8,7 +8,7 @@
   "pagination": "question",
   "maxPage": "44",
   "label": {
-    "value": "Recensement de la population 2023",
+    "value": "02 - Recensement de la population 2022 - Avec changements",
     "type": "VTL|MD"
   },
   "suggesters": [
@@ -341,14 +341,18 @@
       "id": "klqncpes",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "4",
+      "page": "3",
+      "maxLength": 4,
       "label": {
         "value": "\"Quel est l'aspect du bâti ?\"",
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
+        "value": "(TYPES = \"2\")",
+        "type": "VTL",
+        "bindingDependencies": [
+          "TYPES"
+        ]
       },
       "options": [
         {
@@ -356,25 +360,19 @@
           "label": {
             "value": "\"Habitation de fortune\"",
             "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
+          },
+          "description": {
             "value": "\"Case traditionnelle \"",
             "type": "VTL|MD"
           }
         },
         {
-          "value": "3",
+          "value": "2",
           "label": {
             "value": "\"Maison ou immeuble en bois\"",
             "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "4",
-          "label": {
+          },
+          "description": {
             "value": "\"Maison ou immeuble en dur\"",
             "type": "VTL|MD"
           }
@@ -391,7 +389,7 @@
       "id": "kkxuu8ov",
       "componentType": "Input",
       "mandatory": false,
-      "page": "5",
+      "page": "4",
       "maxLength": 80,
       "label": {
         "value": "\"Nom de l’occupant(e) principal(e)\"",
@@ -454,7 +452,7 @@
       "id": "kkxv0qgj",
       "componentType": "Input",
       "mandatory": false,
-      "page": "6",
+      "page": "5",
       "maxLength": 249,
       "label": {
         "value": "\"Adresse électronique\"",
@@ -499,7 +497,7 @@
       "id": "l8twtrc9",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 4,
       "label": {
         "value": "\"Numéro\"",
@@ -535,7 +533,7 @@
       "id": "l8twwcvn",
       "componentType": "Dropdown",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 4,
       "label": {
         "value": "\"Indice de répétition\"",
@@ -586,7 +584,7 @@
       "id": "l8twyzo4",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 27,
       "label": {
         "value": "\"Type de voie\"",
@@ -611,7 +609,7 @@
       "id": "l8twy1k6",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 80,
       "label": {
         "value": "\"Libellé de la voie (ou lieu-dit)\"",
@@ -654,7 +652,7 @@
       "id": "l8txcnai",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 5,
       "label": {
         "value": "\"Code postal\"",
@@ -694,13 +692,13 @@
       "response": {
         "name": "COM_LOC"
       },
-      "page": "7"
+      "page": "6"
     },
     {
       "id": "l8tx81u3",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 40,
       "label": {
         "value": "\"Résidence, hameau, lotissement,...\"",
@@ -725,7 +723,7 @@
       "id": "l8tx1vsp",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 20,
       "label": {
         "value": "\"Bâtiment\"",
@@ -750,7 +748,7 @@
       "id": "l8txj55d",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 10,
       "label": {
         "value": "\"Escalier\"",
@@ -775,7 +773,7 @@
       "id": "l8txiop1",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 3,
       "label": {
         "value": "\"Étage\"",
@@ -800,7 +798,7 @@
       "id": "l8txsdqj",
       "componentType": "Input",
       "mandatory": false,
-      "page": "7",
+      "page": "6",
       "maxLength": 40,
       "label": {
         "value": "\"N° de porte ou position par rapport à l’escalier\"",
@@ -825,7 +823,7 @@
       "id": "klqmzxr4",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "8",
+      "page": "7",
       "label": {
         "value": "\"Quel est le type de logement ?\"",
         "type": "VTL"
@@ -901,6 +899,60 @@
       ],
       "response": {
         "name": "TYPL"
+      }
+    },
+    {
+      "id": "klqmu096",
+      "componentType": "Radio",
+      "mandatory": false,
+      "page": "8",
+      "label": {
+        "value": "\"Ce logement est-il desservi par un ascenseur ?\"",
+        "type": "VTL"
+      },
+      "conditionFilter": {
+        "value": "true",
+        "type": "VTL"
+      },
+      "controls": [
+        {
+          "id": "klqmu096-CI-0",
+          "typeOfControl": "CONSISTENCY",
+          "criticality": "WARN",
+          "control": {
+            "value": "not(isnull(ASCEN))",
+            "type": "VTL"
+          },
+          "errorMessage": {
+            "value": "\"Merci d’indiquer si ce logement est desservi par un ascenseur.\"",
+            "type": "VTL"
+          },
+          "bindingDependencies": [
+            "ASCEN"
+          ]
+        }
+      ],
+      "bindingDependencies": [
+        "ASCEN"
+      ],
+      "options": [
+        {
+          "value": "1",
+          "label": {
+            "value": "\"Oui\"",
+            "type": "VTL|MD"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "value": "\"Non\"",
+            "type": "VTL|MD"
+          }
+        }
+      ],
+      "response": {
+        "name": "ASCEN"
       }
     },
     {
@@ -1045,38 +1097,20 @@
       }
     },
     {
-      "id": "klqmu096",
+      "id": "lfs0z1kg",
       "componentType": "Radio",
       "mandatory": false,
       "page": "10",
       "label": {
-        "value": "\"Ce logement est-il desservi par un ascenseur ?\"",
+        "value": "\"Les occupants du logement sont-ils arrivés en même temps ?\"",
         "type": "VTL"
       },
       "conditionFilter": {
         "value": "true",
         "type": "VTL"
       },
-      "controls": [
-        {
-          "id": "klqmu096-CI-0",
-          "typeOfControl": "CONSISTENCY",
-          "criticality": "WARN",
-          "control": {
-            "value": "not(isnull(ASCEN))",
-            "type": "VTL"
-          },
-          "errorMessage": {
-            "value": "\"Merci d’indiquer si ce logement est desservi par un ascenseur.\"",
-            "type": "VTL"
-          },
-          "bindingDependencies": [
-            "ASCEN"
-          ]
-        }
-      ],
       "bindingDependencies": [
-        "ASCEN"
+        "IAEMM"
       ],
       "options": [
         {
@@ -1095,7 +1129,134 @@
         }
       ],
       "response": {
-        "name": "ASCEN"
+        "name": "IAEMM"
+      }
+    },
+    {
+      "id": "klqncpes",
+      "componentType": "Input",
+      "mandatory": false,
+      "page": "10",
+      "maxLength": 4,
+      "label": {
+        "value": "\"Année d'emménagement\"",
+        "type": "VTL"
+      },
+      "description": {
+        "value": "\"Si vous avez toujours vécu dans le logement, reportez votre année de naissance.\"",
+        "type": "VTL"
+      },
+      "conditionFilter": {
+        "value": "(IAEMM = \"1\")",
+        "type": "VTL",
+        "bindingDependencies": [
+          "IAEMM"
+        ]
+      },
+      "controls": [
+        {
+          "id": "klqncpes-CI-0",
+          "typeOfControl": "CONSISTENCY",
+          "criticality": "WARN",
+          "control": {
+            "value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
+            "type": "VTL"
+          },
+          "errorMessage": {
+            "value": "\"Veuillez compléter votre année d'emménagement.\"",
+            "type": "VTL"
+          },
+          "bindingDependencies": [
+            "AEMM_OCC",
+            "ACHL"
+          ]
+        }
+      ],
+      "declarations": [
+        {
+          "id": "kkxuu8ov-l8ty0pcg",
+          "declarationType": "STATEMENT",
+          "position": "BEFORE_QUESTION_TEXT",
+          "label": {
+            "value": "\"En quelle année avez-vous emménagé  ?\"",
+            "type": "VTL"
+          }
+        }
+      ],
+      "bindingDependencies": [
+        "AEMM_OCC"
+      ],
+      "response": {
+        "name": "AEMM_OCC"
+      }
+    },
+    {
+      "id": "lfs14r5h",
+      "componentType": "Input",
+      "mandatory": false,
+      "page": "10",
+      "min": 1900,
+      "max": 2024,
+      "decimals": 0,
+      "label": {
+        "value": "\"Année d'emménagement du premier occupant\"",
+        "type": "VTL"
+      },
+      "description": {
+        "value": "\"Si cette personne a toujours vécu dans le logement, reportez son année de naissance.\"",
+        "type": "VTL"
+      },
+      "conditionFilter": {
+        "value": "(IAEMM = \"2\")",
+        "type": "VTL",
+        "bindingDependencies": [
+          "IAEMM"
+        ]
+      },
+      "declarations": [
+        {
+          "id": "kkxuu8ov-l8ty0pcg",
+          "declarationType": "STATEMENT",
+          "position": "BEFORE_QUESTION_TEXT",
+          "label": {
+            "value": "\"En quelle année, le premier des occupants de ce logement a-t-il emménagé ? \"",
+            "type": "VTL"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "id": "lfs14r5h-format-borne-inf-sup",
+          "typeOfControl": "FORMAT",
+          "criticality": "ERROR",
+          "control": {
+            "value": "not(not(isnull(AEMM)) and (1900>AEMM or 2024<AEMM))",
+            "type": "VTL"
+          },
+          "errorMessage": {
+            "value": "\" La valeur doit être comprise entre 1900 et 2024.\"",
+            "type": "VTL"
+          }
+        },
+        {
+          "id": "lfs14r5h-format-decimal",
+          "typeOfControl": "FORMAT",
+          "criticality": "ERROR",
+          "control": {
+            "value": "not(not(isnull(AEMM))  and round(AEMM,0)<>AEMM)",
+            "type": "VTL"
+          },
+          "errorMessage": {
+            "value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
+            "type": "VTL"
+          }
+        }
+      ],
+      "bindingDependencies": [
+        "AEMM"
+      ],
+      "response": {
+        "name": "AEMM"
       }
     },
     {
@@ -1419,215 +1580,73 @@
       }
     },
     {
-      "id": "lfs0z1kg",
+      "id": "klqobgcg",
       "componentType": "Radio",
       "mandatory": false,
       "page": "15",
       "label": {
-        "value": "\"Les occupants du logement sont-ils arrivés en même temps ?\"",
+        "value": "\"Quelles sont les installations sanitaires de ce logement ?\"",
         "type": "VTL"
       },
       "conditionFilter": {
         "value": "true",
         "type": "VTL"
       },
-      "bindingDependencies": [
-        "IAEMM"
-      ],
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ],
-      "response": {
-        "name": "IAEMM"
-      }
-    },
-    {
-      "id": "klqncpes",
-      "componentType": "Input",
-      "mandatory": false,
-      "page": "15",
-      "maxLength": 4,
-      "label": {
-        "value": "\"Année d'emménagement\"",
-        "type": "VTL"
-      },
-      "description": {
-        "value": "\"Si vous avez toujours vécu dans le logement, reportez votre année de naissance.\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "(IAEMM = \"1\")",
-        "type": "VTL",
-        "bindingDependencies": [
-          "IAEMM"
-        ]
-      },
       "controls": [
         {
-          "id": "klqncpes-CI-0",
+          "id": "klqobgcg-CI-0",
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
+            "value": "not(isnull(SANI))",
             "type": "VTL"
           },
           "errorMessage": {
-            "value": "\"Veuillez compléter votre année d'emménagement.\"",
+            "value": "\"Merci d’indiquer les installations sanitaires de ce logement.\"",
             "type": "VTL"
           },
           "bindingDependencies": [
-            "AEMM_OCC",
-            "ACHL"
+            "SANI"
           ]
         }
       ],
-      "declarations": [
-        {
-          "id": "kkxuu8ov-l8ty0pcg",
-          "declarationType": "STATEMENT",
-          "position": "BEFORE_QUESTION_TEXT",
-          "label": {
-            "value": "\"En quelle année avez-vous emménagé  ?\"",
-            "type": "VTL"
-          }
-        }
-      ],
       "bindingDependencies": [
-        "AEMM_OCC"
+        "SANI"
       ],
-      "response": {
-        "name": "AEMM_OCC"
-      }
-    },
-    {
-      "id": "lfs14r5h",
-      "componentType": "Input",
-      "mandatory": false,
-      "page": "15",
-      "min": 1900,
-      "max": 2024,
-      "decimals": 0,
-      "label": {
-        "value": "\"Année d'emménagement du premier occupant\"",
-        "type": "VTL"
-      },
-      "description": {
-        "value": "\"Si cette personne a toujours vécu dans le logement, reportez son année de naissance.\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "(IAEMM = \"2\")",
-        "type": "VTL",
-        "bindingDependencies": [
-          "IAEMM"
-        ]
-      },
-      "declarations": [
-        {
-          "id": "kkxuu8ov-l8ty0pcg",
-          "declarationType": "STATEMENT",
-          "position": "BEFORE_QUESTION_TEXT",
-          "label": {
-            "value": "\"En quelle année, le premier des occupants de ce logement a-t-il emménagé ? \"",
-            "type": "VTL"
-          }
-        }
-      ],
-      "controls": [
-        {
-          "id": "lfs14r5h-format-borne-inf-sup",
-          "typeOfControl": "FORMAT",
-          "criticality": "ERROR",
-          "control": {
-            "value": "not(not(isnull(AEMM)) and (1900>AEMM or 2024<AEMM))",
-            "type": "VTL"
-          },
-          "errorMessage": {
-            "value": "\" La valeur doit être comprise entre 1900 et 2024.\"",
-            "type": "VTL"
-          }
-        },
-        {
-          "id": "lfs14r5h-format-decimal",
-          "typeOfControl": "FORMAT",
-          "criticality": "ERROR",
-          "control": {
-            "value": "not(not(isnull(AEMM))  and round(AEMM,0)<>AEMM)",
-            "type": "VTL"
-          },
-          "errorMessage": {
-            "value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
-            "type": "VTL"
-          }
-        }
-      ],
-      "bindingDependencies": [
-        "AEMM"
-      ],
-      "response": {
-        "name": "AEMM"
-      }
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "16",
-      "label": {
-        "value": "\"Existe-t-il un point d'eau potable à l'intèrieur de ce logement ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "EAU"
-      },
       "options": [
         {
           "value": "1",
           "label": {
-            "value": "\"Eau froide seulement\"",
+            "value": "\"Ni baignoire, ni douche\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "2",
           "label": {
-            "value": "\"Eau froide et eau chaude \"",
+            "value": "\"Baignoire ou douche dans une pièce non réservée à la toilette\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "3",
           "label": {
-            "value": "\"Aucun point d'eau\"",
+            "value": "\"Salle(s) de bains (avec douche ou baignoire)\"",
             "type": "VTL|MD"
           }
         }
-      ]
+      ],
+      "response": {
+        "name": "SANI"
+      }
     },
     {
       "id": "klqnzaud",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "17",
+      "page": "16",
       "label": {
-        "value": "\"L'évacuation des eaux usées s'effectue par raccordement :\"",
+        "value": "\"Quel est le principal moyen de chauffage de ce logement ?\"",
         "type": "VTL"
       },
       "conditionFilter": {
@@ -1640,332 +1659,145 @@
           "typeOfControl": "CONSISTENCY",
           "criticality": "WARN",
           "control": {
-            "value": "not(isnull(EGOUL))",
+            "value": "not(isnull(CHFL))",
             "type": "VTL"
           },
           "errorMessage": {
-            "value": "\"Merci de renseigner comment l'évacuation des eaux usées s'effectue par raccordement \"",
+            "value": "\"Merci de renseigner le principal moyen de chauffage de ce logement.\"",
             "type": "VTL"
-          }
+          },
+          "bindingDependencies": [
+            "CHFL"
+          ]
         }
+      ],
+      "bindingDependencies": [
+        "CHFL"
       ],
       "options": [
         {
           "value": "1",
           "label": {
-            "value": "\"au réseau d'égoûts ?\"",
+            "value": "\"Chauffage collectif (chaudière commune à plusieurs logements de l’immeuble ou réseau de chauffage urbain)\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "2",
           "label": {
-            "value": "\"à une fosse sceptique ?\"",
+            "value": "\"Chaudière individuelle (propre au logement)\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "3",
           "label": {
-            "value": "\"à un puisard? \"",
+            "value": "\"Chauffage individuel « tout électrique »\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "4",
           "label": {
-            "value": "\"à même le sol ?\"",
+            "value": "\"Poêle, cheminée, cuisinière, etc.\"",
             "type": "VTL|MD"
           }
         }
       ],
       "response": {
-        "name": "EGOUL"
+        "name": "CHFL"
       }
     },
     {
-      "id": "klqns4rj",
+      "id": "klqo6tay",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "18",
+      "page": "16",
       "label": {
-        "value": "\"Ce logement dispose-t-il de l'électricité ?\"",
+        "value": "\"Quel est le combustible principal de chauffage ?\"",
         "type": "VTL"
       },
       "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
+        "value": "(CHFL = \"1\") or (CHFL = \"2\") or (CHFL = \"4\")",
+        "type": "VTL",
+        "bindingDependencies": [
+          "CHFL"
+        ]
       },
-      "response": {
-        "name": "ELEC"
-      },
+      "controls": [
+        {
+          "id": "klqo6tay-CI-0",
+          "typeOfControl": "CONSISTENCY",
+          "criticality": "WARN",
+          "control": {
+            "value": "not(isnull(CMBL))",
+            "type": "VTL"
+          },
+          "errorMessage": {
+            "value": "\"Merci de renseigner le combustible principal de chauffage.\"",
+            "type": "VTL"
+          },
+          "bindingDependencies": [
+            "CMBL"
+          ]
+        }
+      ],
+      "bindingDependencies": [
+        "CMBL"
+      ],
       "options": [
         {
           "value": "1",
           "label": {
-            "value": "\"Oui\"",
+            "value": "\"Chauffage urbain\"",
             "type": "VTL|MD"
           }
         },
         {
           "value": "2",
           "label": {
-            "value": "\"Non\"",
+            "value": "\"Gaz de ville ou de réseau\"",
+            "type": "VTL|MD"
+          }
+        },
+        {
+          "value": "3",
+          "label": {
+            "value": "\"Fioul (mazout)\"",
+            "type": "VTL|MD"
+          }
+        },
+        {
+          "value": "4",
+          "label": {
+            "value": "\"Électricité\"",
+            "type": "VTL|MD"
+          }
+        },
+        {
+          "value": "5",
+          "label": {
+            "value": "\"Gaz en bouteille ou en citerne\"",
+            "type": "VTL|MD"
+          }
+        },
+        {
+          "value": "6",
+          "label": {
+            "value": "\"Autre (bois, solaire, géothermie, etc.)\"",
             "type": "VTL|MD"
           }
         }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "19",
-      "label": {
-        "value": "\"Ce logement dispose-t-il de WC à l’intérieur ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
+      ],
       "response": {
-        "name": "WC"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "20",
-      "label": {
-        "value": "\"Ce logement dispose-t-il d’une baignoire ou d’une douche ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "BAIGN"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "21",
-      "label": {
-        "value": "\"Ce logement dispose-t-il d’une cuisine intérieure avec évier ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "CUIS"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "22",
-      "label": {
-        "value": "\"Ce logement dispose-t-il d’au moins une pièce climatisée ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "CLIM"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "23",
-      "label": {
-        "value": "\"Ce logement dispose-t-il d’une chauffe-eau solaire ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "CHEAUS"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "24",
-      "label": {
-        "value": "\"Ce logement dispose-t-il d’un moyen de chauffage ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "CHAUF"
-      },
-      "options": [
-        {
-          "value": "1",
-          "label": {
-            "value": "\"Oui\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "2",
-          "label": {
-            "value": "\"Non\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
-    },
-    {
-      "id": "klqns4rj",
-      "componentType": "Radio",
-      "mandatory": false,
-      "page": "25",
-      "label": {
-        "value": "\"De combien de deux-roues à moteur les habitants de ce logement disposent-ils ?\"",
-        "type": "VTL"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "response": {
-        "name": "DEROU"
-      },
-      "options": [
-        {
-          "value": "0",
-          "label": {
-            "value": "\"Aucun\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "1",
-          "label": {
-            "value": "\"1\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "1",
-          "label": {
-            "value": "\"2\"",
-            "type": "VTL|MD"
-          }
-        },
-        {
-          "value": "1",
-          "label": {
-            "value": "\"3 ou plus\"",
-            "type": "VTL|MD"
-          }
-        }
-      ]
+        "name": "CMBL"
+      }
     },
     {
       "id": "klqor7p0",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "26",
+      "page": "17",
       "label": {
         "value": "\"De combien de voitures les habitants de ce logement disposent-ils ?\"",
         "type": "VTL"
@@ -2044,7 +1876,7 @@
       "id": "klqolz63",
       "componentType": "Radio",
       "mandatory": false,
-      "page": "27",
+      "page": "18",
       "label": {
         "value": "\"Disposez-vous d’un emplacement de stationnement réservé à votre usage personnel ?\"",
         "type": "VTL"
@@ -2108,7 +1940,7 @@
     {
       "id": "lfvaiu4x",
       "componentType": "Sequence",
-      "page": "28",
+      "page": "19",
       "label": {
         "value": "\"Liste des habitants\"",
         "type": "VTL|MD"
@@ -2223,7 +2055,7 @@
       "id": "j6q9h8tj",
       "componentType": "InputNumber",
       "mandatory": true,
-      "page": "29",
+      "page": "20",
       "decimals": 0,
       "min": 1,
       "max": 20,
@@ -2249,7 +2081,7 @@
         "value": "COUNT_PERSONS",
         "type": "VTL"
       },
-      "page": "30",
+      "page": "21",
       "maxPage": "1",
       "depth": 1,
       "paginatedLoop": true,
@@ -2261,7 +2093,7 @@
         {
           "id": "lfwg2ny2",
           "componentType": "Subsequence",
-          "page": "30.1",
+          "page": "21.1",
           "label": {
             "value": "\"Description de l’habitant 1",
             "type": "VTL"
@@ -2278,7 +2110,7 @@
           "id": "lfwiyuih",
           "componentType": "Input",
           "mandatory": true,
-          "page": "30.1",
+          "page": "21.1",
           "maxLength": 249,
           "label": {
             "value": "\"Nom\"",
@@ -2323,7 +2155,7 @@
             "value": "true",
             "type": "VTL"
           },
-          "page": "30.1",
+          "page": "21.1",
           "componentType": "Input",
           "response": {
             "name": "PRENOMS"
@@ -2333,7 +2165,7 @@
           "id": "lfwiizq2",
           "componentType": "Datepicker",
           "mandatory": true,
-          "page": "30.1",
+          "page": "21.1",
           "min": "1900-01-01",
           "max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
           "label": {
@@ -2387,7 +2219,7 @@
           "id": "lfvahf2g",
           "componentType": "Radio",
           "mandatory": true,
-          "page": "30.1",
+          "page": "21.1",
           "label": {
             "value": "\"Sexe\"",
             "type": "VTL"
@@ -2441,7 +2273,7 @@
           "id": "lfwgqxv0",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\"Est-ce que \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans un autre logement ? \"",
             "type": "VTL"
@@ -2515,7 +2347,7 @@
           "id": "lfwjdg33",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\"Pour ces études, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situation précisément ?\"",
             "type": "VTL"
@@ -2556,7 +2388,7 @@
           "id": "lfwk0rof",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\"Pour des raisons professionnelles, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situation précisément ?\"",
             "type": "VTL"
@@ -2597,7 +2429,7 @@
           "id": "lfwk0lb2",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\"Suite à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle part de son temps passe-t- ?\" || LIB_ILELLES || \"ici ?\"",
             "type": "VTL"
@@ -2647,7 +2479,7 @@
           "id": "lfwjyhfp",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\" \" || (if isnull(PRENOMS) then \"Cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" a-t-\" || (if isnull(PRENOMS) then \"il\" else LIB_ILELLES) || \" passé la nuit du 30 mars 2023 dans ce logement ?\"",
             "type": "VTL"
@@ -2691,7 +2523,7 @@
           "id": "lfwkbt1a",
           "componentType": "Radio",
           "mandatory": false,
-          "page": "30.2",
+          "page": "21.2",
           "label": {
             "value": "\"Pour des raisons qui ne sont liées ni aux études, ni pour des raisons professionnelles, ni à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situations précisèment ?\"",
             "type": "VTL"
@@ -2741,7 +2573,7 @@
     {
       "id": "roundabout",
       "componentType": "Roundabout",
-      "page": "31",
+      "page": "22",
       "conditionFilter": {
         "value": "true",
         "type": "VTL"
@@ -3293,116 +3125,6 @@
     },
     {
       "variableType": "COLLECTED",
-      "name": "EAU",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "EGOUL",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "ELEC",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "WC",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "BAIGN",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CUIS",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CLIM",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CHEAUS",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "CHAUF",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
-      "name": "DEROU",
-      "values": {
-        "PREVIOUS": null,
-        "COLLECTED": null,
-        "FORCED": null,
-        "EDITED": null,
-        "INPUTED": null
-      }
-    },
-    {
-      "variableType": "COLLECTED",
       "name": "TYPC",
       "values": {
         "PREVIOUS": null,
@@ -3722,7 +3444,40 @@
     },
     {
       "variableType": "COLLECTED",
+      "name": "SANI",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "CHFL",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
       "name": "EGOUL",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "CMBL",
       "values": {
         "PREVIOUS": null,
         "COLLECTED": null,
@@ -4026,6 +3781,33 @@
     {
       "variableType": "CALCULATED",
       "name": "FILTER_RESULT_HLML",
+      "expression": {
+        "value": "true",
+        "type": "VTL"
+      },
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_SANI",
+      "expression": {
+        "value": "true",
+        "type": "VTL"
+      },
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CHFL",
+      "expression": {
+        "value": "true",
+        "type": "VTL"
+      },
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "name": "FILTER_RESULT_CMBL",
       "expression": {
         "value": "true",
         "type": "VTL"
