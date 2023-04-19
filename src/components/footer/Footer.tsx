@@ -14,7 +14,7 @@ const DEFAULT_FOOTER: FooterType = {
 		href: '/',
 		title: 'Accueil',
 	},
-	bottomItems: undefined,
+	// bottomItems: undefined,
 	license: undefined,
 	operatorLogo: undefined,
 };
