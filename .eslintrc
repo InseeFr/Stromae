@@ -19,7 +19,6 @@
 		"jsx-a11y/href-no-hash": "off",
 		"no-process-env": "off",
 		"import/no-cycle": "off",
-		"no-debugger": "off",
 		"no-warning-comments": "off",
 		"import/order": "off",
 		"@shopify/images-no-direct-imports": "off",
