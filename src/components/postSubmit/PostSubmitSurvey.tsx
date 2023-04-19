@@ -1,18 +1,16 @@
-import { PropsWithChildren, useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/fr';
+import { fr } from '@codegouvfr/react-dsfr';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { useRemote } from '../orchestrator/useRemote';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Skeleton } from '@mui/material';
 import { ReactComponent as Confirmation } from '../../assets/confirmation.svg';
 import AdditionalInformation from './AdditionalInformation';
-import {
-	MetadataSurvey,
-	OrchestratedElement,
-	SurveyUnitData,
-} from '../../typeStromae/type';
+import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
+import { uri404 } from '../../lib/domainUri';
 
 function parseDate(date?: number) {
 	if (date !== undefined) {
@@ -21,10 +19,12 @@ function parseDate(date?: number) {
 	return '';
 }
 
-export function PostSubmitSurvey(
-	props: PropsWithChildren<OrchestratedElement>
-) {
+export function PostSubmitSurvey() {
 	const navigate = useNavigate();
+
+	function navigateError() {
+		navigate(uri404());
+	}
 
 	const { getMetadata, getSurveyUnitData } = useContext(loadSourceDataContext);
 	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);
@@ -36,25 +36,29 @@ export function PostSubmitSurvey(
 	const submissionDate = parseDate(surveyUnitData?.stateData?.date);
 	const DescriptionAdditional = submit?.DescriptionAdditional ?? null;
 
-	function navigateError() {
-		navigate('/');
-	}
-
 	if (!metadata) {
 		return <Skeleton />;
 	}
 
 	return (
-		<div className="fr-grid-row fr-my-6w fr-my-md-12w">
-			<div className="fr-col-12 fr-col-lg-6 fr-col-offset-lg-1">
+		<div className={fr.cx('fr-grid-row', 'fr-my-6w', 'fr-my-md-12w')}>
+			<div className={fr.cx('fr-col-12', 'fr-col-lg-6', 'fr-col-offset-lg-1')}>
 				<h1>L'Insee vous remercie pour votre collaboration à cette enquête.</h1>
-				<p className="fr-text--lead">
+				<p className={fr.cx('fr-text--lead')}>
 					Vos réponses ont été envoyées le {submissionDate}.
 					{DescriptionAdditional}
 				</p>
 				<Button>Télécharger l'accusé de réception</Button>
 			</div>
-			<div className="fr-col-lg-3 fr-col-offset-lg-1 fr-col-12 fr-col--middle fr-btns-group--center">
+			<div
+				className={fr.cx(
+					'fr-col-lg-3',
+					'fr-col-offset-lg-1',
+					'fr-col-12',
+					'fr-col--middle',
+					'fr-btns-group--center'
+				)}
+			>
 				<Confirmation />
 			</div>
 			<AdditionalInformation submit={submit} />
