@@ -10,8 +10,8 @@ export function Precedent(props: OrchestratedElement) {
 	const previousPage = usePrevious<string>(pageTag);
 
 	useEffect(() => {
-		if (pageTag !== previousPage && buttonRef.current) {
-			buttonRef.current.focus();
+		if (pageTag !== previousPage) {
+			buttonRef.current?.focus();
 		}
 	}, [pageTag, previousPage]);
 
