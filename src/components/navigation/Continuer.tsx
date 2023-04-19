@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';
+import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
 import { fr } from '@codegouvfr/react-dsfr';
 
 function getStatus(
@@ -22,6 +23,11 @@ function getStatus(
 	return 'Continuer';
 }
 
+/**
+ * Le bouton de navigation en bas de page sur le questionnaire.
+ * @param props
+ * @returns
+ */
 export function Continuer(props: OrchestratedElement) {
 	const {
 		goNextPage = () => null,
@@ -34,10 +40,10 @@ export function Continuer(props: OrchestratedElement) {
 
 	const handleClick = useCallback(() => {
 		if (isLastPage) {
-			if (unit && survey) {
-				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}/post-envoi`);
-			} else {
-				navigate('/404');
+			try {
+				navigate(uriPostEnvoi(survey, unit));
+			} catch (e) {
+				navigate(uri404());
 			}
 		}
 		goNextPage();
