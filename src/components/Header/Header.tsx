@@ -3,7 +3,7 @@ import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
 import ConvertContent from '../../convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
-import { HeaderProps as HeaderPropsDsfr } from '@codegouvfr/react-dsfr/Header';
+// import { HeaderProps as HeaderPropsDsfr } from '@codegouvfr/react-dsfr/Header';
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
@@ -108,7 +108,7 @@ export function Header(props: HeaderProps) {
 										</button>
 									</li>
 									{quickAccessItems &&
-										quickAccessItems.map(function (quickAccessItem, index) {
+										quickAccessItems.map((quickAccessItem, index) => {
 											return (
 												<li key={index}>
 													{quickAccessItem.buttonProps ? (
@@ -160,7 +160,7 @@ export function Header(props: HeaderProps) {
 								</button>
 							</li>
 							{quickAccessItems &&
-								quickAccessItems.map(function (quickAccessItem, index) {
+								quickAccessItems.map((quickAccessItem, index) => {
 									return (
 										<li key={index}>
 											{quickAccessItem.buttonProps ? (
