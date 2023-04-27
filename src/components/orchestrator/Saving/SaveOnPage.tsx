@@ -16,22 +16,20 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ currentChange, getData, pageTag, isLastPage });
 
-	const handleNextPage = useCallback(() => {
-		(async function () {
-			try {
-				setSavingFailure(undefined);
-				const somethingToSave = await save();
+	const handleNextPage = useCallback(async () => {
+		try {
+			setSavingFailure(undefined);
+			const somethingToSave = await save();
 
-				if (somethingToSave) {
-					setSavingFailure({ status: 200 });
-				}
-				goNextPage();
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.error(e);
-				setSavingFailure({ status: 500 });
+			if (somethingToSave) {
+				setSavingFailure({ status: 200 });
 			}
-		})();
+			goNextPage();
+		} catch (e) {
+			// eslint-disable-next-line no-console
+			console.error(e);
+			setSavingFailure({ status: 500 });
+		}
 	}, [goNextPage, save]);
 
 	return (
