@@ -39,9 +39,8 @@ export function Continuer(props: OrchestratedElement) {
 			} else {
 				navigate('/404');
 			}
-		} else {
-			goNextPage();
 		}
+		goNextPage();
 	}, [goNextPage, isLastPage, unit, survey, navigate]);
 
 	return (

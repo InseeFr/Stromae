@@ -1,4 +1,4 @@
-import { useEffect, useState, PropsWithChildren } from 'react';
+import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 
@@ -23,30 +23,31 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
 	const { currentPage } = stateData;
-	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
+	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
-	useEffect(
-		() => {
-			setArgs({
-				getReferentiel,
-				custom,
-				preferences,
-				features,
-				savingType,
-				autoSuggesterLoading,
-				setCurrrentChange,
-			});
-		},
-		[
+	const onChange = useCallback(({ name }: { name: string }) => {
+		setCurrentChange({ name });
+	}, []);
+
+	useEffect(() => {
+		setArgs({
 			getReferentiel,
+			custom,
 			preferences,
 			features,
 			savingType,
 			autoSuggesterLoading,
-			setCurrrentChange,
-			paginated,
-		]
-	);
+			onChange,
+		});
+	}, [
+		getReferentiel,
+		preferences,
+		features,
+		savingType,
+		autoSuggesterLoading,
+		onChange,
+		paginated,
+	]);
 
 	const {
 		getComponents,
