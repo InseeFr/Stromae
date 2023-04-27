@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
-import 'moment/locale/fr';
 import { fr } from '@codegouvfr/react-dsfr';
 import { Button } from '@codegouvfr/react-dsfr/Button';
+import { format } from 'date-fns';
+import { fr as localeFr } from 'date-fns/esm/locale';
 import { useRemote } from '../orchestrator/useRemote';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Skeleton } from '@mui/material';
@@ -14,7 +14,7 @@ import { uri404 } from '../../lib/domainUri';
 
 function parseDate(date?: number) {
 	if (date !== undefined) {
-		return moment(date).locale('fr').format('Do MMMM YYYY [à] h:mm');
+		return format(new Date(date), 'EEEE d LLLL, à HH:mm', { locale: localeFr });
 	}
 	return '';
 }
