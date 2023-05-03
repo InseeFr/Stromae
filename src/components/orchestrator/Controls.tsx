@@ -19,37 +19,31 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		...rest
 	} = props;
 
-	const handleGoNext = useCallback(
-		() => {
-			if (warning) {
-				setWarning(false);
-				setCurrentErrors(undefined);
-				setCriticality(false);
-				goNextPage();
-			} else if (compileControls) {
-				const errors = compileControls();
-				setCriticality(errors.isCritical);
-				setCurrentErrors(errors.currentErrors);
-				if (errors.currentErrors && !errors.isCritical) {
-					setWarning(true);
-				} else if (!errors.currentErrors) {
-					goNextPage();
-				}
-			} else {
+	const handleGoNext = useCallback(() => {
+		if (warning) {
+			setWarning(false);
+			setCurrentErrors(undefined);
+			setCriticality(false);
+			goNextPage();
+		} else if (compileControls) {
+			const errors = compileControls();
+			setCriticality(errors.isCritical);
+			setCurrentErrors(errors.currentErrors);
+			if (errors.currentErrors && !errors.isCritical) {
+				setWarning(true);
+			} else if (!errors.currentErrors) {
 				goNextPage();
 			}
-		},
-		[compileControls, goNextPage, warning]
-	);
+		} else {
+			goNextPage();
+		}
+	}, [compileControls, goNextPage, warning]);
 
-	const handleGoPrevious: () => void = useCallback(
-		() => {
-			setCriticality(undefined);
-			setCurrentErrors(undefined);
-			goPreviousPage();
-		},
-		[goPreviousPage]
-	);
+	const handleGoPrevious: () => void = useCallback(() => {
+		setCriticality(undefined);
+		setCurrentErrors(undefined);
+		goPreviousPage();
+	}, [goPreviousPage]);
 
 	return (
 		<CloneElements<OrchestratedElement>
