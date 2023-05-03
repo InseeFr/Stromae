@@ -1,5 +1,4 @@
 import { useRef, useEffect, useContext } from 'react';
-
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
 import { OrchestratedElement } from '../../../typeStromae/type';
 
@@ -7,11 +6,11 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'pageTag'
+	'currentChange' | 'getData' | 'pageTag' | 'isLastPage'
 >;
 
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag } = args;
+	const { currentChange, getData, pageTag, isLastPage } = args;
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData } = useContext(loadSourceDataContext);
 
@@ -24,7 +23,7 @@ export function useSaving(args: SavingArgs) {
 	}, [currentChange]);
 
 	return async function save() {
-		let data;
+		let data = {};
 		if (!getData) {
 			return undefined;
 		}
@@ -46,7 +45,7 @@ export function useSaving(args: SavingArgs) {
 			data = getData(true);
 		}
 
-		if (data && Object.keys(data).length) {
+		if (Object.keys(data).length || isLastPage) {
 			// TODO remplir state correctement
 			const state = {
 				state: 'INIT',

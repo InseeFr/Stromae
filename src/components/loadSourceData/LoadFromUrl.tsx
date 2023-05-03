@@ -1,10 +1,7 @@
 import { PropsWithChildren, useCallback } from 'react';
-
 import type { LunaticSource } from '../../typeLunatic/type-source';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
-import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
-import { SurveyUnitData } from '../../typeStromae/type';
-
+import { SurveyUnitData, MetadataSurvey } from '../../typeStromae/type';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromUrlProps = {
@@ -24,33 +21,24 @@ export function LoadFromUrl({
 	urlData,
 	urlNomenclatures = empty,
 }: PropsWithChildren<LoadFromUrlProps>) {
-	const getMetadata = useCallback(
-		async () => {
-			if (urlMetadata) {
-				return publicGetRequest<MetadataSurvey>(urlMetadata);
-			}
-			return undefined
-		},
-		[urlMetadata]
-	);
-	const getSurvey = useCallback(
-		async () => {
-			if (urlSource) {
-				return publicGetRequest<LunaticSource>(urlSource);
-			}
-			return undefined
-		},
-		[urlSource]
-	);
-	const getSurveyUnitData = useCallback(
-		async () => {
-			if (urlData) {
-				return publicGetRequest<SurveyUnitData>(urlData);
-			}
-			return undefined
-		},
-		[urlData]
-	);
+	const getMetadata = useCallback(async () => {
+		if (urlMetadata) {
+			return publicGetRequest<MetadataSurvey>(urlMetadata);
+		}
+		return undefined;
+	}, [urlMetadata]);
+	const getSurvey = useCallback(async () => {
+		if (urlSource) {
+			return publicGetRequest<LunaticSource>(urlSource);
+		}
+		return undefined;
+	}, [urlSource]);
+	const getSurveyUnitData = useCallback(async () => {
+		if (urlData) {
+			return publicGetRequest<SurveyUnitData>(urlData);
+		}
+		return undefined;
+	}, [urlData]);
 
 	const putSurveyUnitData = useCallback(async () => {
 		return true;

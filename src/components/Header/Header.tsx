@@ -91,7 +91,9 @@ export function Header(props: HeaderProps) {
 									href={homeLinkProps.href}
 									title={`Accueil - ${homeLinkProps.title} - République Française`}
 								>
-									<p className="fr-header__service-title">{serviceTitle}</p>
+									<span className="fr-header__service-title">
+										{serviceTitle}
+									</span>
 								</a>
 							</div>
 						</div>

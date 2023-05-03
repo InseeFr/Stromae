@@ -1,11 +1,10 @@
 import { createContext } from 'react';
-
-import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
 import { LunaticSource } from '../../typeLunatic/type-source';
 import {
 	DataVariables,
 	StateData,
 	SurveyUnitData,
+	MetadataSurvey,
 } from '../../typeStromae/type';
 
 export type LoadSourceDataContextType = {
