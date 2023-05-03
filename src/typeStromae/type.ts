@@ -1,5 +1,7 @@
 import type { LunaticData, LunaticError } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
+import { HeaderType } from '../components/Header/HeaderType';
+import { FooterType } from '../components/footer/FooterType';
 
 export type StateData = {
 	// 'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
@@ -68,3 +70,21 @@ export type QuestionnaireParams = {
 	survey: string;
 	unit?: string;
 };
+
+export type LinkType = {
+	title: string;
+	link: Record<string, string>;
+};
+
+export type SubmitType = {
+	DescriptionAdditional: string;
+	TitleAdditionalInformation: string;
+	Feedback: LinkType;
+	Results: LinkType;
+};
+
+export interface MetadataSurvey {
+	Header: HeaderType;
+	Footer: FooterType;
+	Submit: SubmitType;
+}

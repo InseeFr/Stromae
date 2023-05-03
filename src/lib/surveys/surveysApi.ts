@@ -1,11 +1,12 @@
 import type {
 	DataVariables,
+	MetadataSurvey,
 	StateData,
 	SurveyUnitData,
 } from '../../typeStromae/type';
 import { LunaticSource } from '../../typeLunatic/type-source';
 
-import { getMetadataSurvey, MetadataSurvey } from './getMetadataSurvey';
+import { getMetadataSurvey } from './getMetadataSurvey';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnit';
 import { getRequiredNomenclatures } from './getRequiredNomenclatures';
