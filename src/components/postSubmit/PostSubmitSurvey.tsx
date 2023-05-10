@@ -19,6 +19,17 @@ function parseDate(date?: number) {
 	return '';
 }
 
+/*
+ * Trouver une librairie plus sure.
+ */
+function download(data: BlobPart, unit: string) {
+	const url = URL.createObjectURL(new Blob([data]));
+	const aLink = document.createElement('a');
+	aLink.href = url;
+	aLink.download = `deposit-proof-${unit}.pdf`;
+	aLink.click();
+}
+
 export function PostSubmitSurvey() {
 	const navigate = useNavigate();
 	const { unit } = useParams();
@@ -32,14 +43,7 @@ export function PostSubmitSurvey() {
 
 	const handleDepositProof = useCallback(async () => {
 		if (unit) {
-			const data = await getDepositProof(unit);
-			const url = URL.createObjectURL(new Blob([data]));
-
-			const aLink = document.createElement('a');
-			aLink.href = url;
-			aLink.target = '_blank';
-			aLink.download = 'proof.pdf';
-			aLink.click();
+			download(await getDepositProof(unit), unit);
 		}
 		return null;
 	}, [unit, getDepositProof]);
