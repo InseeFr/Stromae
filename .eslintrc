@@ -10,6 +10,7 @@
 		"@typescript-eslint/array-type": "off",
 		"@typescript-eslint/ban-types": "off",
 		"react/no-unescaped-entities": "off",
+		"no-console": "off",
 		"react/jsx-filename-extension": [
 			"warn",
 			{
@@ -27,6 +28,7 @@
 		"@shopify/strict-component-boundaries": "off",
 		"@typescript-eslint/naming-convention": "off",
 		"@shopify/prefer-early-return": "error",
+		"@shopify/no-debugger": "off",
 		"jsx-a11y/anchor-is-valid": [
 			"warn",
 			{

@@ -13,6 +13,7 @@ import { getRequiredNomenclatures } from './getRequiredNomenclatures';
 import { getNomenclature } from './getNomenclature';
 import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
+import { getDepositProof } from './getDepositProof';
 
 const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
 
@@ -36,6 +37,7 @@ export interface SurveyApi {
 		unit: string,
 		token: string
 	) => Promise<void>;
+	getDepositiProof: (unit: string, token: string) => Promise<unknown>;
 }
 
 export const surveyApi: SurveyApi = {
@@ -46,4 +48,5 @@ export const surveyApi: SurveyApi = {
 	getNomenclature: getNomenclature(DOMAIN),
 	putSurveyUnitData: putSurveyUnitData(DOMAIN),
 	putSurveyUnitStateData: putSurveyUnitStateData(DOMAIN),
+	getDepositiProof: getDepositProof(DOMAIN),
 };

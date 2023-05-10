@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react';
-
 import { OrchestratedElement } from '../../../typeStromae/type';
-
 import { SaveOnPage } from './SaveOnPage';
 import { SaveOnSequence } from './SaveOnSequence';
 

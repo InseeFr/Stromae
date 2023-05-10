@@ -14,6 +14,10 @@ type LoadFromUrlProps = {
 
 const empty = {};
 
+async function getDepositProof() {
+	return undefined;
+}
+
 export function LoadFromUrl({
 	children,
 	urlSource,
@@ -64,6 +68,7 @@ export function LoadFromUrl({
 				getSurveyUnitData,
 				getReferentiel,
 				putSurveyUnitData,
+				getDepositProof,
 			}}
 		>
 			{children}

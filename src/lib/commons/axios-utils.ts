@@ -30,10 +30,10 @@ function errorHandler(error: AxiosError) {
 	}
 }
 
-function jwtHeaders(token: string) {
+function jwtHeaders(token: string, contentType?: string) {
 	return {
 		Authorization: `Bearer ${token}`,
-		'Content-type': 'application/json; charset=utf-8',
+		'Content-type': contentType ?? 'application/json; charset=utf-8',
 	};
 }
 
@@ -52,9 +52,13 @@ export async function publicGetRequest<T>(url: string) {
 	}
 }
 
-export async function authenticatedGetRequest<T>(url: string, token: string) {
+export async function authenticatedGetRequest<T>(
+	url: string,
+	token: string,
+	contentType?: string
+) {
 	try {
-		const headers = jwtHeaders(token);
+		const headers = jwtHeaders(token, contentType);
 		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
 		return data;
 	} catch (error: AxiosError | any) {

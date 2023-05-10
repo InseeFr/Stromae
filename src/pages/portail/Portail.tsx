@@ -10,28 +10,25 @@ import { WelcomeContainer } from '../../components/Welcome';
  * TODO filtrer sur DEFAULT_SURVEY
  */
 
-export function Portail () {
-  const navigate = useNavigate();
-  const { survey } = useParams();
-  const { oidcUser } = useOidcUser();
+export function Portail() {
+	const navigate = useNavigate();
+	const { survey } = useParams();
+	const { oidcUser } = useOidcUser();
 
-  useEffect(
-    () => {
-      if (!oidcUser || !oidcUser.preferred_username) {
-        return
-      }
-      navigate(
-        `/questionnaire/${survey}/unite-enquetee/${oidcUser.preferred_username}`
-      );
-    },
-    [oidcUser, navigate, survey]
-  );
+	useEffect(() => {
+		if (!oidcUser || !oidcUser.preferred_username) {
+			return;
+		}
+		navigate(
+			`/questionnaire/${survey}/unite-enquetee/${oidcUser.preferred_username}`
+		);
+	}, [oidcUser, navigate, survey]);
 
-  return (
-    <LoadFromApi survey={survey}>
-      <Layout>
-        <WelcomeContainer/>
-      </Layout>
-    </LoadFromApi>
-  );
+	return (
+		<LoadFromApi survey={survey}>
+			<Layout>
+				<WelcomeContainer />
+			</Layout>
+		</LoadFromApi>
+	);
 }

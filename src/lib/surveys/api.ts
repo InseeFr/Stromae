@@ -25,3 +25,7 @@ export function requiredNomenclature(domain: string, survey: string) {
 export function nomenclature(domain: string, nomenclature: string) {
 	return `${domain}/api/nomenclature/${nomenclature}`;
 }
+
+export function depositProof(domain: string, unit: string) {
+	return `${domain}/api/survey-unit/${unit}/deposit-proof`;
+}
