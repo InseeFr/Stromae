@@ -37,7 +37,7 @@ export interface SurveyApi {
 		unit: string,
 		token: string
 	) => Promise<void>;
-	getDepositiProof: (unit: string, token: string) => Promise<unknown>;
+	getDepositiProof: (unit: string, token: string) => Promise<Blob>;
 }
 
 export const surveyApi: SurveyApi = {

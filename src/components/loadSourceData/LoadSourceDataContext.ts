@@ -17,7 +17,7 @@ export type LoadSourceDataContextType = {
 		data: DataVariables;
 		state: StateData;
 	}) => Promise<boolean>;
-	getDepositProof: (unit: string) => Promise<unknown>;
+	getDepositProof: (unit: string) => Promise<Blob>;
 };
 
 const DEFAULT = {
@@ -27,7 +27,7 @@ const DEFAULT = {
 	getSurveyUnitData: async () => undefined,
 	/* */
 	putSurveyUnitData: async () => true,
-	getDepositProof: async () => undefined,
+	getDepositProof: async () => new Blob(),
 };
 
 export const loadSourceDataContext =

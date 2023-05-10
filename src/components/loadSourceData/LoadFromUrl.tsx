@@ -15,7 +15,7 @@ type LoadFromUrlProps = {
 const empty = {};
 
 async function getDepositProof() {
-	return undefined;
+	return new Blob();
 }
 
 export function LoadFromUrl({

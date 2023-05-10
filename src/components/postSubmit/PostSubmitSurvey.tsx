@@ -32,8 +32,16 @@ export function PostSubmitSurvey() {
 
 	const handleDepositProof = useCallback(async () => {
 		if (unit) {
-			const proof = await getDepositProof(unit);
+			const data = await getDepositProof(unit);
+			const url = URL.createObjectURL(new Blob([data]));
+
+			const aLink = document.createElement('a');
+			aLink.href = url;
+			aLink.target = '_blank';
+			aLink.download = 'proof.pdf';
+			aLink.click();
 		}
+		return null;
 	}, [unit, getDepositProof]);
 
 	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);

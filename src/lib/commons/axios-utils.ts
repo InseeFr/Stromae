@@ -59,7 +59,27 @@ export async function authenticatedGetRequest<T>(
 ) {
 	try {
 		const headers = jwtHeaders(token, contentType);
-		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
+		const { data } = await axios<T>({
+			method: HTTP_VERBS.get,
+			url,
+			headers,
+		});
+		return data;
+	} catch (error: AxiosError | any) {
+		errorHandler(error);
+		throw new Error(`Request fail : ${url}`);
+	}
+}
+
+export async function authenticatedGetBlob<T>(url: string, token: string) {
+	try {
+		const headers = jwtHeaders(token, 'application/pdf');
+		const { data } = await axios<T>({
+			method: HTTP_VERBS.get,
+			url,
+			headers,
+			responseType: 'blob',
+		});
 		return data;
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
