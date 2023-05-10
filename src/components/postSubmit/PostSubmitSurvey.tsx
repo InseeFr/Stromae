@@ -33,7 +33,6 @@ export function PostSubmitSurvey() {
 	const handleDepositProof = useCallback(async () => {
 		if (unit) {
 			const proof = await getDepositProof(unit);
-			console.log(proof);
 		}
 	}, [unit, getDepositProof]);
 
