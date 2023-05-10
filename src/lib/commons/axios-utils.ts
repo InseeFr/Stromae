@@ -71,10 +71,10 @@ export async function authenticatedGetRequest<T>(
 	}
 }
 
-export async function authenticatedGetBlob<T>(url: string, token: string) {
+export async function authenticatedGetBlob(url: string, token: string) {
 	try {
 		const headers = jwtHeaders(token, 'application/pdf');
-		const { data } = await axios<T>({
+		const { data } = await axios<BlobPart>({
 			method: HTTP_VERBS.get,
 			url,
 			headers,

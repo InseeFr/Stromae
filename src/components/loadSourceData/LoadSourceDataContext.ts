@@ -17,7 +17,7 @@ export type LoadSourceDataContextType = {
 		data: DataVariables;
 		state: StateData;
 	}) => Promise<boolean>;
-	getDepositProof: (unit: string) => Promise<Blob>;
+	getDepositProof: (unit: string) => Promise<BlobPart>;
 };
 
 const DEFAULT = {
