@@ -6,7 +6,7 @@
   "generatingDate": "28-03-2023 12:57:35",
   "missing": false,
   "pagination": "question",
-  "maxPage": "44",
+  "maxPage": "23",
   "label": {
     "value": "02 - Recensement de la population 2022 - Avec changements",
     "type": "VTL|MD"
@@ -2328,26 +2328,48 @@
         "value": "\"Les bulletins individuels\"",
         "type": "VTL"
       },
-      "locked": true,
+      "locked": false,
       "expressions": {
         "complete": {
-          "value": "not(isnull(NATIO)) and not(isnull(PROF))",
+          "value": "not(isnull(NATIO)) and not(isnull(PROF))) and not(isnull(OUESTVOUSNE)",
           "type": "VTL"
         },
         "partial": {
-          "value": "not(isnull(NATIO)) or not(isnull(PROF))",
+          "value": "not(isnull(NATIO)) or not(isnull(PROF))) or not(isnull(OUESTVOUSNE)",
           "type": "VTL"
         },
         "label": {
           "value": "PRENOMS || \" \" || NOMS",
           "type": "VTL"
+        },
+        "unnecessary": {
+          "value": "if (VIVEZVOUSDS <> \"1\") then (PRENOMS || \" \" || NOMS || \" n’a pas à compléter de questionnaire individuel car il n’est pas catégorisé comme un résident permanent de ce logement.\") else (if ((2023 - cast(substr(cast(DATENAISS,string),1,4),integer)) < 10) then (PRENOMS || \" \" || NOMS || \" n’a pas à compléter de questionnaire individuel car il est âgé de moins de 10 ans.\") else \"\")",
+          "type": "VTL"
         }
       },
+      "bindingDependencies": ["UNNECESSARY_BI", "VIVEZVOUSDS"],
+      "controls": [
+				{
+					"id": "roundabout-Carefull",
+					"criticality": "WARN",
+					"control": {
+						"value": "(VIVEZVOUSDS <> \"1\") or (not(isnull(NATIO)) and not(isnull(PROF))) and not(isnull(OUESTVOUSNE)) or ((2023 - cast(substr(cast(DATENAISS,string),1,4),integer)) < 10)",
+						"type": "VTL", 
+            "bindingDependencies": ["VIVEZVOUSDS"]
+					},
+					"type": "roundabout",
+					"iterations": { "value": "COUNT_PERSONS", "type": "VTL" },
+					"errorMessage": {
+						"value": "\"Le formulaire de \" || PRENOMS || \" \" || NOMS || \" n'a pas été complété\"",
+						"type": "VTL"
+					}
+				}
+			],
       "components": [
         {
           "id": "jsygk7m7",
           "componentType": "Subsequence",
-          "page": "4.1",
+          "page": "22.1",
           "label": {
             "value": "\"Première page de questions pour \" || PRENOMS",
             "type": "VTL|MD"
@@ -2361,7 +2383,7 @@
           "id": "kmno1n7m",
           "componentType": "Input",
           "maxLength": 3,
-          "page": "4.1",
+          "page": "22.1",
           "label": {
             "value": "\"Quelle est votre nationalité ?\"))",
             "type": "VTL"
@@ -2377,7 +2399,7 @@
         {
           "id": "jsygk7m7",
           "componentType": "Subsequence",
-          "page": "4.2",
+          "page": "22.2",
           "label": {
             "value": "\"Deuxième page de questions pour \"|| PRENOMS",
             "type": "VTL|MD"
@@ -2390,9 +2412,13 @@
         {
           "id": "kmno1n7m",
           "componentType": "Input",
-          "page": "4.2",
+          "page": "22.2",
           "label": {
             "value": "\"Quelle est votre profession ?\"))",
+            "type": "VTL|MD"
+          },
+          "description": {
+            "value": "\"Le suggester est en grève...\"))",
             "type": "VTL|MD"
           },
           "conditionFilter": {
@@ -2402,7 +2428,126 @@
           "response": {
             "name": "PROF"
           }
+        }, 
+        {
+          "id": "lfs5q1zj",
+          "componentType": "ComponentSet",
+          "page": "22.3",
+          "conditionFilter": { "value": "true", "type": "VTL" },
+          "label": {
+              "value": "\"Ou etes vous né ?\"",
+              "type": "VTL"
+          },
+          "components": [
+            {
+              "id": "klqn2o7tx",
+              "componentType": "Radio",
+              "mandatory": false,
+              "conditionFilter": {
+                "value": "true",
+                "type": "VTL"
+              },
+              "controls": [
+                {
+                  "id": "klqn2o7tx-CI-0",
+                  "typeOfControl": "CONSISTENCY",
+                  "criticality": "WARN",
+                  "control": {
+                    "value": "not(isnull(OUESTVOUSNE))",
+                    "type": "VTL"
+                  },
+                  "errorMessage": {
+                    "value": "\"Merci d’indiquer l’année d’achèvement de la construction. \"",
+                    "type": "VTL"
+                  },
+                  "bindingDependencies": ["OUESTVOUSNE"]
+                }
+              ],
+              "bindingDependencies": ["OUESTVOUSNE"],
+              "options": [
+                {
+                  "value": "1",
+                  "label": {
+                    "value": "\"En France\"",
+                    "type": "VTL"
+                  }
+                },
+                {
+                  "value": "2",
+                  "label": {
+                    "value": "\"A l'étranger\"",
+                    "type": "VTL"
+                  }
+                }
+              ],
+              "response": {
+                "name": "OUESTVOUSNE"
+              }
+            },
+            {
+              "id": "klqn3zmkx",
+              "componentType": "Input",
+              "mandatory": false,
+              "label": {
+                "value": "\"Dans quel pays êtes-vous né(e) ?\"",
+                "type": "VTL"
+              },
+              "conditionFilter": {
+                "value": "OUESTVOUSNE = \"1\"",
+                "type": "VTL"
+              },
+              "controls": [
+              ],
+              "bindingDependencies": ["OUESTVOUSNE"],
+              "response": {
+                "name": "OUESTVOUSNECOMMUNE"
+              }
+            }
+          ]
         }
+      ]
+    }, 
+    {
+			"id": "kkxugktl-title",
+			"componentType": "Sequence",
+			"page": "23",
+			"label": {
+				"value": "\"## Vous arrivez à la fin du questionnaire. Est-ce que vous être prêt(e) à envoyer vos réponses ?\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			}
+		}, 
+    {
+      "id": "checkboxgroup",
+      "componentType": "CheckboxGroup",
+      "mandatory": false,
+      "page": "23",
+      "conditionFilter": { "value": "true", "type": "VTL" },
+      "controls": [
+          {
+              "id": "checkboxgroup",
+              "typeOfControl": "CONSISTENCY",
+              "criticality": "WARN",
+              "control": { "value": "OPT1", "type": "VTL" },
+              "errorMessage": {
+                  "value": "\"Veuillez confirmer avant de continuer.\"",
+                  "type": "VTL"
+              },
+              "bindingDependencies": ["OPT1"]
+          }
+      ],
+      "responses": [
+          {
+              "id": "opt1",
+              "label": {
+                "value": "\"Oui, je confirme que mes réponses sont correctes ?\"",
+                "type": "VTL"
+              },
+              "response": { "name": "OPT1" }
+          }
       ]
     }
   ],
@@ -3098,6 +3243,28 @@
     },
     {
       "variableType": "COLLECTED",
+      "name": "OUESTVOUSNE",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "OUESTVOUSNECOMMUNE",
+      "values": {
+        "PREVIOUS": null,
+        "COLLECTED": null,
+        "FORCED": null,
+        "EDITED": null,
+        "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
       "name": "AACHL",
       "values": {
         "PREVIOUS": null,
@@ -3182,6 +3349,17 @@
         "FORCED": null,
         "EDITED": null,
         "INPUTED": null
+      }
+    },
+    {
+      "variableType": "COLLECTED",
+      "name": "OPT1",
+      "values": {
+          "PREVIOUS": null,
+          "COLLECTED": null,
+          "FORCED": null,
+          "EDITED": null,
+          "INPUTED": null
       }
     },
     {
@@ -3616,13 +3794,26 @@
     },
     {
       "variableType": "CALCULATED",
-      "name": "DATENAIS",
+      "name": "DATENAIS_UNDERAGE",
       "expression": {
         "value": "2023 - cast(substr(cast(DATENAISS,string),1,4),integer)",
         "type": "VTL"
       },
       "bindingDependencies": [
         "DATENAISS"
+      ],
+      "shapeFrom": "NOM",
+      "inFilter": "true"
+    },
+    {
+      "variableType": "CALCULATED",
+      "name": "UNNECESSARY_BI",
+      "expression": {
+        "value": "VIVEZVOUSDS = \"1\"",
+        "type": "VTL"
+      },
+      "bindingDependencies": [
+        "VIVEZVOUSDS"
       ],
       "shapeFrom": "NOM",
       "inFilter": "true"
