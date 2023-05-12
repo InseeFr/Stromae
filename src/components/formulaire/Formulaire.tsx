@@ -1,14 +1,16 @@
 import * as lunatic from '@inseefr/lunatic';
-import { useEffect, useState } from 'react';
-
+import { useEffect, useState, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';
-
+import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, currentErrors, disabled = false } = props;
+	const { getComponents, currentErrors, disabled = false, goNextPage = () => null, isLastPage } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
+  const navigate = useNavigate();
+  const { unit, survey } = useParams();
 
 	useEffect(
 		() => {
@@ -19,8 +21,20 @@ export function Formulaire(props: OrchestratedElement) {
 		[getComponents]
 	);
 
+  const handleSubmit = useCallback((element: React.FormEvent<HTMLFormElement>) => {
+    element.preventDefault()
+		if (isLastPage) {
+			try {
+				navigate(uriPostEnvoi(survey, unit));
+			} catch (e) {
+				navigate(uri404());
+			}
+		}
+		goNextPage();
+	}, [goNextPage, isLastPage, unit, survey, navigate])
+
 	return (
-		<form>
+		<form onSubmit={handleSubmit}>
 			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
 				if (componentType in lunatic) {
