@@ -23,7 +23,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const { currentPage } = stateData;
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
-	const onChange = useCallback(({ name }: { name: string }) => {
+	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
 	}, []);
 
