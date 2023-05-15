@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fr } from '@codegouvfr/react-dsfr';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { format } from 'date-fns';
@@ -19,14 +19,35 @@ function parseDate(date?: number) {
 	return '';
 }
 
+/*
+ * Trouver une librairie plus sure.
+ */
+function download(data: BlobPart, unit: string) {
+	const url = URL.createObjectURL(new Blob([data]));
+	const aLink = document.createElement('a');
+	aLink.href = url;
+	aLink.download = `deposit-proof-${unit}.pdf`;
+	aLink.click();
+}
+
 export function PostSubmitSurvey() {
 	const navigate = useNavigate();
+	const { unit } = useParams();
+	const { getMetadata, getSurveyUnitData, getDepositProof } = useContext(
+		loadSourceDataContext
+	);
 
 	function navigateError() {
 		navigate(uri404());
 	}
 
-	const { getMetadata, getSurveyUnitData } = useContext(loadSourceDataContext);
+	const handleDepositProof = useCallback(async () => {
+		if (unit) {
+			download(await getDepositProof(unit), unit);
+		}
+		return null;
+	}, [unit, getDepositProof]);
+
 	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);
 	const surveyUnitData = useRemote<SurveyUnitData>(
 		getSurveyUnitData,
@@ -48,7 +69,9 @@ export function PostSubmitSurvey() {
 					Vos réponses ont été envoyées le {submissionDate}.
 					{DescriptionAdditional}
 				</p>
-				<Button>Télécharger l'accusé de réception</Button>
+				<Button onClick={handleDepositProof}>
+					Télécharger l'accusé de réception
+				</Button>
 			</div>
 			<div
 				className={fr.cx(

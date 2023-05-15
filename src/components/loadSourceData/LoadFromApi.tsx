@@ -46,6 +46,13 @@ export function LoadFromApi({
 		[accessToken]
 	);
 
+	const getDepositProof = useCallback(
+		async (unit: string) => {
+			return surveyApi.getDepositiProof(unit, accessToken);
+		},
+		[accessToken]
+	);
+
 	const putSurveyUnitData = useCallback(
 		async (args: { data: DataVariables; state: StateData } | undefined) => {
 			try {
@@ -74,6 +81,7 @@ export function LoadFromApi({
 				getSurveyUnitData,
 				getReferentiel,
 				putSurveyUnitData,
+				getDepositProof,
 			}}
 		>
 			{children}
