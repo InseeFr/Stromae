@@ -1,5 +1,4 @@
 import { authenticatedGetRequest } from '../commons/axios-utils';
-
 import { nomenclature } from './api';
 
 export const getNomenclature =

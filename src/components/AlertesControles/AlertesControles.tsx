@@ -1,7 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { fr } from '@codegouvfr/react-dsfr';
 
 import { OrchestratedElement } from '../../typeStromae/type';
+
+function ErrorMessage({errorMessage}: {errorMessage: ReactNode}) {
+  if (errorMessage && Array.isArray(errorMessage)) {
+    return <>
+      {errorMessage.map((message, i) => {
+        return <p key={i}>{message}</p>
+      })}
+    </>
+  };
+  return <>{errorMessage}</>;
+}
 
 export function AlertesControles(props: OrchestratedElement) {
 	const { currentErrors, criticality } = props;
@@ -19,7 +30,7 @@ export function AlertesControles(props: OrchestratedElement) {
 			.map(({ errorMessage, id }) => {
 				return (
 					<div key={id} className="message-error" id="alertText">
-						{errorMessage}
+						<ErrorMessage errorMessage={errorMessage} />
 					</div>
 				);
 			});
