@@ -10,14 +10,11 @@ export function Formulaire(props: OrchestratedElement) {
 	const { getComponents, currentErrors, disabled = false } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
 
-	useEffect(
-		() => {
-			if (typeof getComponents === 'function') {
-				setComponents(getComponents());
-			}
-		},
-		[getComponents]
-	);
+	useEffect(() => {
+		if (typeof getComponents === 'function') {
+			setComponents(getComponents());
+		}
+	}, [getComponents]);
 
 	return (
 		<form>

@@ -64,7 +64,8 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://legifrance.gouv.fr" rel="noreferrer"
+									href="https://legifrance.gouv.fr"
+									rel="noreferrer"
 								>
 									legifrance.gouv.fr
 								</a>
@@ -74,7 +75,8 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://gouvernement.fr" rel="noreferrer"
+									href="https://gouvernement.fr"
+									rel="noreferrer"
 								>
 									gouvernement.fr
 								</a>
@@ -84,7 +86,8 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://service-public.fr" rel="noreferrer"
+									href="https://service-public.fr"
+									rel="noreferrer"
 								>
 									service-public.fr
 								</a>
@@ -94,7 +97,8 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://data.gouv.fr" rel="noreferrer"
+									href="https://data.gouv.fr"
+									rel="noreferrer"
 								>
 									data.gouv.fr
 								</a>

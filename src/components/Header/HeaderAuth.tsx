@@ -25,18 +25,15 @@ export function HeaderAuth({ children }: HeaderAuthProps) {
 	const { login, logout, isAuthenticated } = useOidc();
 	const { survey, unit } = useParams();
 
-	const handleOidcAuth = useCallback(
-		() => {
-			if (isAuthenticated) {
-				logout(
-					`${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`
-				);
-			} else {
-				login(getCallBack({ survey, unit }));
-			}
-		},
-		[isAuthenticated, login, logout, survey, unit]
-	);
+	const handleOidcAuth = useCallback(() => {
+		if (isAuthenticated) {
+			logout(
+				`${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`
+			);
+		} else {
+			login(getCallBack({ survey, unit }));
+		}
+	}, [isAuthenticated, login, logout, survey, unit]);
 
 	return (
 		<CloneElements<HeaderProps>

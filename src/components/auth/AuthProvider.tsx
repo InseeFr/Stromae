@@ -1,9 +1,13 @@
 import { useRef, useState } from 'react';
-import { OidcConfiguration, OidcProvider, TokenRenewMode } from '@axa-fr/react-oidc';
+import {
+	OidcConfiguration,
+	OidcProvider,
+	TokenRenewMode,
+} from '@axa-fr/react-oidc';
 
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
-import { useAsyncEffect } from '../../hooks/useAsyncEffect'
+import { useAsyncEffect } from '../../hooks/useAsyncEffect';
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -34,7 +38,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			token_renew_mode: TokenRenewMode.access_token_invalid,
 			refresh_time_before_tokens_expiration_in_second: 40,
 		});
-	}, [alreadyLoad])
+	}, [alreadyLoad]);
 
 	if (configuration !== undefined) {
 		return (

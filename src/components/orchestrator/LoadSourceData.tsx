@@ -10,42 +10,42 @@ import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
 
 type LoadSourceDataProps = {
-  onChange?: (args: any) => void;
+	onChange?: (args: any) => void;
 };
 
 //
-export function LoadSourceData ({
-                                  children,
-                                  onChange
-                                }: PropsWithChildren<LoadSourceDataProps>) {
-  const navigate = useNavigate();
-  const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
-    loadSourceDataContext
-  );
+export function LoadSourceData({
+	children,
+	onChange,
+}: PropsWithChildren<LoadSourceDataProps>) {
+	const navigate = useNavigate();
+	const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
+		loadSourceDataContext
+	);
 
-  function navigateError () {
-    navigate('/404');
-  }
+	function navigateError() {
+		navigate('/404');
+	}
 
-  const source = useRemote<LunaticSource>(getSurvey, navigateError);
-  const surveyUnitData = useRemote<SurveyUnitData>(
-    getSurveyUnitData,
-    navigateError
-  );
+	const source = useRemote<LunaticSource>(getSurvey, navigateError);
+	const surveyUnitData = useRemote<SurveyUnitData>(
+		getSurveyUnitData,
+		navigateError
+	);
 
-  if (!source || !surveyUnitData) {
-    // TODO skeleton
-    return null;
-  }
+	if (!source || !surveyUnitData) {
+		// TODO skeleton
+		return null;
+	}
 
-  return (
-    <CloneElements<OrchestratorProps>
-      source={source}
-      surveyUnitData={surveyUnitData}
-      getReferentiel={getReferentiel}
-      onChange={onChange}
-    >
-      {children}
-    </CloneElements>
-  );
+	return (
+		<CloneElements<OrchestratorProps>
+			source={source}
+			surveyUnitData={surveyUnitData}
+			getReferentiel={getReferentiel}
+			onChange={onChange}
+		>
+			{children}
+		</CloneElements>
+	);
 }

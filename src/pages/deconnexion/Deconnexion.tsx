@@ -15,21 +15,15 @@ export function Deconnexion() {
 
 	const navigate = useNavigate();
 
-	const onClick = useCallback(
-		() => {
-			login();
-		},
-		[login]
-	);
+	const onClick = useCallback(() => {
+		login();
+	}, [login]);
 
-	useEffect(
-		() => {
-			if (isAuthenticated) {
-				navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
-			}
-		},
-		[isAuthenticated, navigate, survey, unit]
-	);
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
+		}
+	}, [isAuthenticated, navigate, survey, unit]);
 
 	if (isAuthenticated) {
 		return <></>;

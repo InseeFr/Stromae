@@ -1,12 +1,9 @@
 import { useCallback, useEffect, KeyboardEvent } from 'react';
 
 export function useTabulate(first?: HTMLElement, last?: HTMLElement) {
-	useEffect(
-		() => {
-			first?.focus();
-		},
-		[first]
-	);
+	useEffect(() => {
+		first?.focus();
+	}, [first]);
 
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLElement>) => {
@@ -17,9 +14,9 @@ export function useTabulate(first?: HTMLElement, last?: HTMLElement) {
 						e.nativeEvent.preventDefault();
 					}
 				} else if (document.activeElement === last) {
-						first?.focus();
-						e.nativeEvent.preventDefault();
-					}
+					first?.focus();
+					e.nativeEvent.preventDefault();
+				}
 			}
 		},
 		[first, last]
