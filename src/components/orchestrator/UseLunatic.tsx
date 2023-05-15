@@ -25,7 +25,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
-		console.log(name, value);
 	}, []);
 
 	useEffect(() => {

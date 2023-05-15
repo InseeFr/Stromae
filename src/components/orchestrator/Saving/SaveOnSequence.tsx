@@ -28,6 +28,7 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 						}
 						goNextPage();
 					} catch (e) {
+						// eslint-disable-next-line no-console
 						console.error(e);
 						setSavingFailure({ status: 500 });
 					}
