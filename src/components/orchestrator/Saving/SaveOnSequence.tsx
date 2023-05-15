@@ -15,30 +15,26 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const components = getComponents();
 	const isSequence = isComponentsContainSequence(components);
 
-	const handleGoNext = useCallback(
-		() => {
-			if (goNextPage) {
-				if (isSequence) {
-					(async function () {
-						try {
-							setSavingFailure(undefined);
-							const somethingToSave = await save();
+	const handleGoNext = useCallback(() => {
+		if (goNextPage) {
+			if (isSequence) {
+				(async function () {
+					try {
+						setSavingFailure(undefined);
+						const somethingToSave = await save();
 
-							if (somethingToSave) {
-								setSavingFailure({ status: 200 });
-							}
-							goNextPage();
-						} catch (e) {
-							// eslint-disable-next-line no-console
-							console.error(e);
-							setSavingFailure({ status: 500 });
+						if (somethingToSave) {
+							setSavingFailure({ status: 200 });
 						}
-					})();
-				}
+						goNextPage();
+					} catch (e) {
+						console.error(e);
+						setSavingFailure({ status: 500 });
+					}
+				})();
 			}
-		},
-		[goNextPage, isSequence, save]
-	);
+		}
+	}, [goNextPage, isSequence, save]);
 
 	return (
 		<CloneElements<OrchestratedElement>

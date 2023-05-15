@@ -18,35 +18,26 @@ export function LoadFromApi({
 }: PropsWithChildren<LoadFromApiProps>) {
 	const { accessToken } = useOidcAccessToken();
 
-	const getMetadata = useCallback(
-		async () => {
-			if (survey) {
-				return surveyApi.getMetadataSurvey(survey);
-			}
-			return undefined;
-		},
-		[survey]
-	);
+	const getMetadata = useCallback(async () => {
+		if (survey) {
+			return surveyApi.getMetadataSurvey(survey);
+		}
+		return undefined;
+	}, [survey]);
 
-	const getSurvey = useCallback(
-		async () => {
-			if (survey && accessToken) {
-				return surveyApi.getSurvey(survey, accessToken);
-			}
-			return undefined;
-		},
-		[survey, accessToken]
-	);
+	const getSurvey = useCallback(async () => {
+		if (survey && accessToken) {
+			return surveyApi.getSurvey(survey, accessToken);
+		}
+		return undefined;
+	}, [survey, accessToken]);
 
-	const getSurveyUnitData = useCallback(
-		async () => {
-			if (accessToken && unit) {
-				return surveyApi.getSurveyUnitData(unit, accessToken);
-			}
-			return undefined;
-		},
-		[unit, accessToken]
-	);
+	const getSurveyUnitData = useCallback(async () => {
+		if (accessToken && unit) {
+			return surveyApi.getSurveyUnitData(unit, accessToken);
+		}
+		return undefined;
+	}, [unit, accessToken]);
 
 	const getReferentiel = useCallback(
 		async (name: string) => {
@@ -56,9 +47,7 @@ export function LoadFromApi({
 	);
 
 	const putSurveyUnitData = useCallback(
-		async (
-			args: { data: DataVariables; state: StateData } | undefined
-		) => {
+		async (args: { data: DataVariables; state: StateData } | undefined) => {
 			try {
 				if (args) {
 					const { data, state } = args;
@@ -68,7 +57,6 @@ export function LoadFromApi({
 					}
 				}
 			} catch (e) {
-				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}

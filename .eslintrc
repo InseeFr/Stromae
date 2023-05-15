@@ -10,6 +10,7 @@
 		"@typescript-eslint/array-type": "off",
 		"@typescript-eslint/ban-types": "off",
 		"react/no-unescaped-entities": "off",
+		"no-console": "off",
 		"react/jsx-filename-extension": [
 			"warn",
 			{
