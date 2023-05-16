@@ -38,7 +38,8 @@ export function Continuer(props: OrchestratedElement) {
 	const { unit, survey } = useParams();
 	const buttonContent = getStatus(getComponents, isLastPage ?? false);
 
-	const handleClick = useCallback(() => {
+	const handleClick = useCallback((event: React.MouseEvent) => {
+      event.preventDefault()
 		if (isLastPage) {
 			try {
 				navigate(uriPostEnvoi(survey, unit));
@@ -54,6 +55,7 @@ export function Continuer(props: OrchestratedElement) {
 			priority="primary"
 			onClick={handleClick}
 			className={fr.cx('fr-mt-1w')}
+      nativeButtonProps={{"form": "stromae-form", "type": "submit"}}
 		>
 			{buttonContent}
 		</Button>
