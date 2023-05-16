@@ -29,34 +29,25 @@ export function AsyncRequest<T>(props: AsyncRequestProps<T>) {
 	const { idle, pending, error: errorLabel, success } = label;
 	const { status, execute, error, value } = useAsync(request);
 
-	useEffect(
-		() => {
-			execute();
-			return () => {
-				abort();
-			};
-		},
-		[execute, abort]
-	);
+	useEffect(() => {
+		execute();
+		return () => {
+			abort();
+		};
+	}, [execute, abort]);
 
-	useEffect(
-		() => {
-			if (error) {
-				// eslint-disable-next-line no-console
-				console.warn(error);
-			}
-		},
-		[error]
-	);
+	useEffect(() => {
+		if (error) {
+			// eslint-disable-next-line no-console
+			console.warn(error);
+		}
+	}, [error]);
 
-	useEffect(
-		() => {
-			if (value) {
-				onSuccess(value);
-			}
-		},
-		[value, onSuccess]
-	);
+	useEffect(() => {
+		if (value) {
+			onSuccess(value);
+		}
+	}, [value, onSuccess]);
 
 	switch (status) {
 		case AsyncRequestStatus.Idle:

@@ -6,16 +6,13 @@ const DEFAULT_SURVEY = process.env.REACT_APP_DEFAULT_SURVEY;
 export function RoutingPortail() {
 	const navigate = useNavigate();
 
-	useEffect(
-		() => {
-			if (DEFAULT_SURVEY) {
-				navigate(`/questionnaire/${DEFAULT_SURVEY}`);
-			} else {
-				navigate(`/404`);
-			}
-		},
-		[navigate]
-	);
+	useEffect(() => {
+		if (DEFAULT_SURVEY) {
+			navigate(`/questionnaire/${DEFAULT_SURVEY}`);
+		} else {
+			navigate(`/404`);
+		}
+	}, [navigate]);
 
 	return <></>;
 }
