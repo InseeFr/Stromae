@@ -10,8 +10,11 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { RespondantsList } from './RespondantsList';
 import { WelcomeQuestions } from './WelcomeQuestions';
 import { useDocumentTitle } from '../../useDocumentTitle';
+import ConvertContent from '../../convertContent';
+import { useColors } from '@codegouvfr/react-dsfr/useColors';
 
 export function WelcomeContainer() {
+	const theme = useColors();
 	const navigate = useNavigate();
 	const { survey, unit } = useParams();
 	const { oidcUser } = useOidcUser();
@@ -38,18 +41,46 @@ export function WelcomeContainer() {
 		return <Skeleton />;
 	}
 	return (
-		<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w fr-my-lg-6w">
-			<div className="fr-col-12 fr-col-lg-8">
-				<h1>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h1>
-				<p className="fr-text--lead">{welcome.Enq_ObjectifsCourts}</p>
-				<RespondantsList respondants={welcome.whoAnswers} />
-				<Button size="large" onClick={onClick}>
-					Commencer
-				</Button>
-				<h3 className="fr-mt-5w">
-					En savoir plus sur l'{welcome.Enq_LibelleEnquete}
-				</h3>
-				<WelcomeQuestions welcome={metadata.Welcome} />
+		<div>
+			<div className="fr-container fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w fr-my-md-8w">
+				<div className="fr-col-12">
+					<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle">
+						<div className="fr-col-6">
+							<h1 className="fr-h2">
+								Bienvenue sur l'{welcome.Enq_LibelleEnquete}
+							</h1>
+							<p className="fr-text--lead">
+								<ConvertContent content={welcome.Enq_ObjectifsCourts} />
+							</p>
+							<RespondantsList respondants={welcome.whoAnswers} />
+							<Button size="large" onClick={onClick}>
+								Commencer
+							</Button>
+						</div>
+						<div className="fr-col-4">
+							<img
+								className="fr-responsive-img"
+								src="https://le-recensement-et-moi.fr/illu-femme-ordi.svg"
+								alt="decoration"
+							></img>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				className="fr-p-6w fr-grid-row fr-grid-row--center fr-grid-row--middle"
+				style={{
+					backgroundColor:
+						theme.decisions.background.alt.greenTilleulVerveine.default,
+				}}
+			>
+				<div className="fr-col-6">
+					<h2 className="fr-h4">
+						En savoir plus sur l'{welcome.Enq_LibelleEnquete}
+					</h2>
+					<WelcomeQuestions welcome={metadata.Welcome} />
+				</div>
 			</div>
 		</div>
 	);
