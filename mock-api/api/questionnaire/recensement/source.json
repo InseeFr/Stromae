@@ -139,7 +139,6 @@
 					"id": "lfs5q1zj-IRIS",
 					"componentType": "Input",
 					"mandatory": false,
-					"className": "totoComponentSet-INput-one",
 					"maxLength": 4,
 					"label": {
 						"value": "\"IRIS, Ilot ou district\"",
@@ -376,7 +375,7 @@
 						{
 							"id": "klqmzxr4-CI-0",
 							"typeOfControl": "CONSISTENCY",
-							"criticality": "WARN",
+							"criticality": "ERROR",
 							"control": {
 								"value": "not(isnull(NOMVOI_LOC))",
 								"type": "VTL"
@@ -414,29 +413,36 @@
 					"response": {
 						"name": "CPOST_LOC"
 					}
-				},
-				{
-					"id": "l8txcnai-commune",
-					"componentType": "Input",
-					"mandatory": false,
-					"maxLength": 25,
-					"label": {
-						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
-						"type": "VTL"
-					},
-					"description": {
-						"value": "\"Exemple: Paris 10e\"",
-						"type": "VTL"
-					},
-					"conditionFilter": {
-						"value": "true",
-						"type": "VTL"
-					},
-					"bindingDependencies": ["COM_LOC"],
-					"response": {
-						"name": "COM_LOC"
-					}
-				},
+				}
+			]
+		},
+		{
+			"id": "suggester-communes",
+			"componentType": "Suggester",
+			"page": "3",
+			"label": {
+				"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+				"type": "VTL|MD"
+			},
+			"description": {
+				"value": "\"Exemple: Paris 10e\"",
+				"type": "VTL"
+			},
+			"storeName": "communes-2019",
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"response": {
+				"name": "COM_LOC"
+			}
+		},
+		{
+			"id": "l8twtrc9-set-1",
+			"componentType": "ComponentSet",
+			"page": "3",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"components": [
 				{
 					"id": "l8tx81u3",
 					"componentType": "Input",
@@ -561,10 +567,19 @@
 				{
 					"id": "klqor7p0-klqop8l1",
 					"declarationType": "INSTRUCTION",
-					"position": "AFTER_QUESTION_TEXT",
+					"position": "BEFORE_QUESTION_TEXT",
 					"label": {
-						"value": "\"Temps de réponse estimé de 5 minutes \n\n \n\n Les questions sur le logement permettent de connaître les caractéristiques du logement, d'analyser les conditions de vie des ménages et de planifier le développement urbain pour adapter les politiques de logement en fonction des besoins de la population.\"",
+						"value": "\"Temps de réponse estimé de 5 minutes \n \n \"",
 						"type": "VTL|MD"
+					}
+				},
+				{
+					"id": "klqor7p0-klqop8l1",
+					"declarationType": "INSTRUCTION",
+					"position": "BEFORE_QUESTION_TEXT",
+					"label": {
+						"value": "\"Les questions sur le logement permettent de connaître les caractéristiques du logement, d'analyser les conditions de vie des ménages et de planifier le développement urbain pour adapter les politiques de logement en fonction des besoins de la population.\"",
+						"type": "VTL"
 					}
 				}
 			],
@@ -579,7 +594,7 @@
 			"mandatory": false,
 			"page": "5",
 			"label": {
-				"value": "\"### Le bâtiment se compose-t-il d'un seul logement ?\"",
+				"value": "\"### Le bâtiment d'habitation se compose-t-il d'un seul logement ?\"",
 				"type": "VTL|MD"
 			},
 			"conditionFilter": {
@@ -785,62 +800,12 @@
 			}
 		},
 		{
-			"id": "klqmu096",
+			"id": "klqn2o7t",
 			"componentType": "Radio",
 			"mandatory": false,
 			"page": "7",
 			"label": {
-				"value": "\"### Ce logement est-il desservi par un ascenseur ?\"",
-				"type": "VTL|MD"
-			},
-			"conditionFilter": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"controls": [
-				{
-					"id": "klqmu096-CI-0",
-					"typeOfControl": "CONSISTENCY",
-					"criticality": "WARN",
-					"control": {
-						"value": "not(isnull(ASCEN))",
-						"type": "VTL"
-					},
-					"errorMessage": {
-						"value": "\"Merci d’indiquer si ce logement est desservi par un ascenseur.\"",
-						"type": "VTL"
-					},
-					"bindingDependencies": ["ASCEN"]
-				}
-			],
-			"bindingDependencies": ["ASCEN"],
-			"options": [
-				{
-					"value": "1",
-					"label": {
-						"value": "\"Oui\"",
-						"type": "VTL"
-					}
-				},
-				{
-					"value": "2",
-					"label": {
-						"value": "\"Non\"",
-						"type": "VTL"
-					}
-				}
-			],
-			"response": {
-				"name": "ASCEN"
-			}
-		},
-		{
-			"id": "klqn2o7t",
-			"componentType": "Radio",
-			"mandatory": false,
-			"page": "8",
-			"label": {
-				"value": "\"### Quand s’est terminée la construction de l’immeuble ou de votre maison ?\"",
+				"value": "\"### Quand s’est terminée la construction de \" || if TYPL = \"1\" then \"votre maison ?\" else \"l'immeuble ou de la maison ?\"",
 				"type": "VTL|MD"
 			},
 			"description": {
@@ -920,7 +885,7 @@
 			"id": "klqn3zmk",
 			"componentType": "Input",
 			"mandatory": false,
-			"page": "8",
+			"page": "7",
 			"min": 2006,
 			"max": 2024,
 			"decimals": 0,
@@ -970,87 +935,76 @@
 			}
 		},
 		{
-			"id": "klqncpes-set",
-			"componentType": "ComponentSet",
-			"page": "9",
+			"id": "klqmu096",
+			"componentType": "Radio",
+			"mandatory": false,
+			"page": "8",
+			"label": {
+				"value": "\"### Ce logement est-il desservi par un ascenseur ?\"",
+				"type": "VTL|MD"
+			},
 			"conditionFilter": {
 				"value": "true",
-				"type": "VTL",
-				"bindingDependencies": ["IAEMM"]
-			},
-			"label": {
-				"value": "\"En quelle année avez-vous emménagé dans votre logement ?\"",
 				"type": "VTL"
 			},
-			"components": [
+			"controls": [
 				{
-					"id": "klqncpes",
-					"componentType": "Input",
-					"mandatory": false,
-					"maxLength": 4,
+					"id": "klqmu096-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(isnull(ASCEN))",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "\"Merci d’indiquer si ce logement est desservi par un ascenseur.\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["ASCEN"]
+				}
+			],
+			"bindingDependencies": ["ASCEN"],
+			"options": [
+				{
+					"value": "1",
 					"label": {
-						"value": "\"Année d'emménagement\"",
+						"value": "\"Oui\"",
 						"type": "VTL"
-					},
-					"conditionFilter": {
-						"value": "true",
+					}
+				},
+				{
+					"value": "2",
+					"label": {
+						"value": "\"Non\"",
 						"type": "VTL"
-					},
-					"declarations": [
-						{
-							"id": "klqor7p0-klqop8l1",
-							"declarationType": "INSTRUCTION",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Si tous les occupants actuels du logement ne sont pas arrivés en même temps, indiquez la date d’emménagement du premier arrivé. \n \n Si cette personne a toujours vécu dans le logement, reportez son année de naissance\"",
-								"type": "VTL|MD"
-							}
-						}
-					],
-					"controls": [
-						{
-							"id": "klqncpes-CI-0",
-							"typeOfControl": "CONSISTENCY",
-							"criticality": "WARN",
-							"control": {
-								"value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
-								"type": "VTL"
-							},
-							"errorMessage": {
-								"value": "\"Veuillez compléter votre année d'emménagement.\"",
-								"type": "VTL"
-							},
-							"bindingDependencies": ["AEMM_OCC", "ACHL"]
-						}
-					],
-					"response": {
-						"name": "AEMM_OCC"
 					}
 				}
-			]
+			],
+			"response": {
+				"name": "ASCEN"
+			}
 		},
 		{
 			"id": "klqns4rj-set",
 			"componentType": "ComponentSet",
-			"page": "10",
+			"page": "9",
 			"conditionFilter": { "value": "true", "type": "VTL" },
 			"label": {
-				"value": "\"De combien de pièces d’habitation se composent votre logement ?\"",
+				"value": "\"Combien de pièces d’habitation compte votre logement ?\"",
 				"type": "VTL"
 			},
-			"components": [
+			"declarations": [
 				{
-					"id": "klqns4rj-subtitle1",
-					"componentType": "Sequence",
+					"id": "klqor7p0-klqop8l1",
+					"declarationType": "INSTRUCTION",
+					"position": "QuestionInformation",
 					"label": {
 						"value": "\"Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.\n\n \n\n Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.\n\n Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.)\"",
 						"type": "VTL|MD"
-					},
-					"conditionFilter": {
-						"value": "true",
-						"type": "VTL"
 					}
-				},
+				}
+			],
+			"components": [
 				{
 					"id": "klqns4rj",
 					"componentType": "InputNumber",
@@ -1123,7 +1077,7 @@
 			"id": "klqnxdxp",
 			"componentType": "Radio",
 			"mandatory": false,
-			"page": "10",
+			"page": "9",
 			"label": {
 				"value": "\"### Quelle est la surface de ce logement ?\"",
 				"type": "VTL|MD"
@@ -1208,11 +1162,12 @@
 				"name": "SURF"
 			}
 		},
+
 		{
 			"id": "klqns2qd",
 			"componentType": "Radio",
 			"mandatory": false,
-			"page": "11",
+			"page": "10",
 			"label": {
 				"value": "\"### Êtes-vous :\"",
 				"type": "VTL|MD"
@@ -1276,7 +1231,7 @@
 			"id": "klqnr6f5",
 			"componentType": "Radio",
 			"mandatory": false,
-			"page": "12",
+			"page": "11",
 			"label": {
 				"value": "\"### Ce logement appartient-il à un organisme d’HLM ?\"",
 				"type": "VTL|MD"
@@ -1321,6 +1276,70 @@
 			"response": {
 				"name": "HLML"
 			}
+		},
+		{
+			"id": "klqncpes-set",
+			"componentType": "ComponentSet",
+			"page": "12",
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL",
+				"bindingDependencies": ["IAEMM"]
+			},
+			"label": {
+				"value": "\"En quelle année avez-vous emménagé dans votre logement ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "klqncpes",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 4,
+					"label": {
+						"value": "\"Année d'emménagement\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 2020\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"declarations": [
+						{
+							"id": "klqor7p0-klqop8l1",
+							"declarationType": "INSTRUCTION",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\"Si tous les occupants actuels du logement ne sont pas arrivés en même temps, indiquez la date d’emménagement du premier arrivé. \n \n Si cette personne a toujours vécu dans le logement, reportez son année de naissance\"",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"controls": [
+						{
+							"id": "klqncpes-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez compléter votre année d'emménagement.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["AEMM_OCC", "ACHL"]
+						}
+					],
+					"response": {
+						"name": "AEMM_OCC"
+					}
+				}
+			]
 		},
 		{
 			"id": "klqobgcg",
@@ -1413,14 +1432,22 @@
 				{
 					"value": "1",
 					"label": {
-						"value": "\"Chauffage collectif (chaudière commune à plusieurs logements de l’immeuble ou réseau de chauffage urbain)\"",
+						"value": "\"Chauffage collectif\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Chaudière commune à plusieurs logements de l’immeuble ou réseau de chauffage urbain\"",
 						"type": "VTL"
 					}
 				},
 				{
 					"value": "2",
 					"label": {
-						"value": "\"Chaudière individuelle (propre au logement)\"",
+						"value": "\"Chaudière individuelle\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Propre au logement\"",
 						"type": "VTL"
 					}
 				},
@@ -1663,7 +1690,7 @@
 			"componentType": "Sequence",
 			"page": "17",
 			"label": {
-				"value": "\"Deuxième partie : la liste des habitants du logement\"",
+				"value": "\"2. La liste des habitants du logement\"",
 				"type": "VTL"
 			},
 			"conditionFilter": {
@@ -1676,7 +1703,16 @@
 					"declarationType": "INSTRUCTION",
 					"position": "AFTER_QUESTION_TEXT",
 					"label": {
-						"value": "\"La liste de l'ensemble des habitants du logement permet de déterminer le nombre de personnes vivant de façon permanente dans un logement, et par conséquant, d'établir la population officielle de chaque commune.\"",
+						"value": "\"Temps de réponse estimé de 1 minute par habitant \n \n \"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "lfvaiu4x-klqr18ql",
+					"declarationType": "INSTRUCTION",
+					"position": "AFTER_QUESTION_TEXT",
+					"label": {
+						"value": "\"La liste de l'ensemble des habitants du logement permet de déterminer le nombre de personnes vivant de façon permanente dans un logement, et par conséquent, d'établir la population officielle de chaque commune.\"",
 						"type": "VTL"
 					}
 				}
@@ -1912,6 +1948,21 @@
 							}
 						}
 					],
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(VIVEZVOUSDS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner si cet habitant vit aussi dans un autre logement.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1)",
 						"type": "VTL",
@@ -1974,9 +2025,35 @@
 					"mandatory": false,
 					"page": "19.2",
 					"label": {
-						"value": "\"### Pour ses études, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situation précisément ?\"",
+						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
 					},
+					"declarations": [
+						{
+							"id": "kkxuu8ov-l8ty0pcg",
+							"declarationType": "STATEMENT",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\"Pour ses études, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
+								"type": "VTL"
+							}
+						}
+					],
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(ETUDES))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner une raison.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"2\")",
 						"type": "VTL",
@@ -2009,9 +2086,35 @@
 					"mandatory": false,
 					"page": "19.2",
 					"label": {
-						"value": "\"### Pour des raisons professionnelles, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situation précisément ?\"",
+						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
 					},
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(PROFESSIONS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner une raison.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"declarations": [
+						{
+							"id": "kkxuu8ov-l8ty0pcg",
+							"declarationType": "STATEMENT",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\" Pour des raisons professionnelles, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"3\")",
 						"type": "VTL",
@@ -2044,9 +2147,35 @@
 					"mandatory": false,
 					"page": "19.2",
 					"label": {
-						"value": "\"### Suite à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle part de son temps passe-t-\" || LIB_ILELLES || \" ici ?\"",
+						"value": "\"### Quelle part de son temps passe-t-\" || LIB_ILELLES || \" ici ?\"",
 						"type": "VTL|MD"
 					},
+					"declarations": [
+						{
+							"id": "kkxuu8ov-l8ty0pcg",
+							"declarationType": "STATEMENT",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\"Suite à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
+								"type": "VTL"
+							}
+						}
+					],
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(SEPARATIONS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner quel part de son temps cet habitant passe-t-il ici.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\")",
 						"type": "VTL",
@@ -2094,6 +2223,21 @@
 						"value": "\"### \" || (if isnull(PRENOMS) then \"Cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" a-t-\" || (if isnull(PRENOMS) then \"il\" else LIB_ILELLES) || \" passé la nuit du 30 mars 2023 dans ce logement ?\"",
 						"type": "VTL|MD"
 					},
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(NUIT_ICIS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner si cet habitant a dormi ici la nuit du 30 mars 2023.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\") and (SEPARATIONS = \"2\")",
 						"type": "VTL",
@@ -2135,9 +2279,35 @@
 					"mandatory": false,
 					"page": "19.2",
 					"label": {
-						"value": "\"### Pour des raisons qui ne sont liées ni aux études, ni pour des raisons professionnelles, ni à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. Quelle est sa situations précisèment ?\"",
+						"value": "\"### Quelle est sa situation précisèment ?\"",
 						"type": "VTL|MD"
 					},
+					"declarations": [
+						{
+							"id": "kkxuu8ov-l8ty0pcg",
+							"declarationType": "STATEMENT",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\"Pour des raisons qui ne sont liées ni aux études, ni pour des raisons professionnelles, ni à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(AUTRE_SITUATIONS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner une raison.\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"5\")",
 						"type": "VTL",
@@ -2236,7 +2406,7 @@
 					"componentType": "Subsequence",
 					"page": "20.1",
 					"label": {
-						"value": "\"Première page de questions pour \" || PRENOMS",
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2245,20 +2415,196 @@
 					}
 				},
 				{
-					"id": "kmno1n7m",
-					"componentType": "Input",
-					"maxLength": 3,
+					"id": "klqn2o7tx",
+					"componentType": "Radio",
 					"page": "20.1",
+					"mandatory": false,
 					"label": {
-						"value": "\"Quelle est votre nationalité ?\"))",
-						"type": "VTL"
+						"value": "### Où êtes-vous né(e) ?",
+						"type": "VTL|MD"
 					},
 					"conditionFilter": {
 						"value": "true",
 						"type": "VTL"
 					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(OUESTVOUSNE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci d’indiquer où vous êtes né(e) \"",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"bindingDependencies": ["OUESTVOUSNE"],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"En France\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"A l'étranger\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"response": {
-						"name": "NATIO"
+						"name": "OUESTVOUSNE"
+					}
+				},
+				{
+					"id": "suggester-communes-2",
+					"componentType": "Suggester",
+					"page": "20.1",
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(OUESTVOUSNECOMMUNE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci d’indiquer dans quelle commune vous êtes né(e) \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["OUESTVOUSNE"]
+						}
+					],
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "not(isnull(OUESTVOUSNE)) and OUESTVOUSNE = \"1\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["OUESTVOUSNE"],
+					"response": {
+						"name": "OUESTVOUSNECOMMUNE"
+					}
+				},
+				{
+					"id": "klffqn3zmddkx",
+					"componentType": "Input",
+					"mandatory": false,
+					"page": "20.1",
+					"label": {
+						"value": "\"Commune\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(OUESTVOUSNEPAYS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci d’indiquer dans quel commune vous êtes né(e) \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["OUESTVOUSNEPAYS"]
+						}
+					],
+					"conditionFilter": {
+						"value": "OUESTVOUSNE = \"2\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["OUESTVOUSNE"],
+					"response": {
+						"name": "OUESTVOUSNEPAYS"
+					}
+				},
+				{
+					"id": "klqn3zffffmkx",
+					"componentType": "Input",
+					"mandatory": false,
+					"page": "20.1",
+					"label": {
+						"value": "\"Pays de naissance\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(OUESTVOUSNEPAYS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci d’indiquer dans quel pays vous êtes né(e) \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["OUESTVOUSNEPAYS"]
+						}
+					],
+					"conditionFilter": {
+						"value": "OUESTVOUSNE = \"2\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["OUESTVOUSNE"],
+					"response": {
+						"name": "OUESTVOUSNEPAYS"
+					}
+				},
+				{
+					"id": "klqnfsd3zmkx",
+					"componentType": "InputNumber",
+					"mandatory": false,
+					"page": "20.1",
+					"label": {
+						"value": "\"Année d'arrivée en France\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 2000\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ANNEEARRIV))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci d’indiquer dans quel pays vous êtes né(e) \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ANNEEARRIV"]
+						}
+					],
+					"conditionFilter": {
+						"value": "OUESTVOUSNE = \"2\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["ANNEEARRIV"],
+					"response": {
+						"name": "ANNEEARRIV"
 					}
 				},
 				{
@@ -2266,7 +2612,156 @@
 					"componentType": "Subsequence",
 					"page": "20.2",
 					"label": {
-						"value": "\"Deuxième page de questions pour \"|| PRENOMS",
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+
+				{
+					"id": "klqn2o7tx",
+					"componentType": "Radio",
+					"page": "20.2",
+					"mandatory": false,
+					"label": {
+						"value": "### Quelle est votre nationalité ?",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NATIO))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre nationalité \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"bindingDependencies": ["NATIO"],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Vous êtes né(e) française\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Vous êtes devenu(e) français(e)\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Par exemple : par naturalisation, par déclaration, à votre majorité\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Étrangère\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"response": {
+						"name": "NATIO"
+					}
+				},
+				{
+					"id": "suggester-communes",
+					"componentType": "Suggester",
+					"label": {
+						"value": "\"Nationalité à la naissance\"",
+						"type": "VTL|MD"
+					},
+										"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NATIONAISSANCENAME))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre nationalité à la naissance \"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"description": {
+						"value": "\"Exemple: Chinoise\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "NATIO = \"2\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "NATIONAISSANCENAME"
+					},
+					"page": "20.2"
+				},
+				{
+					"id": "suggester-communes",
+					"componentType": "Suggester",
+					"label": {
+						"value": "\"Nationalité\"",
+						"type": "VTL|MD"
+					},
+						"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NATIONAME))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre nationalité\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"description": {
+						"value": "\"Exemple: Chinoise\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "NATIO = \"3\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "NATIONAME"
+					},
+					"page": "20.2"
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.3",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2275,96 +2770,1150 @@
 					}
 				},
 				{
-					"id": "kmno1n7m",
-					"componentType": "Input",
-					"page": "20.2",
+					"id": "input-etablissement",
+					"componentType": "Radio",
 					"label": {
-						"value": "\"Quelle est votre profession ?\"))",
+						"value": "\"### Êtes-vous inscrit(e) dans un établissement d'enseignement pour l'année scolaire en cours ?\"",
 						"type": "VTL|MD"
 					},
-					"description": {
-						"value": "\"Le suggester est en grève...\"))",
-						"type": "VTL|MD"
-					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si vous êtes inscrit(e) dans un établissement d'enseignement pour l'année scolaire en cours\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
 					"conditionFilter": {
 						"value": "true",
 						"type": "VTL"
 					},
 					"response": {
-						"name": "PROF"
-					}
-				},
-				{
-					"id": "lfs5q1zj",
-					"componentType": "ComponentSet",
-					"page": "20.3",
-					"conditionFilter": { "value": "true", "type": "VTL" },
-					"label": {
-						"value": "\"Ou etes vous né ?\"",
-						"type": "VTL"
+						"name": "ETABLISSEMENT"
 					},
-					"components": [
+					
+					"page": "20.3",
+					"options": [
 						{
-							"id": "klqn2o7tx",
-							"componentType": "Radio",
-							"mandatory": false,
-							"conditionFilter": {
-								"value": "true",
+							"value": "1",
+							"label": {
+								"value": "\"Oui\"",
 								"type": "VTL"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(OUESTVOUSNE))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Merci d’indiquer l’année d’achèvement de la construction. \"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["OUESTVOUSNE"]
-								}
-							],
-							"bindingDependencies": ["OUESTVOUSNE"],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"En France\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"A l'étranger\"",
-										"type": "VTL"
-									}
-								}
-							],
-							"response": {
-								"name": "OUESTVOUSNE"
 							}
 						},
 						{
-							"id": "klqn3zmkx",
-							"componentType": "Input",
-							"mandatory": false,
+							"value": "2",
 							"label": {
-								"value": "\"Dans quel pays êtes-vous né(e) ?\"",
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "input-etablissement-dist",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Est-ce un établissement d’enseignement à distance ?\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ETABLISSEMENT_DIST))",
 								"type": "VTL"
 							},
-							"conditionFilter": {
-								"value": "OUESTVOUSNE = \"1\"",
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si votre établissement d'enseignement est à distance\"",
 								"type": "VTL"
 							},
-							"controls": [],
-							"bindingDependencies": ["OUESTVOUSNE"],
-							"response": {
-								"name": "OUESTVOUSNECOMMUNE"
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"conditionFilter": {
+						"value": "ETABLISSEMENT = \"1\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "ETABLISSEMENT_DIST"
+					},
+					"page": "20.3",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Oui\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Où est-il situé?\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ETABLISSEMENTSITU))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer où est situé votre établissement d'enseignement\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"conditionFilter": {
+						"value": "ETABLISSEMENT = \"1\" and ETABLISSEMENT_DIST = \"2\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "ETABLISSEMENTSITU"
+					},
+					"page": "20.3",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Dans la même commune ou arrondissement que votre logement\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"En France, dans une autre commune ou un autre arrondissement\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"A l'étranger\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+
+				{
+					"id": "suggester-communes-commune-eta",
+					"componentType": "Suggester",
+					"page": "20.3",
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+										"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ETABLISSEMENTSITUCOMMUNE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer la commune de votre établissement d'enseignement\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "ETABLISSEMENT = \"1\" and ETABLISSEMENT_DIST = \"2\" and (ETABLISSEMENTSITU = \"2\" or ETABLISSEMENTSITU = \"3\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "ETABLISSEMENTSITUCOMMUNE"
+					}
+				},
+				{
+					"id": "suggester-communes-pays-eta",
+					"componentType": "Suggester",
+					"page": "20.3",
+					"label": {
+						"value": "\"Pays\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ETABLISSEMENTSITUPAYS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer le pays de votre établissement d'enseignement\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "ETABLISSEMENT = \"1\" and ETABLISSEMENT_DIST = \"2\" and ETABLISSEMENTSITU = \"3\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "ETABLISSEMENTSITUPAYS"
+					}
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.4",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Où habitiez-vous le 1er janvier 2024?\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(HABITE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer où vous habitiez le 1er janvier 2024\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+										"declarations": [
+						{
+							"id": "klqor7p0-klqop8l1",
+							"declarationType": "INSTRUCTION",
+							"position": "BEFORE_QUESTION_TEXT",
+							"label": {
+								"value": "\"Les enfants nés après cette date ne sont pas concernés.\"",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"response": {
+						"name": "HABITE"
+					},
+					"page": "20.4",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Dans le même logement que maintenant\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Dans un autre logement** de la même commune\"",
+								"type": "VTL|MD"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Dans une autre commune en France\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Dans une autre commune à l'étranger\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "suggester-communes-commune-janvier",
+					"componentType": "Suggester",
+					"page": "20.4",
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL|MD"
+					},
+										"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(HABITE_COMMUNE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer la commune où vous habitiez le 1er janvier 2024\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "HABITE = \"3\" or HABITE = \"4\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "HABITE_COMMUNE"
+					}
+				},
+				{
+					"id": "suggester-communes-janvier-pays",
+					"componentType": "Suggester",
+					"page": "20.4",
+					"label": {
+						"value": "\"Pays\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(HABITE_PAYS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer le pays où vous habitiez le 1er janvier 2024\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NATIO"]
+						}
+					],
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "HABITE = \"4\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "HABITE_PAYS"
+					}
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.5",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Input",
+					"label": {
+						"value": "\"### Vivez-vous en couple ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(COUPLE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si vous vivez en couple\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["COUPLE"]
+						}
+					],
+					"response": {
+						"name": "COUPLE"
+					},
+					"page": "20.5",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Oui\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.6",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Etes-vous ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "SITUA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(SITUA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre situation\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["SITUA"]
+						}
+					],
+					"page": "20.6",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Marié(e)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Pacsé(e)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"En concubinage ou union libre\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Veuf(ve)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Divorcé(e)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Célibataire\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.7",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Etes-vous ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "DIPLOMES"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(DIPLOMES))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer vos diplômes\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["DIPLOMES"]
+						}
+					],
+					"page": "20.7",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Vous n'êtes jamais allé à l'école ou vous l'avez quittée avant la fin du primaire\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Aucun diplôme et scolarité interrompue à la fin du primaire ou avant la fin du collège\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"CEP (certificat d'études primaires)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"BEPC, brevet élementaire, brevet des collèges, DNB\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Baccalauréat générale ou technologique, brevet supèrieur, capacité en droit, DAEU, ESEU\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Baccalauréat professionnel, brevet professionnel, de technicien ou d'enseignement, diplôme équivalent\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "7",
+							"label": {
+								"value": "\"BTS, DUT, Deug, Deust, diplôme de la santé ou du social de niveau bac+2, diplôme équivalent\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "8",
+							"label": {
+								"value": "\"Licence, licence pro, maîtrise, diplôme équivalent de niveau bac+3 ou bac+4\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "9",
+							"label": {
+								"value": "\"Master, DEA, DESS, diplôme grande école niveau bac+5, doctorat de santé\"",
+								"type": "VTL"
+							}
+						},
+							{
+							"value": "10",
+							"label": {
+								"value": "\"Doctorat de recherche (hors santé)\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.8",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Quelle est votre situation principale ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "SITUAPRO"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(SITUAPRO))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer vos diplômes\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["SITUAPRO"]
+						}
+					],
+					"page": "20.8",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Emploi (salarié ou à votre compte)\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Y compris aide d'une personne dans son travail de façon non rémunéré, en congé maladie ou parental de moins de 3 mois, ou au chômage technique.\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Apprentissage sous contrat ou stage rémunéré\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Y compris formation en alternance\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Études (élève, étudiant) ou stage non rémunéré\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Chômage (inscrit ou non à Pôle emploi)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Retraite ou préretraite (ancien salarié ou ancien indépendant)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Femme ou homme au foyer\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "7",
+							"label": {
+								"value": "\"Autre situation\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Y compris congé parental de plus de 3 mois.\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.9",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Travaillez-vous actuellement ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "TRAVA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(TRAVA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si vous travaillez actuellement\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TRAVA"]
+						}
+					],
+					"page": "20.9",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Oui\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.10",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Avez-vous déjà travaillé ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "DEJATRAVA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(DEJATRAVA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si vous avez déjà travaillez\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["DEJATRAVA"]
+						}
+					],
+					"page": "20.10",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Oui\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.11",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Etiez-vous :\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "ANCIENTRAVA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ANCIENTRAVA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer quelle était votre situation\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ANCIENTRAVA"]
+						}
+					],
+					"page": "20.11",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Salarié(e) ou stagiaire rémunéré(e)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"indépendant ou à votre compte\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Vous aidiez une personne dans son travail sans être rémunéré(e)\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.12",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					}
+				},
+				{
+				"id": "suggester-communes",
+				"componentType": "Suggester",
+				"page": "20.12",
+				"label": {
+					"value": "\"Quelle était votre profession principale ?\"",
+					"type": "VTL|MD"
+				},
+				"storeName": "communes-2019",
+				"conditionFilter": {
+					"value": "AGE > 13 and TRAVA =\"2\"",
+					"type": "VTL"
+				},
+				"response": {
+					"name": "PROF"
+				}
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.13",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Cherchez-vous un emploi ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and TRAVA =\"2\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "CHERCHETRAVA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(CHERCHETRAVA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si vous cherchez un emploi\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["CHERCHETRAVA"]
+						}
+					],
+					"page": "20.13",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Oui, depuis moins d'un an\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Oui, depuis un an ou plus\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Non\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "20.14",
+					"label": {
+						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and (SITUA =\"1\" or SITUA =\"2\" or TRAVA =\"1\")",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Dans votre emploi principal, êtes-vous :\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "AGE > 13 and (SITUA =\"1\" or SITUA =\"2\" or TRAVA =\"1\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "INTERNOMETABLISSEMENT"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(INTERNOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre situation\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["INTERNOMETABLISSEMENT"]
+						}
+					],
+					"page": "20.14",
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"A votre compte\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Intérimaire\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Salarié(e)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Employé chez un sous-traitant\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Employé par plusieurs particuliers et rémunérés en chèque emploi-service\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Assistance maternelle employée par une association ou une collectivité locale\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "7",
+							"label": {
+								"value": "\"Assistance maternelle employée par une ou plusieurs familles\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "8",
+							"label": {
+								"value": "\"Dans une autre situtation\"",
+								"type": "VTL"
 							}
 						}
 					]
@@ -2451,7 +4000,205 @@
 		},
 		{
 			"variableType": "COLLECTED",
+			"name": "NATIONAISSANCENAME",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "NATIONAME",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ETABLISSEMENT",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ETABLISSEMENT_DIST",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ETABLISSEMENTSITU",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "HABITE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+				{
+			"variableType": "COLLECTED",
+			"name": "HABITE_COMMUNE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "HABITE_PAYS",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "COUPLE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+				{
+			"variableType": "COLLECTED",
+			"name": "DIPLOMES",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "SITUAPRO",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "SITUA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "DEJATRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ANCIENTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
 			"name": "PROF",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+				{
+			"variableType": "COLLECTED",
+			"name": "CHERCHETRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "INTERNOMETABLISSEMENT",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "NOMETABLISSEMENT",
 			"values": {
 				"PREVIOUS": [null],
 				"COLLECTED": [null],
@@ -2967,6 +4714,28 @@
 		{
 			"variableType": "COLLECTED",
 			"name": "OUESTVOUSNECOMMUNE",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "OUESTVOUSNEPAYS",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ANNEEARRIV",
 			"values": {
 				"PREVIOUS": null,
 				"COLLECTED": null,

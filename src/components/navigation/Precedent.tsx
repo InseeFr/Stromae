@@ -21,7 +21,7 @@ export function Precedent(props: OrchestratedElement) {
 
 	if (!isFirstPage) {
 		return (
-			<div className="fr-col-12">
+			<div className="fr-col-12 fr-container">
 				<Button
 					priority="tertiary no outline"
 					iconId="fr-icon-arrow-left-line"
