@@ -45,7 +45,7 @@ export function WelcomeContainer() {
 			<div className="fr-container fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w fr-my-md-8w">
 				<div className="fr-col-12">
 					<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle">
-						<div className="fr-col-6">
+						<div className="fr-col-md-6 fr-col-12">
 							<h1 className="fr-h2">
 								Bienvenue sur l'{welcome.Enq_LibelleEnquete}
 							</h1>
@@ -57,7 +57,7 @@ export function WelcomeContainer() {
 								Commencer
 							</Button>
 						</div>
-						<div className="fr-col-4">
+						<div className="fr-col-md-4 fr-col-8 fr-mt-2w">
 							<img
 								className="fr-responsive-img"
 								src="https://le-recensement-et-moi.fr/illu-femme-ordi.svg"
@@ -75,7 +75,7 @@ export function WelcomeContainer() {
 						theme.decisions.background.alt.greenTilleulVerveine.default,
 				}}
 			>
-				<div className="fr-col-6">
+				<div className="fr-col-xl-6 fr-col-lg-10 fr-col-12">
 					<h2 className="fr-h4">
 						En savoir plus sur l'{welcome.Enq_LibelleEnquete}
 					</h2>

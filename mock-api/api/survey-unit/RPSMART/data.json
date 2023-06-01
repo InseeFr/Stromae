@@ -1,33 +1,26 @@
 {
 	"data": {
 		"COLLECTED": {
-			"COUNT_PERSONS": { "COLLECTED": 5 },
+			"COUNT_PERSONS": { "COLLECTED": 1 },
 			"PRENOMS": {
-				"COLLECTED": ["Beyoncé", "Jay-Z", "Blue Ivy", "Rumi", "Sir"]
+				"COLLECTED": ["Julia"]
 			},
 			"NOMS": {
-				"COLLECTED": ["Knowles", "Carter", "Carter", "Carter", "Carter"]
+				"COLLECTED": ["Dirand"]
+			},
+			"SEXES": {
+				"COLLECTED": ["2"]
 			},
 			"DATENAISS": {
-				"COLLECTED": [
-					"1981-09-04",
-					"1969-12-04",
-					"2012-01-07",
-					"2017-06-13",
-					"2017-06-13"
-				]
+				"COLLECTED": ["1990-09-04"]
 			},
-			"SEXES": { "COLLECTED": ["2", "1", "2", "2", "1"] },
-			"NATIO": { "COLLECTED": [] },
-			"OUESTVOUSNECOMMUNE": { "COLLECTED": [] },
-			"VIVEZVOUSDS": { "COLLECTED": ["1", "2", "1", "1", "1"] },
-			"QUELSSONTL_IRIS": { "COLLECTED": "IRIS" }
+			"VIVEZVOUSDS": { "COLLECTED": ["1"] }
 		}
 	},
 	"stateData": {
 		"state": "INITIAL",
 		"date": 132583235000,
-		"currentPage": "20"
+		"currentPage": "21.1"
 	},
 	"personalization": []
 }

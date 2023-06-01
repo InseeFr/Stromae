@@ -6,7 +6,7 @@
 		},
 		"homeLinkProps": {
 			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/visualize"
+			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/rpsmart/accueil"
 		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",

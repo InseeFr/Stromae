@@ -4,6 +4,10 @@ import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Continuer } from '../../components/navigation/Continuer';
+import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { Grid } from '../../components/Grid/Grid';
+import { AlertesControles } from '../../components/AlertesControles';
+import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 
 const RP = {
 	source: '/rp/source.json',
@@ -27,9 +31,14 @@ export function Visualize() {
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
-					<Precedent />
-					<Formulaire />
-					<Continuer />
+					<ContinueOrRestart />
+						<Precedent />
+						<Grid>
+							<AlertesSaving />
+							<AlertesControles />
+							<Formulaire />
+							<Continuer />
+						</Grid>
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>

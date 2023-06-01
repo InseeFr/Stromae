@@ -6,7 +6,7 @@
 	"generatingDate": "28-03-2023 12:57:35",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "21",
+	"maxPage": "22",
 	"label": {
 		"value": "02 - Recensement de la population 2022 - Avec changements",
 		"type": "VTL|MD"
@@ -21,6 +21,48 @@
 				},
 				{
 					"name": "nccenr",
+					"rules": "soft"
+				},
+				{
+					"name": "id",
+					"rules": "soft"
+				}
+			],
+			"queryParser": {
+				"type": "soft"
+			},
+			"version": "1"
+		},
+		{
+			"name": "pays",
+			"fields": [
+				{
+					"name": "label",
+					"rules": "soft"
+				},
+				{
+					"name": "codealpha",
+					"rules": "soft"
+				},
+				{
+					"name": "codeiso2",
+					"rules": "soft"
+				},
+				{
+					"name": "id",
+					"rules": "soft"
+				}
+			],
+			"queryParser": {
+				"type": "soft"
+			},
+			"version": "1"
+		},
+		{
+			"name": "nationalite",
+			"fields": [
+				{
+					"name": "label",
 					"rules": "soft"
 				},
 				{
@@ -54,7 +96,7 @@
 			"page": "1",
 			"conditionFilter": { "value": "true", "type": "VTL" },
 			"label": {
-				"value": "\"Renseigez vos informations\"",
+				"value": "\"Renseignez vos informations\"",
 				"type": "VTL"
 			},
 			"description": {
@@ -81,7 +123,7 @@
 					},
 					"controls": [
 						{
-							"id": "lfs5q1zj-CI-2",
+							"id": "lf22s5q0001zj-CI-2",
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "ERROR",
 							"control": {
@@ -135,6 +177,19 @@
 				"type": "VTL"
 			},
 			"components": [
+				{
+					"id": "lfs5q1zj-IRIS",
+					"componentType": "QuestionInformation",
+					"mandatory": false,
+					"description": {
+						"value": "\"Veuillez recopier ici les informations qui figurent dans le cadre rempli par l'agent recenseur sur la notice.\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
 				{
 					"id": "lfs5q1zj-IRIS",
 					"componentType": "Input",
@@ -230,7 +285,7 @@
 					},
 					"controls": [
 						{
-							"id": "lfs5q1zj-CI-2",
+							"id": "lfs5q331zj-CI-2",
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "WARN",
 							"control": {
@@ -266,7 +321,6 @@
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 4,
-					"className": "toto",
 					"label": {
 						"value": "\"Numéro\"",
 						"type": "VTL"
@@ -417,7 +471,7 @@
 			]
 		},
 		{
-			"id": "suggester-communes",
+			"id": "suggester-communes_adresse",
 			"componentType": "Suggester",
 			"page": "3",
 			"label": {
@@ -565,21 +619,21 @@
 			},
 			"declarations": [
 				{
-					"id": "klqor7p0-klqop8l1",
+					"id": "klqor7p0-klqopfdfd8l1",
 					"declarationType": "INSTRUCTION",
-					"position": "BEFORE_QUESTION_TEXT",
+					"position": "AFTER_QUESTION_TEXT",
 					"label": {
-						"value": "\"Temps de réponse estimé de 5 minutes \n \n \"",
+						"value": "\"Temps de réponse estimé de 5 minutes \n\n &nbsp;\"",
 						"type": "VTL|MD"
 					}
 				},
 				{
-					"id": "klqor7p0-klqop8l1",
+					"id": "klqor7p0-klfffqop8l1",
 					"declarationType": "INSTRUCTION",
-					"position": "BEFORE_QUESTION_TEXT",
+					"position": "AFTER_QUESTION_TEXT",
 					"label": {
 						"value": "\"Les questions sur le logement permettent de connaître les caractéristiques du logement, d'analyser les conditions de vie des ménages et de planifier le développement urbain pour adapter les politiques de logement en fonction des besoins de la population.\"",
-						"type": "VTL"
+						"type": "VTL|MD"
 					}
 				}
 			],
@@ -597,6 +651,22 @@
 				"value": "\"### Le bâtiment d'habitation se compose-t-il d'un seul logement ?\"",
 				"type": "VTL|MD"
 			},
+			"controls": [
+				{
+					"id": "klqmzxr4-CI-0",
+					"typeOfControl": "CONSISTENCY",
+					"criticality": "WARN",
+					"control": {
+						"value": "not(isnull(TYPES))",
+						"type": "VTL"
+					},
+					"errorMessage": {
+						"value": "\"Merci de renseigner si le bâtiment se compose d'un seul logement\"",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["TYPES"]
+				}
+			],
 			"conditionFilter": {
 				"value": "true",
 				"type": "VTL"
@@ -738,7 +808,7 @@
 				{
 					"id": "klqmzxr4-CI-0",
 					"typeOfControl": "CONSISTENCY",
-					"criticality": "WARN",
+					"criticality": "ERROR",
 					"control": {
 						"value": "not(isnull(TYPL))",
 						"type": "VTL"
@@ -993,18 +1063,15 @@
 				"value": "\"Combien de pièces d’habitation compte votre logement ?\"",
 				"type": "VTL"
 			},
-			"declarations": [
+			"components": [
 				{
 					"id": "klqor7p0-klqop8l1",
-					"declarationType": "INSTRUCTION",
-					"position": "QuestionInformation",
-					"label": {
-						"value": "\"Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.\n\n \n\n Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.\n\n Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.)\"",
+					"componentType": "QuestionInformation",
+					"description": {
+						"value": "\"Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.\n\n \n\n \n\n Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.\n\n\n\n Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.)\"",
 						"type": "VTL|MD"
 					}
-				}
-			],
-			"components": [
+				},
 				{
 					"id": "klqns4rj",
 					"componentType": "InputNumber",
@@ -1180,7 +1247,7 @@
 				{
 					"id": "klqns2qd-CI-0",
 					"typeOfControl": "CONSISTENCY",
-					"criticality": "WARN",
+					"criticality": "ERROR",
 					"control": {
 						"value": "not(isnull(STOC))",
 						"type": "VTL"
@@ -1292,6 +1359,19 @@
 			},
 			"components": [
 				{
+					"id": "kkjlqncpes",
+					"componentType": "QuestionInformation",
+					"mandatory": false,
+					"description": {
+						"value": "\"Si tous les occupants actuels du logement ne sont pas arrivés en même temps, indiquez la date d’emménagement du premier arrivé. \n\n Si cette personne a toujours vécu dans le logement, reportez son année de naissance\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
 					"id": "klqncpes",
 					"componentType": "Input",
 					"mandatory": false,
@@ -1308,17 +1388,6 @@
 						"value": "true",
 						"type": "VTL"
 					},
-					"declarations": [
-						{
-							"id": "klqor7p0-klqop8l1",
-							"declarationType": "INSTRUCTION",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Si tous les occupants actuels du logement ne sont pas arrivés en même temps, indiquez la date d’emménagement du premier arrivé. \n \n Si cette personne a toujours vécu dans le logement, reportez son année de naissance\"",
-								"type": "VTL|MD"
-							}
-						}
-					],
 					"controls": [
 						{
 							"id": "klqncpes-CI-0",
@@ -1550,79 +1619,88 @@
 			}
 		},
 		{
-			"id": "klqor7p0",
-			"componentType": "Radio",
-			"mandatory": false,
+			"id": "j6q9h8tj",
+			"componentType": "ComponentSet",
 			"page": "15",
+			"className": "ComponentSet",
+			"conditionFilter": { "value": "true", "type": "VTL" },
 			"label": {
-				"value": "\"### De combien de voitures les habitants de ce logement disposent-ils ?\"",
-				"type": "VTL|MD"
-			},
-			"declarations": [
-				{
-					"id": "klqor7p0-klqop8l1",
-					"declarationType": "INSTRUCTION",
-					"position": "BEFORE_QUESTION_TEXT",
-					"label": {
-						"value": "\"**Ne comptez pas** les voitures ou les fourgonnettes à usage **exclusivement** professionnel.\"",
-						"type": "VTL|MD"
-					}
-				}
-			],
-			"conditionFilter": {
-				"value": "true",
+				"value": "\"De combien de voitures les habitants de ce logement disposent-ils ? \"",
 				"type": "VTL"
 			},
-			"controls": [
+			"components": [
 				{
-					"id": "klqor7p0-CI-0",
-					"typeOfControl": "CONSISTENCY",
-					"criticality": "WARN",
-					"control": {
-						"value": "not(isnull(VOIT))",
+					"id": "klqor7p0-klqop8l1",
+					"componentType": "QuestionInformation",
+					"description": {
+						"value": "\"Ne comptez pas les voitures ou les fourgonnettes à usage **exclusivement** professionnel.\"",
+						"type": "VTL|MD"
+					}
+				},
+				{
+					"id": "klqor7p0",
+					"componentType": "Radio",
+					"mandatory": false,
+					"label": {
+						"value": "\"Nombre de voitures\"",
 						"type": "VTL"
 					},
-					"errorMessage": {
-						"value": "\"Merci de renseigner le nombre de voitures des habitants de ce logement.\"",
+					"conditionFilter": {
+						"value": "true",
 						"type": "VTL"
 					},
-					"bindingDependencies": ["VOIT"]
+					"controls": [
+						{
+							"id": "klqor7p0-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(VOIT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci de renseigner le nombre de voitures des habitants de ce logement.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["VOIT"]
+						}
+					],
+					"bindingDependencies": ["VOIT"],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Aucune\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"1\" || \"\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"2\" || \"\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"3 ou plus\" || \"\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"response": {
+						"name": "VOIT"
+					}
 				}
-			],
-			"bindingDependencies": ["VOIT"],
-			"options": [
-				{
-					"value": "1",
-					"label": {
-						"value": "\"Aucune\"",
-						"type": "VTL"
-					}
-				},
-				{
-					"value": "2",
-					"label": {
-						"value": "\"1\" || \"\"",
-						"type": "VTL"
-					}
-				},
-				{
-					"value": "3",
-					"label": {
-						"value": "\"2\" || \"\"",
-						"type": "VTL"
-					}
-				},
-				{
-					"value": "4",
-					"label": {
-						"value": "\"3 ou plus\" || \"\"",
-						"type": "VTL"
-					}
-				}
-			],
-			"response": {
-				"name": "VOIT"
-			}
+			]
 		},
 		{
 			"id": "klqolz63",
@@ -1633,17 +1711,10 @@
 				"value": "\"### Disposez-vous d’un emplacement de stationnement réservé à votre usage personnel ?\"",
 				"type": "VTL|MD"
 			},
-			"declarations": [
-				{
-					"id": "klqolz63-klqoq8gj",
-					"declarationType": "INSTRUCTION",
-					"position": "BEFORE_QUESTION_TEXT",
-					"label": {
-						"value": "\"Cet emplacement peut être un garage, un box ou une place de parking de plein air ou souterrain.\"",
-						"type": "VTL"
-					}
-				}
-			],
+			"description": {
+				"value": "\"Cet emplacement peut être un garage, un box ou une place de parking de plein air ou souterrain.\"",
+				"type": "VTL"
+			},
 			"conditionFilter": {
 				"value": "true",
 				"type": "VTL"
@@ -1699,12 +1770,12 @@
 			},
 			"declarations": [
 				{
-					"id": "lfvaiu4x-klqr18ql",
+					"id": "lfvaiu4x-klfdfdqr1ffd8ql",
 					"declarationType": "INSTRUCTION",
 					"position": "AFTER_QUESTION_TEXT",
 					"label": {
-						"value": "\"Temps de réponse estimé de 1 minute par habitant \n \n \"",
-						"type": "VTL"
+						"value": "\"Temps de réponse estimé de 5 minutes par habitant \n\n &nbsp; \"",
+						"type": "VTL|MD"
 					}
 				},
 				{
@@ -1731,9 +1802,9 @@
 			"components": [
 				{
 					"id": "j6q9h8tj-subtitle",
-					"componentType": "Sequence",
+					"componentType": "QuestionInformation",
 					"label": {
-						"value": "\"#### Veuillez inclure tous les habitants, y compris vous-même et: \n\n - l'occupant principal déclaré précédemment \n\n - les nourrissons encore à la maternité \n\n - les personnes temporairement absentes (vacances, voyage d'affaires, hospitalisation de moins d'un mois, etc.) \n\n - les personnes qui vivent également une partie du temps ailleurs (enfants ou étudiants scolarisés ailleurs, conjoints éloignés pour raisons professionnelles, enfants en résidence alternée, personnes âgées en institution, etc.) \n\n - les colocataires et les sous-locataires\"",
+						"value": "\"Veuillez inclure tous les habitants, y compris vous-même et: \n\n - l'occupant principal déclaré précédemment \n\n - les nourrissons encore à la maternité \n\n - les personnes temporairement absentes (vacances, voyage d'affaires, hospitalisation de moins d'un mois, etc.) \n\n - les personnes qui vivent également une partie du temps ailleurs (enfants ou étudiants scolarisés ailleurs, conjoints éloignés pour raisons professionnelles, enfants en résidence alternée, personnes âgées en institution, etc.) \n\n - les colocataires et les sous-locataires\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -1744,20 +1815,93 @@
 				{
 					"id": "j6q9h8tj-input",
 					"componentType": "InputNumber",
-					"mandatory": true,
-					"decimals": 0,
-					"min": 1,
+					"mandatory": false,
 					"max": 20,
 					"label": {
-						"value": "\"Nombre d'habitants\"",
+						"value": "\"Nombre d'habitants (*)\"",
 						"type": "VTL"
 					},
+					"controls": [
+						{
+							"id": "lfwiyuih-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(COUNT_PERSONS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez entrer un nombre d'habitants\"",
+								"type": "VTL"
+							}
+						}
+					],
 					"conditionFilter": {
 						"value": "true",
 						"type": "VTL"
 					},
 					"response": {
 						"name": "COUNT_PERSONS"
+					}
+				}
+			]
+		},
+		{
+			"id": "j6q9hfdsfds8tj",
+			"componentType": "ComponentSet",
+			"page": "19",
+			"conditionFilter": { "value": "COUNT_PERSONS = 0", "type": "VTL" },
+			"components": [
+				{
+					"id": "j6q9h8tj-subtitle",
+					"componentType": "QuestionContext",
+					"label": {
+						"value": "\"Aucun habitant permantent ne vit dans ce logement\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "j6q9h8tj-input",
+					"componentType": "Radio",
+					"mandatory": true,
+					"label": {
+						"value": "\"Quelle est la catégorie de votre logement ?\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Logement occasionnel\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Logement (ou pièce indépendante) occupé seulement une partie de l'année pour des raisons professionnelles par une personne qui dispose d'un autre logement familial.\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Résidence secondaire\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Logement d'habitation occupé seulement pendant une partie de l'année pour les week-ends, les vacances ou les loisirs.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"response": {
+						"name": "CATEGORIE_LOGEMENT"
 					}
 				}
 			]
@@ -1770,19 +1914,19 @@
 				"value": "COUNT_PERSONS",
 				"type": "VTL"
 			},
-			"page": "19",
+			"page": "20",
 			"maxPage": "1",
 			"depth": 1,
 			"paginatedLoop": true,
 			"conditionFilter": {
-				"value": "true",
+				"value": "COUNT_PERSONS > 0",
 				"type": "VTL"
 			},
 			"components": [
 				{
 					"id": "lfwg2ny2",
 					"componentType": "ComponentSet",
-					"page": "19.1",
+					"page": "20.1",
 					"className": "ComponentSet",
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1)",
@@ -1807,7 +1951,7 @@
 								{
 									"id": "lfwiyuih-nom-null",
 									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
+									"criticality": "ERROR",
 									"control": {
 										"value": "not(isnull(NOMS))",
 										"type": "VTL"
@@ -1833,6 +1977,21 @@
 								"value": "true",
 								"type": "VTL"
 							},
+							"controls": [
+								{
+									"id": "lfwiyuih-prenom-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "ERROR",
+									"control": {
+										"value": "not(isnull(PRENOMS))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\" Veuillez entrer un prénom\"",
+										"type": "VTL"
+									}
+								}
+							],
 							"componentType": "Input",
 							"response": {
 								"name": "PRENOMS"
@@ -1848,34 +2007,6 @@
 								"value": " \"Date de naissance\"",
 								"type": "VTL"
 							},
-							"controls": [
-								{
-									"id": "lfwiizq2-format-borne-inf-sup",
-									"typeOfControl": "FORMAT",
-									"criticality": "ERROR",
-									"control": {
-										"value": "not(not(isnull(DATENAISS)) and (cast(DATENAISS, date, \"YYYY-MM-DD\")>cast(\"format-date(current-date(),'[Y0001]-[M01]-[D01]')\", date, \"YYYY-MM-DD\") or cast(DATENAISS, date, \"YYYY-MM-DD\")<cast(\"1900-01-01\", date, \"YYYY-MM-DD\")))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"La date saisie doit être comprise entre 1900-01-01 et format-date(current-date(),'[Y0001]-[M01]-[D01]').\"",
-										"type": "VTL|MD"
-									}
-								},
-								{
-									"id": "lfwiizq2-nom-null",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(DATENAISS))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\" Veuillez entrer une date de naissance\"",
-										"type": "VTL"
-									}
-								}
-							],
 							"bindingDependencies": ["DATENAISS"],
 							"dateFormat": "YYYY-MM-DD",
 							"response": {
@@ -1929,25 +2060,23 @@
 					]
 				},
 				{
+					"id": "kkxuu8oddffdfdfdv-l8ty0pcg",
+					"page": "20.2",
+					"componentType": "QuestionContext",
+					"description": {
+						"value": "(if (isnull(PRENOMS) or isnull(NOMS)) then \"Cet habitant\" else PRENOMS || \" \" || NOMS) || \" vit dans ce logement au moins une partie de l’année.\"",
+						"type": "VTL"
+					}
+				},
+				{
 					"id": "lfwgqxv0",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
-						"value": "\"### Est-ce que \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans un autre logement ? \"",
+						"value": "\"### Est-ce que \" || if (isnull(PRENOMS) or isnull(NOMS)) then \"cet habitant\" else PRENOMS || \" \" || NOMS || \" vit aussi dans un autre logement ? \"",
 						"type": "VTL|MD"
 					},
-					"declarations": [
-						{
-							"id": "kkxuu8ov-l8ty0pcg",
-							"declarationType": "STATEMENT",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "(if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit dans ce logement au moins une partie de l’année.\"",
-								"type": "VTL"
-							}
-						}
-					],
 					"controls": [
 						{
 							"id": "lfvahf2g-nom-null",
@@ -2020,25 +2149,28 @@
 					}
 				},
 				{
+					"id": "kkxuu8ov-l8tdsdsy0pcg",
+					"page": "20.2",
+					"componentType": "QuestionContext",
+					"description": {
+						"value": "\"Pour ses études, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"2\")",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"]
+					}
+				},
+				{
 					"id": "lfwjdg33",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
 						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
 					},
-					"declarations": [
-						{
-							"id": "kkxuu8ov-l8ty0pcg",
-							"declarationType": "STATEMENT",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Pour ses études, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
-								"type": "VTL"
-							}
-						}
-					],
 					"controls": [
 						{
 							"id": "lfvahf2g-nom-null",
@@ -2081,10 +2213,24 @@
 					}
 				},
 				{
+					"id": "kkxuu8odddv-l8ty0pcg",
+					"page": "20.2",
+					"componentType": "QuestionContext",
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"3\")",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"]
+					},
+					"description": {
+						"value": "\" Pour des raisons professionnelles, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
+						"type": "VTL"
+					}
+				},
+				{
 					"id": "lfwk0rof",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
 						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
@@ -2095,22 +2241,11 @@
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "ERROR",
 							"control": {
-								"value": "not(isnull(PROFESSIONS))",
+								"value": "not(isnull(RAISONPROFESSIONS))",
 								"type": "VTL"
 							},
 							"errorMessage": {
 								"value": "\" Veuillez sélectionner une raison.\"",
-								"type": "VTL"
-							}
-						}
-					],
-					"declarations": [
-						{
-							"id": "kkxuu8ov-l8ty0pcg",
-							"declarationType": "STATEMENT",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\" Pour des raisons professionnelles, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
 								"type": "VTL"
 							}
 						}
@@ -2120,7 +2255,7 @@
 						"type": "VTL",
 						"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"]
 					},
-					"bindingDependencies": ["ILELLE_MAJS", "PROFESSIONS"],
+					"bindingDependencies": ["ILELLE_MAJS", "RAISONPROFESSIONS"],
 					"options": [
 						{
 							"value": "1",
@@ -2138,29 +2273,32 @@
 						}
 					],
 					"response": {
-						"name": "PROFESSIONS"
+						"name": "RAISONPROFESSIONS"
+					}
+				},
+				{
+					"id": "kkxuu8ov-l8ty0pffdcg",
+					"page": "20.2",
+					"componentType": "QuestionContext",
+					"description": {
+						"value": "\"Suite à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\")",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"]
 					}
 				},
 				{
 					"id": "lfwk0lb2",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
 						"value": "\"### Quelle part de son temps passe-t-\" || LIB_ILELLES || \" ici ?\"",
 						"type": "VTL|MD"
 					},
-					"declarations": [
-						{
-							"id": "kkxuu8ov-l8ty0pcg",
-							"declarationType": "STATEMENT",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Suite à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement. \"",
-								"type": "VTL"
-							}
-						}
-					],
 					"controls": [
 						{
 							"id": "lfvahf2g-nom-null",
@@ -2218,7 +2356,7 @@
 					"id": "lfwjyhfp",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
 						"value": "\"### \" || (if isnull(PRENOMS) then \"Cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" a-t-\" || (if isnull(PRENOMS) then \"il\" else LIB_ILELLES) || \" passé la nuit du 30 mars 2023 dans ce logement ?\"",
 						"type": "VTL|MD"
@@ -2274,25 +2412,28 @@
 					}
 				},
 				{
+					"id": "kkxuu8aaaaodddv-l8ty0pcg",
+					"page": "20.2",
+					"componentType": "QuestionContext",
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"5\")",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"]
+					},
+					"description": {
+						"value": "\"Pour des raisons qui ne sont liées ni aux études, ni pour des raisons professionnelles, ni à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
+						"type": "VTL"
+					}
+				},
+				{
 					"id": "lfwkbt1a",
 					"componentType": "Radio",
 					"mandatory": false,
-					"page": "19.2",
+					"page": "20.2",
 					"label": {
 						"value": "\"### Quelle est sa situation précisèment ?\"",
 						"type": "VTL|MD"
 					},
-					"declarations": [
-						{
-							"id": "kkxuu8ov-l8ty0pcg",
-							"declarationType": "STATEMENT",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Pour des raisons qui ne sont liées ni aux études, ni pour des raisons professionnelles, ni à une séparation ou un divorce, \" || (if isnull(PRENOMS) then \"cet habitant\" else PRENOMS) || \" \" || (if isnull(NOMS) then \"\" else NOMS) || \" vit aussi dans une autre logement.\"",
-								"type": "VTL"
-							}
-						}
-					],
 					"controls": [
 						{
 							"id": "lfvahf2g-nom-null",
@@ -2350,9 +2491,9 @@
 		{
 			"id": "roundabout",
 			"componentType": "Roundabout",
-			"page": "20",
+			"page": "21",
 			"conditionFilter": {
-				"value": "true",
+				"value": "COUNT_PERSONS >= 1",
 				"type": "VTL"
 			},
 			"iterations": {
@@ -2360,7 +2501,7 @@
 				"type": "VTL"
 			},
 			"label": {
-				"value": "\"Les bulletins individuels\"",
+				"value": "\"Les questionnaires individuels\"",
 				"type": "VTL"
 			},
 			"locked": false,
@@ -2378,17 +2519,16 @@
 					"type": "VTL"
 				},
 				"unnecessary": {
-					"value": "if (VIVEZVOUSDS <> \"1\") then (PRENOMS || \" \" || NOMS || \" n’a pas à compléter de questionnaire individuel car il n’est pas catégorisé comme un résident permanent de ce logement.\") else (if ((2023 - cast(substr(cast(DATENAISS,string),1,4),integer)) < 10) then (PRENOMS || \" \" || NOMS || \" n’a pas à compléter de questionnaire individuel car il est âgé de moins de 10 ans.\") else \"\")",
+					"value": "if not((VIVEZVOUSDS = \"1\") or (VIVEZVOUSDS = \"2\" and ETUDES = \"1\" and AGE < 18) or (VIVEZVOUSDS = \"2\" and ETUDES = \"2\" and AGE > 18) or (VIVEZVOUSDS = \"3\" and RAISONPROFESSIONS = \"1\" and AGE > 18) or (VIVEZVOUSDS = \"3\" and RAISONPROFESSIONS = \"2\" and AGE < 18) or (VIVEZVOUSDS = \"4\" and SEPARATIONS = \"1\") or (VIVEZVOUSDS = \"4\" and SEPARATIONS = \"2\" and NUIT_ICIS = \"1\") or (VIVEZVOUSDS = \"5\" and AUTRE_SITUATIONS = \"2\")) then (PRENOMS || \" \" || NOMS || \" n’a pas à compléter de questionnaire individuel car il n’est pas catégorisé comme un résident permanent de ce logement.\") else \"\"",
 					"type": "VTL"
 				}
 			},
-			"bindingDependencies": ["UNNECESSARY_BI", "VIVEZVOUSDS"],
 			"controls": [
 				{
 					"id": "roundabout-Carefull",
 					"criticality": "WARN",
 					"control": {
-						"value": "(VIVEZVOUSDS <> \"1\") or (not(isnull(NATIO)) and not(isnull(PROF))) and not(isnull(OUESTVOUSNE)) or ((2023 - cast(substr(cast(DATENAISS,string),1,4),integer)) < 10)",
+						"value": "(VIVEZVOUSDS <> \"1\") or (not(isnull(NATIO)) and not(isnull(PROF))) and not(isnull(OUESTVOUSNE)) or (AGE < 10)",
 						"type": "VTL",
 						"bindingDependencies": ["VIVEZVOUSDS"]
 					},
@@ -2404,9 +2544,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.1",
+					"page": "21.1",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2417,10 +2557,10 @@
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "20.1",
+					"page": "21.1",
 					"mandatory": false,
 					"label": {
-						"value": "### Où êtes-vous né(e) ?",
+						"value": "\"### Où êtes-vous né(e) ?\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2466,7 +2606,7 @@
 				{
 					"id": "suggester-communes-2",
 					"componentType": "Suggester",
-					"page": "20.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -2477,7 +2617,7 @@
 					},
 					"controls": [
 						{
-							"id": "klqn2o7tx-CI-0",
+							"id": "klqn2o7tx-CttI-0",
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "WARN",
 							"control": {
@@ -2505,14 +2645,14 @@
 					"id": "klffqn3zmddkx",
 					"componentType": "Input",
 					"mandatory": false,
-					"page": "20.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Commune\"",
 						"type": "VTL"
 					},
 					"controls": [
 						{
-							"id": "klqn2o7tx-CI-0",
+							"id": "klqn2ttttto7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "WARN",
 							"control": {
@@ -2536,17 +2676,18 @@
 					}
 				},
 				{
-					"id": "klqn3zffffmkx",
-					"componentType": "Input",
+					"id": "klqn3ttzffffmffffkx",
+					"componentType": "Suggester",
 					"mandatory": false,
-					"page": "20.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Pays de naissance\"",
 						"type": "VTL"
 					},
+					"storeName": "pays",
 					"controls": [
 						{
-							"id": "klqn2o7tx-CI-0",
+							"id": "klqn2tto7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
 							"criticality": "WARN",
 							"control": {
@@ -2573,7 +2714,7 @@
 					"id": "klqnfsd3zmkx",
 					"componentType": "InputNumber",
 					"mandatory": false,
-					"page": "20.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Année d'arrivée en France\"",
 						"type": "VTL"
@@ -2592,7 +2733,7 @@
 								"type": "VTL"
 							},
 							"errorMessage": {
-								"value": "\"Merci d’indiquer dans quel pays vous êtes né(e) \"",
+								"value": "\"Merci d’indiquer votre année d'arrivée en France\"",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["ANNEEARRIV"]
@@ -2610,9 +2751,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.2",
+					"page": "21.2",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2620,14 +2761,13 @@
 						"type": "VTL"
 					}
 				},
-
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "20.2",
+					"page": "21.2",
 					"mandatory": false,
 					"label": {
-						"value": "### Quelle est votre nationalité ?",
+						"value": "\"### Quelle est votre nationalité ?\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2683,13 +2823,13 @@
 					}
 				},
 				{
-					"id": "suggester-communes",
+					"id": "suggester-nationalite",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Nationalité à la naissance\"",
 						"type": "VTL|MD"
 					},
-										"controls": [
+					"controls": [
 						{
 							"id": "klqn2o7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
@@ -2709,7 +2849,7 @@
 						"value": "\"Exemple: Chinoise\"",
 						"type": "VTL"
 					},
-					"storeName": "communes-2019",
+					"storeName": "nationalite",
 					"conditionFilter": {
 						"value": "NATIO = \"2\"",
 						"type": "VTL"
@@ -2717,16 +2857,16 @@
 					"response": {
 						"name": "NATIONAISSANCENAME"
 					},
-					"page": "20.2"
+					"page": "21.2"
 				},
 				{
-					"id": "suggester-communes",
+					"id": "suggester-nationalite-2",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Nationalité\"",
 						"type": "VTL|MD"
 					},
-						"controls": [
+					"controls": [
 						{
 							"id": "klqn2o7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
@@ -2746,7 +2886,7 @@
 						"value": "\"Exemple: Chinoise\"",
 						"type": "VTL"
 					},
-					"storeName": "communes-2019",
+					"storeName": "nationalite",
 					"conditionFilter": {
 						"value": "NATIO = \"3\"",
 						"type": "VTL"
@@ -2754,14 +2894,14 @@
 					"response": {
 						"name": "NATIONAME"
 					},
-					"page": "20.2"
+					"page": "21.2"
 				},
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.3",
+					"page": "21.3",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -2799,8 +2939,8 @@
 					"response": {
 						"name": "ETABLISSEMENT"
 					},
-					
-					"page": "20.3",
+
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -2848,7 +2988,7 @@
 					"response": {
 						"name": "ETABLISSEMENT_DIST"
 					},
-					"page": "20.3",
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -2896,7 +3036,7 @@
 					"response": {
 						"name": "ETABLISSEMENTSITU"
 					},
-					"page": "20.3",
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -2921,11 +3061,10 @@
 						}
 					]
 				},
-
 				{
 					"id": "suggester-communes-commune-eta",
 					"componentType": "Suggester",
-					"page": "20.3",
+					"page": "21.3",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -2934,7 +3073,7 @@
 						"value": "\"Exemple: Paris 10e\"",
 						"type": "VTL"
 					},
-										"controls": [
+					"controls": [
 						{
 							"id": "klqn2o7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
@@ -2947,7 +3086,7 @@
 								"value": "\"Veuillez indiquer la commune de votre établissement d'enseignement\"",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["NATIO"]
+							"bindingDependencies": ["ETABLISSEMENTSITUCOMMUNE"]
 						}
 					],
 					"storeName": "communes-2019",
@@ -2962,7 +3101,7 @@
 				{
 					"id": "suggester-communes-pays-eta",
 					"componentType": "Suggester",
-					"page": "20.3",
+					"page": "21.3",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -2980,14 +3119,10 @@
 								"value": "\"Veuillez indiquer le pays de votre établissement d'enseignement\"",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["NATIO"]
+							"bindingDependencies": ["ETABLISSEMENTSITUPAYS"]
 						}
 					],
-					"description": {
-						"value": "\"Exemple: Paris 10e\"",
-						"type": "VTL"
-					},
-					"storeName": "communes-2019",
+					"storeName": "pays",
 					"conditionFilter": {
 						"value": "ETABLISSEMENT = \"1\" and ETABLISSEMENT_DIST = \"2\" and ETABLISSEMENTSITU = \"3\"",
 						"type": "VTL"
@@ -2999,9 +3134,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.4",
+					"page": "21.4",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -3013,7 +3148,7 @@
 					"id": "input-etablissement-situ",
 					"componentType": "Radio",
 					"label": {
-						"value": "\"### Où habitiez-vous le 1er janvier 2024?\"",
+						"value": "\"### Où habitiez-vous le 1er janvier \" || cast(CURRENT_YEAR, string) || \"?\"",
 						"type": "VTL|MD"
 					},
 					"controls": [
@@ -3026,31 +3161,20 @@
 								"type": "VTL"
 							},
 							"errorMessage": {
-								"value": "\"Veuillez indiquer où vous habitiez le 1er janvier 2024\"",
+								"value": "\"Veuillez d'indiquer où vous habitiez le 1er janvier \" || cast(CURRENT_YEAR, string)",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["NATIO"]
+							"bindingDependencies": ["HABITE"]
 						}
 					],
 					"conditionFilter": {
 						"value": "true",
 						"type": "VTL"
 					},
-										"declarations": [
-						{
-							"id": "klqor7p0-klqop8l1",
-							"declarationType": "INSTRUCTION",
-							"position": "BEFORE_QUESTION_TEXT",
-							"label": {
-								"value": "\"Les enfants nés après cette date ne sont pas concernés.\"",
-								"type": "VTL|MD"
-							}
-						}
-					],
 					"response": {
 						"name": "HABITE"
 					},
-					"page": "20.4",
+					"page": "21.4",
 					"options": [
 						{
 							"value": "1",
@@ -3062,21 +3186,21 @@
 						{
 							"value": "2",
 							"label": {
-								"value": "\"Dans un autre logement** de la même commune\"",
+								"value": "\"Dans un autre logement de la même commune\"",
 								"type": "VTL|MD"
 							}
 						},
 						{
 							"value": "3",
 							"label": {
-								"value": "\"Dans une autre commune en France\"",
+								"value": "\"En France, dans une autre commune\"",
 								"type": "VTL"
 							}
 						},
 						{
 							"value": "4",
 							"label": {
-								"value": "\"Dans une autre commune à l'étranger\"",
+								"value": "\"A l'étranger\"",
 								"type": "VTL"
 							}
 						}
@@ -3085,12 +3209,12 @@
 				{
 					"id": "suggester-communes-commune-janvier",
 					"componentType": "Suggester",
-					"page": "20.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
 					},
-										"controls": [
+					"controls": [
 						{
 							"id": "klqn2o7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
@@ -3103,7 +3227,7 @@
 								"value": "\"Veuillez indiquer la commune où vous habitiez le 1er janvier 2024\"",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["NATIO"]
+							"bindingDependencies": ["HABITE_COMMUNE"]
 						}
 					],
 					"description": {
@@ -3120,9 +3244,41 @@
 					}
 				},
 				{
+					"id": "suggester-communes-janvier",
+					"componentType": "Input",
+					"page": "21.4",
+					"label": {
+						"value": "\"Commune\"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(HABITE_COMMUNE_ETR))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer la commune où vous habitiez le 1er janvier 2024\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["HABITE_COMMUNE_ETR"]
+						}
+					],
+					"conditionFilter": {
+						"value": "HABITE = \"4\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "HABITE_COMMUNE_ETR"
+					}
+				},
+				{
 					"id": "suggester-communes-janvier-pays",
 					"componentType": "Suggester",
-					"page": "20.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -3140,10 +3296,10 @@
 								"value": "\"Veuillez indiquer le pays où vous habitiez le 1er janvier 2024\"",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["NATIO"]
+							"bindingDependencies": ["HABITE_PAYS"]
 						}
 					],
-					"storeName": "communes-2019",
+					"storeName": "pays",
 					"conditionFilter": {
 						"value": "HABITE = \"4\"",
 						"type": "VTL"
@@ -3155,9 +3311,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.5",
+					"page": "21.5",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -3167,13 +3323,13 @@
 				},
 				{
 					"id": "input-etablissement-situ",
-					"componentType": "Input",
+					"componentType": "Radio",
 					"label": {
 						"value": "\"### Vivez-vous en couple ?\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13",
+						"value": "AGE > 13)",
 						"type": "VTL"
 					},
 					"controls": [
@@ -3195,7 +3351,7 @@
 					"response": {
 						"name": "COUPLE"
 					},
-					"page": "20.5",
+					"page": "21.5",
 					"options": [
 						{
 							"value": "1",
@@ -3216,9 +3372,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.6",
+					"page": "21.6",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -3234,7 +3390,7 @@
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13",
+						"value": "(AGE > 13)",
 						"type": "VTL"
 					},
 					"response": {
@@ -3256,7 +3412,7 @@
 							"bindingDependencies": ["SITUA"]
 						}
 					],
-					"page": "20.6",
+					"page": "21.6",
 					"options": [
 						{
 							"value": "1",
@@ -3305,9 +3461,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.7",
+					"page": "21.7",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -3319,11 +3475,11 @@
 					"id": "input-etablissement-situ",
 					"componentType": "Radio",
 					"label": {
-						"value": "\"### Etes-vous ?\"",
+						"value": "\"### Quel(s) diplômes avez-vous ?\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13",
+						"value": "(AGE > 13)",
 						"type": "VTL"
 					},
 					"response": {
@@ -3345,7 +3501,7 @@
 							"bindingDependencies": ["DIPLOMES"]
 						}
 					],
-					"page": "20.7",
+					"page": "21.7",
 					"options": [
 						{
 							"value": "1",
@@ -3410,7 +3566,7 @@
 								"type": "VTL"
 							}
 						},
-							{
+						{
 							"value": "10",
 							"label": {
 								"value": "\"Doctorat de recherche (hors santé)\"",
@@ -3422,9 +3578,9 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.8",
+					"page": "21.8",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
@@ -3434,13 +3590,39 @@
 				},
 				{
 					"id": "input-etablissement-situ",
-					"componentType": "Radio",
+					"componentType": "ComponentSet",
 					"label": {
-						"value": "\"### Quelle est votre situation principale ?\"",
+						"value": "\"Quelle est votre situation principale ?\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13",
+						"value": "(AGE > 13)",
+						"type": "VTL"
+					},
+					"page": "21.8",
+					"components":[
+										{
+					"id": "sfdscdgdfsgfgs",
+					"componentType": "QuestionInformation",
+					"page": "21.23",
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Cette question permet, par exemple, une mesure de l'emploi (au sens du recensement) aux niveaux géographiques fins.\n Quelques cas particuliers :\n - congé de maladie ou de maternité, cochez « Emploi »\n - congé parental de moins de 3 mois, cochez « Emploi ».\n - congé parental de plus de 3 mois, cochez « Autre situation » puis « Non » à la question suivante\n - formation en alternance, cochez « Apprentissage »\n - chômage technique, cochez « Emploi »\n - aide d'une personne dans le cadre de son travail y compris de façon non rémunérée,\n cochez « Emploi »\"",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etablissement-situ",
+					"componentType": "Radio",
+					"label": {
+						"value": "\"### Situation principale\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
 						"type": "VTL"
 					},
 					"response": {
@@ -3450,19 +3632,19 @@
 						{
 							"id": "klqn2o7tx-CI-0",
 							"typeOfControl": "CONSISTENCY",
-							"criticality": "WARN",
+							"criticality": "ERROR",
 							"control": {
 								"value": "not(isnull(SITUAPRO))",
 								"type": "VTL"
 							},
 							"errorMessage": {
-								"value": "\"Veuillez indiquer vos diplômes\"",
+								"value": "\"Veuillez indiquer votre situation principale\"",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["SITUAPRO"]
 						}
 					],
-					"page": "20.8",
+					"page": "21.8",
 					"options": [
 						{
 							"value": "1",
@@ -3526,17 +3708,21 @@
 							}
 						}
 					]
+				}
+					]
+
 				},
+
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.9",
+					"page": "21.9",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\"",
+						"value": "(AGE > 13) and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\")",
 						"type": "VTL"
 					}
 				},
@@ -3548,7 +3734,7 @@
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\"",
+						"value": "(AGE > 13) and (SITUAPRO =\"3\" or SITUAPRO =\"4\" or SITUAPRO =\"5\" or SITUAPRO =\"6\" or SITUAPRO =\"7\")",
 						"type": "VTL"
 					},
 					"response": {
@@ -3570,7 +3756,7 @@
 							"bindingDependencies": ["TRAVA"]
 						}
 					],
-					"page": "20.9",
+					"page": "21.9",
 					"options": [
 						{
 							"value": "1",
@@ -3591,13 +3777,13 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.10",
+					"page": "21.10",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\"",
 						"type": "VTL"
 					}
 				},
@@ -3609,7 +3795,7 @@
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\"",
 						"type": "VTL"
 					},
 					"response": {
@@ -3631,7 +3817,7 @@
 							"bindingDependencies": ["DEJATRAVA"]
 						}
 					],
-					"page": "20.10",
+					"page": "21.10",
 					"options": [
 						{
 							"value": "1",
@@ -3652,13 +3838,13 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.11",
+					"page": "21.11",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\" and DEJATRAVA = \"1\"",
 						"type": "VTL"
 					}
 				},
@@ -3670,7 +3856,7 @@
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\" and DEJATRAVA = \"1\"",
 						"type": "VTL"
 					},
 					"response": {
@@ -3692,7 +3878,7 @@
 							"bindingDependencies": ["ANCIENTRAVA"]
 						}
 					],
-					"page": "20.11",
+					"page": "21.11",
 					"options": [
 						{
 							"value": "1",
@@ -3720,43 +3906,43 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.12",
+					"page": "21.12",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\" and DEJATRAVA = \"1\"",
 						"type": "VTL"
 					}
 				},
 				{
-				"id": "suggester-communes",
-				"componentType": "Suggester",
-				"page": "20.12",
-				"label": {
-					"value": "\"Quelle était votre profession principale ?\"",
-					"type": "VTL|MD"
-				},
-				"storeName": "communes-2019",
-				"conditionFilter": {
-					"value": "AGE > 13 and TRAVA =\"2\"",
-					"type": "VTL"
-				},
-				"response": {
-					"name": "PROF"
-				}
+					"id": "suggester-communes",
+					"componentType": "Suggester",
+					"page": "21.12",
+					"label": {
+						"value": "\"Quelle était votre profession principale ?\"",
+						"type": "VTL|MD"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "(AGE > 13) and TRAVA =\"2\" and DEJATRAVA = \"1\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "PROF"
+					}
 				},
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.13",
+					"page": "21.13",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\"",
 						"type": "VTL"
 					}
 				},
@@ -3768,7 +3954,7 @@
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and TRAVA =\"2\"",
+						"value": "(AGE > 13) and TRAVA =\"2\"",
 						"type": "VTL"
 					},
 					"response": {
@@ -3790,7 +3976,7 @@
 							"bindingDependencies": ["CHERCHETRAVA"]
 						}
 					],
-					"page": "20.13",
+					"page": "21.13",
 					"options": [
 						{
 							"value": "1",
@@ -3818,13 +4004,13 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "20.14",
+					"page": "21.14",
 					"label": {
-						"value": "\"Bulletin individuel de \" || PRENOMS || \" \" || NOMS",
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and (SITUA =\"1\" or SITUA =\"2\" or TRAVA =\"1\")",
+						"value": "(AGE > 13) and (not(DEJATRAVA=\"1\")) and (SITUA =\"1\" or SITUA =\"2\" or TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
 						"type": "VTL"
 					}
 				},
@@ -3832,11 +4018,15 @@
 					"id": "input-etablissement-situ",
 					"componentType": "Radio",
 					"label": {
-						"value": "\"### Dans votre emploi principal, êtes-vous :\"",
+						"value": "\"### Quel est le type de votre emploi principal ?\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, décrivez uniquement votre emploi principal\"",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "AGE > 13 and (SITUA =\"1\" or SITUA =\"2\" or TRAVA =\"1\")",
+						"value": "(AGE > 13) and  ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))",
 						"type": "VTL"
 					},
 					"response": {
@@ -3858,7 +4048,7 @@
 							"bindingDependencies": ["INTERNOMETABLISSEMENT"]
 						}
 					],
-					"page": "20.14",
+					"page": "21.14",
 					"options": [
 						{
 							"value": "1",
@@ -3898,14 +4088,14 @@
 						{
 							"value": "6",
 							"label": {
-								"value": "\"Assistance maternelle employée par une association ou une collectivité locale\"",
+								"value": "\"Assistante maternelle employée par une association ou une collectivité locale\"",
 								"type": "VTL"
 							}
 						},
 						{
 							"value": "7",
 							"label": {
-								"value": "\"Assistance maternelle employée par une ou plusieurs familles\"",
+								"value": "\"Assistante maternelle employée par une ou plusieurs familles\"",
 								"type": "VTL"
 							}
 						},
@@ -3917,49 +4107,1502 @@
 							}
 						}
 					]
-				}
-			]
-		},
-		{
-			"id": "kkxugktl-title",
-			"componentType": "Sequence",
-			"page": "21",
-			"label": {
-				"value": "\"## Vous arrivez à la fin du questionnaire. Est-ce que vous être prêt(e) à envoyer vos réponses ?\"",
-				"type": "VTL|MD"
-			},
-			"conditionFilter": {
-				"value": "true",
-				"type": "VTL"
-			}
-		},
-		{
-			"id": "checkboxgroup",
-			"componentType": "CheckboxGroup",
-			"mandatory": false,
-			"page": "21",
-			"conditionFilter": { "value": "true", "type": "VTL" },
-			"controls": [
+				},
+				{
+					"id": "kkxuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Nom de votre entreprise ou votre nom\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"1\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lf3368896s5q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de votre entreprise\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["NOMETABLISSEMENT"],
+					"response": {
+						"name": "NOMETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxuufdsfds8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité de l'entreprise\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Soyez très précis (par exemple: Réparation automobile). S'il s'agit d'une exploitation agricole, précisez également l'orientation des productions (vigne, élevage de volailles, etc.).\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"1\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-dfCI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner l'activité de votre entreprise\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxufdfffffdu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Nom de l’établissement ou vous faites votre mission\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"2\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5qds1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de l’établissement ou vous faites votre mission\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["NOMETABLISSEMENT"],
+					"response": {
+						"name": "NOMETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkdsfdsfdsxuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité de l'entreprise\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Soyez très précis (par exemple: Réparation automobile). S'il s'agit d'une exploitation agricole, précisez également l'orientation des productions (vigne, élevage de volailles, etc.).\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"2\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfsqqq5q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner l'activité de l'établissement ou vous faites votre mission'\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxfsdfdsfguu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Nom de l’établissement\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"3\" or INTERNOMETABLISSEMENT = \"8\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfsqqqf5q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de l’établissement\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["NOMETABLISSEMENT"],
+					"response": {
+						"name": "NOMETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxuuaaasd8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité de l'entreprise\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Soyez très précis (par exemple: Réparation automobile). S'il s'agit d'une exploitation agricole, précisez également l'orientation des productions (vigne, élevage de volailles, etc.).\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"3\" or INTERNOMETABLISSEMENT = \"8\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zjnn-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner l'activité de l'établissement'\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkaapppxuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Nom de l’établissement de sous-traitance\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"4\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5qfdsfd1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de l’établissement de sous-traitance\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["NOMETABLISSEMENT"],
+					"response": {
+						"name": "NOMETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxfsdfdsfppfdfdsuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité de l'entreprise\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Soyez très précis (par exemple: Réparation automobile). S'il s'agit d'une exploitation agricole, précisez également l'orientation des productions (vigne, élevage de volailles, etc.).\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"4\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5ds9q1zj-CI-22",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner l'activité de l'établissement'\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxfsdfddslqkmzsfuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité principale\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: Aide à domicile, entretien espaces verts, garde d’enfants...\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"5\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q9991zj-CI-23",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner votre activité principale'\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkfdcvbvxuu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Nom de l’association ou de la collectivité locale\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"6\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-CI-12",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de l’association ou de la collectivité locale\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["NOMETABLISSEMENT"],
+					"response": {
+						"name": "NOMETABLISSEMENT"
+					}
+				},
+				{
+					"id": "kkxfsdfdsfufdsfdsbbbu8ov",
+					"page": "21.14",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Activité de l’association ou de la collectivité locale\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "INTERNOMETABLISSEMENT = \"6\"",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfsds115q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ACTIVITEETABLISSEMENT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner l'activité de l'établissement'\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ACTIVITEETABLISSEMENT"]
+						}
+					],
+					"bindingDependencies": ["ACTIVITEETABLISSEMENT"],
+					"response": {
+						"name": "ACTIVITEETABLISSEMENT"
+					}
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "21.15",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and  ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "input-etjjablissement-situ",
+					"componentType": "Radio",
+					"page": "21.15",
+					"label": {
+						"value": "\"### Votre lieu de travail est-il:\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Répondez pour l'endroit où vous commencez habituellement votre travail\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and  ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "TYPELIEUTRAVA"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(TYPELIEUTRAVA))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre lieu de travail\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TYPELIEUTRAVA"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"fixe ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"variable ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Vous travaillez à votre domicile\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Vous travaillez chez un particulier\"",
+								"type": "VTL"
+							}
+						}
+					]
+				},
+				{
+					"id": "jsygk7m7",
+					"componentType": "Subsequence",
+					"page": "21.16",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")", 
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssemefffnt-situ",
+							"componentType": "Radio",
+							"page": "21.16",
+							"label": {
+								"value": "\"### Votre emploi principal situe-t-il dans la commune où vous résidez\" if (not(isnull(COM_LOC)) then \"(\" || COM_LOC || \")\" else \"?\")",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal. \"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")", 
+								"type": "VTL"
+							},
+							"response": {
+								"name": "LIEUTRAVACOMMUNE"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(LIEUTRAVACOMMUNE))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer si votre lieu de travail se situe dans la commune où vous résidez\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["LIEUTRAVACOMMUNE"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Oui\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Non\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.16",
+							"label": {
+								"value": "\"### Où se situe-t-il ?\"",
+								"type": "VTL|MD"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\")",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "LIEUTRAVAPAYS"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(LIEUTRAVAPAYS))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer où se situe votre lieu de travail\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["LIEUTRAVAPAYS"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"En France ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"A l'étranger ?\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "l8twtrc9-set",
+					"componentType": "ComponentSet",
+					"page": "21.16",
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"1\") ",
+						"type": "VTL"
+					},
+					"label": {
+						"value": "\"Quelle est l'adresse de votre lieu de travail ?\"",
+						"type": "VTL"
+					},
+					"components": [
+						{
+							"id": "l8twtrc9",
+							"componentType": "Input",
+							"mandatory": false,
+							"maxLength": 4,
+							"label": {
+								"value": "\"Numéro\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Exemple: 56\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "true",								
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NUMVOI_LIEUTRAVA"],
+							"response": {
+								"name": "NUMVOI_LIEUTRAVA"
+							}
+						},
+						{
+							"id": "l8twwcvn",
+							"componentType": "Input",
+							"mandatory": false,
+							"maxLength": 4,
+							"label": {
+								"value": "\"Bis, ...\"",
+								"type": "VTL|MD"
+							},
+							"conditionFilter": {
+								"value": "true",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["BISTER_LIEUTRAVA"],
+							"response": {
+								"name": "BISTER_LIEUTRAVA"
+							}
+						},
+						{
+							"id": "l8twyzo4",
+							"componentType": "Input",
+							"mandatory": false,
+							"maxLength": 27,
+							"label": {
+								"value": "\"Type de voie\"",
+								"type": "VTL"
+							},
+							"description": {
+								"value": "\"Exemple: Rue, Av, ...\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "true",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TYPEVOI_LIEUTRAVA"],
+							"response": {
+								"name": "TYPEVOI_LIEUTRAVA"
+							}
+						},
+						{
+							"id": "l8twy1k6",
+							"componentType": "Input",
+							"mandatory": false,
+							"maxLength": 80,
+							"label": {
+								"value": "\"Libellé de la voie (ou lieu-dit) (*)\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Exemple: des petites écuries\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "true",
+								"type": "VTL"
+							},
+							"controls": [
+								{
+									"id": "klqmzxdqsdsr4-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "isnull(LIEUTRAVACOMMUNE) or LIEUTRAVACOMMUNE = \"1\" or isnull(LIEUTRAVAPAYS) or LIEUTRAVAPAYS = \"2\"",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez renseigner le libellé de la voie de votre lieu de travail\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["NOMVOI_LIEUTRAVA"]
+								}
+							],
+							"bindingDependencies": ["NOMVOI_LIEUTRAVA"],
+							"response": {
+								"name": "NOMVOI_LIEUTRAVA"
+							}
+						}
+					]
+				},
+				{
+					"id": "suggester-communes",
+					"page": "21.16",
+					"componentType": "Suggester",
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"1\") ",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "COM_LIEUTRAVA"
+					}
+				},
+				{
+					"id": "lieu-trava-commune-etr",
+					"page": "21.16",
+					"componentType": "Input",
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"2\") ",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "COM_LIEUTRAVA"
+					}
+				},
+				{
+					"id": "lieu-trava-pays-etr",
+					"page": "21.16",
+					"componentType": "Suggester",
+					"label": {
+						"value": "\"Pays\"",
+						"type": "VTL|MD"
+					},
+					"storeName": "pays",
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"2\") ",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "PAYS_LIEUTRAVA"
+					}
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.17",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.17",
+							"label": {
+								"value": "\"### Quel mode de transport principal utilisez-vous le plus souvent pour aller travailler ?\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "TRANSPORT"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(TRANSPORT))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre mode de transport principal\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["TRANSPORT"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Pas de déplacement\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Marche à pied (ou rollers, patinette)\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"Vélo (y compris à assitance électrique)\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"Deux-roues motorisé\"",
+										"type": "VTL"
+									}
+								},
+									{
+									"value": "5",
+									"label": {
+										"value": "\"Voiture, camion ou fourgonnette\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "6",
+									"label": {
+										"value": "\"Transports en commun\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.18",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.18",
+							"label": {
+								"value": "\"### Occupez-vous votre emploi :\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "OCCEMPLOI"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(OCCEMPLOI))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre mode de transport principal\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["OCCEMPLOI"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"à temps complet ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"à temps partiel ?\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.19",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.19",
+							"label": {
+								"value": "\"### Êtes-vous :\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "TYPEEMPLOI"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(TYPEEMPLOI))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre mode de transport principal\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["TYPEEMPLOI"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"indépendant ou à votre compte ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"chef d'entreprise salarié, PDG, gérant(e) minoritaire de SARL ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"salarié(e) ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"Vous aidez une personne dans son travail sans être rémunéré(e)\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.20",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\")",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.20",
+							"label": {
+								"value": "\"### Combien de salariés employez-vous ?\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\")",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "NBSALARIE"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(NBSALARIE))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer le nombre de salariés que vous employez\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["NBSALARIE"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Aucun\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"1 à 9\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"10 ou plus\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.21",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.21",
+							"label": {
+								"value": "\"### Quel est votre type de contrat ou d'emploi ?\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "TYPECONTRAT"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(TYPECONTRAT))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre type de contrat\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["TYPECONTRAT"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Emploi sans limite de durée, CDI (contrat à durée indéterminée), titulaire de la fonction publique\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Contrat d'apprentissage et de professionalisation\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"Placé par une agence d'intérim\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"Stage rémunéré en entreprise\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "5",
+									"label": {
+										"value": "\"Emploi aidé (contrat unique d'insertion, d'initiative emploi, d'accompagnement dans l'emploi, avenir, etc.)\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "6",
+									"label": {
+										"value": "\"Autre emploi à durée limitée, CDD (contrat à durée déterminée), contrat court, saisonnier, vacataire, etc. \"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Subsequence",
+					"page": "21.22",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "input-etjjablisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.22",
+							"label": {
+								"value": "\"Dans votre emploi, êtes-vous :\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "CATEMPLOI"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(CATEMPLOI))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre catégorie d'emploi\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["CATEMPLOI"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"manoeuvre, ouvrier spécialisé ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"ouvrier qualifié ou hautement qualifié, technicien d'atelier ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"technicien (non cadre) ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"agent de catégorie B de la fonction publique ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "5",
+									"label": {
+										"value": "\"agent de maîtrise, maîtrise administrative ou commerciale, VRP ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "6",
+									"label": {
+										"value": "\"agent de catégorie A de la fonction publique ? \"",
+										"type": "VTL"
+									}
+								},
+									{
+									"value": "7",
+									"label": {
+										"value": "\"ingénieur, cadre d'entreprise ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "8",
+									"label": {
+										"value": "\"agent de catégorie C de la fonction publique ?\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "9",
+									"label": {
+										"value": "\"employé (par exemple : de bureau, de commerce, de la restauration, de maison) ?\"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Sequence",
+					"page": "21.23",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "sfdscdffffdfdsdfsgfgs",
+					"componentType": "Subsequence",
+					"page": "21.23",
+					"label": {
+						"value": "\"### Quelle est votre profession ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\" or TYPEEMPLOI =\"4\")",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "suggester-communes_adrefffsse",
+					"componentType": "Suggester",
+					"page": "21.23",
+					"label": {
+						"value": "\"Profession\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Soyez précis. Par exemple : « FLEURISTE » (et non « COMMERÇANT »).\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\" or TYPEEMPLOI =\"4\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "PROFESSIONS"
+					}
+				},
+				{
+					"id": "sfdscdffffdfdsdfsgfgs",
+					"componentType": "Subsequence",
+					"page": "21.23",
+					"label": {
+						"value": "\"### Quelle est votre profession principale ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\")",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "sfdscdgdfsgfgs",
+					"componentType": "QuestionInformation",
+					"page": "21.23",
+					"description": {
+						"value": "\"Si vous êtes agent de la fonction publique d'État, territoriale ou hospitalière, indiquez votre grade (corps, catégorie, etc.).\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\")",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "suggester-communes_adresse",
+					"componentType": "Suggester",
+					"page": "21.23",
+					"label": {
+						"value": "\"Profession principale\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Soyez précis. Par exemple : « AGENT D'ENTRETIEN » (et non « EMPLOYÉ »), « RESPONSABLE DE SERVICE CLIENTÈLE » (et non « CADRE »).\"",
+						"type": "VTL"
+					},
+					"storeName": "communes-2019",
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "PROFESSIONS"
+					}
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Sequence",
+					"page": "21.24",
+					"label": {
+						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					}
+				},
+				{
+							"id": "infdsisfdssement-situ",
+							"componentType": "Radio",
+							"page": "21.24",
+							"label": {
+								"value": "\"### Dans votre emploi, quelle est votre fonction principale ?\"",
+								"type": "VTL|MD"
+							},
+							"description": {
+								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+								"type": "VTL"
+							},
+							"response": {
+								"name": "FONCEMPLOI"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(FONCEMPLOI))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre fonction principale\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["FONCEMPLOI"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Production, exploitation, chantier\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Installation, réparation, maintenance\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"Gestion, comptabilité\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"Études, recherche\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "5",
+									"label": {
+										"value": "\"Autre : commerciale, secrétariat, logistique, etc. \"",
+										"type": "VTL"
+									}
+								}
+							]
+				},
+				{
+					"id": "kkxugktl-title",
+					"componentType": "Sequence",
+					"page": "21.25",
+					"label": {
+						"value": "\"## Le questionnaire de\" || PRENOMS || \" \" || NOMS || \" est terminé.\" ",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
 				{
 					"id": "checkboxgroup",
-					"typeOfControl": "CONSISTENCY",
-					"criticality": "WARN",
-					"control": { "value": "OPT1", "type": "VTL" },
-					"errorMessage": {
-						"value": "\"Veuillez confirmer avant de continuer.\"",
-						"type": "VTL"
-					},
-					"bindingDependencies": ["OPT1"]
-				}
-			],
-			"responses": [
-				{
-					"id": "opt1",
-					"label": {
-						"value": "\"Oui, je confirme que mes réponses sont correctes ?\"",
-						"type": "VTL"
-					},
-					"response": { "name": "OPT1" }
+					"componentType": "CheckboxGroup",
+					"mandatory": false,
+					"page": "21.25",
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"responses": [
+						{
+							"id": "opt1",
+							"label": {
+								"value": "\"Je certifie que les informations renseignées dans le questionnaire de \"",
+								"type": "VTL"
+							},
+							"response": { "name": "OPT1" }
+						}
+					]
 				}
 			]
 		}
@@ -3989,7 +5632,84 @@
 		},
 		{
 			"variableType": "COLLECTED",
+			"name": "FONCEMPLOI",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "CATEMPLOI",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TYPECONTRAT",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "NBSALARIE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
 			"name": "NATIO",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TYPEEMPLOI",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "OCCEMPLOI",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TRANSPORT",
 			"values": {
 				"PREVIOUS": [null],
 				"COLLECTED": [null],
@@ -4064,7 +5784,7 @@
 				"INPUTED": [null]
 			}
 		},
-				{
+		{
 			"variableType": "COLLECTED",
 			"name": "HABITE_COMMUNE",
 			"values": {
@@ -4097,7 +5817,7 @@
 				"INPUTED": [null]
 			}
 		},
-				{
+		{
 			"variableType": "COLLECTED",
 			"name": "DIPLOMES",
 			"values": {
@@ -4130,9 +5850,120 @@
 				"INPUTED": [null]
 			}
 		},
+		
+		{
+			"variableType": "COLLECTED",
+			"name": "ETABLISSEMENTSITUPAYS",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+				{
+			"variableType": "COLLECTED",
+			"name": "ETABLISSEMENTSITUCOMMUNE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
 		{
 			"variableType": "COLLECTED",
 			"name": "TRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TYPELIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "LIEUTRAVACOMMUNE",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "NUMVOI_LIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "BISTER_LIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "TYPEVOI_LIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "NOMVOI_LIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "COM_LIEUTRAVA",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "PAYS_LIEUTRAVA",
 			"values": {
 				"PREVIOUS": [null],
 				"COLLECTED": [null],
@@ -4174,7 +6005,7 @@
 				"INPUTED": [null]
 			}
 		},
-				{
+		{
 			"variableType": "COLLECTED",
 			"name": "CHERCHETRAVA",
 			"values": {
@@ -4199,6 +6030,17 @@
 		{
 			"variableType": "COLLECTED",
 			"name": "NOMETABLISSEMENT",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "ACTIVITEETABLISSEMENT",
 			"values": {
 				"PREVIOUS": [null],
 				"COLLECTED": [null],
@@ -4275,6 +6117,17 @@
 		},
 		{
 			"variableType": "COLLECTED",
+			"name": "RAISONPROFESSIONS",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
 			"name": "SEPARATIONS",
 			"values": {
 				"PREVIOUS": [null],
@@ -4305,15 +6158,6 @@
 				"EDITED": [null],
 				"INPUTED": [null]
 			}
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_COUNT_PERSONS",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"inFilter": "false"
 		},
 		{
 			"variableType": "CALCULATED",
@@ -4357,63 +6201,108 @@
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_VIVEZVOUSDS",
+			"bindingDependencies": ["AGE_BRUT", "PLUS_UN_MOINS_UN", "DATENAISS"],
+			"expression": { "type": "VTL", "value": "AGE_BRUT + PLUS_UN_MOINS_UN" },
+			"name": "AGE",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
+		},
+		{
+			"variableType": "CALCULATED",
+			"bindingDependencies": ["DATENAISS"],
 			"expression": {
-				"value": "(COUNT_PERSONS >= 1)",
-				"type": "VTL"
+				"type": "VTL",
+				"value": "cast(substr(cast(DATENAISS, string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
-			"bindingDependencies": ["COUNT_PERSONS"],
+			"name": "AN_COLL",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
+			},
+			"name": "CURRENT_YEAR",
 			"inFilter": "false"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ETUDES",
 			"expression": {
-				"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"2\")",
-				"type": "VTL"
+				"type": "VTL",
+				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
-			"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"],
-			"inFilter": "false"
+			"name": "AN_CURR",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PROFESSIONS",
-			"expression": {
-				"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"],
-			"inFilter": "false"
+			"bindingDependencies": ["AN_CURR", "AN_COLL", "DATENAISS"],
+			"expression": { "type": "VTL", "value": "AN_CURR - AN_COLL" },
+			"name": "AGE_BRUT",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_SEPARATIONS",
+			"bindingDependencies": [
+				"MOIS_COLL",
+				"JOUR_COLL",
+				"MOIS_CURR",
+				"JOUR_CURR",
+				"DATENAISS"
+			],
 			"expression": {
-				"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\")",
-				"type": "VTL"
+				"type": "VTL",
+				"value": "if ( cast((MOIS_COLL || JOUR_COLL),integer) < cast((MOIS_CURR || JOUR_CURR),integer) ) then 0 else -1"
 			},
-			"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"],
-			"inFilter": "false"
+			"name": "PLUS_UN_MOINS_UN",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_NUIT_ICIS",
+			"bindingDependencies": ["DATENAISS"],
 			"expression": {
-				"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\") and (SEPARATIONS = \"2\")",
-				"type": "VTL"
+				"type": "VTL",
+				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),6,2)"
 			},
-			"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS", "SEPARATIONS"],
-			"inFilter": "false"
+			"name": "MOIS_COLL",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
 		},
 		{
 			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_AUTRE_SITUATIONS",
+			"bindingDependencies": ["DATENAISS"],
 			"expression": {
-				"value": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"5\")",
-				"type": "VTL"
+				"type": "VTL",
+				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),9,2)"
 			},
-			"bindingDependencies": ["COUNT_PERSONS", "VIVEZVOUSDS"],
-			"inFilter": "false"
+			"name": "JOUR_COLL",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),6,2)"
+			},
+			"name": "MOIS_CURR",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),9,2)"
+			},
+			"name": "JOUR_CURR",
+			"inFilter": "false",
+			"shapeFrom": "DATENAISS"
 		},
 		{
 			"variableType": "CALCULATED",
@@ -4450,6 +6339,17 @@
 		{
 			"variableType": "COLLECTED",
 			"name": "ZC",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "CATEGORIE_LOGEMENT",
 			"values": {
 				"PREVIOUS": null,
 				"COLLECTED": null,
@@ -4834,17 +6734,6 @@
 		},
 		{
 			"variableType": "COLLECTED",
-			"name": "OPT1",
-			"values": {
-				"PREVIOUS": null,
-				"COLLECTED": null,
-				"FORCED": null,
-				"EDITED": null,
-				"INPUTED": null
-			}
-		},
-		{
-			"variableType": "COLLECTED",
 			"name": "SANI",
 			"values": {
 				"PREVIOUS": null,
@@ -4907,6 +6796,28 @@
 				"FORCED": null,
 				"EDITED": null,
 				"INPUTED": null
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "OPT1",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED":[null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
+			}
+		},
+		{
+			"variableType": "COLLECTED",
+			"name": "LIEUTRAVAPAYS",
+			"values": {
+				"PREVIOUS": [null],
+				"COLLECTED": [null],
+				"FORCED": [null],
+				"EDITED": [null],
+				"INPUTED": [null]
 			}
 		},
 		{
@@ -5258,651 +7169,6 @@
 			},
 			"shapeFrom": "NOM",
 			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "DATENAIS_UNDERAGE",
-			"expression": {
-				"value": "2023 - cast(substr(cast(DATENAISS,string),1,4),integer)",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["DATENAISS"],
-			"shapeFrom": "NOM",
-			"inFilter": "true"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "UNNECESSARY_BI",
-			"expression": {
-				"value": "VIVEZVOUSDS = \"1\"",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["VIVEZVOUSDS"],
-			"shapeFrom": "NOM",
-			"inFilter": "true"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_BONJOURPEU",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_VITICI",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_VITAILLEURS",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ESTCEQUEIF",
-			"expression": {
-				"value": "(VITAILLEURS = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["VITAILLEURS"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEUXHABETUDES",
-			"expression": {
-				"value": "(ESTCEQUEIF = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEQUEIF"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEUXHABPROF",
-			"expression": {
-				"value": "(ESTCEQUEIF = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEQUEIF"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEUXHABSEP",
-			"expression": {
-				"value": "(ESTCEQUEIF = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEQUEIF"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEUXHABSEP2",
-			"expression": {
-				"value": "(ESTCEQUEIF = \"3\") and (LIEUXHABSEP = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEQUEIF", "LIEUXHABSEP"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEUXHABAUTRE",
-			"expression": {
-				"value": "(ESTCEQUEIF = \"4\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEQUEIF"],
-			"shapeFrom": "VITICI",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_BI_LIEUNAIS",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_CNAI_FRANCE",
-			"expression": {
-				"value": "(BI_LIEUNAIS = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["BI_LIEUNAIS"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_DPNAI_FRANCE",
-			"expression": {
-				"value": "(BI_LIEUNAIS = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["BI_LIEUNAIS"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_CNAI_ETRANGER",
-			"expression": {
-				"value": "(BI_LIEUNAIS = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["BI_LIEUNAIS"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PNAI_ETRANGER",
-			"expression": {
-				"value": "(BI_LIEUNAIS = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["BI_LIEUNAIS"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ARRIV",
-			"expression": {
-				"value": "(BI_LIEUNAIS = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["BI_LIEUNAIS"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_INAT",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_INAT2",
-			"expression": {
-				"value": "(INAT = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["INAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_NATN",
-			"expression": {
-				"value": "(INAT2 = \"2\" || INAT = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["INAT2", "INAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ETUD",
-			"expression": {
-				"value": "true",
-				"type": "VTL"
-			},
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ESTCEUNTAB",
-			"expression": {
-				"value": "(ETUD = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ETUD"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ILETU",
-			"expression": {
-				"value": "(ESTCEUNTAB = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEUNTAB"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_CETU",
-			"expression": {
-				"value": "(ESTCEUNTAB = \"2\") and (ILETU = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEUNTAB", "ILETU"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PNAI_CETU",
-			"expression": {
-				"value": "(ESTCEUNTAB = \"2\") and (ILETU = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEUNTAB", "ILETU"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PNAI_TU",
-			"expression": {
-				"value": "(ESTCEUNTAB = \"2\") and (ILETU = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["ESTCEUNTAB", "ILETU"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_IRAN",
-			"expression": {
-				"value": "(AGE > 1 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_COMMAVANTFRANCE",
-			"expression": {
-				"value": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "IRAN"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_DRAN",
-			"expression": {
-				"value": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "IRAN"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_COMMAVANTETR",
-			"expression": {
-				"value": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "IRAN"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PAYSAVANT",
-			"expression": {
-				"value": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "IRAN"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_COUPLE",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_MATR",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_DIPL",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_SITUAT",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_SITRAV",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT  <>  \"2\") and (SITUAT  <>  \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_DEJAT",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT  <>  \"2\") and (SITUAT  <>  \"1\") and (SITRAV =\"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_STATAV",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT  <>  \"2\") and (SITUAT  <>  \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "DEJAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PROFA",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT  <>  \"2\") and (SITUAT  <>  \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "DEJAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_RECH",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT  <>  \"2\") and (SITUAT  <>  \"1\") and (SITRAV =\"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_RS",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ACTET",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_LIEU",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_ILT",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "LIEU"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_QUELLEESTL",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\") and (ILT = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "LIEU", "ILT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_CLT",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\") and (ILT = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "LIEU", "ILT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_STL_COFR",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": [
-				"AGE",
-				"SITUAT",
-				"SITRAV",
-				"LIEU",
-				"ILT",
-				"QUELLEESTL"
-			],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_STL_ETR",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": [
-				"AGE",
-				"SITUAT",
-				"SITRAV",
-				"LIEU",
-				"ILT",
-				"QUELLEESTL"
-			],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_TRANS",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU  <>  \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "LIEU"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_TP",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_STAT",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_NBSAL",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT  <>  \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PROFI",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT  <>  \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_EMPL",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_POSP",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_PROFS",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_FONC",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE", "SITUAT", "SITRAV", "STAT"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
-		},
-		{
-			"variableType": "CALCULATED",
-			"name": "FILTER_RESULT_VALIDATION",
-			"expression": {
-				"value": "(AGE > 13 and not(isnull(AGE)))",
-				"type": "VTL"
-			},
-			"bindingDependencies": ["AGE"],
-			"shapeFrom": "BI_LIEUNAIS",
-			"inFilter": "false"
 		}
 	],
 	"cleaning": {
@@ -5911,16 +7177,10 @@
 			"PRENOMS": "(COUNT_PERSONS >= 1)",
 			"DATENAIS": "(COUNT_PERSONS >= 1)",
 			"SEXES": "(COUNT_PERSONS >= 1)",
-			"VIVEZVOUSDS": "(COUNT_PERSONS >= 1)",
-			"ETUDES": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"2\")",
-			"PROFESSIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"3\")",
-			"SEPARATIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\")",
-			"NUIT_ICIS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\") and (SEPARATIONS = \"2\")",
-			"AUTRE_SITUATIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"5\")"
+			"VIVEZVOUSDS": "(COUNT_PERSONS >= 1)"
 		},
 		"VIVEZVOUSDS": {
 			"ETUDES": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"2\")",
-			"PROFESSIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"3\")",
 			"SEPARATIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\")",
 			"NUIT_ICIS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"4\") and (SEPARATIONS = \"2\")",
 			"AUTRE_SITUATIONS": "(COUNT_PERSONS >= 1) and (VIVEZVOUSDS = \"5\")"
@@ -5972,153 +7232,6 @@
 			"CETU": "(ESTCEUNTAB = \"2\") and (ILETU = \"2\")",
 			"PNAI_CETU": "(ESTCEUNTAB = \"2\") and (ILETU = \"3\")",
 			"PNAI_TU": "(ESTCEUNTAB = \"2\") and (ILETU = \"3\")"
-		},
-		"AGE": {
-			"IRAN": "(AGE > 1 and not(isnull(AGE)))",
-			"COMMAVANTFRANCE": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"DRAN": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"COMMAVANTETR": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-			"PAYSAVANT": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-			"COUPLE": "(AGE > 13 and not(isnull(AGE)))",
-			"SITUAT": "(AGE > 13 and not(isnull(AGE)))",
-			"SITRAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\")",
-			"DEJAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"STATAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"PROFA": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"RECH": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"RS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ACTET": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"LIEU": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ILT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-			"TRANS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"TP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"STAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"NBSAL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"PROFI": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"EMPL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"POSP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"PROFS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"FONC": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"VALIDATION": "(AGE > 13 and not(isnull(AGE)))"
-		},
-		"DATENAIS": {
-			"IRAN": "(AGE > 1 and not(isnull(AGE)))",
-			"COMMAVANTFRANCE": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"DRAN": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"COMMAVANTETR": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-			"PAYSAVANT": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-			"COUPLE": "(AGE > 13 and not(isnull(AGE)))",
-			"SITUAT": "(AGE > 13 and not(isnull(AGE)))",
-			"SITRAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\")",
-			"DEJAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"STATAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"PROFA": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"RECH": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"RS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ACTET": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"LIEU": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ILT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-			"TRANS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"TP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"STAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"NBSAL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"PROFI": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"EMPL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"POSP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"PROFS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"FONC": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"VALIDATION": "(AGE > 13 and not(isnull(AGE)))"
-		},
-		"IRAN": {
-			"COMMAVANTFRANCE": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"DRAN": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"3\")",
-			"COMMAVANTETR": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")",
-			"PAYSAVANT": "(AGE > 1 and not(isnull(AGE))) and (IRAN = \"4\")"
-		},
-		"SITUAT": {
-			"SITRAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\")",
-			"DEJAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"STATAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"PROFA": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"RECH": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"RS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ACTET": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"LIEU": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ILT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-			"TRANS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"TP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"STAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"NBSAL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"PROFI": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"EMPL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"POSP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"PROFS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"FONC": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")"
-		},
-		"SITRAV": {
-			"DEJAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"STATAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"PROFA": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"RECH": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\")",
-			"RS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ACTET": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"LIEU": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"ILT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-			"TRANS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"TP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"STAT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\")",
-			"NBSAL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"PROFI": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"EMPL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"POSP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"PROFS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"FONC": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")"
-		},
-		"DEJAT": {
-			"STATAV": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")",
-			"PROFA": "(AGE > 13 and not(isnull(AGE))) and (SITUAT != \"2\") and (SITUAT != \"1\") and (SITRAV =\"2\") and (DEJAT = \"1\")"
-		},
-		"LIEU": {
-			"ILT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")",
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")",
-			"TRANS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\")"
-		},
-		"ILT": {
-			"QUELLEESTL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"CLT": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\")",
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")"
-		},
-		"QUELLEESTL": {
-			"STL_COFR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"1\")",
-			"STL_ETR": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (LIEU != \"3\") and (ILT = \"2\") and (QUELLEESTL = \"2\")"
-		},
-		"STAT": {
-			"NBSAL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"PROFI": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT != \"3\")",
-			"EMPL": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"POSP": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"PROFS": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")",
-			"FONC": "(AGE > 13 and not(isnull(AGE))) and (SITUAT = \"1\" or SITUAT = \"2\" or SITRAV = \"1\") and (STAT = \"3\")"
 		}
 	},
 	"resizing": {
@@ -6132,7 +7245,7 @@
 		},
 		"AGE": {
 			"size": "cast(COUNT_PERSONS, integer)",
-			"variables": ["AGES"]
+			"variables": ["DATENAISS"]
 		},
 		"SEXE": {
 			"size": "cast(COUNT_PERSONS, integer)",
