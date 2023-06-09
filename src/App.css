@@ -274,7 +274,6 @@ input.checkbox-lunatic {
 
 #main .lunatic-component .declarations-lunatic .declaration-lunatic {
   color: black;
-  padding: 5px;
 }
 
 #main
@@ -331,7 +330,6 @@ input.checkbox-lunatic {
   background-color: #0d3970;
   padding: 0.5em;
   font-size: 19px;
-  line-height: 36px;
   height: unset;
 }
 
@@ -341,7 +339,6 @@ input.checkbox-lunatic {
   font-style: normal;
   font-size: 10pt;
   height: unset;
-  line-height: 20px;
   color: white;
   padding-left: 25px;
   background-color: #3467ae;
@@ -372,7 +369,7 @@ input.checkbox-lunatic {
   > .declarations-lunatic
   > .declaration-lunatic,
 #main .outerContainer-Sequence > .declarations-lunatic > .declaration-lunatic {
-  margin: 8px !important;
+  margin: 20px !important;
   color: #0f417a;
 }
 
