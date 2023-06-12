@@ -59,6 +59,14 @@ body {
   > svg {
   fill: #154783;
 }
+.lunatic-component.outerContainer-Sequence .label-description p {
+  color: #0f417a !important;
+  margin: 20px !important;
+  font-style: normal;
+  font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+  font-size: 12px;
+  line-height: 10.7px;
+}
 
 #main
   .radio-modality.radio-modality-block.content-checked
@@ -284,10 +292,6 @@ input.checkbox-lunatic {
   color: #0f417a;
 }
 
-#main .field {
-  margin-bottom: 5px;
-}
-
 /* Question responses */
 #main .field > textarea,
 .field > input,
@@ -332,7 +336,7 @@ input.checkbox-lunatic {
   text-transform: uppercase;
   font-weight: bold;
   background-color: #0d3970;
-  padding: 0.5em;
+  padding: 0.2em;
   font-size: 19px;
   height: unset;
 }
@@ -346,7 +350,7 @@ input.checkbox-lunatic {
   color: white;
   padding-left: 25px;
   background-color: #3467ae;
-  padding: 0.5em;
+  padding: 0.2em;
 }
 #main .outerContainer-Subsequence {
   border: 1px solid #3467ae;
