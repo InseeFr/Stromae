@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material';
 
-import { useDocumentTitle } from '../../useDocumentTitle';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export function Content() {
 	useDocumentTitle('Page de chargement');

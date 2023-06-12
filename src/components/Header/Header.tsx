@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
-import ConvertContent from '../../convertContent';
+import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
 

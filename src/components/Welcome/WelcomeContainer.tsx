@@ -9,9 +9,13 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
 import { RespondantsList } from './RespondantsList';
 import { WelcomeQuestions } from './WelcomeQuestions';
-import { useDocumentTitle } from '../../useDocumentTitle';
-import ConvertContent from '../../convertContent';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
+import ConvertContent from '../../utils/convertContent';
 import { useColors } from '@codegouvfr/react-dsfr/useColors';
+import { themeStringToVariable } from '../../utils/themeStringToVariable';
+
+
+
 
 export function WelcomeContainer() {
 	const theme = useColors();
@@ -19,7 +23,6 @@ export function WelcomeContainer() {
 	const { survey, unit } = useParams();
 	const { oidcUser } = useOidcUser();
 	const { login } = useOidc();
-
 	const { getMetadata } = useContext(loadSourceDataContext);
 	const metadata = useRemote<any>(getMetadata, navigateError);
 	const welcome = metadata?.Welcome;
@@ -28,6 +31,7 @@ export function WelcomeContainer() {
 	function navigateError() {
 		navigate('/');
 	}
+
 
 	const onClick = useCallback(() => {
 		if (oidcUser && survey && unit) {
@@ -57,13 +61,15 @@ export function WelcomeContainer() {
 								Commencer
 							</Button>
 						</div>
-						<div className="fr-col-md-4 fr-col-8 fr-mt-2w">
-							<img
-								className="fr-responsive-img"
-								src="https://le-recensement-et-moi.fr/illu-femme-ordi.svg"
-								alt="decoration"
-							></img>
-						</div>
+						{welcome.Enq_Image && 
+							<div className="fr-col-md-4 fr-col-8 fr-mt-2w">
+								<img
+									className="fr-responsive-img"
+									src={welcome.Enq_Image}
+									alt="decoration"
+								></img>
+							</div>
+						}
 					</div>
 				</div>
 			</div>
@@ -71,8 +77,7 @@ export function WelcomeContainer() {
 			<div
 				className="fr-p-6w fr-grid-row fr-grid-row--center fr-grid-row--middle"
 				style={{
-					backgroundColor:
-						theme.decisions.background.alt.greenTilleulVerveine.default,
+					backgroundColor: themeStringToVariable(theme, welcome.Enq_colorTheme, theme.decisions.background.default.grey.default)
 				}}
 			>
 				<div className="fr-col-xl-6 fr-col-lg-10 fr-col-12">

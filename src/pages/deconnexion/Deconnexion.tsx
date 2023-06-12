@@ -5,7 +5,7 @@ import { Button } from '@codegouvfr/react-dsfr/Button';
 
 import { Layout } from '../../components/layout';
 import { ReactComponent as Information } from '../../assets/information.svg';
-import { useDocumentTitle } from '../../useDocumentTitle';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
 export function Deconnexion() {

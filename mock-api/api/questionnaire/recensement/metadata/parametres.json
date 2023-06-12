@@ -61,6 +61,8 @@
 			"value": "Le questionnaire du recensement est divisé en 3 parties:</br></br> 1. Le logement</br> 2. La liste des habitants du logement</br>3. Les questionnaires individuels</br></br> Le temps de réponse estimé est de 10 minutes.",
 			"type": "html"
 		},
+		"Enq_colorTheme": "greenMenthe.default",
+		"Enq_Image":"https://le-recensement-et-moi.fr/illu-femme-ordi.svg",
 		"Enq_CaractereObligatoire": true,
 		"Enq_QualiteStatistique": true,
 		"Enq_NumeroVisa": "2021A054EC",

@@ -1,4 +1,4 @@
-import ConvertContent from '../../convertContent';
+import ConvertContent from '../../utils/convertContent';
 
 import { FooterType } from './FooterType';
 
@@ -64,10 +64,10 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://legifrance.gouv.fr"
+									href="https://le-recensement-et-moi.fr"
 									rel="noreferrer"
 								>
-									legifrance.gouv.fr
+									le-recensement-et-moi
 								</a>
 								&nbsp;
 							</li>
@@ -75,10 +75,10 @@ export function Footer(props: FooterProps) {
 								<a
 									className="fr-footer__content-link"
 									target="_blank"
-									href="https://gouvernement.fr"
+									href="https://insee.fr"
 									rel="noreferrer"
 								>
-									gouvernement.fr
+									insee.fr
 								</a>
 								&nbsp;
 							</li>
