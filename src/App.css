@@ -318,8 +318,12 @@ input.checkbox-lunatic {
   margin-left: 8px !important;
 }
 
-#main div.field-container,
+/* #main div.field-container,
 #main div.declarations-lunatic {
+} */
+.field-container .field .lunatic-textarea .label-description.INSTRUCTION p,
+.field-container .field .lunatic-textarea .label-description.HELP p {
+  color: black !important;
 }
 
 /* Sequences / Subsequences */
