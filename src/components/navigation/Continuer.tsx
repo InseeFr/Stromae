@@ -33,13 +33,14 @@ export function Continuer(props: OrchestratedElement) {
 		goNextPage = () => null,
 		isLastPage,
 		getComponents = () => [],
+    waiting = false
 	} = props;
 	const navigate = useNavigate();
 	const { unit, survey } = useParams();
-	const buttonContent = getStatus(getComponents, isLastPage ?? false);
+	const buttonContent = waiting ? `Chargement` : getStatus(getComponents, isLastPage ?? false);
 
 	const handleClick = useCallback((event: React.MouseEvent) => {
-      event.preventDefault()
+    event.preventDefault()
 		if (isLastPage) {
 			try {
 				navigate(uriPostEnvoi(survey, unit));
@@ -55,9 +56,12 @@ export function Continuer(props: OrchestratedElement) {
 			priority="primary"
 			onClick={handleClick}
 			className={fr.cx('fr-mt-1w')}
-      nativeButtonProps={{"form": "stromae-form", "type": "submit"}}
+      nativeButtonProps={{"form": "stromae-form", "type": "submit", "aria-atomic": true, "aria-disabled": waiting}}
+      iconId={waiting ? "fr-icon-refresh-line" : undefined}
+      disabled={waiting}
 		>
 			{buttonContent}
 		</Button>
 	);
 }
+
