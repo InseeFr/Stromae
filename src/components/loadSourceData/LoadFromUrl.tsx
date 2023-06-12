@@ -3,6 +3,9 @@ import type { LunaticSource } from '../../typeLunatic/type-source';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
 import { SurveyUnitData, MetadataSurvey } from '../../typeStromae/type';
 import { loadSourceDataContext } from './LoadSourceDataContext';
+import { DEFAULT_HEADER } from '../Header/default-header';
+import { DEFAULT_FOOTER } from '../footer/default-footer';
+import { DEFAULT_SUBMIT } from '../postSubmit/default-submit';
 
 type LoadFromUrlProps = {
 	urlSource?: string;
@@ -18,6 +21,16 @@ async function getDepositProof() {
 	return new Blob();
 }
 
+const NO_DATA: SurveyUnitData = {
+	data: {},
+	stateData: {
+		state: 'INIT',
+		date: 0,
+		currentPage: '1',
+	},
+	personalization: null,
+};
+
 export function LoadFromUrl({
 	children,
 	urlSource,
@@ -29,7 +42,11 @@ export function LoadFromUrl({
 		if (urlMetadata) {
 			return publicGetRequest<MetadataSurvey>(urlMetadata);
 		}
-		return undefined;
+		return {
+			Header: DEFAULT_HEADER,
+			Footer: DEFAULT_FOOTER,
+			Submit: DEFAULT_SUBMIT,
+		};
 	}, [urlMetadata]);
 	const getSurvey = useCallback(async () => {
 		if (urlSource) {
@@ -41,7 +58,7 @@ export function LoadFromUrl({
 		if (urlData) {
 			return publicGetRequest<SurveyUnitData>(urlData);
 		}
-		return undefined;
+		return NO_DATA;
 	}, [urlData]);
 
 	const putSurveyUnitData = useCallback(async () => {

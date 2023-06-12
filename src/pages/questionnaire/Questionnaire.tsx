@@ -10,7 +10,7 @@ import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
 import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
-import { Grid } from '../../components/Grid/Grid';
+import { Grid } from '../../components/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 
 export type QuestionnaireParams = {

@@ -8,7 +8,7 @@ import { Continuer } from '../../components/navigation/Continuer';
 import { Formulaire } from '../../components/formulaire';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
-import { Grid } from '../../components/Grid/Grid';
+import { Grid } from '../../components/Grid';
 
 export type QuestionnaireParams = {
 	survey?: string;

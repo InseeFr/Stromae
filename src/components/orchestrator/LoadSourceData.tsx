@@ -37,7 +37,6 @@ export function LoadSourceData({
 		// TODO skeleton
 		return null;
 	}
-
 	return (
 		<CloneElements<OrchestratorProps>
 			source={source}
