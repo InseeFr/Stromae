@@ -4,8 +4,9 @@ import { DEFAULT_HEADER } from './default-header';
 import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const iconContact = fr.cx('fr-icon-questionnaire-fill');
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const iconTheme = fr.cx('fr-icon-theme-fill');
 
 function getAuthLabel(isAuthenticated: boolean): string {
