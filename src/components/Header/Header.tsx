@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
-import ConvertContent from '../../convertContent';
+import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
-// import { HeaderProps as HeaderPropsDsfr } from '@codegouvfr/react-dsfr/Header';
+import { fr } from '@codegouvfr/react-dsfr';
+
+const iconContact = fr.cx('fr-icon-questionnaire-fill');
+const iconTheme = fr.cx('fr-icon-theme-fill');
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
@@ -87,14 +90,14 @@ export function Header(props: HeaderProps) {
 								</div>
 							</div>
 							<div className="fr-header__service">
+								<h1 className="fr-header__service-title">
 								<a
 									href={homeLinkProps.href}
 									title={`Accueil - ${homeLinkProps.title} - République Française`}
 								>
-									<span className="fr-header__service-title">
 										{serviceTitle}
-									</span>
 								</a>
+								</h1>
 							</div>
 						</div>
 						<div className="fr-header__tools">
@@ -102,7 +105,11 @@ export function Header(props: HeaderProps) {
 								<ul className="fr-btns-group">
 									<li>
 										<button
-											className="fr-btn fr-fi-theme-fill fr-link--icon-left"
+											className={fr.cx(
+												'fr-btn',
+												'fr-icon-theme-fill',
+												'fr-link--icon-left'
+											)}
 											aria-controls="fr-theme-modal"
 											data-fr-opened="false"
 										>

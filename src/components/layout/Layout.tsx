@@ -6,7 +6,6 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { FooterType } from '../footer/FooterType';
 import { HeaderType } from '../Header/HeaderType';
 import { Header } from '../Header';
-import { Banner } from '../Banner/Banner';
 import { HeaderAuth } from '../Header/HeaderAuth';
 import { Footer } from '../footer/Footer';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
@@ -51,7 +50,6 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
 			<HeaderAuth>
 				<Header header={header} />
 			</HeaderAuth>
-			<Banner />
 			<Main id="contenu">{children}</Main>
 			<Footer footer={footer} />
 			<Display />

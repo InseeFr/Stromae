@@ -84,7 +84,7 @@ export default function AdditionalInformation({
 		if (hasAdditionalInformation) {
 			return (
 				<>
-					<div className="fr-col-12 fr-col-lg-6 fr-mt-9w fr-col-offset-lg-1">
+					<div className="fr-col-12 fr-col-lg-6 fr-col-lg-11 fr-mt-9w fr-col-offset-lg-1">
 						<h2>{TitleAdditionalInformation}</h2>
 					</div>
 					<ProvideFeedback submit={submit} Feedback={Feedback} />

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useDocumentTitle } from '../../useDocumentTitle';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { OrchestratorReadOnly } from '../../components/orchestrator';
 import { Layout } from '../../components/layout';
 import { Precedent } from '../../components/navigation/Precedent';
