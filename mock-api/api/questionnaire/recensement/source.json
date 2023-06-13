@@ -455,7 +455,7 @@
 								"type": "VTL"
 							},
 							"errorMessage": {
-								"value": "\"Veuillez renseigner le nom de la voie de votre logement, information est indispensable pour s'assurer que le recensement s'effectue à la bonne adresse.\"",
+								"value": "\"Veuillez renseigner le nom de la voie de votre logement, cette information est indispensable pour s'assurer que le recensement s'effectue à la bonne adresse.\"",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["NOMVOI_LOC"]
@@ -1851,7 +1851,7 @@
 					"mandatory": false,
 					"max": 20,
 					"label": {
-						"value": "\"Nombre d'habitants (*)\"",
+						"value": "\"Nombre d'habitant (*)\"",
 						"type": "VTL"
 					},
 					"controls": [
@@ -1864,7 +1864,7 @@
 								"type": "VTL"
 							},
 							"errorMessage": {
-								"value": "\" Veuillez entrer un nombre d'habitants\"",
+								"value": "\" Veuillez entrer un nombre d'habitant\"",
 								"type": "VTL"
 							}
 						}
@@ -1974,7 +1974,7 @@
 						{
 							"id": "lfwg2ny2-prenoms",
 							"label": {
-								"value": "\"Prénom\"",
+								"value": "\"Prénom (*)\"",
 								"type": "VTL"
 							},
 							"conditionFilter": {
@@ -2007,7 +2007,7 @@
 							"mandatory": true,
 							"maxLength": 249,
 							"label": {
-								"value": "\"Nom\"",
+								"value": "\"Nom (*)\"",
 								"type": "VTL"
 							},
 							"controls": [
@@ -2037,7 +2037,7 @@
 							"min": "1900-01-01",
 							"max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
 							"label": {
-								"value": " \"Date de naissance\"",
+								"value": " \"Date de naissance (*)\"",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["DATENAISS"],
@@ -2051,7 +2051,7 @@
 							"componentType": "Radio",
 							"mandatory": true,
 							"label": {
-								"value": "\"Sexe\"",
+								"value": "\"Sexe (*)\"",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["SEXES"],
@@ -3635,17 +3635,16 @@
 					"page": "21.8",
 					"components":[
 										{
-					"id": "sfdscdgdfsgfgs",
-					"componentType": "QuestionInformation",
-					"page": "21.23",
-					"conditionFilter": {
-						"value": "true",
-						"type": "VTL"
-					},
-					"description": {
-						"value": "\"Quelques cas particuliers :\n\n - congé de maladie ou de maternité, cochez « Emploi »\n\n - congé parental de moins de 3 mois, cochez « Emploi ».\n\n - congé parental de plus de 3 mois, cochez « Autre situation » puis « Non » à la question suivante\n\n - formation en alternance, cochez « Apprentissage »\n\n - chômage technique, cochez « Emploi »\n\n - aide d'une personne dans le cadre de son travail y compris de façon non rémunérée, cochez « Emploi »\"",
-						"type": "VTL|MD"
-					}
+											"id": "sfdscdgdfsgfgs",
+											"componentType": "QuestionInformation",
+											"conditionFilter": {
+												"value": "true",
+												"type": "VTL"
+											},
+											"description": {
+												"value": "\"Quelques cas particuliers :\n\n - congé de maladie ou de maternité, cochez « Emploi »\n\n - congé parental de moins de 3 mois, cochez « Emploi ».\n\n - congé parental de plus de 3 mois, cochez « Autre situation » puis « Non » à la question suivante\n\n - formation en alternance, cochez « Apprentissage »\n\n - chômage technique, cochez « Emploi »\n\n - aide d'une personne dans le cadre de son travail y compris de façon non rémunérée, cochez « Emploi »\"",
+												"type": "VTL|MD"
+											}
 				},
 				{
 					"id": "input-etablissement-situ",
@@ -3677,7 +3676,6 @@
 							"bindingDependencies": ["SITUAPRO"]
 						}
 					],
-					"page": "21.8",
 					"options": [
 						{
 							"value": "1",
@@ -3743,9 +3741,7 @@
 					]
 				}
 					]
-
 				},
-
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
@@ -5641,6 +5637,23 @@
             ]
         }
 			]
+		},
+		{
+			"id": "kkxugktl-title",
+			"componentType": "Subsequence",
+			"page": "22",
+			"label": {
+				"value": "\"## Vous êtes arrivé à la fin du questionnaire.\"",
+				"type": "VTL|MD"
+			},
+			"description": {
+				"value": "\"Après envoi, vous ne pourrez plus modifier vos réponses et vous pourrez télécharger votre accusé de réception.\"",
+				"type": "VTL|MD"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			}
 		}
 	],
 	"variables": [

@@ -90,14 +90,14 @@ export function Header(props: HeaderProps) {
 								</div>
 							</div>
 							<div className="fr-header__service">
+								<h1 className="fr-header__service-title">
 								<a
 									href={homeLinkProps.href}
 									title={`Accueil - ${homeLinkProps.title} - République Française`}
 								>
-									<span className="fr-header__service-title">
 										{serviceTitle}
-									</span>
 								</a>
+								</h1>
 							</div>
 						</div>
 						<div className="fr-header__tools">
