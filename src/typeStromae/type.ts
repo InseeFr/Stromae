@@ -1,12 +1,11 @@
-import type {
-	LunaticData,
-	LunaticError,
-	LunaticVariable,
-} from '../typeLunatic/type';
+import type { LunaticData, LunaticError } from '../typeLunatic/type';
 import { ComponentType } from '../typeLunatic/type-source';
+import { HeaderType } from '../components/Header/HeaderType';
+import { FooterType } from '../components/footer/FooterType';
 
 export type StateData = {
-	state: string | null; //'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	// 'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
+	state: string | null;
 	date: number;
 	currentPage: string;
 };
@@ -39,7 +38,7 @@ export type OrchestratedElement = {
 	readonly getComponents?: () => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
-	readonly goToPage?: () => void;
+	readonly goToPage?: (page: { page: string; iteration?: number }) => void;
 	readonly getErrors?: () => Record<
 		string,
 		Record<string, Array<LunaticError>>
@@ -50,7 +49,6 @@ export type OrchestratedElement = {
 	readonly isLastPage?: boolean;
 	readonly onChange?: (...args: any) => void;
 	readonly getData?: (refreshCalculated: boolean) => VariablesType;
-	readonly activeControls?: boolean;
 	readonly compileControls?: () => {
 		isCritical: boolean;
 		currentErrors?: Record<string, Array<LunaticError>>;
@@ -63,9 +61,31 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
+  waiting?: boolean; 
+	// disabled all components
+	disabled?: boolean;
+	currentPage?: string;
 };
 
 export type QuestionnaireParams = {
 	survey: string;
 	unit?: string;
 };
+
+export type LinkType = {
+	title: string;
+	link: Record<string, string>;
+};
+
+export type SubmitType = {
+	DescriptionAdditional: string;
+	TitleAdditionalInformation: string;
+	Feedback: LinkType;
+	Results: LinkType;
+};
+
+export interface MetadataSurvey {
+	Header: HeaderType;
+	Footer: FooterType;
+	Submit: SubmitType;
+}

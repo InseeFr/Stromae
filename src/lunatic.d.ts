@@ -1,1 +1,1 @@
-declare module "@inseefr/lunatic";
+declare module '@inseefr/lunatic';

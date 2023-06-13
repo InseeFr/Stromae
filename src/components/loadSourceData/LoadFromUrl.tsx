@@ -1,9 +1,8 @@
 import { PropsWithChildren, useCallback } from 'react';
 import type { LunaticSource } from '../../typeLunatic/type-source';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { SurveyUnitData, MetadataSurvey } from '../../typeStromae/type';
 import { loadSourceDataContext } from './LoadSourceDataContext';
-import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
-import { SurveyUnitData } from '../../typeStromae/type';
 
 type LoadFromUrlProps = {
 	urlSource?: string;
@@ -15,6 +14,10 @@ type LoadFromUrlProps = {
 
 const empty = {};
 
+async function getDepositProof() {
+	return new Blob();
+}
+
 export function LoadFromUrl({
 	children,
 	urlSource,
@@ -22,40 +25,34 @@ export function LoadFromUrl({
 	urlData,
 	urlNomenclatures = empty,
 }: PropsWithChildren<LoadFromUrlProps>) {
-	const getMetadata = useCallback(
-		async function () {
-			if (urlMetadata) {
-				return await publicGetRequest<MetadataSurvey>(urlMetadata);
-			}
-		},
-		[urlMetadata]
-	);
-	const getSurvey = useCallback(
-		async function () {
-			if (urlSource) {
-				return await publicGetRequest<LunaticSource>(urlSource);
-			}
-		},
-		[urlSource]
-	);
-	const getSurveyUnitData = useCallback(
-		async function () {
-			if (urlData) {
-				return await publicGetRequest<SurveyUnitData>(urlData);
-			}
-		},
-		[urlData]
-	);
+	const getMetadata = useCallback(async () => {
+		if (urlMetadata) {
+			return publicGetRequest<MetadataSurvey>(urlMetadata);
+		}
+		return undefined;
+	}, [urlMetadata]);
+	const getSurvey = useCallback(async () => {
+		if (urlSource) {
+			return publicGetRequest<LunaticSource>(urlSource);
+		}
+		return undefined;
+	}, [urlSource]);
+	const getSurveyUnitData = useCallback(async () => {
+		if (urlData) {
+			return publicGetRequest<SurveyUnitData>(urlData);
+		}
+		return undefined;
+	}, [urlData]);
 
-	const putSurveyUnitData = useCallback(async function () {
+	const putSurveyUnitData = useCallback(async () => {
 		return true;
 	}, []);
 
 	const getReferentiel = useCallback(
-		async function (name: string): Promise<Array<unknown>> {
+		async (name: string): Promise<Array<unknown>> => {
 			if (name in urlNomenclatures) {
 				const url = urlNomenclatures[name];
-				return await publicGetRequest<Array<unknown>>(url);
+				return publicGetRequest<Array<unknown>>(url);
 			}
 
 			return [];
@@ -71,6 +68,7 @@ export function LoadFromUrl({
 				getSurveyUnitData,
 				getReferentiel,
 				putSurveyUnitData,
+				getDepositProof,
 			}}
 		>
 			{children}

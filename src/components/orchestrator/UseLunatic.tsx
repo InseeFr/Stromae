@@ -1,59 +1,51 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { OrchestratorProps, NestedOrchestratedElement } from './Orchestrator';
-import { CloneElements } from './CloneElements';
 import { OrchestratedElement } from '../../typeStromae/type';
+import { OrchestratorProps } from './Orchestrator';
+import { CloneElements } from './CloneElements';
 
-export function UseLunatic(
-	props: NestedOrchestratedElement<OrchestratorProps>
-) {
+export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
 		source,
 		surveyUnitData,
 		children,
 		getReferentiel,
-		activeControls,
 		preferences,
 		features,
 		savingType,
 		autoSuggesterLoading,
+		paginated,
+		disabled,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data } = surveyUnitData || {};
-	const [currentChange, setCurrrentChange] = useState<{ name: string }>();
+	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
+	const { currentPage } = stateData;
+	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
-	const onChange = useCallback(function (
-		{ name }: { name: string },
-		value: unknown
-	) {
-		setCurrrentChange({ name });
-	},
-	[]);
+	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
+		setCurrentChange({ name });
+	}, []);
 
-	useEffect(
-		function () {
-			setArgs({
-				getReferentiel,
-				activeControls,
-				custom,
-				preferences,
-				features,
-				savingType,
-				autoSuggesterLoading,
-				onChange,
-			});
-		},
-		[
+	useEffect(() => {
+		setArgs({
 			getReferentiel,
-			activeControls,
+			custom,
 			preferences,
 			features,
 			savingType,
 			autoSuggesterLoading,
 			onChange,
-		]
-	);
+		});
+	}, [
+		getReferentiel,
+		preferences,
+		features,
+		savingType,
+		autoSuggesterLoading,
+		onChange,
+		paginated,
+	]);
 
 	const {
 		getComponents,
@@ -81,6 +73,8 @@ export function UseLunatic(
 				getData={getData}
 				currentChange={currentChange}
 				pageTag={pageTag}
+				disabled={disabled}
+				currentPage={currentPage}
 			>
 				{children}
 			</CloneElements>

@@ -5,28 +5,32 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, currentErrors } = props;
+	const { getComponents, currentErrors, disabled = false } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
 
-	useEffect(
-		function () {
-			if (typeof getComponents === 'function') {
-				setComponents(getComponents());
-			}
-		},
-		[getComponents]
-	);
+	useEffect(() => {
+		if (typeof getComponents === 'function') {
+			setComponents(getComponents());
+		}
+	}, [getComponents]);
 
 	return (
-		<form>
-			{components.map(function (component: ComponentType) {
+		<form 
+      id="stromae-form" 
+    >
+			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
 				if (componentType in lunatic) {
 					const Component = lunatic[componentType];
 
 					return (
 						<LunaticComponentContainer key={id} id={id}>
-							<Component key={id} {...component} errors={currentErrors} />
+							<Component
+								key={id}
+								{...component}
+								errors={currentErrors}
+								disabled={disabled}
+							/>
 						</LunaticComponentContainer>
 					);
 				}

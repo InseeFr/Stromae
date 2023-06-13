@@ -1,11 +1,11 @@
-import { MetadataSurvey } from '../../lib/surveys/getMetadataSurvey';
+import { createContext } from 'react';
 import { LunaticSource } from '../../typeLunatic/type-source';
 import {
 	DataVariables,
 	StateData,
 	SurveyUnitData,
+	MetadataSurvey,
 } from '../../typeStromae/type';
-import { createContext } from 'react';
 
 export type LoadSourceDataContextType = {
 	getMetadata: () => Promise<MetadataSurvey | undefined>;
@@ -17,6 +17,7 @@ export type LoadSourceDataContextType = {
 		data: DataVariables;
 		state: StateData;
 	}) => Promise<boolean>;
+	getDepositProof: (unit: string) => Promise<BlobPart>;
 };
 
 const DEFAULT = {
@@ -26,6 +27,7 @@ const DEFAULT = {
 	getSurveyUnitData: async () => undefined,
 	/* */
 	putSurveyUnitData: async () => true,
+	getDepositProof: async () => new Blob(),
 };
 
 export const loadSourceDataContext =

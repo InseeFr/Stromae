@@ -1,20 +1,18 @@
 {
 	"data": {
 		"COLLECTED": {
-			"PRENOM": { "COLLECTED": ["Dad", "Mom", "Unknow"] },
-			"AGE": { "COLLECTED": [30, 29, 5] },
-			"LINKS": {
-				"COLLECTED": [[null]]
-			},
-			"OTHER": {
-				"COLLECTED": [[null]]
-			}
+			"NUMVOI_LOC":  { "COLLECTED": "2" },
+			"TYPEVOI_LOC": { "COLLECTED": "rue" },
+			"NOMVOI_LOC": { "COLLECTED": "du poisson bleu" },
+			"CPOST_LOC":  { "COLLECTED": "92290"},
+			"COM_LOC": { "COLLECTED" : "Châtenay-Malabry"},
+			"ACHL": {"COLLECTED": "3"}
 		}
 	},
 	"stateData": {
 		"state": "INITIAL",
-		"date": 120000,
-		"currentPage": "1"
+		"date": 132583235000,
+		"currentPage": "20"
 	},
 	"personalization": []
 }

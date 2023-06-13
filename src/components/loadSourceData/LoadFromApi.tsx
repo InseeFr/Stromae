@@ -1,8 +1,10 @@
 import { PropsWithChildren, useCallback } from 'react';
-import { loadSourceDataContext } from './LoadSourceDataContext';
+
 import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
+
+import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromApiProps = {
 	survey?: string;
@@ -16,44 +18,43 @@ export function LoadFromApi({
 }: PropsWithChildren<LoadFromApiProps>) {
 	const { accessToken } = useOidcAccessToken();
 
-	const getMetadata = useCallback(
-		async function () {
-			if (survey) {
-				return await surveyApi.getMetadataSurvey(survey);
-			}
-		},
-		[survey]
-	);
+	const getMetadata = useCallback(async () => {
+		if (survey) {
+			return surveyApi.getMetadataSurvey(survey);
+		}
+		return undefined;
+	}, [survey]);
 
-	const getSurvey = useCallback(
-		async function () {
-			if (survey && accessToken) {
-				return await surveyApi.getSurvey(survey, accessToken);
-			}
-		},
-		[survey, accessToken]
-	);
+	const getSurvey = useCallback(async () => {
+		if (survey && accessToken) {
+			return surveyApi.getSurvey(survey, accessToken);
+		}
+		return undefined;
+	}, [survey, accessToken]);
 
-	const getSurveyUnitData = useCallback(
-		async function () {
-			if (accessToken && unit) {
-				return await surveyApi.getSurveyUnitData(unit, accessToken);
-			}
-		},
-		[unit, accessToken]
-	);
+	const getSurveyUnitData = useCallback(async () => {
+		if (accessToken && unit) {
+			return surveyApi.getSurveyUnitData(unit, accessToken);
+		}
+		return undefined;
+	}, [unit, accessToken]);
 
 	const getReferentiel = useCallback(
-		async function (name: string) {
+		async (name: string) => {
 			return surveyApi.getNomenclature(name, accessToken);
 		},
 		[accessToken]
 	);
 
+	const getDepositProof = useCallback(
+		async (unit: string) => {
+			return surveyApi.getDepositiProof(unit, accessToken);
+		},
+		[accessToken]
+	);
+
 	const putSurveyUnitData = useCallback(
-		async function (
-			args: { data: DataVariables; state: StateData } | undefined
-		) {
+		async (args: { data: DataVariables; state: StateData } | undefined) => {
 			try {
 				if (args) {
 					const { data, state } = args;
@@ -63,6 +64,7 @@ export function LoadFromApi({
 					}
 				}
 			} catch (e) {
+				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}
@@ -79,6 +81,7 @@ export function LoadFromApi({
 				getSurveyUnitData,
 				getReferentiel,
 				putSurveyUnitData,
+				getDepositProof,
 			}}
 		>
 			{children}

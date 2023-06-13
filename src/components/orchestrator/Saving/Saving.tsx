@@ -3,7 +3,8 @@ import { OrchestratedElement } from '../../../typeStromae/type';
 import { SaveOnPage } from './SaveOnPage';
 import { SaveOnSequence } from './SaveOnSequence';
 
-export const SAVING_TIME = process.env.REACT_APP_SAVING_TIME || 'page'; // or sequence
+// or sequence
+export const SAVING_TIME = process.env.REACT_APP_SAVING_TIME || 'page';
 
 export function Saving(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;

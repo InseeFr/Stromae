@@ -1,21 +1,22 @@
 import { PropsWithChildren, useContext } from 'react';
 import { useNavigate } from 'react-router';
+
 import { LunaticSource } from '../../typeLunatic/type-source';
 import { SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
-	activeControls?: boolean;
 };
+
 //
 export function LoadSourceData({
 	children,
 	onChange,
-	activeControls,
 }: PropsWithChildren<LoadSourceDataProps>) {
 	const navigate = useNavigate();
 	const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
@@ -32,18 +33,19 @@ export function LoadSourceData({
 		navigateError
 	);
 
-	if (source && surveyUnitData) {
-		return (
-			<CloneElements<OrchestratorProps>
-				source={source}
-				surveyUnitData={surveyUnitData}
-				getReferentiel={getReferentiel}
-				onChange={onChange}
-				activeControls={activeControls}
-			>
-				{children}
-			</CloneElements>
-		);
+	if (!source || !surveyUnitData) {
+		// TODO skeleton
+		return null;
 	}
-	return null; // TODO skeleton
+
+	return (
+		<CloneElements<OrchestratorProps>
+			source={source}
+			surveyUnitData={surveyUnitData}
+			getReferentiel={getReferentiel}
+			onChange={onChange}
+		>
+			{children}
+		</CloneElements>
+	);
 }

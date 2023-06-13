@@ -9,14 +9,19 @@ export const HTTP_VERBS = {
 function errorHandler(error: AxiosError) {
 	if (axios.isAxiosError(error)) {
 		if (!error?.response) {
+			// eslint-disable-next-line no-console
 			console.error('No Server Response');
 		} else if (error.response?.status === 400) {
+			// eslint-disable-next-line no-console
 			console.error('Missing Username or Password');
 		} else if (error.response?.status === 401) {
+			// eslint-disable-next-line no-console
 			console.error('Unauthorized');
 		} else if (error.response?.status === 404) {
+			// eslint-disable-next-line no-console
 			console.error('Missing resource');
 		} else {
+			// eslint-disable-next-line no-console
 			console.error('Login Failed');
 		}
 		throw error;
@@ -25,10 +30,10 @@ function errorHandler(error: AxiosError) {
 	}
 }
 
-function jwtHeaders(token: string) {
+function jwtHeaders(token: string, contentType?: string) {
 	return {
 		Authorization: `Bearer ${token}`,
-		'Content-type': 'application/json; charset=utf-8',
+		'Content-type': contentType ?? 'application/json; charset=utf-8',
 	};
 }
 
@@ -47,10 +52,34 @@ export async function publicGetRequest<T>(url: string) {
 	}
 }
 
-export async function authenticatedGetRequest<T>(url: string, token: string) {
+export async function authenticatedGetRequest<T>(
+	url: string,
+	token: string,
+	contentType?: string
+) {
 	try {
-		const headers = jwtHeaders(token);
-		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
+		const headers = jwtHeaders(token, contentType);
+		const { data } = await axios<T>({
+			method: HTTP_VERBS.get,
+			url,
+			headers,
+		});
+		return data;
+	} catch (error: AxiosError | any) {
+		errorHandler(error);
+		throw new Error(`Request fail : ${url}`);
+	}
+}
+
+export async function authenticatedGetBlob(url: string, token: string) {
+	try {
+		const headers = jwtHeaders(token, 'application/pdf');
+		const { data } = await axios<BlobPart>({
+			method: HTTP_VERBS.get,
+			url,
+			headers,
+			responseType: 'blob',
+		});
 		return data;
 	} catch (error: AxiosError | any) {
 		errorHandler(error);

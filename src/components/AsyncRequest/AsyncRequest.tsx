@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Alert, AlertProps } from '@codegouvfr/react-dsfr/Alert';
+
 import { useAsync, AsyncRequestStatus } from './useAsync';
 
 type AsyncRequestProps<T> = {
@@ -28,42 +29,34 @@ export function AsyncRequest<T>(props: AsyncRequestProps<T>) {
 	const { idle, pending, error: errorLabel, success } = label;
 	const { status, execute, error, value } = useAsync(request);
 
-	useEffect(
-		function () {
-			execute();
-			return () => {
-				abort();
-			};
-		},
-		[execute, abort]
-	);
+	useEffect(() => {
+		execute();
+		return () => {
+			abort();
+		};
+	}, [execute, abort]);
 
-	useEffect(
-		function () {
-			if (error) {
-				console.warn(error);
-			}
-		},
-		[error]
-	);
+	useEffect(() => {
+		if (error) {
+			// eslint-disable-next-line no-console
+			console.warn(error);
+		}
+	}, [error]);
 
-	useEffect(
-		function () {
-			if (value) {
-				onSuccess(value);
-			}
-		},
-		[value, onSuccess]
-	);
+	useEffect(() => {
+		if (value) {
+			onSuccess(value);
+		}
+	}, [value, onSuccess]);
 
 	switch (status) {
-		case AsyncRequestStatus.idle:
+		case AsyncRequestStatus.Idle:
 			return getAlert('info', idle);
-		case AsyncRequestStatus.pending:
+		case AsyncRequestStatus.Pending:
 			return getAlert('info', pending);
-		case AsyncRequestStatus.error:
+		case AsyncRequestStatus.Error:
 			return getAlert('warning', errorLabel);
-		case AsyncRequestStatus.success:
+		case AsyncRequestStatus.Success:
 			return getAlert('success', success);
 		default:
 			return null;

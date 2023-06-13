@@ -1,12 +1,7 @@
-import { HeaderType } from '../../components/header/HeaderType';
-import { FooterType } from '../../components/footer/FooterType';
+import { MetadataSurvey } from '../../typeStromae/type';
 import { publicGetRequest } from '../commons/axios-utils';
-import * as API from './api';
 
-export interface MetadataSurvey {
-	Header: HeaderType;
-	Footer: FooterType;
-}
+import * as API from './api';
 
 export const getMetadataSurvey =
 	(BASE_URL: string) =>
