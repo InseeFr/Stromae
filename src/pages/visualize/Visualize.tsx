@@ -10,6 +10,7 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
+
 const RP = {
 	source: '/rp/source.json',
 	data: '/rp/data.json',
@@ -35,7 +36,7 @@ export function Visualize() {
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
-					<ContinueOrRestart />
+	        <ContinueOrRestart />
 						<Precedent />
 						<Grid>
 							<AlertesSaving />
