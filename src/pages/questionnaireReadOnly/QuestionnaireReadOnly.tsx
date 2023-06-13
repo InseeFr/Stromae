@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useDocumentTitle } from '../../useDocumentTitle';
-import { OrchestratorReadOnly } from '../../components/orchestrator';
+import { Orchestrator } from '../../components/orchestrator';
 import { Layout } from '../../components/layout';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Continuer } from '../../components/navigation/Continuer';
@@ -25,13 +25,17 @@ export function QuestionnaireReadOnly() {
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
-					<OrchestratorReadOnly features={FEATURES} savingType={COLLECTED}>
+					<Orchestrator
+						readOnly={true}
+						features={FEATURES}
+						savingType={COLLECTED}
+					>
 						<Precedent />
 						<Grid>
 							<Formulaire />
 							<Continuer />
 						</Grid>
-					</OrchestratorReadOnly>
+					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
 		</OidcSecure>

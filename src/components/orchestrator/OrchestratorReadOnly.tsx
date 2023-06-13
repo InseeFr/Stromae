@@ -1,13 +1,14 @@
 import { PropsWithChildren } from 'react';
-
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
 import { OrchestratorProps } from './Orchestrator';
+import { Controls } from './Controls';
 
 export function OrchestratorReadOnly({
 	children,
 	features,
 	preferences,
+	readOnly,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData>
@@ -16,9 +17,9 @@ export function OrchestratorReadOnly({
 				preferences={preferences}
 				autoSuggesterLoading={false}
 				paginated={true}
-				disabled={true}
+				readOnly={readOnly}
 			>
-				{children}
+				<Controls>{children}</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);

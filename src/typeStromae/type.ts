@@ -62,7 +62,7 @@ export type OrchestratedElement = {
 	// saving
 	savingFailure?: SavingFailure;
 	// disabled all components
-	disabled?: boolean;
+	readOnly?: boolean;
 	currentPage?: string;
 };
 

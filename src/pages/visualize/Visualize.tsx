@@ -17,6 +17,7 @@ export function Visualize() {
 	const sourceUrl = searchParams.get('source');
 	const metadataUrl = searchParams.get('metadata');
 	const dataUrl = searchParams.get('data');
+	const readOnly = searchParams.get('readOnly');
 
 	if (sourceUrl) {
 		return (
@@ -24,6 +25,7 @@ export function Visualize() {
 				source={sourceUrl}
 				metadata={metadataUrl ?? undefined}
 				data={dataUrl ?? undefined}
+				readOnly={readOnly === 'true'}
 			/>
 		);
 	}

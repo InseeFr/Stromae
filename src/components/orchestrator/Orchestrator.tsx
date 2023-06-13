@@ -20,7 +20,7 @@ export type OrchestratorProps = {
 	preferences?: Array<string>;
 	savingType?: string;
 	paginated?: boolean;
-	disabled?: boolean;
+	readOnly?: boolean;
 };
 
 /**
@@ -32,6 +32,7 @@ export function Orchestrator({
 	children,
 	features,
 	preferences,
+	readOnly,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData>
@@ -41,6 +42,7 @@ export function Orchestrator({
 				autoSuggesterLoading={true}
 				paginated={true}
 				activeControls={true}
+				readOnly={readOnly}
 			>
 				<Saving>
 					<Controls>{children}</Controls>

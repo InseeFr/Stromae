@@ -1,5 +1,5 @@
 import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
-import { Orchestrator } from '../../components/orchestrator';
+import { OrchestratorReadOnly } from '../../components/orchestrator';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { Precedent } from '../../components/navigation/Precedent';
@@ -9,18 +9,26 @@ type VisualizeResourcesProps = {
 	source?: string;
 	data?: string;
 	metadata?: string;
+	nomenclatures?: Record<string, string>;
+	readOnly?: boolean;
 };
 
 export function VisualizeResources(props: VisualizeResourcesProps) {
-	const { source, data, metadata } = props;
+	const { source, data, metadata, nomenclatures, readOnly } = props;
+
 	return (
-		<LoadFromUrl urlSource={source} urlData={data} urlMetadata={metadata}>
+		<LoadFromUrl
+			urlSource={source}
+			urlData={data}
+			urlMetadata={metadata}
+			urlNomenclatures={nomenclatures}
+		>
 			<Layout>
-				<Orchestrator>
+				<OrchestratorReadOnly readOnly={readOnly}>
 					<Precedent />
 					<Formulaire />
 					<Continuer />
-				</Orchestrator>
+				</OrchestratorReadOnly>
 			</Layout>
 		</LoadFromUrl>
 	);

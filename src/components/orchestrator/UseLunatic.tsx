@@ -16,7 +16,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		savingType,
 		autoSuggesterLoading,
 		paginated,
-		disabled,
+		readOnly,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
@@ -73,7 +73,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				getData={getData}
 				currentChange={currentChange}
 				pageTag={pageTag}
-				disabled={disabled}
+				readOnly={readOnly}
 				currentPage={currentPage}
 			>
 				{children}
