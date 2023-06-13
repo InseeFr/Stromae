@@ -6,7 +6,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
 
 const iconContact = fr.cx('fr-icon-questionnaire-fill');
-const iconThme = fr.cx('fr-icon-theme-fill');
+const iconTheme = fr.cx('fr-icon-theme-fill');
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
