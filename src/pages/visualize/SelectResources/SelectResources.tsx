@@ -11,6 +11,20 @@ export type SelectResourceProps = {
 	setNomenclatures: (nomenclatures: NomenclaturesType) => void;
 };
 
+function makePath(source: string, data?: string, metadata?: string) {
+	let query = `?source=${source}`;
+	if (data && data.length) {
+		query = `${query}&data=${data}`;
+	}
+	if (metadata && metadata.length) {
+		query = `${query}&metadata=${metadata}`;
+	}
+	return {
+		pathname: '/visualize',
+		search: query,
+	};
+}
+
 export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 	const navigate = useNavigate();
 	const [source, setSource] = useState<string>('');
@@ -19,8 +33,7 @@ export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 
 	function onClick(): void {
 		if (source) {
-			const pathname = `/visualize`;
-			navigate({ pathname, search: `?source=${source}` });
+			navigate(makePath(source, data, metadata));
 		}
 		return undefined;
 	}
