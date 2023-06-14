@@ -49,7 +49,7 @@ function Row({
 				onClick={function noRefCheck() {
 					deleteRow(index);
 				}}
-				title="Label button"
+				title="Supprimer"
 				priority="tertiary no outline"
 			/>
 		</li>
@@ -105,7 +105,7 @@ export function ListeNomenclatures({
 	);
 
 	const addOne = useCallback(() => {
-		setRows([...rows, { name: 'newOne', uri: 'https://' }]);
+		setRows([...rows, { name: 'nouveau', uri: 'https://' }]);
 	}, [rows]);
 
 	const deleteRow = useCallback(
@@ -126,12 +126,8 @@ export function ListeNomenclatures({
 
 	return (
 		<>
-			<Button
-				iconId="fr-icon-checkbox-circle-line"
-				iconPosition="right"
-				onClick={addOne}
-			>
-				Add one!
+			<Button onClick={addOne} priority="secondary">
+				Ajouter un nouveau référentiel
 			</Button>
 			<ul style={{ listStyle: 'none' }}>
 				{rows.map(({ name, uri }, i) => {
