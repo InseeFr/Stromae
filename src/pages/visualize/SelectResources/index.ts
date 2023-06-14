@@ -1,0 +1,1 @@
+export { SelectResources } from './SelectResources';

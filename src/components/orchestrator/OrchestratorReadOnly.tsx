@@ -15,7 +15,7 @@ export function OrchestratorReadOnly({
 			<UseLunatic
 				features={features}
 				preferences={preferences}
-				autoSuggesterLoading={false}
+				autoSuggesterLoading={true}
 				paginated={true}
 				readOnly={readOnly}
 			>

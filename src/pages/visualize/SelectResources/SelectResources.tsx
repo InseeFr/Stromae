@@ -2,9 +2,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Input } from '@codegouvfr/react-dsfr/Input';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-import { Grid } from '../../components/Grid/Grid';
+import { Grid } from '../../../components/Grid/Grid';
+import { NomenclaturesType } from '../Visualize';
+import { ListeNomenclatures } from '../ListeNomenclatures';
 
-export function SelectResources() {
+export type SelectResourceProps = {
+	setNomenclatures: (nomenclatures: NomenclaturesType) => void;
+};
+
+export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 	const navigate = useNavigate();
 	const [source, setSource] = useState<string>('');
 	const [metadata, setMetadata] = useState<string>('');
@@ -56,6 +62,7 @@ export function SelectResources() {
 					},
 				}}
 			/>
+			<ListeNomenclatures setNomenclatures={setNomenclatures} />
 			<Button onClick={onClick}>Visualize!</Button>
 		</Grid>
 	);

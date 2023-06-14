@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { VisualizeResources } from './VisualizeResources';
-import { SelectResources } from './SelectResourses';
+import { SelectResources } from './SelectResources';
 
 // const RP = {
 // 	source: 'http%3A%2F%2Flocalhost%3A3000%2Frp%2Fsource.json',
@@ -12,12 +13,15 @@ import { SelectResources } from './SelectResourses';
 // 	},
 // };
 
+export type NomenclaturesType = Record<string, string>;
+
 export function Visualize() {
 	const [searchParams] = useSearchParams();
 	const sourceUrl = searchParams.get('source');
 	const metadataUrl = searchParams.get('metadata');
 	const dataUrl = searchParams.get('data');
 	const readOnly = searchParams.get('readOnly');
+	const [nomenclatures, setNomenclatures] = useState<NomenclaturesType>({});
 
 	if (sourceUrl) {
 		return (
@@ -26,9 +30,9 @@ export function Visualize() {
 				metadata={metadataUrl ?? undefined}
 				data={dataUrl ?? undefined}
 				readOnly={readOnly === 'true'}
+				nomenclatures={nomenclatures}
 			/>
 		);
 	}
-
-	return <SelectResources />;
+	return <SelectResources setNomenclatures={setNomenclatures} />;
 }
