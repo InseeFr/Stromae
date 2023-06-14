@@ -15,6 +15,7 @@ export const GUEST_USER = {
   roles: ['Guest'],
 };
 export const SIMPSONS = 'simpsons';
+export const EAP = 'eap';
 export const TIC = 'tic';
 export const DEFAULT = 'default';
 export const LOGEMENT = 'logement';
@@ -24,6 +25,7 @@ export const SUGG = 'sug';
 
 export const QUESTIONNAIRE_EXAMPLES = [
   SIMPSONS,
+  EAP,
   TIC,
   LOGEMENT,
   FAMILLE,
