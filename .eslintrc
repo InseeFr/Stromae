@@ -24,7 +24,7 @@
 		"@shopify/images-no-direct-imports": "off",
 		"@typescript-eslint/triple-slash-reference": "off",
 		"@shopify/jsx-no-hardcoded-content": "off",
-		"no-console": "off",
+
 		"@shopify/strict-component-boundaries": "off",
 		"@typescript-eslint/naming-convention": "off",
 		"@shopify/prefer-early-return": "error",
@@ -34,6 +34,7 @@
 			{
 				"aspects": ["invalidHref"]
 			}
-		]
+		],
+		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
 	}
 }

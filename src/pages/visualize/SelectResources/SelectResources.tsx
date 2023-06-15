@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { compressToEncodedURIComponent } from 'lz-string';
 import { Header } from '@codegouvfr/react-dsfr/Header';
 import { Input } from '@codegouvfr/react-dsfr/Input';
 import { Button } from '@codegouvfr/react-dsfr/Button';
@@ -11,29 +12,31 @@ export type SelectResourceProps = {
 	setNomenclatures: (nomenclatures: NomenclaturesType) => void;
 };
 
-function makePath(source: string, data?: string, metadata?: string) {
-	let query = `?source=${source}`;
-	if (data && data.length) {
-		query = `${query}&data=${data}`;
-	}
-	if (metadata && metadata.length) {
-		query = `${query}&metadata=${metadata}`;
-	}
+function makePath(
+	source: string,
+	data?: string,
+	metadata?: string,
+	nomenclatures?: NomenclaturesType
+) {
+	const resources = compressToEncodedURIComponent(
+		JSON.stringify({ source, data, metadata, nomenclatures })
+	);
 	return {
 		pathname: '/visualize',
-		search: query,
+		search: `?resources=${resources}`,
 	};
 }
 
-export function SelectResources({ setNomenclatures }: SelectResourceProps) {
+export function SelectResources() {
 	const navigate = useNavigate();
 	const [source, setSource] = useState<string>('');
 	const [metadata, setMetadata] = useState<string>('');
 	const [data, setData] = useState<string>('');
+	const [nomenclatures, setNomenclatures] = useState<NomenclaturesType>({});
 
 	function onClick(): void {
 		if (source) {
-			navigate(makePath(source, data, metadata));
+			navigate(makePath(source, data, metadata, nomenclatures));
 		}
 		return undefined;
 	}

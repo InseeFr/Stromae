@@ -4,12 +4,13 @@ import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Continuer } from '../../components/navigation/Continuer';
+import { NomenclaturesType } from './Visualize';
 
 type VisualizeResourcesProps = {
 	source?: string;
 	data?: string;
 	metadata?: string;
-	nomenclatures?: Record<string, string>;
+	nomenclatures?: NomenclaturesType;
 	readOnly?: boolean;
 };
 
