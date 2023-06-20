@@ -6,7 +6,7 @@
 	"generatingDate": "28-03-2023 12:57:35",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "23",
+	"maxPage": "22",
 	"label": {
 		"value": "02 - Recensement de la population 2022 - Avec changements",
 		"type": "VTL|MD"
@@ -2614,95 +2614,10 @@
 				}
 			]
 		},
-    {
-			"id": "pairwise-links",
-			"componentType": "PairwiseLinks",
-			"conditionFilter": { "value": "true" },
-			"xAxisIterations": { "value": "count(PRENOMS)", "type": "VTL" },
-			"yAxisIterations": { "value": "count(PRENOMS)", "type": "VTL" },
-			"page": "21",
-			"symLinks": {
-				"LINKS": {
-					"1": "1",
-					"2": "3",
-					"3": "2",
-					"4": "4",
-					"5": "6",
-					"6": "5",
-					"7": "8",
-					"8": "7",
-					"9": "10",
-					"10": "9",
-					"11": "13",
-					"12": "12",
-					"13": "11",
-					"14": null,
-					"15": "15",
-					"16": "16",
-					"17": "17",
-					"18": "18"
-				}
-			},
-			"components": [
-				{
-					"componentType": "Dropdown",
-					"id": "dropdown-1",
-					"conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
-					"label": {
-						"value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
-						"type": "VTL|MD"
-					},
-					"response": {
-						"name": "LINKS"
-					},
-					"options": [
-						{ "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
-						{ "value": "2", "label": "\"Sa mère, son père\"" },
-						{ "value": "3", "label": "\"Sa fille, son fils\"" },
-						{
-							"value": "4",
-							"label": "\"Sa soeur, son frère (y compris demi et quasi)\""
-						},
-						{
-							"value": "5",
-							"label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
-						},
-						{
-							"value": "6",
-							"label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
-						},
-						{
-							"value": "7",
-							"label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
-						},
-						{
-							"value": "8",
-							"label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
-						},
-						{ "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
-						{ "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
-						{ "value": "11", "label": "\"Sa tante, son oncle\"" },
-						{ "value": "12", "label": "\"Sa cousine, son cousin\"" },
-						{ "value": "13", "label": "\"Sa nièce, son neveu\"" },
-						{
-							"value": "14",
-							"label": "\"Un enfant placé en famille d'accueil\""
-						},
-						{ "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
-						{ "value": "16", "label": "\"Un autre lien familial\"" },
-						{ "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
-						{
-							"value": "18",
-							"label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
-						}
-					]
-				}
-			]
-		},
 		{
 			"id": "roundabout",
 			"componentType": "Roundabout",
-			"page": "22",
+			"page": "21",
 			"conditionFilter": {
 				"value": "COUNT_PERSONS >= 1",
 				"type": "VTL"
@@ -2755,7 +2670,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -2768,7 +2683,7 @@
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "22.1",
+					"page": "21.1",
 					"mandatory": false,
 					"label": {
 						"value": "\"### Où êtes-vous né(e) ?\"",
@@ -2817,7 +2732,7 @@
 				{
 					"id": "suggester-communes-2",
 					"componentType": "Suggester",
-					"page": "22.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -2856,7 +2771,7 @@
 					"id": "klffqn3zmddkx",
 					"componentType": "Input",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Commune\"",
 						"type": "VTL"
@@ -2890,7 +2805,7 @@
 					"id": "klqn3ttzffffmffffkx",
 					"componentType": "Suggester",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Pays de naissance\"",
 						"type": "VTL"
@@ -2925,7 +2840,7 @@
 					"id": "klqnfsd3zmkx",
 					"componentType": "InputNumber",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "21.1",
 					"label": {
 						"value": "\"Année d'arrivée en France\"",
 						"type": "VTL"
@@ -2962,7 +2877,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.2",
+					"page": "21.2",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -2975,7 +2890,7 @@
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "22.2",
+					"page": "21.2",
 					"mandatory": false,
 					"label": {
 						"value": "\"### Quelle est votre nationalité ?\"",
@@ -3068,7 +2983,7 @@
 					"response": {
 						"name": "NATIONAISSANCENAME"
 					},
-					"page": "22.2"
+					"page": "21.2"
 				},
 				{
 					"id": "suggester-nationalite-2",
@@ -3105,12 +3020,12 @@
 					"response": {
 						"name": "NATIONAME"
 					},
-					"page": "22.2"
+					"page": "21.2"
 				},
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.3",
+					"page": "21.3",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3151,7 +3066,7 @@
 						"name": "ETABLISSEMENT"
 					},
 
-					"page": "22.3",
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -3199,7 +3114,7 @@
 					"response": {
 						"name": "ETABLISSEMENT_DIST"
 					},
-					"page": "22.3",
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -3247,7 +3162,7 @@
 					"response": {
 						"name": "ETABLISSEMENTSITU"
 					},
-					"page": "22.3",
+					"page": "21.3",
 					"options": [
 						{
 							"value": "1",
@@ -3275,7 +3190,7 @@
 				{
 					"id": "suggester-communes-commune-eta",
 					"componentType": "Suggester",
-					"page": "22.3",
+					"page": "21.3",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -3312,7 +3227,7 @@
 				{
 					"id": "suggester-communes-pays-eta",
 					"componentType": "Suggester",
-					"page": "22.3",
+					"page": "21.3",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -3345,7 +3260,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3385,7 +3300,7 @@
 					"response": {
 						"name": "HABITE"
 					},
-					"page": "22.4",
+					"page": "21.4",
 					"options": [
 						{
 							"value": "1",
@@ -3420,7 +3335,7 @@
 				{
 					"id": "suggester-communes-commune-janvier",
 					"componentType": "Suggester",
-					"page": "22.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -3457,7 +3372,7 @@
 				{
 					"id": "suggester-communes-janvier",
 					"componentType": "Input",
-					"page": "22.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Commune\"",
 						"type": "VTL|MD"
@@ -3489,7 +3404,7 @@
 				{
 					"id": "suggester-communes-janvier-pays",
 					"componentType": "Suggester",
-					"page": "22.4",
+					"page": "21.4",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -3522,7 +3437,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.5",
+					"page": "21.5",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3562,7 +3477,7 @@
 					"response": {
 						"name": "COUPLE"
 					},
-					"page": "22.5",
+					"page": "21.5",
 					"options": [
 						{
 							"value": "1",
@@ -3583,7 +3498,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.6",
+					"page": "21.6",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3623,7 +3538,7 @@
 							"bindingDependencies": ["SITUA"]
 						}
 					],
-					"page": "22.6",
+					"page": "21.6",
 					"options": [
 						{
 							"value": "1",
@@ -3672,7 +3587,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.7",
+					"page": "21.7",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3712,7 +3627,7 @@
 							"bindingDependencies": ["DIPLOMES"]
 						}
 					],
-					"page": "22.7",
+					"page": "21.7",
 					"options": [
 						{
 							"value": "1",
@@ -3789,7 +3704,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.8",
+					"page": "21.8",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3810,7 +3725,7 @@
 						"value": "(AGE > 13)",
 						"type": "VTL"
 					},
-					"page": "22.8",
+					"page": "21.8",
 					"components":[
 										{
 											"id": "sfdscdgdfsgfgs",
@@ -3923,7 +3838,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.9",
+					"page": "21.9",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3963,7 +3878,7 @@
 							"bindingDependencies": ["TRAVA"]
 						}
 					],
-					"page": "22.9",
+					"page": "21.9",
 					"options": [
 						{
 							"value": "1",
@@ -3984,7 +3899,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.10",
+					"page": "21.10",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4024,7 +3939,7 @@
 							"bindingDependencies": ["DEJATRAVA"]
 						}
 					],
-					"page": "22.10",
+					"page": "21.10",
 					"options": [
 						{
 							"value": "1",
@@ -4045,7 +3960,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.11",
+					"page": "21.11",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4085,7 +4000,7 @@
 							"bindingDependencies": ["ANCIENTRAVA"]
 						}
 					],
-					"page": "22.11",
+					"page": "21.11",
 					"options": [
 						{
 							"value": "1",
@@ -4113,7 +4028,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.12",
+					"page": "21.12",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4126,7 +4041,7 @@
 				{
 					"id": "suggester-communes",
 					"componentType": "Suggester",
-					"page": "22.12",
+					"page": "21.12",
 					"label": {
 						"value": "\"Quelle était votre profession principale ?\"",
 						"type": "VTL|MD"
@@ -4143,7 +4058,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.13",
+					"page": "21.13",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4183,7 +4098,7 @@
 							"bindingDependencies": ["CHERCHETRAVA"]
 						}
 					],
-					"page": "22.13",
+					"page": "21.13",
 					"options": [
 						{
 							"value": "1",
@@ -4211,7 +4126,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.14",
+					"page": "21.14",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4255,7 +4170,7 @@
 							"bindingDependencies": ["INTERNOMETABLISSEMENT"]
 						}
 					],
-					"page": "22.14",
+					"page": "21.14",
 					"options": [
 						{
 							"value": "1",
@@ -4317,7 +4232,7 @@
 				},
 				{
 					"id": "kkxuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4352,7 +4267,7 @@
 				},
 				{
 					"id": "kkxuufdsfds8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4391,7 +4306,7 @@
 				},
 				{
 					"id": "kkxufdfffffdu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4426,7 +4341,7 @@
 				},
 				{
 					"id": "kkdsfdsfdsxuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4465,7 +4380,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfguu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4500,7 +4415,7 @@
 				},
 				{
 					"id": "kkxuuaaasd8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4539,7 +4454,7 @@
 				},
 				{
 					"id": "kkaapppxuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4574,7 +4489,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfppfdfdsuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4613,7 +4528,7 @@
 				},
 				{
 					"id": "kkxfsdfddslqkmzsfuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4652,7 +4567,7 @@
 				},
 				{
 					"id": "kkfdcvbvxuu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4687,7 +4602,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfufdsfdsbbbu8ov",
-					"page": "22.14",
+					"page": "21.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4723,7 +4638,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.15",
+					"page": "21.15",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4736,7 +4651,7 @@
 				{
 					"id": "input-etjjablissement-situ",
 					"componentType": "Radio",
-					"page": "22.15",
+					"page": "21.15",
 					"label": {
 						"value": "\"### Votre lieu de travail est-il:\"",
 						"type": "VTL|MD"
@@ -4802,7 +4717,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.16",
+					"page": "21.16",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4815,7 +4730,7 @@
 				{
 							"id": "input-etjjablisfdssemefffnt-situ",
 							"componentType": "Radio",
-							"page": "22.16",
+							"page": "21.16",
 							"label": {
 								"value": "\"### Votre emploi principal situe-t-il dans la commune où vous résidez (\" || COM_LOC || \")?\")",
 								"type": "VTL|MD"
@@ -4867,7 +4782,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.16",
+							"page": "21.16",
 							"label": {
 								"value": "\"### Où se situe-t-il ?\"",
 								"type": "VTL|MD"
@@ -4915,7 +4830,7 @@
 				{
 					"id": "l8twtrc9-set",
 					"componentType": "ComponentSet",
-					"page": "22.16",
+					"page": "21.16",
 					"conditionFilter": {
 						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"1\") ",
 						"type": "VTL"
@@ -5029,7 +4944,7 @@
 				},
 				{
 					"id": "suggester-communes",
-					"page": "22.16",
+					"page": "21.16",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
@@ -5050,7 +4965,7 @@
 				},
 				{
 					"id": "lieu-trava-commune-etr",
-					"page": "22.16",
+					"page": "21.16",
 					"componentType": "Input",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
@@ -5070,7 +4985,7 @@
 				},
 				{
 					"id": "lieu-trava-pays-etr",
-					"page": "22.16",
+					"page": "21.16",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Pays\"",
@@ -5088,7 +5003,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.17",
+					"page": "21.17",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5101,7 +5016,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.17",
+							"page": "21.17",
 							"label": {
 								"value": "\"### Quel mode de transport principal utilisez-vous le plus souvent pour aller travailler ?\"",
 								"type": "VTL|MD"
@@ -5181,7 +5096,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.18",
+					"page": "21.18",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5194,7 +5109,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.18",
+							"page": "21.18",
 							"label": {
 								"value": "\"### Occupez-vous votre emploi :\"",
 								"type": "VTL|MD"
@@ -5246,7 +5161,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.19",
+					"page": "21.19",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5259,7 +5174,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.19",
+							"page": "21.19",
 							"label": {
 								"value": "\"### Êtes-vous :\"",
 								"type": "VTL|MD"
@@ -5325,7 +5240,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.20",
+					"page": "21.20",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5338,7 +5253,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.20",
+							"page": "21.20",
 							"label": {
 								"value": "\"### Combien de salariés employez-vous ?\"",
 								"type": "VTL|MD"
@@ -5397,7 +5312,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.21",
+					"page": "21.21",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5410,7 +5325,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.21",
+							"page": "21.21",
 							"label": {
 								"value": "\"### Quel est votre type de contrat ou d'emploi ?\"",
 								"type": "VTL|MD"
@@ -5490,7 +5405,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.22",
+					"page": "21.22",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5503,7 +5418,7 @@
 				{
 							"id": "input-etjjablisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.22",
+							"page": "21.22",
 							"label": {
 								"value": "\"### Dans votre emploi, êtes-vous :\"",
 								"type": "VTL|MD"
@@ -5604,7 +5519,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "21.23",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5617,7 +5532,7 @@
 				{
 					"id": "sfdscdffffdfdsdfsgfgs",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "21.23",
 					"label": {
 						"value": "\"### Quelle est votre profession ?\"",
 						"type": "VTL|MD"
@@ -5630,7 +5545,7 @@
 				{
 					"id": "suggester-communes_adrefffsse",
 					"componentType": "Suggester",
-					"page": "22.23",
+					"page": "21.23",
 					"label": {
 						"value": "\"Profession\"",
 						"type": "VTL|MD"
@@ -5651,7 +5566,7 @@
 				{
 					"id": "sfdscdffffdfdsdfsgfgs",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "21.23",
 					"label": {
 						"value": "\"### Quelle est votre profession principale ?\"",
 						"type": "VTL|MD"
@@ -5664,7 +5579,7 @@
 				{
 					"id": "sfdscdgdfsgfgs",
 					"componentType": "QuestionInformation",
-					"page": "22.23",
+					"page": "21.23",
 					"description": {
 						"value": "\"Si vous êtes agent de la fonction publique d'État, territoriale ou hospitalière, indiquez votre grade (corps, catégorie, etc.).\"",
 						"type": "VTL"
@@ -5677,7 +5592,7 @@
 				{
 					"id": "suggester-commufdsfdsnes_adresse",
 					"componentType": "Input",
-					"page": "22.23",
+					"page": "21.23",
 					"label": {
 						"value": "\"Profession principale\"",
 						"type": "VTL|MD"
@@ -5697,7 +5612,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.24",
+					"page": "21.24",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5710,7 +5625,7 @@
 				{
 							"id": "infdsisfdssement-situ",
 							"componentType": "Radio",
-							"page": "22.24",
+							"page": "21.24",
 							"label": {
 								"value": "\"### Dans votre emploi, quelle est votre fonction principale ?\"",
 								"type": "VTL|MD"
@@ -5784,7 +5699,7 @@
             "id": "checkboxgroup",
             "componentType": "CheckboxGroup",
             "mandatory": false,
-            "page": "22.25",
+            "page": "21.25",
 						"label": {
 						"value": "\"### Le questionnaire de \" || PRENOMS || \" \" || NOMS || \" est terminé.\" ",
 						"type": "VTL|MD"
@@ -5819,7 +5734,7 @@
 		{
 			"id": "kkxugktl-title",
 			"componentType": "Subsequence",
-			"page": "23",
+			"page": "22",
 			"label": {
 				"value": "\"## Vous êtes arrivé à la fin du questionnaire.\"",
 				"type": "VTL|MD"
