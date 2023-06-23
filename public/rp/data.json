@@ -1,4 +1,24 @@
 {
-	"COLLECTED": {
-	}
+	"data": {
+		"COLLECTED": {
+			"NUMVOI_LOC":  { "COLLECTED": "2" },
+			"TYPEVOI_LOC": { "COLLECTED": "rue" },
+			"NOMVOI_LOC": { "COLLECTED": "du poisson bleu" },
+			"CPOST_LOC":  { "COLLECTED": "92290"},
+			"COM_LOC": { "COLLECTED" : "Châtenay-Malabry"},
+			"ACHL": {"COLLECTED": "3"},
+			"COUNT_PERSONS": {"COLLECTED": 3},
+			"PRENOMS": {"COLLECTED": ["Matt", "Julia", "Renaud"]},
+			"NOMS": {"COLLECTED": ["Clark", "Dirand", "Genevois"]},
+			"DATENAISS": {"COLLECTED": ["1993-01-18", "1993-01-18", "1993-01-18"]},
+			"SEXES": {"COLLECTED": ["1", "2", "1"]},
+			"VIVEZVOUSDS": {"COLLECTED": ["1", "1", "1"]}
+		}
+	},
+	"stateData": {
+		"state": "INITIAL",
+		"date": 132583235000,
+		"currentPage": "18"
+	},
+	"personalization": []
 }
