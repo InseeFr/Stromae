@@ -233,7 +233,7 @@
         </p:input>
         <p:input name="submission" transform="oxf:unsafe-xslt" href="#parametresP">
             <xf:submission xsl:version="2.0" method="get"
-                resource="{p:property('server-exist-pilotage')}/restxq/{p:property('informations-service')}/{/parametres/pilotage}"
+                resource="{p:property('server-exist-pilotage')}/apps/Pilotage/{p:property('informations-service')}/{/parametres/pilotage}"
             />
         </p:input>
         <p:output name="response" id="instanceP"/>
