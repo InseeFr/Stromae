@@ -6,7 +6,7 @@
 	"generatingDate": "28-03-2023 12:57:35",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "23",
+	"maxPage": "24",
 	"label": {
 		"value": "02 - Recensement de la population 2022 - Avec changements",
 		"type": "VTL|MD"
@@ -169,6 +169,20 @@
 								"type": "VTL"
 							},
 							"bindingDependencies": ["EMAIL_OCC"]
+						},
+						{
+							"bindingDependencies": ["EMAIL_OCC"],
+							"criticality": "ERROR",
+							"errorMessage": {
+								"type": "VTL",
+								"value": "\"\" || EMAIL_OCC || \" n’est pas un mail valide.\" "
+							},
+							"typeOfControl": "CONSISTENCY",
+							"control": {
+								"type": "VTL",
+								"value": "isnull(EMAIL_OCC) or not(match_characters( EMAIL_OCC, \"^[A-Za-z0-9._+\\-\\']+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}$\" ) = false)"
+							},
+							"id": "lje2vece-CI-0"
 						}
 					],
 					"conditionFilter": {
@@ -361,11 +375,11 @@
 					"maxLength": 4,
 					"label": {
 						"value": "\"Indice de répétition\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Bis, ter ...\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"conditionFilter": {
 						"value": "true",
@@ -435,7 +449,7 @@
 					"maxLength": 80,
 					"label": {
 						"value": "\"Libellé de la voie (ou lieu-dit) (*)\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Exemple: des petites écuries\"",
@@ -496,7 +510,7 @@
 			"page": "3",
 			"label": {
 				"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
-				"type": "VTL|MD"
+				"type": "VTL"
 			},
 			"description": {
 				"value": "\"Exemple: Paris 10e\"",
@@ -545,7 +559,7 @@
 					"maxLength": 20,
 					"label": {
 						"value": "\"Bâtiment\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Exemple: bâtiment Tilleul\"",
@@ -652,7 +666,7 @@
 					"position": "AFTER_QUESTION_TEXT",
 					"label": {
 						"value": "\"Les questions sur le logement permettent de connaître les caractéristiques du logement, d'analyser les conditions de vie des ménages et de planifier le développement urbain pour adapter les politiques de logement en fonction des besoins de la population.\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					}
 				}
 			],
@@ -2001,7 +2015,7 @@
 								"name": "PRENOMS"
 							}
 						},
-												{
+						{
 							"id": "lfwg2ny2-noms",
 							"componentType": "Input",
 							"mandatory": true,
@@ -2030,115 +2044,115 @@
 								"name": "NOMS"
 							}
 						},
-            {
-              "id": "lfwiizq2-dob",
-              "componentType": "Datepicker",
-              "mandatory": true,
-              "min": "1900-01-01",
-              "max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
-              "label": {
-                  "value": " \"Date de naissance\"",
-                  "type": "VTL"
-              },
-              "controls": [
-                  {
-                      "id": "lfwiizq2-format-borne-inf-sup",
-                      "typeOfControl": "FORMAT",
-                      "criticality": "ERROR",
-                      "control": {
-                          "value": "not(DATENAISS = \"--\")",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"La date saisie doit être comprise entre 1900-01-01 et \" || cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\") || \".\"",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-nom-null",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "(DATENAISS <> \"0000-00-00\") and not(isnull(DATENAISS))",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"Veuillez entrer une date de naissance\" ",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-day-null",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "substr(DATENAISS, 9, 2) <> \"00\" and cast(substr(DATENAISS, 9, 2), integer) > 0 and cast(substr(DATENAISS, 9, 2), integer) < 32",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"Veuillez entrer un chiffre entre 01 et 31 dans le champs 'Jour'.\" ",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-month-null",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "substr(DATENAISS, 6, 2) <> \"00\" and cast(substr(DATENAISS, 6, 2), integer) > 0 and cast(substr(DATENAISS, 6, 2), integer) < 13",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"Veuillez entrer un chiffre entre 01 et 12 dans le champs 'Mois'.\" ",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-year-null",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "substr(DATENAISS, 1, 4) <> \"0000\" and cast(substr(DATENAISS, 1, 4), integer) > 1899 and cast(substr(DATENAISS, 1, 4), integer) <= cast(substr(cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\"), 1, 4), integer)",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"Veuillez entrer un chiffre entre 1900 et \" || substr(cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\"), 1, 4) || \" dans le champs 'Year'.\" ",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-invalid-date-month",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "if (substr(DATENAISS, 6, 2) = \"04\" or substr(DATENAISS, 6, 2) = \"06\" or substr(DATENAISS, 6, 2) = \"09\" or substr(DATENAISS, 6, 2) = \"11\") then (substr(DATENAISS, 9, 2) <> \"31\") else (if (substr(DATENAISS, 6, 2) = \"02\" and mod(cast(substr(DATENAISS, 1, 4), integer), 4) = 0) then (substr(DATENAISS, 9, 2) <> \"30\" and substr(DATENAISS, 9, 2) <> \"31\") else (substr(DATENAISS, 9, 2) <> \"30\" and substr(DATENAISS, 9, 2) <> \"29\" and substr(DATENAISS, 9, 2) <> \"31\"))",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"Veuillez entrer un date valide.\"",
-                          "type": "VTL"
-                      }
-                  },
-                  {
-                      "id": "lfwiizq2-invalid-date",
-                      "typeOfControl": "CONSISTENCY",
-                      "criticality": "WARN",
-                      "control": {
-                          "value": "cast(DATENAISS, date) < cast(current_date(), date) and cast(DATENAISS, date) > cast(\"1900-01-01\", date)",
-                          "type": "VTL"
-                      },
-                      "errorMessage": {
-                          "value": "\"La date saisie doit être comprise entre 01-01-1900 et \" || cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"DD-MM-YYYY\") || \".\"",
-                          "type": "VTL"
-                      }
-                  }
-              ],
-              "bindingDependencies": ["DATENAISS"],
-              "dateFormat": "YYYY-MM-DD",
-              "response": {
-                  "name": "DATENAISS"
-              }
-          },
+						{
+							"id": "lfwiizq2-dob",
+							"componentType": "Datepicker",
+							"mandatory": true,
+							"min": "1900-01-01",
+							"max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
+							"label": {
+								"value": " \"Date de naissance\"",
+								"type": "VTL"
+							},
+							"controls": [
+								{
+									"id": "lfwiizq2-format-borne-inf-sup",
+									"typeOfControl": "FORMAT",
+									"criticality": "ERROR",
+									"control": {
+										"value": "not(DATENAISS = \"--\")",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"La date saisie doit être comprise entre 1900-01-01 et \" || cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\") || \".\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-nom-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "(DATENAISS <> \"0000-00-00\") and not(isnull(DATENAISS))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez entrer une date de naissance\" ",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-day-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "substr(DATENAISS, 9, 2) <> \"00\" and cast(substr(DATENAISS, 9, 2), integer) > 0 and cast(substr(DATENAISS, 9, 2), integer) < 32",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez entrer un chiffre entre 01 et 31 dans le champs 'Jour'.\" ",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-month-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "substr(DATENAISS, 6, 2) <> \"00\" and cast(substr(DATENAISS, 6, 2), integer) > 0 and cast(substr(DATENAISS, 6, 2), integer) < 13",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez entrer un chiffre entre 01 et 12 dans le champs 'Mois'.\" ",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-year-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "substr(DATENAISS, 1, 4) <> \"0000\" and cast(substr(DATENAISS, 1, 4), integer) > 1899 and cast(substr(DATENAISS, 1, 4), integer) <= cast(substr(cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\"), 1, 4), integer)",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez entrer un chiffre entre 1900 et \" || substr(cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"YYYY-MM-DD\"), 1, 4) || \" dans le champs 'Year'.\" ",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-invalid-date-month",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "if (substr(DATENAISS, 6, 2) = \"04\" or substr(DATENAISS, 6, 2) = \"06\" or substr(DATENAISS, 6, 2) = \"09\" or substr(DATENAISS, 6, 2) = \"11\") then (substr(DATENAISS, 9, 2) <> \"31\") else (if (substr(DATENAISS, 6, 2) = \"02\" and mod(cast(substr(DATENAISS, 1, 4), integer), 4) = 0) then (substr(DATENAISS, 9, 2) <> \"30\" and substr(DATENAISS, 9, 2) <> \"31\") else (substr(DATENAISS, 9, 2) <> \"30\" and substr(DATENAISS, 9, 2) <> \"29\" and substr(DATENAISS, 9, 2) <> \"31\"))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez entrer un date valide.\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"id": "lfwiizq2-invalid-date",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "cast(DATENAISS, date) < cast(current_date(), date) and cast(DATENAISS, date) > cast(\"1900-01-01\", date)",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"La date saisie doit être comprise entre 01-01-1900 et \" || cast(cast(current_date(), date, \"YYYY-MM-DD\"), string, \"DD-MM-YYYY\") || \".\"",
+										"type": "VTL"
+									}
+								}
+							],
+							"bindingDependencies": ["DATENAISS"],
+							"dateFormat": "YYYY-MM-DD",
+							"response": {
+								"name": "DATENAISS"
+							}
+						},
 						{
 							"id": "lfvahf2g",
 							"componentType": "Radio",
@@ -2219,7 +2233,69 @@
 						}
 					],
 					"conditionFilter": {
-						"value": "(COUNT_PERSONS >= 1)",
+						"value": "(COUNT_PERSONS >= 1) and AGE < 3",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS"]
+					},
+					"bindingDependencies": [
+						"PRENOMS",
+						"NOMS",
+						"LIB_ILELLES",
+						"VIVEZVOUSDS"
+					],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Non, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit ici uniquement\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Oui, suite à une séparation ou un divorce, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit aussi chez son autre parent\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Oui, pour une autre raison, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit aussi dans un autre logement\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"response": {
+						"name": "VIVEZVOUSDS"
+					}
+				},
+				{
+					"id": "lfwgqxv0",
+					"componentType": "Radio",
+					"mandatory": false,
+					"page": "20.2",
+					"label": {
+						"value": "\"### Est-ce que \" || if (isnull(PRENOMS) or isnull(NOMS)) then \"cet habitant\" else PRENOMS || \" \" || NOMS || \" vit aussi dans un autre logement ? \"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(VIVEZVOUSDS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner si cet habitant vit aussi dans un autre logement.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and AGE > 3",
 						"type": "VTL",
 						"bindingDependencies": ["COUNT_PERSONS"]
 					},
@@ -2589,7 +2665,7 @@
 								"type": "VTL"
 							},
 							"description": {
-								"value": "\"Maison de retraite ou hospice, hospitalisation pour plus dún mois, centre pour handicapés, foyer de travailleurs, militaires logés en caserne ou servent à l'étranger, établissement pénitentiaire, etc.\"",
+								"value": "\"Maison de retraite ou hospice, hospitalisation pour plus d'un mois, centre pour handicapés, foyer de travailleurs, militaires logés en caserne ou servent à l'étranger, établissement pénitentiaire, etc.\"",
 								"type": "VTL"
 							}
 						},
@@ -2614,109 +2690,137 @@
 				}
 			]
 		},
-    {
-      "id": "componentset-pairwise",
-      "componentType": "ComponentSet",
-      "label": {
-        "value": "\"### Veuillez décrire les liens entre les habitants : \"",
-        "type": "VTL|MD"
-      },
-      "conditionFilter": {
-        "value": "true",
-        "type": "VTL"
-      },
-      "page": "21",
-      "components":[
-        {
-          "id": "pairwise-links",
-          "componentType": "PairwiseLinks",
-          "conditionFilter": { "value": "true" },
-          "xAxisIterations": { "value": "count(PRENOMS)", "type": "VTL" },
-          "yAxisIterations": { "value": "count(PRENOMS)", "type": "VTL" },
-          "symLinks": {
-            "LINKS": {
-              "1": "1",
-              "2": "3",
-              "3": "2",
-              "4": "4",
-              "5": "6",
-              "6": "5",
-              "7": "8",
-              "8": "7",
-              "9": "10",
-              "10": "9",
-              "11": "13",
-              "12": "12",
-              "13": "11",
-              "14": null,
-              "15": "15",
-              "16": "16",
-              "17": "17",
-              "18": "18"
-            }
-          },
-          "components": [
-            {
-              "componentType": "Dropdown",
-              "id": "dropdown-1",
-              "conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
-              "label": {
-                "value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
-                "type": "VTL|MD"
-              },
-              "response": {
-                "name": "LINKS"
-              },
-              "options": [
-                { "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
-                { "value": "2", "label": "\"Sa mère, son père\"" },
-                { "value": "3", "label": "\"Sa fille, son fils\"" },
-                {
-                  "value": "4",
-                  "label": "\"Sa soeur, son frère (y compris demi et quasi)\""
-                },
-                {
-                  "value": "5",
-                  "label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
-                },
-                {
-                  "value": "6",
-                  "label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
-                },
-                {
-                  "value": "7",
-                  "label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
-                },
-                {
-                  "value": "8",
-                  "label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
-                },
-                { "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
-                { "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
-                { "value": "11", "label": "\"Sa tante, son oncle\"" },
-                { "value": "12", "label": "\"Sa cousine, son cousin\"" },
-                { "value": "13", "label": "\"Sa nièce, son neveu\"" },
-                {
-                  "value": "14",
-                  "label": "\"Un enfant placé en famille d'accueil\""
-                },
-                { "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
-                { "value": "16", "label": "\"Un autre lien familial\"" },
-                { "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
-                {
-                  "value": "18",
-                  "label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
+		{
+			"id": "pairwise-links",
+			"page": "21",
+			"conditionFilter": {
+				"value": "(COUNT_PERSONS > 1)",
+				"type": "VTL",
+				"bindingDependencies": ["COUNT_PERSONS"]
+			},
+			"componentType": "PairwiseLinks",
+			"xAxisIterations": { "value": "COUNT_PERSONS", "type": "VTL" },
+			"yAxisIterations": { "value": "COUNT_PERSONS", "type": "VTL" },
+			"symLinks": {
+				"LINKS": {
+					"1": "1",
+					"2": "3",
+					"3": "2",
+					"4": "4",
+					"5": "6",
+					"6": "5",
+					"7": "8",
+					"8": "7",
+					"9": "10",
+					"10": "9",
+					"11": "13",
+					"12": "12",
+					"13": "11",
+					"14": null,
+					"15": "15",
+					"16": "16",
+					"17": "17",
+					"18": "18"
+				}
+			},
+			"components": [
+				{
+					"componentType": "Dropdown",
+					"id": "dropdown-1",
+					"conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
+					"label": {
+						"value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
+						"type": "VTL|MD"
+					},
+					"response": {
+						"name": "LINKS"
+					},
+					"options": [
+						{ "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
+						{ "value": "2", "label": "\"Sa mère, son père\"" },
+						{ "value": "3", "label": "\"Sa fille, son fils\"" },
+						{
+							"value": "4",
+							"label": "\"Sa soeur, son frère (y compris demi et quasi)\""
+						},
+						{
+							"value": "5",
+							"label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
+						},
+						{
+							"value": "6",
+							"label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
+						},
+						{
+							"value": "7",
+							"label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
+						},
+						{
+							"value": "8",
+							"label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
+						},
+						{ "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
+						{ "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
+						{ "value": "11", "label": "\"Sa tante, son oncle\"" },
+						{ "value": "12", "label": "\"Sa cousine, son cousin\"" },
+						{ "value": "13", "label": "\"Sa nièce, son neveu\"" },
+						{
+							"value": "14",
+							"label": "\"Un enfant placé en famille d'accueil\""
+						},
+						{ "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
+						{ "value": "16", "label": "\"Un autre lien familial\"" },
+						{ "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
+						{
+							"value": "18",
+							"label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "Summary",
+			"componentType": "Summary",
+			"label": {
+				"value": "\"Récapulatif des habitants \"",
+				"type": "VTL"
+			},
+			"sections": [
+				{
+					"iterations": { "value": "COUNT_PERSONS", "type": "VTL" },
+					"title": {
+						"value": "PRENOMS || \" \" || NOMS",
+						"type": "VTL"
+					},
+					"responses": [
+						{
+							"label": {
+								"value": "(if(SEXES = \"1\") then (\"Né\") else (\"Née\")) || \" le \"",
+								"type": "VTL"
+							},
+							"value": {
+								"value": "cast(cast(DATENAISS, date, \"YYYY-MM-DD\"), string, \"DD-MM-YYYY\")",
+								"type": "VTL"
+							}
+						},
+						{
+							"label": { "value": "\"de sexe \"", "type": "VTL" },
+							"value": {
+								"value": "if(SEXES = \"1\") then \"Masculin\" else \"Féminin\"",
+								"type": "VTL"
+							}
+						}
+					]
+				}
+			],
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"page": "22"
+		},
 		{
 			"id": "roundabout",
 			"componentType": "Roundabout",
-			"page": "22",
+			"page": "23",
 			"conditionFilter": {
 				"value": "COUNT_PERSONS >= 1",
 				"type": "VTL"
@@ -2769,7 +2873,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.1",
+					"page": "23.1",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -2782,7 +2886,7 @@
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "22.1",
+					"page": "23.1",
 					"mandatory": false,
 					"label": {
 						"value": "\"### Où êtes-vous né(e) ?\"",
@@ -2831,7 +2935,7 @@
 				{
 					"id": "suggester-communes-2",
 					"componentType": "Suggester",
-					"page": "22.1",
+					"page": "23.1",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -2870,7 +2974,7 @@
 					"id": "klffqn3zmddkx",
 					"componentType": "Input",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "23.1",
 					"label": {
 						"value": "\"Commune\"",
 						"type": "VTL"
@@ -2904,7 +3008,7 @@
 					"id": "klqn3ttzffffmffffkx",
 					"componentType": "Suggester",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "23.1",
 					"label": {
 						"value": "\"Pays de naissance\"",
 						"type": "VTL"
@@ -2939,7 +3043,7 @@
 					"id": "klqnfsd3zmkx",
 					"componentType": "InputNumber",
 					"mandatory": false,
-					"page": "22.1",
+					"page": "23.1",
 					"label": {
 						"value": "\"Année d'arrivée en France\"",
 						"type": "VTL"
@@ -2976,7 +3080,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.2",
+					"page": "23.2",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -2989,7 +3093,7 @@
 				{
 					"id": "klqn2o7tx",
 					"componentType": "Radio",
-					"page": "22.2",
+					"page": "23.2",
 					"mandatory": false,
 					"label": {
 						"value": "\"### Quelle est votre nationalité ?\"",
@@ -3082,7 +3186,7 @@
 					"response": {
 						"name": "NATIONAISSANCENAME"
 					},
-					"page": "22.2"
+					"page": "23.2"
 				},
 				{
 					"id": "suggester-nationalite-2",
@@ -3119,12 +3223,12 @@
 					"response": {
 						"name": "NATIONAME"
 					},
-					"page": "22.2"
+					"page": "23.2"
 				},
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.3",
+					"page": "23.3",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3165,7 +3269,7 @@
 						"name": "ETABLISSEMENT"
 					},
 
-					"page": "22.3",
+					"page": "23.3",
 					"options": [
 						{
 							"value": "1",
@@ -3213,7 +3317,7 @@
 					"response": {
 						"name": "ETABLISSEMENT_DIST"
 					},
-					"page": "22.3",
+					"page": "23.3",
 					"options": [
 						{
 							"value": "1",
@@ -3261,7 +3365,7 @@
 					"response": {
 						"name": "ETABLISSEMENTSITU"
 					},
-					"page": "22.3",
+					"page": "23.3",
 					"options": [
 						{
 							"value": "1",
@@ -3289,7 +3393,7 @@
 				{
 					"id": "suggester-communes-commune-eta",
 					"componentType": "Suggester",
-					"page": "22.3",
+					"page": "23.3",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -3326,7 +3430,7 @@
 				{
 					"id": "suggester-communes-pays-eta",
 					"componentType": "Suggester",
-					"page": "22.3",
+					"page": "23.3",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -3359,7 +3463,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.4",
+					"page": "23.4",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3399,7 +3503,7 @@
 					"response": {
 						"name": "HABITE"
 					},
-					"page": "22.4",
+					"page": "23.4",
 					"options": [
 						{
 							"value": "1",
@@ -3412,7 +3516,7 @@
 							"value": "2",
 							"label": {
 								"value": "\"Dans un autre logement de la même commune (\" || COM_LOC || \")\"",
-								"type": "VTL|MD"
+								"type": "VTL"
 							}
 						},
 						{
@@ -3434,7 +3538,7 @@
 				{
 					"id": "suggester-communes-commune-janvier",
 					"componentType": "Suggester",
-					"page": "22.4",
+					"page": "23.4",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
 						"type": "VTL|MD"
@@ -3471,7 +3575,7 @@
 				{
 					"id": "suggester-communes-janvier",
 					"componentType": "Input",
-					"page": "22.4",
+					"page": "23.4",
 					"label": {
 						"value": "\"Commune\"",
 						"type": "VTL|MD"
@@ -3503,7 +3607,7 @@
 				{
 					"id": "suggester-communes-janvier-pays",
 					"componentType": "Suggester",
-					"page": "22.4",
+					"page": "23.4",
 					"label": {
 						"value": "\"Pays\"",
 						"type": "VTL|MD"
@@ -3536,7 +3640,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.5",
+					"page": "23.5",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3576,7 +3680,7 @@
 					"response": {
 						"name": "COUPLE"
 					},
-					"page": "22.5",
+					"page": "23.5",
 					"options": [
 						{
 							"value": "1",
@@ -3597,7 +3701,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.6",
+					"page": "23.6",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3637,7 +3741,7 @@
 							"bindingDependencies": ["SITUA"]
 						}
 					],
-					"page": "22.6",
+					"page": "23.6",
 					"options": [
 						{
 							"value": "1",
@@ -3686,7 +3790,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.7",
+					"page": "23.7",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3726,7 +3830,7 @@
 							"bindingDependencies": ["DIPLOMES"]
 						}
 					],
-					"page": "22.7",
+					"page": "23.7",
 					"options": [
 						{
 							"value": "1",
@@ -3803,7 +3907,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.8",
+					"page": "23.8",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3824,120 +3928,120 @@
 						"value": "(AGE > 13)",
 						"type": "VTL"
 					},
-					"page": "22.8",
-					"components":[
-										{
-											"id": "sfdscdgdfsgfgs",
-											"componentType": "QuestionInformation",
-											"conditionFilter": {
-												"value": "true",
-												"type": "VTL"
-											},
-											"description": {
-												"value": "\"Quelques cas particuliers :\n\n - congé de maladie ou de maternité, cochez « Emploi »\n\n - congé parental de moins de 3 mois, cochez « Emploi ».\n\n - congé parental de plus de 3 mois, cochez « Autre situation » puis « Non » à la question suivante\n\n - formation en alternance, cochez « Apprentissage »\n\n - chômage technique, cochez « Emploi »\n\n - aide d'une personne dans le cadre de son travail y compris de façon non rémunérée, cochez « Emploi »\"",
-												"type": "VTL|MD"
-											}
-				},
-				{
-					"id": "input-etablissement-situ",
-					"componentType": "Radio",
-					"label": {
-						"value": "\"###### Situation principale\"",
-						"type": "VTL|MD"
-					},
-					"conditionFilter": {
-						"value": "true",
-						"type": "VTL"
-					},
-					"response": {
-						"name": "SITUAPRO"
-					},
-					"controls": [
+					"page": "23.8",
+					"components": [
 						{
-							"id": "klqn2o7tx-CI-0",
-							"typeOfControl": "CONSISTENCY",
-							"criticality": "ERROR",
-							"control": {
-								"value": "not(isnull(SITUAPRO))",
+							"id": "sfdscdgdfsgfgs",
+							"componentType": "QuestionInformation",
+							"conditionFilter": {
+								"value": "true",
 								"type": "VTL"
 							},
-							"errorMessage": {
-								"value": "\"Veuillez indiquer votre situation principale\"",
+							"description": {
+								"value": "\"Quelques cas particuliers :\n\n - congé de maladie ou de maternité, cochez « Emploi »\n\n - congé parental de moins de 3 mois, cochez « Emploi ».\n\n - congé parental de plus de 3 mois, cochez « Autre situation » puis « Non » à la question suivante\n\n - formation en alternance, cochez « Apprentissage »\n\n - chômage technique, cochez « Emploi »\n\n - aide d'une personne dans le cadre de son travail y compris de façon non rémunérée, cochez « Emploi »\"",
+								"type": "VTL|MD"
+							}
+						},
+						{
+							"id": "input-etablissement-situ",
+							"componentType": "Radio",
+							"label": {
+								"value": "\"###### Situation principale\"",
+								"type": "VTL|MD"
+							},
+							"conditionFilter": {
+								"value": "true",
 								"type": "VTL"
 							},
-							"bindingDependencies": ["SITUAPRO"]
+							"response": {
+								"name": "SITUAPRO"
+							},
+							"controls": [
+								{
+									"id": "klqn2o7tx-CI-0",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "ERROR",
+									"control": {
+										"value": "not(isnull(SITUAPRO))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"Veuillez indiquer votre situation principale\"",
+										"type": "VTL"
+									},
+									"bindingDependencies": ["SITUAPRO"]
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Emploi (salarié ou à votre compte)\"",
+										"type": "VTL"
+									},
+									"description": {
+										"value": "\"Y compris aide d'une personne dans son travail de façon non rémunéré, en congé maladie ou parental de moins de 3 mois, ou au chômage technique.\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Apprentissage sous contrat ou stage rémunéré\"",
+										"type": "VTL"
+									},
+									"description": {
+										"value": "\"Y compris formation en alternance\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "3",
+									"label": {
+										"value": "\"Études (élève, étudiant) ou stage non rémunéré\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "4",
+									"label": {
+										"value": "\"Chômage (inscrit ou non à Pôle emploi)\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "5",
+									"label": {
+										"value": "\"Retraite ou préretraite (ancien salarié ou ancien indépendant)\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "6",
+									"label": {
+										"value": "\"Femme ou homme au foyer\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "7",
+									"label": {
+										"value": "\"Autre situation\"",
+										"type": "VTL"
+									},
+									"description": {
+										"value": "\"Y compris congé parental de plus de 3 mois.\"",
+										"type": "VTL"
+									}
+								}
+							]
 						}
-					],
-					"options": [
-						{
-							"value": "1",
-							"label": {
-								"value": "\"Emploi (salarié ou à votre compte)\"",
-								"type": "VTL"
-							},
-							"description": {
-								"value": "\"Y compris aide d'une personne dans son travail de façon non rémunéré, en congé maladie ou parental de moins de 3 mois, ou au chômage technique.\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "2",
-							"label": {
-								"value": "\"Apprentissage sous contrat ou stage rémunéré\"",
-								"type": "VTL"
-							},
-							"description": {
-								"value": "\"Y compris formation en alternance\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "3",
-							"label": {
-								"value": "\"Études (élève, étudiant) ou stage non rémunéré\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "4",
-							"label": {
-								"value": "\"Chômage (inscrit ou non à Pôle emploi)\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "5",
-							"label": {
-								"value": "\"Retraite ou préretraite (ancien salarié ou ancien indépendant)\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "6",
-							"label": {
-								"value": "\"Femme ou homme au foyer\"",
-								"type": "VTL"
-							}
-						},
-						{
-							"value": "7",
-							"label": {
-								"value": "\"Autre situation\"",
-								"type": "VTL"
-							},
-							"description": {
-								"value": "\"Y compris congé parental de plus de 3 mois.\"",
-								"type": "VTL"
-							}
-						}
-					]
-				}
 					]
 				},
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.9",
+					"page": "23.9",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -3977,7 +4081,7 @@
 							"bindingDependencies": ["TRAVA"]
 						}
 					],
-					"page": "22.9",
+					"page": "23.9",
 					"options": [
 						{
 							"value": "1",
@@ -3998,7 +4102,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.10",
+					"page": "23.10",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4038,7 +4142,7 @@
 							"bindingDependencies": ["DEJATRAVA"]
 						}
 					],
-					"page": "22.10",
+					"page": "23.10",
 					"options": [
 						{
 							"value": "1",
@@ -4059,7 +4163,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.11",
+					"page": "23.11",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4099,7 +4203,7 @@
 							"bindingDependencies": ["ANCIENTRAVA"]
 						}
 					],
-					"page": "22.11",
+					"page": "23.11",
 					"options": [
 						{
 							"value": "1",
@@ -4127,7 +4231,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.12",
+					"page": "23.12",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4140,7 +4244,7 @@
 				{
 					"id": "suggester-communes",
 					"componentType": "Suggester",
-					"page": "22.12",
+					"page": "23.12",
 					"label": {
 						"value": "\"Quelle était votre profession principale ?\"",
 						"type": "VTL|MD"
@@ -4157,7 +4261,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.13",
+					"page": "23.13",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4197,7 +4301,7 @@
 							"bindingDependencies": ["CHERCHETRAVA"]
 						}
 					],
-					"page": "22.13",
+					"page": "23.13",
 					"options": [
 						{
 							"value": "1",
@@ -4225,7 +4329,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.14",
+					"page": "23.14",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4269,7 +4373,7 @@
 							"bindingDependencies": ["INTERNOMETABLISSEMENT"]
 						}
 					],
-					"page": "22.14",
+					"page": "23.14",
 					"options": [
 						{
 							"value": "1",
@@ -4331,7 +4435,7 @@
 				},
 				{
 					"id": "kkxuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4366,7 +4470,7 @@
 				},
 				{
 					"id": "kkxuufdsfds8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4405,7 +4509,7 @@
 				},
 				{
 					"id": "kkxufdfffffdu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4440,7 +4544,7 @@
 				},
 				{
 					"id": "kkdsfdsfdsxuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4479,7 +4583,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfguu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4514,7 +4618,7 @@
 				},
 				{
 					"id": "kkxuuaaasd8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4553,7 +4657,7 @@
 				},
 				{
 					"id": "kkaapppxuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4588,7 +4692,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfppfdfdsuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4627,7 +4731,7 @@
 				},
 				{
 					"id": "kkxfsdfddslqkmzsfuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4666,7 +4770,7 @@
 				},
 				{
 					"id": "kkfdcvbvxuu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4701,7 +4805,7 @@
 				},
 				{
 					"id": "kkxfsdfdsfufdsfdsbbbu8ov",
-					"page": "22.14",
+					"page": "23.14",
 					"componentType": "Input",
 					"mandatory": false,
 					"maxLength": 249,
@@ -4737,7 +4841,7 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.15",
+					"page": "23.15",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -4750,7 +4854,7 @@
 				{
 					"id": "input-etjjablissement-situ",
 					"componentType": "Radio",
-					"page": "22.15",
+					"page": "23.15",
 					"label": {
 						"value": "\"### Votre lieu de travail est-il:\"",
 						"type": "VTL|MD"
@@ -4816,120 +4920,120 @@
 				{
 					"id": "jsygk7m7",
 					"componentType": "Subsequence",
-					"page": "22.16",
+					"page": "23.16",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
 					},
 					"conditionFilter": {
-						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")", 
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")",
 						"type": "VTL"
 					}
 				},
 				{
-							"id": "input-etjjablisfdssemefffnt-situ",
-							"componentType": "Radio",
-							"page": "22.16",
+					"id": "input-etjjablisfdssemefffnt-situ",
+					"componentType": "Radio",
+					"page": "23.16",
+					"label": {
+						"value": "\"### Votre emploi principal situe-t-il dans la commune où vous résidez (\" || COM_LOC || \")?\")",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal. \"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "LIEUTRAVACOMMUNE"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(LIEUTRAVACOMMUNE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer si votre lieu de travail se situe dans la commune où vous résidez\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["LIEUTRAVACOMMUNE"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Votre emploi principal situe-t-il dans la commune où vous résidez (\" || COM_LOC || \")?\")",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal. \"",
+								"value": "\"Oui\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\")", 
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Non\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "LIEUTRAVACOMMUNE"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(LIEUTRAVACOMMUNE))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer si votre lieu de travail se situe dans la commune où vous résidez\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["LIEUTRAVACOMMUNE"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"Oui\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"Non\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						}
+					]
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.16",
-							"label": {
-								"value": "\"### Où se situe-t-il ?\"",
-								"type": "VTL|MD"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\")",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.16",
+					"label": {
+						"value": "\"### Où se situe-t-il ?\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\")) and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "LIEUTRAVAPAYS"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(LIEUTRAVAPAYS))",
 								"type": "VTL"
 							},
-							"response": {
-								"name": "LIEUTRAVAPAYS"
+							"errorMessage": {
+								"value": "\"Veuillez indiquer où se situe votre lieu de travail\"",
+								"type": "VTL"
 							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(LIEUTRAVAPAYS))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer où se situe votre lieu de travail\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["LIEUTRAVAPAYS"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"En France \"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"A l'étranger \"",
-										"type": "VTL"
-									}
-								}
-							]
+							"bindingDependencies": ["LIEUTRAVAPAYS"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"En France \"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"A l'étranger \"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "l8twtrc9-set",
 					"componentType": "ComponentSet",
-					"page": "22.16",
+					"page": "23.16",
 					"conditionFilter": {
 						"value": "(AGE > 13) and ((TRAVA =\"1\") or (SITUAPRO =\"1\" or SITUAPRO =\"2\"))and (TYPELIEUTRAVA =\"1\" or TYPELIEUTRAVA =\"2\" or TYPELIEUTRAVA =\"4\") and (not(isnull(LIEUTRAVACOMMUNE)) and LIEUTRAVACOMMUNE =\"2\") and (not(isnull(LIEUTRAVAPAYS)) and LIEUTRAVAPAYS =\"1\") ",
 						"type": "VTL"
@@ -4953,7 +5057,7 @@
 								"type": "VTL"
 							},
 							"conditionFilter": {
-								"value": "true",								
+								"value": "true",
 								"type": "VTL"
 							},
 							"bindingDependencies": ["NUMVOI_LIEUTRAVA"],
@@ -5043,7 +5147,7 @@
 				},
 				{
 					"id": "suggester-communes",
-					"page": "22.16",
+					"page": "23.16",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
@@ -5064,7 +5168,7 @@
 				},
 				{
 					"id": "lieu-trava-commune-etr",
-					"page": "22.16",
+					"page": "23.16",
 					"componentType": "Input",
 					"label": {
 						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
@@ -5084,7 +5188,7 @@
 				},
 				{
 					"id": "lieu-trava-pays-etr",
-					"page": "22.16",
+					"page": "23.16",
 					"componentType": "Suggester",
 					"label": {
 						"value": "\"Pays\"",
@@ -5102,7 +5206,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.17",
+					"page": "23.17",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5113,89 +5217,89 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.17",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.17",
+					"label": {
+						"value": "\"### Quel mode de transport principal utilisez-vous le plus souvent pour aller travailler ?\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "TRANSPORT"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(TRANSPORT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre mode de transport principal\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TRANSPORT"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Quel mode de transport principal utilisez-vous le plus souvent pour aller travailler ?\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"Pas de déplacement\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Marche à pied (ou rollers, patinette)\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "TRANSPORT"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(TRANSPORT))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre mode de transport principal\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["TRANSPORT"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"Pas de déplacement\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"Marche à pied (ou rollers, patinette)\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"Vélo (y compris à assitance électrique)\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "4",
-									"label": {
-										"value": "\"Deux-roues motorisé\"",
-										"type": "VTL"
-									}
-								},
-									{
-									"value": "5",
-									"label": {
-										"value": "\"Voiture, camion ou fourgonnette\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "6",
-									"label": {
-										"value": "\"Transports en commun\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Vélo (y compris à assitance électrique)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Deux-roues motorisé\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Voiture, camion ou fourgonnette\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Transports en commun\"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.18",
+					"page": "23.18",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5206,61 +5310,61 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.18",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.18",
+					"label": {
+						"value": "\"### Occupez-vous votre emploi :\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "OCCEMPLOI"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(OCCEMPLOI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre mode de transport principal\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["OCCEMPLOI"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Occupez-vous votre emploi :\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"à temps complet ?\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"à temps partiel ?\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "OCCEMPLOI"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(OCCEMPLOI))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre mode de transport principal\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["OCCEMPLOI"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"à temps complet ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"à temps partiel ?\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.19",
+					"page": "23.19",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5271,75 +5375,75 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.19",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.19",
+					"label": {
+						"value": "\"### Êtes-vous :\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "TYPEEMPLOI"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(TYPEEMPLOI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre mode de transport principal\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TYPEEMPLOI"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Êtes-vous :\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"indépendant ou à votre compte ?\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\")",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"chef d'entreprise salarié, PDG, gérant(e) minoritaire de SARL ?\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "TYPEEMPLOI"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(TYPEEMPLOI))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre mode de transport principal\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["TYPEEMPLOI"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"indépendant ou à votre compte ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"chef d'entreprise salarié, PDG, gérant(e) minoritaire de SARL ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"salarié(e) ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "4",
-									"label": {
-										"value": "\"Vous aidez une personne dans son travail sans être rémunéré(e)\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"salarié(e) ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Vous aidez une personne dans son travail sans être rémunéré(e)\"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.20",
+					"page": "23.20",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5350,68 +5454,68 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.20",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.20",
+					"label": {
+						"value": "\"### Combien de salariés employez-vous ?\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\")",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "NBSALARIE"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NBSALARIE))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer le nombre de salariés que vous employez\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NBSALARIE"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Combien de salariés employez-vous ?\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"Aucun\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and (TYPEEMPLOI =\"1\" or TYPEEMPLOI =\"2\")",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"1 à 9\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "NBSALARIE"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(NBSALARIE))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer le nombre de salariés que vous employez\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["NBSALARIE"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"Aucun\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"1 à 9\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"10 ou plus\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"10 ou plus\"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.21",
+					"page": "23.21",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5422,89 +5526,89 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.21",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.21",
+					"label": {
+						"value": "\"### Quel est votre type de contrat ou d'emploi ?\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "TYPECONTRAT"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(TYPECONTRAT))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre type de contrat\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["TYPECONTRAT"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Quel est votre type de contrat ou d'emploi ?\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"Emploi sans limite de durée, CDI (contrat à durée indéterminée), titulaire de la fonction publique\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Contrat d'apprentissage et de professionalisation\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "TYPECONTRAT"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(TYPECONTRAT))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre type de contrat\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["TYPECONTRAT"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"Emploi sans limite de durée, CDI (contrat à durée indéterminée), titulaire de la fonction publique\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"Contrat d'apprentissage et de professionalisation\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"Placé par une agence d'intérim\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "4",
-									"label": {
-										"value": "\"Stage rémunéré en entreprise\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "5",
-									"label": {
-										"value": "\"Emploi aidé (contrat unique d'insertion, d'initiative emploi, d'accompagnement dans l'emploi, avenir, etc.)\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "6",
-									"label": {
-										"value": "\"Autre emploi à durée limitée, CDD (contrat à durée déterminée), contrat court, saisonnier, vacataire, etc. \"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Placé par une agence d'intérim\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Stage rémunéré en entreprise\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Emploi aidé (contrat unique d'insertion, d'initiative emploi, d'accompagnement dans l'emploi, avenir, etc.)\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"Autre emploi à durée limitée, CDD (contrat à durée déterminée), contrat court, saisonnier, vacataire, etc. \"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.22",
+					"page": "23.22",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5515,110 +5619,110 @@
 					}
 				},
 				{
-							"id": "input-etjjablisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.22",
+					"id": "input-etjjablisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.22",
+					"label": {
+						"value": "\"### Dans votre emploi, êtes-vous :\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "CATEMPLOI"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(CATEMPLOI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre catégorie d'emploi\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["CATEMPLOI"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Dans votre emploi, êtes-vous :\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"manoeuvre, ouvrier spécialisé ?\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"ouvrier qualifié ou hautement qualifié, technicien d'atelier ?\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "CATEMPLOI"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(CATEMPLOI))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre catégorie d'emploi\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["CATEMPLOI"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"manoeuvre, ouvrier spécialisé ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"ouvrier qualifié ou hautement qualifié, technicien d'atelier ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"technicien (non cadre) ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "4",
-									"label": {
-										"value": "\"agent de catégorie B de la fonction publique ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "5",
-									"label": {
-										"value": "\"agent de maîtrise, maîtrise administrative ou commerciale, VRP ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "6",
-									"label": {
-										"value": "\"agent de catégorie A de la fonction publique ? \"",
-										"type": "VTL"
-									}
-								},
-									{
-									"value": "7",
-									"label": {
-										"value": "\"ingénieur, cadre d'entreprise ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "8",
-									"label": {
-										"value": "\"agent de catégorie C de la fonction publique ?\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "9",
-									"label": {
-										"value": "\"employé (par exemple : de bureau, de commerce, de la restauration, de maison) ?\"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"technicien (non cadre) ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"agent de catégorie B de la fonction publique ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"agent de maîtrise, maîtrise administrative ou commerciale, VRP ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "6",
+							"label": {
+								"value": "\"agent de catégorie A de la fonction publique ? \"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "7",
+							"label": {
+								"value": "\"ingénieur, cadre d'entreprise ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "8",
+							"label": {
+								"value": "\"agent de catégorie C de la fonction publique ?\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "9",
+							"label": {
+								"value": "\"employé (par exemple : de bureau, de commerce, de la restauration, de maison) ?\"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "23.23",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5631,7 +5735,7 @@
 				{
 					"id": "sfdscdffffdfdsdfsgfgs",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "23.23",
 					"label": {
 						"value": "\"### Quelle est votre profession ?\"",
 						"type": "VTL|MD"
@@ -5644,7 +5748,7 @@
 				{
 					"id": "suggester-communes_adrefffsse",
 					"componentType": "Suggester",
-					"page": "22.23",
+					"page": "23.23",
 					"label": {
 						"value": "\"Profession\"",
 						"type": "VTL|MD"
@@ -5665,7 +5769,7 @@
 				{
 					"id": "sfdscdffffdfdsdfsgfgs",
 					"componentType": "Subsequence",
-					"page": "22.23",
+					"page": "23.23",
 					"label": {
 						"value": "\"### Quelle est votre profession principale ?\"",
 						"type": "VTL|MD"
@@ -5678,7 +5782,7 @@
 				{
 					"id": "sfdscdgdfsgfgs",
 					"componentType": "QuestionInformation",
-					"page": "22.23",
+					"page": "23.23",
 					"description": {
 						"value": "\"Si vous êtes agent de la fonction publique d'État, territoriale ou hospitalière, indiquez votre grade (corps, catégorie, etc.).\"",
 						"type": "VTL"
@@ -5691,7 +5795,7 @@
 				{
 					"id": "suggester-commufdsfdsnes_adresse",
 					"componentType": "Input",
-					"page": "22.23",
+					"page": "23.23",
 					"label": {
 						"value": "\"Profession principale\"",
 						"type": "VTL|MD"
@@ -5711,7 +5815,7 @@
 				{
 					"id": "kkxugktl-title",
 					"componentType": "Subsequence",
-					"page": "22.24",
+					"page": "23.24",
 					"label": {
 						"value": "\"Questionnaire individuel de \" || PRENOMS || \" \" || NOMS",
 						"type": "VTL|MD"
@@ -5722,118 +5826,118 @@
 					}
 				},
 				{
-							"id": "infdsisfdssement-situ",
-							"componentType": "Radio",
-							"page": "22.24",
+					"id": "infdsisfdssement-situ",
+					"componentType": "Radio",
+					"page": "23.24",
+					"label": {
+						"value": "\"### Dans votre emploi, quelle est votre fonction principale ?\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "FONCEMPLOI"
+					},
+					"controls": [
+						{
+							"id": "klqn2o7tx-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(FONCEMPLOI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez indiquer votre fonction principale\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["FONCEMPLOI"]
+						}
+					],
+					"options": [
+						{
+							"value": "1",
 							"label": {
-								"value": "\"### Dans votre emploi, quelle est votre fonction principale ?\"",
-								"type": "VTL|MD"
-							},
-							"description": {
-								"value": "\"Si vous exercez plusieurs emplois, répondez uniquement pour votre emploi principal\"",
+								"value": "\"Production, exploitation, chantier\"",
 								"type": "VTL"
-							},
-							"conditionFilter": {
-								"value": "(AGE > 13) and (SITUAPRO =\"1\" or SITUAPRO =\"2\") and TYPEEMPLOI =\"3\"",
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Installation, réparation, maintenance\"",
 								"type": "VTL"
-							},
-							"response": {
-								"name": "FONCEMPLOI"
-							},
-							"controls": [
-								{
-									"id": "klqn2o7tx-CI-0",
-									"typeOfControl": "CONSISTENCY",
-									"criticality": "WARN",
-									"control": {
-										"value": "not(isnull(FONCEMPLOI))",
-										"type": "VTL"
-									},
-									"errorMessage": {
-										"value": "\"Veuillez indiquer votre fonction principale\"",
-										"type": "VTL"
-									},
-									"bindingDependencies": ["FONCEMPLOI"]
-								}
-							],
-							"options": [
-								{
-									"value": "1",
-									"label": {
-										"value": "\"Production, exploitation, chantier\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "2",
-									"label": {
-										"value": "\"Installation, réparation, maintenance\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "3",
-									"label": {
-										"value": "\"Gestion, comptabilité\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "4",
-									"label": {
-										"value": "\"Études, recherche\"",
-										"type": "VTL"
-									}
-								},
-								{
-									"value": "5",
-									"label": {
-										"value": "\"Autre : commerciale, secrétariat, logistique, etc. \"",
-										"type": "VTL"
-									}
-								}
-							]
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Gestion, comptabilité\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Études, recherche\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Autre : commerciale, secrétariat, logistique, etc. \"",
+								"type": "VTL"
+							}
+						}
+					]
 				},
 				{
-            "id": "checkboxgroup",
-            "componentType": "CheckboxGroup",
-            "mandatory": false,
-            "page": "22.25",
-						"label": {
+					"id": "checkboxgroup",
+					"componentType": "CheckboxGroup",
+					"mandatory": false,
+					"page": "23.25",
+					"label": {
 						"value": "\"### Le questionnaire de \" || PRENOMS || \" \" || NOMS || \" est terminé.\" ",
 						"type": "VTL|MD"
-						},
-            "conditionFilter": { "value": "true", "type": "VTL" },
-            "controls": [
-                {
-                    "id": "checkboxgroup",
-                    "typeOfControl": "CONSISTENCY",
-                    "criticality": "WARN",
-                    "control": { "value": "OPT1 = true", "type": "VTL" },
-                    "errorMessage": {
-                        "value": "\"Merci de certifier vos réponses en cochant la case.\"",
-                        "type": "VTL|MD"
-                    },
-                    "bindingDependencies": ["OPT3"]
-                }
-            ],
-            "responses": [
-                {
-                    "id": "opt1",
-                    "label": {
-                        "value": "\"Je certifie que les informations renseignées dans le questionnaire de \" || PRENOMS || \" \" || NOMS || \" sont exactes.\"",
-                        "type": "VTL|MD"
-                    },
-                    "response": { "name": "OPT1" }
-                }
-            ]
-        }
+					},
+					"conditionFilter": { "value": "true", "type": "VTL" },
+					"controls": [
+						{
+							"id": "checkboxgroup",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": { "value": "OPT1 = true", "type": "VTL" },
+							"errorMessage": {
+								"value": "\"Merci de certifier vos réponses en cochant la case.\"",
+								"type": "VTL|MD"
+							},
+							"bindingDependencies": ["OPT3"]
+						}
+					],
+					"responses": [
+						{
+							"id": "opt1",
+							"label": {
+								"value": "\"Je certifie que les informations renseignées dans le questionnaire de \" || PRENOMS || \" \" || NOMS || \" sont exactes.\"",
+								"type": "VTL|MD"
+							},
+							"response": { "name": "OPT1" }
+						}
+					]
+				}
 			]
 		},
 		{
 			"id": "kkxugktl-title",
 			"componentType": "Subsequence",
-			"page": "23",
+			"page": "24",
 			"label": {
 				"value": "\"## Vous êtes arrivé à la fin du questionnaire.\"",
 				"type": "VTL|MD"
@@ -5849,7 +5953,7 @@
 		}
 	],
 	"variables": [
-    {
+		{
 			"variableType": "CALCULATED",
 			"name": "xAxis",
 			"expression": { "value": "PRENOMS || \" \" || NOMS", "type": "VTL" },
@@ -5880,11 +5984,11 @@
 			"variableType": "COLLECTED",
 			"name": "LINKS",
 			"values": {
-				"PREVIOUS": [null],
-				"COLLECTED": [null],
-				"FORCED": [null],
-				"EDITED": [null],
-				"INPUTED": [null]
+				"PREVIOUS": [[null]],
+				"COLLECTED": [[null]],
+				"FORCED": [[null]],
+				"EDITED": [[null]],
+				"INPUTED": [[null]]
 			}
 		},
 		{
@@ -6118,7 +6222,7 @@
 				"INPUTED": [null]
 			}
 		},
-		
+
 		{
 			"variableType": "COLLECTED",
 			"name": "ETABLISSEMENTSITUPAYS",
@@ -6130,7 +6234,7 @@
 				"INPUTED": [null]
 			}
 		},
-				{
+		{
 			"variableType": "COLLECTED",
 			"name": "ETABLISSEMENTSITUCOMMUNE",
 			"values": {
@@ -6472,7 +6576,7 @@
 			"bindingDependencies": ["AGE_BRUT", "PLUS_UN_MOINS_UN", "DATENAISS"],
 			"expression": { "type": "VTL", "value": "AGE_BRUT + PLUS_UN_MOINS_UN" },
 			"name": "AGE",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6483,7 +6587,7 @@
 				"value": "cast(substr(cast(DATENAISS, string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "AN_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6493,7 +6597,7 @@
 				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "CURRENT_YEAR",
-			"inFilter": "false"
+			"inFilter": "true"
 		},
 		{
 			"variableType": "CALCULATED",
@@ -6502,7 +6606,7 @@
 				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "AN_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6510,7 +6614,7 @@
 			"bindingDependencies": ["AN_CURR", "AN_COLL", "DATENAISS"],
 			"expression": { "type": "VTL", "value": "AN_CURR - AN_COLL" },
 			"name": "AGE_BRUT",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6527,7 +6631,7 @@
 				"value": "if ( cast((MOIS_COLL || JOUR_COLL),integer) < cast((MOIS_CURR || JOUR_CURR),integer) ) then 0 else -1"
 			},
 			"name": "PLUS_UN_MOINS_UN",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6538,7 +6642,7 @@
 				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),6,2)"
 			},
 			"name": "MOIS_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6549,7 +6653,7 @@
 				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),9,2)"
 			},
 			"name": "JOUR_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6559,7 +6663,7 @@
 				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),6,2)"
 			},
 			"name": "MOIS_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6569,7 +6673,7 @@
 				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),9,2)"
 			},
 			"name": "JOUR_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -7071,7 +7175,7 @@
 			"name": "OPT1",
 			"values": {
 				"PREVIOUS": [null],
-				"COLLECTED":[null],
+				"COLLECTED": [null],
 				"FORCED": [null],
 				"EDITED": [null],
 				"INPUTED": [null]
@@ -7519,9 +7623,9 @@
 			"size": "cast(COUNT_PERSONS, integer)",
 			"variables": ["SEXES"]
 		},
-    "PRENOMS": {
-      "sizeForLinksVariables": ["count(PRENOMS)", "count(PRENOMS)"],
-      "linksVariables": ["LINKS"]
-    }
+		"PRENOMS": {
+			"sizeForLinksVariables": ["count(PRENOMS)", "count(PRENOMS)"],
+			"linksVariables": ["LINKS"]
+		}
 	}
 }
