@@ -15,12 +15,14 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ currentChange, getData, pageTag, isLastPage });
+  const [ waiting, setWaiting ] = useState(false); 
 
 	const handleNextPage = useCallback(async () => {
 		try {
 			setSavingFailure(undefined);
+      setWaiting(true);
 			const somethingToSave = await save();
-
+      setWaiting(false);
 			if (somethingToSave) {
 				setSavingFailure({ status: 200 });
 			}
@@ -35,6 +37,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 			{...rest}
 			goNextPage={handleNextPage}
 			savingFailure={savingFailure}
+      waiting={waiting}
 		>
 			{children}
 		</CloneElements>

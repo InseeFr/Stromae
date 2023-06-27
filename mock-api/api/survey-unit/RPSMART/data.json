@@ -1,21 +1,18 @@
 {
 	"data": {
 		"COLLECTED": {
-      "COUNT_PERSONS": { "COLLECTED": 5 },
-      "PRENOMS": { "COLLECTED": ["Beyoncé", "Jay-Z", "Blue Ivy", "Rumi", "Sir"] },
-      "NOMS": { "COLLECTED": ["Knowles", "Carter", "Carter", "Carter", "Carter"] },
-      "DATENAISS": { "COLLECTED": ["1981-09-04", "1969-12-04", "2012-01-07", "2017-06-13", "2017-06-13"] },
-      "SEXES": { "COLLECTED": ["2", "1", "2", "2", "1"] },
-      "NATIO": { "COLLECTED": []},
-      "OUESTVOUSNECOMMUNE": {"COLLECTED": []}, 
-      "VIVEZVOUSDS": { "COLLECTED": ["1", "2", "1", "1", "1"]},
-			"QUELSSONTL_IRIS": { "COLLECTED": "IRIS" }
+			"NUMVOI_LOC":  { "COLLECTED": "2" },
+			"TYPEVOI_LOC": { "COLLECTED": "rue" },
+			"NOMVOI_LOC": { "COLLECTED": "du poisson bleu" },
+			"CPOST_LOC":  { "COLLECTED": "92290"},
+			"COM_LOC": { "COLLECTED" : "Châtenay-Malabry"},
+			"ACHL": {"COLLECTED": "3"}
 		}
 	},
 	"stateData": {
 		"state": "INITIAL",
 		"date": 132583235000,
-		"currentPage": "22"
+		"currentPage": "20"
 	},
 	"personalization": []
 }

@@ -14,5 +14,7 @@ export type WelcomeType = {
 	Loi_rgpd: string;
 	Loi_informatique: string;
 	whoAnswers: string[];
-	Enq_Faq_QuestionsAdditionnelles: [{ question: string; contenu: string }];
+	Enq_Image?: string;
+	Enq_colorTheme?: string;
+	Enq_Faq_QuestionsAdditionnelles?: [{ question: string; contenu: string }];
 };

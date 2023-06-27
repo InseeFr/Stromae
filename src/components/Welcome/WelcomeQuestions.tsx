@@ -29,6 +29,17 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 
 	return (
 		<div className={fr.cx('fr-accordions-group')}>
+			{props.welcome.Enq_Faq_QuestionsAdditionnelles &&
+				props.welcome.Enq_Faq_QuestionsAdditionnelles.map(
+					(
+						questionAdditionnelle: { question: string; contenu: string },
+						index: number
+					) => (
+						<Accordion label={questionAdditionnelle.question} key={index}>
+							{questionAdditionnelle.contenu}
+						</Accordion>
+					)
+				)}
 			<Accordion label="Quel est le cadre légal de l'enquête?">
 				<p>
 					Vu l'avis favorable du Conseil national de l'information statistique,
@@ -81,17 +92,6 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 					{props.welcome.Enq_RespTraitement}.
 				</p>
 			</Accordion>
-			{props.welcome.Enq_Faq_QuestionsAdditionnelles &&
-				props.welcome.Enq_Faq_QuestionsAdditionnelles.map(
-					(
-						questionAdditionnelle: { question: string; contenu: string },
-						index: number
-					) => (
-						<Accordion label={questionAdditionnelle.question} key={index}>
-							{questionAdditionnelle.contenu}
-						</Accordion>
-					)
-				)}
 		</div>
 	);
 }
