@@ -3,6 +3,8 @@ import { OrchestratorReadOnly } from '../../components/orchestrator';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { Precedent } from '../../components/navigation/Precedent';
+import { Grid } from '../../components/Grid/Grid';
+import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { Continuer } from '../../components/navigation/Continuer';
 import { NomenclaturesType } from './Visualize';
 
@@ -25,11 +27,15 @@ export function VisualizeResources(props: VisualizeResourcesProps) {
 			urlNomenclatures={nomenclatures}
 		>
 			<Layout>
-				<OrchestratorReadOnly readOnly={readOnly}>
-					<Precedent />
-					<Formulaire />
-					<Continuer />
-				</OrchestratorReadOnly>
+        <Grid>
+          <OrchestratorReadOnly readOnly={readOnly}>
+            <ContinueOrRestart />
+            <Precedent />
+          
+              <Formulaire />
+              <Continuer />
+          </OrchestratorReadOnly>
+        </Grid>
 			</Layout>
 		</LoadFromUrl>
 	);

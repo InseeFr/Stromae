@@ -22,7 +22,7 @@ function makePath(
 		JSON.stringify({ source, data, metadata, nomenclatures })
 	);
 	return {
-		pathname: '/visualize',
+		pathname: '/visualize/accueil',
 		search: `?resources=${resources}`,
 	};
 }

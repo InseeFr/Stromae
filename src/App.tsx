@@ -8,6 +8,7 @@ import { PostSubmit } from './pages/postSubmit';
 
 import { Error } from './pages/error';
 import { Visualize } from './pages/visualize/Visualize';
+import { VisualizeWelcome } from './pages/welcome/visualizeWelcome';
 import { AuthProvider } from './components/auth';
 import { RoutingPortail, Portail } from './pages/portail';
 
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
 	{
 		path: '/visualize',
 		element: <Visualize />,
+		errorElement: <Error />,
+	},
+  {
+		path: '/visualize/accueil',
+		element: <VisualizeWelcome />,
 		errorElement: <Error />,
 	},
 	{
