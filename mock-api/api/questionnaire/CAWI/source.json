@@ -1,0 +1,545 @@
+{
+	"cleaning": {},
+	"variables": [
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": null,
+				"EDITED": null,
+				"INPUTED": null,
+				"FORCED": null,
+				"PREVIOUS": null
+			},
+			"name": "COMMENT_QE"
+		},
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": null,
+				"EDITED": null,
+				"INPUTED": null,
+				"FORCED": null,
+				"PREVIOUS": null
+			},
+			"name": "NHAB"
+		},
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": [null],
+				"EDITED": [null],
+				"INPUTED": [null],
+				"FORCED": [null],
+				"PREVIOUS": [null]
+			},
+			"name": "PRENOM"
+		},
+		{
+			"variableType": "COLLECTED",
+			"values": {
+				"COLLECTED": [[null]],
+				"EDITED": [[null]],
+				"INPUTED": [[null]],
+				"FORCED": [[null]],
+				"PREVIOUS": [[null]]
+			},
+			"name": "LIENS"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"name": "FILTER_RESULT_NHAB",
+			"inFilter": "false"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"name": "FILTER_RESULT_PRENOM",
+			"inFilter": "false",
+			"shapeFrom": "PRENOM"
+		},
+		{
+			"variableType": "CALCULATED",
+			"expression": {
+				"type": "VTL",
+				"value": "xAxis <> yAxis"
+			},
+			"name": "FILTER_RESULT_LIENS",
+			"inFilter": "false"
+		},
+		{
+			"variableType": "CALCULATED",
+			"bindingDependencies": ["PRENOM"],
+			"expression": {
+				"type": "VTL",
+				"value": "PRENOM"
+			},
+			"name": "xAxis",
+			"inFilter": "true",
+			"shapeFrom": "PRENOM"
+		},
+		{
+			"variableType": "CALCULATED",
+			"bindingDependencies": ["PRENOM"],
+			"expression": {
+				"type": "VTL",
+				"value": "PRENOM"
+			},
+			"name": "yAxis",
+			"inFilter": "true",
+			"shapeFrom": "PRENOM"
+		}
+	],
+	"components": [
+		{
+			"componentType": "Sequence",
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "lioaelo5",
+			"page": "1",
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"I - \" || \"S1\""
+			}
+		},
+		{
+			"componentType": "InputNumber",
+			"controls": [
+				{
+					"criticality": "ERROR",
+					"errorMessage": {
+						"type": "VTL|MD",
+						"value": "\" La valeur doit être comprise entre 1 et 10.\""
+					},
+					"typeOfControl": "FORMAT",
+					"control": {
+						"type": "VTL",
+						"value": "not(not(isnull(NHAB)) and (1>NHAB or 10<NHAB))"
+					},
+					"id": "lioamtmo-format-borne-inf-sup"
+				},
+				{
+					"criticality": "ERROR",
+					"errorMessage": {
+						"type": "VTL|MD",
+						"value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\""
+					},
+					"typeOfControl": "FORMAT",
+					"control": {
+						"type": "VTL",
+						"value": "not(not(isnull(NHAB)) and round(NHAB,0)<>NHAB)"
+					},
+					"id": "lioamtmo-format-decimal"
+				}
+			],
+			"max": 10,
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"➡ 1. \" || \"Combien de personnes ?\""
+			},
+			"mandatory": false,
+			"declarations": [
+				{
+					"declarationType": "HELP",
+					"id": "lioamtmo-lioas8z4",
+					"label": {
+						"type": "VTL",
+						"value": "\"Du gras et de l’italique\""
+					},
+					"position": "AFTER_QUESTION_TEXT"
+				}
+			],
+			"bindingDependencies": ["NHAB"],
+			"min": 1,
+			"response": {
+				"name": "NHAB"
+			},
+			"decimals": 0,
+			"id": "lioamtmo",
+			"page": "2"
+		},
+		{
+			"paginatedLoop": false,
+			"componentType": "Loop",
+			"loopDependencies": ["NHAB"],
+			"components": [
+				{
+					"componentType": "Subsequence",
+					"bindingDependencies": ["NHAB"],
+					"conditionFilter": {
+						"type": "VTL",
+						"value": "true"
+					},
+					"id": "lioa2c6q",
+					"page": "3",
+					"label": {
+						"type": "VTL|MD",
+						"value": "SS1"
+					}
+				},
+				{
+					"componentType": "Input",
+					"bindingDependencies": ["PRENOM", "NHAB"],
+					"response": {
+						"name": "PRENOM"
+					},
+					"conditionFilter": {
+						"type": "VTL",
+						"value": "true"
+					},
+					"id": "lioahsst",
+					"page": "3",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"➡ 2. \" || \"Prénom\""
+					},
+					"mandatory": false,
+					"maxLength": 249
+				}
+			],
+			"bindingDependencies": ["NHAB", "PRENOM"],
+			"depth": 1,
+			"hierarchy": {
+				"sequence": {
+					"id": "lioaelo5",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"S1\""
+					}
+				}
+			},
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "lioahd2c",
+			"page": "3",
+			"lines": {
+				"min": {
+					"type": "VTL",
+					"value": "nvl(NHAB, 1)"
+				},
+				"max": {
+					"type": "VTL",
+					"value": "nvl(NHAB, 1)"
+				}
+			}
+		},
+		{
+			"componentType": "Subsequence",
+			"goToPage": "4",
+			"hierarchy": {
+				"sequence": {
+					"id": "lioaelo5",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"S1\""
+					}
+				},
+				"subSequence": {
+					"id": "lioaggk5",
+					"page": "4",
+					"label": {
+						"type": "VTL|MD",
+						"value": "SS2"
+					}
+				}
+			},
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "lioaggk5",
+			"label": {
+				"type": "VTL|MD",
+				"value": "SS2"
+			}
+		},
+		{
+			"componentType": "PairwiseLinks",
+			"components": [
+				{
+					"componentType": "Dropdown",
+					"bindingDependencies": ["LIENS"],
+					"response": {
+						"name": "LIENS"
+					},
+					"options": [
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Son conjoint, sa conjointe"
+							},
+							"value": "1"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa mère, son père"
+							},
+							"value": "2"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa fille, son fils"
+							},
+							"value": "3"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa soeur, son frère (y compris demi et quasi)"
+							},
+							"value": "4"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa belle-mère, son beau-père (conjoint.e d’un des parents)"
+							},
+							"value": "5"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "L’enfant du conjoint (belle-fille, beau-fils)"
+							},
+							"value": "6"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa belle-mère, son beau-père (parent du conjoint)"
+							},
+							"value": "7"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa belle-fille, son beau-fils (conjoint.e d’un enfant)"
+							},
+							"value": "8"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa grand-mère, son grand-père"
+							},
+							"value": "9"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa petite-fille, petit-fils"
+							},
+							"value": "10"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa tante, son oncle"
+							},
+							"value": "11"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa cousine, son cousin"
+							},
+							"value": "12"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa nièce, son neveu"
+							},
+							"value": "13"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Un enfant placé en famille d’accueil"
+							},
+							"value": "14"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Sa belle-soeur, son beau-frère"
+							},
+							"value": "15"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Un autre lien familial"
+							},
+							"value": "16"
+						},
+						{
+							"label": {
+								"type": "VTL|MD",
+								"value": "Autre lien (employé de maison, salarié logé, jeune au pair …)"
+							},
+							"value": "17"
+						}
+					],
+					"conditionFilter": {
+						"type": "VTL",
+						"value": "xAxis <> yAxis"
+					},
+					"id": "lioajpev-pairwise-dropdown",
+					"page": "4",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"➡ 3. \" || \"Liens\""
+					},
+					"mandatory": false
+				}
+			],
+			"bindingDependencies": ["LIENS"],
+			"yAxisIterations": {
+				"value": "count(PRENOM)"
+			},
+			"hierarchy": {
+				"sequence": {
+					"id": "lioaelo5",
+					"page": "1",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"I - \" || \"S1\""
+					}
+				},
+				"subSequence": {
+					"id": "lioaggk5",
+					"page": "4",
+					"label": {
+						"type": "VTL|MD",
+						"value": "SS2"
+					}
+				}
+			},
+			"xAxisIterations": {
+				"value": "count(PRENOM)"
+			},
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "lioajpev",
+			"page": "4",
+			"symLinks": {
+				"LIENS": {
+					"11": "13",
+					"12": "12",
+					"13": "11",
+					"14": null,
+					"15": null,
+					"16": "16",
+					"17": "17",
+					"18": "18",
+					"1": "1",
+					"2": "3",
+					"3": "2",
+					"4": "4",
+					"5": "6",
+					"6": "5",
+					"7": "8",
+					"8": "7",
+					"9": "10",
+					"10": "9"
+				}
+			},
+			"mandatory": false
+		},
+		{
+			"componentType": "Sequence",
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "5",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"Commentaire\""
+					}
+				}
+			},
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "COMMENT-SEQ",
+			"page": "5",
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"Commentaire\""
+			}
+		},
+		{
+			"componentType": "Textarea",
+			"bindingDependencies": ["COMMENT_QE"],
+			"response": {
+				"name": "COMMENT_QE"
+			},
+			"hierarchy": {
+				"sequence": {
+					"id": "COMMENT-SEQ",
+					"page": "5",
+					"label": {
+						"type": "VTL|MD",
+						"value": "\"Commentaire\""
+					}
+				}
+			},
+			"conditionFilter": {
+				"type": "VTL",
+				"value": "true"
+			},
+			"id": "COMMENT-QUESTION",
+			"page": "6",
+			"label": {
+				"type": "VTL|MD",
+				"value": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\""
+			},
+			"mandatory": false,
+			"maxLength": 2000
+		}
+	],
+	"pagination": "question",
+	"resizing": {
+		"PRENOM": {
+			"linksVariables": ["LIENS"],
+			"sizeForLinksVariables": ["count(PRENOM)", "count(PRENOM)"]
+		},
+		"NHAB": {
+			"variables": ["PRENOM"],
+			"size": "nvl(NHAB, 1)"
+		}
+	},
+	"label": {
+		"type": "VTL|MD",
+		"value": "L22"
+	},
+	"lunaticModelVersion": "2.3.2-master",
+	"modele": "L22",
+	"enoCoreVersion": "2.4.3-main",
+	"generatingDate": "09-06-2023 11:29:16",
+	"missing": false,
+	"id": "lioa10vi",
+	"maxPage": "6"
+}
