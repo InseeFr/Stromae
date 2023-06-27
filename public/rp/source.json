@@ -6,7 +6,7 @@
 	"generatingDate": "28-03-2023 12:57:35",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "23",
+	"maxPage": "24",
 	"label": {
 		"value": "02 - Recensement de la population 2022 - Avec changements",
 		"type": "VTL|MD"
@@ -169,6 +169,20 @@
 								"type": "VTL"
 							},
 							"bindingDependencies": ["EMAIL_OCC"]
+						},
+						{
+							"bindingDependencies": ["EMAIL_OCC"],
+							"criticality": "ERROR",
+							"errorMessage": {
+								"type": "VTL",
+								"value": "\"\" || EMAIL_OCC || \" n’est pas un mail valide.\" "
+							},
+							"typeOfControl": "CONSISTENCY",
+							"control": {
+								"type": "VTL",
+								"value": "isnull(EMAIL_OCC) or not(match_characters( EMAIL_OCC, \"^[A-Za-z0-9._+\\-\\']+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,}$\" ) = false)"
+							},
+							"id": "lje2vece-CI-0"
 						}
 					],
 					"conditionFilter": {
@@ -361,11 +375,11 @@
 					"maxLength": 4,
 					"label": {
 						"value": "\"Indice de répétition\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Bis, ter ...\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"conditionFilter": {
 						"value": "true",
@@ -435,7 +449,7 @@
 					"maxLength": 80,
 					"label": {
 						"value": "\"Libellé de la voie (ou lieu-dit) (*)\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Exemple: des petites écuries\"",
@@ -496,7 +510,7 @@
 			"page": "3",
 			"label": {
 				"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
-				"type": "VTL|MD"
+				"type": "VTL"
 			},
 			"description": {
 				"value": "\"Exemple: Paris 10e\"",
@@ -545,7 +559,7 @@
 					"maxLength": 20,
 					"label": {
 						"value": "\"Bâtiment\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					},
 					"description": {
 						"value": "\"Exemple: bâtiment Tilleul\"",
@@ -652,7 +666,7 @@
 					"position": "AFTER_QUESTION_TEXT",
 					"label": {
 						"value": "\"Les questions sur le logement permettent de connaître les caractéristiques du logement, d'analyser les conditions de vie des ménages et de planifier le développement urbain pour adapter les politiques de logement en fonction des besoins de la population.\"",
-						"type": "VTL|MD"
+						"type": "VTL"
 					}
 				}
 			],
@@ -2219,7 +2233,69 @@
 						}
 					],
 					"conditionFilter": {
-						"value": "(COUNT_PERSONS >= 1)",
+						"value": "(COUNT_PERSONS >= 1) and AGE < 3",
+						"type": "VTL",
+						"bindingDependencies": ["COUNT_PERSONS"]
+					},
+					"bindingDependencies": [
+						"PRENOMS",
+						"NOMS",
+						"LIB_ILELLES",
+						"VIVEZVOUSDS"
+					],
+					"options": [
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Non, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit ici uniquement\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "4",
+							"label": {
+								"value": "\"Oui, suite à une séparation ou un divorce, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit aussi chez son autre parent\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"value": "5",
+							"label": {
+								"value": "\"Oui, pour une autre raison, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit aussi dans un autre logement\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"response": {
+						"name": "VIVEZVOUSDS"
+					}
+				},
+				{
+					"id": "lfwgqxv0",
+					"componentType": "Radio",
+					"mandatory": false,
+					"page": "20.2",
+					"label": {
+						"value": "\"### Est-ce que \" || if (isnull(PRENOMS) or isnull(NOMS)) then \"cet habitant\" else PRENOMS || \" \" || NOMS || \" vit aussi dans un autre logement ? \"",
+						"type": "VTL|MD"
+					},
+					"controls": [
+						{
+							"id": "lfvahf2g-nom-null",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(VIVEZVOUSDS))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" Veuillez sélectionner si cet habitant vit aussi dans un autre logement.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"conditionFilter": {
+						"value": "(COUNT_PERSONS >= 1) and AGE > 3",
 						"type": "VTL",
 						"bindingDependencies": ["COUNT_PERSONS"]
 					},
@@ -2589,7 +2665,7 @@
 								"type": "VTL"
 							},
 							"description": {
-								"value": "\"Maison de retraite ou hospice, hospitalisation pour plus dún mois, centre pour handicapés, foyer de travailleurs, militaires logés en caserne ou servent à l'étranger, établissement pénitentiaire, etc.\"",
+								"value": "\"Maison de retraite ou hospice, hospitalisation pour plus d'un mois, centre pour handicapés, foyer de travailleurs, militaires logés en caserne ou servent à l'étranger, établissement pénitentiaire, etc.\"",
 								"type": "VTL"
 							}
 						},
@@ -2617,123 +2693,130 @@
 		{
 			"id": "pairwise-links",
 			"page": "21",
+			"conditionFilter": {
+				"value": "(COUNT_PERSONS > 1)",
+				"type": "VTL",
+				"bindingDependencies": ["COUNT_PERSONS"]
+			},
 			"componentType": "PairwiseLinks",
-			"conditionFilter": { "value": "true" },
 			"xAxisIterations": { "value": "COUNT_PERSONS", "type": "VTL" },
 			"yAxisIterations": { "value": "COUNT_PERSONS", "type": "VTL" },
 			"symLinks": {
-			  "LINKS": {
-				"1": "1",
-				"2": "3",
-				"3": "2",
-				"4": "4",
-				"5": "6",
-				"6": "5",
-				"7": "8",
-				"8": "7",
-				"9": "10",
-				"10": "9",
-				"11": "13",
-				"12": "12",
-				"13": "11",
-				"14": null,
-				"15": "15",
-				"16": "16",
-				"17": "17",
-				"18": "18"
-			  }
+				"LINKS": {
+					"1": "1",
+					"2": "3",
+					"3": "2",
+					"4": "4",
+					"5": "6",
+					"6": "5",
+					"7": "8",
+					"8": "7",
+					"9": "10",
+					"10": "9",
+					"11": "13",
+					"12": "12",
+					"13": "11",
+					"14": null,
+					"15": "15",
+					"16": "16",
+					"17": "17",
+					"18": "18"
+				}
 			},
 			"components": [
-			  {
-				"componentType": "Dropdown",
-				"id": "dropdown-1",
-				"conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
-				"label": {
-				  "value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
-				  "type": "VTL|MD"
-				},
-				"response": {
-				  "name": "LINKS"
-				},
-				"options": [
-				  { "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
-				  { "value": "2", "label": "\"Sa mère, son père\"" },
-				  { "value": "3", "label": "\"Sa fille, son fils\"" },
-				  {
-					"value": "4",
-					"label": "\"Sa soeur, son frère (y compris demi et quasi)\""
-				  },
-				  {
-					"value": "5",
-					"label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
-				  },
-				  {
-					"value": "6",
-					"label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
-				  },
-				  {
-					"value": "7",
-					"label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
-				  },
-				  {
-					"value": "8",
-					"label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
-				  },
-				  { "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
-				  { "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
-				  { "value": "11", "label": "\"Sa tante, son oncle\"" },
-				  { "value": "12", "label": "\"Sa cousine, son cousin\"" },
-				  { "value": "13", "label": "\"Sa nièce, son neveu\"" },
-				  {
-					"value": "14",
-					"label": "\"Un enfant placé en famille d'accueil\""
-				  },
-				  { "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
-				  { "value": "16", "label": "\"Un autre lien familial\"" },
-				  { "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
-				  {
-					"value": "18",
-					"label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
-				  }
-				]
-			  }
+				{
+					"componentType": "Dropdown",
+					"id": "dropdown-1",
+					"conditionFilter": { "value": "xAxis <> yAxis", "type": "VTL" },
+					"label": {
+						"value": "\"Qui est \" || yAxis || \" pour \" || xAxis || \" ?\"",
+						"type": "VTL|MD"
+					},
+					"response": {
+						"name": "LINKS"
+					},
+					"options": [
+						{ "value": "1", "label": "\"Son conjoint, sa conjointe\"" },
+						{ "value": "2", "label": "\"Sa mère, son père\"" },
+						{ "value": "3", "label": "\"Sa fille, son fils\"" },
+						{
+							"value": "4",
+							"label": "\"Sa soeur, son frère (y compris demi et quasi)\""
+						},
+						{
+							"value": "5",
+							"label": "\"Sa belle-mère, son beau-père (conjoint.e d'un des parents)\""
+						},
+						{
+							"value": "6",
+							"label": "\"L'enfant du conjoint (belle-fille, beau-fils)\""
+						},
+						{
+							"value": "7",
+							"label": "\"Sa belle-mère, son beau-père (parent du conjoint)\""
+						},
+						{
+							"value": "8",
+							"label": "\"Sa belle-fille, son beau-fils (conjoint.e d'un enfant)\""
+						},
+						{ "value": "9", "label": "\"Sa grand-mère, son grand-père\"" },
+						{ "value": "10", "label": "\"Sa petite-fille, petit-fils\"" },
+						{ "value": "11", "label": "\"Sa tante, son oncle\"" },
+						{ "value": "12", "label": "\"Sa cousine, son cousin\"" },
+						{ "value": "13", "label": "\"Sa nièce, son neveu\"" },
+						{
+							"value": "14",
+							"label": "\"Un enfant placé en famille d'accueil\""
+						},
+						{ "value": "15", "label": "\"Sa belle-soeur, son beau-frère\"" },
+						{ "value": "16", "label": "\"Un autre lien familial\"" },
+						{ "value": "17", "label": "\"Un colocataire, sous-locataire\"" },
+						{
+							"value": "18",
+							"label": "\"Autre lien (employé de maison, salarié logé, jeune au pair …)\""
+						}
+					]
+				}
 			]
-		  },
+		},
 		{
-            "id": "Summary",
-            "componentType": "Summary",
-            "label": {
-                "value": "\"Récapulatif des habitants \"",
-                "type": "VTL"
-            },
-            "sections": [
-                {
-                    "iterations": { "value": "COUNT_PERSONS", "type": "VTL" },
-                    "title": {
-                        "value": "PRENOMS || \" \" || NOMS",
-                        "type": "VTL"
-                    },
-                    "responses": [
-                        {
-                            "label": {
-                                "value": "(if(SEXES = \"1\") then (\"Né\") else (\"Née\")) || \" le \"",
-                                "type": "VTL"
-                            },
-                            "value": { "value": "cast(cast(DATENAISS, date, \"YYYY-MM-DD\"), string, \"DD-MM-YYYY\")", "type": "VTL" }
-                        },
-                        {
-                            "label": { "value": "\"de sexe \"", "type": "VTL" },
-                            "value": {
-                                "value": "if(SEXES = \"1\") then \"Masculin\" else \"Féminin\"",
-                                "type": "VTL"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "conditionFilter": { "value": "true", "type": "VTL" },
-            "page": "22"
-        },
+			"id": "Summary",
+			"componentType": "Summary",
+			"label": {
+				"value": "\"Récapulatif des habitants \"",
+				"type": "VTL"
+			},
+			"sections": [
+				{
+					"iterations": { "value": "COUNT_PERSONS", "type": "VTL" },
+					"title": {
+						"value": "PRENOMS || \" \" || NOMS",
+						"type": "VTL"
+					},
+					"responses": [
+						{
+							"label": {
+								"value": "(if(SEXES = \"1\") then (\"Né\") else (\"Née\")) || \" le \"",
+								"type": "VTL"
+							},
+							"value": {
+								"value": "cast(cast(DATENAISS, date, \"YYYY-MM-DD\"), string, \"DD-MM-YYYY\")",
+								"type": "VTL"
+							}
+						},
+						{
+							"label": { "value": "\"de sexe \"", "type": "VTL" },
+							"value": {
+								"value": "if(SEXES = \"1\") then \"Masculin\" else \"Féminin\"",
+								"type": "VTL"
+							}
+						}
+					]
+				}
+			],
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"page": "22"
+		},
 		{
 			"id": "roundabout",
 			"componentType": "Roundabout",
@@ -3433,7 +3516,7 @@
 							"value": "2",
 							"label": {
 								"value": "\"Dans un autre logement de la même commune (\" || COM_LOC || \")\"",
-								"type": "VTL|MD"
+								"type": "VTL"
 							}
 						},
 						{
@@ -3846,7 +3929,7 @@
 						"type": "VTL"
 					},
 					"page": "23.8",
-					"components":[
+					"components": [
 						{
 							"id": "sfdscdgdfsgfgs",
 							"componentType": "QuestionInformation",
@@ -6493,7 +6576,7 @@
 			"bindingDependencies": ["AGE_BRUT", "PLUS_UN_MOINS_UN", "DATENAISS"],
 			"expression": { "type": "VTL", "value": "AGE_BRUT + PLUS_UN_MOINS_UN" },
 			"name": "AGE",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6504,7 +6587,7 @@
 				"value": "cast(substr(cast(DATENAISS, string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "AN_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6514,7 +6597,7 @@
 				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "CURRENT_YEAR",
-			"inFilter": "false"
+			"inFilter": "true"
 		},
 		{
 			"variableType": "CALCULATED",
@@ -6523,7 +6606,7 @@
 				"value": "cast( substr( cast(current_date(), string, \"YYYY-MM-DD\") ,1,4) , integer )"
 			},
 			"name": "AN_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6531,7 +6614,7 @@
 			"bindingDependencies": ["AN_CURR", "AN_COLL", "DATENAISS"],
 			"expression": { "type": "VTL", "value": "AN_CURR - AN_COLL" },
 			"name": "AGE_BRUT",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6548,7 +6631,7 @@
 				"value": "if ( cast((MOIS_COLL || JOUR_COLL),integer) < cast((MOIS_CURR || JOUR_CURR),integer) ) then 0 else -1"
 			},
 			"name": "PLUS_UN_MOINS_UN",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6559,7 +6642,7 @@
 				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),6,2)"
 			},
 			"name": "MOIS_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6570,7 +6653,7 @@
 				"value": "substr(cast(DATENAISS, string, \"YYYY-MM-DD\"),9,2)"
 			},
 			"name": "JOUR_COLL",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6580,7 +6663,7 @@
 				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),6,2)"
 			},
 			"name": "MOIS_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -6590,7 +6673,7 @@
 				"value": "substr(cast(current_date(), string, \"YYYY-MM-DD\"),9,2)"
 			},
 			"name": "JOUR_CURR",
-			"inFilter": "false",
+			"inFilter": "true",
 			"shapeFrom": "DATENAISS"
 		},
 		{
@@ -7092,7 +7175,7 @@
 			"name": "OPT1",
 			"values": {
 				"PREVIOUS": [null],
-				"COLLECTED":[null],
+				"COLLECTED": [null],
 				"FORCED": [null],
 				"EDITED": [null],
 				"INPUTED": [null]
