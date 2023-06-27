@@ -20,7 +20,7 @@ export function Portail() {
 			return;
 		}
 		navigate(
-			`/questionnaire/${survey}/unite-enquetee/${oidcUser.preferred_username.toUpperCase()}`
+			`/questionnaire/${survey}/unite-enquetee/${oidcUser.preferred_username}`
 		);
 	}, [oidcUser, navigate, survey]);
 
