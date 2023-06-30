@@ -59,6 +59,13 @@ body {
   > svg {
   fill: #154783;
 }
+.lunatic-combo-box-container.default-style
+  .lunatic-combo-box
+  .lunatic-combo-box-content
+  .lunatic-combo-box-panel.expanded {
+  height: 50vh;
+  overflow-y: auto;
+}
 .lunatic-component.outerContainer-Sequence .label-description p {
   color: #0f417a !important;
   margin: 20px !important;
