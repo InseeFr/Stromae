@@ -9,6 +9,7 @@ export const HTTP_VERBS = {
 function errorHandler(error: AxiosError) {
 	if (axios.isAxiosError(error)) {
 		if (!error?.response) {
+			// utile ?
 			// eslint-disable-next-line no-console
 			console.error('No Server Response');
 		} else if (error.response?.status === 400) {
