@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getEnvVar } from '../../utils/configuration/env';
 
-const DEFAULT_SURVEY = process.env.REACT_APP_DEFAULT_SURVEY;
+const DEFAULT_SURVEY = getEnvVar('REACT_APP_DEFAULT_SURVEY');
 
 export function RoutingPortail() {
 	const navigate = useNavigate();

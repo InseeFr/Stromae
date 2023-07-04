@@ -1,8 +1,9 @@
 import { useRef, useEffect, useContext } from 'react';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
 import { OrchestratedElement } from '../../../typeStromae/type';
+import { getEnvVar } from '../../../utils/configuration/env';
 
-const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
+const SAVING_STRATEGY = getEnvVar('REACT_APP_SAVING_STRATEGY');
 
 type SavingArgs = Pick<
 	OrchestratedElement,

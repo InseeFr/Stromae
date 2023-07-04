@@ -14,8 +14,9 @@ import { getNomenclature } from './getNomenclature';
 import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
 import { getDepositProof } from './getDepositProof';
+import { getEnvVar } from '../../utils/configuration/env';
 
-const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
+const DOMAIN: string = getEnvVar('REACT_APP_SURVEY_API_BASE_URL') ?? '';
 
 export interface SurveyApi {
 	// any type JSon lunatic

@@ -1,3 +1,4 @@
+import { getEnvVar } from '../../utils/configuration/env';
 import { HeaderType } from './HeaderType';
 
 export const DEFAULT_HEADER: HeaderType = {
@@ -11,7 +12,7 @@ export const DEFAULT_HEADER: HeaderType = {
 	serviceTitle: 'Titre par défaut',
 	operatorLogo: {
 		alt: '[À MODIFIER - texte alternatif de l’image]',
-		imgUrl: `${process.env.PUBLIC_URL}/logoINSEE.png`,
+		imgUrl: `${getEnvVar('REACT_APP_PUBLIC_URL')}/logoINSEE.png`,
 		orientation: 'horizontal',
 	},
 };

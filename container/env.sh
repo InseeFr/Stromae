@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Recreate config file
+rm -rf ./env-config.js
+touch ./env-config.js
+
+# Add assignment 
+echo "window._env_ = {" >> ./env-config.js
+
 # Read each line in .env file
 # Each line represents key=value pairs
 while read -r line || [[ -n "$line" ]];
@@ -15,10 +22,10 @@ do
   # Otherwise use value from .env file
   [[ -z $value ]] && value=${varvalue}
 
-  export $varname=$value
-  
+  # Append configuration property to JS file
+  echo "  $varname: \"$value\"," >> ./env-config.js
 done < .env
-envsubst < "./configuration.json" > "configuration.temp"
-envsubst < "./keycloak.json" > "keycloak.temp"
-mv configuration.temp configuration.json
-mv keycloak.temp keycloak.json
+
+echo "}" >> ./env-config.js
+
+sed -i.bak 's~<body[^>]*>~&<script src="/env-config.js"></script>~' ./index.html
