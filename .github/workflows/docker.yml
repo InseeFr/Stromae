@@ -1,0 +1,48 @@
+name: Build Docker
+
+on:
+  push:
+    branches:
+      - 'v2-*'
+      - '!v2-develop'
+      - '!v2-master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn
+      - run: yarn build
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download build
+        id: download
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Extract branch name
+        id: extract_branch
+        shell: bash
+        run: echo "::set-output name=prop::$(echo ${GITHUB_REF#refs/heads/})"
+      - run: echo "Current branch ${{steps.extract_branch.outputs.prop}}"
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tags: ${{steps.extract_branch.outputs.prop}}

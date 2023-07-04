@@ -2,12 +2,12 @@ name: Tests
 
 on:
   push:
-    branches: [v2-*]
+    branches: [v3-develop]
   pull_request_target:
-    branches: [v2-*]
+    branches: [v3-develop]
 
 jobs:
-  build:
+  test:
     name: Tests
     runs-on: ubuntu-latest
     steps:
@@ -15,39 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - uses: bahmutov/npm-install@v1
       - run: yarn
-      - run: yarn build
-      - name: Upload build
-        uses: actions/checkout@v3
-        with:
-          name: build
-          path: build
-  docker:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download build
-        id: download
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
-      - name: Extract branch name
-        id: extract_branch
-        shell: bash
-        run: echo "::set-output name=prop::$(echo ${GITHUB_REF#refs/heads/})"
-      - run: echo "Current branch ${{steps.extract_branch.outputs.prop}}"
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          tags: ${{steps.extract_branch.outputs.prop}}
-    # - uses: bahmutov/npm-install@v1
-    # - run: yarn
-    # - name: Check Typing
-    #   run: yarn run check
-    # - name: Unit Tests
-    #   run: yarn run lint
+      - name: Check Typing
+        run: yarn run check
+      - name: Unit Tests
+        run: yarn run lint
