@@ -64,7 +64,6 @@ export function LoadFromApi({
 					}
 				}
 			} catch (e) {
-				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}
