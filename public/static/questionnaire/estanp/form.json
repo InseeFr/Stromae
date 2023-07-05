@@ -1,0 +1,1697 @@
+{
+  "cleaning": {
+    "COMM1": {
+      "PROD_M1M211": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M221": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M231": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M241": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M251": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))"
+    },
+    "ACT1": {
+      "FAB": "(ACT1 =true) and (TypeAct =\"TYPEACT1\")",
+      "PROD_M1M211": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "TypeAct": "(ACT1 =true)",
+      "PROD_M1M221": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PRODFAB_EXT11": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT31": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT21": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT51": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT41": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PROD_M1234551": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234541": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234531": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234521": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234511": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1M231": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M541": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M1M241": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M551": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M1M251": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M511": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M521": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M531": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")"
+    },
+    "COMM3": {
+      "PROD_M1M211": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M221": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M231": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M241": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M251": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))"
+    },
+    "COMM2": {
+      "PROD_M1M211": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M221": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M231": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M241": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M251": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))"
+    },
+    "PROD_M1234521": {
+      "PRODFAB_EXT51": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT41": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT11": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT31": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT21": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")"
+    },
+    "FAB": {
+      "PROD_M34M541": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M551": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M511": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M521": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M531": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")"
+    },
+    "PROD_M1234511": {
+      "PRODFAB_EXT51": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT41": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT11": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT31": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT21": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")"
+    },
+    "TypeAct": {
+      "FAB": "(ACT1 =true) and (TypeAct =\"TYPEACT1\")",
+      "PROD_M1M211": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M1M221": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PRODFAB_EXT11": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT31": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT21": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT51": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PRODFAB_EXT41": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")",
+      "PROD_M1234551": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234541": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234531": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234521": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1234511": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")",
+      "PROD_M1M231": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M541": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M1M241": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M551": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M1M251": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))",
+      "PROD_M34M511": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M521": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")",
+      "PROD_M34M531": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")"
+    }
+  },
+  "suggesters": [
+    {
+      "name": "nomenclature-eap",
+      "fields": [
+        { "name": "label", "rules": "soft" },
+        { "name": "unit", "rules": "soft" },
+        { "name": "id", "rules": "soft" }
+      ],
+      "queryParser": { "type": "soft" },
+      "version": "1"
+    }
+  ],
+  "variables": [
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "COMMENT_QE"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "CA"
+    },
+    {
+      "variableType": "COLLECTED",
+
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "ID"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "LABEL"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "UNIT"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "FACTURATION"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "QUANTITE_PRODUITE"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": [null],
+        "EDITED": [null],
+        "INPUTED": [null],
+        "FORCED": [null],
+        "PREVIOUS": [null]
+      },
+      "name": "QUANTITE_FACTUREE"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "ACT1"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "ACT2"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "ACT3"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "ACT4"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "TypeAct"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "FAB"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PROD_M34M5"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "COMM1"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "COMM2"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "COMM3"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PROD_M1M2"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PROD_M12345"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PRODFAB_EXT"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PRODFAB_ENT"
+    },
+    {
+      "variableType": "COLLECTED",
+      "values": {
+        "COLLECTED": null,
+        "EDITED": null,
+        "INPUTED": null,
+        "FORCED": null,
+        "PREVIOUS": null
+      },
+      "name": "PRODFAB_ST"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": { "type": "VTL", "value": "true" },
+      "name": "FILTER_RESULT_CA",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": { "type": "VTL", "value": "true" },
+      "name": "FILTER_RESULT_DESC",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": { "type": "VTL", "value": "true" },
+      "name": "FILTER_RESULT_ACT",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1"],
+      "expression": { "type": "VTL", "value": "(ACT1 =true)" },
+      "name": "FILTER_RESULT_TypeAct",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1", "TypeAct"],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT1\")"
+      },
+      "name": "FILTER_RESULT_FAB",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1", "TypeAct", "FAB"],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")"
+      },
+      "name": "FILTER_RESULT_PROD_M34M5",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1", "TypeAct"],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT2\")"
+      },
+      "name": "FILTER_RESULT_COMM",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1", "TypeAct", "COMM3", "COMM1", "COMM2"],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))"
+      },
+      "name": "FILTER_RESULT_PROD_M1M2",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["ACT1", "TypeAct"],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")"
+      },
+      "name": "FILTER_RESULT_PROD_M12345",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": [
+        "ACT1",
+        "TypeAct",
+        "PROD_M1234511",
+        "PROD_M1234521"
+      ],
+      "expression": {
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") and (PROD_M1234511 =\"1\" and PROD_M1234521 =\"1\")"
+      },
+      "name": "FILTER_RESULT_PRODFAB_EXT",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "expression": { "type": "VTL", "value": "true" },
+      "name": "FILTER_RESULT_PRODFAB_ENT",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["FAB"],
+      "expression": {
+        "type": "VTL",
+        "value": "if FAB=\"FAB1\" then \"M3\" else \"\""
+      },
+      "name": "MODELE3",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["FAB"],
+      "expression": {
+        "type": "VTL",
+        "value": "if FAB=\"FAB2\" then \"M5\" else \"\""
+      },
+      "name": "MODELE5",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["COMM1", "COMM2", "COMM3"],
+      "expression": {
+        "type": "VTL",
+        "value": "if nvl(COMM1,false)=true and nvl(COMM2,false)=false and nvl(COMM3,false)=false then \"M1\" else (if nvl(COMM1,false)=false and nvl(COMM2,false)=true and nvl(COMM3,false)=false then \"M1\" else (if nvl(COMM1,false)=true and nvl(COMM2,false)=true and nvl(COMM3,false)=false then \"M1\" else \"\"))"
+      },
+      "name": "MODELE1",
+      "inFilter": "false"
+    },
+    {
+      "variableType": "CALCULATED",
+      "bindingDependencies": ["COMM1", "COMM2", "COMM3"],
+      "expression": {
+        "type": "VTL",
+        "value": "if nvl(COMM1,false)=false and nvl(COMM2,false)=false and nvl(COMM3,false)=true then \"M2\" else \"\""
+      },
+      "name": "MODELE2",
+      "inFilter": "false"
+    }
+  ],
+  "components": [
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "liehwoyz",
+          "page": "1",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"I - \" || \"Chiffre d’affaires\""
+          }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "liehwoyz",
+      "page": "1",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"I - \" || \"Chiffre d’affaires\""
+      },
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liehwoyz-liehktt6",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Période du 1er janvier au 31 décembre*\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "InputNumber",
+      "controls": [
+        {
+          "criticality": "ERROR",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "\" La valeur doit être comprise entre 0 et 999999999.\""
+          },
+          "typeOfControl": "FORMAT",
+          "control": {
+            "type": "VTL",
+            "value": "not(not(isnull(CA)) and (0>CA or 999999999<CA))"
+          },
+          "id": "liehqg0a-format-borne-inf-sup"
+        },
+        {
+          "criticality": "ERROR",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\""
+          },
+          "typeOfControl": "FORMAT",
+          "control": {
+            "type": "VTL",
+            "value": "not(not(isnull(CA))  and round(CA,0)<>CA)"
+          },
+          "id": "liehqg0a-format-decimal"
+        },
+        {
+          "bindingDependencies": ["CA"],
+          "criticality": "WARN",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "\"Vous n’avez pas renseigné votre chiffre d’affaires.\r\nL’absence de cette information risque d’occasionner des demandes de précisions de la part de nos services.\""
+          },
+          "typeOfControl": "CONSISTENCY",
+          "control": { "type": "VTL", "value": "not(isnull(CA))" },
+          "id": "liehqg0a-CI-0"
+        }
+      ],
+      "max": 999999999,
+      "hierarchy": {
+        "sequence": {
+          "id": "liehwoyz",
+          "page": "1",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"I - \" || \"Chiffre d’affaires\""
+          }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 1. \" || \"Veuillez indiquer le **chiffre d’affaires total** de l’entreprise en 2022, hors taxes.\""
+      },
+      "mandatory": true,
+      "unit": "k€",
+      "bindingDependencies": ["CA"],
+      "min": 0,
+      "response": { "name": "CA" },
+      "decimals": 0,
+      "id": "liehqg0a",
+      "page": "2"
+    },
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "lj8oi0q2",
+          "page": "3",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"II - \" || \"Liste de produits\""
+          }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "lj8oi0q2",
+      "page": "3",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"II - \" || \"Liste de produits\""
+      },
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "lj8oi0q2-lj8ocnp7",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Description des produits\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": [
+        "ID",
+        "LABEL",
+        "UNIT",
+        "FACTURATION",
+        "QUANTITE_FACTUREE",
+        "QUANTITE_PRODUITE"
+      ],
+      "controls": [
+        {
+          "bindingDependencies": ["FACTURATION"],
+          "criticality": "WARN",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "\"Veuillez remplir la facturation de vos produits.\""
+          },
+          "typeOfControl": "CONSISTENCY",
+          "control": {
+            "type": "VTL",
+            "value": "min(FACTURATION)"
+          },
+          "id": "lj8oonk0-CI-0"
+        },
+        {
+          "bindingDependencies": ["FACTURATION"],
+          "criticality": "WARN",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "\"Les facturations doivent être positives\""
+          },
+          "typeOfControl": "FORMAT",
+          "control": {
+            "type": "VTL",
+
+            "value": "(min(FACTURATION)<0)=true"
+          },
+          "id": "lh7pozh6-CI-1"
+        }
+      ],
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "lj8oi0q2",
+          "page": "3",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"II - \" || \"Liste de produits\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "\"Produit\"" } },
+        { "label": { "type": "VTL|MD", "value": "\"Facturation\"" } },
+        { "label": { "type": "VTL|MD", "value": "\"Quantité facturée\"" } },
+        { "label": { "type": "VTL|MD", "value": "\"Quantité produite\"" } }
+      ],
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "300", "type": "VTL" }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "lj8oonk0",
+      "page": "4",
+      "label": {
+        "type": "VTL|MD",
+        "value": "min(FACTURATION)>0"
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "InputNumber",
+          "dynamicUnit": {
+            "type": "VTL",
+            "value": "\"k\" || \"€\""
+          },
+          "bindingDependencies": ["FACTURATION"],
+          "min": 0,
+          "max": 10000000,
+          "response": { "name": "FACTURATION" },
+          "decimals": 0,
+          "id": "lh7pozh6-QOP-lh8v4mbu"
+        },
+        {
+          "componentType": "InputNumber",
+          "dynamicUnit": {
+            "type": "VTL",
+            "value": "UNIT"
+          },
+          "conditionFilter": {
+            "type": "VTL",
+            "value": "nvl(UNIT,\"\") <> \"\""
+          },
+          "bindingDependencies": ["QUANTITE_PRODUITE", "UNIT"],
+          "min": 0,
+          "max": 100000000,
+          "response": { "name": "QUANTITE_PRODUITE" },
+          "decimals": 0,
+          "id": "lh7pozh6-QOP-lh8viuae"
+        },
+        {
+          "componentType": "InputNumber",
+          "dynamicUnit": {
+            "type": "VTL",
+            "value": "UNIT"
+          },
+          "conditionFilter": {
+            "type": "VTL",
+            "value": "nvl(UNIT,\"\") <> \"\""
+          },
+          "bindingDependencies": ["QUANTITE_FACTUREE"],
+          "min": 0,
+          "max": 1000000000,
+          "response": { "name": "QUANTITE_FACTUREE" },
+          "decimals": 0,
+          "id": "lh7pozh6-QOP-lh8v3u73"
+        }
+      ],
+      "mandatory": false
+    },
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "liei3fg0",
+      "page": "5",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"III - \" || \"Type d’activités\""
+      },
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liei3fg0-liehvclt",
+          "label": { "type": "VTL|MD", "value": "Type d’activités" },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "CheckboxGroup",
+      "bindingDependencies": ["ACT1", "ACT2", "ACT3", "ACT4"],
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "responses": [
+        {
+          "response": { "name": "ACT1" },
+          "id": "lieiq4q9-QOP-ljcmrulw",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Activité de vente de produits industriels ou artisanaux, y compris les services industriels.\""
+          }
+        },
+        {
+          "response": { "name": "ACT2" },
+          "id": "lieiq4q9-QOP-ljcmor4n",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Activité de réparation ou de maintenance.\""
+          }
+        },
+        {
+          "response": { "name": "ACT3" },
+          "id": "lieiq4q9-QOP-ljcn158f",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Activité d’installation et de pose.\""
+          }
+        },
+        {
+          "response": { "name": "ACT4" },
+          "id": "lieiq4q9-QOP-ljcmxfx3",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Electricite, eau, déchets.\""
+          }
+        }
+      ],
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "lieiq4q9",
+      "page": "6",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 3. \" || \"Quelle.s activité.s réalisez-vous?\""
+      },
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "lieiq4q9-liej1n53",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Veuillez cocher les cases correspondantes.*\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "CheckboxOne",
+      "bindingDependencies": ["TypeAct"],
+      "response": { "name": "TypeAct" },
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "options": [
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous fabriquez l’ensemble des produits que vous vendez ou réalisez l’ensemble des activités de services industriels que vous proposez.\""
+          },
+          "value": "TYPEACT1"
+        },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous ne fabriquez aucun produit que vous vendez ou ne réalisez vous-mêmes aucune des activités de services industriels que vous proposez.\""
+          },
+          "value": "TYPEACT2"
+        },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous fabriquez une partie des produits que vous vendez ou réalisez une partie des activités de services industriels que vous proposez.\""
+          },
+          "value": "TYPEACT3"
+        }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1"],
+        "type": "VTL",
+        "value": "(ACT1 =true)"
+      },
+      "id": "liem26n2",
+      "page": "7",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 4. \" || \"Quel type d’activité réalisez-vous?\""
+      },
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liem26n2-lisll94h",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Veuillez cocher la case correspondante.*\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "CheckboxOne",
+      "bindingDependencies": [
+        "MODELE3",
+        "MODELE5",
+        "MODELE2",
+        "MODELE1",
+        "FAB"
+      ],
+      "controls": [
+        {
+          "bindingDependencies": ["FAB"],
+          "criticality": "WARN",
+          "errorMessage": {
+            "type": "VTL|MD",
+            "value": "Vous n’avez pas coché la case correspondante"
+          },
+          "typeOfControl": "CONSISTENCY",
+          "control": { "type": "VTL", "value": "not(isnull(FAB))" },
+          "id": "lienumro-CI-0"
+        }
+      ],
+      "response": { "name": "FAB" },
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "options": [
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous réalisez tous vos produits ou activités pour votre compte propre.\""
+          },
+          "value": "FAB1"
+        },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous réalisez la totalité de vos produits ou activités en tant que sous-traitant ou co-traitant pour un donneur d’ordre avec fourniture d’intrants*.\""
+          },
+          "value": "FAB2"
+        },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous réalisez une partie de vos produits ou activités en tant que sous-traitant ou co-traitant pour un donneur d’ordre avec fourniture d’intrants*.\""
+          },
+          "value": "FAB3"
+        }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1", "TypeAct"],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT1\")"
+      },
+      "id": "lienumro",
+      "page": "8",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 5. \" || \"Répartition des produits fabriqués\""
+      },
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-lislmm37",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Veuillez cocher la case correspondante*.\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-lj47uie1",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Intrants: les constituants matériels nécessaires à la fabrication d’un produit (matières premières, composants, pièces, sous- ensemble...).\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-lj4ams8v",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE3,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-lj8pnx54",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE5,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-ljclyhwb",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE2,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lienumro-ljcm8lwl",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE1,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": ["ID", "LABEL", "PROD_M34M5"],
+
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "" } },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "Sous-traitant avec fourniture d’intrants*"
+          }
+        }
+      ],
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "count(ID)", "type": "VTL" }
+      },
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1", "TypeAct", "FAB"],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT1\") and (FAB =\"FAB3\")"
+      },
+      "id": "liilg1lr",
+      "page": "9",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 6. \" || \"Répartition M3/M4 et M5\""
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PROD_M34M5"],
+          "responses": [
+            { "id": "prod_m34m5", "response": { "name": "PROD_M34M5" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liilg1lr-QOP-lj8pilbl"
+        }
+      ],
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liilg1lr-lislts6u",
+          "label": {
+            "type": "VTL|MD",
+            "value": "Veuillez cocher les cases correspondantes"
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liilg1lr-lj8pq6v9",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Intrants: les constituants matériels nécessaires à la fabrication d’un produit (matières premières, composants, pièces, sous- ensemble...).\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "CheckboxGroup",
+      "bindingDependencies": [
+        "MODELE3",
+        "MODELE5",
+        "MODELE1",
+        "MODELE2",
+        "COMM1",
+        "COMM2",
+        "COMM3"
+      ],
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "responses": [
+        {
+          "response": { "name": "COMM1" },
+          "id": "liima0nc-QOP-ljcmrpdn",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous avez des produits achetés et revendus en l’état.\""
+          }
+        },
+        {
+          "response": { "name": "COMM2" },
+          "id": "liima0nc-QOP-ljcmnj70",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous avez des produits sous-traités, et vous ne fournissez pas les intrants* à titre gratuit.\""
+          }
+        },
+        {
+          "response": { "name": "COMM3" },
+          "id": "liima0nc-QOP-ljcmxmd9",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Vous avez des produits sous-traités, et vous fournissez les intrants* à titre gratuit.\""
+          }
+        }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1", "TypeAct"],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT2\")"
+      },
+      "id": "liima0nc",
+      "page": "10",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 7. \" || \"Répartition des produits commercialisés\""
+      },
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-lislob19",
+          "label": {
+            "type": "VTL|MD",
+            "value": "Veuillez cocher les cases correspondantes."
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-lj47m8ss",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Intrants: les constituants matériels nécessaires à la fabrication d’un produit (matières premières, composants, pièces, sous- ensemble...)\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-lj8juggx",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE3,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-lj8mp88t",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE5,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-ljckb7da",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE1,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "liima0nc-ljcllm43",
+          "label": { "type": "VTL|MD", "value": "cast(MODELE2,string)" },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": ["ID", "LABEL", "PROD_M1M2"],
+
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "" } },
+        { "label": { "type": "VTL|MD", "value": "\"Produit sous-traité\"" } }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1", "TypeAct", "COMM3", "COMM1", "COMM2"],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT2\") and ((nvl(COMM3, false)=true and nvl(COMM1, false)=false and nvl(COMM2,false)=true ) or (nvl(COMM3, false)=true and nvl(COMM2, false)=false and nvl(COMM1,false)=true)))"
+      },
+      "id": "liinibke",
+      "page": "11",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 8. \" || \"Répartition des produits entre M1 et M2\""
+      },
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "count(ID)", "type": "VTL" }
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PROD_M1M2"],
+          "responses": [
+            { "id": "prod_m1m2", "response": { "name": "PROD_M1M2" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liinibke-QOP-ljd0mx8v"
+        }
+      ],
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "liinibke-lislkrh3",
+          "label": {
+            "type": "VTL|MD",
+            "value": "Veuillez cocher les cases correspondantes"
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": ["PROD_M12345"],
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "" } },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Produit fabriqué par **votre** entreprise\""
+          }
+        }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": ["ACT1", "TypeAct"],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT3\")"
+      },
+      "id": "lik2bi9h",
+      "page": "12",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 9. \" || \"Fabrication des produits\""
+      },
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "count(ID)", "type": "VTL" }
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PROD_M12345"],
+          "responses": [
+            { "id": "prod_M12345", "response": { "name": "PROD_M12345" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liinibke-QOP-ljd0mx8v"
+        }
+      ],
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "lik2bi9h-lisle7kv",
+          "label": {
+            "type": "VTL|MD",
+            "value": "Veuillez cocher les cases correspondantes"
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": ["PRODFAB_EXT"],
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "" } },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Produit fabriqué à l’extérieur de l’entreprise (autres entreprises du groupe compris)\""
+          }
+        }
+      ],
+      "conditionFilter": {
+        "bindingDependencies": [
+          "ACT1",
+          "TypeAct",
+          "PROD_M12345",
+          "PROD_M12345"
+        ],
+        "type": "VTL",
+        "value": "(ACT1 =true) and (TypeAct =\"TYPEACT3\") )"
+      },
+      "id": "lj8n0j6r",
+      "page": "13",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 10. \" || \"Produit.s fabriqué.s à l’extérieur de votre entreprise.\""
+      },
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "count(ID)", "type": "VTL" }
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PRODFAB_EXT"],
+          "responses": [
+            { "id": "prodfab_ext", "response": { "name": "PRODFAB_EXT" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liinibke-QOP-ljd0mx84v"
+        }
+      ],
+      "mandatory": false,
+      "declarations": [
+        {
+          "declarationType": "HELP",
+          "id": "lj8n0j6r-ljclsxzw",
+          "label": {
+            "type": "VTL|MD",
+            "value": "*Veuillez cocher les cases correspondantes*"
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        },
+        {
+          "declarationType": "HELP",
+          "id": "lj8n0j6r-ljcmdzz5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"*Les produits fabriqués par d’autres entreprises du groupe sont considérés comme des produits fabriqués à l’extérieur de votre entreprise.\""
+          },
+          "position": "AFTER_QUESTION_TEXT"
+        }
+      ]
+    },
+    {
+      "componentType": "RosterForLoop",
+      "bindingDependencies": ["PRODFAB_ENT", "PRODFAB_ST"],
+      "positioning": "HORIZONTAL",
+      "hierarchy": {
+        "sequence": {
+          "id": "liei3fg0",
+          "page": "5",
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"III - \" || \"Type d’activités\""
+          }
+        }
+      },
+      "header": [
+        { "label": { "type": "VTL|MD", "value": "" } },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"En partie par votre enteprise\""
+          }
+        },
+        {
+          "label": {
+            "type": "VTL|MD",
+            "value": "\"Entièrement en sous-traitance\""
+          }
+        }
+      ],
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "lj8o7ck7",
+      "page": "14",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"➡ 11. \" || \"Produit.s fabriqué.s par l’entreprise\""
+      },
+      "lines": {
+        "min": { "value": "1", "type": "VTL" },
+        "max": { "value": "count(ID)", "type": "VTL" }
+      },
+      "components": [
+        {
+          "id": "sugg1",
+          "componentType": "Suggester",
+          "mandatory": false,
+          "label": {
+            "value": "\" Sélectionner un produit\"",
+            "type": "VTL|MD"
+          },
+          "storeName": "nomenclature-eap",
+          "conditionFilter": {
+            "value": "true",
+            "type": "VTL"
+          },
+          "responses": [
+            {
+              "id": "id",
+              "response": { "name": "ID" }
+            },
+
+            {
+              "id": "label",
+              "response": { "name": "LABEL" }
+            },
+            {
+              "id": "unit",
+              "response": { "name": "UNIT" }
+            }
+          ]
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PRODFAB_ENT"],
+          "responses": [
+            { "id": "prodfab_ent", "response": { "name": "PRODFAB_ENT" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liinibke-QOP-ljd0mxk84v"
+        },
+        {
+          "componentType": "CheckboxGroup",
+          "bindingDependencies": ["PRODFAB_ST"],
+          "responses": [
+            { "id": "prodfab_st", "response": { "name": "PRODFAB_ST" } }
+          ],
+          "options": [
+            {
+              "label": { "type": "VTL|MD", "value": "\"Oui\"" },
+              "value": "1"
+            }
+          ],
+          "id": "liinibke-QOP-ljd0mtxk84v"
+        }
+      ],
+      "mandatory": false
+    },
+    {
+      "componentType": "Sequence",
+      "hierarchy": {
+        "sequence": {
+          "id": "COMMENT-SEQ",
+          "page": "15",
+          "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "COMMENT-SEQ",
+      "page": "15",
+      "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+    },
+    {
+      "componentType": "Textarea",
+      "bindingDependencies": ["COMMENT_QE"],
+      "response": { "name": "COMMENT_QE" },
+      "hierarchy": {
+        "sequence": {
+          "id": "COMMENT-SEQ",
+          "page": "15",
+          "label": { "type": "VTL|MD", "value": "\"Commentaire\"" }
+        }
+      },
+      "conditionFilter": { "type": "VTL", "value": "true" },
+      "id": "COMMENT-QUESTION",
+      "page": "16",
+      "label": {
+        "type": "VTL|MD",
+        "value": "\"Avez-vous des remarques concernant l'enquête ou des commentaires ?\""
+      },
+      "mandatory": false,
+      "maxLength": 2000
+    }
+  ],
+  "pagination": "question",
+  "resizing": {},
+  "label": { "type": "VTL|MD", "value": "EAP nouveau questionnaire Copie" },
+  "lunaticModelVersion": "2.3.2",
+  "modele": "EAPNOUVEAU",
+  "enoCoreVersion": "2.4.3",
+  "generatingDate": "04-07-2023 14:01:52",
+  "missing": false,
+  "id": "ljd0ph4w",
+  "maxPage": "16"
+}

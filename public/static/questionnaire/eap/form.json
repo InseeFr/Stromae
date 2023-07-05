@@ -177,8 +177,8 @@
         "LABEL",
         "UNIT",
         "FACTURATION",
-        "QUANTITE_PRODUITE",
-        "QUANTITE_FACTUREE"
+        "QUANTITE_FACTUREE",
+        "QUANTITE_PRODUITE"
       ],
       "controls": [
         {

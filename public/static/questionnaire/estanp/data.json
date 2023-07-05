@@ -1,0 +1,77 @@
+{
+  "stateData": {
+    "state": null,
+    "date": null,
+    "currentPage": null
+  },
+
+  "personalization": [],
+
+  "data": {
+    "COLLECTED": {
+      "CA": {
+        "COLLECTED": 12
+      },
+      "ID": {
+        "COLLECTED": [
+          "05101000H0",
+          "05201000H0",
+          "06100000H0",
+          "06200000H0",
+          "0710101000",
+          "0710102000"
+        ]
+      },
+      "LABEL": {
+        "COLLECTED": [
+          "Houille",
+          "Lignite",
+          "Pétrole brut",
+          "Gaz naturel, liquéfié ou gazeux",
+          "Minerais de fer et leurs concentrés, non agglomérés (à l'exclusion des pyrites de fer grillées)",
+          "Minerais de fer et leurs concentrés, agglomérés (à l'exclusion des pyrites de fer grillées)"
+        ]
+      },
+      "UNIT_SIMPLE": {
+        "COLLECTED": []
+      },
+      "ID_SIMPLE": {
+        "COLLECTED": []
+      },
+      "LABEL_SIMPLE": {
+        "COLLECTED": []
+      },
+      "UNIT": {
+        "COLLECTED": ["", "", "", "", "tonnes", "tonnes"]
+      },
+      "PROD_M34M5": {
+        "COLLECTED": []
+      },
+      "PROD_M1M2": {
+        "COLLECTED": []
+      },
+      "PROD_M12345": {
+        "COLLECTED": []
+      },
+      "PRODFAB_EXT": {
+        "COLLECTED": []
+      },
+      "PRODFAB_ENT": {
+        "COLLECTED": []
+      },
+      "PRODFAB_ST": {
+        "COLLECTED": []
+      },
+      "FACTURATION": {
+        "COLLECTED": []
+      },
+      "QUANTITE_PRODUITE": {
+        "COLLECTED": []
+      },
+      "QUANTITE_FACTUREE": {
+        "COLLECTED": []
+      },
+      "COMMENT_QE": { "COLLECTED": null }
+    }
+  }
+}

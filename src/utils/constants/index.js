@@ -16,6 +16,7 @@ export const GUEST_USER = {
 };
 export const SIMPSONS = 'simpsons';
 export const EAP = 'eap';
+export const ESTANP = 'estanp';
 export const TIC = 'tic';
 export const DEFAULT = 'default';
 export const LOGEMENT = 'logement';
@@ -26,6 +27,7 @@ export const SUGG = 'sug';
 export const QUESTIONNAIRE_EXAMPLES = [
   SIMPSONS,
   EAP,
+  ESTANP,
   TIC,
   LOGEMENT,
   FAMILLE,
@@ -46,6 +48,10 @@ export const NOMENCLATURE_EXAMPLE_URL = (q) => {
   if (q === SUGG)
     return JSON.stringify({
       'cog-communes': `${window.location.origin}/static/nomenclature/communes-2019.json`,
+    });
+  if (q === ESTANP || q === EAP)
+    return JSON.stringify({
+      'nomenclature-eap': `${window.location.origin}/static/nomenclature/nomenclature-eap.json`,
     });
   return JSON.stringify({});
 };
