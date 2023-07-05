@@ -4,7 +4,7 @@ FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 #Add build to nginx root webapp
-ADD dist /usr/share/nginx/html
+ADD build /usr/share/nginx/html
 
 #Copy nginx configuration
 RUN rm etc/nginx/conf.d/default.conf
