@@ -3,6 +3,9 @@ FROM nginx:stable-alpine
 ## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
 
+# test
+COPY /public/dsfr/ /usr/share/nginx/html
+
 #Add build to nginx root webapp
 ADD build /usr/share/nginx/html
 
