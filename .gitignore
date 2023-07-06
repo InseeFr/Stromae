@@ -25,4 +25,3 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/dsfr/*
-/public/configuration.json
