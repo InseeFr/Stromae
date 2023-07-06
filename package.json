@@ -38,7 +38,6 @@
 		"check": "tsc",
 		"eject": "react-scripts eject",
 		"start-mock-api": "node ./mock-api.js",
-		"postinstall": "copy-dsfr-to-public",
 		"prestart": "only-include-used-icons",
 		"prebuild": "only-include-used-icons"
 	},
