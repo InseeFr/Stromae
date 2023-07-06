@@ -20,6 +20,8 @@ COPY .env .
 
 # Make our shell script executable
 RUN chmod +x env.sh
+RUN chmod -R 755 /usr/share/nginx/html
+RUN chown -R root:root /usr/share/nginx/html
 
 # add non-root user
 RUN touch /var/run/nginx.pid
