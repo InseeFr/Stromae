@@ -690,7 +690,7 @@
       "page": "4",
       "label": {
         "type": "VTL|MD",
-        "value": "min(FACTURATION)>0"
+        "value": "➡ 2. Description des produits fabriqués"
       },
       "components": [
         {
@@ -1065,7 +1065,7 @@
         }
       ],
       "lines": {
-        "min": { "value": "1", "type": "VTL" },
+        "min": { "value": "count(ID)", "type": "VTL" },
         "max": { "value": "count(ID)", "type": "VTL" }
       },
       "conditionFilter": {
@@ -1280,7 +1280,7 @@
         "value": "\"➡ 8. \" || \"Répartition des produits entre M1 et M2\""
       },
       "lines": {
-        "min": { "value": "1", "type": "VTL" },
+        "min": { "value": "count(ID)", "type": "VTL" },
         "max": { "value": "count(ID)", "type": "VTL" }
       },
       "components": [
@@ -1376,7 +1376,7 @@
         "value": "\"➡ 9. \" || \"Fabrication des produits\""
       },
       "lines": {
-        "min": { "value": "1", "type": "VTL" },
+        "min": { "value": "count(ID)", "type": "VTL" },
         "max": { "value": "count(ID)", "type": "VTL" }
       },
       "components": [
@@ -1477,7 +1477,7 @@
         "value": "\"➡ 10. \" || \"Produit.s fabriqué.s à l’extérieur de votre entreprise.\""
       },
       "lines": {
-        "min": { "value": "1", "type": "VTL" },
+        "min": { "value": "count(ID)", "type": "VTL" },
         "max": { "value": "count(ID)", "type": "VTL" }
       },
       "components": [
@@ -1584,7 +1584,7 @@
         "value": "\"➡ 11. \" || \"Produit.s fabriqué.s par l’entreprise\""
       },
       "lines": {
-        "min": { "value": "1", "type": "VTL" },
+        "min": { "value": "count(ID)", "type": "VTL" },
         "max": { "value": "count(ID)", "type": "VTL" }
       },
       "components": [
