@@ -39,6 +39,7 @@ export type OrchestratedElement = {
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: (page: { page: string; iteration?: number }) => void;
+	readonly handleGoIteration?: () => void;
 	readonly getErrors?: () => Record<
 		string,
 		Record<string, Array<LunaticError>>
@@ -61,7 +62,7 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
-  waiting?: boolean; 
+	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
 	currentPage?: string;

@@ -5,7 +5,7 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from './LunaticComponentContainer';
 
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, currentErrors, disabled = false } = props;
+	const { getComponents, currentErrors, disabled = false, handleGoIteration } = props;
 	const [components, setComponents] = useState<Array<ComponentType>>([]);
 
 	useEffect(() => {
@@ -15,8 +15,8 @@ export function Formulaire(props: OrchestratedElement) {
 	}, [getComponents]);
 
 	return (
-		<form 
-      id="stromae-form" 
+		<form
+      id="stromae-form"
     >
 			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
@@ -30,6 +30,7 @@ export function Formulaire(props: OrchestratedElement) {
 								{...component}
 								errors={currentErrors}
 								disabled={disabled}
+								handleGoIteration={handleGoIteration}
 							/>
 						</LunaticComponentContainer>
 					);
