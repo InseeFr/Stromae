@@ -9,7 +9,7 @@ const DEFAULT_FOOTER: FooterType = {
 	websiteMapLinkProps: undefined,
 	accessibilityLinkProps: undefined,
 	termsLinkProps: undefined,
-	personalDataLinkProps: undefined,
+	// personalDataLinkProps: undefined,
 	homeLinkProps: {
 		href: '/',
 		title: 'Accueil',
@@ -26,9 +26,12 @@ export function Footer(props: FooterProps) {
 		brandTop,
 		accessibility,
 		accessibilityLinkProps,
-		homeLinkProps,
+		homeLinkProps = {
+      href: '/',
+      title: 'Accueil',
+    },
 		contentDescription,
-		personalDataLinkProps,
+		// personalDataLinkProps,
 		termsLinkProps,
 		websiteMapLinkProps,
 		// bottomItems,
@@ -141,7 +144,7 @@ export function Footer(props: FooterProps) {
 								&nbsp;
 							</li>
 						)}
-						{personalDataLinkProps && (
+						{/* {personalDataLinkProps && (
 							<li className="fr-footer__bottom-item">
 								<a
 									className="fr-footer__bottom-link"
@@ -150,7 +153,7 @@ export function Footer(props: FooterProps) {
 									Données personnelles
 								</a>
 							</li>
-						)}
+						)} */}
 					</ul>
 					<div className="fr-footer__bottom-copy">
 						<p>
