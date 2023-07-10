@@ -9,6 +9,7 @@ import { Grid } from '../../components/Grid/Grid';
 import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
+import { WhyThisQuestion } from '../../components/whyThisQuestion';
 
 
 const RP = {
@@ -43,6 +44,7 @@ export function Visualize() {
 							<AlertesControles />
 							<Formulaire />
 							<Continuer />
+							<WhyThisQuestion />
 						</Grid>
 				</Orchestrator>
 			</Layout>

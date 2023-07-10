@@ -12,6 +12,7 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { WhyThisQuestion } from '../../components/whyThisQuestion';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -39,6 +40,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<AlertesControles />
 							<Formulaire />
 							<Continuer />
+							<WhyThisQuestion />
 						</Grid>
 					</Orchestrator>
 				</Layout>
