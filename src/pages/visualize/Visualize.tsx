@@ -9,6 +9,7 @@ import { Grid } from '../../components/Grid/Grid';
 import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
+import { WhyThisQuestion } from '../../components/whyThisQuestion';
 
 const RP = {
 	source: '/rp/source.json',
@@ -35,14 +36,15 @@ export function Visualize() {
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
-					<ContinueOrRestart />
-					<Precedent />
-					<Grid>
-						<AlertesSaving />
-						<AlertesControles />
-						<Formulaire />
-						<Continuer />
-					</Grid>
+	        <ContinueOrRestart />
+						<Precedent />
+						<Grid>
+							<AlertesSaving />
+							<AlertesControles />
+							<Formulaire />
+							<Continuer />
+							<WhyThisQuestion />
+						</Grid>
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>

@@ -91,6 +91,20 @@
 			}
 		},
 		{
+			"id": "accordion",
+			"componentType": "Accordion",
+			"page": "1",
+			"label": {
+				"value": "\"Pourquoi cette question ?\"",
+				"type": "VTL"
+			},
+			"description": {
+				"value": "\"Accordion content\"",
+				"type": "VTL"
+			},
+			"bgColor":"greenMenthe.default"
+		},
+		{
 			"id": "kkxuu8ov-set",
 			"componentType": "ComponentSet",
 			"page": "1",
@@ -103,7 +117,9 @@
 				"value": "\"Indiquez votre nom et votre adresse électronique pour recevoir l’accusé de réception du recensement de la population.\"",
 				"type": "VTL"
 			},
+			
 			"components": [
+				
 				{
 					"id": "kkxuu8ov",
 					"componentType": "Input",
