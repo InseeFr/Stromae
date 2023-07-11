@@ -15,7 +15,7 @@ function ErrorMessage({errorMessage}: {errorMessage: ReactNode}) {
 }
 
 export function AlertesControles(props: OrchestratedElement) {
-	const { currentErrors, criticality } = props;
+	const { currentErrors, criticality, pageTag } = props;
 	const type = criticality ? 'fr-alert--error' : 'fr-alert--warning';
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ export function AlertesControles(props: OrchestratedElement) {
 		}
 	}, [currentErrors]);
 
-	if (currentErrors) {
+	if (currentErrors && !(currentErrors.roundabout && pageTag?.includes("#"))) {
 		const content = Object.values(currentErrors)
 			.flat()
 			.map(({ errorMessage, id }) => {
