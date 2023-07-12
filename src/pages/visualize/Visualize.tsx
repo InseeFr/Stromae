@@ -9,7 +9,7 @@ import { Grid } from '../../components/Grid/Grid';
 import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
-import { WhyThisQuestion } from '../../components/whyThisQuestion';
+// import { WhyThisQuestion } from '../../components/whyThisQuestion';
 
 const RP = {
 	source: '/rp/source.json',
@@ -41,9 +41,9 @@ export function Visualize() {
 						<Grid>
 							<AlertesSaving />
 							<AlertesControles />
-							<Formulaire />
+							<Formulaire except={["Accordion"]} />
 							<Continuer />
-							<WhyThisQuestion />
+							<Formulaire only={["Accordion"]} />
 						</Grid>
 				</Orchestrator>
 			</Layout>
