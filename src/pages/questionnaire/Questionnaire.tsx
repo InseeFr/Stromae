@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { Orchestrator } from '../../components/orchestrator';
 import { Layout } from '../../components/layout';
@@ -12,6 +11,7 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -37,9 +37,9 @@ export function Questionnaire(props: QuestionnaireProps) {
 						<Grid>
 							<AlertesSaving />
 							<AlertesControles />
-							<Formulaire except={["QuestionExplication"]} />
+							<Formulaire />
 							<Continuer />
-							<Formulaire only={["QuestionExplication"]} />
+							<ComplementaryComponents />
 						</Grid>
 					</Orchestrator>
 				</Layout>

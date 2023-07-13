@@ -1,52 +1,14 @@
-import * as lunatic from '@inseefr/lunatic';
-import { useEffect, useState } from 'react';
-import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';
-import { LunaticComponentContainer } from './LunaticComponentContainer';
+import { ComponentsRenderer } from '../ComponentsRenderer';
 
 export function Formulaire(props: OrchestratedElement) {
-	const { getComponents, currentErrors, disabled = false, only, except } = props;
-	const [components, setComponents] = useState<Array<ComponentType>>([]);
-
-	useEffect(() => {
-		if (typeof getComponents === 'function') {
-			setComponents(getComponents());
-		}
-	}, [getComponents]);
+	const { getComponents, currentErrors, disabled = false } = props;
 
 	return (
 		<form
-			id={
-				`stromae-form${
-					(only && only[0]) ? `-only-${only.join('-').toLowerCase()}` : ``
-				}${
-					(except && except[0]) ? `-except-${except.join('-').toLowerCase()}` : ``
-				}`
-			}
+			id="stromae-form"
 		>
-			{components.map((component: ComponentType) => {
-				const { componentType, id } = component;
-
-				if (
-          componentType in lunatic
-          && (!only || (only && only.includes(componentType)))
-          && (!except || (except && !(except.includes(componentType))))
-        ) {
-					const Component = lunatic[componentType];
-
-					return (
-						<LunaticComponentContainer key={id} id={id}>
-							<Component
-								key={id}
-								{...component}
-								errors={currentErrors}
-								disabled={disabled}
-							/>
-						</LunaticComponentContainer>
-					);
-				}
-				return null;
-			})}
+			<ComponentsRenderer getComponents={getComponents} currentErrors={currentErrors} disabled={disabled} except={["QuestionExplication"]} />
 		</form>
 	);
 }
