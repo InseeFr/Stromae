@@ -15,7 +15,15 @@ export function Formulaire(props: OrchestratedElement) {
 	}, [getComponents]);
 
 	return (
-		<form id="stromae-form">
+		<form
+			id={
+				`stromae-form${
+					(only && only[0]) ? `-only-${only.join('-').toLowerCase()}` : ``
+				}${
+					(except && except[0]) ? `-except-${except.join('-').toLowerCase()}` : ``
+				}`
+			}
+		>
 			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
 
