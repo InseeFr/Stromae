@@ -41,9 +41,9 @@ export function Visualize() {
 						<Grid>
 							<AlertesSaving />
 							<AlertesControles />
-							<Formulaire except={["Accordion"]} />
+							<Formulaire except={["QuestionExplication"]} />
 							<Continuer />
-							<Formulaire only={["Accordion"]} />
+							<Formulaire only={["QuestionExplication"]} />
 						</Grid>
 				</Orchestrator>
 			</Layout>
