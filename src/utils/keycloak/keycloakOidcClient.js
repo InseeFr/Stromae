@@ -18,7 +18,7 @@ export const createKeycloakOidcClient = async ({
   urlPortail,
   evtUserActivity,
 }) => {
-  const keycloakInstance = Keycloak({ url, realm, clientId });
+  const keycloakInstance = new Keycloak({ url, realm, clientId });
 
   const isAuthenticated = await keycloakInstance
     .init({
