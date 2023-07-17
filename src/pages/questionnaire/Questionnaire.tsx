@@ -39,8 +39,8 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<AlertesControles />
 							<Formulaire />
 							<Continuer />
-							<ComplementaryComponents />
 						</Grid>
+							<ComplementaryComponents />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>

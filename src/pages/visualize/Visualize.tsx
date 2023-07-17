@@ -44,8 +44,8 @@ export function Visualize() {
 							<AlertesControles />
 							<Formulaire />
 							<Continuer />
-							<ComplementaryComponents />
 						</Grid>
+							<ComplementaryComponents />
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>
