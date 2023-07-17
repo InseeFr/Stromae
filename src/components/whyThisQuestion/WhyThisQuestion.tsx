@@ -19,7 +19,7 @@ export function WhyThisQuestion(props: OrchestratedElement) {
 		<div style={{ marginTop: fr.spacing("5v") }}>
 			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
-				if (componentType in lunatic && componentType === 'Accordion') {
+				if (componentType in lunatic && componentType === 'QuestionExplication') {
 					const Component = lunatic[componentType];
 					return (
 						<LunaticComponentContainer key={id} id={id}>
