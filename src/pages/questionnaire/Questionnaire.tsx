@@ -40,7 +40,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<Formulaire />
 							<Continuer />
 						</Grid>
-							<ComplementaryComponents />
+						<ComplementaryComponents />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
