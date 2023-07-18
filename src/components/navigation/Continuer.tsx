@@ -33,6 +33,7 @@ export function Continuer(props: OrchestratedElement) {
 		goNextPage = () => null,
 		isLastPage,
 		getComponents = () => [],
+		// `waiting` is activated to communicate to users that an API request is in process
     waiting = false,
 		except
 	} = props;
