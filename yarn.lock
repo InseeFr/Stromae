@@ -3467,11 +3467,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base64-js@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
-  integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
-
 base64-js@^1.0.2, base64-js@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
@@ -8382,7 +8377,7 @@ js-sdsl@^4.1.4:
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.4.0.tgz#8b437dbe642daa95760400b602378ed8ffea8430"
   integrity sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==
 
-js-sha256@0.9.0:
+js-sha256@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
   integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
@@ -8591,13 +8586,13 @@ jss@10.10.0, jss@^10.5.1:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
 
-keycloak-js@16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-16.1.1.tgz#e235f212cc336b9752863ebdce7f7a5707b11b8a"
-  integrity sha512-AkRNIJFSMLfQKIBKK31UL4FGI59MQFf68Bf8I+PFbOSKNtnfGVPYLiZeJgy03Kv5ddswHBjVZOY5T0f5RpZpLw==
+keycloak-js@^22.0.0:
+  version "22.0.0"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-22.0.0.tgz#69c6d194f5908c754b5ed6a515fed107164df3a3"
+  integrity sha512-4/xJm6aswS/RLD3h3OhfZTrHAH6Ku/oDvBbK8/tgTxg0rywbxKUjCRUG2Zkw7UGwJPsrqhVT/nmsGTQqj3sQAw==
   dependencies:
-    base64-js "1.3.1"
-    js-sha256 "0.9.0"
+    base64-js "^1.5.1"
+    js-sha256 "^0.9.0"
 
 keycode@^2.1.7:
   version "2.2.1"

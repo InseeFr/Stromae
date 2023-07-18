@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.4.6",
+  "version": "2.4.9",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "date-fns": "^2.29.3",
-    "keycloak-js": "16.1.1",
+    "keycloak-js": "^22.0.0",
     "oidc-client": "^1.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
