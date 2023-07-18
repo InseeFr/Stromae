@@ -10,8 +10,6 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents';
-// import { WhyThisQuestion } from '../../components/whyThisQuestion';
-
 
 const RP = {
 	source: '/rp/source.json',
@@ -46,7 +44,7 @@ export function Visualize() {
 							<Formulaire />
 							<Continuer />
 						</Grid>
-							<ComplementaryComponents />
+						<ComplementaryComponents />
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>

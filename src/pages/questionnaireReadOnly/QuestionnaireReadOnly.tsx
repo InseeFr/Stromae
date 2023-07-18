@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { OrchestratorReadOnly } from '../../components/orchestrator';
 import { Layout } from '../../components/layout';
@@ -9,7 +8,7 @@ import { Formulaire } from '../../components/formulaire';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
 import { Grid } from '../../components/Grid/Grid';
-import { WhyThisQuestion } from '../../components/whyThisQuestion';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -31,8 +30,8 @@ export function QuestionnaireReadOnly() {
 						<Grid>
 							<Formulaire />
 							<Continuer />
-							<WhyThisQuestion />
 						</Grid>
+            <ComplementaryComponents />
 					</OrchestratorReadOnly>
 				</Layout>
 			</LoadFromApi>
