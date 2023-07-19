@@ -51,7 +51,13 @@ export const Orchestrator = ({
         stateData.state === 'EXTRACTED' ||
         stateData.state === 'TOEXTRACT')
   );
-
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (validated) return END_PAGE;
+    if (stateData?.currentPage) {
+      return stateData?.currentPage;
+    }
+    return WELCOME_PAGE;
+  });
   const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
@@ -66,7 +72,7 @@ export const Orchestrator = ({
     getData,
   } = lunatic.useLunatic(source, data, {
     // ToDo : initial page
-    //initialPage,
+    initialPage: isLunaticPage(currentPage) ? stateData?.currentPage : '1',
     features,
     preferences,
     autoSuggesterLoading,
@@ -75,15 +81,6 @@ export const Orchestrator = ({
   });
 
   const components = getComponents();
-
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (validated) return END_PAGE;
-    if (stateData?.currentPage) {
-      return page;
-    }
-    return WELCOME_PAGE;
-  });
-
   const updateStateData = useCallback(
     (newState) => {
       const newStateData = {
@@ -187,11 +184,12 @@ export const Orchestrator = ({
     }
   };
 
-  useEffect(() => {
-    if (isLunaticPage(currentPage)) {
-      setCurrentPage(page);
-    }
-  }, [currentPage, page]);
+  // useEffect(() => {
+  //   if (isLunaticPage(currentPage)) {
+  //     setCurrentPage(page);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [page]);
 
   const lunaticDisplay = () => (
     <Card
@@ -247,6 +245,13 @@ export const Orchestrator = ({
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}
         {isLunaticPage(currentPage) && lunaticDisplay()}
+        {
+          <div>
+            <b>
+              Page : {page} - CurrentPage : {currentPage}
+            </b>
+          </div>
+        }
         {currentPage === VALIDATION_PAGE && (
           <ValidationPage
             metadata={metadata}
