@@ -169,16 +169,7 @@ export const Orchestrator = ({
       }
       goToTop();
     },
-    [
-      closeErrorsModal,
-      components,
-      orchestratorState,
-      getData,
-      goNextPage,
-      handleGoNext,
-      isLastPage,
-      page,
-    ]
+    [closeErrorsModal, orchestratorState, goNextPage, handleGoNext, isLastPage]
   );
 
   const onPrevious = () => {
