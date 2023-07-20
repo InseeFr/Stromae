@@ -54,7 +54,6 @@ export const Orchestrator = ({
     getComponents,
     waiting,
     pageTag,
-    pager: { page },
     goToPage,
     goNextPage,
     goPreviousPage,
