@@ -9,15 +9,15 @@ import { WelcomeBack } from 'components/modals/welcomeBack';
 import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { simpleLog } from 'utils/events';
 import {
   END_PAGE,
+  FORM_PAGE,
+  isLunaticPage,
   VALIDATION_PAGE,
   WELCOME_PAGE,
-  isLunaticPage,
 } from 'utils/pagination';
-import { isNewSequence } from 'utils/questionnaire';
 import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
 import '../custom-lunatic.scss';
 import { ButtonsNavigation } from '../navigation';
@@ -43,7 +43,6 @@ export const Orchestrator = ({
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
   const { stateData, data, personalization } = stromaeData;
-  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [validated, setValidated] = useState(
     stateData &&
@@ -51,19 +50,12 @@ export const Orchestrator = ({
         stateData.state === 'EXTRACTED' ||
         stateData.state === 'TOEXTRACT')
   );
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (validated) return END_PAGE;
-    if (stateData?.currentPage) {
-      return stateData?.currentPage;
-    }
-    return WELCOME_PAGE;
-  });
-  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
     pageTag,
     pager: { page },
+    goToPage,
     goNextPage,
     goPreviousPage,
     isFirstPage,
@@ -71,8 +63,6 @@ export const Orchestrator = ({
     compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
-    // ToDo : initial page
-    initialPage: isLunaticPage(currentPage) ? stateData?.currentPage : '1',
     features,
     preferences,
     autoSuggesterLoading,
@@ -80,19 +70,47 @@ export const Orchestrator = ({
     activeControls,
   });
 
-  const components = getComponents();
-  const updateStateData = useCallback(
-    (newState) => {
-      const newStateData = {
-        state: newState ?? INIT,
-        date: new Date().getTime(),
-        currentPage: currentPage,
-      };
-      setCurrentStateData(newStateData);
-      return newStateData;
-    },
-    [currentPage]
+  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
+
+  // Control whether to display the modal to go back to the previous state
+  const showBackModal = !init && !validated && !!stateData?.currentPage;
+
+  // Indicate in which state the orchestrator is, with stromae we need a welcome page before the form and an end page after
+  const [orchestratorState, setOrchestratorState] = useState(() => {
+    if (validated) {
+      return END_PAGE;
+    }
+    if (showBackModal) {
+      return WELCOME_PAGE;
+    }
+    if (stateData?.currentPage) {
+      return FORM_PAGE;
+    }
+    return WELCOME_PAGE;
+  });
+
+  const currentStateData = useMemo(
+    () => ({
+      state: orchestratorState === END_PAGE ? VALIDATED : INIT,
+      date: new Date().getTime(),
+      currentPage:
+        orchestratorState === FORM_PAGE ? pageTag : orchestratorState,
+    }),
+    [pageTag, orchestratorState]
   );
+  const currentPage =
+    orchestratorState === FORM_PAGE ? pageTag : orchestratorState;
+
+  // Persist state data on every change so the user can come back to where he was
+  useEffect(() => {
+    // Do not save before the user start the questionnaire
+    if (showBackModal) {
+      return;
+    }
+    save(currentStateData);
+  }, [currentStateData, save, showBackModal]);
+
+  const components = getComponents();
 
   const logoutAndClose = async () => {
     let dataToSave = { stateData: currentStateData, data: getData() };
@@ -102,8 +120,9 @@ export const Orchestrator = ({
     quit(dataToSave);
   };
 
+  // Scroll at the top of the form
   const goToTop = () => {
-    if (topRef && topRef.current) {
+    if (topRef.current) {
       topRef.current.tabIndex = -1;
       topRef.current.focus();
       topRef.current.blur();
@@ -113,13 +132,7 @@ export const Orchestrator = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
-    const validateUpdateState = updateStateData(VALIDATED);
-    const dataToSave = {
-      stateData: validateUpdateState,
-      data: getData(),
-    };
-    save(dataToSave);
-    setCurrentPage(END_PAGE);
+    setOrchestratorState(END_PAGE);
   };
 
   const [errorActive, setErrorActive] = useState({});
@@ -143,21 +156,15 @@ export const Orchestrator = ({
   const onNext = useCallback(
     (event, skipValidation = false) => {
       closeErrorsModal();
-      if (currentPage === WELCOME_PAGE) setCurrentPage(page);
-      else {
-        const onNextUpdateState = updateStateData();
-        const dataToSave = {
-          stateData: onNextUpdateState,
-          data: getData(),
-        };
+      if (orchestratorState === WELCOME_PAGE) {
+        setOrchestratorState(FORM_PAGE);
+      } else {
         if (!isLastPage) {
-          if (isNewSequence(components)) {
-            save(dataToSave);
-          }
           handleGoNext(skipValidation, goNextPage);
         } else {
-          save(dataToSave);
-          handleGoNext(skipValidation, () => setCurrentPage(VALIDATION_PAGE));
+          handleGoNext(skipValidation, () =>
+            setOrchestratorState(VALIDATION_PAGE)
+          );
         }
       }
       goToTop();
@@ -165,31 +172,32 @@ export const Orchestrator = ({
     [
       closeErrorsModal,
       components,
-      currentPage,
+      orchestratorState,
       getData,
       goNextPage,
       handleGoNext,
       isLastPage,
       page,
-      save,
-      updateStateData,
     ]
   );
 
   const onPrevious = () => {
-    if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
+    if (orchestratorState === VALIDATION_PAGE) setOrchestratorState(FORM_PAGE);
     else {
       if (!isFirstPage) goPreviousPage();
-      else setCurrentPage(WELCOME_PAGE);
+      else setOrchestratorState(WELCOME_PAGE);
     }
   };
 
-  // useEffect(() => {
-  //   if (isLunaticPage(currentPage)) {
-  //     setCurrentPage(page);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [page]);
+  const restoreSavedPage = () => {
+    // stateData currentPage can be "welcomePage" instead of a normal page number
+    if (isLunaticPage(stateData?.currentPage)) {
+      goToPage({ page: stateData?.currentPage });
+      setOrchestratorState(FORM_PAGE);
+    } else {
+      setOrchestratorState(stateData?.currentPage);
+    }
+  };
 
   const lunaticDisplay = () => (
     <Card
@@ -241,30 +249,28 @@ export const Orchestrator = ({
         ref={topRef}
         className={classes.root}
       >
-        {currentPage === WELCOME_PAGE && (
+        {orchestratorState === WELCOME_PAGE && (
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}
-        {isLunaticPage(currentPage) && lunaticDisplay()}
+        {orchestratorState === FORM_PAGE && lunaticDisplay()}
         {
           <div>
             <b>
-              Page : {page} - CurrentPage : {currentPage}
+              PageTag : {pageTag} - CurrentPage : {currentPage}
             </b>
           </div>
         }
-        {currentPage === VALIDATION_PAGE && (
+        {orchestratorState === VALIDATION_PAGE && (
           <ValidationPage
             metadata={metadata}
             setValidationConfirmation={setValidationConfirmation}
-            currentPage={currentPage}
           />
         )}
-        {currentPage === END_PAGE && (
+        {orchestratorState === END_PAGE && (
           <EndPage
             logoutAndClose={logoutAndClose}
             metadata={metadata}
             stateData={currentStateData}
-            currentPage={currentPage}
             personalization={personalization}
           />
         )}
@@ -286,11 +292,9 @@ export const Orchestrator = ({
         />
       )}
       <WelcomeBack
-        open={!init && !validated && !!stateData?.currentPage}
+        open={showBackModal}
         setOpen={(o) => setInit(!o)}
-        goToFirstPage={() => {
-          setCurrentPage(WELCOME_PAGE);
-        }}
+        goBackToSavedPage={restoreSavedPage}
       />
       <SendingConfirmation
         open={validationConfirmation}

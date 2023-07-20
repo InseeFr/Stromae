@@ -9,6 +9,7 @@ import Send from '@material-ui/icons/Send';
 import { validationPageDictionary, buttonDictionary } from 'i18n';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { VALIDATION_PAGE } from '../../utils/pagination';
 
 const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -25,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const ValidationPage = ({
   metadata: { inseeContext, genericPages },
   setValidationConfirmation,
-  currentPage,
 }) => {
   const classes = useStyles();
   const { title, body } =
@@ -33,7 +33,7 @@ const ValidationPage = ({
   const utilInfo = {
     ...SIMPLE_CLICK_EVENT,
     idParadataObject: 'validate-button',
-    page: currentPage,
+    page: VALIDATION_PAGE,
   };
   return (
     <Card className={classes.card}>

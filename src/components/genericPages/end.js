@@ -22,6 +22,7 @@ import {
 import { interpret } from '@inseefr/trevas';
 import { MarkdownTypo } from 'components/designSystem';
 import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { END_PAGE } from '../../utils/pagination';
 
 const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },
@@ -44,7 +45,6 @@ const EndPage = ({
   metadata: { inseeContext, variables, genericPages },
   personalization,
   stateData: { date },
-  currentPage,
 }) => {
   const classes = useStyles();
 
@@ -52,7 +52,7 @@ const EndPage = ({
     return {
       ...SIMPLE_CLICK_EVENT,
       idParadataObject: `${type}-button`,
-      page: currentPage,
+      page: END_PAGE,
     };
   };
   const finalDate = date || 0;
