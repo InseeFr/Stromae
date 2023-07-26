@@ -1,38 +1,31 @@
 import * as lunatic from '@inseefr/lunatic';
-import { ComponentType } from '../../typeLunatic/type-source';
-import { OrchestratedElement } from '../../typeStromae/type';
-import { LunaticComponentContainer } from '../formulaire/LunaticComponentContainer';
+import {OrchestratedElement} from '../../typeStromae/type';
+import {LunaticComponentContainer} from '../formulaire/LunaticComponentContainer';
 
-export function ComponentsRenderer(props: OrchestratedElement) {
-	const { getComponents, currentErrors, disabled = false, only, except } = props;
-	const components = getComponents?.().filter((component) => {
-		const { componentType } = component;
+type Props = {
+    only?: string[];
+    except?: string[];
+} & Pick<OrchestratedElement, "currentErrors" | "disabled" | "getComponents">
 
-		return (!only || (only && only.includes(componentType))) &&
-		(!except || (except && !(except.includes(componentType))))
-	})
+export function ComponentsRenderer({getComponents, currentErrors, disabled = false, only, except}: Props) {
+    const validComponents = getComponents?.({only, except}).filter(c => c.componentType in lunatic) ?? []
+    return (
+        <>
+            {validComponents.map((component) => {
+                const {componentType, id} = component;
+                const Component = lunatic[componentType];
 
-	return (
-		<>
-			{components?.map((component: ComponentType) => {
-				const { componentType, id } = component;
-
-				if (componentType in lunatic) {
-					const Component = lunatic[componentType];
-
-					return (
-						<LunaticComponentContainer key={id} id={id}>
-							<Component
-								key={id}
-								{...component}
-								errors={currentErrors}
-								disabled={disabled}
-							/>
-						</LunaticComponentContainer>
-					);
-				}
-				return null;
-			})}
-		</>
-	)
+                return (
+                    <LunaticComponentContainer key={id} id={id}>
+                        <Component
+                            key={id}
+                            {...component}
+                            errors={currentErrors}
+                            disabled={disabled}
+                        />
+                    </LunaticComponentContainer>
+                );
+            })}
+        </>
+    )
 }

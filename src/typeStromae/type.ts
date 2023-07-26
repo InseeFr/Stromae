@@ -65,8 +65,6 @@ export type OrchestratedElement = {
 	// disabled all components
 	disabled?: boolean;
 	currentPage?: string;
-  only?: string[];
-  except?: string[];
 };
 
 export type QuestionnaireParams = {
