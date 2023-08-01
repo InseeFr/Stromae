@@ -48,7 +48,7 @@
 				"type": "VTL"
 			}
 		},
-    {
+		{
 			"id": "kkxugktl-subtitle",
 			"componentType": "Sequence",
 			"page": "1",
@@ -61,134 +61,134 @@
 				"type": "VTL"
 			}
 		},
-    {
-      "id": "lfs5q1zj",
-      "componentType": "ComponentSet",
-      "page": "2",
-      "className": "totoComponentSet",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-          "value": "\"Quels sont les identifiants de votre logement?\"",
-          "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "lfs5q1zj-IRIS",
-          "componentType": "Input",
-          "mandatory": false,
-          "className": "totoComponentSet-INput-one",
-          "maxLength": 4,
-          "label": {
-            "value": "\"IRIS, Ilot ou district\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"4 caractères\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "lfs5q1zj-IRIS-CI-0",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(isnull(ZC))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez reporter l'IRIS, l'ilôt ou district renseigné par l’agent recenseur sur la notice.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
-            }
-          ],
-          "bindingDependencies": ["ZC"],
-          "response": {
-            "name": "ZC"
-          }
-        },
-        {
-          "id": "lfs6b745",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 3,
-          "label": {
-            "value": "\"Rang A\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"3 caractères\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "lfs5q1zj-CI-1",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(isnull(ADR_RANG))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez reporter le rang A renseigné par l’agent recenseur sur la notice.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
-            }
-          ],
-          "bindingDependencies": ["ADR_RANG"],
-          "response": {
-            "name": "ADR_RANG"
-          }
-        },
-        {
-          "id": "lfs5sesc",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 3,
-          "label": {
-            "value": "\"Rang L\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"3 caractères\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "lfs5q1zj-CI-2",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(isnull(LOG_RANG))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez reporter le rang L renseigné par l’agent recenseur sur la notice.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
-            }
-          ],
-          "bindingDependencies": ["LOG_RANG"],
-          "response": {
-            "name": "LOG_RANG"
-          }
-        }
-      ]
-    },
+		{
+			"id": "lfs5q1zj",
+			"componentType": "ComponentSet",
+			"page": "2",
+			"className": "totoComponentSet",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"Quels sont les identifiants de votre logement?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "lfs5q1zj-IRIS",
+					"componentType": "Input",
+					"mandatory": false,
+					"className": "totoComponentSet-INput-one",
+					"maxLength": 4,
+					"label": {
+						"value": "\"IRIS, Ilot ou district\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"4 caractères\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-IRIS-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ZC))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez reporter l'IRIS, l'ilôt ou district renseigné par l’agent recenseur sur la notice.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
+						}
+					],
+					"bindingDependencies": ["ZC"],
+					"response": {
+						"name": "ZC"
+					}
+				},
+				{
+					"id": "lfs6b745",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 3,
+					"label": {
+						"value": "\"Rang A\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"3 caractères\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-CI-1",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(ADR_RANG))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez reporter le rang A renseigné par l’agent recenseur sur la notice.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
+						}
+					],
+					"bindingDependencies": ["ADR_RANG"],
+					"response": {
+						"name": "ADR_RANG"
+					}
+				},
+				{
+					"id": "lfs5sesc",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 3,
+					"label": {
+						"value": "\"Rang L\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"3 caractères\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(LOG_RANG))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez reporter le rang L renseigné par l’agent recenseur sur la notice.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["ZC", "ADR_RANG", "LOG_RANG"]
+						}
+					],
+					"bindingDependencies": ["LOG_RANG"],
+					"response": {
+						"name": "LOG_RANG"
+					}
+				}
+			]
+		},
 		{
 			"id": "lfs0z1kg",
 			"componentType": "Radio",
@@ -370,411 +370,411 @@
 				"name": "ASPB"
 			}
 		},
-    {
-      "id": "kkxuu8ov-set",
-      "componentType": "ComponentSet",
-      "page": "5",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-          "value": "\"Quel est le nom de l'occupant principal ?\"",
-          "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "kkxuu8ov-title",
-          "componentType": "Sequence",
-          "label": {
-            "value": "\"Vos réponses sont destinées à l’ élaboration de statistiques ne comportant pas votre nom. Cette dernière information est néanmoins nécessaire pour vérifier que les personnes ne sont comptées qu’une fois et une seule, et pour assurer la qualité des statistiques produites.\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          }
-        },
-        {
-          "id": "kkxuu8ov",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 80,
-          "label": {
-            "value": "\"Nom de l’occupant(e) principal(e)\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: Dupont\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "lfs5q1zj-CI-2",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "ERROR",
-              "control": {
-                "value": "not(isnull(NOM_OCC))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez renseigner le nom de l'occupant principal.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["NOM_OCC"]
-            }
-          ],
-          "bindingDependencies": ["NOM_OCC"],
-          "response": {
-            "name": "NOM_OCC"
-          }
-        }
-      ]
-    },
-    {
-      "id": "kkxv0qgj-set",
-      "componentType": "ComponentSet",
-      "page": "6",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-        "value": "\"Sur quelle adresse électronique souhaitez-vous recevoir votre accusé de réception ?\"",
-        "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "kkxv0qgj-title",
-          "componentType": "Sequence",
-          "label": {
-            "value": "\"Cette adresse électronique servira à vous envoyer un accusé de réception de votre questionnaire et éventuellement à vous renvoyer un mot de passe en cas de perte. Elle ne sera utilisée qu’à cette seule fin et ne sera ni conservée, ni transmise à un tiers.\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          }
-        },
-        {
-          "id": "kkxv0qgj",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 249,
-          "label": {
-            "value": "\"Adresse électronique\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: john.dupont@gmail.com\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["EMAIL_OCC"],
-          "response": {
-            "name": "EMAIL_OCC"
-          }
-        }
-      ]
-    },
-    {
-      "id": "l8twtrc9-set",
-      "componentType": "ComponentSet",
-      "page": "7",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-        "value": "\"Quelle est l'adresse de votre logement ?\"",
-        "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "l8twtrc9",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 4,
-          "className": "toto", 
-          "label": {
-            "value": "\"Numéro\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: 56\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["NUMVOI_LOC"],
-          "response": {
-            "name": "NUMVOI_LOC"
-          }
-        },
-        {
-          "id": "l8twwcvn",
-          "componentType": "Dropdown",
-          "mandatory": false,
-          "maxLength": 4,
-          "label": {
-            "value": "\"Indice de répétition\"",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "options": [
-            {
-              "value": "0",
-              "label": {
-                "value": "\"Bis\"",
-                "type": "VTL|MD"
-              }
-            },
-            {
-              "value": "1",
-              "label": {
-                "value": "\"Ter\"",
-                "type": "VTL|MD"
-              }
-            },
-            {
-              "value": "2",
-              "label": {
-                "value": "\"Quater\"",
-                "type": "VTL|MD"
-              }
-            },
-            {
-              "value": "3",
-              "label": {
-                "value": "\"Quinquies\"",
-                "type": "VTL|MD"
-              }
-            }
-          ],
-          "bindingDependencies": ["BISTER_LOC"],
-          "response": {
-            "name": "BISTER_LOC"
-          }
-        },
-        {
-          "id": "l8twyzo4",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 27,
-          "label": {
-            "value": "\"Type de voie\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: rue\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["TYPEVOI_LOC"],
-          "response": {
-            "name": "TYPEVOI_LOC"
-          }
-        },
-        {
-          "id": "l8twy1k6",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 80,
-          "label": {
-            "value": "\"Libellé de la voie (ou lieu-dit)\"",
-            "type": "VTL|MD"
-          },
-          "description": {
-            "value": "\"Exemple: des petites écuries\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "klqmzxr4-CI-0",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(isnull(NOMVOI_LOC))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez renseigner le nom de la voie de votre logement, information est indispensable pour s'assurer que le recensement s'effectue à la bonne adresse.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["NOMVOI_LOC"]
-            }
-          ],
-          "bindingDependencies": ["NOMVOI_LOC"],
-          "response": {
-            "name": "NOMVOI_LOC"
-          }
-        },
-        {
-          "id": "l8txcnai",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 5,
-          "label": {
-            "value": "\"Code postal\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: 75010\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["CPOST_LOC"],
-          "response": {
-            "name": "CPOST_LOC"
-          }
-        },
-        {
-          "id": "l8txcnai-commune",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 25,
-          "label": {
-            "value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: Paris 10e\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["COM_LOC"],
-          "response": {
-            "name": "COM_LOC"
-          }
-        },
-        {
-          "id": "l8tx81u3",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 40,
-          "label": {
-            "value": "\"Résidence, hameau, lotissement,...\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: résidence de la forêt\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["RES_LOC"],
-          "response": {
-            "name": "RES_LOC"
-          }
-        },
-        {
-          "id": "l8tx1vsp",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 20,
-          "label": {
-            "value": "\"Bâtiment\"",
-            "type": "VTL|MD"
-          },
-          "description": {
-            "value": "\"Exemple: bâtiment Tilleul\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["BAT_LOC"],
-          "response": {
-            "name": "BAT_LOC"
-          }
-        },
-        {
-          "id": "l8txj55d",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 10,
-          "label": {
-            "value": "\"Escalier\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: B\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["ESC_LOC"],
-          "response": {
-            "name": "ESC_LOC"
-          }
-        },
-        {
-          "id": "l8txiop1",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 3,
-          "label": {
-            "value": "\"Étage\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: 4\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["ETAGE_LOC"],
-          "response": {
-            "name": "ETAGE_LOC"
-          }
-        },
-        {
-          "id": "l8txsdqj",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 40,
-          "label": {
-            "value": "\"N° de porte ou position par rapport à l’escalier\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: gauche\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "bindingDependencies": ["N_PORTE_LOC"],
-          "response": {
-            "name": "N_PORTE_LOC"
-          }
-        }
-      ]
-    },
+		{
+			"id": "kkxuu8ov-set",
+			"componentType": "ComponentSet",
+			"page": "5",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"Quel est le nom de l'occupant principal ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "kkxuu8ov-title",
+					"componentType": "Sequence",
+					"label": {
+						"value": "\"Vos réponses sont destinées à l’ élaboration de statistiques ne comportant pas votre nom. Cette dernière information est néanmoins nécessaire pour vérifier que les personnes ne sont comptées qu’une fois et une seule, et pour assurer la qualité des statistiques produites.\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "kkxuu8ov",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 80,
+					"label": {
+						"value": "\"Nom de l’occupant(e) principal(e)\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: Dupont\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "lfs5q1zj-CI-2",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(isnull(NOM_OCC))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de l'occupant principal.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOM_OCC"]
+						}
+					],
+					"bindingDependencies": ["NOM_OCC"],
+					"response": {
+						"name": "NOM_OCC"
+					}
+				}
+			]
+		},
+		{
+			"id": "kkxv0qgj-set",
+			"componentType": "ComponentSet",
+			"page": "6",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"Sur quelle adresse électronique souhaitez-vous recevoir votre accusé de réception ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "kkxv0qgj-title",
+					"componentType": "Sequence",
+					"label": {
+						"value": "\"Cette adresse électronique servira à vous envoyer un accusé de réception de votre questionnaire et éventuellement à vous renvoyer un mot de passe en cas de perte. Elle ne sera utilisée qu’à cette seule fin et ne sera ni conservée, ni transmise à un tiers.\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "kkxv0qgj",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 249,
+					"label": {
+						"value": "\"Adresse électronique\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: john.dupont@gmail.com\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["EMAIL_OCC"],
+					"response": {
+						"name": "EMAIL_OCC"
+					}
+				}
+			]
+		},
+		{
+			"id": "l8twtrc9-set",
+			"componentType": "ComponentSet",
+			"page": "7",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"Quelle est l'adresse de votre logement ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "l8twtrc9",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 4,
+					"className": "toto",
+					"label": {
+						"value": "\"Numéro\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 56\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["NUMVOI_LOC"],
+					"response": {
+						"name": "NUMVOI_LOC"
+					}
+				},
+				{
+					"id": "l8twwcvn",
+					"componentType": "Dropdown",
+					"mandatory": false,
+					"maxLength": 4,
+					"label": {
+						"value": "\"Indice de répétition\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"options": [
+						{
+							"value": "0",
+							"label": {
+								"value": "\"Bis\"",
+								"type": "VTL|MD"
+							}
+						},
+						{
+							"value": "1",
+							"label": {
+								"value": "\"Ter\"",
+								"type": "VTL|MD"
+							}
+						},
+						{
+							"value": "2",
+							"label": {
+								"value": "\"Quater\"",
+								"type": "VTL|MD"
+							}
+						},
+						{
+							"value": "3",
+							"label": {
+								"value": "\"Quinquies\"",
+								"type": "VTL|MD"
+							}
+						}
+					],
+					"bindingDependencies": ["BISTER_LOC"],
+					"response": {
+						"name": "BISTER_LOC"
+					}
+				},
+				{
+					"id": "l8twyzo4",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 27,
+					"label": {
+						"value": "\"Type de voie\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: rue\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["TYPEVOI_LOC"],
+					"response": {
+						"name": "TYPEVOI_LOC"
+					}
+				},
+				{
+					"id": "l8twy1k6",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 80,
+					"label": {
+						"value": "\"Libellé de la voie (ou lieu-dit)\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: des petites écuries\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqmzxr4-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NOMVOI_LOC))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez renseigner le nom de la voie de votre logement, information est indispensable pour s'assurer que le recensement s'effectue à la bonne adresse.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NOMVOI_LOC"]
+						}
+					],
+					"bindingDependencies": ["NOMVOI_LOC"],
+					"response": {
+						"name": "NOMVOI_LOC"
+					}
+				},
+				{
+					"id": "l8txcnai",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 5,
+					"label": {
+						"value": "\"Code postal\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 75010\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["CPOST_LOC"],
+					"response": {
+						"name": "CPOST_LOC"
+					}
+				},
+				{
+					"id": "l8txcnai-commune",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 25,
+					"label": {
+						"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: Paris 10e\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["COM_LOC"],
+					"response": {
+						"name": "COM_LOC"
+					}
+				},
+				{
+					"id": "l8tx81u3",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 40,
+					"label": {
+						"value": "\"Résidence, hameau, lotissement,...\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: résidence de la forêt\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["RES_LOC"],
+					"response": {
+						"name": "RES_LOC"
+					}
+				},
+				{
+					"id": "l8tx1vsp",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 20,
+					"label": {
+						"value": "\"Bâtiment\"",
+						"type": "VTL|MD"
+					},
+					"description": {
+						"value": "\"Exemple: bâtiment Tilleul\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["BAT_LOC"],
+					"response": {
+						"name": "BAT_LOC"
+					}
+				},
+				{
+					"id": "l8txj55d",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 10,
+					"label": {
+						"value": "\"Escalier\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: B\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["ESC_LOC"],
+					"response": {
+						"name": "ESC_LOC"
+					}
+				},
+				{
+					"id": "l8txiop1",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 3,
+					"label": {
+						"value": "\"Étage\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 4\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["ETAGE_LOC"],
+					"response": {
+						"name": "ETAGE_LOC"
+					}
+				},
+				{
+					"id": "l8txsdqj",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 40,
+					"label": {
+						"value": "\"N° de porte ou position par rapport à l’escalier\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: gauche\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"bindingDependencies": ["N_PORTE_LOC"],
+					"response": {
+						"name": "N_PORTE_LOC"
+					}
+				}
+			]
+		},
 		{
 			"id": "klqmzxr4",
 			"componentType": "Radio",
@@ -1038,97 +1038,97 @@
 				"name": "ASCEN"
 			}
 		},
-    {
-      "id": "klqns4rj-set",
-      "componentType": "ComponentSet",
-      "page": "11",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-        "value": "\"De combien de pièces d’habitation se composent votre logement ?\"",
-          "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "klqns4rj-subtitle1",
-          "componentType": "Sequence",
-          "label": {
-            "value": "\"Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.\n\n \n\n Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.\n\n Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.)\"",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          }
-        },
-        {
-          "id": "klqns4rj",
-          "componentType": "InputNumber",
-          "mandatory": false,
+		{
+			"id": "klqns4rj-set",
+			"componentType": "ComponentSet",
+			"page": "11",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"De combien de pièces d’habitation se composent votre logement ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "klqns4rj-subtitle1",
+					"componentType": "Sequence",
+					"label": {
+						"value": "\"Comptez les pièces d’habitation telles que salle à manger, séjour, salon, chambre, etc., quelle que soit leur surface.\n\n \n\n Comptez la cuisine uniquement si sa surface est supérieure à 12 m2.\n\n Ne comptez pas les pièces telles que salle de bains, buanderie, WC, etc., ni les pièces à usage exclusivement professionnel (atelier, cabinet de médecin, etc.)\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "klqns4rj",
+					"componentType": "InputNumber",
+					"mandatory": false,
 
-          "min": 0,
-          "max": 200,
-          "decimals": 0,
-          "label": {
-            "value": "\"Nombre de pièces d’habitation\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Exemple: 3\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "controls": [
-            {
-              "id": "klqns4rj-format-borne-inf-sup",
-              "typeOfControl": "FORMAT",
-              "criticality": "ERROR",
-              "control": {
-                "value": "not(not(isnull(NBPI)) and (0>NBPI or 200<NBPI))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\" La valeur doit être comprise entre 0 et 200.\"",
-                "type": "VTL"
-              }
-            },
-            {
-              "id": "klqns4rj-format-decimal",
-              "typeOfControl": "FORMAT",
-              "criticality": "ERROR",
-              "control": {
-                "value": "not(not(isnull(NBPI))  and round(NBPI,0)<>NBPI)",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
-                "type": "VTL"
-              }
-            },
-            {
-              "id": "klqns4rj-CI-0",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(isnull(NBPI))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Merci de saisir un nombre de pièces valide.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["NBPI"]
-            }
-          ],
-          "bindingDependencies": ["NBPI"],
-          "response": {
-            "name": "NBPI"
-          }
-        }
-      ]
-    },
+					"min": 0,
+					"max": 200,
+					"decimals": 0,
+					"label": {
+						"value": "\"Nombre de pièces d’habitation\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Exemple: 3\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"controls": [
+						{
+							"id": "klqns4rj-format-borne-inf-sup",
+							"typeOfControl": "FORMAT",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(not(isnull(NBPI)) and (0>NBPI or 200<NBPI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" La valeur doit être comprise entre 0 et 200.\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"id": "klqns4rj-format-decimal",
+							"typeOfControl": "FORMAT",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(not(isnull(NBPI))  and round(NBPI,0)<>NBPI)",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"id": "klqns4rj-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(isnull(NBPI))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Merci de saisir un nombre de pièces valide.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["NBPI"]
+						}
+					],
+					"bindingDependencies": ["NBPI"],
+					"response": {
+						"name": "NBPI"
+					}
+				}
+			]
+		},
 		{
 			"id": "klqnxdxp",
 			"componentType": "Radio",
@@ -1366,130 +1366,130 @@
 				"name": "IAEMM"
 			}
 		},
-    {
-      "id": "klqncpes-set",
-      "componentType": "ComponentSet",
-      "page": "15",
-      "conditionFilter": {
+		{
+			"id": "klqncpes-set",
+			"componentType": "ComponentSet",
+			"page": "15",
+			"conditionFilter": {
 				"value": "(IAEMM = \"1\")",
 				"type": "VTL",
 				"bindingDependencies": ["IAEMM"]
 			},
-      "label": {
-        "value": "\"En quelle année avez-vous emménagé ?\"",
-          "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "klqncpes",
-          "componentType": "Input",
-          "mandatory": false,
-          "maxLength": 4,
-          "label": {
-            "value": "\"Année d'emménagement\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Si vous avez toujours vécu dans le logement, reportez votre année de naissance.\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "(IAEMM = \"1\")",
-            "type": "VTL",
-            "bindingDependencies": ["IAEMM"]
-          },
-          "controls": [
-            {
-              "id": "klqncpes-CI-0",
-              "typeOfControl": "CONSISTENCY",
-              "criticality": "WARN",
-              "control": {
-                "value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Veuillez compléter votre année d'emménagement.\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["AEMM_OCC", "ACHL"]
-            }
-          ],
-          "bindingDependencies": ["AEMM_OCC"],
-          "response": {
-            "name": "AEMM_OCC"
-          }
-        }
-      ]
-    },
-    {
-      "id": "lfs14r5h-set",
-      "componentType": "ComponentSet",
-      "page": "15",
-      "conditionFilter": {
+			"label": {
+				"value": "\"En quelle année avez-vous emménagé ?\"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "klqncpes",
+					"componentType": "Input",
+					"mandatory": false,
+					"maxLength": 4,
+					"label": {
+						"value": "\"Année d'emménagement\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Si vous avez toujours vécu dans le logement, reportez votre année de naissance.\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(IAEMM = \"1\")",
+						"type": "VTL",
+						"bindingDependencies": ["IAEMM"]
+					},
+					"controls": [
+						{
+							"id": "klqncpes-CI-0",
+							"typeOfControl": "CONSISTENCY",
+							"criticality": "WARN",
+							"control": {
+								"value": "not(cast(AEMM_OCC,integer) < cast(ACHL,integer))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Veuillez compléter votre année d'emménagement.\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["AEMM_OCC", "ACHL"]
+						}
+					],
+					"bindingDependencies": ["AEMM_OCC"],
+					"response": {
+						"name": "AEMM_OCC"
+					}
+				}
+			]
+		},
+		{
+			"id": "lfs14r5h-set",
+			"componentType": "ComponentSet",
+			"page": "15",
+			"conditionFilter": {
 				"value": "(IAEMM = \"2\")",
 				"type": "VTL",
 				"bindingDependencies": ["IAEMM"]
 			},
-      "label": {
-        "value": "\"En quelle année, le premier des occupants de ce logement a-t-il emménagé ? \"",
-        "type": "VTL"
-      },
-      "components": [   
-        {
-          "id": "lfs14r5h",
-          "componentType": "Input",
-          "mandatory": false,
-          "min": 1900,
-          "max": 2024,
-          "decimals": 0,
-          "label": {
-            "value": "\"Année d'emménagement du premier occupant\"",
-            "type": "VTL"
-          },
-          "description": {
-            "value": "\"Si cette personne a toujours vécu dans le logement, reportez son année de naissance.\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "(IAEMM = \"2\")",
-            "type": "VTL",
-            "bindingDependencies": ["IAEMM"]
-          },
-          "controls": [
-            {
-              "id": "lfs14r5h-format-borne-inf-sup",
-              "typeOfControl": "FORMAT",
-              "criticality": "ERROR",
-              "control": {
-                "value": "not(not(isnull(AEMM)) and (1900>AEMM or 2024<AEMM))",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\" La valeur doit être comprise entre 1900 et 2024.\"",
-                "type": "VTL"
-              }
-            },
-            {
-              "id": "lfs14r5h-format-decimal",
-              "typeOfControl": "FORMAT",
-              "criticality": "ERROR",
-              "control": {
-                "value": "not(not(isnull(AEMM))  and round(AEMM,0)<>AEMM)",
-                "type": "VTL"
-              },
-              "errorMessage": {
-                "value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
-                "type": "VTL"
-              }
-            }
-          ],
-          "bindingDependencies": ["AEMM"],
-          "response": {
-            "name": "AEMM"
-          }
-        }
-      ]
-    },
+			"label": {
+				"value": "\"En quelle année, le premier des occupants de ce logement a-t-il emménagé ? \"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "lfs14r5h",
+					"componentType": "Input",
+					"mandatory": false,
+					"min": 1900,
+					"max": 2024,
+					"decimals": 0,
+					"label": {
+						"value": "\"Année d'emménagement du premier occupant\"",
+						"type": "VTL"
+					},
+					"description": {
+						"value": "\"Si cette personne a toujours vécu dans le logement, reportez son année de naissance.\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "(IAEMM = \"2\")",
+						"type": "VTL",
+						"bindingDependencies": ["IAEMM"]
+					},
+					"controls": [
+						{
+							"id": "lfs14r5h-format-borne-inf-sup",
+							"typeOfControl": "FORMAT",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(not(isnull(AEMM)) and (1900>AEMM or 2024<AEMM))",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\" La valeur doit être comprise entre 1900 et 2024.\"",
+								"type": "VTL"
+							}
+						},
+						{
+							"id": "lfs14r5h-format-decimal",
+							"typeOfControl": "FORMAT",
+							"criticality": "ERROR",
+							"control": {
+								"value": "not(not(isnull(AEMM))  and round(AEMM,0)<>AEMM)",
+								"type": "VTL"
+							},
+							"errorMessage": {
+								"value": "\"Le nombre doit comporter au maximum 0 chiffre(s) après la virgule.\"",
+								"type": "VTL"
+							}
+						}
+					],
+					"bindingDependencies": ["AEMM"],
+					"response": {
+						"name": "AEMM"
+					}
+				}
+			]
+		},
 		{
 			"id": "klqns4rj",
 			"componentType": "Radio",
@@ -2030,50 +2030,50 @@
 				}
 			]
 		},
-    {
-      "id": "j6q9h8tj",
-      "componentType": "ComponentSet",
-      "page": "29",
-      "className": "ComponentSet",
-      "conditionFilter": { "value": "true", "type": "VTL" },
-      "label": {
-          "value": "\"Au total, en vous comptant, combien de personnes vivent habituellement dans ce logement ? \"",
-          "type": "VTL"
-      },
-      "components": [
-        {
-          "id": "j6q9h8tj-subtitle",
-          "componentType": "Sequence",
-          "label": {
-            "value": "\"#### Veuillez inclure tous les habitants, y compris vous-même et: \n\n - l'occupant principal déclaré précédemment \n\n - les nourrissons encore à la maternité \n\n - les personnes temporairement absentes (vacances, voyage d'affaires, hospitalisation de moins d'un mois, etc.) \n\n - les personnes qui vivent également une partie du temps ailleurs (enfants ou étudiants scolarisés ailleurs, conjoints éloignés pour raisons professionnelles, enfants en résidence alternée, personnes âgées en institution, etc.) \n\n - les colocataires et les sous-locataires\"",
-            "type": "VTL|MD"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          }
-        },
-        {
-          "id": "j6q9h8tj-input",
-          "componentType": "InputNumber",
-          "mandatory": true,
-          "decimals": 0,
-          "min": 1,
-          "max": 20,
-          "label": {
-            "value": "\"Nombre d'habitants\"",
-            "type": "VTL"
-          },
-          "conditionFilter": {
-            "value": "true",
-            "type": "VTL"
-          },
-          "response": {
-            "name": "COUNT_PERSONS"
-          }
-        }
-      ]
-    },
+		{
+			"id": "j6q9h8tj",
+			"componentType": "ComponentSet",
+			"page": "29",
+			"className": "ComponentSet",
+			"conditionFilter": { "value": "true", "type": "VTL" },
+			"label": {
+				"value": "\"Au total, en vous comptant, combien de personnes vivent habituellement dans ce logement ? \"",
+				"type": "VTL"
+			},
+			"components": [
+				{
+					"id": "j6q9h8tj-subtitle",
+					"componentType": "Sequence",
+					"label": {
+						"value": "\"#### Veuillez inclure tous les habitants, y compris vous-même et: \n\n - l'occupant principal déclaré précédemment \n\n - les nourrissons encore à la maternité \n\n - les personnes temporairement absentes (vacances, voyage d'affaires, hospitalisation de moins d'un mois, etc.) \n\n - les personnes qui vivent également une partie du temps ailleurs (enfants ou étudiants scolarisés ailleurs, conjoints éloignés pour raisons professionnelles, enfants en résidence alternée, personnes âgées en institution, etc.) \n\n - les colocataires et les sous-locataires\"",
+						"type": "VTL|MD"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					}
+				},
+				{
+					"id": "j6q9h8tj-input",
+					"componentType": "InputNumber",
+					"mandatory": true,
+					"decimals": 0,
+					"min": 1,
+					"max": 20,
+					"label": {
+						"value": "\"Nombre d'habitants\"",
+						"type": "VTL"
+					},
+					"conditionFilter": {
+						"value": "true",
+						"type": "VTL"
+					},
+					"response": {
+						"name": "COUNT_PERSONS"
+					}
+				}
+			]
+		},
 		{
 			"id": "loop",
 			"componentType": "Loop",
@@ -2091,155 +2091,155 @@
 				"type": "VTL"
 			},
 			"components": [
-        {
-          "id": "lfwg2ny2",
-          "componentType": "ComponentSet",
-          "page": "30.1",
-          "className": "ComponentSet",
+				{
+					"id": "lfwg2ny2",
+					"componentType": "ComponentSet",
+					"page": "30.1",
+					"className": "ComponentSet",
 					"conditionFilter": {
 						"value": "(COUNT_PERSONS >= 1)",
 						"type": "VTL",
 						"bindingDependencies": ["COUNT_PERSONS"]
 					},
-          "label": {
-              "value": "\"Description de l’habitant\"",
-              "type": "VTL"
-          },
-          "components": [
-            {
-              "id": "lfwg2ny2-noms",
-              "componentType": "Input",
-              "mandatory": true,
-              "maxLength": 249,
-              "label": {
-                "value": "\"Nom\"",
-                "type": "VTL"
-              },
-              "controls": [
-                {
-                  "id": "lfwiyuih-nom-null",
-                  "typeOfControl": "CONSISTENCY",
-                  "criticality": "WARN",
-                  "control": {
-                    "value": "not(isnull(NOMS))",
-                    "type": "VTL"
-                  },
-                  "errorMessage": {
-                    "value": "\" Veuillez entrer un nom\"",
-                    "type": "VTL"
-                  }
-                }
-              ],
-              "bindingDependencies": ["NOMS"],
-              "response": {
-                "name": "NOMS"
-              }
-            },
-            {
-              "id": "lfwg2ny2-prenoms",
-              "label": {
-                "value": "\"Prénom\"",
-                "type": "VTL"
-              },
-              "conditionFilter": {
-                "value": "true",
-                "type": "VTL"
-              },
-              "componentType": "Input",
-              "response": {
-                "name": "PRENOMS"
-              }
-            },
-            {
-              "id": "lfwiizq2-dob",
-              "componentType": "Datepicker",
-              "mandatory": true,
-              "min": "1900-01-01",
-              "max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
-              "label": {
-                "value": " \"Date de naissance\"",
-                "type": "VTL"
-              },
-              "controls": [
-                {
-                  "id": "lfwiizq2-format-borne-inf-sup",
-                  "typeOfControl": "FORMAT",
-                  "criticality": "ERROR",
-                  "control": {
-                    "value": "not(not(isnull(DATENAISS)) and (cast(DATENAISS, date, \"YYYY-MM-DD\")>cast(\"format-date(current-date(),'[Y0001]-[M01]-[D01]')\", date, \"YYYY-MM-DD\") or cast(DATENAISS, date, \"YYYY-MM-DD\")<cast(\"1900-01-01\", date, \"YYYY-MM-DD\")))",
-                    "type": "VTL"
-                  },
-                  "errorMessage": {
-                    "value": "\"La date saisie doit être comprise entre 1900-01-01 et format-date(current-date(),'[Y0001]-[M01]-[D01]').\"",
-                    "type": "VTL|MD"
-                  }
-                },
-                {
-                  "id": "lfwiizq2-nom-null",
-                  "typeOfControl": "CONSISTENCY",
-                  "criticality": "WARN",
-                  "control": {
-                    "value": "not(isnull(DATENAISS))",
-                    "type": "VTL"
-                  },
-                  "errorMessage": {
-                    "value": "\" Veuillez entrer une date de naissance\"",
-                    "type": "VTL"
-                  }
-                }
-              ],
-              "bindingDependencies": ["DATENAISS"],
-              "dateFormat": "YYYY-MM-DD",
-              "response": {
-                "name": "DATENAISS"
-              }
-            },
-            {
-              "id": "lfvahf2g",
-              "componentType": "Radio",
-              "mandatory": true,
-              "label": {
-                "value": "\"Sexe\"",
-                "type": "VTL"
-              },
-              "bindingDependencies": ["SEXES"],
-              "controls": [
-                {
-                  "id": "lfvahf2g-nom-null",
-                  "typeOfControl": "CONSISTENCY",
-                  "criticality": "WARN",
-                  "control": {
-                    "value": "not(isnull(SEXES))",
-                    "type": "VTL"
-                  },
-                  "errorMessage": {
-                    "value": "\" Veuillez sélectionner un sexe\"",
-                    "type": "VTL"
-                  }
-                }
-              ],
-              "options": [
-                {
-                  "value": "1",
-                  "label": {
-                    "value": "\"Homme\"",
-                    "type": "VTL"
-                  }
-                },
-                {
-                  "value": "2",
-                  "label": {
-                    "value": "\"Femme\"",
-                    "type": "VTL"
-                  }
-                }
-              ],
-              "response": {
-                "name": "SEXES"
-              }
-            }
-          ]
-        },
+					"label": {
+						"value": "\"Description de l’habitant\"",
+						"type": "VTL"
+					},
+					"components": [
+						{
+							"id": "lfwg2ny2-noms",
+							"componentType": "Input",
+							"mandatory": true,
+							"maxLength": 249,
+							"label": {
+								"value": "\"Nom\"",
+								"type": "VTL"
+							},
+							"controls": [
+								{
+									"id": "lfwiyuih-nom-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(NOMS))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\" Veuillez entrer un nom\"",
+										"type": "VTL"
+									}
+								}
+							],
+							"bindingDependencies": ["NOMS"],
+							"response": {
+								"name": "NOMS"
+							}
+						},
+						{
+							"id": "lfwg2ny2-prenoms",
+							"label": {
+								"value": "\"Prénom\"",
+								"type": "VTL"
+							},
+							"conditionFilter": {
+								"value": "true",
+								"type": "VTL"
+							},
+							"componentType": "Input",
+							"response": {
+								"name": "PRENOMS"
+							}
+						},
+						{
+							"id": "lfwiizq2-dob",
+							"componentType": "Datepicker",
+							"mandatory": true,
+							"min": "1900-01-01",
+							"max": "format-date(current-date(),'[Y0001]-[M01]-[D01]')",
+							"label": {
+								"value": " \"Date de naissance\"",
+								"type": "VTL"
+							},
+							"controls": [
+								{
+									"id": "lfwiizq2-format-borne-inf-sup",
+									"typeOfControl": "FORMAT",
+									"criticality": "ERROR",
+									"control": {
+										"value": "not(not(isnull(DATENAISS)) and (cast(DATENAISS, date, \"YYYY-MM-DD\")>cast(\"format-date(current-date(),'[Y0001]-[M01]-[D01]')\", date, \"YYYY-MM-DD\") or cast(DATENAISS, date, \"YYYY-MM-DD\")<cast(\"1900-01-01\", date, \"YYYY-MM-DD\")))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\"La date saisie doit être comprise entre 1900-01-01 et format-date(current-date(),'[Y0001]-[M01]-[D01]').\"",
+										"type": "VTL|MD"
+									}
+								},
+								{
+									"id": "lfwiizq2-nom-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(DATENAISS))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\" Veuillez entrer une date de naissance\"",
+										"type": "VTL"
+									}
+								}
+							],
+							"bindingDependencies": ["DATENAISS"],
+							"dateFormat": "YYYY-MM-DD",
+							"response": {
+								"name": "DATENAISS"
+							}
+						},
+						{
+							"id": "lfvahf2g",
+							"componentType": "Radio",
+							"mandatory": true,
+							"label": {
+								"value": "\"Sexe\"",
+								"type": "VTL"
+							},
+							"bindingDependencies": ["SEXES"],
+							"controls": [
+								{
+									"id": "lfvahf2g-nom-null",
+									"typeOfControl": "CONSISTENCY",
+									"criticality": "WARN",
+									"control": {
+										"value": "not(isnull(SEXES))",
+										"type": "VTL"
+									},
+									"errorMessage": {
+										"value": "\" Veuillez sélectionner un sexe\"",
+										"type": "VTL"
+									}
+								}
+							],
+							"options": [
+								{
+									"value": "1",
+									"label": {
+										"value": "\"Homme\"",
+										"type": "VTL"
+									}
+								},
+								{
+									"value": "2",
+									"label": {
+										"value": "\"Femme\"",
+										"type": "VTL"
+									}
+								}
+							],
+							"response": {
+								"name": "SEXES"
+							}
+						}
+					]
+				},
 				{
 					"id": "lfwgqxv0",
 					"componentType": "Radio",
@@ -2284,8 +2284,8 @@
 							"label": {
 								"value": "\"Oui, pour ses études, \" || if nvl(SEXES,\"\") = \"il/elle\" then \"\" else (if SEXES = \"2\" then \"elle\" else \"il\") || \" vit aussi dans un autre logement\"",
 								"type": "VTL"
-							}, 
-              "description": {
+							},
+							"description": {
 								"value": "\"Internat, logement indépendant, chambre en ville, etc.\"",
 								"type": "VTL"
 							}
@@ -2499,7 +2499,7 @@
 								"value": "if nvl(SEXES,\"\") = \"Il/Elle\" then \"\" else (if SEXES = \"2\" then \"Elle\" else \"Il\") || \" vit dans un établissement mais ce logement reste sa résidence personnelle.\"",
 								"type": "VTL"
 							},
-              "description": {
+							"description": {
 								"value": "\"Maison de retraite ou hospice, hospitalisation pour plus dún mois, centre pour handicapés, foyer de travailleurs, militaires logés en caserne ou servent à l'étranger, établissement pénitentiaire, etc.\"",
 								"type": "VTL"
 							}
@@ -2525,7 +2525,7 @@
 				}
 			]
 		},
-    {
+		{
 			"id": "lfvaiud4x-title",
 			"componentType": "Sequence",
 			"page": "31",

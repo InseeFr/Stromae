@@ -33,35 +33,44 @@ export function Continuer(props: OrchestratedElement) {
 		goNextPage = () => null,
 		isLastPage,
 		getComponents = () => [],
-    waiting = false
+		waiting = false,
 	} = props;
 	const navigate = useNavigate();
 	const { unit, survey } = useParams();
-	const buttonContent = waiting ? `Chargement` : getStatus(getComponents, isLastPage ?? false);
+	const buttonContent = waiting
+		? `Chargement`
+		: getStatus(getComponents, isLastPage ?? false);
 
-	const handleClick = useCallback((event: React.MouseEvent) => {
-    event.preventDefault()
-		if (isLastPage) {
-			try {
-				navigate(uriPostEnvoi(survey, unit));
-			} catch (e) {
-				navigate(uri404());
+	const handleClick = useCallback(
+		(event: React.MouseEvent) => {
+			event.preventDefault();
+			if (isLastPage) {
+				try {
+					navigate(uriPostEnvoi(survey, unit));
+				} catch (e) {
+					navigate(uri404());
+				}
 			}
-		}
-		goNextPage();
-	}, [goNextPage, isLastPage, unit, survey, navigate]);
+			goNextPage();
+		},
+		[goNextPage, isLastPage, unit, survey, navigate]
+	);
 
 	return (
 		<Button
 			priority="primary"
 			onClick={handleClick}
 			className={fr.cx('fr-mt-1w')}
-      nativeButtonProps={{"form": "stromae-form", "type": "submit", "aria-atomic": true, "aria-disabled": waiting}}
-      iconId={waiting ? "fr-icon-refresh-line" : undefined}
-      disabled={waiting}
+			nativeButtonProps={{
+				form: 'stromae-form',
+				type: 'submit',
+				'aria-atomic': true,
+				'aria-disabled': waiting,
+			}}
+			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
+			disabled={waiting}
 		>
 			{buttonContent}
 		</Button>
 	);
 }
-

@@ -61,7 +61,7 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
-  waiting?: boolean; 
+	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
 	currentPage?: string;

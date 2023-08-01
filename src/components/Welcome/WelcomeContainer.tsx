@@ -14,9 +14,6 @@ import ConvertContent from '../../utils/convertContent';
 import { useColors } from '@codegouvfr/react-dsfr/useColors';
 import { themeStringToVariable } from '../../utils/themeStringToVariable';
 
-
-
-
 export function WelcomeContainer() {
 	const theme = useColors();
 	const navigate = useNavigate();
@@ -31,7 +28,6 @@ export function WelcomeContainer() {
 	function navigateError() {
 		navigate('/');
 	}
-
 
 	const onClick = useCallback(() => {
 		if (oidcUser && survey && unit) {
@@ -61,7 +57,7 @@ export function WelcomeContainer() {
 								Commencer
 							</Button>
 						</div>
-						{welcome.Enq_Image && 
+						{welcome.Enq_Image && (
 							<div className="fr-col-md-4 fr-col-8 fr-mt-2w">
 								<img
 									className="fr-responsive-img"
@@ -69,7 +65,7 @@ export function WelcomeContainer() {
 									alt="decoration"
 								></img>
 							</div>
-						}
+						)}
 					</div>
 				</div>
 			</div>
@@ -77,7 +73,11 @@ export function WelcomeContainer() {
 			<div
 				className="fr-p-6w fr-grid-row fr-grid-row--center fr-grid-row--middle"
 				style={{
-					backgroundColor: themeStringToVariable(theme, welcome.Enq_colorTheme, theme.decisions.background.default.grey.default)
+					backgroundColor: themeStringToVariable(
+						theme,
+						welcome.Enq_colorTheme,
+						theme.decisions.background.default.grey.default
+					),
 				}}
 			>
 				<div className="fr-col-xl-6 fr-col-lg-10 fr-col-12">
