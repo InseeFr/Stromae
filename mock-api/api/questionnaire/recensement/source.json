@@ -92,7 +92,7 @@
 		},
 		{
 			"id": "accordion",
-			"componentType": "Accordion",
+			"componentType": "QuestionExplication",
 			"page": "1",
 			"label": {
 				"value": "\"Pourquoi cette question ?\"",

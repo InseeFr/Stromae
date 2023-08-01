@@ -35,7 +35,7 @@ export type VariablesType = {
 
 export type OrchestratedElement = {
 	// useLunatic interface
-	readonly getComponents?: () => Array<ComponentType>;
+	readonly getComponents?: (arg?: {only?:string[], except?: string[]}) => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: (page: { page: string; iteration?: number }) => void;

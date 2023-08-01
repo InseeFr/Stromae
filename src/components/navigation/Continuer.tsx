@@ -34,8 +34,7 @@ export function Continuer(props: OrchestratedElement) {
 		isLastPage,
 		getComponents = () => [],
 		// `waiting` is activated to communicate to users that an API request is in process
-    waiting = false,
-		except
+		waiting = false,
 	} = props;
 	const navigate = useNavigate();
 	const { unit, survey } = useParams();
@@ -63,9 +62,9 @@ export function Continuer(props: OrchestratedElement) {
 			priority="primary"
 			onClick={handleClick}
 			className={fr.cx('fr-mt-1w')}
-      nativeButtonProps={{"form": `stromae-form${(except && except[0]) ? `-except-${except.join('-').toLowerCase()}` : ``}`, "type": "submit", "aria-atomic": true, "aria-disabled": waiting}}
-      iconId={waiting ? "fr-icon-refresh-line" : undefined}
-      disabled={waiting}
+			nativeButtonProps={{ "form": "stromae-form", "type": "submit", "aria-atomic": true, "aria-disabled": waiting }}
+			iconId={waiting ? "fr-icon-refresh-line" : undefined}
+			disabled={waiting}
 		>
 			{buttonContent}
 		</Button>
