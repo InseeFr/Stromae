@@ -6,7 +6,7 @@ import {
 } from '@axa-fr/react-oidc';
 
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
-import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { getRequest } from '../../lib/commons/axios-utils';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
 
 function Pending() {
@@ -18,7 +18,7 @@ type AuthProviderProps = {
 };
 
 function fetchConfig(): Promise<OidcConfiguration> {
-	return publicGetRequest<OidcConfiguration>('/configuration.json');
+	return getRequest<OidcConfiguration>('/configuration.json');
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {

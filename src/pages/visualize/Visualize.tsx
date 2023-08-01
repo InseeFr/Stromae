@@ -10,7 +10,6 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
-
 const RP = {
 	source: '/rp/source.json',
 	data: '/rp/data.json',
@@ -18,8 +17,8 @@ const RP = {
 	nomenclatures: {
 		'libelles-PCS2020': '/rp/nomenclature/pcs2020-lp.json',
 		'communes-2019': '/rp/nomenclature/communes-2019.json',
-		'nationalite': '/rp/nomenclature/L_NATIONETR-1-1-0.json',
-		'pays': '/rp/nomenclature/L_PAYS-1-1-0.json',
+		nationalite: '/rp/nomenclature/L_NATIONETR-1-1-0.json',
+		pays: '/rp/nomenclature/L_PAYS-1-1-0.json',
 	},
 };
 
@@ -36,14 +35,14 @@ export function Visualize() {
 		>
 			<Layout>
 				<Orchestrator onChange={onChange}>
-	        <ContinueOrRestart />
-						<Precedent />
-						<Grid>
-							<AlertesSaving />
-							<AlertesControles />
-							<Formulaire />
-							<Continuer />
-						</Grid>
+					<ContinueOrRestart />
+					<Precedent />
+					<Grid>
+						<AlertesSaving />
+						<AlertesControles />
+						<Formulaire />
+						<Continuer />
+					</Grid>
 				</Orchestrator>
 			</Layout>
 		</LoadFromUrl>

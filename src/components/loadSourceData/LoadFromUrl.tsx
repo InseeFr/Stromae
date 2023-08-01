@@ -1,6 +1,6 @@
 import { PropsWithChildren, useCallback } from 'react';
 import type { LunaticSource } from '../../typeLunatic/type-source';
-import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { getRequest } from '../../lib/commons/axios-utils';
 import { SurveyUnitData, MetadataSurvey } from '../../typeStromae/type';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
@@ -27,19 +27,19 @@ export function LoadFromUrl({
 }: PropsWithChildren<LoadFromUrlProps>) {
 	const getMetadata = useCallback(async () => {
 		if (urlMetadata) {
-			return publicGetRequest<MetadataSurvey>(urlMetadata);
+			return getRequest<MetadataSurvey>(urlMetadata);
 		}
 		return undefined;
 	}, [urlMetadata]);
 	const getSurvey = useCallback(async () => {
 		if (urlSource) {
-			return publicGetRequest<LunaticSource>(urlSource);
+			return getRequest<LunaticSource>(urlSource);
 		}
 		return undefined;
 	}, [urlSource]);
 	const getSurveyUnitData = useCallback(async () => {
 		if (urlData) {
-			return publicGetRequest<SurveyUnitData>(urlData);
+			return getRequest<SurveyUnitData>(urlData);
 		}
 		return undefined;
 	}, [urlData]);
@@ -52,7 +52,7 @@ export function LoadFromUrl({
 		async (name: string): Promise<Array<unknown>> => {
 			if (name in urlNomenclatures) {
 				const url = urlNomenclatures[name];
-				return publicGetRequest<Array<unknown>>(url);
+				return getRequest<Array<unknown>>(url);
 			}
 
 			return [];
