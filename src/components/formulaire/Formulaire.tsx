@@ -15,9 +15,7 @@ export function Formulaire(props: OrchestratedElement) {
 	}, [getComponents]);
 
 	return (
-		<form 
-      id="stromae-form" 
-    >
+		<form id="stromae-form">
 			{components.map((component: ComponentType) => {
 				const { componentType, id } = component;
 				if (componentType in lunatic) {

@@ -21,10 +21,10 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	} = props;
 
 	useEffect(() => {
-		if (!(currentErrors?.roundabout && pageTag?.includes("#"))) {
+		if (!(currentErrors?.roundabout && pageTag?.includes('#'))) {
 			return;
-		} 
-		setWarning(false)
+		}
+		setWarning(false);
 		setCurrentErrors(undefined);
 		setCriticality(false);
 	}, [pageTag, currentErrors]);
@@ -54,7 +54,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	}, [compileControls, goNextPage, warning]);
 
 	const handleGoPrevious: () => void = useCallback(() => {
-		setWarning(false)
+		setWarning(false);
 		setCriticality(undefined);
 		setCurrentErrors(undefined);
 		goPreviousPage();
