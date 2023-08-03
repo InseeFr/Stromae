@@ -99,9 +99,9 @@ jobs:
 
       - uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ needs.check-version.outputs.release-version }}
+          tag_name: ${{ env.version }}
           target_commitish: ${{ github.head_ref || github.ref }}
-          name: ${{ needs.check-version.outputs.release-version }}
+          name: ${{ env.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
