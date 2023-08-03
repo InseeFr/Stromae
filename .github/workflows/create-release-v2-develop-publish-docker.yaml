@@ -3,7 +3,7 @@ name: Create tag with -rc for develop without release note
 on:
   push:
     branches:
-      - v2-testDevelopCi
+      - v2-develop
 
 jobs:
   install:
