@@ -9,7 +9,7 @@ import {
 // import { ExpressionLogger } from './commons/execute-expression/create-execute-expression';
 
 export type LunaticComponentDefinition<
-	T extends ComponentType['componentType'] = ComponentType['componentType']
+	T extends ComponentType['componentType'] = ComponentType['componentType'],
 > = ComponentType & { componentType: T };
 export type LunaticControl = ControlType;
 

@@ -47,7 +47,6 @@ export function Continuer(props: OrchestratedElement) {
 			if (isLastPage) {
 				try {
 					navigate(uriPostEnvoi(survey, unit));
-					// TODO Appel API ?
 				} catch (e) {
 					navigate(uri404());
 				}
