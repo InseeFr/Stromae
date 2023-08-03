@@ -34,8 +34,6 @@ jobs:
   check-version:
     needs: [install, build]
     runs-on: ubuntu-latest
-    outputs:
-      release-version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,34 +43,36 @@ jobs:
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Print version
-        run: echo ${{ steps.version.outputs.version }}
+        run: echo ${{ env.version }}
 
       - uses: mukunku/tag-exists-action@v1.2.0
         name: Check tag existence
         id: check-tag-exists
         with:
-          tag: ${{ steps.version.outputs.version }}
+          tag: ${{ env.version }}
 
       - if: ${{ steps.check-tag-exists.outputs.exists == 'false' }}
         name: Check tag format
-        id: check-tag-format
         run: |
-          if ! [[ "${{ steps.version.outputs.version }}" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
+          if ! [[ "$VERSION" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
             echo "is-tag-format-correct=false" >> $GITHUB_ENV
           fi
+        env:
+          VERSION: ${{ env.version }}
 
       - name: Tag verification
-        id: check-tag
         run: |
           if [[ "${{ steps.check-tag-exists.outputs.exists }}" == "true" ]]; then
-            echo "Nothing to tag/release, the tag ${{ steps.version.outputs.version }} already exists"
+            echo "Nothing to tag/release, the tag $VERSION already exists"
             exit 1
           fi
 
-          if ! [[ "${{ steps.version.outputs.version }}" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
-            echo "Nothing to tag/release, the tag ${{ steps.version.outputs.version }} is not in correct format X.Y.Z"
+          if ! [[ "$VERSION" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
+            echo "Nothing to tag/release, the tag $VERSION is not in correct format X.Y.Z"
             exit 1
           fi
+        env:
+          VERSION: ${{ env.version }}
 
   create-release:
     needs: check-version
@@ -95,9 +95,9 @@ jobs:
 
       - uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ needs.check-version.outputs.release-version }}
+          tag_name: ${{ env.version }}
           target_commitish: ${{ github.head_ref || github.ref }}
-          name: ${{ needs.check-version.outputs.release-version }}
+          name: ${{ env.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
