@@ -1,0 +1,128 @@
+name: Create tag with -rc for develop without release note
+
+on:
+  push:
+    branches:
+      - v2-develop
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn --frozen-lockfile
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn
+      - run: yarn build
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+
+  check-version:
+    needs: [install, build]
+    runs-on: ubuntu-latest
+    outputs:
+      release-version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get version
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Print version
+        run: echo ${{ steps.version.outputs.version }}
+
+      - uses: mukunku/tag-exists-action@v1.2.0
+        name: Check tag existence
+        id: check-tag-exists
+        with:
+          tag: ${{ steps.version.outputs.version }}-rc
+
+      - if: ${{ steps.check-tag-exists.outputs.exists == 'false' }}
+        name: Check tag format
+        id: check-tag-format
+        run: |
+          if ! [[ "${{ steps.version.outputs.version }}" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
+            echo "is-tag-format-correct=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Tag verification
+        id: check-tag
+        run: |
+          if [[ "${{ steps.check-tag-exists.outputs.exists }}" == "true" ]]; then
+            echo "Nothing to tag/release, the tag ${{ steps.version.outputs.version }}-rc already exists"
+            exit 1
+          fi
+
+          if ! [[ "${{ steps.version.outputs.version }}" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]]; then
+            echo "Nothing to tag/release, the tag ${{ steps.version.outputs.version }}-rc is not in correct format X.Y.Z"
+            exit 1
+          fi
+
+  create-release:
+    needs: check-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Get previous final release tag
+        id: previousTag
+        run: |
+          previousTag=$(git --no-pager tag --sort=creatordate --merged ${{ github.ref_name }} | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$" | tail -1)
+          if [ -z "$previousTag" ]; then
+            echo "previousTag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+          else
+            echo "previousTag=$previousTag" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.check-version.outputs.release-version }}-rc
+          target_commitish: ${{ github.head_ref || github.ref }}
+          name: ${{ needs.check-version.outputs.release-version }}-rc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download build
+        id: download
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+      - name: Get current version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package.json'
+          prop_path: 'version'
+      - run: echo ${{steps.version.outputs.prop}}
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tags: ${{steps.version.outputs.prop}}
