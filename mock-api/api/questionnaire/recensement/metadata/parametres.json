@@ -62,7 +62,7 @@
 			"type": "html"
 		},
 		"Enq_colorTheme": "greenMenthe.default",
-		"Enq_Image":"https://le-recensement-et-moi.fr/illu-femme-ordi.svg",
+		"Enq_Image": "https://le-recensement-et-moi.fr/illu-femme-ordi.svg",
 		"Enq_CaractereObligatoire": true,
 		"Enq_QualiteStatistique": true,
 		"Enq_NumeroVisa": "2021A054EC",

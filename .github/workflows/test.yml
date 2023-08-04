@@ -4,7 +4,7 @@ on:
   push:
     branches: [v3-develop]
   pull_request_target:
-      branches: [v3-develop]
+    branches: [v3-develop]
 
 jobs:
   test:
