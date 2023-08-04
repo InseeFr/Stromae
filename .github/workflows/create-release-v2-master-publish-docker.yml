@@ -1,4 +1,4 @@
-name: Create release & Docker build
+name: Create release & Docker build v2-master
 
 on:
   push:
