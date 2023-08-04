@@ -1493,7 +1493,31 @@
     sass-loader "^13.2.0"
     tss-react "^4.8.3"
 
-"@inseefr/lunatic@2.4.9-beta", "@inseefr/lunatic@^2.4.9-beta":
+"@inseefr/lunatic@2.5.0-beta":
+  version "2.5.0-beta"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.0-beta.tgz#79633733296e0fb2c35cc827be284ec62b0a552c"
+  integrity sha512-QM2iYavKL7fAvTO7FL6LWddvVoXjygpgBZ71FSWKjruh5RmMdgUZh7Q2chuq8ahGquZRpaI75st31Y6tXz8uDQ==
+  dependencies:
+    "@inseefr/trevas" "^0.1.19"
+    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
+    antlr4 "4.11.0"
+    classnames "^2.3.1"
+    date-fns "^2.25.0"
+    lodash.camelcase "^4.3.0"
+    lodash.debounce "^4.0.8"
+    lodash.isequal "^4.5.0"
+    object-hash "^2.2.0"
+    prop-types "^15.7.2"
+    react-keyboard-event-handler "^1.5.4"
+    react-markdown "^8.0.3"
+    react-number-format "^5.1.3"
+    react-tooltip "^4.2.15"
+    remove-accents "^0.4.2"
+    sass "^1.58.3"
+    snowball "^0.3.1"
+    string-tokenizer "^0.0.8"
+
+"@inseefr/lunatic@^2.4.9-beta":
   version "2.4.9-beta"
   resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.4.9-beta.tgz#31d10b6fb003739890ee53a44d314f4404dbabc0"
   integrity sha512-VbmF14cOm4RR6ZNskN34FYj/q9nQiXszUZi9EUMJLm6rZDcr3WdxDBvREd+Q1BVbU8+qlm0PYvRIp59l6khTmw==
@@ -1521,6 +1545,16 @@
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.18.tgz#f6872fdc7a6181d04614fc100d8e3e315c799116"
   integrity sha512-tVlep51UZXzCSuBnV34Y47o3bf0POB94uJN8YbusVnaDS5IX2tGkuRVN3WMIhKx9BOYZerKJUY5urOnZPZCXpg==
+  dependencies:
+    "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
+    antlr4 "4.8.0"
+    data-forge "^1.8.8"
+    date-fns "^2.27.0"
+
+"@inseefr/trevas@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.19.tgz#5b0cf8d288afba4880ac15592cf80657dc8ade9d"
+  integrity sha512-zvNw8JPf7jlgqznvnteEYTTnS3i0Lslb7y8EPs1OHYqsSyDiXwp9RG25oUSMK8A/y4kblkQO/cVDc971+H3RoA==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"

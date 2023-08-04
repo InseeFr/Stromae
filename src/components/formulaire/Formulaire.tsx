@@ -1,7 +1,9 @@
-import { OrchestratedElement } from '../../typeStromae/type';
-import { ComponentsRenderer } from '../ComponentsRenderer';
+import {OrchestratedElement} from '../../typeStromae/type';
+import {ComponentsRenderer} from '../ComponentsRenderer';
 
-export function Formulaire(props: OrchestratedElement) {
+type Props = Pick<OrchestratedElement, "currentErrors" | "disabled" | "getComponents">
+
+export function Formulaire(props: Props) {
 	const { getComponents, currentErrors, disabled = false } = props;
 
 	return (
