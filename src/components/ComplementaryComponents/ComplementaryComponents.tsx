@@ -3,7 +3,12 @@ import { ComponentsRenderer } from '../ComponentsRenderer';
 import { makeStyles } from "@codegouvfr/react-dsfr/tss";
 
 const useStyles = makeStyles()({
-	root: {"padding": 0}
+	root: {
+		"padding": 0,
+		"+ .lunatic-component-with-dsfr": {
+			"marginBottom": 0
+		}
+	}
 });
 
 /**

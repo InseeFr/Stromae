@@ -8,7 +8,7 @@ export function LunaticComponentContainer({
 }: LunaticComponentContainerProps) {
 	return (
 		<div
-			className="lunatic-component-with-dsfr fr-mb-2w"
+			className="lunatic-component-with-dsfr"
 			id={`lunatic-component-${id}`}
 		>
 			{children}
