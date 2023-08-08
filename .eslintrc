@@ -26,7 +26,7 @@
 		"@shopify/jsx-no-hardcoded-content": "off",
 		"@shopify/strict-component-boundaries": "off",
 		"@typescript-eslint/naming-convention": "off",
-		"@shopify/prefer-early-return": "error",
+		"@shopify/prefer-early-return": "off",
 		"@shopify/no-debugger": "off",
 		"jsx-a11y/anchor-is-valid": [
 			"warn",

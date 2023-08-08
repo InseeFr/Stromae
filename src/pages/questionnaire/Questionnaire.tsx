@@ -12,6 +12,7 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -32,6 +33,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
+						<DraftBanner />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>
