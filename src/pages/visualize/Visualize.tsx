@@ -10,6 +10,7 @@ import {AlertesControles} from '../../components/AlertesControles';
 import {AlertesSaving} from '../../components/AlertSaving/AlertesSaving';
 import {useDocumentTitle} from '../../utils/useDocumentTitle';
 import {ComplementaryComponents} from '../../components/ComplementaryComponents';
+import { Modals } from '../../components/modals';
 
 const RP = {
     source: '/rp/source.json',
@@ -43,6 +44,7 @@ export function Visualize() {
                         <AlertesSaving/>
                         <AlertesControles/>
                         <Formulaire/>
+                        <Modals/>
                         <Continuer/>
                     </Grid>
                     <ComplementaryComponents/>
