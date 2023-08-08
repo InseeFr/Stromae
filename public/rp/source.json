@@ -6,7 +6,7 @@
 	"generatingDate": "28-03-2023 12:57:35",
 	"missing": false,
 	"pagination": "question",
-	"maxPage": "24",
+	"maxPage": "27",
 	"label": {
 		"value": "02 - Recensement de la population 2022 - Avec changements",
 		"type": "VTL|MD"
@@ -5950,7 +5950,64 @@
 				"value": "true",
 				"type": "VTL"
 			}
-		}
+		}, 
+    {
+			"id": "suggester-communes_adresse",
+			"componentType": "Input",
+			"page": "24",
+			"label": {
+				"value": "\"Commune (et arrondissement pour Paris, Lyon et Marseille)\"",
+				"type": "VTL"
+			},
+			"description": {
+				"value": "\"Exemple: Paris 10e\"",
+				"type": "VTL"
+			},
+			"conditionFilter": {
+				"value": "true",
+				"type": "VTL"
+			},
+			"response": {
+				"name": "TOTOTOTO"
+			}
+		},
+    {
+      "id": "modaltoto", 
+      "componentType": "ConfirmationModal", 
+      "conditionFilter": { "value": "true", "type": "VTL" },
+      "page": "25", 
+      "label": {
+        "value": "\"### Est-ce correcte ? \"", 
+        "type": "VTL|MD"
+      }, 
+      "description": { "value": "\"Vous avez renseigné : \" || cast(NB, string) || \".\"", "type": "VTL|MD" }
+    },
+    {
+      "id": "kkxugktl-title",
+      "componentType": "Subsequence",
+      "page": "26",
+      "label": {
+        "value": "\"to be skipped\"",
+        "type": "VTL|MD"
+      },
+      "conditionFilter": {
+        "value": "isnull(TOTOTOTO)",
+        "type": "VTL"
+      }
+    },
+    {
+      "id": "kkxugktl-title",
+      "componentType": "Subsequence",
+      "page": "27",
+      "label": {
+        "value": "\"## Not skipped!!\"",
+        "type": "VTL|MD"
+      },
+      "conditionFilter": {
+        "value": "true",
+        "type": "VTL"
+      }
+    }
 	],
 	"variables": [
 		{
@@ -5968,6 +6025,17 @@
 			"bindingDependencies": ["PRENOMS", "NOMS"],
 			"shapeFrom": "PRENOMS",
 			"inFilter": "false"
+		},
+    {
+			"variableType": "COLLECTED",
+			"name": "TOTOTOTO",
+			"values": {
+				"PREVIOUS": null,
+				"COLLECTED": null,
+				"FORCED": null,
+				"EDITED": null,
+				"INPUTED": null
+			}
 		},
 		{
 			"variableType": "COLLECTED",

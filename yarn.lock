@@ -1480,10 +1480,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.19.tgz#beb5bfb9cba7dc5f95dc524736f277b0e6434de9"
-  integrity sha512-3LAixPqFMuWzeSRZCxyxGEi9aGwtyqY+5PyyQuoWOK/aMzurNWTQ0Gms4wvjPnOZdppeYiRl471eo+Mge4QmHA==
+"@inseefr/lunatic-dsfr@0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.21.tgz#8fd603635534797a183d5faedade56014768abd1"
+  integrity sha512-Mtzoa9YNS/08DLIm6tZ7bGJVFpeaXQrsDbb1nitbZQKeaOei6w+Fn40DxcOnW86O2sEE7FV56mYabQMwx40L3w==
   dependencies:
     "@emotion/styled" "^11.10.6"
     "@inseefr/lunatic" "^2.4.9-beta"
@@ -1493,10 +1493,9 @@
     sass-loader "^13.2.0"
     tss-react "^4.8.3"
 
-"@inseefr/lunatic@2.5.0-beta":
-  version "2.5.0-beta"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.0-beta.tgz#79633733296e0fb2c35cc827be284ec62b0a552c"
-  integrity sha512-QM2iYavKL7fAvTO7FL6LWddvVoXjygpgBZ71FSWKjruh5RmMdgUZh7Q2chuq8ahGquZRpaI75st31Y6tXz8uDQ==
+"@inseefr/lunatic@../lunatic/inseefr-lunatic-v2.5.0a.tgz":
+  version "2.5.0"
+  resolved "../lunatic/inseefr-lunatic-v2.5.0a.tgz#9590cb08986e66b02316abe5a08b0a5160542e6b"
   dependencies:
     "@inseefr/trevas" "^0.1.19"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"

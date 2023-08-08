@@ -39,7 +39,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<AlertesSaving />
 							<AlertesControles />
 							<Formulaire />
-              <Modals/>
+							<Modals />
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />

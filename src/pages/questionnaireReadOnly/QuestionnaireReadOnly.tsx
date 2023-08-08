@@ -30,10 +30,10 @@ export function QuestionnaireReadOnly() {
 						<Precedent />
 						<Grid>
 							<Formulaire />
-              <Modals/>
+							<Modals />
 							<Continuer />
 						</Grid>
-            <ComplementaryComponents />
+						<ComplementaryComponents />
 					</OrchestratorReadOnly>
 				</Layout>
 			</LoadFromApi>
