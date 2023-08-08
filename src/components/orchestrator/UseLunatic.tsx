@@ -4,6 +4,7 @@ import * as custom from '@inseefr/lunatic-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
+import { useTitle } from './useTitle';
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
@@ -60,6 +61,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 	} = useLunatic(source, data, args);
 
+	const title = useTitle({ source, pageTag, currentPage });
+
 	return (
 		<Provider>
 			<CloneElements<OrchestratedElement>
@@ -75,6 +78,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
+				title={title}
 			>
 				{children}
 			</CloneElements>
