@@ -5,7 +5,7 @@ import { FooterType } from '../components/footer/FooterType';
 
 export type StateData = {
 	// 'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
-	state: string | null;
+	state?: string | null;
 	date: number;
 	currentPage: string;
 };
@@ -35,7 +35,10 @@ export type VariablesType = {
 
 export type OrchestratedElement = {
 	// useLunatic interface
-	readonly getComponents?: (arg?: {only?:string[], except?: string[]}) => Array<ComponentType>;
+	readonly getComponents?: (arg?: {
+		only?: string[];
+		except?: string[];
+	}) => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: (page: { page: string; iteration?: number }) => void;
@@ -61,12 +64,15 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
-  waiting?: boolean;
+	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
+	// dernière page sauvegardé, obtenu par l'API (!= de pageTag)
 	currentPage?: string;
-  only?: string[];
-  except?: string[];
+	// etat du questionnaire fournit par l'API ('INIT' | 'COLLECTED' | 'VALIDATED')
+	collectStatus?: string | null;
+	only?: string[];
+	except?: string[];
 };
 
 export type QuestionnaireParams = {
