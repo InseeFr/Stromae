@@ -6,11 +6,30 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'pageTag' | 'isLastPage'
+	'currentChange' | 'getData' | 'pageTag' | 'isLastPage' | 'collectStatus'
 >;
 
+function isOnChange(data: {} = {}) {
+	return Object.keys(data).length > 0;
+}
+
+function getCollectStatus(
+	changing: boolean,
+	isLastPage: boolean,
+	previous?: string | null
+) {
+	if (isLastPage) {
+		return 'VALIDATED';
+	}
+	if (changing) {
+		return 'COLLECTED';
+	}
+
+	return previous;
+}
+
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag, isLastPage } = args;
+	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData } = useContext(loadSourceDataContext);
 
@@ -44,11 +63,10 @@ export function useSaving(args: SavingArgs) {
 			// false is better
 			data = getData(true);
 		}
-
-		if (Object.keys(data).length || isLastPage) {
-			// TODO remplir state correctement
+		const changing = isOnChange(data);
+		if (changing || isLastPage) {
 			const state = {
-				state: 'INIT',
+				state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
 				date: new Date().getTime(),
 				currentPage: pageTag ?? '1',
 			};
