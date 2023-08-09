@@ -1,0 +1,1 @@
+export { RedirectIfValidated } from './RedirectIfValidated';
