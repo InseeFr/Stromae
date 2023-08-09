@@ -62,7 +62,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 	} = useLunatic(source, data, args);
 
-	const defaultTitle = metadata?.Header?.homeLinkProps?.title;
+	const defaultTitle = metadata?.Header?.serviceTitle;
 	const title = useTitle({ source, pageTag, currentPage, defaultTitle });
 
 	return (

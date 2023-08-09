@@ -26,9 +26,9 @@ function getPageFromPageTag(pageTag: string) {
 function createTitleMap(source: LunaticSource, defaultTitle: string) {
 	let title = defaultTitle;
 	return source.components.reduce((acc, component) => {
-		const { page, componentType, label } = component;
+		const { page, componentType } = component;
 		if (componentType === 'Sequence') {
-			title = label.value;
+			title = component.title ?? defaultTitle;
 		}
 		return { ...acc, [page]: title };
 	}, {});
