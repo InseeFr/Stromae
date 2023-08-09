@@ -40,7 +40,7 @@ export type VariablesType = {
 
 export enum CollectStatusEnum {
 	Init = 'INIT',
-	Collected = 'COLLECTED',
+	Completed = 'COMPLETED',
 	Validated = 'VALIDATED',
 }
 
