@@ -1,6 +1,9 @@
 import { useRef, useEffect, useContext } from 'react';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
-import { OrchestratedElement } from '../../../typeStromae/type';
+import {
+	OrchestratedElement,
+	CollectStatusEnum,
+} from '../../../typeStromae/type';
 
 const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
@@ -19,10 +22,10 @@ function getCollectStatus(
 	previous?: string | null
 ) {
 	if (isLastPage) {
-		return 'VALIDATED';
+		return CollectStatusEnum.Validated;
 	}
 	if (changing) {
-		return 'COLLECTED';
+		return CollectStatusEnum.Collected;
 	}
 
 	return previous;
@@ -43,7 +46,7 @@ export function useSaving(args: SavingArgs) {
 
 	return async function save() {
 		let data = {};
-		if (!getData) {
+		if (!getData || collectStatus === CollectStatusEnum.Validated) {
 			return undefined;
 		}
 		if (SAVING_STRATEGY === 'partial') {

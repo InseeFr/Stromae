@@ -38,6 +38,12 @@ export type VariablesType = {
 	CALCULATED: Record<string, VariableValue>;
 };
 
+export enum CollectStatusEnum {
+	Init = 'INIT',
+	Collected = 'COLLECTED',
+	Validated = 'VALIDATED',
+}
+
 export type OrchestratedElement = {
 	// useLunatic interface
 	readonly getComponents?: (arg?: {
