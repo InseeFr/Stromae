@@ -86,7 +86,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	} = useLunatic(source, data, args);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
-	useQuestionnaireTitle({ source, page: pager.page, defaultTitle: typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee'  });
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
 
 	return (
 		<Provider>
