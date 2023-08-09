@@ -18,6 +18,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		autoSuggesterLoading,
 		paginated,
 		disabled,
+		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
@@ -61,7 +62,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 	} = useLunatic(source, data, args);
 
-	const title = useTitle({ source, pageTag, currentPage });
+	const defaultTitle = metadata?.Header?.homeLinkProps?.title;
+	const title = useTitle({ source, pageTag, currentPage, defaultTitle });
 
 	return (
 		<Provider>

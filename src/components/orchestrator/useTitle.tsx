@@ -38,7 +38,7 @@ export function useTitle({
 	source,
 	pageTag,
 	currentPage,
-	defaultTitle = 'le titre par defaut',
+	defaultTitle = 'Enquête Insee',
 }: {
 	source?: LunaticSource;
 	pageTag?: string;

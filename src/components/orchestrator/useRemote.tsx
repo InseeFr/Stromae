@@ -36,7 +36,7 @@ export function useRemote<T>(
 		return () => {
 			abortRequest();
 		};
-	}, [cally, onfail]);
+	}, [cally, onfail, result]);
 
 	return result;
 }
