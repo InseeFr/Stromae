@@ -25,7 +25,7 @@ function getCollectStatus(
 		return CollectStatusEnum.Validated;
 	}
 	if (changing) {
-		return CollectStatusEnum.Collected;
+		return CollectStatusEnum.Completed;
 	}
 
 	return previous;
@@ -34,7 +34,9 @@ function getCollectStatus(
 export function useSaving(args: SavingArgs) {
 	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
 	const changes = useRef<Record<string, null>>({});
-	const { putSurveyUnitData } = useContext(loadSourceDataContext);
+	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
+		loadSourceDataContext
+	);
 
 	useEffect(() => {
 		if (!currentChange) {
@@ -68,21 +70,26 @@ export function useSaving(args: SavingArgs) {
 		}
 		const changing = isOnChange(data);
 		if (changing || isLastPage) {
-			const state = {
-				state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
-				date: new Date().getTime(),
-				currentPage: pageTag ?? '1',
-			};
-			const status = await putSurveyUnitData(data, state);
+			const status = await putSurveyUnitData(data);
 			if (status) {
 				// seulement si la sauvegarde is good || !complete
 				// eslint-disable-next-line require-atomic-updates
 				changes.current = {};
-				return true;
 			} else {
 				throw new Error('Une erreur est survenue lors de la sauvegarde');
 			}
 		}
-		return false;
+		// On sauvegarde le parcourt de l'utilisateur
+		const state = {
+			state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
+			date: new Date().getTime(),
+			currentPage: pageTag ?? '1',
+		};
+		const status = await putSurveyUnitStateData(state);
+		if (status) {
+			return true;
+		} else {
+			throw new Error('Une erreur est survenue lors de la sauvegarde');
+		}
 	};
 }
