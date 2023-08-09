@@ -8,6 +8,7 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
+import { uri404 } from '../../lib/domainUri';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
@@ -24,7 +25,7 @@ export function LoadSourceData({
 	);
 
 	function navigateError() {
-		navigate('/404');
+		navigate(uri404());
 	}
 
 	const source = useRemote<LunaticSource>(getSurvey, navigateError);
