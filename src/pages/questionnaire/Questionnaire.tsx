@@ -13,6 +13,7 @@ import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
 import { RedirectIfValidated } from '../../components/RedirectIfValidated';
+import { Title } from '../../components/Title/Title';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -34,6 +35,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
 						<RedirectIfValidated />
+						<Title />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>

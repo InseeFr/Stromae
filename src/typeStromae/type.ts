@@ -79,6 +79,7 @@ export type OrchestratedElement = {
 	collectStatus?: string | null;
 	only?: string[];
 	except?: string[];
+	title?: string;
 };
 
 export type QuestionnaireParams = {

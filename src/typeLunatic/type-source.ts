@@ -27,7 +27,6 @@ export type ComponentTypeEnum =
 	| 'Suggester'
 	| 'QuestionExplication';
 
-
 export type ValuesType<T = unknown> = {
 	PREVIOUS: T | null;
 	COLLECTED: T | null;
@@ -47,17 +46,17 @@ export type ValuesTypeArray<T = unknown> = {
 export type DeclarationType = {
 	id: string;
 	declarationType:
-	| 'INSTRUCTION'
-	| 'COMMENT'
-	| 'HELP'
-	| 'CODECARD'
-	| 'WARNING'
-	| 'STATEMENT';
+		| 'INSTRUCTION'
+		| 'COMMENT'
+		| 'HELP'
+		| 'CODECARD'
+		| 'WARNING'
+		| 'STATEMENT';
 	position:
-	| 'AFTER_QUESTION_TEXT'
-	| 'AFTER_RESPONSE'
-	| 'BEFORE_QUESTION_TEXT'
-	| 'DETACHABLE';
+		| 'AFTER_QUESTION_TEXT'
+		| 'AFTER_RESPONSE'
+		| 'BEFORE_QUESTION_TEXT'
+		| 'DETACHABLE';
 	label: LabelType;
 };
 
@@ -97,6 +96,7 @@ export type ComponentTypeBase = {
 	missingResponse: ResponseType;
 	mandatory?: boolean;
 	page: string;
+	title?: string;
 };
 export type ComponentType =
 	| (ComponentTypeBase & ComponentSequenceType)
@@ -115,9 +115,8 @@ export type ComponentType =
 	| (ComponentTypeBase & ComponentRoundaboutType)
 	| (ComponentTypeBase & ComponentQuestionExplicationType)
 	| (ComponentTypeBase & {
-		componentType: 'Input' | 'CheckboxOne' | 'Textarea';
-	});
-
+			componentType: 'Input' | 'CheckboxOne' | 'Textarea';
+	  });
 
 export type ComponentQuestionExplicationType = {
 	componentType: 'QuestionExplication';
@@ -270,23 +269,23 @@ export type SuggesterType = {
 
 export type Variable =
 	| {
-		variableType: 'EXTERNAL';
-		name: string;
-		value: unknown;
-	}
+			variableType: 'EXTERNAL';
+			name: string;
+			value: unknown;
+	  }
 	| {
-		variableType: 'COLLECTED';
-		name: string;
-		values: ValuesType | ValuesTypeArray;
-	}
+			variableType: 'COLLECTED';
+			name: string;
+			values: ValuesType | ValuesTypeArray;
+	  }
 	| {
-		variableType: 'CALCULATED';
-		name: string;
-		expression: LabelType;
-		bindingDependencies: string[];
-		inFilter: string;
-		shapeFrom: string;
-	};
+			variableType: 'CALCULATED';
+			name: string;
+			expression: LabelType;
+			bindingDependencies: string[];
+			inFilter: string;
+			shapeFrom: string;
+	  };
 
 export type LunaticSource = {
 	id: string;
