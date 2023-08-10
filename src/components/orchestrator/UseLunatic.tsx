@@ -4,7 +4,7 @@ import * as custom from '@inseefr/lunatic-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
-import { useTitle } from './useTitle';
+import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
@@ -60,10 +60,11 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		Provider,
 		compileControls,
 		pageTag,
+		pager,
 	} = useLunatic(source, data, args);
 
-	const defaultTitle = metadata?.Header?.serviceTitle as string;
-	const title = useTitle({ source, pageTag, currentPage, defaultTitle });
+	const defaultTitle = metadata?.Header?.serviceTitle;
+	useQuestionnaireTitle({ source, page: pager.page, defaultTitle: typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee'  });
 
 	return (
 		<Provider>
@@ -80,7 +81,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
-				title={title}
 			>
 				{children}
 			</CloneElements>
