@@ -1,4 +1,4 @@
-import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
+import {useEffect, useState, PropsWithChildren, useCallback, useMemo} from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
@@ -20,7 +20,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 		metadata,
 	} = props;
-	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
 	const { currentPage } = stateData;
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
@@ -29,8 +28,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		setCurrentChange({ name });
 	}, []);
 
-	useEffect(() => {
-		setArgs({
+	const args = useMemo(() => ({
 			getReferentiel,
 			custom,
 			preferences,
@@ -38,8 +36,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			savingType,
 			autoSuggesterLoading,
 			onChange,
-		});
-	}, [
+	}), [
 		getReferentiel,
 		preferences,
 		features,
