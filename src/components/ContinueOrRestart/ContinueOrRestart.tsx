@@ -4,7 +4,7 @@ import { ModalContinueOrRestart } from './ModalContinueOrRestart';
 
 export function ContinueOrRestart(props: OrchestratedElement) {
 	const { currentPage, goToPage } = props;
-	const [display, setDisplay] = useState(currentPage !== '1');
+	const [display, setDisplay] = useState(currentPage && currentPage !== '1');
 
 	function onClose() {
 		setDisplay(false);
