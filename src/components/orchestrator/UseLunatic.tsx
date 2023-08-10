@@ -4,6 +4,7 @@ import * as custom from '@inseefr/lunatic-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
+import { useTitle } from './useTitle';
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
@@ -17,10 +18,11 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		autoSuggesterLoading,
 		paginated,
 		disabled,
+		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
-	const { currentPage } = stateData;
+	const { data, stateData } = surveyUnitData ?? {};
+	const { currentPage, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
@@ -60,6 +62,9 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 	} = useLunatic(source, data, args);
 
+	const defaultTitle = metadata?.Header?.serviceTitle;
+	const title = useTitle({ source, pageTag, currentPage, defaultTitle });
+
 	return (
 		<Provider>
 			<CloneElements<OrchestratedElement>
@@ -75,6 +80,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
+				collectStatus={state ?? 'INIT'}
+				title={title}
 			>
 				{children}
 			</CloneElements>

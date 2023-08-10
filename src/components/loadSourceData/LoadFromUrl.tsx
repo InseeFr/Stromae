@@ -14,6 +14,10 @@ type LoadFromUrlProps = {
 
 const empty = {};
 
+async function doNothing(args: any) {
+	return true;
+}
+
 async function getDepositProof() {
 	return new Blob();
 }
@@ -44,10 +48,6 @@ export function LoadFromUrl({
 		return undefined;
 	}, [urlData]);
 
-	const putSurveyUnitData = useCallback(async () => {
-		return true;
-	}, []);
-
 	const getReferentiel = useCallback(
 		async (name: string): Promise<Array<unknown>> => {
 			if (name in urlNomenclatures) {
@@ -67,7 +67,8 @@ export function LoadFromUrl({
 				getSurvey,
 				getSurveyUnitData,
 				getReferentiel,
-				putSurveyUnitData,
+				putSurveyUnitData: doNothing,
+				putSurveyUnitStateData: doNothing,
 				getDepositProof,
 			}}
 		>

@@ -2,12 +2,13 @@ import { PropsWithChildren, useContext } from 'react';
 import { useNavigate } from 'react-router';
 
 import { LunaticSource } from '../../typeLunatic/type-source';
-import { SurveyUnitData } from '../../typeStromae/type';
+import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
+import { uri404 } from '../../lib/domainUri';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
@@ -19,14 +20,13 @@ export function LoadSourceData({
 	onChange,
 }: PropsWithChildren<LoadSourceDataProps>) {
 	const navigate = useNavigate();
-	const { getSurvey, getSurveyUnitData, getReferentiel } = useContext(
-		loadSourceDataContext
-	);
+	const { getSurvey, getSurveyUnitData, getReferentiel, getMetadata } =
+		useContext(loadSourceDataContext);
 
 	function navigateError() {
-		navigate('/404');
+		navigate(uri404());
 	}
-
+	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);
 	const source = useRemote<LunaticSource>(getSurvey, navigateError);
 	const surveyUnitData = useRemote<SurveyUnitData>(
 		getSurveyUnitData,
@@ -44,6 +44,7 @@ export function LoadSourceData({
 			surveyUnitData={surveyUnitData}
 			getReferentiel={getReferentiel}
 			onChange={onChange}
+			metadata={metadata}
 		>
 			{children}
 		</CloneElements>

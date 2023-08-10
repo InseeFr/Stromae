@@ -24,7 +24,8 @@ export type ComponentTypeEnum =
 	| 'Textarea'
 	| 'FilterDescription'
 	| 'PairwiseLinks'
-	| 'Suggester';
+	| 'Suggester'
+	| 'QuestionExplication';
 
 export type ValuesType<T = unknown> = {
 	PREVIOUS: T | null;
@@ -95,6 +96,7 @@ export type ComponentTypeBase = {
 	missingResponse: ResponseType;
 	mandatory?: boolean;
 	page: string;
+	title?: string;
 };
 export type ComponentType =
 	| (ComponentTypeBase & ComponentSequenceType)
@@ -111,10 +113,14 @@ export type ComponentType =
 	| (ComponentTypeBase & ComponentDropdownType)
 	| (ComponentTypeBase & ComponentPairWiseLinksType)
 	| (ComponentTypeBase & ComponentRoundaboutType)
+	| (ComponentTypeBase & ComponentQuestionExplicationType)
 	| (ComponentTypeBase & {
 			componentType: 'Input' | 'CheckboxOne' | 'Textarea';
 	  });
 
+export type ComponentQuestionExplicationType = {
+	componentType: 'QuestionExplication';
+};
 export type ComponentSequenceType = {
 	componentType: 'Sequence';
 };

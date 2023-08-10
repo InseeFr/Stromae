@@ -42,14 +42,30 @@ export function LoadFromApi({
 		return surveyApi.getDepositiProof(unit);
 	}, []);
 
-	const putSurveyUnitData = useCallback(
-		async (args: { data: DataVariables; state: StateData } | undefined) => {
+	const putSurveyUnitStateData = useCallback(
+		async (state?: StateData) => {
 			try {
-				if (args) {
-					const { data, state } = args;
+				if (state) {
+					if (unit) {
+						await surveyApi.putSurveyUnitStateData(state, unit);
+					}
+				}
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.warn(e);
+				return false;
+			}
+			return true;
+		},
+		[unit]
+	);
+
+	const putSurveyUnitData = useCallback(
+		async (data?: DataVariables) => {
+			try {
+				if (data) {
 					if (unit) {
 						await surveyApi.putSurveyUnitData(data, unit);
-						await surveyApi.putSurveyUnitStateData(state, unit);
 					}
 				}
 			} catch (e) {
@@ -68,6 +84,7 @@ export function LoadFromApi({
 				getMetadata,
 				getSurvey,
 				getSurveyUnitData,
+				putSurveyUnitStateData,
 				getReferentiel,
 				putSurveyUnitData,
 				getDepositProof,
