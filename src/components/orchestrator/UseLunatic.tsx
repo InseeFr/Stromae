@@ -1,10 +1,21 @@
 import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { OrchestratedElement } from '../../typeStromae/type';
+import {
+	OrchestratedElement,
+	PersonalizationElement,
+} from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
-import { useTitle } from './useTitle';
+import { useQuestionnaireTitle } from './useQuestionnaireTitle';
+
+function createPersonalizationMap(
+	personalization: Array<PersonalizationElement>
+) {
+	return personalization.reduce((acc, { name, value }) => {
+		return { ...acc, [name]: value };
+	}, {});
+}
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
@@ -21,13 +32,24 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data, stateData } = surveyUnitData ?? {};
-	const { currentPage, state } = stateData ?? {};
+	const [personalizationMap, setPersonalizationMap] = useState<
+		Record<string, string>
+	>({});
+	const {
+		data,
+		stateData = { currentPage: '1' },
+		personalization = [],
+	} = surveyUnitData ?? {};
+	const { currentPage } = stateData;
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
 	}, []);
+
+	useEffect(() => {
+		setPersonalizationMap(createPersonalizationMap(personalization));
+	}, [personalization]);
 
 	useEffect(() => {
 		setArgs({
@@ -60,10 +82,16 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		Provider,
 		compileControls,
 		pageTag,
+		pager,
 	} = useLunatic(source, data, args);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
-	const title = useTitle({ source, pageTag, currentPage, defaultTitle });
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
 
 	return (
 		<Provider>
@@ -80,8 +108,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
-				collectStatus={state ?? 'INIT'}
-				title={title}
+				personalization={personalizationMap}
 			>
 				{children}
 			</CloneElements>
