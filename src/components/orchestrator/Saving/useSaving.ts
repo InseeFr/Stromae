@@ -27,8 +27,7 @@ function getCollectStatus(
 	if (changing) {
 		return CollectStatusEnum.Completed;
 	}
-
-	return previous;
+	return previous ?? CollectStatusEnum.Init;
 }
 
 export function useSaving(args: SavingArgs) {
