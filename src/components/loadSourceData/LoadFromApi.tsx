@@ -1,5 +1,4 @@
 import { PropsWithChildren, useCallback } from 'react';
-
 import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';

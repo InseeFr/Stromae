@@ -1480,10 +1480,10 @@
     sass-loader "^13.2.0"
     tss-react "^4.8.3"
 
-"@inseefr/lunatic@2.5.0-fix-last-reached-page":
-  version "2.5.0-fix-last-reached-page"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.0-fix-last-reached-page.tgz#25a23c6a6c1c8bf7829f172e56c4c5c2f79a476a"
-  integrity sha512-kQLHGbe8LuV/dJl9q5jqFph3jxhuI3AbW/CX9wjPilihsvSyunBa25v+CeW1twquVjGMdbcjRlVoc76SrULeZw==
+"@inseefr/lunatic@2.5.1-beta":
+  version "2.5.1-beta"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.1-beta.tgz#eae8a435066e0ba3b0328f73adf810da60632cb7"
+  integrity sha512-gqDVDdkuMnbLuySe5wEEuKyJBnOsqQ6GpGNGIxlk4/LOtHT1sT4nDGNsaKAqKVw7G0y78Da/5olu35Dcptbm8Q==
   dependencies:
     "@inseefr/trevas" "^0.1.19"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
