@@ -10,10 +10,15 @@ export type StateData = {
 	currentPage: string;
 };
 
+export type PersonalizationElement = {
+	name: string | 'bannerLabel';
+	value: string | number | boolean;
+};
+
 export type SurveyUnitData = {
 	data: LunaticData;
 	stateData: StateData;
-	personalization?: unknown;
+	personalization: Array<PersonalizationElement>;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
@@ -57,6 +62,7 @@ export type OrchestratedElement = {
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	readonly pageTag?: string;
+	personalization?: Record<string, string | number | boolean>;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
