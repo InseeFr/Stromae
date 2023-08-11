@@ -76,6 +76,7 @@ export type OrchestratedElement = {
 	currentPage?: string;
 	only?: string[];
 	except?: string[];
+	title?: string;
 };
 
 export type QuestionnaireParams = {
