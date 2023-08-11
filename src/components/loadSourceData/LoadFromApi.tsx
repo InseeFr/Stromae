@@ -55,10 +55,8 @@ export function LoadFromApi({
 	const putSurveyUnitStateData = useCallback(
 		async (state?: StateData) => {
 			try {
-				if (state) {
-					if (unit) {
-						await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
-					}
+				if (state && unit) {
+					await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
 				}
 			} catch (e) {
 				// eslint-disable-next-line no-console

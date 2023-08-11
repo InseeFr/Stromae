@@ -16,10 +16,17 @@ function isOnChange(data: {} = {}) {
 	return Object.keys(data).length > 0;
 }
 
+/**
+ * Resolve the next status of the survey (stateData.state for the API of stromae)
+ * @param changing is any changes in collected variable
+ * @param isLastPage is the las page of survey
+ * @param previous previous status
+ * @returns status of survey
+ */
 function getCollectStatus(
 	changing: boolean,
 	isLastPage: boolean,
-	previous?: string | null
+	previous?: CollectStatusEnum
 ) {
 	if (isLastPage) {
 		return CollectStatusEnum.Validated;
@@ -31,6 +38,15 @@ function getCollectStatus(
 	return previous ?? CollectStatusEnum.Init;
 }
 
+/**
+ *
+ * @param args Comportement de sauvegarde de l'API
+ * Comme il existe 2 stratégies pour déclencher la sauvegarde le comportement de sauvegarde étant lui-même
+ * conditionnelle, il est factorisé dans un hook.
+ * complete : sauvegarde toutes les variables du questionnaire
+ * partial : seules les variables ayant changées génèrent une sauvegarde (s'il y a des modifications)
+ * @returns
+ */
 export function useSaving(args: SavingArgs) {
 	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
 	const changes = useRef<Record<string, null>>({});

@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
-import { OrchestratedElement, CollectStatusEnum } from '../../typeStromae/type';
-import { useNavigate, useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
+import { CollectStatusEnum } from '../../typeStromae/type';
 import { uri404, uriPostEnvoi } from '../../lib/domainUri';
 
-export function RedirectIfValidated(props: OrchestratedElement) {
-	const { collectStatus } = props;
+/**
+ * If collectStatus === Validated redirect user
+ * to the postSubmit page.
+ *
+ */
+export function useRedirectIfAlreadyValidated(collectStatus?: string) {
 	const { unit, survey } = useParams();
 	const navigate = useNavigate();
 
@@ -17,6 +21,4 @@ export function RedirectIfValidated(props: OrchestratedElement) {
 			}
 		}
 	}, [collectStatus, navigate, unit, survey]);
-
-	return null;
 }

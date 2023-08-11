@@ -2,12 +2,14 @@ import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
+	CollectStatusEnum,
 	OrchestratedElement,
 	PersonalizationElement,
 } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
+import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
 function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -89,6 +91,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		defaultTitle:
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
+	const collectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(collectStatus);
 
 	return (
 		<Provider>
@@ -105,8 +109,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
-				collectStatus={state ?? 'INIT'}
 				personalization={personalizationMap}
+				collectStatus={collectStatus}
 			>
 				{children}
 			</CloneElements>

@@ -12,7 +12,6 @@ import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
-import { RedirectIfValidated } from '../../components/RedirectIfValidated';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -33,7 +32,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
-						<RedirectIfValidated />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>
