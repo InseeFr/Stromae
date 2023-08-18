@@ -1,8 +1,8 @@
 import { PropsWithChildren, useState, useEffect } from 'react';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
-import { OrchestratedElement } from '../../typeStromae/type';
 import { fr } from '@codegouvfr/react-dsfr';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 const useStyles = makeStyles()({
 	container: {
