@@ -17,7 +17,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const timer = 2000;
 	let address = '';
 
-	if (personalization) {
+	if (personalization?.bannerAddress) {
 		address = `${personalization.bannerAddress}`;
 	}
 
