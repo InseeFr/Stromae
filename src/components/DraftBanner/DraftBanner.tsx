@@ -3,11 +3,21 @@ import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { fr } from '@codegouvfr/react-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
+import { SaveMessage } from './SaveMessage';
+import { BannerAddress } from './BannerAddress';
 
 const useStyles = makeStyles()({
 	container: {
 		borderBottom: '1px solid var(--border-default-grey)',
 	},
+	badgeContainer: {
+		minWidth: 'fit-content'
+	},
+	addressRow: {
+		"@media (min-width: 48em)": {
+			flexDirection: "row-reverse"
+		}
+	}
 });
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
@@ -35,29 +45,14 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 		<div className={cx(classes.container, 'fr-col-12', 'fr-py-2w', 'fr-mb-1w')}>
 			<div className="fr-container">
 				<div className="fr-grid-column">
-					{address && (
-						<div className={fr.cx('fr-grid-row--no-gutters', 'fr-grid-row')}>
-							<div className="">
-								<span className="fr-text--bold fr-mr-2w">{address}</span>
-							</div>
-							<div className="">
+					<div className={fr.cx('fr-grid-row--no-gutters', 'fr-grid-row')}>
+						<div className={cx(classes.addressRow, 'fr-grid-row--no-gutters', 'fr-grid-row')}>
+							<div className={cx(classes.badgeContainer,'fr-col-12', 'fr-col-md-1', 'fr-mb-1w', 'fr-mr-1w' )}>
 								<Badge>BROUILLON</Badge>
 							</div>
+							<BannerAddress address={address} />
 						</div>
-					)}
-					<div className={'fr-p-1v'}>
-						{!address && <Badge className="fr-mx-2w">BROUILLON</Badge>}
-						{saved ? (
-							<span>
-								<i className="fr-icon-checkbox-circle-fill fr-label--success fr-mr-1v" />
-								Brouillon enregistré.
-							</span>
-						) : (
-							<span>
-								Vos réponses sont enregistrées automatiquement à chaque
-								chargement de page.
-							</span>
-						)}
+						<SaveMessage saved={saved} />
 					</div>
 				</div>
 			</div>
