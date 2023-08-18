@@ -11,25 +11,26 @@ const useStyles = makeStyles()({
 });
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-	const { getData, waiting, savingFailure } = props;
+	const { waiting, savingFailure, personalization } = props;
 	const { classes, cx } = useStyles();
 	const [saved, setSaved] = useState(false);
 	const timer = 2000;
 	let address = '';
 
-	useEffect(() => {
-		if (waiting && Boolean(!savingFailure)) {
-			setSaved(true);
-			setTimeout(() => {
-				setSaved(false);
-			}, timer);
-		}
-	}, [waiting, savingFailure]);
-	// TO DO: get data from personalization annd remove the getData method props
-	// TO DO: mobile screen responsive
-	if (getData) {
-		address = `Recensement du 80, rue des morillons, 75014 Paris `;
+	if (personalization) {
+		address = `${personalization.bannerAddress}`;
 	}
+
+	useEffect(() => {
+		if (!waiting || Boolean(savingFailure)) {
+			return;
+		}
+		setSaved(true);
+		setTimeout(() => {
+			setSaved(false);
+		}, timer);
+	}, [waiting, savingFailure]);
+	// TO DO: mobile screen responsive
 	return (
 		<div className={cx(classes.container, 'fr-col-12', 'fr-py-2w', 'fr-mb-1w')}>
 			<div className="fr-container">
