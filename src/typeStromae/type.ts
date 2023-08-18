@@ -10,10 +10,15 @@ export type StateData = {
 	currentPage: string;
 };
 
+export interface PersonalizationData {
+  name: string;
+  value: string;
+}
+
 export type SurveyUnitData = {
 	data: LunaticData;
 	stateData: StateData;
-	personalization?: unknown;
+	personalization?: PersonalizationData[];
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };

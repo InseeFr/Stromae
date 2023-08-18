@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState, useEffect } from 'react';
 import { makeStyles } from "@codegouvfr/react-dsfr/tss";
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
-import { OrchestratedElement } from '../../typeStromae/type';
+import { OrchestratedElement, PersonalizationData } from '../../typeStromae/type';
 import { fr } from '@codegouvfr/react-dsfr';
 
 const useStyles = makeStyles()({
@@ -11,12 +11,15 @@ const useStyles = makeStyles()({
 });
 
 
-export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-    const { getData, waiting, savingFailure } = props;
+export function DraftBanner(props: PropsWithChildren<OrchestratedElement> & {personalization: PersonalizationData[]}) {
+    const { waiting, savingFailure, personalization } = props;
     const { classes, cx } = useStyles();
     const [saved, setSaved] = useState(false);
+		const [address, setAddress] = useState<string | undefined>(undefined)
     const timer = 2000;
-    let address = '';
+
+		setAddress(personalization.filter((item) => item.name === "bannerAddress")[0].value)
+
 
     useEffect(() => {
         if (waiting && Boolean(!savingFailure)) {
@@ -25,12 +28,9 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
                 setSaved(false);
             }, timer);
         }
-    }, [waiting]);
+    }, [waiting, savingFailure]);
     // TO DO: get data from personalization annd remove the getData method props
     // TO DO: mobile screen responsive
-    if (getData) {
-        address = `Recensement du 80, rue des morillons, 75014 Paris `;
-    }
     return (
         <div className={cx(classes.container, "fr-col-12", "fr-py-2w", "fr-mb-1w")}>
             <div className="fr-container">

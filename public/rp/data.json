@@ -1,1 +1,22 @@
-{}
+{
+	"data": {
+
+	},
+	"stateData": {
+
+	},
+	"personalization": [
+		{
+			"name": "bannerAddress",
+			"value": "123 toto st, new york city"
+		},
+		{
+			"name": "bannerAddress2",
+			"value": "234 toto st, new york city"
+		},
+		{
+			"name": "bannerAddress3",
+			"value": "345 toto st, new york city"
+		}
+	]
+}
