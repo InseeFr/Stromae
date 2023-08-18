@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
 import { LunaticSource } from '../../typeLunatic/type-source';
-import { SurveyUnitData } from '../../typeStromae/type';
+import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 
 import { LoadSourceData } from './LoadSourceData';
 import { UseLunatic } from './UseLunatic';
@@ -21,6 +21,7 @@ export type OrchestratorProps = {
 	savingType?: string;
 	paginated?: boolean;
 	disabled?: boolean;
+	metadata?: MetadataSurvey;
 };
 
 /**
