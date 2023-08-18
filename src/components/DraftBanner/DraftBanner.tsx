@@ -24,7 +24,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const { waiting, savingFailure, personalization } = props;
 	const { classes, cx } = useStyles();
 	const [saved, setSaved] = useState(false);
-	const timer = 2000;
+	const timer = 5000;
 	let address = '';
 
 	if (personalization?.bannerAddress) {
@@ -40,7 +40,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 			setSaved(false);
 		}, timer);
 	}, [waiting, savingFailure]);
-	// TO DO: mobile screen responsive
+
 	return (
 		<div className={cx(classes.container, 'fr-col-12', 'fr-py-2w', 'fr-mb-1w')}>
 			<div className="fr-container">

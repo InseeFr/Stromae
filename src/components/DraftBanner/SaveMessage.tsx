@@ -1,15 +1,25 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 
 type Props = {
 	saved: boolean;
 }
 
+const useStyles = makeStyles()({
+	root: {
+		opacity: 0,
+		transition: 'opacity 5s'
+	}
+});
+
+
 export function SaveMessage(props: Props) {
 	const {saved} = props;
+	const { classes, cx } = useStyles();
 
 	if (saved) {
 		return (
-			<span><i className="fr-icon-checkbox-circle-fill fr-label--success fr-mr-1v" />Brouillon enregistré.</span>
+			<span className={cx(classes.root)}><i className="fr-icon-checkbox-circle-fill fr-label--success fr-mr-1v" />Brouillon enregistré.</span>
 		)
 	}
 	return (
