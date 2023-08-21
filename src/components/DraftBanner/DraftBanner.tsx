@@ -24,7 +24,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const { waiting, savingFailure, personalization } = props;
 	const { classes, cx } = useStyles();
 	const [saved, setSaved] = useState(false);
-	const timer = 5000;
+	const timer = 2000;
 	let address = '';
 
 	if (personalization?.bannerAddress) {
