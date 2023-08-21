@@ -1,5 +1,5 @@
 type Props = {
-	address?: string;
+	address?: string | number | boolean;
 }
 
 export function BannerAddress(props: Props) {
