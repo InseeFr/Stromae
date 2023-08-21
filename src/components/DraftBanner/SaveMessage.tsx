@@ -8,7 +8,7 @@ type Props = {
 const useStyles = makeStyles()({
 	root: {
 		opacity: 0,
-		transition: 'opacity 5s'
+		transition: 'opacity 2s'
 	}
 });
 
