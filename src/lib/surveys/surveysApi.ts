@@ -15,7 +15,20 @@ import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
 import { getDepositProof } from './getDepositProof';
 
-const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
+interface Configuration {
+  REACT_APP_SURVEY_API_BASE_URL: string;
+}
+
+const getFile = async <T>(url: string): Promise<T> => {
+  const response = await fetch(url);
+  return response.json();
+};
+
+const getConfiguration = async (): Promise<Configuration> => {
+  return getFile<Configuration>(`${window.location.origin}/configuration.json`);
+};
+
+let domain = '';
 
 export interface SurveyApi {
 	// any type JSon lunatic
@@ -40,13 +53,24 @@ export interface SurveyApi {
 	getDepositiProof: (unit: string, token: string) => Promise<BlobPart>;
 }
 
+// Fetch the configuration and set DOMAIN synchronously
+// eslint-disable-next-line no-return-assign
+getConfiguration().then((config) =>
+	domain = config.REACT_APP_SURVEY_API_BASE_URL)
+	.catch(error => {
+  // eslint-disable-next-line no-console
+  console.error('Error fetching configuration:', error);
+});
+
+
+
 export const surveyApi: SurveyApi = {
-	getSurvey: getSurvey(DOMAIN),
-	getMetadataSurvey: getMetadataSurvey(DOMAIN),
-	getSurveyUnitData: getSurveyUnitData(DOMAIN),
-	getRequiredNomenclatures: getRequiredNomenclatures(DOMAIN),
-	getNomenclature: getNomenclature(DOMAIN),
-	putSurveyUnitData: putSurveyUnitData(DOMAIN),
-	putSurveyUnitStateData: putSurveyUnitStateData(DOMAIN),
-	getDepositiProof: getDepositProof(DOMAIN),
+	getSurvey: getSurvey(domain),
+	getMetadataSurvey: getMetadataSurvey(domain),
+	getSurveyUnitData: getSurveyUnitData(domain),
+	getRequiredNomenclatures: getRequiredNomenclatures(domain),
+	getNomenclature: getNomenclature(domain),
+	putSurveyUnitData: putSurveyUnitData(domain),
+	putSurveyUnitStateData: putSurveyUnitStateData(domain),
+	getDepositiProof: getDepositProof(domain),
 };
