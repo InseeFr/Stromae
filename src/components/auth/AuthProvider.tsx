@@ -17,8 +17,12 @@ type AuthProviderProps = {
 	children: JSX.Element;
 };
 
-function fetchConfig(): Promise<OidcConfiguration> {
-	return publicGetRequest<OidcConfiguration>('/configuration.json');
+export function fetchConfig(): Promise<
+	OidcConfiguration & { REACT_APP_SURVEY_API_BASE_URL: string }
+> {
+	return publicGetRequest<
+		OidcConfiguration & { REACT_APP_SURVEY_API_BASE_URL: string }
+	>('/configuration.json');
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {

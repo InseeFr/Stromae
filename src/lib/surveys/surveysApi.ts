@@ -5,7 +5,6 @@ import type {
 	SurveyUnitData,
 } from '../../typeStromae/type';
 import { LunaticSource } from '../../typeLunatic/type-source';
-
 import { getMetadataSurvey } from './getMetadataSurvey';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnit';
@@ -14,9 +13,15 @@ import { getNomenclature } from './getNomenclature';
 import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
 import { getDepositProof } from './getDepositProof';
+import { fetchConfig } from '../../components/auth/AuthProvider';
 
-const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
+let domain = '';
 
+const test = async () => {
+	const conf = await fetchConfig();
+	domain = conf.REACT_APP_SURVEY_API_BASE_URL;
+};
+test();
 export interface SurveyApi {
 	// any type JSon lunatic
 	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
@@ -41,12 +46,12 @@ export interface SurveyApi {
 }
 
 export const surveyApi: SurveyApi = {
-	getSurvey: getSurvey(DOMAIN),
-	getMetadataSurvey: getMetadataSurvey(DOMAIN),
-	getSurveyUnitData: getSurveyUnitData(DOMAIN),
-	getRequiredNomenclatures: getRequiredNomenclatures(DOMAIN),
-	getNomenclature: getNomenclature(DOMAIN),
-	putSurveyUnitData: putSurveyUnitData(DOMAIN),
-	putSurveyUnitStateData: putSurveyUnitStateData(DOMAIN),
-	getDepositiProof: getDepositProof(DOMAIN),
+	getSurvey: getSurvey(domain),
+	getMetadataSurvey: getMetadataSurvey(domain),
+	getSurveyUnitData: getSurveyUnitData(domain),
+	getRequiredNomenclatures: getRequiredNomenclatures(domain),
+	getNomenclature: getNomenclature(domain),
+	putSurveyUnitData: putSurveyUnitData(domain),
+	putSurveyUnitStateData: putSurveyUnitStateData(domain),
+	getDepositiProof: getDepositProof(domain),
 };
