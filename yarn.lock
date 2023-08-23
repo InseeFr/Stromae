@@ -1166,12 +1166,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@codegouvfr/react-dsfr@^0.44.2":
-  version "0.44.3"
-  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-0.44.3.tgz#21a3e7e0fd1323af4911187936f18cefb5a10909"
-  integrity sha512-Jk7kp7uNDtJx2KCHaN5GzqLHdzx1CszW1K66erCFRYmk0Kp8niPdjmDjnN7X8scCxv/rRQ5f2VLeuNKwGsKABA==
+"@codegouvfr/react-dsfr@0.75.0":
+  version "0.75.0"
+  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-0.75.0.tgz#87258a9df77b0855c7b02c1cfca1c418ebd0f646"
+  integrity sha512-0n+3PmmpFQskD/xuVPq9fw0ejcBR5a8D5A5DnvdPUIg79qxu90EkR0Ar/7jAJCk1gMM71hiphU3TjevxVTbjRg==
   dependencies:
-    tsafe "^1.6.0"
+    tsafe "^1.6.3"
 
 "@craco/craco@^7.0.0":
   version "7.1.0"
@@ -1467,23 +1467,23 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@0.0.22":
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.22.tgz#e70abc3313586c2b35383d7ecad4164c26cff180"
-  integrity sha512-UhMBPwjZuDSYkY0GZWGTKUlNcRQAqvXLhqDgrMI6dux//9zWNDZm2QGKwCfwrtI81vVo0dYV2eSF4DOcjVHiKw==
+"@inseefr/lunatic-dsfr@0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.23.tgz#5a066f81bd42d23ed7e6234d2e302d6f79130cda"
+  integrity sha512-tT7yMUdJ5l6wWlp/AEu5Oh2XYVfq0YKNntCaFDJ5Pj29cwpPjVbOQgyn9diygHbnTe8/mPe8Fv62Zfb+j8SWmg==
   dependencies:
     "@emotion/styled" "^11.10.6"
-    "@inseefr/lunatic" "^2.4.9-beta"
+    "@inseefr/lunatic" "^2.5.2-beta"
     "@mui/material" "^5.12.0"
     classnames "^2.3.2"
     react-number-format "^5.1.4"
     sass-loader "^13.2.0"
     tss-react "^4.8.3"
 
-"@inseefr/lunatic@2.5.1-beta":
-  version "2.5.1-beta"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.1-beta.tgz#eae8a435066e0ba3b0328f73adf810da60632cb7"
-  integrity sha512-gqDVDdkuMnbLuySe5wEEuKyJBnOsqQ6GpGNGIxlk4/LOtHT1sT4nDGNsaKAqKVw7G0y78Da/5olu35Dcptbm8Q==
+"@inseefr/lunatic@2.5.2-beta", "@inseefr/lunatic@^2.5.2-beta":
+  version "2.5.2-beta"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.5.2-beta.tgz#12680a41d2aa3e8bc68ff2f8a36d08d94fd50f3c"
+  integrity sha512-+hxfp66PplG7DaD/Apnm0QHSb7UEakryWKRl6kqhTxx96+Ufve/eLeCZq87q7y/QD94og60YslgAUyet2tfmlA==
   dependencies:
     "@inseefr/trevas" "^0.1.19"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
@@ -1504,31 +1504,7 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/lunatic@^2.4.9-beta":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.4.10.tgz#a86c14ecbe5cf32706eef84c6f24ff6df99a194e"
-  integrity sha512-9QuWMbaIz7X1twZtwspEqf2rhwSYgkhKi8Ksyx4wqXHs66nLEgMK0M721B5NDWH8TexMx6ymxuIqVay8+nz2Cg==
-  dependencies:
-    "@inseefr/trevas" "^0.1.17"
-    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
-    antlr4 "4.11.0"
-    classnames "^2.3.1"
-    date-fns "^2.25.0"
-    lodash.camelcase "^4.3.0"
-    lodash.debounce "^4.0.8"
-    lodash.isequal "^4.5.0"
-    object-hash "^2.2.0"
-    prop-types "^15.7.2"
-    react-keyboard-event-handler "^1.5.4"
-    react-markdown "^8.0.3"
-    react-number-format "^5.1.3"
-    react-tooltip "^4.2.15"
-    remove-accents "^0.4.2"
-    sass "^1.58.3"
-    snowball "^0.3.1"
-    string-tokenizer "^0.0.8"
-
-"@inseefr/trevas@^0.1.17", "@inseefr/trevas@^0.1.19":
+"@inseefr/trevas@^0.1.19":
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.19.tgz#5b0cf8d288afba4880ac15592cf80657dc8ade9d"
   integrity sha512-zvNw8JPf7jlgqznvnteEYTTnS3i0Lslb7y8EPs1OHYqsSyDiXwp9RG25oUSMK8A/y4kblkQO/cVDc971+H3RoA==
@@ -10199,7 +10175,7 @@ ts-node@^10.7.0:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-tsafe@^1.6.0:
+tsafe@^1.6.3:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.6.4.tgz#048a114761714538c72f16abd25bb247d4e3780e"
   integrity sha512-l4Z54QFGHO8GF0gBpb3yPGHjkIkIirl8rwW+lMBmtEMzOJeRs8BdjkDEx6nU8Ak9PQVp/KNDtECxTja8MMIDoA==

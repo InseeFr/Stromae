@@ -9,7 +9,6 @@ const DEFAULT_FOOTER: FooterType = {
 	websiteMapLinkProps: undefined,
 	accessibilityLinkProps: undefined,
 	termsLinkProps: undefined,
-	personalDataLinkProps: undefined,
 	homeLinkProps: {
 		href: '/',
 		title: 'Accueil',
@@ -28,7 +27,6 @@ export function Footer(props: FooterProps) {
 		accessibilityLinkProps,
 		homeLinkProps,
 		contentDescription,
-		personalDataLinkProps,
 		termsLinkProps,
 		websiteMapLinkProps,
 		// bottomItems,
@@ -46,8 +44,10 @@ export function Footer(props: FooterProps) {
 						</p>
 						<a
 							className="fr-footer__brand-link"
-							href={homeLinkProps.href}
-							title={`Accueil - ${homeLinkProps.title} - République Française`}
+							href={homeLinkProps && homeLinkProps.href}
+							title={`Accueil - ${
+								homeLinkProps && homeLinkProps.title
+							} - République Française`}
 						>
 							<img
 								className="fr-footer__logo"
@@ -139,16 +139,6 @@ export function Footer(props: FooterProps) {
 									Mentions légales
 								</a>
 								&nbsp;
-							</li>
-						)}
-						{personalDataLinkProps && (
-							<li className="fr-footer__bottom-item">
-								<a
-									className="fr-footer__bottom-link"
-									href={personalDataLinkProps?.href}
-								>
-									Données personnelles
-								</a>
 							</li>
 						)}
 					</ul>
