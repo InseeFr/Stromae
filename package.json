@@ -4,11 +4,11 @@
 	"private": true,
 	"dependencies": {
 		"@axa-fr/react-oidc": "6.14.0",
-		"@codegouvfr/react-dsfr": "0.75.0",
+		"@codegouvfr/react-dsfr": "^0.75.0",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
 		"@inseefr/lunatic": "2.5.2-beta",
-		"@inseefr/lunatic-dsfr": "0.0.23",
+		"@inseefr/lunatic-dsfr": "0.0.25",
 		"@mui/material": "^5.11.8",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",
@@ -27,6 +27,7 @@
 		"react-router": "^6.10.0",
 		"react-router-dom": "^6.6.1",
 		"react-scripts": "5.0.1",
+		"tss-react": "4.8.6",
 		"typescript": "^4.9.4",
 		"web-vitals": "^2.1.4"
 	},
