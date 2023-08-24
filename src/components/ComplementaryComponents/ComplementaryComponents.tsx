@@ -1,6 +1,6 @@
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
-import { makeStyles } from 'tss-react/dsfr';
+import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 
 const useStyles = makeStyles()({
 	root: {

@@ -1,6 +1,6 @@
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
-import { makeStyles } from 'tss-react/dsfr';
+import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 
 type Props = Pick<
 	OrchestratedElement,
@@ -25,7 +25,7 @@ export function Formulaire(props: Props) {
 				getComponents={getComponents}
 				currentErrors={currentErrors}
 				disabled={disabled}
-				except={['QuestionExplication']}
+				except={['QuestionExplication', 'ConfirmationModal']}
 			/>
 		</form>
 	);

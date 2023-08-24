@@ -11,6 +11,7 @@ import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents';
 import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
+import { Modals } from '../../components/modals';
 
 const RP = {
 	source: '/rp/source.json',
@@ -44,6 +45,7 @@ export function Visualize() {
 						<AlertesSaving />
 						<AlertesControles />
 						<Formulaire />
+						<Modals />
 						<Continuer />
 					</Grid>
 					<ComplementaryComponents />
