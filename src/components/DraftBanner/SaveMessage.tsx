@@ -19,7 +19,7 @@ export function SaveMessage(props: Props) {
 	// The saved flag is set to a timer, which returns to false after 2 seconds
 	if (saved) {
 		return (
-			<span className={cx(classes.root, 'fr-col-6')}>
+			<span className={cx(classes.root, 'fr-col-12', 'fr-col-md-10')}>
 				<i className="fr-icon-checkbox-circle-fill fr-label--success fr-mr-1v" />
 				Brouillon enregistré.
 			</span>
