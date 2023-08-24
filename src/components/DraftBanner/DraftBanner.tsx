@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState, useEffect } from 'react';
+import { PropsWithChildren, useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { fr } from '@codegouvfr/react-dsfr';
@@ -30,20 +30,29 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const { classes, cx } = useStyles();
 	// saved is used as a flag to display the save message (see SaveMessage.tsx)
 	const [saved, setSaved] = useState(false);
-	const duration = 5000;
-
-	const address = personalization?.bannerAdress ?? ''
+	const label = personalization?.bannerLabel ?? '';
+	const isSaved = waiting && !savingFailure;
+	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const duration = 2_000;
 
 	useEffect(() => {
-		if (!waiting || Boolean(savingFailure)) {
-			return undefined;
+		if (!isSaved) {
+			return;
+		}
+		if (timer.current) {
+			// clear previous duration
+			clearTimeout(timer.current);
 		}
 		setSaved(true);
-		const t = setTimeout(() => {
+		timer.current = setTimeout(() => {
 			setSaved(false);
 		}, duration);
-		return () => clearTimeout(t)
-	}, [waiting, savingFailure]);
+	}, [isSaved]);
+
+	useEffect(() => {
+		// clear timer when component is unmounted
+		return () => clearTimeout(timer.current as NodeJS.Timeout);
+	}, []);
 
 	return (
 		<div className={cx(classes.container, 'fr-col-12', 'fr-py-2w', 'fr-mb-1w')}>
@@ -75,7 +84,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 							>
 								<Badge>BROUILLON</Badge>
 							</div>
-							<BannerAddress address={address} />
+							<BannerAddress label={label} />
 						</div>
 						<SaveMessage saved={saved} />
 					</div>

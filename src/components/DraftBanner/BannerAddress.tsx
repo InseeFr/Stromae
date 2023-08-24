@@ -1,14 +1,21 @@
 type Props = {
-	address?: string | number | boolean;
+	label?: string | number | boolean;
+};
+
+function toTitleCase(str: string) {
+	// Transforms string to lowercase, except the first letter.
+	return `${str.charAt(0).toUpperCase()}${str.toLowerCase().substring(1)}`;
 }
 
 export function BannerAddress(props: Props) {
-	const {address} = props;
+	const { label } = props;
 
-	if (!address) {
+	if (!label) {
 		return null;
 	}
 	return (
-		<span className="fr-text--bold fr-mr-2w">Recensement du {address}</span>
-	)
+		<span className="fr-text--bold fr-mr-2w">
+			{toTitleCase(label.toString())}
+		</span>
+	);
 }
