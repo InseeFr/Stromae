@@ -7,10 +7,12 @@ import { surveySource } from './api';
  * An endpoint to stromae-api for retrieving resource URLs.
  */
 export const getSurvey =
-	(BASE_URL: string) =>
+	(conf: Promise<any>) =>
 	(survey: string, token: string): Promise<LunaticSource> => {
-		return authenticatedGetRequest<LunaticSource>(
-			surveySource(BASE_URL, survey),
-			token
+		return conf.then((data) =>
+			authenticatedGetRequest<LunaticSource>(
+				surveySource(data.REACT_APP_SURVEY_API_BASE_URL, survey),
+				token
+			)
 		);
 	};

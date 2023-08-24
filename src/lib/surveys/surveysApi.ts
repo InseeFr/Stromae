@@ -13,15 +13,8 @@ import { getNomenclature } from './getNomenclature';
 import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
 import { getDepositProof } from './getDepositProof';
-import { fetchConfig } from '../../components/auth/AuthProvider';
 
-let domain = '';
-
-const test = async () => {
-	const conf = await fetchConfig();
-	domain = conf.REACT_APP_SURVEY_API_BASE_URL;
-};
-test();
+const conf = fetch('/configuration.json').then((data) => data.json());
 export interface SurveyApi {
 	// any type JSon lunatic
 	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
@@ -46,12 +39,12 @@ export interface SurveyApi {
 }
 
 export const surveyApi: SurveyApi = {
-	getSurvey: getSurvey(domain),
-	getMetadataSurvey: getMetadataSurvey(domain),
-	getSurveyUnitData: getSurveyUnitData(domain),
-	getRequiredNomenclatures: getRequiredNomenclatures(domain),
-	getNomenclature: getNomenclature(domain),
-	putSurveyUnitData: putSurveyUnitData(domain),
-	putSurveyUnitStateData: putSurveyUnitStateData(domain),
-	getDepositiProof: getDepositProof(domain),
+	getSurvey: getSurvey(conf),
+	getMetadataSurvey: getMetadataSurvey(conf),
+	getSurveyUnitData: getSurveyUnitData(conf),
+	getRequiredNomenclatures: getRequiredNomenclatures(conf),
+	getNomenclature: getNomenclature(conf),
+	putSurveyUnitData: putSurveyUnitData(conf),
+	putSurveyUnitStateData: putSurveyUnitStateData(conf),
+	getDepositiProof: getDepositProof(conf),
 };

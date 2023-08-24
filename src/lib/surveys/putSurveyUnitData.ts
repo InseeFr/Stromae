@@ -4,10 +4,13 @@ import { authenticatedPutRequest } from '../commons/axios-utils';
 import { surveyUnitDataUrl } from './api';
 
 export const putSurveyUnitData =
-	(domain: string) => (data: DataVariables, unit: string, token: string) => {
-		return authenticatedPutRequest<DataVariables>(
-			surveyUnitDataUrl(domain, unit),
-			data,
-			token
+	(conf: Promise<any>) =>
+	(data: DataVariables, unit: string, token: string) => {
+		return conf.then((asyncData) =>
+			authenticatedPutRequest<DataVariables>(
+				surveyUnitDataUrl(asyncData.REACT_APP_SURVEY_API_BASE_URL, unit),
+				data,
+				token
+			)
 		);
 	};

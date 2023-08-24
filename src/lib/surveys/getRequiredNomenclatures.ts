@@ -3,10 +3,12 @@ import { authenticatedGetRequest } from '../commons/axios-utils';
 import { requiredNomenclature } from './api';
 
 export const getRequiredNomenclatures =
-	(BASE_URL: string) =>
+	(conf: Promise<any>) =>
 	(survey: string, token: string): Promise<Array<string>> => {
-		return authenticatedGetRequest<Array<string>>(
-			requiredNomenclature(BASE_URL, survey),
-			token
+		return conf.then((data) =>
+			authenticatedGetRequest<Array<string>>(
+				requiredNomenclature(data.REACT_APP_SURVEY_API_BASE_URL, survey),
+				token
+			)
 		);
 	};
