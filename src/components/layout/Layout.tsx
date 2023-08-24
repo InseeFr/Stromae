@@ -21,7 +21,7 @@ const defaultLinks = [
 	},
 ];
 
-export function Layout({ children }: PropsWithChildren<LayoutProps>) {
+export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 	const alreadyLoad = useRef(false);
 	const [header, setHeader] = useState<HeaderType | undefined>(undefined);
 	const [footer, setFooter] = useState<FooterType | undefined>(undefined);

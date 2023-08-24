@@ -10,10 +10,15 @@ export type StateData = {
 	currentPage: string;
 };
 
+export type PersonalizationElement = {
+	name: string | 'bannerLabel';
+	value: string | number | boolean;
+};
+
 export type SurveyUnitData = {
 	data: LunaticData;
 	stateData: StateData;
-	personalization?: unknown;
+	personalization: Array<PersonalizationElement>;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
@@ -35,7 +40,10 @@ export type VariablesType = {
 
 export type OrchestratedElement = {
 	// useLunatic interface
-	readonly getComponents?: (arg?: {only?:string[], except?: string[]}) => Array<ComponentType>;
+	readonly getComponents?: (arg?: {
+		only?: string[];
+		except?: string[];
+	}) => Array<ComponentType>;
 	readonly goPreviousPage?: () => void;
 	readonly goNextPage?: (arg?: { block: boolean }) => void;
 	readonly goToPage?: (page: { page: string; iteration?: number }) => void;
@@ -54,6 +62,7 @@ export type OrchestratedElement = {
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	readonly pageTag?: string;
+	personalization?: Record<string, string | number | boolean>;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
@@ -61,12 +70,13 @@ export type OrchestratedElement = {
 	currentChange?: { name: string };
 	// saving
 	savingFailure?: SavingFailure;
-  waiting?: boolean;
+	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
 	currentPage?: string;
-  only?: string[];
-  except?: string[];
+	only?: string[];
+	except?: string[];
+	title?: string;
 };
 
 export type QuestionnaireParams = {
