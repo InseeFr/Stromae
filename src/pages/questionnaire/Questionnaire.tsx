@@ -11,7 +11,8 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
-import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents';
+import { Modals } from '../../components/modals';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -38,6 +39,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<AlertesSaving />
 							<AlertesControles />
 							<Formulaire />
+							<Modals />
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />
