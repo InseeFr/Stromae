@@ -9,6 +9,7 @@ import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { OidcSecure } from '../../lib/oidc';
 import { Grid } from '../../components/Grid/Grid';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents';
+import { Modals } from '../../components/modals';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -29,9 +30,10 @@ export function QuestionnaireReadOnly() {
 						<Precedent />
 						<Grid>
 							<Formulaire />
+							<Modals />
 							<Continuer />
 						</Grid>
-            <ComplementaryComponents />
+						<ComplementaryComponents />
 					</OrchestratorReadOnly>
 				</Layout>
 			</LoadFromApi>

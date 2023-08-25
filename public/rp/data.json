@@ -1,1 +1,25 @@
-{}
+{
+	"data": {
+		"COLLECTED": {
+			"PRENOM": { "COLLECTED": ["Dad", "Mom", "Unknow"] },
+			"AGE": { "COLLECTED": [30, 29, 5] },
+			"LINKS": {
+				"COLLECTED": [[null]]
+			},
+			"OTHER": {
+				"COLLECTED": [[null]]
+			}
+		}
+	},
+	"stateData": {
+		"state": "INITIAL",
+		"date": 120000,
+		"currentPage": "1"
+	},
+	"personalization": [
+		{
+			"name": "bannerAddress",
+			"value": "88, Avenue Verdier, Paris 75123"
+		}
+	]
+}

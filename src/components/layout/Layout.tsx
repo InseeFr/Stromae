@@ -1,6 +1,5 @@
 import { PropsWithChildren, useContext, useRef, useState } from 'react';
 import SkipLinks from '@codegouvfr/react-dsfr/SkipLinks';
-
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { FooterType } from '../footer/FooterType';
