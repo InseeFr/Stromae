@@ -29,29 +29,57 @@ const useStyles = makeStyles()({
 	},
 });
 
+// checks if the list of bannerLabelDependencies includes a value that just changed
+function dependenciesHaveChanged(
+	currentChange?: { name: string },
+	bannerLabelDependencies?: string | number | boolean | Array<string>
+) {
+	if (
+		!currentChange ||
+		!bannerLabelDependencies ||
+		!Array.isArray(bannerLabelDependencies)
+	) {
+		return false;
+	}
+	return bannerLabelDependencies.includes(currentChange?.name);
+}
+
 // This component is displayed during a questionnaire.
 // Its main role is to reassure users that their data is being saved.
 // If a bannerAddress is provided through personalization in the SUData,
 // this is displayed.
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-	const { waiting, savingFailure, currentChange } = props;
+	const { waiting, savingFailure, currentChange, personalization } = props;
 	const { classes, cx } = useStyles();
 	// saved is used as a flag to display the save message (see SaveMessage.tsx)
 	const [saved, setSaved] = useState(false);
 	const [label, setlabel] = useState('');
+	const bannerLabelDependencies = personalization?.bannerLabelDependencies
+		? personalization?.bannerLabelDependencies
+		: [];
 	const isSaved = waiting && !savingFailure;
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const duration = 2_000;
 
 	const { getSurveyUnitData } = useContext(loadSourceDataContext);
 
-	// personalization is loaded on refresh, but if this value changes, it is not updated.
-	// By calling the API call, we are sure to get the most recent update.
+	// personalization is loaded on refresh, but if this value changes, it is not updated by default.
+	// By calling the API, we are sure to get the most recent update.
 	useAsyncEffect(async () => {
-		// eslint-disable-next-line no-console
-		console.log(currentChange);
-		if (getSurveyUnitData) {
+		if (!label) {
+			setlabel(
+				personalization?.bannerLabel &&
+					typeof personalization.bannerLabel === 'string'
+					? personalization?.bannerLabel
+					: ''
+			);
+		}
+		// We don't want to call the API all the time, so we check if the dependencies have changed then call the api
+		if (
+			getSurveyUnitData &&
+			dependenciesHaveChanged(currentChange, bannerLabelDependencies)
+		) {
 			const updatedSUData = await getSurveyUnitData();
 			const newPersonalization: Record<string, string> =
 				createPersonalizationMap(updatedSUData?.personalization || []);
