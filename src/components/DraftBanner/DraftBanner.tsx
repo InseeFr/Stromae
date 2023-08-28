@@ -46,6 +46,8 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 
 	const { getSurveyUnitData } = useContext(loadSourceDataContext);
 
+	// personalization is loaded on refresh, but if this value changes, it is not updated.
+	// By calling the API call, we are sure to get the most recent update.
 	useAsyncEffect(async () => {
 		if (getSurveyUnitData) {
 			const updatedSUData = await getSurveyUnitData();
