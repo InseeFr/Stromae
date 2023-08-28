@@ -49,6 +49,8 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	// personalization is loaded on refresh, but if this value changes, it is not updated.
 	// By calling the API call, we are sure to get the most recent update.
 	useAsyncEffect(async () => {
+		// eslint-disable-next-line no-console
+		console.log(currentChange);
 		if (getSurveyUnitData) {
 			const updatedSUData = await getSurveyUnitData();
 			const newPersonalization: Record<string, string> =

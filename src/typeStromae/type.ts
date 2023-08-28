@@ -11,8 +11,8 @@ export type StateData = {
 };
 
 export type PersonalizationElement = {
-	name: string | 'bannerLabel';
-	value: string | number | boolean;
+	name: string | 'bannerLabel' | 'bannerLabelDependencies';
+	value: string | number | boolean | Array<string>;
 };
 
 export type SurveyUnitData = {
@@ -62,7 +62,7 @@ export type OrchestratedElement = {
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	readonly pageTag?: string;
-	personalization?: Record<string, string | number | boolean>;
+	personalization?: Record<string, string | number | boolean | Array<string>>;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;

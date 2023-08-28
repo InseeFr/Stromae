@@ -33,7 +33,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const [personalizationMap, setPersonalizationMap] = useState<
-		Record<string, string>
+		Record<string, string | number | boolean | Array<string>>
 	>({});
 	const {
 		data,
@@ -84,6 +84,14 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 		pager,
 	} = useLunatic(source, data, args);
+
+	useEffect(() => {
+		(
+			document
+				.getElementById('stromae-form')
+				?.getElementsByTagName('legend')[0] as HTMLElement
+		)?.focus();
+	}, [pager]);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
 	useQuestionnaireTitle({
