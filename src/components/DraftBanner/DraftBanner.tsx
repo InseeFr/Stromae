@@ -1,10 +1,19 @@
-import { PropsWithChildren, useState, useEffect, useRef } from 'react';
+import {
+	PropsWithChildren,
+	useState,
+	useEffect,
+	useRef,
+	useContext,
+} from 'react';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { fr } from '@codegouvfr/react-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { SaveMessage } from './SaveMessage';
 import { BannerAddress } from './BannerAddress';
+import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+import { useAsyncEffect } from '../../hooks/useAsyncEffect';
+import { createPersonalizationMap } from '../orchestrator/UseLunatic';
 
 const useStyles = makeStyles()({
 	container: {
@@ -26,14 +35,27 @@ const useStyles = makeStyles()({
 // this is displayed.
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-	const { waiting, savingFailure, personalization } = props;
+	const { waiting, savingFailure, currentChange } = props;
 	const { classes, cx } = useStyles();
 	// saved is used as a flag to display the save message (see SaveMessage.tsx)
 	const [saved, setSaved] = useState(false);
-	const label = personalization?.bannerLabel ?? '';
+	const [label, setlabel] = useState('');
 	const isSaved = waiting && !savingFailure;
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const duration = 2_000;
+
+	const { getSurveyUnitData } = useContext(loadSourceDataContext);
+
+	useAsyncEffect(async () => {
+		if (getSurveyUnitData) {
+			const updatedSUData = await getSurveyUnitData();
+			const newPersonalization: Record<string, string> =
+				createPersonalizationMap(updatedSUData?.personalization || []);
+			setlabel(
+				newPersonalization.bannerLabel ? newPersonalization.bannerLabel : ''
+			);
+		}
+	}, [getSurveyUnitData, currentChange, props]);
 
 	useEffect(() => {
 		if (!isSaved) {
