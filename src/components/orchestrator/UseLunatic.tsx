@@ -9,7 +9,7 @@ import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 
-function createPersonalizationMap(
+export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
 ) {
 	return personalization.reduce((acc, { name, value }) => {
@@ -86,7 +86,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	} = useLunatic(source, data, args);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
-	useQuestionnaireTitle({ source, page: pager.page, defaultTitle: typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee'  });
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
 
 	return (
 		<Provider>
