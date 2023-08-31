@@ -6,6 +6,9 @@
 			"LINKS": {
 				"COLLECTED": [[null]]
 			},
+			"NUIT_DEBUT": {
+				"COLLECTED": "9 janvier 2023"
+			},
 			"OTHER": {
 				"COLLECTED": [[null]]
 			}
@@ -14,12 +17,16 @@
 	"stateData": {
 		"state": "INITIAL",
 		"date": 120000,
-		"currentPage": "1"
+		"currentPage": "17"
 	},
 	"personalization": [
 		{
-			"name": "bannerAddress",
+			"name": "bannerLabel",
 			"value": "88, Avenue Verdier, Paris 75123"
+		},
+		{
+			"name": "bannerLabelDependencies",
+			"value": ["NUMVOI_LOC"]
 		}
 	]
 }
