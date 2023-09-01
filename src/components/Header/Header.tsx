@@ -130,11 +130,13 @@ export function Header(props: HeaderProps) {
 														</Button>
 													) : (
 														<Button
-															iconId={quickAccessItem.iconId}
 															linkProps={{
-																target: '_blank',
+																target: quickAccessItem.linkProps?.target,
 																href: quickAccessItem.linkProps?.href,
-																title: `${quickAccessItem.text} - ouvre une nouvelle fenêtre`,
+																title:
+																	quickAccessItem.linkProps?.target === '_blank'
+																		? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
+																		: quickAccessItem.text,
 															}}
 														>
 															{quickAccessItem.text}
@@ -185,12 +187,18 @@ export function Header(props: HeaderProps) {
 													{quickAccessItem.text}
 												</Button>
 											) : (
-												<a
-													className={`fr-btn ${quickAccessItem.iconId}`}
-													href={quickAccessItem.linkProps?.href}
+												<Button
+													linkProps={{
+														target: quickAccessItem.linkProps?.target,
+														href: quickAccessItem.linkProps?.href,
+														title:
+															quickAccessItem.linkProps?.target === '_blank'
+																? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
+																: quickAccessItem.text,
+													}}
 												>
 													{quickAccessItem.text}
-												</a>
+												</Button>
 											)}
 										</li>
 									);
