@@ -129,12 +129,16 @@ export function Header(props: HeaderProps) {
 															{quickAccessItem.text}
 														</Button>
 													) : (
-														<a
-															className={`fr-btn ${quickAccessItem.iconId}`}
-															href={quickAccessItem.linkProps?.href}
+														<Button
+															iconId={quickAccessItem.iconId}
+															linkProps={{
+																target: '_blank',
+																href: quickAccessItem.linkProps?.href,
+																title: `${quickAccessItem.text} - ouvre une nouvelle fenêtre`,
+															}}
 														>
 															{quickAccessItem.text}
-														</a>
+														</Button>
 													)}
 												</li>
 											);
