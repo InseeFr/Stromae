@@ -1166,10 +1166,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@codegouvfr/react-dsfr@^0.75.0":
-  version "0.75.0"
-  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-0.75.0.tgz#87258a9df77b0855c7b02c1cfca1c418ebd0f646"
-  integrity sha512-0n+3PmmpFQskD/xuVPq9fw0ejcBR5a8D5A5DnvdPUIg79qxu90EkR0Ar/7jAJCk1gMM71hiphU3TjevxVTbjRg==
+"@codegouvfr/react-dsfr@^0.75.3":
+  version "0.75.3"
+  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-0.75.3.tgz#8f9218d134693d6b296a1ee23ee28c961664a786"
+  integrity sha512-ltOlkdh35oCJG0P1iIRx0DNLYVbBBTrhNdFoxRczC1Q9WVQIVN5NnyniMMIEWszysg9zRQBWHfOqkcbact7Ngw==
   dependencies:
     tsafe "^1.6.3"
 
@@ -1467,10 +1467,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@0.0.28":
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.28.tgz#3c3dd45717a356352787d8661a2385b6f39c2de4"
-  integrity sha512-z07/hGutn8pxcdttQDWofGR02vXvI7PAH+kgWnrDvNunEggvy0Dyklj4VqIh3jLgqBXcwnK71A6r6+vDO7B4RQ==
+"@inseefr/lunatic-dsfr@0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.29.tgz#075adf7e49a5f4a2263d1030f584767cf99f7116"
+  integrity sha512-QpYJuXTE8gTF3ekPfDhHzvOCBiY2dTP37MD8X+mEjUtnCnt99s81R5TAuX9cVKGPPAoLIJw9Mtrjas4B7FNX+g==
   dependencies:
     "@emotion/styled" "^11.10.6"
     "@inseefr/lunatic" "^2.5.2-beta"

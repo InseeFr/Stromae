@@ -208,7 +208,6 @@ export function Header(props: HeaderProps) {
 			<dialog
 				id="fr-theme-modal"
 				className="fr-modal"
-				role="dialog"
 				aria-labelledby="fr-theme-modal-title"
 			>
 				<div className="fr-container fr-container--fluid fr-container-md">
