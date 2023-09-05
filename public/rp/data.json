@@ -18,8 +18,18 @@
 	},
 	"personalization": [
 		{
-			"name": "bannerAddress",
+			"name": "bannerLabel",
 			"value": "88, Avenue Verdier, Paris 75123"
+		},
+		{
+			"name": "bannerLabelDependencies",
+			"value": [
+				"NUMVOI_LOC",
+				"BISTER_LOC",
+				"TYPEVOI_LOC",
+				"NOMVOI_LOC",
+				"COM_LOC"
+			]
 		}
 	]
 }

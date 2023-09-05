@@ -62,19 +62,17 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const duration = 2_000;
 
+	const personalizationLabel =
+		typeof personalization?.bannerLabel === 'string'
+			? personalization?.bannerLabel
+			: '';
+	const computedLabel = label ? label : personalizationLabel;
+
 	const { getSurveyUnitData } = useContext(loadSourceDataContext);
 
 	// personalization is loaded on refresh, but if this value changes, it is not updated by default.
 	// By calling the API, we are sure to get the most recent update.
 	useAsyncEffect(async () => {
-		if (!label) {
-			setlabel(
-				personalization?.bannerLabel &&
-					typeof personalization.bannerLabel === 'string'
-					? personalization?.bannerLabel
-					: ''
-			);
-		}
 		// We don't want to call the API all the time, so we check if the dependencies have changed then call the api
 		if (
 			getSurveyUnitData &&
@@ -138,7 +136,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 							>
 								<Badge>BROUILLON</Badge>
 							</div>
-							<BannerAddress label={label} />
+							<BannerAddress label={computedLabel} />
 						</div>
 						<SaveMessage saved={saved} />
 					</div>
