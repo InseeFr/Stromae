@@ -50,15 +50,16 @@ function dependenciesHaveChanged(
 // this is displayed.
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-	const { waiting, savingFailure, currentChange, personalization } = props;
+	const { savingFailure, currentChange, personalization } = props;
 	const { classes, cx } = useStyles();
 	// saved is used as a flag to display the save message (see SaveMessage.tsx)
 	const [saved, setSaved] = useState(false);
-	const [label, setlabel] = useState('');
+	const [label, setlabel] = useState(personalization?.bannerLabel ?? '');
 	const bannerLabelDependencies = personalization?.bannerLabelDependencies
 		? personalization?.bannerLabelDependencies
 		: [];
-	const isSaved = waiting && !savingFailure;
+	const isSaved = savingFailure ? savingFailure.status === 200 : false;
+
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const duration = 2_000;
 
@@ -136,7 +137,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 							>
 								<Badge>BROUILLON</Badge>
 							</div>
-							<BannerAddress label={computedLabel} />
+							<BannerAddress label={computedLabel as string} />
 						</div>
 						<SaveMessage saved={saved} />
 					</div>

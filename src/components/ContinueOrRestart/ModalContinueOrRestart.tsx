@@ -31,7 +31,7 @@ export function ModalContinueOrRestart(props: {
 				</li>
 				<li>
 					<button className="fr-btn" onClick={props.onContinue} ref={last}>
-						Reprendre la où j'en était
+						Reprendre la où j'en étais
 					</button>
 				</li>
 			</ul>
