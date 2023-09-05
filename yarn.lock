@@ -1467,10 +1467,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.30.tgz#44ba22fc338cf8e36c8d069fb4de5599c92a3cab"
-  integrity sha512-0BD8QNG4x9qgIql3EYoxyPa+0/XJwPZezyz+fFMdurtTBS64+7UGmgSkjdeVgt5+1mG4iTyjY4QZFLYXv4S/ZQ==
+"@inseefr/lunatic-dsfr@0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.31.tgz#2fe83f5118ca658c455879abfb8f70cb335f3116"
+  integrity sha512-JE9dXJ/8xhSDIuWv5VGMarzLgUWxsAc/DIWo/zwF4owSTNh63/12VU1TNgP8Q1tdJJ0SWkEXHGiJ7tEs0+flfg==
   dependencies:
     "@emotion/styled" "^11.10.6"
     "@inseefr/lunatic" "^2.5.2-beta"
