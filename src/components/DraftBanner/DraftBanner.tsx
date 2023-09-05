@@ -26,12 +26,12 @@ const useStyles = makeStyles()({
 // this is displayed.
 
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
-	const { waiting, savingFailure, personalization } = props;
+	const { savingFailure, personalization } = props;
 	const { classes, cx } = useStyles();
 	// saved is used as a flag to display the save message (see SaveMessage.tsx)
 	const [saved, setSaved] = useState(false);
 	const label = personalization?.bannerLabel ?? '';
-	const isSaved = waiting && !savingFailure;
+	const isSaved = savingFailure ? savingFailure.status === 200 : false;
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const duration = 2_000;
 
