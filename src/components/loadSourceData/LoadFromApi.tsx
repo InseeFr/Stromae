@@ -1,8 +1,6 @@
 import { PropsWithChildren, useCallback } from 'react';
-import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
-
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromApiProps = {
@@ -15,8 +13,6 @@ export function LoadFromApi({
 	unit,
 	children,
 }: PropsWithChildren<LoadFromApiProps>) {
-	const { accessToken } = useOidcAccessToken();
-
 	const getMetadata = useCallback(async () => {
 		if (survey) {
 			return surveyApi.getMetadataSurvey(survey);
@@ -25,32 +21,26 @@ export function LoadFromApi({
 	}, [survey]);
 
 	const getSurvey = useCallback(async () => {
-		if (survey && accessToken) {
-			return surveyApi.getSurvey(survey, accessToken);
+		if (survey) {
+			return surveyApi.getSurvey(survey);
 		}
 		return undefined;
-	}, [survey, accessToken]);
+	}, [survey]);
 
 	const getSurveyUnitData = useCallback(async () => {
-		if (accessToken && unit) {
-			return surveyApi.getSurveyUnitData(unit, accessToken);
+		if (unit) {
+			return surveyApi.getSurveyUnitData(unit);
 		}
 		return undefined;
-	}, [unit, accessToken]);
+	}, [unit]);
 
-	const getReferentiel = useCallback(
-		async (name: string) => {
-			return surveyApi.getNomenclature(name, accessToken);
-		},
-		[accessToken]
-	);
+	const getReferentiel = useCallback(async (name: string) => {
+		return surveyApi.getNomenclature(name);
+	}, []);
 
-	const getDepositProof = useCallback(
-		async (unit: string) => {
-			return surveyApi.getDepositiProof(unit, accessToken);
-		},
-		[accessToken]
-	);
+	const getDepositProof = useCallback(async (unit: string) => {
+		return surveyApi.getDepositiProof(unit);
+	}, []);
 
 	const putSurveyUnitData = useCallback(
 		async (args: { data: DataVariables; state: StateData } | undefined) => {
@@ -58,8 +48,8 @@ export function LoadFromApi({
 				if (args) {
 					const { data, state } = args;
 					if (unit) {
-						await surveyApi.putSurveyUnitData(data, unit, accessToken);
-						await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
+						await surveyApi.putSurveyUnitData(data, unit);
+						await surveyApi.putSurveyUnitStateData(state, unit);
 					}
 				}
 			} catch (e) {
@@ -69,7 +59,7 @@ export function LoadFromApi({
 			}
 			return true;
 		},
-		[accessToken, unit]
+		[unit]
 	);
 
 	return (

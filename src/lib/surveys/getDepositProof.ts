@@ -1,7 +1,6 @@
-import { authenticatedGetBlob } from '../commons/axios-utils';
+import { getBlob } from '../commons/axios-utils';
 import { depositProof } from './api';
 
-export const getDepositProof =
-	(baseUrl: string) => async (unit: string, token: string) => {
-		return authenticatedGetBlob(depositProof(baseUrl, unit), token);
-	};
+export const getDepositProof = (baseUrl: string) => async (unit: string) => {
+	return getBlob(depositProof(baseUrl, unit));
+};
