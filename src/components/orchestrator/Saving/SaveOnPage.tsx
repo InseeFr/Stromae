@@ -12,7 +12,6 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		getData,
 		pageTag,
 		isLastPage,
-		collectStatus,
 	} = rest;
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
@@ -21,7 +20,6 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		getData,
 		pageTag,
 		isLastPage,
-		collectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
 

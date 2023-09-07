@@ -61,11 +61,11 @@ export function LoadFromApi({
 	);
 
 	const putSurveyUnitData = useCallback(
-		async (args: { data: DataVariables; state: StateData } | undefined) => {
+		async (args: { data?: DataVariables; state?: StateData } | undefined) => {
 			try {
 				if (args) {
 					const { data, state } = args;
-					if (unit) {
+					if (unit && data && state) {
 						await surveyApi.putSurveyUnitData(data, unit);
 						await surveyApi.putSurveyUnitStateData(state, unit);
 					}
