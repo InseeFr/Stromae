@@ -2,12 +2,14 @@ import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
+	CollectStatusEnum,
 	OrchestratedElement,
 	PersonalizationElement,
 } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
+import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
 function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -32,15 +34,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
+
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string>
 	>({});
-	const {
-		data,
-		stateData = { currentPage: '1' },
-		personalization = [],
-	} = surveyUnitData ?? {};
-	const { currentPage } = stateData;
+	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
+	const { currentPage = '1', state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
@@ -86,7 +85,14 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	} = useLunatic(source, data, args);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
-	useQuestionnaireTitle({ source, page: pager.page, defaultTitle: typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee'  });
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
+	const collectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(collectStatus);
 
 	return (
 		<Provider>
@@ -104,6 +110,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				disabled={disabled}
 				currentPage={currentPage}
 				personalization={personalizationMap}
+				collectStatus={collectStatus}
 			>
 				{children}
 			</CloneElements>
