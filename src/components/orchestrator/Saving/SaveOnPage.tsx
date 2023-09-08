@@ -20,11 +20,18 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		getData,
 
 		isLastPage,
+		collectStatus,
 	} = rest;
 	const previousPage = usePrevious(currentPage);
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
-	const save = useSaving({ currentChange, getData, currentPage, isLastPage });
+	const save = useSaving({
+		currentChange,
+		getData,
+		currentPage,
+		isLastPage,
+		collectStatus,
+	});
 	const [waiting, setWaiting] = useState(false);
 	const onSave = useRef(false);
 

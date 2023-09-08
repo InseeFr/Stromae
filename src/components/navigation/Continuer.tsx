@@ -58,22 +58,20 @@ export function Continuer(props: OrchestratedElement) {
 	);
 
 	return (
-		<>
-			<Button
-				priority="primary"
-				onClick={handleClick}
-				className={fr.cx('fr-mt-1w')}
-				nativeButtonProps={{
-					form: 'stromae-form',
-					type: 'submit',
-					'aria-atomic': true,
-					'aria-disabled': waiting,
-				}}
-				iconId={waiting ? 'fr-icon-refresh-line' : undefined}
-				disabled={waiting}
-			>
-				{buttonContent}
-			</Button>
-		</>
+		<Button
+			priority="primary"
+			onClick={handleClick}
+			className={fr.cx('fr-mt-1w')}
+			nativeButtonProps={{
+				form: 'stromae-form',
+				type: 'submit',
+				'aria-atomic': true,
+				'aria-disabled': waiting,
+			}}
+			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
+			disabled={waiting}
+		>
+			{buttonContent}
+		</Button>
 	);
 }

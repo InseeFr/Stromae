@@ -1,18 +1,59 @@
 import { useRef, useEffect, useContext } from 'react';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
-import { OrchestratedElement } from '../../../typeStromae/type';
+import {
+	OrchestratedElement,
+	CollectStatusEnum,
+} from '../../../typeStromae/type';
 
 const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'currentPage' | 'isLastPage'
+	'currentChange' | 'getData' | 'currentPage' | 'isLastPage' | 'collectStatus'
 >;
 
+function isOnChange(data: {} = {}) {
+	return Object.keys(data).length > 0;
+}
+
+/**
+ * Resolve the next status of the survey (stateData.state for the API of stromae)
+ * @param changing is any changes in collected variable
+ * @param isLastPage is the las page of survey
+ * @param previous previous status
+ * @returns status of survey
+ */
+function getCollectStatus(
+	changing: boolean,
+	isLastPage: boolean,
+	previous?: CollectStatusEnum
+) {
+	if (isLastPage) {
+		return CollectStatusEnum.Validated;
+	}
+	if (changing) {
+		return CollectStatusEnum.Completed;
+	}
+
+	return previous ?? CollectStatusEnum.Init;
+}
+
+/**
+ *
+ * @param args Comportement de sauvegarde de l'API
+ * Comme il existe 2 stratégies pour déclencher la sauvegarde le comportement de sauvegarde étant lui-même
+ * conditionnelle, il est factorisé dans un hook.
+ * complete : sauvegarde toutes les variables du questionnaire
+ * partial : seules les variables ayant changées génèrent une sauvegarde (s'il y a des modifications)
+ * @returns
+ */
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, currentPage, isLastPage } = args;
+	const { currentChange, getData, currentPage, isLastPage, collectStatus } =
+		args;
 	const changes = useRef<Record<string, null>>({});
-	const { putSurveyUnitData } = useContext(loadSourceDataContext);
+	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
+		loadSourceDataContext
+	);
 
 	useEffect(() => {
 		if (!currentChange) {
@@ -24,7 +65,7 @@ export function useSaving(args: SavingArgs) {
 
 	return async function save() {
 		let data = {};
-		if (!getData) {
+		if (!getData || collectStatus === CollectStatusEnum.Validated) {
 			return undefined;
 		}
 		if (SAVING_STRATEGY === 'partial') {
@@ -44,24 +85,28 @@ export function useSaving(args: SavingArgs) {
 			// false is better
 			data = getData(true);
 		}
-
-		if (Object.keys(data).length || isLastPage) {
-			// TODO remplir state correctement
-			const state = {
-				state: 'INIT',
-				date: new Date().getTime(),
-				currentPage: currentPage ?? '1',
-			};
-			const status = await putSurveyUnitData({ data, state });
+		const changing = isOnChange(data);
+		if (changing || isLastPage) {
+			const status = await putSurveyUnitData(data);
 			if (status) {
 				// seulement si la sauvegarde is good || !complete
 				// eslint-disable-next-line require-atomic-updates
 				changes.current = {};
-				return true;
 			} else {
 				throw new Error('Une erreur est survenue lors de la sauvegarde');
 			}
 		}
-		return false;
+		// On sauvegarde le parcourt de l'utilisateur
+		const state = {
+			state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
+			date: new Date().getTime(),
+			currentPage: currentPage ?? '1',
+		};
+		const status = await putSurveyUnitStateData(state);
+		if (status) {
+			return true;
+		} else {
+			throw new Error('Une erreur est survenue lors de la sauvegarde');
+		}
 	};
 }

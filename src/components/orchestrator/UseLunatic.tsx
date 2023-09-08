@@ -2,12 +2,14 @@ import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
+	CollectStatusEnum,
 	OrchestratedElement,
 	PersonalizationElement,
 } from '../../typeStromae/type';
 import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
+import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
 function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -32,11 +34,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
+
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string>
 	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
-	const { currentPage: pageFromAPI } = stateData ?? {};
+	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
@@ -97,6 +100,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		const { page } = pager;
 		setCurrentPage(page);
 	}, [pager, currentPage]);
+	const collectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(collectStatus);
 
 	return (
 		<Provider>
@@ -115,6 +120,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				currentPage={currentPage}
 				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
+				collectStatus={collectStatus}
 			>
 				{children}
 			</CloneElements>

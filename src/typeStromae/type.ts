@@ -3,9 +3,15 @@ import { ComponentType } from '../typeLunatic/type-source';
 import { HeaderType } from '../components/Header/HeaderType';
 import { FooterType } from '../components/footer/FooterType';
 
+export enum CollectStatusEnum {
+	Init = 'INIT',
+	Completed = 'COMPLETED',
+	Validated = 'VALIDATED',
+}
+
 export type StateData = {
 	// 'INIT' | 'COMPLETED' | 'VALIDATED' | 'TOEXTRACT' | 'EXTRACTED' | null;
-	state: string | null;
+	state?: CollectStatusEnum | null;
 	date: number;
 	currentPage: string;
 };
@@ -73,9 +79,12 @@ export type OrchestratedElement = {
 	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
+	// last page reach by user
 	currentPage?: string;
 	// Page give by API.getSuData at launch
 	pageFromAPI?: string;
+	// last status of survey, give by the API ('INIT' | 'COLLECTED' | 'VALIDATED')
+	collectStatus?: CollectStatusEnum;
 	only?: string[];
 	except?: string[];
 	title?: string;
