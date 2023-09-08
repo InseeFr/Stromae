@@ -99,7 +99,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	useEffect(() => {
 		const { page } = pager;
 		setCurrentPage(page);
-	}, [pager, currentPage]);
+	}, [pager]);
 	const collectStatus = state ?? CollectStatusEnum.Init;
 	useRedirectIfAlreadyValidated(collectStatus);
 
