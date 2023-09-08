@@ -6,11 +6,11 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'pageTag' | 'isLastPage'
+	'currentChange' | 'getData' | 'currentPage' | 'isLastPage'
 >;
 
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag, isLastPage } = args;
+	const { currentChange, getData, currentPage, isLastPage } = args;
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData } = useContext(loadSourceDataContext);
 
@@ -50,7 +50,7 @@ export function useSaving(args: SavingArgs) {
 			const state = {
 				state: 'INIT',
 				date: new Date().getTime(),
-				currentPage: pageTag ?? '1',
+				currentPage: currentPage ?? '1',
 			};
 			const status = await putSurveyUnitData({ data, state });
 			if (status) {
