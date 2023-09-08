@@ -74,6 +74,8 @@ export type OrchestratedElement = {
 	// disabled all components
 	disabled?: boolean;
 	currentPage?: string;
+	// Page give by API.getSuData at launch
+	pageFromAPI?: string;
 	only?: string[];
 	except?: string[];
 	title?: string;

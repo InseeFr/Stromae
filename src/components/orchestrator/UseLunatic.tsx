@@ -35,17 +35,17 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string>
 	>({});
-	const {
-		data,
-		stateData = { currentPage: '1' },
-		personalization = [],
-	} = surveyUnitData ?? {};
-	const { currentPage } = stateData;
+	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
+	const { currentPage: pageFromAPI } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
 	}, []);
+
+	const [currentPage, setCurrentPage] = useState(() => {
+		return pageFromAPI ?? '1';
+	});
 
 	useEffect(() => {
 		setPersonalizationMap(createPersonalizationMap(personalization));
@@ -86,7 +86,17 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	} = useLunatic(source, data, args);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
-	useQuestionnaireTitle({ source, page: pager.page, defaultTitle: typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee'  });
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
+
+	useEffect(() => {
+		const { page } = pager;
+		setCurrentPage(page);
+	}, [pager, currentPage]);
 
 	return (
 		<Provider>
@@ -103,6 +113,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageTag={pageTag}
 				disabled={disabled}
 				currentPage={currentPage}
+				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
 			>
 				{children}

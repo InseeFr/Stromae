@@ -3,20 +3,20 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { ModalContinueOrRestart } from './ModalContinueOrRestart';
 
 export function ContinueOrRestart(props: OrchestratedElement) {
-	const { currentPage, goToPage } = props;
-	const [display, setDisplay] = useState(currentPage && currentPage !== '1');
+	const { pageFromAPI, goToPage } = props;
+	const [display, setDisplay] = useState(pageFromAPI && pageFromAPI !== '1');
 
 	function onClose() {
 		setDisplay(false);
 	}
 
 	const onContinue = useCallback(() => {
-		if (!currentPage) {
+		if (!pageFromAPI) {
 			return;
 		}
-		goToPage?.({ page: currentPage });
+		goToPage?.({ page: pageFromAPI });
 		setDisplay(false);
-	}, [currentPage, goToPage]);
+	}, [pageFromAPI, goToPage]);
 
 	const onRestart = useCallback(() => {
 		goToPage?.({ page: '1' });

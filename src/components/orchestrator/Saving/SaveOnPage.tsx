@@ -1,7 +1,14 @@
-import { useCallback, useState, PropsWithChildren } from 'react';
+import {
+	useCallback,
+	useState,
+	PropsWithChildren,
+	useEffect,
+	useRef,
+} from 'react';
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
 import { useSaving } from './useSaving';
+import { usePrevious } from '../../../lib/commons/usePrevious';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
@@ -9,40 +16,58 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		goNextPage,
 		goPreviousPage,
 		currentChange,
+		currentPage,
 		getData,
 		pageTag,
 		isLastPage,
 	} = rest;
+	const previousPage = usePrevious(currentPage);
 
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ currentChange, getData, pageTag, isLastPage });
 	const [waiting, setWaiting] = useState(false);
+	const onSave = useRef(false);
 
-	const handleSave = useCallback(
-		async (postSave?: () => void) => {
-			try {
-				setSavingFailure(undefined);
-				setWaiting(true);
-				const somethingToSave = await save();
-				setWaiting(false);
-				if (somethingToSave) {
-					setSavingFailure({ status: 200 });
+	useEffect(() => {
+		/* 
+			On sauvegarde quand lunatic vient de changer  
+			la page et quand l'utilisateur à cliqué un
+			bouton de navigation
+		*/
+		if (
+			currentPage &&
+			previousPage &&
+			onSave.current &&
+			previousPage !== currentPage
+		) {
+			onSave.current = false;
+			(async () => {
+				try {
+					setSavingFailure(undefined);
+					setWaiting(true);
+					const somethingToSave = await save();
+					setWaiting(false);
+					if (somethingToSave) {
+						setSavingFailure({ status: 200 });
+					}
+				} catch (e) {
+					setSavingFailure({ status: 500 });
 				}
-				postSave?.();
-			} catch (e) {
-				setSavingFailure({ status: 500 });
-			}
-		},
-		[save]
-	);
+			})();
+		}
+	}, [onSave, currentPage, previousPage, save]);
 
 	const handleNextPage = useCallback(async () => {
-		handleSave(goNextPage);
-	}, [goNextPage, handleSave]);
+		if (currentPage) {
+			goNextPage?.();
+			onSave.current = true;
+		}
+	}, [goNextPage, currentPage]);
 
 	const handleGoBack = useCallback(async () => {
-		handleSave(goPreviousPage);
-	}, [goPreviousPage, handleSave]);
+		goPreviousPage?.();
+		onSave.current = true;
+	}, [goPreviousPage]);
 
 	return (
 		<CloneElements<OrchestratedElement>
