@@ -1,7 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-
-import { ReactComponent as TechnicalError } from '../../assets/technical_error.svg';
+import TechnicalError from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/technical-error.svg';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export function Error() {
@@ -22,7 +21,7 @@ export function Error() {
 						Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle
 						est correcte. La page n’est peut-être plus disponible. Dans ce cas,
 						pour continuer votre visite vous pouvez retourner sur la page
-						d’accueil.Sinon contactez-nous pour que l’on puisse vous aider.
+						d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.
 					</p>
 					<Button
 						size="large"
@@ -34,7 +33,26 @@ export function Error() {
 					</Button>
 				</div>
 				<div className="fr-col-lg-3 fr-col-offset-lg-1 fr-col-8 fr-mt-6w fr-col--middle">
-					<TechnicalError />
+					<svg
+						className="fr-artwork"
+						aria-hidden="true"
+						viewBox="0 0 80 80"
+						width="200px"
+						height="200px"
+					>
+						<use
+							className="fr-artwork-decorative"
+							xlinkHref={`${TechnicalError}#artwork-decorative`}
+						></use>
+						<use
+							className="fr-artwork-minor"
+							xlinkHref={`${TechnicalError}#artwork-minor`}
+						></use>
+						<use
+							className="fr-artwork-major"
+							xlinkHref={`${TechnicalError}#artwork-major`}
+						></use>
+					</svg>
 				</div>
 			</div>
 		</div>

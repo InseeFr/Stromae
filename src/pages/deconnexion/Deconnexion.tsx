@@ -4,7 +4,7 @@ import { useOidc } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 
 import { Layout } from '../../components/layout';
-import { ReactComponent as Information } from '../../assets/information.svg';
+import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 
@@ -49,8 +49,27 @@ export function Deconnexion() {
 								Se reconnecter
 							</Button>
 						</div>
-						<div className="fr-col-lg-3 fr-col-offset-lg-1 fr-col-8 fr-mt-6w fr-col--middle">
-							<Information />
+						<div className="fr-col-lg-3 fr-col-offset-lg-1 fr-col-8 fr-col--middle">
+							<svg
+								className="fr-artwork"
+								aria-hidden="true"
+								viewBox="0 0 80 80"
+								width="200px"
+								height="200px"
+							>
+								<use
+									className="fr-artwork-decorative"
+									xlinkHref={`${Information}#artwork-decorative`}
+								></use>
+								<use
+									className="fr-artwork-minor"
+									xlinkHref={`${Information}#artwork-minor`}
+								></use>
+								<use
+									className="fr-artwork-major"
+									xlinkHref={`${Information}#artwork-major`}
+								></use>
+							</svg>
 						</div>
 					</div>
 				</div>
