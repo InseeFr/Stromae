@@ -6,7 +6,6 @@ import { usePrevious } from '../../../lib/commons/usePrevious';
 import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
-	const { children, ...rest } = props;
 	const {
 		goNextPage,
 		goPreviousPage,
@@ -15,7 +14,8 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		getData,
 		isLastPage,
 		collectStatus,
-	} = rest;
+		children,
+	} = props;
 
 	const previousPage = usePrevious(currentPage);
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
@@ -28,14 +28,11 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	});
 	const [waiting, setWaiting] = useState(false);
 	const shouldSync = useRef(false);
+	// eslint-disable-next-line @shopify/binary-assignment-parens
+	const isNewPage = currentPage && previousPage && previousPage !== currentPage;
 
 	useAsyncEffect(async () => {
-		if (
-			currentPage &&
-			previousPage &&
-			shouldSync.current &&
-			previousPage !== currentPage
-		) {
+		if (isNewPage) {
 			shouldSync.current = false;
 			try {
 				setSavingFailure(undefined);
@@ -49,7 +46,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 				setSavingFailure({ status: 500 });
 			}
 		}
-	}, [shouldSync, currentPage, previousPage, save]);
+	}, [isNewPage, save]);
 
 	const handleNextPage = useCallback(async () => {
 		if (currentPage) {
@@ -65,7 +62,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 
 	return (
 		<CloneElements<OrchestratedElement>
-			{...rest}
+			{...props}
 			goNextPage={handleNextPage}
 			goPreviousPage={handleGoBack}
 			savingFailure={savingFailure}
