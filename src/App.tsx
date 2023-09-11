@@ -10,6 +10,7 @@ import { Error } from './pages/error';
 import { Visualize } from './pages/visualize/Visualize';
 import { AuthProvider } from './components/auth';
 import { RoutingPortail, Portail } from './pages/portail';
+import { Optional } from './pages/optional';
 
 const router = createBrowserRouter([
 	{
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
 	{
 		path: '/read-only/questionnaire/:survey/unite-enquetee/:unit',
 		element: <QuestionnaireReadOnly />,
+		errorElement: <Error />,
+	},
+	{
+		path: '/questionnaire/:survey/:optional',
+		element: <Optional />,
 		errorElement: <Error />,
 	},
 	{
