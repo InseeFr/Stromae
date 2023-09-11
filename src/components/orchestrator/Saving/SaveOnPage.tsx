@@ -1,14 +1,9 @@
-import {
-	useCallback,
-	useState,
-	PropsWithChildren,
-	useEffect,
-	useRef,
-} from 'react';
+import { useCallback, useState, PropsWithChildren, useRef } from 'react';
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
 import { useSaving } from './useSaving';
 import { usePrevious } from '../../../lib/commons/usePrevious';
+import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
@@ -18,12 +13,11 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		currentChange,
 		currentPage,
 		getData,
-
 		isLastPage,
 		collectStatus,
 	} = rest;
-	const previousPage = usePrevious(currentPage);
 
+	const previousPage = usePrevious(currentPage);
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({
 		currentChange,
@@ -33,48 +27,41 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		collectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
-	const onSave = useRef(false);
+	const shouldSync = useRef(false);
 
-	useEffect(() => {
-		/* 
-			On sauvegarde quand lunatic vient de changer  
-			la page et quand l'utilisateur à cliqué un
-			bouton de navigation
-		*/
+	useAsyncEffect(async () => {
 		if (
 			currentPage &&
 			previousPage &&
-			onSave.current &&
+			shouldSync.current &&
 			previousPage !== currentPage
 		) {
-			onSave.current = false;
-			(async () => {
-				try {
-					setSavingFailure(undefined);
-					setWaiting(true);
-					const somethingToSave = await save();
-					setWaiting(false);
-					if (somethingToSave) {
-						setSavingFailure({ status: 200 });
-					}
-				} catch (e) {
-					setSavingFailure({ status: 500 });
+			shouldSync.current = false;
+			try {
+				setSavingFailure(undefined);
+				setWaiting(true);
+				const somethingToSave = await save();
+				setWaiting(false);
+				if (somethingToSave) {
+					setSavingFailure({ status: 200 });
 				}
-			})();
+			} catch (e) {
+				setSavingFailure({ status: 500 });
+			}
 		}
-	}, [onSave, currentPage, previousPage, save]);
+	}, [shouldSync, currentPage, previousPage, save]);
 
 	const handleNextPage = useCallback(async () => {
 		if (currentPage) {
 			goNextPage?.();
-			onSave.current = true;
+			shouldSync.current = true;
 		}
-	}, [goNextPage, currentPage]);
+	}, [goNextPage, currentPage, shouldSync]);
 
 	const handleGoBack = useCallback(async () => {
 		goPreviousPage?.();
-		onSave.current = true;
-	}, [goPreviousPage]);
+		shouldSync.current = true;
+	}, [goPreviousPage, shouldSync]);
 
 	return (
 		<CloneElements<OrchestratedElement>

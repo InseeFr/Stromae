@@ -46,10 +46,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		setCurrentChange({ name });
 	}, []);
 
-	const [currentPage, setCurrentPage] = useState(() => {
-		return pageFromAPI ?? '1';
-	});
-
 	useEffect(() => {
 		setPersonalizationMap(createPersonalizationMap(personalization));
 	}, [personalization]);
@@ -96,10 +92,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
 
-	useEffect(() => {
-		const { page } = pager;
-		setCurrentPage(page);
-	}, [pager]);
+	const currentPage = pager.page;
+
 	const collectStatus = state ?? CollectStatusEnum.Init;
 	useRedirectIfAlreadyValidated(collectStatus);
 
