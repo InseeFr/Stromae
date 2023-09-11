@@ -9,7 +9,7 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'pageTag' | 'isLastPage' | 'collectStatus'
+	'currentChange' | 'getData' | 'currentPage' | 'isLastPage' | 'collectStatus'
 >;
 
 function isOnChange(data: {} = {}) {
@@ -48,7 +48,8 @@ function getCollectStatus(
  * @returns
  */
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
+	const { currentChange, getData, currentPage, isLastPage, collectStatus } =
+		args;
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
 		loadSourceDataContext
@@ -99,7 +100,7 @@ export function useSaving(args: SavingArgs) {
 		const state = {
 			state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
 			date: new Date().getTime(),
-			currentPage: pageTag ?? '1',
+			currentPage: currentPage ?? '1',
 		};
 		const status = await putSurveyUnitStateData(state);
 		if (status) {

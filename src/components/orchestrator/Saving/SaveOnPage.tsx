@@ -1,32 +1,39 @@
-import { useCallback, useState, PropsWithChildren } from 'react';
+import { useCallback, useState, PropsWithChildren, useRef } from 'react';
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
 import { useSaving } from './useSaving';
+import { usePrevious } from '../../../lib/commons/usePrevious';
+import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
-	const { children, ...rest } = props;
 	const {
 		goNextPage,
 		goPreviousPage,
 		currentChange,
+		currentPage,
 		getData,
-		pageTag,
 		isLastPage,
 		collectStatus,
-	} = rest;
+		children,
+	} = props;
 
+	const previousPage = usePrevious(currentPage);
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({
 		currentChange,
 		getData,
-		pageTag,
+		currentPage,
 		isLastPage,
 		collectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
+	const shouldSync = useRef(false);
+	// eslint-disable-next-line @shopify/binary-assignment-parens
+	const isNewPage = currentPage && previousPage && previousPage !== currentPage;
 
-	const handleSave = useCallback(
-		async (postSave?: () => void) => {
+	useAsyncEffect(async () => {
+		if (isNewPage) {
+			shouldSync.current = false;
 			try {
 				setSavingFailure(undefined);
 				setWaiting(true);
@@ -35,25 +42,27 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 				if (somethingToSave) {
 					setSavingFailure({ status: 200 });
 				}
-				postSave?.();
 			} catch (e) {
 				setSavingFailure({ status: 500 });
 			}
-		},
-		[save]
-	);
+		}
+	}, [isNewPage, save]);
 
 	const handleNextPage = useCallback(async () => {
-		handleSave(goNextPage);
-	}, [goNextPage, handleSave]);
+		if (currentPage) {
+			goNextPage?.();
+			shouldSync.current = true;
+		}
+	}, [goNextPage, currentPage, shouldSync]);
 
 	const handleGoBack = useCallback(async () => {
-		handleSave(goPreviousPage);
-	}, [goPreviousPage, handleSave]);
+		goPreviousPage?.();
+		shouldSync.current = true;
+	}, [goPreviousPage, shouldSync]);
 
 	return (
 		<CloneElements<OrchestratedElement>
-			{...rest}
+			{...props}
 			goNextPage={handleNextPage}
 			goPreviousPage={handleGoBack}
 			savingFailure={savingFailure}
