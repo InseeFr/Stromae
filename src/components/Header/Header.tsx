@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
-import { HeaderType } from './HeaderType';
+import { isValidElement, useMemo } from 'react';
+import { HeaderQuickAccessItem, HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
 import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
-import { fr } from '@codegouvfr/react-dsfr';
 import Display from '@codegouvfr/react-dsfr/Display/Display';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const iconTheme = fr.cx('fr-icon-theme-fill');
-
-function getAuthLabel(isAuthenticated: boolean): string {
-	if (isAuthenticated) {
-		return 'Me déconnecter';
-	}
-	return 'Me connecter';
-}
 
 export type HeaderProps = {
 	header?: HeaderType;
@@ -22,39 +12,24 @@ export type HeaderProps = {
 };
 
 export function Header(props: HeaderProps) {
-	const { header, handleOidcAuth, isAuthenticated = false } = props;
-
-	const [brandTop, setBrandTop] = useState(DEFAULT_HEADER.brandTop);
-	const [homeLinkProps, setHomeLinkProps] = useState(
-		DEFAULT_HEADER.homeLinkProps
-	);
-	const [serviceTitle, setServiceTitle] = useState(DEFAULT_HEADER.serviceTitle);
-	const [operatorLogo, setOperatorLogo] = useState(DEFAULT_HEADER.operatorLogo);
-	const [quickAccessItems, setQuickAccessItems] = useState<Array<any>>([]);
-
-	useEffect(() => {
-		if (!header) {
-			return;
-		}
-		setBrandTop(header.brandTop || DEFAULT_HEADER.brandTop);
-		setHomeLinkProps(header.homeLinkProps || DEFAULT_HEADER.homeLinkProps);
-		setServiceTitle(header.serviceTitle || DEFAULT_HEADER.serviceTitle);
-		setOperatorLogo(header.operatorLogo || DEFAULT_HEADER.operatorLogo);
-	}, [header]);
-
-	useEffect(() => {
-		const others = header?.quickAccessItems || [];
-		setQuickAccessItems([
-			...others,
+	const { header, handleOidcAuth, isAuthenticated } = props;
+	const brandTop = header?.brandTop ?? DEFAULT_HEADER.brandTop;
+	const homeLinkProps = header?.homeLinkProps ?? DEFAULT_HEADER.homeLinkProps;
+	const serviceTitle = header?.serviceTitle ?? DEFAULT_HEADER.serviceTitle;
+	const operatorLogo = header?.operatorLogo ?? DEFAULT_HEADER.operatorLogo;
+	const quickAccessItems = useMemo(
+		() => [
+			...(header?.quickAccessItems ?? []),
 			{
 				iconId: 'fr-icon-lock-line',
 				buttonProps: {
 					onClick: handleOidcAuth,
 				},
-				text: getAuthLabel(isAuthenticated),
-			},
-		]);
-	}, [isAuthenticated, handleOidcAuth, header]);
+				text: isAuthenticated ? 'Me déconnecter' : 'Me connecter',
+			} satisfies HeaderQuickAccessItem,
+		],
+		[isAuthenticated, handleOidcAuth, header]
+	);
 
 	return (
 		<>
@@ -113,35 +88,9 @@ export function Header(props: HeaderProps) {
 												Paramètres d'affichage
 											</button>
 										</li>
-										{quickAccessItems &&
-											quickAccessItems.map((quickAccessItem, index) => {
-												return (
-													<li key={index}>
-														{quickAccessItem.buttonProps ? (
-															<Button
-																iconId={quickAccessItem.iconId}
-																onClick={quickAccessItem.buttonProps.onClick}
-															>
-																{quickAccessItem.text}
-															</Button>
-														) : (
-															<Button
-																linkProps={{
-																	target: quickAccessItem.linkProps?.target,
-																	href: quickAccessItem.linkProps?.href,
-																	title:
-																		quickAccessItem.linkProps?.target ===
-																		'_blank'
-																			? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
-																			: quickAccessItem.text,
-																}}
-															>
-																{quickAccessItem.text}
-															</Button>
-														)}
-													</li>
-												);
-											})}
+										{quickAccessItems.map((item, index) => (
+											<QuickAccessLi key={index} item={item} />
+										))}
 									</ul>
 								</div>
 							</div>
@@ -172,34 +121,9 @@ export function Header(props: HeaderProps) {
 										Paramètres d'affichage
 									</button>
 								</li>
-								{quickAccessItems &&
-									quickAccessItems.map((quickAccessItem, index) => {
-										return (
-											<li key={index}>
-												{quickAccessItem.buttonProps ? (
-													<Button
-														iconId={quickAccessItem.iconId}
-														onClick={quickAccessItem.buttonProps.onClick}
-													>
-														{quickAccessItem.text}
-													</Button>
-												) : (
-													<Button
-														linkProps={{
-															target: quickAccessItem.linkProps?.target,
-															href: quickAccessItem.linkProps?.href,
-															title:
-																quickAccessItem.linkProps?.target === '_blank'
-																	? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
-																	: quickAccessItem.text,
-														}}
-													>
-														{quickAccessItem.text}
-													</Button>
-												)}
-											</li>
-										);
-									})}
+								{quickAccessItems.map((item, index) => (
+									<QuickAccessLi key={index} item={item} />
+								))}
 							</ul>
 						</div>
 					</div>
@@ -208,4 +132,58 @@ export function Header(props: HeaderProps) {
 			<Display />
 		</>
 	);
+}
+
+type QuickAccessLiProps = {
+	item: HeaderQuickAccessItem;
+};
+
+function QuickAccessLi({ item }: QuickAccessLiProps) {
+	if (!item) {
+		return null;
+	}
+
+	if (typeof item === 'object' && 'buttonProps' in item && item.buttonProps) {
+		return (
+			<li>
+				<Button iconId={item.iconId} onClick={item.buttonProps.onClick}>
+					{item.text}
+				</Button>
+			</li>
+		);
+	}
+
+	if (typeof item === 'object' && 'linkProps' in item) {
+		return (
+			<li>
+				<Button
+					linkProps={{
+						target: item.linkProps.target,
+						href: item.linkProps.href,
+						title:
+							item.linkProps.target === '_blank'
+								? `${item.text} - ouvre une nouvelle fenêtre`
+								: `${item.text}`,
+					}}
+				>
+					{item.text}
+				</Button>
+			</li>
+		);
+	}
+
+	// Item shape is unexpected at this point, try to find the best fallback to avoid errors
+	if (isValidElement(item)) {
+		return <li>{item}</li>;
+	}
+
+	if (typeof item === 'object' && 'text' in item) {
+		return (
+			<li>
+				<Button>{`${item.text}`}</Button>
+			</li>
+		);
+	}
+
+	return null;
 }
