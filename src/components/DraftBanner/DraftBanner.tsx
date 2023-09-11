@@ -59,8 +59,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 		? personalization?.bannerLabelDependencies
 		: [];
 	const isSaved = savingFailure ? savingFailure.status === 200 : false;
-
-	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const timer = useRef<ReturnType<typeof setTimeout>>();
 	const duration = 2_000;
 
 	const personalizationLabel =
@@ -104,7 +103,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 
 	useEffect(() => {
 		// clear timer when component is unmounted
-		return () => clearTimeout(timer.current as NodeJS.Timeout);
+		return () => clearTimeout(timer.current);
 	}, []);
 
 	return (
