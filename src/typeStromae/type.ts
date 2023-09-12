@@ -79,8 +79,6 @@ export type OrchestratedElement = {
 	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
-	// last page reach by user
-	currentPage?: string;
 	// Page given by API.getSuData at launch
 	pageFromAPI?: string;
 	// last status of survey, give by the API ('INIT' | 'COLLECTED' | 'VALIDATED')

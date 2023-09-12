@@ -10,26 +10,26 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		goNextPage,
 		goPreviousPage,
 		currentChange,
-		currentPage,
 		getData,
 		isLastPage,
 		collectStatus,
+		pageTag,
 		children,
 	} = props;
 
-	const previousPage = usePrevious(currentPage);
+	const previousPageTag = usePrevious(pageTag);
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({
 		currentChange,
 		getData,
-		currentPage,
+		pageTag,
 		isLastPage,
 		collectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
 	const shouldSync = useRef(false);
 	// eslint-disable-next-line @shopify/binary-assignment-parens
-	const isNewPage = currentPage && previousPage && previousPage !== currentPage;
+	const isNewPage = pageTag && previousPageTag && previousPageTag !== pageTag;
 	useAsyncEffect(async () => {
 		if (isNewPage) {
 			shouldSync.current = false;
@@ -48,11 +48,11 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	}, [isNewPage, save]);
 
 	const handleNextPage = useCallback(async () => {
-		if (currentPage) {
+		if (pageTag) {
 			goNextPage?.();
 			shouldSync.current = true;
 		}
-	}, [goNextPage, currentPage, shouldSync]);
+	}, [goNextPage, pageTag, shouldSync]);
 
 	const handleGoBack = useCallback(async () => {
 		goPreviousPage?.();
