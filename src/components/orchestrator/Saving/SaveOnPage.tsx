@@ -30,7 +30,6 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const shouldSync = useRef(false);
 	// eslint-disable-next-line @shopify/binary-assignment-parens
 	const isNewPage = currentPage && previousPage && previousPage !== currentPage;
-
 	useAsyncEffect(async () => {
 		if (isNewPage) {
 			shouldSync.current = false;
