@@ -26,7 +26,13 @@
 		},
 		{
 			"name": "bannerLabelDependencies",
-			"value": ["NUMVOI_LOC"]
+			"value": [
+				"NUMVOI_LOC",
+				"BISTER_LOC",
+				"TYPEVOI_LOC",
+				"NOMVOI_LOC",
+				"COM_LOC"
+			]
 		}
 	]
 }

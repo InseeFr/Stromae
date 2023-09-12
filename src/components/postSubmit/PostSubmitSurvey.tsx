@@ -7,7 +7,8 @@ import { fr as localeFr } from 'date-fns/esm/locale';
 import { useRemote } from '../orchestrator/useRemote';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Skeleton } from '@mui/material';
-import { ReactComponent as Confirmation } from '../../assets/confirmation.svg';
+import Confirmation from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/success.svg';
+
 import AdditionalInformation from './AdditionalInformation';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { uri404 } from '../../lib/domainUri';
@@ -69,7 +70,7 @@ export function PostSubmitSurvey() {
 						L'Insee vous remercie pour votre collaboration à cette enquête.
 					</h1>
 					<p className={fr.cx('fr-text--lead')}>
-						Vos réponses ont été envoyées le {submissionDate}.
+						Vos réponses ont été envoyées le {submissionDate}.&nbsp;
 						{DescriptionAdditional}
 					</p>
 					<Button onClick={handleDepositProof}>
@@ -77,7 +78,26 @@ export function PostSubmitSurvey() {
 					</Button>
 				</div>
 				<div className="fr-col-lg-3 fr-col-xl-3 fr-col-offset-lg-1 fr-col-12 fr-col--middle fr-btns-group--center">
-					<Confirmation />
+					<svg
+						className="fr-artwork"
+						aria-hidden="true"
+						viewBox="0 0 80 80"
+						width="200px"
+						height="200px"
+					>
+						<use
+							className="fr-artwork-decorative"
+							xlinkHref={`${Confirmation}#artwork-decorative`}
+						></use>
+						<use
+							className="fr-artwork-minor"
+							xlinkHref={`${Confirmation}#artwork-minor`}
+						></use>
+						<use
+							className="fr-artwork-major"
+							xlinkHref={`${Confirmation}#artwork-major`}
+						></use>
+					</svg>
 				</div>
 				<AdditionalInformation submit={submit} />
 			</div>

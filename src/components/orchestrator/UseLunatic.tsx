@@ -11,7 +11,7 @@ import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
-function createPersonalizationMap(
+export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
 ) {
 	return personalization.reduce((acc, { name, value }) => {
@@ -36,7 +36,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 
 	const [personalizationMap, setPersonalizationMap] = useState<
-		Record<string, string>
+		Record<string, string | number | boolean | Array<string>>
 	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
@@ -83,6 +83,14 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 		pager,
 	} = useLunatic(source, data, args);
+
+	useEffect(() => {
+		(
+			document
+				.getElementById('stromae-form')
+				?.getElementsByTagName('legend')[0] as HTMLElement
+		)?.focus();
+	}, [pager]);
 
 	const defaultTitle = metadata?.Header?.serviceTitle;
 	useQuestionnaireTitle({

@@ -6,8 +6,13 @@ import {
 } from '@axa-fr/react-oidc';
 
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
+import { Authenticating } from '../Oidc/Authenticating';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
+import { CallbackSuccess } from '../Oidc/CallbackSuccess';
+import { AuthenticatingError } from '../Oidc/AuthenticatingError';
+import { ServiceWorkerNotSupported } from '../Oidc/ServiceWorkerNotSupported';
+import { SessionLost } from '../Oidc/SessionLost';
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -42,7 +47,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 	if (configuration !== undefined) {
 		return (
-			<OidcProvider configuration={configuration}>{children}</OidcProvider>
+			<OidcProvider
+				configuration={configuration}
+				loadingComponent={LayoutSkeleton}
+				authenticatingComponent={Authenticating}
+				callbackSuccessComponent={CallbackSuccess}
+				sessionLostComponent={SessionLost}
+				authenticatingErrorComponent={AuthenticatingError}
+				serviceWorkerNotSupportedComponent={ServiceWorkerNotSupported}
+			>
+				{children}
+			</OidcProvider>
 		);
 	}
 	return <Pending />;
