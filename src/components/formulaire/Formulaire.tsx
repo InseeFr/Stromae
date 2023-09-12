@@ -1,7 +1,7 @@
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
-import { Content } from '../skeleton/Content';
+import { Form } from '../skeleton/Form';
 
 type Props = Pick<
 	OrchestratedElement,
@@ -20,7 +20,7 @@ export function Formulaire(props: Props) {
 	const { getComponents, currentErrors, disabled = false, waiting } = props;
 	const { classes, cx } = useStyles();
 	if (waiting) {
-		return <Content />;
+		return <Form />;
 	}
 	return (
 		<form id="stromae-form" className={cx(classes.root)}>

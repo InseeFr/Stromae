@@ -43,6 +43,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 				}
 			} catch (e) {
 				setSavingFailure({ status: 500 });
+				setWaiting(false);
 			}
 		}
 	}, [isNewPage, save]);
