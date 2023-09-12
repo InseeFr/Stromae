@@ -5,7 +5,6 @@ import type {
 	SurveyUnitData,
 } from '../../typeStromae/type';
 import { LunaticSource } from '../../typeLunatic/type-source';
-
 import { getMetadataSurvey } from './getMetadataSurvey';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnit';

@@ -115,5 +115,54 @@
 	},
 	"Portal": {
 		"if you need": "use it !"
-	}
+	},
+	"Toto": [
+		{ "type": "title", "value": "Plan-du-site", "id": "plan-du-site-title" },
+		{
+			"type": "link",
+			"content": "chez Google",
+			"href": "http://google.fr",
+			"target": "blank",
+			"id": "un lien"
+		},
+		{
+			"type": "list",
+			"items": [
+				{
+					"type": "link",
+					"content": "chez Google",
+					"href": "http://google.fr",
+					"target": "blank",
+					"id": "un lien"
+				},
+				{
+					"type": "list",
+					"title": "toto",
+					"items": [
+						{
+							"type": "link",
+							"content": "Nested item",
+							"href": "http://google.fr",
+							"target": "blank",
+							"id": "un lien"
+						}
+					]
+				},
+				{
+					"type": "link",
+					"content": "chez Google",
+					"href": "http://google.fr",
+					"target": "blank",
+					"id": "un lien"
+				},
+				{
+					"type": "link",
+					"content": "chez Google",
+					"href": "http://google.fr",
+					"target": "blank",
+					"id": "un lien"
+				}
+			]
+		}
+	]
 }
