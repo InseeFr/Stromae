@@ -7,7 +7,7 @@
 const trustedDomains = {
 	default: [
 		'https://auth.insee.test',
-		'https://api-questionnaire-recensement.developpement.insee.fr',
+		'https://api-questionnaire-recensement.developpement6.insee.fr',
 	],
 	config_classic: [],
 	config_without_silent_login: [],
