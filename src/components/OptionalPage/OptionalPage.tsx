@@ -49,8 +49,8 @@ export function OptionalPage({ name }: { name?: string }) {
 
 	useEffect(() => {
 		if (name && metadata) {
-			if (name in metadata) {
-				setContent(metadata[name]);
+			if (name in metadata?.optionalPages) {
+				setContent(metadata.optionalPages[name]);
 			} else {
 				navigate(uri404());
 			}

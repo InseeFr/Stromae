@@ -158,4 +158,4 @@ export type MetadataSurvey = {
 	Header: HeaderType;
 	Footer: FooterType;
 	Submit: SubmitType;
-} & Record<string, OptionalPage>;
+} & { optionalPages: Record<string, OptionalPage> };

@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import DOMPurify from 'dompurify';
 import { SectionElement } from '../../../typeStromae/type';
 
 function getContent(paragraphs: Array<string> | string, id?: string) {
@@ -7,7 +8,7 @@ function getContent(paragraphs: Array<string> | string, id?: string) {
 			<p
 				className="fr-mt-4v fr-mb-0"
 				key={`paragraph-${id}`}
-				dangerouslySetInnerHTML={{ __html: paragraphs }}
+				dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(paragraphs) }}
 			></p>
 		);
 	}
@@ -17,7 +18,7 @@ function getContent(paragraphs: Array<string> | string, id?: string) {
 				<p
 					className="fr-mt-4v fr-mb-0"
 					key={`paragraph-${id}-${index}`}
-					dangerouslySetInnerHTML={{ __html: p }}
+					dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p) }}
 				></p>
 			);
 		});
