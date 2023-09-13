@@ -11,7 +11,7 @@ import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
-function createPersonalizationMap(
+export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
 ) {
 	return personalization.reduce((acc, { name, value }) => {
@@ -36,10 +36,10 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 
 	const [personalizationMap, setPersonalizationMap] = useState<
-		Record<string, string>
+		Record<string, string | number | boolean | Array<string>>
 	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
-	const { currentPage = '1', state } = stateData ?? {};
+	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
@@ -84,6 +84,14 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pager,
 	} = useLunatic(source, data, args);
 
+	useEffect(() => {
+		(
+			document
+				.getElementById('stromae-form')
+				?.getElementsByTagName('legend')[0] as HTMLElement
+		)?.focus();
+	}, [pager]);
+
 	const defaultTitle = metadata?.Header?.serviceTitle;
 	useQuestionnaireTitle({
 		source,
@@ -91,6 +99,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		defaultTitle:
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
+
 	const collectStatus = state ?? CollectStatusEnum.Init;
 	useRedirectIfAlreadyValidated(collectStatus);
 
@@ -108,7 +117,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				currentChange={currentChange}
 				pageTag={pageTag}
 				disabled={disabled}
-				currentPage={currentPage}
+				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
 				collectStatus={collectStatus}
 			>

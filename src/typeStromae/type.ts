@@ -17,8 +17,8 @@ export type StateData = {
 };
 
 export type PersonalizationElement = {
-	name: string | 'bannerLabel';
-	value: string | number | boolean;
+	name: string | 'bannerLabel' | 'bannerLabelDependencies';
+	value: string | number | boolean | Array<string>;
 };
 
 export type SurveyUnitData = {
@@ -68,7 +68,7 @@ export type OrchestratedElement = {
 		currentErrors?: Record<string, Array<LunaticError>>;
 	};
 	readonly pageTag?: string;
-	personalization?: Record<string, string | number | boolean>;
+	personalization?: Record<string, string | number | boolean | Array<string>>;
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
@@ -79,8 +79,8 @@ export type OrchestratedElement = {
 	waiting?: boolean;
 	// disabled all components
 	disabled?: boolean;
-	// last page reach by user
-	currentPage?: string;
+	// Page given by API.getSuData at launch
+	pageFromAPI?: string;
 	// last status of survey, give by the API ('INIT' | 'COLLECTED' | 'VALIDATED')
 	collectStatus?: CollectStatusEnum;
 	only?: string[];

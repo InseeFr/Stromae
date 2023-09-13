@@ -1,9 +1,7 @@
 import { PropsWithChildren, useState, useCallback } from 'react';
-
 import { CloneElements } from '../CloneElements';
 import { isComponentsContainSequence } from '../../../lib/commons/isComponentscontainSequence';
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
-
 import { useSaving } from './useSaving';
 
 export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
