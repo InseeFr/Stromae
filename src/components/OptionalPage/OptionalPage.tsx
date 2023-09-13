@@ -11,6 +11,7 @@ import {
 import { Link } from './elements/Link';
 import { Title } from './elements/Title';
 import { List } from './elements/List';
+import { Section } from './elements/Section';
 
 export function createPageElement(element: AcceptedElements, altId: string) {
 	const { type, id } = element;
@@ -22,6 +23,8 @@ export function createPageElement(element: AcceptedElements, altId: string) {
 			return <Title key={id ?? altId} {...element} />;
 		case OptionalPageElementsEnum.List:
 			return <List key={id ?? altId} {...element} />;
+		case OptionalPageElementsEnum.Section:
+			return <Section key={id ?? altId} {...element} />;
 		default:
 			return <></>;
 	}

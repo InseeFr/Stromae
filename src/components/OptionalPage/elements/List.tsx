@@ -5,10 +5,10 @@ export function List(props: ListElement) {
 	const { id, className, items } = props;
 	const li = items.map((sub, index) => {
 		const subId = `sub-${id}-${index}`;
-		const { title } = sub;
+		const { element } = sub;
 		return (
 			<li key={subId}>
-				{title}
+				{element ? createPageElement(element, `item-${subId}`) : null}
 				{createPageElement(sub, subId)}
 			</li>
 		);
