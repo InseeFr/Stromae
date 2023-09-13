@@ -117,14 +117,7 @@
 		"if you need": "use it !"
 	},
 	"Plan-du-site": [
-		{ "type": "title", "value": "Plan-du-site", "id": "plan-du-site-title" },
-		{
-			"type": "link",
-			"content": "chez Google",
-			"href": "http://google.fr",
-			"target": "blank",
-			"id": "un lien"
-		},
+		{ "type": "title", "title": "Plan du site", "id": "plan-du-site-title" },
 		{
 			"type": "list",
 			"items": [
@@ -169,11 +162,32 @@
 					"id": "un lien"
 				}
 			]
+		}
+	],
+
+	"Mentions-legales": [
+		{ "type": "title", "title": "Mentions Légales", "id": "mention-legales" },
+		{
+			"type": "section",
+			"title": "Directeur de la publication",
+			"paragraphs": [
+				"Michael Nathan, directeur du Service d’information du Gouvernement ",
+				"<a href=\"https://www.gouvernement.fr/service-d-information-du-gouvernement-sig\" target=\"_blank\" rel=\"noopener\" title=\"Service d'information du gouvernement - nouvelle fenêtre\">Service d’Information du Gouvernement</a>"
+			]
 		},
 		{
 			"type": "section",
-			"title": "section",
-			"content": "Lorem ipsum <b>dolor</b> sit amet, <a href=\"/\">Par ici!</a> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			"title": "Gestionnaire des statistiques",
+			"paragraphs": "Eulerian Technologies"
+		},
+		{
+			"type": "section",
+			"title": "Réutilisation des contenus et liens",
+			"paragraphs": [
+				"Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href=\"https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf\">licence ouverte Etalab 2.0</a>.",
+				"Vous êtes notamment libres de les reproduire, copier, modifier, extraire, transformer, communiquer diffuser, redistribuer, publier, transmettre et exploiter sous réserve de mentionner leur source, leur date de dernière mise à jour et ne pas induire en erreur des tiers quant aux informations qui y figurent.",
+				"Tout site public ou privé est autorisé à établir, sans autorisation préalable, un lien (y compris profond) vers les informations diffusées sur ce site."
+			]
 		}
 	]
 }

@@ -125,12 +125,12 @@ export type OptionalPageElement = {
 export type SectionElement = OptionalPageElement & {
 	type: OptionalPageElementsEnum.Section;
 	title: string;
-	content: string;
+	paragraphs: Array<string> | string;
 };
 
 export type TitleElement = OptionalPageElement & {
 	type: OptionalPageElementsEnum.Title;
-	value: string;
+	title: string;
 };
 
 export type LinkElement = OptionalPageElement & {

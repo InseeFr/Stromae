@@ -1,5 +1,10 @@
 import { TitleElement } from '../../../typeStromae/type';
 
 export function Title(props: TitleElement) {
-	return <h2>Toto</h2>;
+	const { title, id, className } = props;
+	return (
+		<h2 id={id} className={className}>
+			{title}
+		</h2>
+	);
 }
