@@ -63,5 +63,7 @@ export function OptionalPage({ name }: { name?: string }) {
 		setMetadata(await getMetadata());
 	}, [getMetadata]);
 
-	return <div className="fr-col-lg-6 fr-col-md-9 fr-col-12">{body}</div>;
+	return (
+		<div className="fr-col-lg-6 fr-col-md-9 fr-col-12 fr-m-10v">{body}</div>
+	);
 }
