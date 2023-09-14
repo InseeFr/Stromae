@@ -2,25 +2,26 @@ import classnames from 'classnames';
 import DOMPurify from 'dompurify';
 import { SectionElement } from '../../../typeStromae/type';
 
+function Paragraph({ content, id }: { id?: string; content: string }) {
+	return (
+		<p
+			className="fr-mt-4v fr-mb-0"
+			key={`paragraph-${id}`}
+			dangerouslySetInnerHTML={{
+				__html: DOMPurify.sanitize(content, { ALLOWED_TAGS: ['b', 'i', 'a'] }),
+			}}
+		></p>
+	);
+}
+
 function getContent(paragraphs: Array<string> | string, id?: string) {
 	if (typeof paragraphs === 'string') {
-		return (
-			<p
-				className="fr-mt-4v fr-mb-0"
-				key={`paragraph-${id}`}
-				dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(paragraphs) }}
-			></p>
-		);
+		return <Paragraph id={id} content={paragraphs} />;
 	}
 	if (Array.isArray(paragraphs)) {
 		return paragraphs.map((p, id, index) => {
-			return (
-				<p
-					className="fr-mt-4v fr-mb-0"
-					key={`paragraph-${id}-${index}`}
-					dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p) }}
-				></p>
-			);
+			const idParagraph = `paragraph-${id}-${index}`;
+			return <Paragraph id={idParagraph} content={p} key={idParagraph} />;
 		});
 	}
 	return null;

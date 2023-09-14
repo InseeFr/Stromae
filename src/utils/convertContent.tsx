@@ -17,7 +17,9 @@ function ConvertContent(props: ConvertContentProps) {
 		return (
 			<span
 				dangerouslySetInnerHTML={{
-					__html: DOMPurify.sanitize(props.content?.value),
+					__html: DOMPurify.sanitize(props.content?.value, {
+						ALLOWED_TAGS: ['b', 'i', 'a', 'p', 'ul', 'li', 'h1', 'h2', 'h3'],
+					}),
 				}}
 			/>
 		);
