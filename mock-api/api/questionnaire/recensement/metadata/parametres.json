@@ -205,7 +205,7 @@
 			{
 				"type": "section",
 				"title": "L'accessibilité on est à fond pour !",
-				"paragraphs": "Au RP on pense que c'est super important l'accessibilité. Par contre c'est un peu pénible à impémenter donc on fait quand on le temps ou <b>envie</b> (ce qui revient un peu au même)."
+				"paragraphs": "Au RP on <a href=\"https://google.com\" target=\"_blank\"> pense </a>que c'est <button onclick=\"alert('I'll be king of the pirates!')\">presse me please!</button> super important l'accessibilité. Par contre c'est un peu pénible à impémenter donc on fait quand on le temps ou <b>envie</b> (ce qui revient un peu au même)."
 			}
 		]
 	}

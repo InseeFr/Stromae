@@ -8,7 +8,10 @@ function Paragraph({ content, id }: { id?: string; content: string }) {
 			className="fr-mt-4v fr-mb-0"
 			key={`paragraph-${id}`}
 			dangerouslySetInnerHTML={{
-				__html: DOMPurify.sanitize(content, { ALLOWED_TAGS: ['b', 'i', 'a'] }),
+				__html: DOMPurify.sanitize(content, {
+					ALLOWED_TAGS: ['b', 'i', 'a'],
+					ALLOWED_ATTR: ['target', 'href', 'title'],
+				}),
 			}}
 		></p>
 	);
