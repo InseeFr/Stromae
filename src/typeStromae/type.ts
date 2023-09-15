@@ -105,8 +105,57 @@ export type SubmitType = {
 	Results: LinkType;
 };
 
-export interface MetadataSurvey {
+/*
+ * MetadataSurvey avec ses types compatibles pour composer des pages optionnelles.
+ */
+
+export enum OptionalPageElementsEnum {
+	Link = 'link',
+	Title = 'title',
+	Section = 'section',
+	List = 'list',
+}
+
+export type OptionalPageElement = {
+	type: OptionalPageElementsEnum;
+	id?: string;
+	className?: string;
+};
+
+export type SectionElement = OptionalPageElement & {
+	type: OptionalPageElementsEnum.Section;
+	title: string;
+	paragraphs: Array<string> | string;
+};
+
+export type TitleElement = OptionalPageElement & {
+	type: OptionalPageElementsEnum.Title;
+	title: string;
+};
+
+export type LinkElement = OptionalPageElement & {
+	type: OptionalPageElementsEnum.Link;
+	content: string;
+	href: string;
+	title: string;
+	target?: string;
+};
+
+export type ListElement = OptionalPageElement & {
+	type: OptionalPageElementsEnum.List;
+	items: Array<AcceptedElements & { element?: AcceptedElements }>;
+};
+
+export type AcceptedElements =
+	| TitleElement
+	| LinkElement
+	| ListElement
+	| SectionElement;
+
+export type OptionalPage = Array<AcceptedElements>;
+
+export type MetadataSurvey = {
 	Header: HeaderType;
 	Footer: FooterType;
 	Submit: SubmitType;
-}
+} & { optionalPages: Record<string, OptionalPage> };

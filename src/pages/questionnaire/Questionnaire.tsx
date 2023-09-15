@@ -27,8 +27,8 @@ const COLLECTED = 'COLLECTED';
 
 export function Questionnaire(props: QuestionnaireProps) {
 	const { survey, unit } = useParams();
-
 	useDocumentTitle('Questionnaire');
+
 	return (
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
