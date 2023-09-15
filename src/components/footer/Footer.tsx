@@ -8,6 +8,7 @@ const DEFAULT_FOOTER: FooterType = {
 	contentDescription: undefined,
 	websiteMapLinkProps: undefined,
 	accessibilityLinkProps: undefined,
+	otherLinksProps: [],
 	termsLinkProps: undefined,
 	homeLinkProps: {
 		href: '/',
@@ -27,6 +28,7 @@ export function Footer(props: FooterProps) {
 		accessibilityLinkProps,
 		homeLinkProps,
 		contentDescription,
+		otherLinksProps,
 		termsLinkProps,
 		websiteMapLinkProps,
 		// bottomItems,
@@ -141,6 +143,17 @@ export function Footer(props: FooterProps) {
 								&nbsp;
 							</li>
 						)}
+						{otherLinksProps?.map((otherLinkProps, key) => (
+							<li className="fr-footer__bottom-item" key={key}>
+								<a
+									className="fr-footer__bottom-link"
+									href={otherLinkProps?.href}
+								>
+									{otherLinkProps?.title}
+								</a>
+								&nbsp;
+							</li>
+						))}
 					</ul>
 					<div className="fr-footer__bottom-copy">
 						<p>

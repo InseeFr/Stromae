@@ -9,7 +9,7 @@ function Paragraph({ content, id }: { id?: string; content: string }) {
 			key={`paragraph-${id}`}
 			dangerouslySetInnerHTML={{
 				__html: DOMPurify.sanitize(content, {
-					ALLOWED_TAGS: ['b', 'i', 'a'],
+					ALLOWED_TAGS: ['b', 'i', 'a', 'li'],
 					ALLOWED_ATTR: ['target', 'href', 'title'],
 				}),
 			}}
@@ -34,8 +34,8 @@ export function Section(props: SectionElement) {
 	const { title, paragraphs = [], id, className } = props;
 
 	return (
-		<section id={id} className={classnames(className, 'fr-py-6v')}>
-			<h3 className="fr-h5">{title}</h3>
+		<section id={id} className={title && classnames(className, 'fr-py-6v')}>
+			{title && <h3>{title}</h3>}
 			{getContent(paragraphs, id)}
 		</section>
 	);
