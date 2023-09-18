@@ -52,6 +52,11 @@
 			"react-app/jest"
 		]
 	},
+	"jest": {
+		"transformIgnorePatterns": [
+			"node_modules/(?!@codegouvfr/react-dsfr)"
+		]
+	},
 	"browserslist": {
 		"production": [
 			">0.2%",

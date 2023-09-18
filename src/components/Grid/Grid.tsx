@@ -3,7 +3,6 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { CloneElements } from '../orchestrator/CloneElements';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { fr } from '@codegouvfr/react-dsfr';
-import { cx } from '@codegouvfr/react-dsfr/fr/cx';
 
 const useStyles = makeStyles()({
 	container: {

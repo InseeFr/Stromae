@@ -62,9 +62,7 @@ export function WelcomeContainer() {
 						)}
 					>
 						<div className={fr.cx('fr-col-md-6', 'fr-col-12')}>
-							<h1 className={fr.cx('fr-h2')}>
-								Bienvenue sur l'{welcome.Enq_LibelleEnquete}
-							</h1>
+							<h2>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h2>
 							<p className={fr.cx('fr-text--lead')}>
 								<ConvertContent content={welcome.Enq_ObjectifsCourts} />
 							</p>
@@ -102,9 +100,9 @@ export function WelcomeContainer() {
 				}}
 			>
 				<div className={fr.cx('fr-col-xl-6', 'fr-col-lg-10', 'fr-col-12')}>
-					<h2 className={fr.cx('fr-h4')}>
+					<h3 className={fr.cx('fr-h4')}>
 						En savoir plus sur l'{welcome.Enq_LibelleEnquete}
-					</h2>
+					</h3>
 					<WelcomeQuestions welcome={metadata.Welcome} />
 				</div>
 			</div>
