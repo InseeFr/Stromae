@@ -1,3 +1,5 @@
+import { fr } from '@codegouvfr/react-dsfr/fr';
+
 type Props = {
 	label?: string | number | boolean;
 };
@@ -14,7 +16,7 @@ export function BannerAddress(props: Props) {
 		return null;
 	}
 	return (
-		<span className="fr-text--bold fr-mr-2w">
+		<span className={fr.cx('fr-text--bold', 'fr-mr-2w')}>
 			{toTitleCase(label.toString())}
 		</span>
 	);

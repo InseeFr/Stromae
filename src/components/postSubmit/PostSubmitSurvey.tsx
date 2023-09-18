@@ -63,44 +63,72 @@ export function PostSubmitSurvey() {
 	}
 
 	return (
-		<div className="fr-container">
-			<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w">
-				<div className="fr-col-12 fr-col-offset-lg-1 fr-col-lg-7 fr-col-xl-7">
-					<h1>
-						L'Insee vous remercie pour votre collaboration à cette enquête.
-					</h1>
-					<p className={fr.cx('fr-text--lead')}>
-						Vos réponses ont été envoyées le {submissionDate}.&nbsp;
-						{DescriptionAdditional}
-					</p>
-					<Button onClick={handleDepositProof}>
-						Télécharger l'accusé de réception
-					</Button>
-				</div>
-				<div className="fr-col-lg-3 fr-col-xl-3 fr-col-offset-lg-1 fr-col-12 fr-col--middle fr-btns-group--center">
-					<svg
-						className="fr-artwork"
-						aria-hidden="true"
-						viewBox="0 0 80 80"
-						width="200px"
-						height="200px"
+		<>
+			<div className={fr.cx('fr-col-12')}>
+				<div className={fr.cx('fr-container')}>
+					<div
+						className={fr.cx(
+							'fr-grid-row',
+							'fr-grid-row--center',
+							'fr-grid-row--middle',
+							'fr-my-6w',
+							'fr-my-md-12w'
+						)}
 					>
-						<use
-							className="fr-artwork-decorative"
-							xlinkHref={`${Confirmation}#artwork-decorative`}
-						></use>
-						<use
-							className="fr-artwork-minor"
-							xlinkHref={`${Confirmation}#artwork-minor`}
-						></use>
-						<use
-							className="fr-artwork-major"
-							xlinkHref={`${Confirmation}#artwork-major`}
-						></use>
-					</svg>
+						<div
+							className={fr.cx(
+								'fr-col-12',
+								'fr-col-offset-lg-1',
+								'fr-col-lg-7',
+								'fr-col-xl-7'
+							)}
+						>
+							<h2>
+								L'Insee vous remercie pour votre collaboration à cette enquête.
+							</h2>
+							<p className={fr.cx('fr-text--lead')}>
+								Vos réponses ont été envoyées le {submissionDate}.&nbsp;
+								{DescriptionAdditional}
+							</p>
+							<Button onClick={handleDepositProof}>
+								Télécharger l'accusé de réception
+							</Button>
+						</div>
+						<div
+							className={fr.cx(
+								'fr-col-lg-3',
+								'fr-col-xl-3',
+								'fr-col-offset-lg-1',
+								'fr-col-12',
+								'fr-col--middle',
+								'fr-btns-group--center'
+							)}
+						>
+							<svg
+								className={fr.cx('fr-artwork')}
+								aria-hidden="true"
+								viewBox="0 0 80 80"
+								width="200px"
+								height="200px"
+							>
+								<use
+									className={fr.cx('fr-artwork-decorative')}
+									xlinkHref={`${Confirmation}#artwork-decorative`}
+								></use>
+								<use
+									className={fr.cx('fr-artwork-minor')}
+									xlinkHref={`${Confirmation}#artwork-minor`}
+								></use>
+								<use
+									className={fr.cx('fr-artwork-major')}
+									xlinkHref={`${Confirmation}#artwork-major`}
+								></use>
+							</svg>
+						</div>
+					</div>
 				</div>
-				<AdditionalInformation submit={submit} />
 			</div>
-		</div>
+			<AdditionalInformation submit={submit} />
+		</>
 	);
 }

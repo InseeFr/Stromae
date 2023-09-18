@@ -13,6 +13,7 @@ import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import ConvertContent from '../../utils/convertContent';
 import { useColors } from '@codegouvfr/react-dsfr/useColors';
 import { themeStringToVariable } from '../../utils/themeStringToVariable';
+import { fr } from '@codegouvfr/react-dsfr';
 
 export function WelcomeContainer() {
 	const theme = useColors();
@@ -42,14 +43,29 @@ export function WelcomeContainer() {
 	}
 	return (
 		<div>
-			<div className="fr-container fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-2w fr-my-md-8w">
-				<div className="fr-col-12">
-					<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle">
-						<div className="fr-col-md-6 fr-col-12">
-							<h1 className="fr-h2">
+			<div
+				className={fr.cx(
+					'fr-container',
+					'fr-grid-row',
+					'fr-grid-row--center',
+					'fr-grid-row--middle',
+					'fr-my-2w',
+					'fr-my-md-8w'
+				)}
+			>
+				<div className={fr.cx('fr-col-12')}>
+					<div
+						className={fr.cx(
+							'fr-grid-row',
+							'fr-grid-row--center',
+							'fr-grid-row--middle'
+						)}
+					>
+						<div className={fr.cx('fr-col-md-6', 'fr-col-12')}>
+							<h1 className={fr.cx('fr-h2')}>
 								Bienvenue sur l'{welcome.Enq_LibelleEnquete}
 							</h1>
-							<p className="fr-text--lead">
+							<p className={fr.cx('fr-text--lead')}>
 								<ConvertContent content={welcome.Enq_ObjectifsCourts} />
 							</p>
 							<RespondantsList respondants={welcome.whoAnswers} />
@@ -58,9 +74,9 @@ export function WelcomeContainer() {
 							</Button>
 						</div>
 						{welcome.Enq_Image && (
-							<div className="fr-col-md-4 fr-col-8 fr-mt-2w">
+							<div className={fr.cx('fr-col-md-4', 'fr-col-8', 'fr-mt-2w')}>
 								<img
-									className="fr-responsive-img"
+									className={fr.cx('fr-responsive-img')}
 									src={welcome.Enq_Image}
 									alt="decoration"
 								></img>
@@ -71,7 +87,12 @@ export function WelcomeContainer() {
 			</div>
 
 			<div
-				className="fr-p-6w fr-grid-row fr-grid-row--center fr-grid-row--middle"
+				className={fr.cx(
+					'fr-p-6w',
+					'fr-grid-row',
+					'fr-grid-row--center',
+					'fr-grid-row--middle'
+				)}
 				style={{
 					backgroundColor: themeStringToVariable(
 						theme,
@@ -80,8 +101,8 @@ export function WelcomeContainer() {
 					),
 				}}
 			>
-				<div className="fr-col-xl-6 fr-col-lg-10 fr-col-12">
-					<h2 className="fr-h4">
+				<div className={fr.cx('fr-col-xl-6', 'fr-col-lg-10', 'fr-col-12')}>
+					<h2 className={fr.cx('fr-h4')}>
 						En savoir plus sur l'{welcome.Enq_LibelleEnquete}
 					</h2>
 					<WelcomeQuestions welcome={metadata.Welcome} />

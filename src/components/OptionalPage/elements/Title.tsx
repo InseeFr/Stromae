@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import { TitleElement } from '../../../typeStromae/type';
+import { fr } from '@codegouvfr/react-dsfr';
 
 export function Title(props: TitleElement) {
 	const { title, id, className } = props;
@@ -7,25 +8,25 @@ export function Title(props: TitleElement) {
 		<div>
 			<nav
 				role="navigation"
-				className="fr-breadcrumb"
+				className={fr.cx('fr-breadcrumb')}
 				aria-label="vous êtes ici :"
 			>
 				<button
-					className="fr-breadcrumb__button"
+					className={fr.cx('fr-breadcrumb__button')}
 					aria-expanded="false"
 					aria-controls="breadcrumb-1"
 				>
 					Voir le fil d’Ariane
 				</button>
-				<div className="fr-collapse" id="breadcrumb-1">
-					<ol className="fr-breadcrumb__list">
+				<div className={fr.cx('fr-collapse')} id="breadcrumb-1">
+					<ol className={fr.cx('fr-breadcrumb__list')}>
 						<li>
-							<a className="fr-breadcrumb__link" href="/">
+							<a className={fr.cx('fr-breadcrumb__link')} href="/">
 								Accueil
 							</a>
 						</li>
 						<li>
-							<a className="fr-breadcrumb__link" aria-current="page">
+							<a className={fr.cx('fr-breadcrumb__link')} aria-current="page">
 								{title}
 							</a>
 						</li>

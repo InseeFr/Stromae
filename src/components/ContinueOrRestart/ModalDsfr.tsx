@@ -1,7 +1,6 @@
 import { PropsWithChildren, useRef } from 'react';
-import { fr } from '@codegouvfr/react-dsfr';
-
 import { useTabulate } from '../../lib/commons/useTabulate';
+import { fr } from '@codegouvfr/react-dsfr/fr';
 
 type ModalDsfrProps = {
 	id?: string;
