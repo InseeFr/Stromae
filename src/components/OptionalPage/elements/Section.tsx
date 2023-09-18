@@ -1,15 +1,16 @@
 import classnames from 'classnames';
 import DOMPurify from 'dompurify';
 import { SectionElement } from '../../../typeStromae/type';
+import { fr } from '@codegouvfr/react-dsfr';
 
 function Paragraph({ content, id }: { id?: string; content: string }) {
 	return (
 		<p
-			className="fr-mt-4v fr-mb-0"
+			className={fr.cx('fr-mt-4v', 'fr-mb-0')}
 			key={`paragraph-${id}`}
 			dangerouslySetInnerHTML={{
 				__html: DOMPurify.sanitize(content, {
-					ALLOWED_TAGS: ['b', 'i', 'a', 'li'],
+					ALLOWED_TAGS: ['b', 'i', 'a', 'li', 'ul'],
 					ALLOWED_ATTR: ['target', 'href', 'title'],
 				}),
 			}}
@@ -34,7 +35,10 @@ export function Section(props: SectionElement) {
 	const { title, paragraphs = [], id, className } = props;
 
 	return (
-		<section id={id} className={title && classnames(className, 'fr-py-6v')}>
+		<section
+			id={id}
+			className={title && classnames(className, fr.cx('fr-py-6v'))}
+		>
 			{title && <h3>{title}</h3>}
 			{getContent(paragraphs, id)}
 		</section>

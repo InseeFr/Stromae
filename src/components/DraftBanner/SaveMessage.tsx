@@ -20,11 +20,15 @@ export function SaveMessage(props: Props) {
 	if (saved) {
 		return (
 			<span
-				className={cx(classes.root, 'fr-col-12', 'fr-col-md-10')}
+				className={cx(classes.root, fr.cx('fr-col-12', 'fr-col-md-10'))}
 				aria-live="polite"
 			>
 				<i
-					className="fr-icon-checkbox-circle-fill fr-label--success fr-mr-1v"
+					className={fr.cx(
+						'fr-icon-checkbox-circle-fill',
+						'fr-label--success',
+						'fr-mr-1v'
+					)}
 					aria-hidden="true"
 				/>
 				Brouillon enregistré.

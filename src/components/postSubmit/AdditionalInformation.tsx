@@ -1,4 +1,6 @@
+import { useColors } from '@codegouvfr/react-dsfr/useColors';
 import { LinkType, SubmitType } from '../../typeStromae/type';
+import { fr } from '@codegouvfr/react-dsfr';
 
 function FeedbackLink({
 	href,
@@ -11,7 +13,11 @@ function FeedbackLink({
 }) {
 	if (href && imageSrc) {
 		return (
-			<a title={`${label} - ouvre une nouvelle fenêtre`} href={href}>
+			<a
+				title={`${label} - ouvre une nouvelle fenêtre`}
+				href={href}
+				style={{ backgroundImage: 'none' }}
+			>
 				<img src={imageSrc} alt="" />
 			</a>
 		);
@@ -36,8 +42,8 @@ function ProvideFeedback({
 
 	if (submit && Feedback) {
 		return (
-			<div className="fr-p-md-3w fr-col-12 fr-col-lg-5 fr-col-offset-lg-1">
-				<h6>{title}</h6>
+			<div className={fr.cx('fr-col-12', 'fr-col-lg-5', 'fr-mt-2w')}>
+				<h4 className={fr.cx('fr-h6')}>{title}</h4>
 				<FeedbackLink href={href} imageSrc={imageSrc} label={label} />
 			</div>
 		);
@@ -55,8 +61,16 @@ function SeeResults({
 		const { link, title } = Results;
 		const { href, label } = link;
 		return (
-			<div className="fr-p-md-3w fr-col-12 fr-col-lg-5 fr-col-offset-lg-1 fr-mt-5w fr-mt-md-0 fr-p-lg-3w">
-				<h6>{title}</h6>
+			<div
+				className={fr.cx(
+					'fr-col-12',
+					'fr-col-lg-5',
+					'fr-col-offset-lg-2',
+					'fr-mt-4w',
+					'fr-mt-md-2w'
+				)}
+			>
+				<h4 className={fr.cx('fr-h6')}>{title}</h4>
 				<a
 					title={`${label} - ouvre une nouvelle fenêtre`}
 					href={href}
@@ -76,6 +90,8 @@ export default function AdditionalInformation({
 }: {
 	submit?: SubmitType;
 }) {
+	const theme = useColors();
+
 	if (submit) {
 		const { TitleAdditionalInformation, Feedback, Results } = submit;
 
@@ -83,13 +99,23 @@ export default function AdditionalInformation({
 			submit && TitleAdditionalInformation && (Feedback || Results);
 		if (hasAdditionalInformation) {
 			return (
-				<>
-					<div className="fr-col-12 fr-col-lg-6 fr-col-lg-11 fr-mt-9w fr-col-offset-lg-1">
-						<h2>{TitleAdditionalInformation}</h2>
+				<div
+					className={fr.cx('fr-col-12')}
+					style={{
+						backgroundColor: theme.decisions.background.alt.blueFrance.default,
+					}}
+				>
+					<div className={fr.cx('fr-container', 'fr-py-6w')}>
+						<div className={fr.cx('fr-grid-row', 'fr-grid-row--center')}>
+							<div className={fr.cx('fr-col-12')}>
+								<h3 className={fr.cx('fr-h5')}>{TitleAdditionalInformation}</h3>
+							</div>
+
+							<ProvideFeedback submit={submit} Feedback={Feedback} />
+							<SeeResults submit={submit} Results={Results} />
+						</div>
 					</div>
-					<ProvideFeedback submit={submit} Feedback={Feedback} />
-					<SeeResults submit={submit} Results={Results} />
-				</>
+				</div>
 			);
 		}
 	}

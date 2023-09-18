@@ -58,28 +58,28 @@ export function Header(props: HeaderProps) {
 
 	return (
 		<>
-			<header role="banner" className="fr-header" id="header">
-				<div className="fr-header__body">
-					<div className="fr-container">
-						<div className="fr-header__body-row">
-							<div className="fr-header__brand fr-enlarge-link">
-								<div className="fr-header__brand-top">
-									<div className="fr-header__logo">
-										<p className="fr-logo">
+			<header role="banner" className={fr.cx('fr-header')} id="header">
+				<div>
+					<div className={fr.cx('fr-container')}>
+						<div className={fr.cx('fr-header__body-row')}>
+							<div className={fr.cx('fr-header__brand', 'fr-enlarge-link')}>
+								<div className={fr.cx('fr-header__brand-top')}>
+									<div className={fr.cx('fr-header__logo')}>
+										<p className={fr.cx('fr-logo')}>
 											{<ConvertContent content={brandTop as any} />}
 										</p>
 									</div>
-									<div className="fr-header__operator">
+									<div className={fr.cx('fr-header__operator')}>
 										<img
-											className="fr-responsive-img"
+											className={fr.cx('fr-responsive-img')}
 											style={{ maxWidth: '3.5rem' }}
 											src={operatorLogo?.imgUrl}
 											alt={operatorLogo?.alt}
 										/>
 									</div>
-									<div className="fr-header__navbar">
+									<div className={fr.cx('fr-header__navbar')}>
 										<button
-											className="fr-btn--menu fr-btn"
+											className={fr.cx('fr-btn--menu', 'fr-btn')}
 											data-fr-opened="false"
 											aria-controls="modal-577"
 											aria-haspopup="menu"
@@ -90,8 +90,8 @@ export function Header(props: HeaderProps) {
 										</button>
 									</div>
 								</div>
-								<div className="fr-header__service">
-									<h1 className="fr-header__service-title">
+								<div className={fr.cx('fr-header__service')}>
+									<h1 className={fr.cx('fr-header__service-title')}>
 										<a
 											href={homeLinkProps.href}
 											title={`Accueil - ${homeLinkProps.title} - République Française`}
@@ -101,12 +101,12 @@ export function Header(props: HeaderProps) {
 									</h1>
 								</div>
 							</div>
-							<div className="fr-header__tools">
-								<div className="fr-header__tools-links">
-									<ul className="fr-btns-group">
+							<div className={fr.cx('fr-header__tools')}>
+								<div className={fr.cx('fr-header__tools-links')}>
+									<ul className={fr.cx('fr-btns-group')}>
 										<li>
 											<button
-												className="fr-btn fr-icon-theme-fill"
+												className={fr.cx('fr-btn', 'fr-icon-theme-fill')}
 												aria-controls="fr-theme-modal"
 												data-fr-opened="false"
 											>
@@ -149,23 +149,23 @@ export function Header(props: HeaderProps) {
 					</div>
 				</div>
 				<div
-					className="fr-header__menu fr-modal"
+					className={fr.cx('fr-header__menu', 'fr-modal')}
 					id="modal-577"
 					aria-labelledby="button-578"
 				>
-					<div className="fr-container">
+					<div className={fr.cx('fr-container')}>
 						<button
-							className="fr-btn--close fr-btn"
+							className={fr.cx('fr-btn--close', 'fr-btn')}
 							aria-controls="modal-577"
 							title="Fermer"
 						>
 							Fermer
 						</button>
-						<div className="fr-header__menu-links">
-							<ul className="fr-btns-group">
+						<div className={fr.cx('fr-header__menu-links')}>
+							<ul className={fr.cx('fr-btns-group')}>
 								<li>
 									<button
-										className="fr-btn fr-icon-theme-fill"
+										className={fr.cx('fr-btn', 'fr-icon-theme-fill')}
 										aria-controls="fr-theme-modal"
 										data-fr-opened="false"
 									>

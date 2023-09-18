@@ -42,7 +42,7 @@ export function AlertesControles(props: OrchestratedElement) {
 				aria-labelledby="alertHeading"
 				aria-describedby="alertText"
 				id="alert-errors"
-				className={`${fr.cx('fr-alert', type)} fr-mb-3w`}
+				className={fr.cx('fr-alert', type, 'fr-mb-3w')}
 				role="alert"
 				tabIndex={-1}
 			>

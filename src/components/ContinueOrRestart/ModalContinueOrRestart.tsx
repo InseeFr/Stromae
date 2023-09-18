@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { fr } from '@codegouvfr/react-dsfr';
 import { ModalDsfr } from './ModalDsfr';
+import { fr } from '@codegouvfr/react-dsfr/fr';
 
 export function ModalContinueOrRestart(props: {
 	onRestart: () => void;
@@ -20,17 +20,21 @@ export function ModalContinueOrRestart(props: {
 				Vous avez déjà commencé à renseigner le questionnaire. Souhaitez-vous
 				reprendre la vous en étiez ou revenir à la première page ?
 			</p>
-			<ul className="fr-btns-group fr-btns-group--inline-md">
+			<ul className={fr.cx('fr-btns-group', 'fr-btns-group--inline-md')}>
 				<li>
 					<button
-						className="fr-btn fr-btn--secondary"
+						className={fr.cx('fr-btn', 'fr-btn--secondary')}
 						onClick={props.onRestart}
 					>
 						Revenir à la première page
 					</button>
 				</li>
 				<li>
-					<button className="fr-btn" onClick={props.onContinue} ref={last}>
+					<button
+						className={fr.cx('fr-btn')}
+						onClick={props.onContinue}
+						ref={last}
+					>
 						Reprendre la où j'en étais
 					</button>
 				</li>
