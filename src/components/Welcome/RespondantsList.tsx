@@ -1,3 +1,5 @@
+import { fr } from '@codegouvfr/react-dsfr';
+
 export function RespondantsList(props: { respondants: string[] }) {
 	const respondants = props.respondants;
 	if (respondants && respondants.length > 0) {
@@ -5,7 +7,7 @@ export function RespondantsList(props: { respondants: string[] }) {
 			(respondant: string, index: number) => <li key={index}>{respondant}</li>
 		);
 		return (
-			<div className="fr-col-12">
+			<div className={fr.cx('fr-col-12')}>
 				<h2>Qui doit répondre à ce questionnaire?</h2>
 				<ul>{listRespondants}</ul>
 			</div>

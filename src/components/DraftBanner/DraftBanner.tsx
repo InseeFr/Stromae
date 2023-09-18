@@ -107,39 +107,43 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	}, []);
 
 	return (
-		<div className={cx(classes.container, 'fr-col-12', 'fr-py-2w', 'fr-mb-1w')}>
-			<div className="fr-container">
-				<div className="fr-grid-column">
+		<div
+			className={cx(
+				classes.container,
+				fr.cx('fr-col-12', 'fr-py-2w', 'fr-mb-1w')
+			)}
+		>
+			<div className={fr.cx('fr-container')}>
+				<div
+					className={fr.cx(
+						'fr-grid-row--no-gutters',
+						'fr-grid-row',
+						'fr-grid-row--middle'
+					)}
+				>
 					<div
-						className={fr.cx(
-							'fr-grid-row--no-gutters',
-							'fr-grid-row',
-							'fr-grid-row--middle'
+						className={cx(
+							classes.addressRow,
+							fr.cx('fr-grid-row--no-gutters', 'fr-grid-row')
 						)}
 					>
 						<div
 							className={cx(
-								classes.addressRow,
-								'fr-grid-row--no-gutters',
-								'fr-grid-row'
-							)}
-						>
-							<div
-								className={cx(
-									classes.badgeContainer,
+								classes.badgeContainer,
+								fr.cx(
 									'fr-col-12',
 									'fr-col-md-1',
 									'fr-mr-1w',
 									'fr-mb-1w',
 									'fr-mb-md-0'
-								)}
-							>
-								<Badge>BROUILLON</Badge>
-							</div>
-							<BannerAddress label={computedLabel as string} />
+								)
+							)}
+						>
+							<Badge>BROUILLON</Badge>
 						</div>
-						<SaveMessage saved={saved} />
+						<BannerAddress label={computedLabel as string} />
 					</div>
+					<SaveMessage saved={saved} />
 				</div>
 			</div>
 		</div>

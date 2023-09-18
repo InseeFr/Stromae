@@ -12,6 +12,7 @@ import { Link } from './elements/Link';
 import { Title } from './elements/Title';
 import { List } from './elements/List';
 import { Section } from './elements/Section';
+import { fr } from '@codegouvfr/react-dsfr';
 
 export function createPageElement(element: AcceptedElements, altId: string) {
 	const { type, id } = element;
@@ -64,6 +65,10 @@ export function OptionalPage({ name }: { name?: string }) {
 	}, [getMetadata]);
 
 	return (
-		<div className="fr-col-lg-6 fr-col-md-9 fr-col-12 fr-m-10v">{body}</div>
+		<div
+			className={fr.cx('fr-col-lg-6', 'fr-col-md-9', 'fr-col-12', 'fr-m-10v')}
+		>
+			{body}
+		</div>
 	);
 }

@@ -7,6 +7,7 @@ import { Layout } from '../../components/layout';
 import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
+import { fr } from '@codegouvfr/react-dsfr';
 
 export function Deconnexion() {
 	const { survey, unit } = useParams();
@@ -32,15 +33,25 @@ export function Deconnexion() {
 	return (
 		<LoadFromApi survey={survey}>
 			<Layout>
-				<div className="fr-container">
-					<div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-my-6w fr-my-md-12w ">
-						<div className="fr-col-lg-6 fr-col-12">
+				<div className={fr.cx('fr-container')}>
+					<div
+						className={fr.cx(
+							'fr-grid-row',
+							'fr-grid-row--center',
+							'fr-grid-row--middle',
+							'fr-my-6w',
+							'fr-my-md-12w'
+						)}
+					>
+						<div className={fr.cx('fr-col-lg-6', 'fr-col-12')}>
 							<h1>Vous avez été déconnecté</h1>
-							<p className="fr-mt-3w fr-text--lead">
+							<p className={fr.cx('fr-mt-3w', 'fr-text--lead')}>
 								Vos réponses ont été sauvegardées, vous pourrez ainsi compléter
-								ultèrieurement votre questionnaire.
+								ultérieurement votre questionnaire.
 							</p>
-							<p className="fr-mt-3w fr-text--lead fr-text--bold">
+							<p
+								className={fr.cx('fr-mt-3w', 'fr-text--lead', 'fr-text--bold')}
+							>
 								N'oubliez pas d'envoyer votre questionnaire une fois qu'il sera
 								entièrement complété.
 							</p>
@@ -49,24 +60,31 @@ export function Deconnexion() {
 								Se reconnecter
 							</Button>
 						</div>
-						<div className="fr-col-lg-3 fr-col-offset-lg-1 fr-col-8 fr-col--middle">
+						<div
+							className={fr.cx(
+								'fr-col-lg-3',
+								'fr-col-offset-lg-1',
+								'fr-col-8',
+								'fr-col--middle'
+							)}
+						>
 							<svg
-								className="fr-artwork"
+								className={fr.cx('fr-artwork')}
 								aria-hidden="true"
 								viewBox="0 0 80 80"
 								width="200px"
 								height="200px"
 							>
 								<use
-									className="fr-artwork-decorative"
+									className={fr.cx('fr-artwork-decorative')}
 									xlinkHref={`${Information}#artwork-decorative`}
 								></use>
 								<use
-									className="fr-artwork-minor"
+									className={fr.cx('fr-artwork-minor')}
 									xlinkHref={`${Information}#artwork-minor`}
 								></use>
 								<use
-									className="fr-artwork-major"
+									className={fr.cx('fr-artwork-major')}
 									xlinkHref={`${Information}#artwork-major`}
 								></use>
 							</svg>
