@@ -32,7 +32,7 @@ export function Footer(props: FooterProps) {
 		license,
 		operatorLogo,
 	} = props.footer || DEFAULT_FOOTER;
-	// Nous n'utilisons pas directement le <Header> de react dsfr car nous avons besoin d'ajouter un espace après les liens des <li> pour qu'ils s'affichent correctement dans nvda (pas tout attachés)
+	// We don't use the React DSFR Footer component because the links are not correctly displayed with nvda (the links are all on one line)
 	return (
 		<footer className={fr.cx('fr-footer')} role="contentinfo" id="footer">
 			<div className={fr.cx('fr-container')}>
