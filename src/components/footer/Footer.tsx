@@ -2,6 +2,7 @@ import { fr } from '@codegouvfr/react-dsfr/fr';
 import ConvertContent from '../../utils/convertContent';
 
 import { FooterType } from './FooterType';
+import { Link } from 'react-router-dom';
 
 const DEFAULT_FOOTER: FooterType = {
 	brandTop: 'valeur par defaut',
@@ -11,11 +12,7 @@ const DEFAULT_FOOTER: FooterType = {
 	accessibilityLinkProps: undefined,
 	otherLinksProps: [],
 	termsLinkProps: undefined,
-	homeLinkProps: {
-		href: '/',
-		title: 'Accueil',
-	},
-	// bottomItems: undefined,
+	homeLinkProps: undefined,
 	license: undefined,
 	operatorLogo: undefined,
 };
@@ -32,11 +29,10 @@ export function Footer(props: FooterProps) {
 		otherLinksProps,
 		termsLinkProps,
 		websiteMapLinkProps,
-		// bottomItems,
 		license,
 		operatorLogo,
 	} = props.footer || DEFAULT_FOOTER;
-
+	// Nous n'utilisons pas directement le <Header> de react dsfr car nous avons besoin d'ajouter un espace après les liens des <li> pour qu'ils s'affichent correctement dans nvda (pas tout attachés)
 	return (
 		<footer className={fr.cx('fr-footer')} role="contentinfo" id="footer">
 			<div className={fr.cx('fr-container')}>
@@ -45,9 +41,9 @@ export function Footer(props: FooterProps) {
 						<p className={fr.cx('fr-logo')}>
 							<ConvertContent content={brandTop as any} />
 						</p>
-						<a
+						<Link
 							className={fr.cx('fr-footer__brand-link')}
-							href={homeLinkProps && homeLinkProps.href}
+							to="/"
 							title={`Accueil - ${
 								homeLinkProps && homeLinkProps.title
 							} - République Française`}
@@ -58,7 +54,7 @@ export function Footer(props: FooterProps) {
 								src={operatorLogo?.imgUrl}
 								alt={operatorLogo?.alt}
 							/>
-						</a>
+						</Link>
 					</div>
 					<div className={fr.cx('fr-footer__content')}>
 						<p className={fr.cx('fr-footer__content-desc')}>
@@ -66,47 +62,51 @@ export function Footer(props: FooterProps) {
 						</p>
 						<ul className={fr.cx('fr-footer__content-list')}>
 							<li>
-								<a
+								<Link
 									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
-									href="https://le-recensement-et-moi.fr"
+									title="le-recensement-et-moi.fr - ouvre une nouvelle fenêtre"
+									to="https://le-recensement-et-moi.fr"
 									rel="noreferrer"
 								>
 									le-recensement-et-moi
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 							<li>
-								<a
-									className={fr.cx('fr-footer__content-link')}
-									target="_blank"
-									href="https://insee.fr"
+								<Link
+									title="insee.fr - ouvre une nouvelle fenêtre"
 									rel="noreferrer"
+									target="_blank"
+									className={fr.cx('fr-footer__content-link')}
+									to="https://insee.fr"
 								>
 									insee.fr
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 							<li>
-								<a
+								<Link
 									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
-									href="https://service-public.fr"
+									title="service-public.fr - ouvre une nouvelle fenêtre"
+									to="https://service-public.fr"
 									rel="noreferrer"
 								>
 									service-public.fr
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 							<li>
-								<a
-									className={fr.cx('fr-footer__content-link')}
+								<Link
 									target="_blank"
-									href="https://data.gouv.fr"
 									rel="noreferrer"
+									title="data.gouv.fr - ouvre une nouvelle fenêtre"
+									className={fr.cx('fr-footer__content-link')}
+									to="https://data.gouv.fr"
 								>
 									data.gouv.fr
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -115,45 +115,45 @@ export function Footer(props: FooterProps) {
 					<ul className={fr.cx('fr-footer__bottom-list')}>
 						{websiteMapLinkProps && (
 							<li className={fr.cx('fr-footer__bottom-item')}>
-								<a
+								<Link
+									to={websiteMapLinkProps?.to}
 									className={fr.cx('fr-footer__bottom-link')}
-									href={websiteMapLinkProps?.href}
 								>
 									Plan du site
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
-						{accessibility && (
+						{accessibilityLinkProps && (
 							<li className={fr.cx('fr-footer__bottom-item')}>
-								<a
+								<Link
 									className={fr.cx('fr-footer__bottom-link')}
-									href={accessibilityLinkProps?.href}
+									to={accessibilityLinkProps?.to}
 								>
 									Accessibilité : {accessibility}
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
 						{termsLinkProps && (
 							<li className={fr.cx('fr-footer__bottom-item')}>
-								<a
+								<Link
 									className={fr.cx('fr-footer__bottom-link')}
-									href={termsLinkProps?.href}
+									to={termsLinkProps?.to}
 								>
 									Mentions légales
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
 						{otherLinksProps?.map((otherLinkProps, key) => (
 							<li className={fr.cx('fr-footer__bottom-item')} key={key}>
-								<a
+								<Link
 									className={fr.cx('fr-footer__bottom-link')}
-									href={otherLinkProps?.href}
+									to={otherLinkProps?.to}
 								>
 									{otherLinkProps?.title}
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						))}

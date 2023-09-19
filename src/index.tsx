@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { startReactDsfr } from '@codegouvfr/react-dsfr/spa';
-
+import { Link } from 'react-router-dom';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
-startReactDsfr({ defaultColorScheme: 'system' });
+declare module '@codegouvfr/react-dsfr/spa' {
+	interface RegisterLink {
+		Link: typeof Link;
+	}
+}
+
+startReactDsfr({
+	defaultColorScheme: 'system',
+	Link,
+});
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

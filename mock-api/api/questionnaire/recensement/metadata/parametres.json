@@ -37,17 +37,17 @@
 		},
 		"accessibility": "totalement conforme",
 		"accessibilityLinkProps": {
-			"href": "http://localhost:3000//urlamodifier"
+			"to": "http://localhost:3000//urlamodifier"
 		},
 		"homeLinkProps": {
 			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
+			"to": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
 		},
 		"termsLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"websiteMapLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
 		"license": {
@@ -101,7 +101,7 @@
 			"title": "Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela ne prend que 2 minutes.",
 			"link": {
 				"label": "Je donne mon avis",
-				"href": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
+				"to": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
 				"imageSrc": "https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
 			}
 		},
@@ -109,7 +109,7 @@
 			"title": "Vous souhaitez consulter les résultats du recensement de la population?",
 			"link": {
 				"label": "Voir les résultats",
-				"href": "https://www.insee.fr/fr/information/2008354"
+				"to": "https://www.insee.fr/fr/information/2008354"
 			}
 		}
 	},

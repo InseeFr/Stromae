@@ -5,8 +5,7 @@
 			"type": "html"
 		},
 		"homeLinkProps": {
-			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/rpsmart/accueil"
+			"title": "Accueil - Le recensement de la population"
 		},
 		"operatorLogo": {
 			"alt": "Logo de l'Insee",
@@ -18,8 +17,7 @@
 			{
 				"iconId": "fr-icon-questionnaire-fill",
 				"linkProps": {
-					"href": "mailto:julia.dirand@insee.fr",
-					"target": "self"
+					"to": "mailto:julia.dirand@insee.fr"
 				},
 				"text": "Nous contacter"
 			}
@@ -37,17 +35,17 @@
 		},
 		"accessibility": "totalement conforme",
 		"accessibilityLinkProps": {
-			"href": "http://localhost:3000//urlamodifier"
+			"to": "http://localhost:3000//urlamodifier"
 		},
 		"homeLinkProps": {
 			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
+			"to": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
 		},
 		"termsLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"websiteMapLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
 		"license": {
