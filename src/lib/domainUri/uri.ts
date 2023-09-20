@@ -6,10 +6,7 @@ export function uri404() {
 }
 
 export function uri302(survey?: string) {
-	if (survey) {
-		return `/${survey}/donnees-manquante`;
-	}
-	return uri404();
+	return `/302${survey ? `/${survey}` : ''}`;
 }
 
 /*

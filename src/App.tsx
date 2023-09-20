@@ -59,6 +59,16 @@ const router = createBrowserRouter([
 		errorElement: <Error />,
 	},
 	{
+		path: '/302/:survey',
+		element: <Error code={302} />,
+		errorElement: <Error />,
+	},
+	{
+		path: '/302',
+		element: <Error code={302} />,
+		errorElement: <Error />,
+	},
+	{
 		path: '/',
 		element: <RoutingPortail />,
 		errorElement: <Error />,
