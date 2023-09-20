@@ -1,4 +1,10 @@
-import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import {
+	PropsWithChildren,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
@@ -11,9 +17,9 @@ import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
-function getPersonalizationByName(
+export function getPersonalizationByName(
 	personalization: Array<PersonalizationElement>
-): Record<string, string | number | boolean> {
+): Record<string, string | number | boolean | string[]> {
 	return Object.fromEntries(personalization.map((p) => [p.name, p.value]));
 }
 
