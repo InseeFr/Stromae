@@ -35,7 +35,7 @@ export function Error() {
 					<Button
 						size="large"
 						linkProps={{
-							href: '/',
+							to: '/',
 						}}
 					>
 						Retourner à la page d'accueil

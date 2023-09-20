@@ -24,7 +24,7 @@ export function AuthenticatingError() {
 					<Button
 						size="large"
 						linkProps={{
-							href: '/',
+							to: '/',
 						}}
 					>
 						Se reconnecter
