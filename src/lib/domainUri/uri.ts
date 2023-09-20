@@ -5,6 +5,13 @@ export function uri404() {
 	return '/404';
 }
 
+export function uri302(survey?: string) {
+	if (survey) {
+		return `/${survey}/donnees-manquante`;
+	}
+	return uri404();
+}
+
 /*
  * ressource principale du site, affichant le questionnaire.
  */

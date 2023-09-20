@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useRef, useEffect, useState } from 'react';
 
 const controller = new AbortController();
@@ -15,7 +16,7 @@ function nothing() {}
  */
 export function useRemote<T>(
 	cally: (() => Promise<T | undefined>) | undefined,
-	onfail: () => void = nothing
+	onfail: (code?: number) => void = nothing
 ): T | undefined {
 	const [result, setResult] = useState<T | undefined>(undefined);
 	const alreadyDone = useRef(false);
@@ -27,8 +28,9 @@ export function useRemote<T>(
 				(async function () {
 					try {
 						setResult(await cally());
-					} catch (e) {
-						onfail();
+					} catch (e: any | AxiosError) {
+						const code = e?.response?.status;
+						onfail(code);
 					}
 				})();
 			}

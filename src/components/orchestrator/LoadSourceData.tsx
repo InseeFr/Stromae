@@ -1,5 +1,5 @@
-import { PropsWithChildren, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { PropsWithChildren, useCallback, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router';
 
 import { LunaticSource } from '../../typeLunatic/type-source';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
@@ -8,7 +8,7 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
-import { uri404 } from '../../lib/domainUri';
+import { uri302, uri404 } from '../../lib/domainUri';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
@@ -19,13 +19,19 @@ export function LoadSourceData({
 	children,
 	onChange,
 }: PropsWithChildren<LoadSourceDataProps>) {
+	const { survey } = useParams();
 	const navigate = useNavigate();
 	const { getSurvey, getSurveyUnitData, getReferentiel, getMetadata } =
 		useContext(loadSourceDataContext);
 
-	function navigateError() {
-		navigate(uri404());
+	function navigateError(code?: number) {
+		if (code === 302) {
+			navigate(uri302(survey));
+		} else {
+			navigate(uri404());
+		}
 	}
+
 	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);
 	const source = useRemote<LunaticSource>(getSurvey, navigateError);
 	const surveyUnitData = useRemote<SurveyUnitData>(
