@@ -59,13 +59,13 @@ const router = createBrowserRouter([
 		errorElement: <Error />,
 	},
 	{
-		path: '/302/:survey',
-		element: <Error code={302} />,
+		path: '/301/:survey',
+		element: <Error code={301} />,
 		errorElement: <Error />,
 	},
 	{
-		path: '/302',
-		element: <Error code={302} />,
+		path: '/301',
+		element: <Error code={301} />,
 		errorElement: <Error />,
 	},
 	{

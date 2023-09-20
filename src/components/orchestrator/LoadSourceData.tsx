@@ -8,7 +8,7 @@ import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
-import { uri302, uri404 } from '../../lib/domainUri';
+import { uri301, uri404 } from '../../lib/domainUri';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
@@ -25,8 +25,8 @@ export function LoadSourceData({
 		useContext(loadSourceDataContext);
 
 	function navigateError(code?: number) {
-		if (code === 302) {
-			navigate(uri302(survey));
+		if (code === 301) {
+			navigate(uri301(survey));
 		} else {
 			navigate(uri404());
 		}

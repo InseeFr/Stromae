@@ -5,8 +5,8 @@ export function uri404() {
 	return '/404';
 }
 
-export function uri302(survey?: string) {
-	return `/302${survey ? `/${survey}` : ''}`;
+export function uri301(survey?: string) {
+	return `/301${survey ? `/${survey}` : ''}`;
 }
 
 /*

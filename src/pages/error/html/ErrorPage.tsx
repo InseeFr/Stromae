@@ -29,16 +29,16 @@ export function ErrorPage({ code }: { code?: number }) {
 	const errorStatus = isRouteErrorResponse(error) && error.status;
 
 	const titleText =
-		code && code === 302 ? 'Temporairement indisponible' : 'Page non trouvée';
+		code && code === 301 ? 'Temporairement indisponible' : 'Page non trouvée';
 
 	const subtitleText =
-		code && code === 302
+		code && code === 301
 			? content?.subtitle ||
 			  "La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement."
 			: 'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
 
 	const paragraphText =
-		code && code === 302
+		code && code === 301
 			? content?.paragraph
 			: 'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.';
 
