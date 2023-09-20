@@ -5,8 +5,7 @@ import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
 import Display from '@codegouvfr/react-dsfr/Display/Display';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const iconTheme = fr.cx('fr-icon-theme-fill');
+import { Link } from 'react-router-dom';
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
@@ -78,8 +77,8 @@ export function Header(props: HeaderProps) {
 										/>
 									</div>
 									<div className={fr.cx('fr-header__navbar')}>
-										<button
-											className={fr.cx('fr-btn--menu', 'fr-btn')}
+										<Button
+											className={fr.cx('fr-btn--menu')}
 											data-fr-opened="false"
 											aria-controls="modal-577"
 											aria-haspopup="menu"
@@ -87,17 +86,17 @@ export function Header(props: HeaderProps) {
 											title="Menu"
 										>
 											Menu
-										</button>
+										</Button>
 									</div>
 								</div>
 								<div className={fr.cx('fr-header__service')}>
 									<h1 className={fr.cx('fr-header__service-title')}>
-										<a
-											href={homeLinkProps.href}
+										<Link
+											to="/"
 											title={`Accueil - ${homeLinkProps.title} - République Française`}
 										>
 											{serviceTitle}
-										</a>
+										</Link>
 									</h1>
 								</div>
 							</div>
@@ -105,13 +104,13 @@ export function Header(props: HeaderProps) {
 								<div className={fr.cx('fr-header__tools-links')}>
 									<ul className={fr.cx('fr-btns-group')}>
 										<li>
-											<button
-												className={fr.cx('fr-btn', 'fr-icon-theme-fill')}
+											<Button
 												aria-controls="fr-theme-modal"
 												data-fr-opened="false"
+												iconId="fr-icon-theme-fill"
 											>
 												Paramètres d'affichage
-											</button>
+											</Button>
 										</li>
 										{quickAccessItems &&
 											quickAccessItems.map((quickAccessItem, index) => {
@@ -128,7 +127,7 @@ export function Header(props: HeaderProps) {
 															<Button
 																linkProps={{
 																	target: quickAccessItem.linkProps?.target,
-																	href: quickAccessItem.linkProps?.href,
+																	to: quickAccessItem.linkProps?.href,
 																	title:
 																		quickAccessItem.linkProps?.target ===
 																		'_blank'
@@ -154,23 +153,23 @@ export function Header(props: HeaderProps) {
 					aria-labelledby="button-578"
 				>
 					<div className={fr.cx('fr-container')}>
-						<button
-							className={fr.cx('fr-btn--close', 'fr-btn')}
+						<Button
+							className={fr.cx('fr-btn--close')}
 							aria-controls="modal-577"
 							title="Fermer"
 						>
 							Fermer
-						</button>
+						</Button>
 						<div className={fr.cx('fr-header__menu-links')}>
 							<ul className={fr.cx('fr-btns-group')}>
 								<li>
-									<button
-										className={fr.cx('fr-btn', 'fr-icon-theme-fill')}
+									<Button
+										iconId="fr-icon-theme-fill"
 										aria-controls="fr-theme-modal"
 										data-fr-opened="false"
 									>
 										Paramètres d'affichage
-									</button>
+									</Button>
 								</li>
 								{quickAccessItems &&
 									quickAccessItems.map((quickAccessItem, index) => {
@@ -187,7 +186,7 @@ export function Header(props: HeaderProps) {
 													<Button
 														linkProps={{
 															target: quickAccessItem.linkProps?.target,
-															href: quickAccessItem.linkProps?.href,
+															to: quickAccessItem.linkProps?.href,
 															title:
 																quickAccessItem.linkProps?.target === '_blank'
 																	? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
