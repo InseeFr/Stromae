@@ -1,4 +1,10 @@
-import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
+import {
+	PropsWithChildren,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
@@ -11,12 +17,10 @@ import { CloneElements } from './CloneElements';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 
-export function createPersonalizationMap(
+export function getPersonalizationByName(
 	personalization: Array<PersonalizationElement>
-) {
-	return personalization.reduce((acc, { name, value }) => {
-		return { ...acc, [name]: value };
-	}, {});
+): Record<string, string | number | boolean | string[]> {
+	return Object.fromEntries(personalization.map((p) => [p.name, p.value]));
 }
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
@@ -33,25 +37,19 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 		metadata,
 	} = props;
-	const [args, setArgs] = useState<Record<string, unknown>>({});
-
-	const [personalizationMap, setPersonalizationMap] = useState<
-		Record<string, string | number | boolean | Array<string>>
-	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
-
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
 	}, []);
+	const personalizationMap = useMemo(
+		() => getPersonalizationByName(personalization),
+		[personalization]
+	);
 
-	useEffect(() => {
-		setPersonalizationMap(createPersonalizationMap(personalization));
-	}, [personalization]);
-
-	useEffect(() => {
-		setArgs({
+	const args = useMemo(
+		() => ({
 			getReferentiel,
 			custom,
 			preferences,
@@ -59,16 +57,17 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			savingType,
 			autoSuggesterLoading,
 			onChange,
-		});
-	}, [
-		getReferentiel,
-		preferences,
-		features,
-		savingType,
-		autoSuggesterLoading,
-		onChange,
-		paginated,
-	]);
+		}),
+		[
+			getReferentiel,
+			preferences,
+			features,
+			savingType,
+			autoSuggesterLoading,
+			onChange,
+			paginated,
+		]
+	);
 
 	const {
 		getComponents,

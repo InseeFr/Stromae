@@ -7,17 +7,15 @@ function getTitleByPage(
 	source?: LunaticSource,
 	defaultTitle = ''
 ): Record<string, string> {
-	const base = {} as Record<string, string>;
-	if (!source) {
-		return base;
-	}
-	let title = defaultTitle;
-	return source.components.reduce((acc, component) => {
-		if (component.componentType === 'Sequence') {
-			title = component.title ?? defaultTitle;
-		}
-		return { ...acc, [component.page]: title };
-	}, base);
+	let sequenceTitle = defaultTitle;
+	const titleEntries =
+		source?.components.map((c) => {
+			if (c.componentType === 'Sequence') {
+				sequenceTitle = c.title ?? defaultTitle ?? '';
+			}
+			return [c.page, sequenceTitle];
+		}) ?? [];
+	return Object.fromEntries(titleEntries);
 }
 
 /**

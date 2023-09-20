@@ -13,7 +13,7 @@ import { SaveMessage } from './SaveMessage';
 import { BannerAddress } from './BannerAddress';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
-import { createPersonalizationMap } from '../orchestrator/UseLunatic';
+import { getPersonalizationByName } from '../orchestrator/UseLunatic';
 
 const useStyles = makeStyles()({
 	container: {
@@ -79,8 +79,9 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 			dependenciesHaveChanged(currentChange, bannerLabelDependencies)
 		) {
 			const updatedSUData = await getSurveyUnitData();
-			const newPersonalization: Record<string, string> =
-				createPersonalizationMap(updatedSUData?.personalization || []);
+			const newPersonalization = getPersonalizationByName(
+				updatedSUData?.personalization || []
+			);
 			setlabel(
 				newPersonalization.bannerLabel ? newPersonalization.bannerLabel : ''
 			);
