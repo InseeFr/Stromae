@@ -10,7 +10,6 @@ import { AppBar } from 'components/navigation/appBar';
 import { BurgerMenu } from 'components/navigation/burgerMenu';
 import { LoaderSimple } from 'components/shared/loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { simpleLog } from 'utils/events';
 import {
   END_PAGE,
   VALIDATION_PAGE,
@@ -52,7 +51,6 @@ export const Orchestrator = ({
         stateData.state === 'TOEXTRACT')
   );
 
-  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
@@ -194,35 +192,24 @@ export const Orchestrator = ({
   }, [currentPage, page]);
 
   const lunaticDisplay = () => (
-    <Card
-      className={`lunatic lunatic-component ${classes.component}`}
-      key={`component`}
-    >
-      {components.map((component) => {
-        const { id, componentType, response, storeName, ...other } = component;
-        const Component = lunatic[componentType];
-        return (
+    <Card className={`lunatic lunatic-component ${classes.component}`}>
+      <lunatic.LunaticComponents
+        components={components}
+        componentProps={() => ({
+          errors: errorActive[pageTag],
+          filterDescription: false,
+          disabled: readonly,
+          readOnly: readonly,
+        })}
+        wrapper={({ children, id, componentType }) => (
           <div
             className={`lunatic-component outerContainer-${componentType}`}
             key={`component-${id}`}
           >
-            <Component
-              id={id}
-              response={response}
-              savingType={savingType}
-              preferences={preferences}
-              readOnly={readonly}
-              disabled={readonly}
-              labelPosition='TOP' //For LunaticSuggester
-              logFunction={logFunction}
-              filterDescription={false}
-              errors={errorActive[pageTag]}
-              {...other}
-              {...component}
-            />
+            {children}
           </div>
-        );
-      })}
+        )}
+      />
     </Card>
   );
 
@@ -299,7 +286,7 @@ export const Orchestrator = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flex: '1 1 auto',
     backgroundColor: 'whitesmoke',
