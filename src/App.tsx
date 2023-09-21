@@ -44,6 +44,11 @@ const router = createBrowserRouter([
 		errorElement: <Error />,
 	},
 	{
+		path: '/questionnaire/:survey/301',
+		element: <Error code={301} />,
+		errorElement: <Error />,
+	},
+	{
 		path: '/questionnaire/:survey/:optional',
 		element: <Optional />,
 		errorElement: <Error />,
@@ -56,11 +61,6 @@ const router = createBrowserRouter([
 	{
 		path: '/404',
 		element: <Error />,
-		errorElement: <Error />,
-	},
-	{
-		path: '/301/:survey',
-		element: <Error code={301} />,
 		errorElement: <Error />,
 	},
 	{
