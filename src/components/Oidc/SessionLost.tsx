@@ -24,7 +24,7 @@ export function SessionLost() {
 					<Button
 						size="large"
 						linkProps={{
-							href: '/',
+							to: '/',
 						}}
 					>
 						Se reconnecter

@@ -37,17 +37,17 @@
 		},
 		"accessibility": "totalement conforme",
 		"accessibilityLinkProps": {
-			"href": "http://localhost:3000//urlamodifier"
+			"to": "http://localhost:3000//urlamodifier"
 		},
 		"homeLinkProps": {
 			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
+			"to": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
 		},
 		"termsLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"websiteMapLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
 		"license": {
@@ -72,9 +72,18 @@
 		"Enq_RespOperationnel": "l’Institut national de la statistique et des études économiques (Insee)",
 		"Enq_RespTraitement": "l'Insee",
 		"Enq_AnneeVisa": "2021",
-		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
-		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
-		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+		"Loi_statistique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
+			"target": "_blank"
+		},
+		"Loi_rgpd": {
+			"href": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
+			"target": "_blank"
+		},
+		"Loi_informatique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+			"target": "_blank"
+		},
 		"Enq_Faq_QuestionsAdditionnelles": [
 			{
 				"question": "A quoi sert le recensement de la population?",
