@@ -18,7 +18,7 @@ export function ModalContinueOrRestart(props: {
 			<h1 className={fr.cx('fr-modal__title')}>Bienvenue</h1>
 			<p>
 				Vous avez déjà commencé à renseigner le questionnaire. Souhaitez-vous
-				reprendre la vous en étiez ou revenir à la première page ?
+				reprendre là où vous en étiez ou revenir à la première page ?
 			</p>
 			<ul className={fr.cx('fr-btns-group', 'fr-btns-group--inline-md')}>
 				<li>
@@ -35,7 +35,7 @@ export function ModalContinueOrRestart(props: {
 						onClick={props.onContinue}
 						ref={last}
 					>
-						Reprendre la où j'en étais
+						Reprendre là où j'en étais
 					</button>
 				</li>
 			</ul>
