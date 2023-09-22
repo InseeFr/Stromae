@@ -2,8 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = function (request, response) {
-	let targetFileName = './data.json';
-
+	let targetFileName = './data_.json';
 	// Check is a type parameter exist
 	if (request.query.type) {
 		// Generate a new targetfilename with that type parameter
@@ -14,7 +13,8 @@ module.exports = function (request, response) {
 	try {
 		fs.accessSync(filePath);
 	} catch (err) {
-		return response.status(404);
+		response.statusCode = 301;
+		response.end();
 	}
 	// Respond with filePath
 	response.sendFile(filePath);

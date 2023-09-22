@@ -13,7 +13,7 @@ module.exports = function (request, response) {
 	try {
 		fs.accessSync(filePath);
 	} catch (err) {
-		response.statusCode = 302;
+		response.statusCode = 301;
 		response.end();
 	}
 	// Respond with filePath
