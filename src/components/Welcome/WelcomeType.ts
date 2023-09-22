@@ -10,9 +10,9 @@ export type WelcomeType = {
 	Enq_RespOperationnel: string;
 	Enq_RespTraitement: string;
 	Enq_AnneeVisa: string;
-	Loi_statistique: string;
-	Loi_rgpd: string;
-	Loi_informatique: string;
+	Loi_statistique: { href: string; target: string };
+	Loi_rgpd: { href: string; target: string };
+	Loi_informatique: { href: string; target: string };
 	whoAnswers: string[];
 	Enq_Image?: string;
 	Enq_colorTheme?: string;

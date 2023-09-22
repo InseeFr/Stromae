@@ -38,17 +38,17 @@
 		},
 		"accessibility": "totalement conforme",
 		"accessibilityLinkProps": {
-			"href": "http://localhost:3000//urlamodifier"
+			"to": "http://localhost:3000//urlamodifier"
 		},
 		"homeLinkProps": {
 			"title": "Accueil - Le recensement de la population",
-			"href": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
+			"to": "http://localhost:3000/questionnaire/recensement/unite-enquetee/"
 		},
 		"termsLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"websiteMapLinkProps": {
-			"href": "urlamodifier"
+			"to": "urlamodifier"
 		},
 		"contentDescription": "Le recensement, c'est utile, c'est sûr, c'est simple.",
 		"license": {
@@ -73,9 +73,18 @@
 		"Enq_RespOperationnel": "l’Institut national de la statistique et des études économiques (Insee)",
 		"Enq_RespTraitement": "l'Insee",
 		"Enq_AnneeVisa": "2021",
-		"Loi_statistique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
-		"Loi_rgpd": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
-		"Loi_informatique": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+		"Loi_statistique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
+			"target": "_blank"
+		},
+		"Loi_rgpd": {
+			"href": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
+			"target": "_blank"
+		},
+		"Loi_informatique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+			"target": "_blank"
+		},
 		"Enq_Faq_QuestionsAdditionnelles": [
 			{
 				"question": "A quoi sert le recensement de la population?",
@@ -102,7 +111,7 @@
 			"title": "Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela ne prend que 2 minutes.",
 			"link": {
 				"label": "Je donne mon avis",
-				"href": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
+				"to": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
 				"imageSrc": "https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
 			}
 		},
@@ -110,7 +119,7 @@
 			"title": "Vous souhaitez consulter les résultats du recensement de la population?",
 			"link": {
 				"label": "Voir les résultats",
-				"href": "https://www.insee.fr/fr/information/2008354"
+				"to": "https://www.insee.fr/fr/information/2008354"
 			}
 		}
 	},

@@ -1,31 +1,37 @@
 import { useColors } from '@codegouvfr/react-dsfr/useColors';
 import { LinkType, SubmitType } from '../../typeStromae/type';
 import { fr } from '@codegouvfr/react-dsfr';
+import { Link } from 'react-router-dom';
 
 function FeedbackLink({
 	href,
 	imageSrc,
 	label,
+	title,
+	target,
 }: {
 	href: string;
 	imageSrc: string;
+	title: string;
 	label: string;
+	target: string;
 }) {
 	if (href && imageSrc) {
 		return (
-			<a
-				title={`${label} - ouvre une nouvelle fenêtre`}
-				href={href}
+			<Link
+				title={title}
+				to={href}
 				style={{ backgroundImage: 'none' }}
+				target={target}
 			>
 				<img src={imageSrc} alt="" />
-			</a>
+			</Link>
 		);
 	} else if (href) {
 		return (
-			<a title={`${label} - ouvre une nouvelle fenêtre`} href={href}>
+			<Link title={title} to={href} target={target}>
 				{label}
-			</a>
+			</Link>
 		);
 	}
 	return null;
@@ -38,13 +44,18 @@ function ProvideFeedback({
 	Feedback: LinkType;
 }) {
 	const { link, title } = Feedback;
-	const { href, imageSrc, label } = link;
 
 	if (submit && Feedback) {
 		return (
 			<div className={fr.cx('fr-col-12', 'fr-col-lg-5', 'fr-mt-2w')}>
 				<h4 className={fr.cx('fr-h6')}>{title}</h4>
-				<FeedbackLink href={href} imageSrc={imageSrc} label={label} />
+				<FeedbackLink
+					title={link.title}
+					href={link.href}
+					target={link.target}
+					imageSrc={link.imageSrc}
+					label={link.label}
+				/>
 			</div>
 		);
 	}
@@ -59,7 +70,6 @@ function SeeResults({
 }) {
 	if (submit && Results) {
 		const { link, title } = Results;
-		const { href, label } = link;
 		return (
 			<div
 				className={fr.cx(
@@ -71,14 +81,14 @@ function SeeResults({
 				)}
 			>
 				<h4 className={fr.cx('fr-h6')}>{title}</h4>
-				<a
-					title={`${label} - ouvre une nouvelle fenêtre`}
-					href={href}
-					target="_blank"
+				<Link
+					title={link.title}
+					to={link.href}
+					target={link.target}
 					rel="noopener noreferrer"
 				>
-					{label}
-				</a>
+					{link.label}
+				</Link>
 			</div>
 		);
 	}
