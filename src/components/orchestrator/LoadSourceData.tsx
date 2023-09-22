@@ -14,6 +14,11 @@ type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
 };
 
+export type responseData = {
+	status: number;
+	message: string;
+};
+
 //
 export function LoadSourceData({
 	children,
@@ -24,11 +29,14 @@ export function LoadSourceData({
 	const { getSurvey, getSurveyUnitData, getReferentiel, getMetadata } =
 		useContext(loadSourceDataContext);
 
-	function navigateError(code?: number) {
-		if (code === 301) {
-			navigate(uri301(survey));
-		} else {
-			navigate(uri404());
+	function navigateError(data?: responseData) {
+		if (data) {
+			const { status, message } = data;
+			if (status === 301) {
+				navigate(uri301(survey, message));
+			} else {
+				navigate(uri404());
+			}
 		}
 	}
 

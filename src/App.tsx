@@ -43,7 +43,7 @@ const router = createBrowserRouter([
 		errorElement: <ErrorRedirection />,
 	},
 	{
-		path: '/questionnaire/:survey/301',
+		path: '/questionnaire/:survey/301/:errorType',
 		element: <ErrorRedirection code={301} />,
 		errorElement: <ErrorRedirection />,
 	},

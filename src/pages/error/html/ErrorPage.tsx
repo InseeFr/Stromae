@@ -8,6 +8,11 @@ import { loadSourceDataContext } from '../../../components/loadSourceData/LoadSo
 import { MetadataSurvey } from '../../../typeStromae/type';
 import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
+type ContentType = {
+	subtitle?: Record<string, string>;
+	paragraph?: Record<string, string>;
+};
+
 function ErrorStatus({
 	errorStatus,
 	code,
@@ -21,25 +26,36 @@ function ErrorStatus({
 	return null;
 }
 
-function getTextFor(code?: number, content?: Record<string, string>) {
-	const title =
-		code && code === 301 ? 'Temporairement indisponible' : 'Page non trouvée';
-
-	const subtitle =
-		code && code === 301
-			? content?.subtitle ??
-			  "La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement."
-			: 'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
-
-	const paragraph =
-		code && code === 301
-			? content?.paragraph
-			: 'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.';
-
-	return { title, subtitle, paragraph };
+function getTextFor(code?: number, content?: ContentType, errorType?: string) {
+	if (code && code === 301) {
+		const title = 'Temporairement indisponible';
+		if (errorType) {
+			const subtitle = content?.subtitle && content?.subtitle[errorType];
+			const paragraph = content?.paragraph && content?.paragraph[errorType];
+			return { title, subtitle, paragraph };
+		} else {
+			const subtitle =
+				"La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement.";
+			const paragraph = null;
+			return { title, subtitle, paragraph };
+		}
+	} else {
+		const title = 'Page non trouvée';
+		const subtitle =
+			'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
+		const paragraph =
+			'votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.';
+		return { title, subtitle, paragraph };
+	}
 }
 
-export function ErrorPage({ code }: { code?: number }) {
+export function ErrorPage({
+	code,
+	errorType,
+}: {
+	code?: number;
+	errorType?: string;
+}) {
 	const { getMetadata } = useContext(loadSourceDataContext);
 	const [metadata, setMetadata] = useState<MetadataSurvey>();
 
@@ -53,7 +69,7 @@ export function ErrorPage({ code }: { code?: number }) {
 	const error = useRouteError();
 	const errorStatus = isRouteErrorResponse(error) && error.status;
 
-	const { title, subtitle, paragraph } = getTextFor(code, content);
+	const { title, subtitle, paragraph } = getTextFor(code, content, errorType);
 
 	useEffect(() => {}, [metadata]);
 

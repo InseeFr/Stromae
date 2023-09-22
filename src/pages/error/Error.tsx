@@ -3,10 +3,10 @@ import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { ErrorPage } from './html/ErrorPage';
 
 export function ErrorRedirection({ code }: { code?: number }) {
-	const { survey } = useParams();
+	const { survey, errorType } = useParams();
 	return (
 		<LoadFromApi survey={survey}>
-			<ErrorPage code={code} />
+			<ErrorPage code={code} errorType={errorType} />
 		</LoadFromApi>
 	);
 }
