@@ -3,7 +3,7 @@ import { Button } from '@codegouvfr/react-dsfr/Button';
 import TechnicalError from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/technical-error.svg';
 import { useDocumentTitle } from '../../../utils/useDocumentTitle';
 import { fr } from '@codegouvfr/react-dsfr';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { loadSourceDataContext } from '../../../components/loadSourceData/LoadSourceDataContext';
 import { MetadataSurvey } from '../../../typeStromae/type';
 import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
@@ -41,19 +41,21 @@ function getTextFor(code?: number, content?: Record<string, string>) {
 
 export function ErrorPage({ code }: { code?: number }) {
 	const { getMetadata } = useContext(loadSourceDataContext);
-	const [content, setContent] = useState<Record<string, string>>();
 	const [metadata, setMetadata] = useState<MetadataSurvey>();
+
+	const content = useMemo(() => {
+		if (metadata?.errorPage) {
+			return metadata.errorPage;
+		}
+		return undefined;
+	}, [metadata]);
+
 	const error = useRouteError();
 	const errorStatus = isRouteErrorResponse(error) && error.status;
 
 	const { title, subtitle, paragraph } = getTextFor(code, content);
-	useEffect(() => {
-		if (metadata) {
-			if (metadata?.errorPage) {
-				setContent(metadata.errorPage);
-			}
-		}
-	}, [metadata]);
+
+	useEffect(() => {}, [metadata]);
 
 	useAsyncEffect(async () => {
 		setMetadata(await getMetadata());
@@ -79,7 +81,7 @@ export function ErrorPage({ code }: { code?: number }) {
 					<Button
 						size="large"
 						linkProps={{
-							href: '/',
+							to: '/',
 						}}
 					>
 						Retourner à la page d'accueil

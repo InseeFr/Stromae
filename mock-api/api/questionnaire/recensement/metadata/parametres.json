@@ -126,6 +126,9 @@
 	"Portal": {
 		"if you need": "use it !"
 	},
+	"errorPage": {
+		"subtitle": "La collecte dans votre commune n'est pas ouverte actuellement. Vous pourrez répondre au questionnaire dans quelques jours. Par avance, merci de votre participation."
+	},
 	"optionalPages": {
 		"plan-du-site": [
 			{ "type": "title", "title": "Plan du site", "id": "plan-du-site-title" },
@@ -217,10 +220,6 @@
 				"title": "L'accessibilité on est à fond pour !",
 				"paragraphs": "Au RP on <a href=\"https://google.com\" target=\"_blank\"> pense </a>que c'est <button onclick=\"alert('I'll be king of the pirates!')\">presse me please!</button> super important l'accessibilité. Par contre c'est un peu pénible à impémenter donc on fait quand on le temps ou <b>envie</b> (ce qui revient un peu au même)."
 			}
-		],
-
-		"donnees-manquante": [
-			{ "type": "title", "title": "Données manquantes", "id": "toto" }
 		]
 	}
 }

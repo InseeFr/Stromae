@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useContext } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import { LunaticSource } from '../../typeLunatic/type-source';
