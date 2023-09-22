@@ -16,7 +16,7 @@ function ErrorStatus({
 	code?: number;
 }) {
 	if (errorStatus || code) {
-		return <span>Erreur {errorStatus ? errorStatus : code}</span>;
+		return <span>Erreur {errorStatus || code}</span>;
 	}
 	return null;
 }
@@ -27,7 +27,7 @@ function getTextFor(code?: number, content?: Record<string, string>) {
 
 	const subtitle =
 		code && code === 301
-			? content?.subtitle ||
+			? content?.subtitle ??
 			  "La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement."
 			: 'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
 

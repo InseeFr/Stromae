@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { useRef, useEffect, useState } from 'react';
 
 const controller = new AbortController();
@@ -28,7 +27,7 @@ export function useRemote<T>(
 				(async function () {
 					try {
 						setResult(await cally());
-					} catch (e: any | AxiosError) {
+					} catch (e: any) {
 						const code = e?.response?.status;
 						onfail(code);
 					}

@@ -6,7 +6,8 @@ export function uri404() {
 }
 
 export function uri301(survey?: string) {
-	return `/${survey ? `questionnaire/${survey}/301` : '301'}`;
+	const surveyUrl = survey ? `questionnaire/${survey}/301` : '301';
+	return `/${surveyUrl}`;
 }
 
 /*

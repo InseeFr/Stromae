@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { ErrorPage } from './html/ErrorPage';
 
-export function Error({ code }: { code?: number }) {
+export function ErrorRedirection({ code }: { code?: number }) {
 	const { survey } = useParams();
 	return (
 		<LoadFromApi survey={survey}>
