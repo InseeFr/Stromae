@@ -21,6 +21,24 @@ function ErrorStatus({
 	return null;
 }
 
+function getTextFor(code?: number, content?: Record<string, string>) {
+	const title =
+		code && code === 301 ? 'Temporairement indisponible' : 'Page non trouvée';
+
+	const subtitle =
+		code && code === 301
+			? content?.subtitle ||
+			  "La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement."
+			: 'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
+
+	const paragraph =
+		code && code === 301
+			? content?.paragraph
+			: 'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.';
+
+	return { title, subtitle, paragraph };
+}
+
 export function ErrorPage({ code }: { code?: number }) {
 	const { getMetadata } = useContext(loadSourceDataContext);
 	const [content, setContent] = useState<Record<string, string>>();
@@ -28,20 +46,7 @@ export function ErrorPage({ code }: { code?: number }) {
 	const error = useRouteError();
 	const errorStatus = isRouteErrorResponse(error) && error.status;
 
-	const titleText =
-		code && code === 301 ? 'Temporairement indisponible' : 'Page non trouvée';
-
-	const subtitleText =
-		code && code === 301
-			? content?.subtitle ||
-			  "La page que vous cherchez n'est pas disponible pour le moment.  Veuillez réessayez ultérieurement."
-			: 'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.';
-
-	const paragraphText =
-		code && code === 301
-			? content?.paragraph
-			: 'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.';
-
+	const { title, subtitle, paragraph } = getTextFor(code, content);
 	useEffect(() => {
 		if (metadata) {
 			if (metadata?.errorPage) {
@@ -54,7 +59,7 @@ export function ErrorPage({ code }: { code?: number }) {
 		setMetadata(await getMetadata());
 	}, [getMetadata]);
 
-	useDocumentTitle(titleText);
+	useDocumentTitle(title);
 	return (
 		<div className={fr.cx('fr-container')}>
 			<div
@@ -67,10 +72,10 @@ export function ErrorPage({ code }: { code?: number }) {
 				)}
 			>
 				<div className={fr.cx('fr-col-lg-6', 'fr-col-12')}>
-					<h1>{titleText}</h1>
+					<h1>{title}</h1>
 					<ErrorStatus errorStatus={errorStatus} code={code} />
-					<p className={fr.cx('fr-mt-3w', 'fr-text--lead')}>{subtitleText}</p>
-					<p className={fr.cx('fr-mt-3w')}>{paragraphText}</p>
+					<p className={fr.cx('fr-mt-3w', 'fr-text--lead')}>{subtitle}</p>
+					<p className={fr.cx('fr-mt-3w')}>{paragraph}</p>
 					<Button
 						size="large"
 						linkProps={{
