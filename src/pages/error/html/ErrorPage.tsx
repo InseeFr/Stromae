@@ -94,14 +94,16 @@ export function ErrorPage({
 					<ErrorStatus errorStatus={errorStatus} code={code} />
 					<p className={fr.cx('fr-mt-3w', 'fr-text--lead')}>{subtitle}</p>
 					<p className={fr.cx('fr-mt-3w')}>{paragraph}</p>
-					<Button
-						size="large"
-						linkProps={{
-							to: '/',
-						}}
-					>
-						Retourner à la page d'accueil
-					</Button>
+					{code !== 301 && (
+						<Button
+							size="large"
+							linkProps={{
+								to: '/',
+							}}
+						>
+							Retourner à la page d'accueil
+						</Button>
+					)}
 				</div>
 				<div
 					className={fr.cx(
