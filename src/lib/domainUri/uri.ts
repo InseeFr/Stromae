@@ -12,7 +12,6 @@ export function uri404() {
 export function uri301(survey?: string, message?: string) {
 	const surveyUrl = survey ? `questionnaire/${survey}/301` : '301';
 	let status = '/temporairement-indisponible';
-	// TODO: access error status directly from API
 	// 301 error can be reached either before or after the collection period
 	// Depending on whether it is before or after, we need to display a different message
 	// At the moment, the only differentiating information that we get from the API is in the `message`

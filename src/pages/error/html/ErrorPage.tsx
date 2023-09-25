@@ -26,13 +26,13 @@ function ErrorStatus({
 }
 
 function getTextFor(code?: number, content?: ContentType, errorType?: string) {
-	if (code && code === 301 && errorType) {
+	if (code === 301 && errorType) {
 		return {
 			title: 'Temporairement indisponible',
 			subtitle: content?.subtitle && content?.subtitle[errorType],
 			paragraph: content?.paragraph && content?.paragraph[errorType],
 		};
-	} else if (code && code === 301) {
+	} else if (code === 301) {
 		return {
 			title: 'Temporairement indisponible',
 			subtitle:
