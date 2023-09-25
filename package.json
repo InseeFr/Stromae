@@ -7,7 +7,7 @@
 		"@codegouvfr/react-dsfr": "^0.75.3",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
-		"@inseefr/lunatic": "2.5.2-beta",
+		"@inseefr/lunatic": "2.6.1",
 		"@inseefr/lunatic-dsfr": "0.0.36",
 		"@mui/material": "^5.11.8",
 		"@testing-library/jest-dom": "^5.16.5",
