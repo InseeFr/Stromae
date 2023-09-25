@@ -4,10 +4,9 @@ import {
 	OidcProvider,
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
-
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 import { Authenticating } from '../Oidc/Authenticating';
-import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { getRequest } from '../../lib/commons/axios-utils';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
 import { CallbackSuccess } from '../Oidc/CallbackSuccess';
 import { AuthenticatingError } from '../Oidc/AuthenticatingError';
@@ -23,7 +22,7 @@ type AuthProviderProps = {
 };
 
 function fetchConfig(): Promise<OidcConfiguration> {
-	return publicGetRequest<OidcConfiguration>('/configuration.json');
+	return getRequest<OidcConfiguration>('/configuration.json');
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {

@@ -18,25 +18,14 @@ const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
 
 export interface SurveyApi {
 	// any type JSon lunatic
-	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
-	getSurveyUnitData: (unit: string, token: string) => Promise<SurveyUnitData>;
+	getSurvey: (survey: string) => Promise<LunaticSource>;
+	getSurveyUnitData: (unit: string) => Promise<SurveyUnitData>;
 	getMetadataSurvey: (survey: string) => Promise<MetadataSurvey>;
-	getRequiredNomenclatures: (
-		survey: string,
-		token: string
-	) => Promise<Array<string>>;
-	getNomenclature: (name: string, token: string) => Promise<Array<any>>;
-	putSurveyUnitData: (
-		data: DataVariables,
-		unit: string,
-		token: string
-	) => Promise<void>;
-	putSurveyUnitStateData: (
-		stateData: StateData,
-		unit: string,
-		token: string
-	) => Promise<void>;
-	getDepositiProof: (unit: string, token: string) => Promise<BlobPart>;
+	getRequiredNomenclatures: (survey: string) => Promise<Array<string>>;
+	getNomenclature: (name: string) => Promise<Array<any>>;
+	putSurveyUnitData: (data: DataVariables, unit: string) => Promise<void>;
+	putSurveyUnitStateData: (stateData: StateData, unit: string) => Promise<void>;
+	getDepositiProof: (unit: string) => Promise<BlobPart>;
 }
 
 export const surveyApi: SurveyApi = {

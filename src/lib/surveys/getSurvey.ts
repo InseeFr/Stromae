@@ -1,4 +1,4 @@
-import { authenticatedGetRequest } from '../commons/axios-utils';
+import { getRequest } from '../commons/axios-utils';
 import { LunaticSource } from '../../typeLunatic/type-source';
 
 import { surveySource } from './api';
@@ -8,9 +8,6 @@ import { surveySource } from './api';
  */
 export const getSurvey =
 	(BASE_URL: string) =>
-	(survey: string, token: string): Promise<LunaticSource> => {
-		return authenticatedGetRequest<LunaticSource>(
-			surveySource(BASE_URL, survey),
-			token
-		);
+	(survey: string): Promise<LunaticSource> => {
+		return getRequest<LunaticSource>(surveySource(BASE_URL, survey));
 	};

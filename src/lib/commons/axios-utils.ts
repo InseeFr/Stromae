@@ -30,18 +30,11 @@ function errorHandler(error: AxiosError) {
 	}
 }
 
-function jwtHeaders(token: string, contentType?: string) {
-	return {
-		Authorization: `Bearer ${token}`,
-		'Content-type': contentType ?? 'application/json; charset=utf-8',
-	};
-}
-
 function publicHeader() {
 	return { 'Content-type': 'application/json; charset=utf-8' };
 }
 
-export async function publicGetRequest<T>(url: string) {
+export async function getRequest<T>(url: string) {
 	try {
 		const headers = publicHeader();
 		const { data } = await axios<T>({ method: HTTP_VERBS.get, url, headers });
@@ -52,28 +45,9 @@ export async function publicGetRequest<T>(url: string) {
 	}
 }
 
-export async function authenticatedGetRequest<T>(
-	url: string,
-	token: string,
-	contentType?: string
-) {
+export async function getBlob(url: string) {
 	try {
-		const headers = jwtHeaders(token, contentType);
-		const { data } = await axios<T>({
-			method: HTTP_VERBS.get,
-			url,
-			headers,
-		});
-		return data;
-	} catch (error: AxiosError | any) {
-		errorHandler(error);
-		throw new Error(`Request fail : ${url}`);
-	}
-}
-
-export async function authenticatedGetBlob(url: string, token: string) {
-	try {
-		const headers = jwtHeaders(token, 'application/pdf');
+		const headers = publicHeader();
 		const { data } = await axios<BlobPart>({
 			method: HTTP_VERBS.get,
 			url,
@@ -87,13 +61,9 @@ export async function authenticatedGetBlob(url: string, token: string) {
 	}
 }
 
-export async function authenticatedPutRequest<T>(
-	url: string,
-	data: T,
-	token: string
-) {
+export async function putRequest<T>(url: string, data: T) {
 	try {
-		const headers = jwtHeaders(token);
+		const headers = publicHeader();
 		await axios<T>({ method: HTTP_VERBS.put, url, headers, data });
 	} catch (error: AxiosError | any) {
 		errorHandler(error);
