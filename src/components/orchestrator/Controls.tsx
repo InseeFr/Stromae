@@ -1,8 +1,6 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
-
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from '../../typeStromae/type';
-
 import { CloneElements } from './CloneElements';
 
 export function Controls(props: PropsWithChildren<OrchestratedElement>) {
@@ -10,6 +8,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		useState<Record<string, Array<LunaticError>>>();
 	const [warning, setWarning] = useState<boolean>(false);
 	const [criticality, setCriticality] = useState<boolean>();
+
 	const {
 		children = [],
 		getErrors,
@@ -17,6 +16,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		goPreviousPage = () => null,
 		compileControls,
 		pageTag,
+		handleChangeCalled,
+		setHandleChangeCalled,
 		...rest
 	} = props;
 
@@ -34,8 +35,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		if (compileControls) {
 			errors = compileControls();
 		}
-
-		if (warning) {
+		setHandleChangeCalled?.(false);
+		if (warning && !handleChangeCalled) {
 			setWarning(false);
 			setCurrentErrors(undefined);
 			setCriticality(false);
@@ -51,7 +52,13 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		} else {
 			goNextPage();
 		}
-	}, [compileControls, goNextPage, warning]);
+	}, [
+		compileControls,
+		goNextPage,
+		warning,
+		handleChangeCalled,
+		setHandleChangeCalled,
+	]);
 
 	const handleGoPrevious: () => void = useCallback(() => {
 		setWarning(false);

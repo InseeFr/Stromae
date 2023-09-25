@@ -41,9 +41,11 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
+	const [handleChangeCalled, setHandleChangeCalled] = useState(false);
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
+		setHandleChangeCalled(true);
 	}, []);
 
 	useEffect(() => {
@@ -120,6 +122,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
 				collectStatus={collectStatus}
+				handleChangeCalled={handleChangeCalled}
+				setHandleChangeCalled={setHandleChangeCalled}
 			>
 				{children}
 			</CloneElements>
