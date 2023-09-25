@@ -1,5 +1,5 @@
 {
-	"redirections": { "302": "/recensement/commune-kput" },
+	"redirections": { "301": "/recensement/commune-kput" },
 	"Header": {
 		"brandTop": {
 			"value": "République<br />française",
