@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import { ErrorRedirection } from './Error';
+import { RouteError } from './Error';
 
 test('renders Route', () => {
-	render(<ErrorRedirection />);
+	render(<RouteError />);
 	const route = screen.getByTestId('error-page');
 	expect(route).toBeInTheDocument();
 });

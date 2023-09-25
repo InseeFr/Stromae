@@ -9,68 +9,68 @@ import { Visualize } from './pages/visualize/Visualize';
 import { AuthProvider } from './components/auth';
 import { RoutingPortail, Portail } from './pages/portail';
 import { Optional } from './pages/optional';
-import { ErrorRedirection } from './pages/error/Error';
+import { RouteError } from './pages/error/Error';
 
 const router = createBrowserRouter([
 	{
 		path: '/questionnaire/:survey',
 		element: <Portail />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/unite-enquetee/:unit/post-envoi',
 		element: <PostSubmit />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/unite-enquetee/:unit/accueil',
 		element: <Welcome />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/unite-enquetee/:unit/deconnexion',
 		element: <Deconnexion />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/unite-enquetee/:unit',
 		element: <Questionnaire />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/read-only/questionnaire/:survey/unite-enquetee/:unit',
 		element: <QuestionnaireReadOnly />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/301/:errorType',
-		element: <ErrorRedirection code={301} />,
-		errorElement: <ErrorRedirection />,
+		element: <RouteError code={301} />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/questionnaire/:survey/:optional',
 		element: <Optional />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/visualize',
 		element: <Visualize />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/404',
-		element: <ErrorRedirection />,
-		errorElement: <ErrorRedirection />,
+		element: <RouteError />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/301',
-		element: <ErrorRedirection code={301} />,
-		errorElement: <ErrorRedirection />,
+		element: <RouteError code={301} />,
+		errorElement: <RouteError />,
 	},
 	{
 		path: '/',
 		element: <RoutingPortail />,
-		errorElement: <ErrorRedirection />,
+		errorElement: <RouteError />,
 	},
 ]);
 

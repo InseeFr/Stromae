@@ -1,1 +1,1 @@
-export { ErrorRedirection } from './Error';
+export { RouteError } from './Error';

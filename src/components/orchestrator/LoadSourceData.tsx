@@ -19,7 +19,6 @@ export type responseData = {
 	message: string;
 };
 
-//
 export function LoadSourceData({
 	children,
 	onChange,
@@ -30,10 +29,9 @@ export function LoadSourceData({
 		useContext(loadSourceDataContext);
 
 	function navigateError(data?: responseData) {
-		if (data) {
-			const { status, message } = data;
-			if (status === 301) {
-				navigate(uri301(survey, message));
+		if (data?.status) {
+			if (data.status === 301) {
+				navigate(uri301(survey, data.message));
 			} else {
 				navigate(uri404());
 			}

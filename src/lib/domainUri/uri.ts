@@ -5,6 +5,10 @@ export function uri404() {
 	return '/404';
 }
 
+// Redirect depending on survey and error message
+// If survey doesn't exist, the url returns `/301`
+// If survey exists, the url returns `/questionnaire/:survey/301/temporairement-indisponible`
+// Depending on the error message, the last parameter can be replaced by `post-collecte` or `pre-collecte`
 export function uri301(survey?: string, message?: string) {
 	const surveyUrl = survey ? `questionnaire/${survey}/301` : '301';
 	let status = '/temporairement-indisponible';
