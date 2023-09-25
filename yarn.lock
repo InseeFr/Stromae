@@ -1127,6 +1127,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.22.15":
+  version "7.22.15"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.15.tgz#38f46494ccf6cf020bd4eed7124b425e83e523b8"
+  integrity sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.22.5", "@babel/template@^7.3.3":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.22.5.tgz#0c8c4d944509875849bd0344ff0050756eefc6ec"
@@ -1448,6 +1455,33 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.47.0.tgz#5478fdf443ff8158f9de171c704ae45308696c7d"
   integrity sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==
 
+"@floating-ui/core@^1.4.2":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.5.0.tgz#5c05c60d5ae2d05101c3021c1a2a350ddc027f8c"
+  integrity sha512-kK1h4m36DQ0UHGj5Ah4db7R0rHemTqqO0QLvUqi1/mUUp3LuAWbWxdxSIf/XsnH9VS6rRVPLJCncjRzUvyCLXg==
+  dependencies:
+    "@floating-ui/utils" "^0.1.3"
+
+"@floating-ui/dom@^1.5.1":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.5.3.tgz#54e50efcb432c06c23cd33de2b575102005436fa"
+  integrity sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==
+  dependencies:
+    "@floating-ui/core" "^1.4.2"
+    "@floating-ui/utils" "^0.1.3"
+
+"@floating-ui/react-dom@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-2.0.2.tgz#fab244d64db08e6bed7be4b5fcce65315ef44d20"
+  integrity sha512-5qhlDvjaLmAst/rKb3VdlCinwTF4EYMiVxuuc/HVUjs46W0zgtbMmAZ1UTsDrRTxRmUEzl92mOtWbeeXL26lSQ==
+  dependencies:
+    "@floating-ui/dom" "^1.5.1"
+
+"@floating-ui/utils@^0.1.3":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.1.4.tgz#19654d1026cc410975d46445180e70a5089b3e7d"
+  integrity sha512-qprfWkn82Iw821mcKofJ5Pk9wgioHicxcQMxx+5zt5GSKoqdWvgG5AxVmpmUUjzTLPVSH5auBrhI93Deayn/DA==
+
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.10.tgz#5a3ffe32cc9306365fb3fd572596cd602d5e12d2"
@@ -1467,10 +1501,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inseefr/lunatic-dsfr@0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.34.tgz#0066400467049e54a5cca00ccc3ecb6b845dcb75"
-  integrity sha512-J7wzzkpJ3FS6wMQ067owxHxxg71+og3kxrNjegNAPdx91r5N0qVPN5OGHVjb9jXvWLI/5zbwyN634/WreLwA1Q==
+"@inseefr/lunatic-dsfr@0.0.36":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-0.0.36.tgz#d5a2dde2eb37fcfa34310fa2bd8f36240a2e0a05"
+  integrity sha512-RthIIQkM3qOl+BYuwKC/LkpwIXbWDOYmsI7038dAugww8tzQaRn48uDIEkPh+NmpArlhGtg3zr9U3xDz+7DwNg==
   dependencies:
     "@emotion/styled" "^11.10.6"
     "@inseefr/lunatic" "^2.6.0"
@@ -1479,6 +1513,30 @@
     react-number-format "^5.1.4"
     sass-loader "^13.2.0"
     tss-react "4.8.6"
+
+"@inseefr/lunatic@2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.6.1.tgz#00f71d1356fdc9e5807c6734dd8e02ceb61dc583"
+  integrity sha512-VT9nvz4tdcdg/CgD40srtBQfPmJtrvsh5v96xBDLrNR6pK4UGGFGBkp1mPbq8Y6ulNGcwiGSUCitXz0WvTBSlQ==
+  dependencies:
+    "@inseefr/trevas" "^0.1.20"
+    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
+    antlr4 "4.11.0"
+    classnames "^2.3.1"
+    date-fns "^2.25.0"
+    lodash.camelcase "^4.3.0"
+    lodash.debounce "^4.0.8"
+    lodash.isequal "^4.5.0"
+    object-hash "^2.2.0"
+    prop-types "^15.7.2"
+    react-keyboard-event-handler "^1.5.4"
+    react-markdown "^8.0.3"
+    react-number-format "^5.1.3"
+    react-tooltip "^4.2.15"
+    remove-accents "^0.4.2"
+    sass "^1.58.3"
+    snowball "^0.3.1"
+    string-tokenizer "^0.0.8"
 
 "@inseefr/lunatic@^2.6.0":
   version "2.6.0"
@@ -1504,34 +1562,10 @@
     snowball "^0.3.1"
     string-tokenizer "^0.0.8"
 
-"@inseefr/lunatic@^2.6.0-rc.2":
-  version "2.6.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.6.0-rc.2.tgz#f9f12c4c292b7071f2a1491ade225b08eb7297b6"
-  integrity sha512-sYuMjo+woC3rgAIt9U5S3w5FzF4/By1OOx65L//5dxpsZZhI3LAw+ZMgPCLA8xQ7Ne9KEWgTaowZKvK3aTZrTA==
-  dependencies:
-    "@inseefr/trevas" "^0.1.19"
-    "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
-    antlr4 "4.11.0"
-    classnames "^2.3.1"
-    date-fns "^2.25.0"
-    lodash.camelcase "^4.3.0"
-    lodash.debounce "^4.0.8"
-    lodash.isequal "^4.5.0"
-    object-hash "^2.2.0"
-    prop-types "^15.7.2"
-    react-keyboard-event-handler "^1.5.4"
-    react-markdown "^8.0.3"
-    react-number-format "^5.1.3"
-    react-tooltip "^4.2.15"
-    remove-accents "^0.4.2"
-    sass "^1.58.3"
-    snowball "^0.3.1"
-    string-tokenizer "^0.0.8"
-
-"@inseefr/trevas@^0.1.19":
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.19.tgz#5b0cf8d288afba4880ac15592cf80657dc8ade9d"
-  integrity sha512-zvNw8JPf7jlgqznvnteEYTTnS3i0Lslb7y8EPs1OHYqsSyDiXwp9RG25oUSMK8A/y4kblkQO/cVDc971+H3RoA==
+"@inseefr/trevas@^0.1.19", "@inseefr/trevas@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@inseefr/trevas/-/trevas-0.1.20.tgz#a1d68cf3d22a4da1ef99c1c8560470c8dda407d7"
+  integrity sha512-x1UotSHqHfGhut0JgPCLu+TXZtDpcYSrFQtlIl/L1kav6zYBa888AHhkADWB2hpJM/XAG3lQEfZrqgnsgbQK1g==
   dependencies:
     "@inseefr/vtl-2.0-antlr-tools" "0.1.0"
     antlr4 "4.8.0"
@@ -1864,12 +1898,30 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
+"@mui/base@5.0.0-beta.16":
+  version "5.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-beta.16.tgz#5869b8cc83ea5da0083bb11790bda007c2384564"
+  integrity sha512-OYxhC81c9bO0wobGcM8rrY5bRwpCXAI21BL0P2wz/2vTv4ek7ALz9+U5M8wgdmtRNUhmCmAB4L2WRwFRf5Cd8Q==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@floating-ui/react-dom" "^2.0.2"
+    "@mui/types" "^7.2.4"
+    "@mui/utils" "^5.14.10"
+    "@popperjs/core" "^2.11.8"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+
+"@mui/core-downloads-tracker@^5.14.10":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.14.10.tgz#32a8581be98344bbda5ed31fc7b41788bd2e3bc5"
+  integrity sha512-kPHu/NhZq1k+vSZR5wq3AyUfD4bnfWAeuKpps0+8PS7ZHQ2Lyv1cXJh+PlFdCIOa0PK98rk3JPwMzS8BMhdHwQ==
+
 "@mui/core-downloads-tracker@^5.14.5":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.14.5.tgz#c5854b89d57520c77253a79b20b784d5c2903fb6"
   integrity sha512-+wpGH1USwPcKMFPMvXqYPC6fEvhxM3FzxC8lyDiNK/imLyyJ6y2DPb1Oue7OGIKJWBmYBqrWWtfovrxd1aJHTA==
 
-"@mui/material@^5.11.8", "@mui/material@^5.12.0":
+"@mui/material@^5.11.8":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.14.5.tgz#4610b381fd159cd208c28e1d1f29c303ea24a518"
   integrity sha512-4qa4GMfuZH0Ai3mttk5ccXP8a3sf7aPlAJwyMrUSz6h9hPri6BPou94zeu3rENhhmKLby9S/W1y+pmficy8JKA==
@@ -1887,6 +1939,33 @@
     react-is "^18.2.0"
     react-transition-group "^4.4.5"
 
+"@mui/material@^5.12.0":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.14.10.tgz#b8c6ba17c25c0df54053cb0f1bb35083bc91dace"
+  integrity sha512-ejFMppnO+lzBXpzju+N4SSz0Mhmi5sihXUGcr5FxpgB6bfUP0Lpe32O0Sw/3s8xlmLEvG1fqVT0rRyAVMlCA+A==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@mui/base" "5.0.0-beta.16"
+    "@mui/core-downloads-tracker" "^5.14.10"
+    "@mui/system" "^5.14.10"
+    "@mui/types" "^7.2.4"
+    "@mui/utils" "^5.14.10"
+    "@types/react-transition-group" "^4.4.6"
+    clsx "^2.0.0"
+    csstype "^3.1.2"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
+    react-transition-group "^4.4.5"
+
+"@mui/private-theming@^5.14.10":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.14.10.tgz#42b176b27435931aff40d50833413d10150ac007"
+  integrity sha512-f67xOj3H06wWDT9xBg7hVL/HSKNF+HG1Kx0Pm23skkbEqD2Ef2Lif64e5nPdmWVv+7cISCYtSuE2aeuzrZe78w==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@mui/utils" "^5.14.10"
+    prop-types "^15.8.1"
+
 "@mui/private-theming@^5.14.5":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.14.5.tgz#834e1569c31e2644665f98d902def79014053017"
@@ -1903,6 +1982,30 @@
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@emotion/cache" "^11.11.0"
+    csstype "^3.1.2"
+    prop-types "^15.8.1"
+
+"@mui/styled-engine@^5.14.10":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.14.10.tgz#2ec443031e48425cd6fda63be498cfa262c1d3a0"
+  integrity sha512-EJckxmQHrsBvDbFu1trJkvjNw/1R7jfNarnqPSnL+jEQawCkQIqVELWLrlOa611TFtxSJGkdUfCFXeJC203HVg==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@emotion/cache" "^11.11.0"
+    csstype "^3.1.2"
+    prop-types "^15.8.1"
+
+"@mui/system@^5.14.10":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.14.10.tgz#b125f8370c1c92af04f1839c40e034d4edc4ad29"
+  integrity sha512-QQmtTG/R4gjmLiL5ECQ7kRxLKDm8aKKD7seGZfbINtRVJDyFhKChA1a+K2bfqIAaBo1EMDv+6FWNT1Q5cRKjFA==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@mui/private-theming" "^5.14.10"
+    "@mui/styled-engine" "^5.14.10"
+    "@mui/types" "^7.2.4"
+    "@mui/utils" "^5.14.10"
+    clsx "^2.0.0"
     csstype "^3.1.2"
     prop-types "^15.8.1"
 
@@ -1924,6 +2027,16 @@
   version "7.2.4"
   resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.2.4.tgz#b6fade19323b754c5c6de679a38f068fd50b9328"
   integrity sha512-LBcwa8rN84bKF+f5sDyku42w1NTxaPgPyYKODsh01U1fVstTClbUoSA96oyRBnSNyEiAVjKm6Gwx9vjR+xyqHA==
+
+"@mui/utils@^5.14.10":
+  version "5.14.10"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.14.10.tgz#4b0a2a26f1ee12323010daa9d7aecf3384acfc3c"
+  integrity sha512-Rn+vYQX7FxkcW0riDX/clNUwKuOJFH45HiULxwmpgnzQoQr3A0lb+QYwaZ+FAkZrR7qLoHKmLQlcItu6LT0y/Q==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@types/prop-types" "^15.7.5"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
 
 "@mui/utils@^5.14.5":
   version "5.14.5"
@@ -8987,10 +9100,17 @@ react-markdown@^8.0.3:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-react-number-format@^5.1.3, react-number-format@^5.1.4:
+react-number-format@^5.1.3:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.3.0.tgz#46dfb9e96d7d85401ca62f399dff6769f4a56861"
   integrity sha512-3h5kuO5x9HpifEgCzvw6kDljzjsI3OhgnT/BRzZbzdbHVb755eVzJuNnRUZr3h/ATu3Sct9O+XrYc9HrAj/6bQ==
+  dependencies:
+    prop-types "^15.7.2"
+
+react-number-format@^5.1.4:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.3.1.tgz#840c257da9cb4b248990d8db46e4d23e8bac67ff"
+  integrity sha512-qpYcQLauIeEhCZUZY9jXZnnroOtdy3jYaS1zQ3M1Sr6r/KMOBEIGNIb7eKT19g2N1wbYgFgvDzs19hw5TrB8XQ==
   dependencies:
     prop-types "^15.7.2"
 
