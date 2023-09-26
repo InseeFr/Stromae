@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import { responseData } from './LoadSourceData';
 
 const controller = new AbortController();
 
@@ -15,7 +16,7 @@ function nothing() {}
  */
 export function useRemote<T>(
 	cally: (() => Promise<T | undefined>) | undefined,
-	onfail: () => void = nothing
+	onfail: (data?: responseData) => void = nothing
 ): T | undefined {
 	const [result, setResult] = useState<T | undefined>(undefined);
 	const alreadyDone = useRef(false);
@@ -27,8 +28,9 @@ export function useRemote<T>(
 				(async function () {
 					try {
 						setResult(await cally());
-					} catch (e) {
-						onfail();
+					} catch (e: any) {
+						const data = e?.response.data;
+						onfail(data);
 					}
 				})();
 			}

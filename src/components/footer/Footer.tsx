@@ -3,6 +3,7 @@ import ConvertContent from '../../utils/convertContent';
 
 import { FooterType } from './FooterType';
 import { Link } from 'react-router-dom';
+import { AppVersion } from '../AppVersion/AppVersion';
 
 const DEFAULT_FOOTER: FooterType = {
 	brandTop: 'valeur par defaut',
@@ -157,6 +158,9 @@ export function Footer(props: FooterProps) {
 								&nbsp;
 							</li>
 						))}
+						<li className={fr.cx('fr-footer__bottom-item')}>
+							<AppVersion className={fr.cx('fr-footer__bottom-link')} />
+						</li>
 					</ul>
 					<div className={fr.cx('fr-footer__bottom-copy')}>
 						<p>
