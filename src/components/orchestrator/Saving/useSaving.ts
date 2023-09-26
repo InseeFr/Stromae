@@ -55,9 +55,7 @@ function getCollectStatus(
  * @returns
  */
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag, isLastPage, initialCollectStatus } =
-		args;
-	const [lastPageReach, setLastPageReach] = useState(false);
+	const { currentChange, getData, pageTag, initialCollectStatus } = args;
 	const [currentStatus, setCurrentStatus] = useState(initialCollectStatus);
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
@@ -72,7 +70,7 @@ export function useSaving(args: SavingArgs) {
 		changes.current[name] = null;
 	}, [currentChange]);
 
-	return async function save() {
+	return async function save(isLastPage: boolean) {
 		let data = {};
 		if (!getData || currentStatus === CollectStatusEnum.Validated) {
 			return undefined;
@@ -106,9 +104,8 @@ export function useSaving(args: SavingArgs) {
 			}
 		}
 		// On sauvegarde le parcourt de l'utilisateur
-		setLastPageReach(isLastPage ?? false);
 		const state = {
-			state: getCollectStatus(changing, lastPageReach, currentStatus),
+			state: getCollectStatus(changing, isLastPage, currentStatus),
 			date: new Date().getTime(),
 			currentPage: pageTag ?? '1',
 		};

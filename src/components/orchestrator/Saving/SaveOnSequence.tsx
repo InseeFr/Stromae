@@ -6,7 +6,13 @@ import { useSaving } from './useSaving';
 
 export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
-	const { currentChange, getData, getComponents = () => [], goNextPage } = rest;
+	const {
+		currentChange,
+		getData,
+		getComponents = () => [],
+		goNextPage,
+		isLastPage,
+	} = rest;
 	const [savingFailure, setSavingFailure] = useState<SavingFailure>();
 	const save = useSaving({ currentChange, getData });
 
@@ -19,7 +25,7 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 				(async function () {
 					try {
 						setSavingFailure(undefined);
-						const somethingToSave = await save();
+						const somethingToSave = await save(isLastPage ?? false);
 
 						if (somethingToSave) {
 							setSavingFailure({ status: 200 });
@@ -31,7 +37,7 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 				})();
 			}
 		}
-	}, [goNextPage, isSequence, save]);
+	}, [goNextPage, isSequence, save, isLastPage]);
 
 	return (
 		<CloneElements<OrchestratedElement>

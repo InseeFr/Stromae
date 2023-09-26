@@ -34,20 +34,23 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		previousPageTag !== undefined &&
 		previousPageTag !== pageTag;
 
-	const makeSave = useCallback(async () => {
-		try {
-			setSavingFailure(undefined);
-			setWaiting(true);
-			const somethingToSave = await save();
-			setWaiting(false);
-			if (somethingToSave) {
-				setSavingFailure({ status: 200 });
+	const makeSave = useCallback(
+		async (isLastPage: boolean) => {
+			try {
+				setSavingFailure(undefined);
+				setWaiting(true);
+				const somethingToSave = await save(isLastPage);
+				setWaiting(false);
+				if (somethingToSave) {
+					setSavingFailure({ status: 200 });
+				}
+			} catch (e) {
+				setSavingFailure({ status: 500 });
+				setWaiting(false);
 			}
-		} catch (e) {
-			setSavingFailure({ status: 500 });
-			setWaiting(false);
-		}
-	}, [save]);
+		},
+		[save]
+	);
 
 	/**
 	 * On déclenche la sauvegarde : quand lunatic à fini de tourner la page et quand l'utilisateur à cliquer
@@ -56,13 +59,13 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	useAsyncEffect(async () => {
 		if (isNewPage && shouldSync.current) {
 			shouldSync.current = false;
-			makeSave();
+			makeSave(false);
 		}
 	}, [isNewPage]);
 
 	const handleNextPage = useCallback(async () => {
 		if (isLastPage) {
-			await makeSave();
+			await makeSave(true);
 		} else if (pageTag) {
 			shouldSync.current = true;
 		}
