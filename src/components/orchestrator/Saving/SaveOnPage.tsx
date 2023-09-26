@@ -28,32 +28,46 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	});
 	const [waiting, setWaiting] = useState(false);
 	const shouldSync = useRef(false);
-	// eslint-disable-next-line @shopify/binary-assignment-parens
-	const isNewPage = pageTag && previousPageTag && previousPageTag !== pageTag;
-	useAsyncEffect(async () => {
-		if (isNewPage) {
-			shouldSync.current = false;
-			try {
-				setSavingFailure(undefined);
-				setWaiting(true);
-				const somethingToSave = await save();
-				setWaiting(false);
-				if (somethingToSave) {
-					setSavingFailure({ status: 200 });
-				}
-			} catch (e) {
-				setSavingFailure({ status: 500 });
-				setWaiting(false);
+
+	const isNewPage =
+		pageTag !== undefined &&
+		previousPageTag !== undefined &&
+		previousPageTag !== pageTag;
+
+	const makeSave = useCallback(async () => {
+		try {
+			setSavingFailure(undefined);
+			setWaiting(true);
+			const somethingToSave = await save();
+			setWaiting(false);
+			if (somethingToSave) {
+				setSavingFailure({ status: 200 });
 			}
+		} catch (e) {
+			setSavingFailure({ status: 500 });
+			setWaiting(false);
 		}
-	}, [isNewPage, save]);
+	}, [save]);
+
+	/**
+	 * On déclenche la sauvegarde : quand lunatic à fini de tourner la page et quand l'utilisateur à cliquer
+	 * sur le bouton suivant/precedent
+	 */
+	useAsyncEffect(async () => {
+		if (isNewPage && shouldSync.current) {
+			shouldSync.current = false;
+			makeSave();
+		}
+	}, [isNewPage]);
 
 	const handleNextPage = useCallback(async () => {
-		if (pageTag) {
-			goNextPage?.();
+		if (isLastPage) {
+			await makeSave();
+		} else if (pageTag) {
 			shouldSync.current = true;
 		}
-	}, [goNextPage, pageTag, shouldSync]);
+		goNextPage?.();
+	}, [goNextPage, pageTag, shouldSync, isLastPage, makeSave]);
 
 	const handleGoBack = useCallback(async () => {
 		goPreviousPage?.();

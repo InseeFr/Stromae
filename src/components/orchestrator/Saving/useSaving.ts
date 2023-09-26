@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from 'react';
+import { useRef, useEffect, useContext, useState } from 'react';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
 import {
 	OrchestratedElement,
@@ -25,17 +25,20 @@ function isOnChange(data: {} = {}) {
  */
 function getCollectStatus(
 	changing: boolean,
-	isLastPage: boolean,
+	lastPageReach: boolean,
 	previous?: CollectStatusEnum
 ) {
-	if (isLastPage) {
+	if (previous === CollectStatusEnum.Completed) {
+		return CollectStatusEnum.Completed;
+	}
+	if (lastPageReach) {
 		return CollectStatusEnum.Validated;
 	}
 	if (changing) {
 		return CollectStatusEnum.Completed;
 	}
 
-	return previous ?? CollectStatusEnum.Init;
+	return previous;
 }
 
 /**
@@ -45,10 +48,14 @@ function getCollectStatus(
  * conditionnelle, il est factorisé dans un hook.
  * complete : sauvegarde toutes les variables du questionnaire
  * partial : seules les variables ayant changées génèrent une sauvegarde (s'il y a des modifications)
+ * Autre difficulté : on sauvegarde la page n quand on arrive sur la page n + 1 (commande du métier), donc on sauvegarde l'avant dernière page sur
+ * la dernière page. Il faut en plus, lorsque l'on quitte la dernière page sauvegarder stateData, une dernière fois pour passer
+ * le statut à COMPLETED : c'est pour cela que l'on mémorise lastPageReach.
  * @returns
  */
 export function useSaving(args: SavingArgs) {
 	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
+	const [lastPageReach, setLastPageReach] = useState(false);
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
 		loadSourceDataContext
@@ -96,8 +103,9 @@ export function useSaving(args: SavingArgs) {
 			}
 		}
 		// On sauvegarde le parcourt de l'utilisateur
+		setLastPageReach(isLastPage ?? false);
 		const state = {
-			state: getCollectStatus(changing, isLastPage ?? false, collectStatus),
+			state: getCollectStatus(changing, lastPageReach, collectStatus),
 			date: new Date().getTime(),
 			currentPage: pageTag ?? '1',
 		};

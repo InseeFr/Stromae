@@ -45,6 +45,7 @@ export function Continuer(props: OrchestratedElement) {
 	const handleClick = useCallback(
 		(event: React.MouseEvent) => {
 			event.preventDefault();
+			goNextPage();
 			if (isLastPage) {
 				try {
 					navigate(uriPostEnvoi(survey, unit));
@@ -52,7 +53,6 @@ export function Continuer(props: OrchestratedElement) {
 					navigate(uri404());
 				}
 			}
-			goNextPage();
 		},
 		[goNextPage, isLastPage, unit, survey, navigate]
 	);
