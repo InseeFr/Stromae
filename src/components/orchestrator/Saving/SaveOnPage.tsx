@@ -12,7 +12,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		currentChange,
 		getData,
 		isLastPage,
-		collectStatus,
+		initialCollectStatus,
 		pageTag,
 		children,
 	} = props;
@@ -24,7 +24,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		getData,
 		pageTag,
 		isLastPage,
-		collectStatus,
+		initialCollectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
 	const shouldSync = useRef(false);

@@ -100,8 +100,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
 
-	const collectStatus = state ?? CollectStatusEnum.Init;
-	useRedirectIfAlreadyValidated(collectStatus);
+	const initialCollectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(initialCollectStatus);
 
 	return (
 		<Provider>
@@ -119,7 +119,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				disabled={disabled}
 				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
-				collectStatus={collectStatus}
+				initialCollectStatus={initialCollectStatus}
 			>
 				{children}
 			</CloneElements>

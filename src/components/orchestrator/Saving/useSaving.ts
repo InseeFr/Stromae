@@ -9,7 +9,11 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	'currentChange' | 'getData' | 'pageTag' | 'isLastPage' | 'collectStatus'
+	| 'currentChange'
+	| 'getData'
+	| 'pageTag'
+	| 'isLastPage'
+	| 'initialCollectStatus'
 >;
 
 function isOnChange(data: {} = {}) {
@@ -28,10 +32,7 @@ function getCollectStatus(
 	lastPageReach: boolean,
 	previous?: CollectStatusEnum
 ) {
-	if (previous === CollectStatusEnum.Completed) {
-		return CollectStatusEnum.Completed;
-	}
-	if (lastPageReach) {
+	if (previous === CollectStatusEnum.Validated || lastPageReach) {
 		return CollectStatusEnum.Validated;
 	}
 	if (changing) {
@@ -54,8 +55,10 @@ function getCollectStatus(
  * @returns
  */
 export function useSaving(args: SavingArgs) {
-	const { currentChange, getData, pageTag, isLastPage, collectStatus } = args;
+	const { currentChange, getData, pageTag, isLastPage, initialCollectStatus } =
+		args;
 	const [lastPageReach, setLastPageReach] = useState(false);
+	const [currentStatus, setCurrentStatus] = useState(initialCollectStatus);
 	const changes = useRef<Record<string, null>>({});
 	const { putSurveyUnitData, putSurveyUnitStateData } = useContext(
 		loadSourceDataContext
@@ -71,7 +74,7 @@ export function useSaving(args: SavingArgs) {
 
 	return async function save() {
 		let data = {};
-		if (!getData || collectStatus === CollectStatusEnum.Validated) {
+		if (!getData || currentStatus === CollectStatusEnum.Validated) {
 			return undefined;
 		}
 		if (SAVING_STRATEGY === 'partial') {
@@ -105,10 +108,11 @@ export function useSaving(args: SavingArgs) {
 		// On sauvegarde le parcourt de l'utilisateur
 		setLastPageReach(isLastPage ?? false);
 		const state = {
-			state: getCollectStatus(changing, lastPageReach, collectStatus),
+			state: getCollectStatus(changing, lastPageReach, currentStatus),
 			date: new Date().getTime(),
 			currentPage: pageTag ?? '1',
 		};
+		setCurrentStatus(state.state);
 		const status = await putSurveyUnitStateData(state);
 		if (status) {
 			return true;
