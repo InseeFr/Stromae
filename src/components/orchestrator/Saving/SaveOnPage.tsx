@@ -23,7 +23,6 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		currentChange,
 		getData,
 		pageTag,
-		isLastPage,
 		initialCollectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);

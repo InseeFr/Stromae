@@ -9,11 +9,7 @@ const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
 
 type SavingArgs = Pick<
 	OrchestratedElement,
-	| 'currentChange'
-	| 'getData'
-	| 'pageTag'
-	| 'isLastPage'
-	| 'initialCollectStatus'
+	'currentChange' | 'getData' | 'pageTag' | 'initialCollectStatus'
 >;
 
 function isOnChange(data: {} = {}) {
@@ -51,7 +47,7 @@ function getCollectStatus(
  * partial : seules les variables ayant changées génèrent une sauvegarde (s'il y a des modifications)
  * Autre difficulté : on sauvegarde la page n quand on arrive sur la page n + 1 (commande du métier), donc on sauvegarde l'avant dernière page sur
  * la dernière page. Il faut en plus, lorsque l'on quitte la dernière page sauvegarder stateData, une dernière fois pour passer
- * le statut à COMPLETED : c'est pour cela que l'on mémorise lastPageReach.
+ * le statut à COMPLETED. Le statut isLastPage est résolu au moment où on appel la fonction et lui est transmis par un paramètre.
  * @returns
  */
 export function useSaving(args: SavingArgs) {
