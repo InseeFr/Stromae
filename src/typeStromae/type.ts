@@ -72,7 +72,8 @@ export type OrchestratedElement = {
 	// controls errors
 	currentErrors?: Record<string, Array<LunaticError>>;
 	criticality?: boolean;
-	handleChangeCalled?: boolean;
+	refreshControls?: boolean;
+	setRefreshControls?: (value: boolean) => void;
 	// handleChange
 	currentChange?: { name: string };
 	// saving
@@ -87,7 +88,6 @@ export type OrchestratedElement = {
 	only?: string[];
 	except?: string[];
 	title?: string;
-	setHandleChangeCalled?: (value: boolean) => void;
 };
 
 export type QuestionnaireParams = {

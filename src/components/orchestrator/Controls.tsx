@@ -16,8 +16,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		goPreviousPage = () => null,
 		compileControls,
 		pageTag,
-		handleChangeCalled,
-		setHandleChangeCalled,
+		refreshControls,
+		setRefreshControls,
 		...rest
 	} = props;
 
@@ -35,8 +35,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		if (compileControls) {
 			errors = compileControls();
 		}
-		setHandleChangeCalled?.(false);
-		if (warning && !handleChangeCalled) {
+		setRefreshControls?.(false);
+		if (warning && !refreshControls) {
 			setWarning(false);
 			setCurrentErrors(undefined);
 			setCriticality(false);
@@ -56,8 +56,8 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		compileControls,
 		goNextPage,
 		warning,
-		handleChangeCalled,
-		setHandleChangeCalled,
+		refreshControls,
+		setRefreshControls,
 	]);
 
 	const handleGoPrevious: () => void = useCallback(() => {
