@@ -3,7 +3,6 @@ import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
 import { useSaving } from './useSaving';
 import { usePrevious } from '../../../lib/commons/usePrevious';
-import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const {
@@ -55,21 +54,19 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	 * On déclenche la sauvegarde : quand lunatic à fini de tourner la page et quand l'utilisateur à cliquer
 	 * sur le bouton suivant/precedent
 	 */
-	useAsyncEffect(async () => {
-		if (isNewPage && shouldSync.current) {
-			shouldSync.current = false;
-			makeSave(false);
-		}
-	}, [isNewPage]);
+	if (isNewPage && shouldSync.current) {
+		shouldSync.current = false;
+		makeSave(false);
+	}
 
 	const handleNextPage = useCallback(async () => {
 		if (isLastPage) {
 			await makeSave(true);
-		} else if (pageTag) {
+		} else {
 			shouldSync.current = true;
 		}
 		goNextPage?.();
-	}, [goNextPage, pageTag, shouldSync, isLastPage, makeSave]);
+	}, [goNextPage, shouldSync, isLastPage, makeSave]);
 
 	const handleGoBack = useCallback(async () => {
 		goPreviousPage?.();
