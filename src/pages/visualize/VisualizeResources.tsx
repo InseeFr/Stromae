@@ -1,6 +1,13 @@
+import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
+import { AlertesControles } from '../../components/AlertesControles';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents';
+import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
+import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
+import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Orchestrator, OrchestratorReadOnly } from '../../components/orchestrator';
@@ -27,10 +34,18 @@ export function VisualizeResources(props: VisualizeResourcesProps) {
 		>
 			<Layout>
 				<FinalOrchestrator>
-					<Precedent />
-					<Formulaire />
-					<Continuer />
-				</FinalOrchestrator>
+				<DraftBanner />
+						<ContinueOrRestart />
+						<Precedent />
+						<Grid>
+							<AlertesSaving />
+							<AlertesControles />
+							<Formulaire />
+							<Modals />
+							<Continuer />
+						</Grid>
+						<ComplementaryComponents />
+					</FinalOrchestrator>
 			</Layout>
 		</LoadFromUrl>
 	);
