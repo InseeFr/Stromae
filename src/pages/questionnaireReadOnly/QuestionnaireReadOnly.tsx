@@ -26,10 +26,7 @@ export function QuestionnaireReadOnly() {
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
-					<OrchestratorReadOnly
-						features={FEATURES}
-						savingType={COLLECTED}
-					>
+					<OrchestratorReadOnly features={FEATURES} savingType={COLLECTED}>
 						<Precedent />
 						<Grid>
 							<Formulaire />
