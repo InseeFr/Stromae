@@ -40,7 +40,8 @@ function getCollectStatus(
 
 /**
  *
- * @param args Comportement de sauvegarde de l'API
+ * Comportement de sauvegarde de l'API. Expose une methode de sauvegarde pour data et stateData, selon l'option choisie
+ * dans .env : toutes les variables ou seulement celles ayant subies un changement et pas encore enregistrer côté API.
  * Comme il existe 2 stratégies pour déclencher la sauvegarde le comportement de sauvegarde étant lui-même
  * conditionnelle, il est factorisé dans un hook.
  * complete : sauvegarde toutes les variables du questionnaire
@@ -48,6 +49,7 @@ function getCollectStatus(
  * Autre difficulté : on sauvegarde la page n quand on arrive sur la page n + 1 (commande du métier), donc on sauvegarde l'avant dernière page sur
  * la dernière page. Il faut en plus, lorsque l'on quitte la dernière page sauvegarder stateData, une dernière fois pour passer
  * le statut à COMPLETED. Le statut isLastPage est résolu au moment où on appel la fonction et lui est transmis par un paramètre.
+ * @param args
  * @returns
  */
 export function useSaving(args: SavingArgs) {

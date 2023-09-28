@@ -34,7 +34,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string | number | boolean | Array<string>>
 	>({});

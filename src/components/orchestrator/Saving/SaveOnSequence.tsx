@@ -4,6 +4,12 @@ import { isComponentsContainSequence } from '../../../lib/commons/isComponentsco
 import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { useSaving } from './useSaving';
 
+/**
+ * Sauvegarde lors des changement de séquences.
+ *
+ * @param props
+ * @returns
+ */
 export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const { children, ...rest } = props;
 	const {
@@ -19,22 +25,17 @@ export function SaveOnSequence(props: PropsWithChildren<OrchestratedElement>) {
 	const components = getComponents();
 	const isSequence = isComponentsContainSequence(components);
 
-	const handleGoNext = useCallback(() => {
-		if (goNextPage) {
-			if (isSequence) {
-				(async function () {
-					try {
-						setSavingFailure(undefined);
-						const somethingToSave = await save(isLastPage ?? false);
-
-						if (somethingToSave) {
-							setSavingFailure({ status: 200 });
-						}
-						goNextPage();
-					} catch (e) {
-						setSavingFailure({ status: 500 });
-					}
-				})();
+	const handleGoNext = useCallback(async () => {
+		if (isSequence) {
+			try {
+				setSavingFailure(undefined);
+				const somethingToSave = await save(isLastPage ?? false);
+				if (somethingToSave) {
+					setSavingFailure({ status: 200 });
+				}
+				goNextPage?.();
+			} catch (e) {
+				setSavingFailure({ status: 500 });
 			}
 		}
 	}, [goNextPage, isSequence, save, isLastPage]);
