@@ -22,15 +22,17 @@ export function Precedent(props: OrchestratedElement) {
 
 	if (!isFirstPage) {
 		return (
-			<div className={fr.cx('fr-col-12', 'fr-container')}>
-				<Button
-					priority="tertiary no outline"
-					iconId="fr-icon-arrow-left-line"
-					onClick={handleClick}
-					ref={buttonRef}
-				>
-					Précédent
-				</Button>
+			<div className={fr.cx('fr-col-12')}>
+				<div className={fr.cx('fr-container')}>
+					<Button
+						priority="tertiary no outline"
+						iconId="fr-icon-arrow-left-line"
+						onClick={handleClick}
+						ref={buttonRef}
+					>
+						Précédent
+					</Button>
+				</div>
 			</div>
 		);
 	}
