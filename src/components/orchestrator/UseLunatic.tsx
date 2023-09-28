@@ -34,7 +34,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string | number | boolean | Array<string>>
 	>({});
@@ -102,8 +101,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
 
-	const collectStatus = state ?? CollectStatusEnum.Init;
-	useRedirectIfAlreadyValidated(collectStatus);
+	const initialCollectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(initialCollectStatus);
 
 	return (
 		<Provider>
@@ -121,7 +120,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				disabled={disabled}
 				pageFromAPI={pageFromAPI}
 				personalization={personalizationMap}
-				collectStatus={collectStatus}
+				initialCollectStatus={initialCollectStatus}
 				refreshControls={refreshControls}
 				setRefreshControls={setRefreshControls}
 			>

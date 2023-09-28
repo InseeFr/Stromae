@@ -26,6 +26,7 @@
 		"@shopify/jsx-no-hardcoded-content": "off",
 		"no-console": "off",
 		"@shopify/strict-component-boundaries": "off",
+		"@shopify/binary-assignment-parens": "off",
 		"@typescript-eslint/naming-convention": "off",
 		"@shopify/prefer-early-return": "off",
 		"@shopify/no-debugger": "off",

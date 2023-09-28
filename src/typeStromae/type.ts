@@ -84,7 +84,7 @@ export type OrchestratedElement = {
 	// Page given by API.getSuData at launch
 	pageFromAPI?: string;
 	// last status of survey, give by the API ('INIT' | 'COLLECTED' | 'VALIDATED')
-	collectStatus?: CollectStatusEnum;
+	initialCollectStatus?: CollectStatusEnum;
 	only?: string[];
 	except?: string[];
 	title?: string;

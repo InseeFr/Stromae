@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react';
-
 import { LunaticSource } from '../../typeLunatic/type-source';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
-
 import { Controls } from './Controls';
 import { LoadSourceData } from './LoadSourceData';
 import { Saving } from './Saving';
