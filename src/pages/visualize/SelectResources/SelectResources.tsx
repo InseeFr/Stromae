@@ -13,10 +13,10 @@ export type SelectResourceProps = {
 
 function makePath(source: string, data?: string, metadata?: string) {
 	let query = `?source=${source}`;
-	if (data && data.length) {
+	if (data?.length) {
 		query = `${query}&data=${data}`;
 	}
-	if (metadata && metadata.length) {
+	if (metadata?.length) {
 		query = `${query}&metadata=${metadata}`;
 	}
 	return {

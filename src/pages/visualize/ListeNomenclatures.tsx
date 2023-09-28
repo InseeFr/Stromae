@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
-import { Input } from '@codegouvfr/react-dsfr/Input';
 import { Button } from '@codegouvfr/react-dsfr/Button';
+import { Input } from '@codegouvfr/react-dsfr/Input';
+import { useCallback, useState } from 'react';
 import { NomenclaturesType } from './Visualize';
 
 /**
@@ -133,7 +133,7 @@ export function ListeNomenclatures({
 				{rows.map(({ name, uri }, i) => {
 					return (
 						<Row
-							key={i}
+							key={name}
 							name={name}
 							uri={uri}
 							onChange={onChange}
