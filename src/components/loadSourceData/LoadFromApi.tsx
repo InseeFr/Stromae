@@ -59,7 +59,6 @@ export function LoadFromApi({
 					await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
 				}
 			} catch (e) {
-				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}
@@ -77,7 +76,6 @@ export function LoadFromApi({
 					}
 				}
 			} catch (e) {
-				// eslint-disable-next-line no-console
 				console.warn(e);
 				return false;
 			}

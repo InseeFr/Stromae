@@ -4,3 +4,35 @@ import { RegisteredLinkProps } from '@codegouvfr/react-dsfr/link';
 export type FooterType = FooterProps & {
 	otherLinksProps: Array<RegisteredLinkProps>;
 };
+
+export type FooterJsonProps = {
+	brandTop?: Content;
+	operatorLogo?: OperatorLogo;
+	accessibility?: string;
+	accessibilityLinkProps?: LinkProps;
+	homeLinkProps?: HomeLinkProps;
+	termsLinkProps?: LinkProps;
+	websiteMapLinkProps?: LinkProps;
+	contentDescription?: string;
+	license?: Content;
+};
+
+export type LinkProps = {
+	to: string;
+};
+
+export type Content = {
+	value: string;
+	type: string;
+};
+
+export type HomeLinkProps = {
+	title: string;
+	to: string;
+};
+
+export type OperatorLogo = {
+	alt: string;
+	imgUrl: string;
+	orientation: string;
+};

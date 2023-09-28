@@ -1,11 +1,11 @@
 import { PropsWithChildren, useCallback } from 'react';
-import type { LunaticSource } from '../../typeLunatic/type-source';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
-import { SurveyUnitData, MetadataSurvey } from '../../typeStromae/type';
-import { loadSourceDataContext } from './LoadSourceDataContext';
+import type { LunaticSource } from '../../typeLunatic/type-source';
+import { CollectStatusEnum, MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { DEFAULT_HEADER } from '../Header/default-header';
 import { DEFAULT_FOOTER } from '../footer/default-footer';
 import { DEFAULT_SUBMIT } from '../postSubmit/default-submit';
+import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromUrlProps = {
 	urlSource?: string;
@@ -28,11 +28,11 @@ async function getDepositProof() {
 const NO_DATA: SurveyUnitData = {
 	data: {},
 	stateData: {
-		state: 'INIT',
+		state: CollectStatusEnum.Init,
 		date: 0,
 		currentPage: '1',
 	},
-	personalization: null,
+	personalization: undefined,
 };
 
 export function LoadFromUrl({
@@ -50,7 +50,7 @@ export function LoadFromUrl({
 			Header: DEFAULT_HEADER,
 			Footer: DEFAULT_FOOTER,
 			Submit: DEFAULT_SUBMIT,
-		};
+		} as MetadataSurvey;
 	}, [urlMetadata]);
 	const getSurvey = useCallback(async () => {
 		if (urlSource) {

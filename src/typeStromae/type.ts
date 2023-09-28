@@ -24,7 +24,7 @@ export type PersonalizationElement = {
 export type SurveyUnitData = {
 	data: LunaticData;
 	stateData: StateData;
-	personalization: Array<PersonalizationElement>;
+	personalization?: Array<PersonalizationElement>;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };

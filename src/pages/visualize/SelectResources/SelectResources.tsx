@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Button } from '@codegouvfr/react-dsfr/Button';
 import { Header } from '@codegouvfr/react-dsfr/Header';
 import { Input } from '@codegouvfr/react-dsfr/Input';
-import { Button } from '@codegouvfr/react-dsfr/Button';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Grid } from '../../../components/Grid/Grid';
-import { NomenclaturesType } from '../Visualize';
 import { ListeNomenclatures } from '../ListeNomenclatures';
+import { NomenclaturesType } from '../Visualize';
 
 export type SelectResourceProps = {
 	setNomenclatures: (nomenclatures: NomenclaturesType) => void;
@@ -43,7 +43,7 @@ export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 			<Header
 				brandTop={<>Hello World!</>}
 				homeLinkProps={{
-					href: '/visualize',
+					to: '/visualize',
 					title: 'Stromae - collecte web',
 				}}
 				serviceTitle="Filière d'enquête"
