@@ -1,25 +1,36 @@
-import { useState } from 'react';
-
+import { useState, useCallback } from 'react';
 import { OrchestratedElement } from '../../typeStromae/type';
-import { parsePageTag } from '../../lib/commons/parsePageTag';
-
 import { ModalContinueOrRestart } from './ModalContinueOrRestart';
 
 export function ContinueOrRestart(props: OrchestratedElement) {
-	const { currentPage, goToPage } = props;
-	const [display, setDisplay] = useState(currentPage !== '1');
-	const { page, iteration } = parsePageTag(currentPage);
+	const { pageFromAPI, goToPage } = props;
+	const [display, setDisplay] = useState(pageFromAPI && pageFromAPI !== '1');
 
-	if (display) {
-		return (
-			<ModalContinueOrRestart
-				display={display}
-				close={() => setDisplay(false)}
-				goToPage={goToPage}
-				currentPage={page}
-				iteration={iteration ? parseInt(iteration, 10) : undefined}
-			/>
-		);
+	function onClose() {
+		setDisplay(false);
 	}
-	return null;
+
+	const onContinue = useCallback(() => {
+		if (!pageFromAPI) {
+			return;
+		}
+		goToPage?.({ page: pageFromAPI });
+		setDisplay(false);
+	}, [pageFromAPI, goToPage]);
+
+	const onRestart = useCallback(() => {
+		goToPage?.({ page: '1' });
+		setDisplay(false);
+	}, [goToPage]);
+
+	if (!display) {
+		return null;
+	}
+	return (
+		<ModalContinueOrRestart
+			onContinue={onContinue}
+			onRestart={onRestart}
+			onClose={onClose}
+		/>
+	);
 }

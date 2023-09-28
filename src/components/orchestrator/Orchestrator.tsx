@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
 
 import { LunaticSource } from '../../typeLunatic/type-source';
-import { SurveyUnitData } from '../../typeStromae/type';
+import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 
-import { LoadSourceData } from './LoadSourceData';
-import { UseLunatic } from './UseLunatic';
 import { Controls } from './Controls';
+import { LoadSourceData } from './LoadSourceData';
 import { Saving } from './Saving';
+import { UseLunatic } from './UseLunatic';
 
 export type OrchestratorProps = {
 	source?: LunaticSource;
@@ -20,7 +20,8 @@ export type OrchestratorProps = {
 	preferences?: Array<string>;
 	savingType?: string;
 	paginated?: boolean;
-	readOnly?: boolean;
+	disabled?: boolean;
+	metadata?: MetadataSurvey;
 };
 
 /**
@@ -32,7 +33,6 @@ export function Orchestrator({
 	children,
 	features,
 	preferences,
-	readOnly,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData>
@@ -42,7 +42,6 @@ export function Orchestrator({
 				autoSuggesterLoading={true}
 				paginated={true}
 				activeControls={true}
-				readOnly={readOnly}
 			>
 				<Saving>
 					<Controls>{children}</Controls>

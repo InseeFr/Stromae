@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
-
-import { useDocumentTitle } from '../../useDocumentTitle';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { Orchestrator } from '../../components/orchestrator';
 import { Layout } from '../../components/layout';
 import { Precedent } from '../../components/navigation/Precedent';
@@ -12,6 +11,9 @@ import { AlertesControles } from '../../components/AlertesControles';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
 import { Grid } from '../../components/Grid';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
+import { Modals } from '../../components/modals';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -25,21 +27,24 @@ const COLLECTED = 'COLLECTED';
 
 export function Questionnaire(props: QuestionnaireProps) {
 	const { survey, unit } = useParams();
-
 	useDocumentTitle('Questionnaire');
+
 	return (
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
+						<DraftBanner />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>
 							<AlertesSaving />
 							<AlertesControles />
 							<Formulaire />
+							<Modals />
 							<Continuer />
 						</Grid>
+						<ComplementaryComponents />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>

@@ -1,6 +1,9 @@
-import ConvertContent from '../../convertContent';
+import { fr } from '@codegouvfr/react-dsfr/fr';
+import ConvertContent from '../../utils/convertContent';
 
 import { FooterType } from './FooterType';
+import { Link } from 'react-router-dom';
+import { AppVersion } from '../AppVersion/AppVersion';
 
 const DEFAULT_FOOTER: FooterType = {
 	brandTop: 'valeur par defaut',
@@ -8,13 +11,9 @@ const DEFAULT_FOOTER: FooterType = {
 	contentDescription: undefined,
 	websiteMapLinkProps: undefined,
 	accessibilityLinkProps: undefined,
+	otherLinksProps: [],
 	termsLinkProps: undefined,
-	personalDataLinkProps: undefined,
-	homeLinkProps: {
-		href: '/',
-		title: 'Accueil',
-	},
-	// bottomItems: undefined,
+	homeLinkProps: undefined,
 	license: undefined,
 	operatorLogo: undefined,
 };
@@ -28,131 +27,142 @@ export function Footer(props: FooterProps) {
 		accessibilityLinkProps,
 		homeLinkProps,
 		contentDescription,
-		personalDataLinkProps,
+		otherLinksProps,
 		termsLinkProps,
 		websiteMapLinkProps,
-		// bottomItems,
 		license,
 		operatorLogo,
 	} = props.footer || DEFAULT_FOOTER;
-
+	// We don't use the React DSFR Footer component because the links are not correctly displayed with nvda (the links are all on one line)
 	return (
-		<footer className="fr-footer" role="contentinfo" id="footer">
-			<div className="fr-container">
-				<div className="fr-footer__body">
-					<div className="fr-footer__brand fr-enlarge-link">
-						<p className="fr-logo">
+		<footer className={fr.cx('fr-footer')} role="contentinfo" id="footer">
+			<div className={fr.cx('fr-container')}>
+				<div className={fr.cx('fr-footer__body')}>
+					<div className={fr.cx('fr-footer__brand', 'fr-enlarge-link')}>
+						<p className={fr.cx('fr-logo')}>
 							<ConvertContent content={brandTop as any} />
 						</p>
-						<a
-							className="fr-footer__brand-link"
-							href={homeLinkProps.href}
-							title={`Accueil - ${homeLinkProps.title} - République Française`}
+						<Link
+							className={fr.cx('fr-footer__brand-link')}
+							to="/"
+							title={`Accueil - ${
+								homeLinkProps && homeLinkProps.title
+							} - République Française`}
 						>
 							<img
-								className="fr-footer__logo"
+								className={fr.cx('fr-footer__logo')}
 								style={{ width: '3.5rem' }}
 								src={operatorLogo?.imgUrl}
 								alt={operatorLogo?.alt}
 							/>
-						</a>
+						</Link>
 					</div>
-					<div className="fr-footer__content">
-						<p className="fr-footer__content-desc">{contentDescription}</p>
-						<ul className="fr-footer__content-list">
-							<li className="fr-footer__content-item">
-								<a
-									className="fr-footer__content-link"
+					<div className={fr.cx('fr-footer__content')}>
+						<p className={fr.cx('fr-footer__content-desc')}>
+							{contentDescription}
+						</p>
+						<ul className={fr.cx('fr-footer__content-list')}>
+							<li>
+								<Link
+									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
-									href="https://legifrance.gouv.fr"
+									title="le-recensement-et-moi.fr - ouvre une nouvelle fenêtre"
+									to="https://le-recensement-et-moi.fr"
 									rel="noreferrer"
 								>
-									legifrance.gouv.fr
-								</a>
+									le-recensement-et-moi
+								</Link>
 								&nbsp;
 							</li>
-							<li className="fr-footer__content-item">
-								<a
-									className="fr-footer__content-link"
-									target="_blank"
-									href="https://gouvernement.fr"
+							<li>
+								<Link
+									title="insee.fr - ouvre une nouvelle fenêtre"
 									rel="noreferrer"
+									target="_blank"
+									className={fr.cx('fr-footer__content-link')}
+									to="https://insee.fr"
 								>
-									gouvernement.fr
-								</a>
+									insee.fr
+								</Link>
 								&nbsp;
 							</li>
-							<li className="fr-footer__content-item">
-								<a
-									className="fr-footer__content-link"
+							<li>
+								<Link
+									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
-									href="https://service-public.fr"
+									title="service-public.fr - ouvre une nouvelle fenêtre"
+									to="https://service-public.fr"
 									rel="noreferrer"
 								>
 									service-public.fr
-								</a>
+								</Link>
 								&nbsp;
 							</li>
-							<li className="fr-footer__content-item">
-								<a
-									className="fr-footer__content-link"
+							<li>
+								<Link
 									target="_blank"
-									href="https://data.gouv.fr"
 									rel="noreferrer"
+									title="data.gouv.fr - ouvre une nouvelle fenêtre"
+									className={fr.cx('fr-footer__content-link')}
+									to="https://data.gouv.fr"
 								>
 									data.gouv.fr
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div className="fr-footer__bottom">
-					<ul className="fr-footer__bottom-list">
+				<div className={fr.cx('fr-footer__bottom')}>
+					<ul className={fr.cx('fr-footer__bottom-list')}>
 						{websiteMapLinkProps && (
-							<li className="fr-footer__bottom-item">
-								<a
-									className="fr-footer__bottom-link"
-									href={websiteMapLinkProps?.href}
+							<li className={fr.cx('fr-footer__bottom-item')}>
+								<Link
+									to={websiteMapLinkProps?.to}
+									className={fr.cx('fr-footer__bottom-link')}
 								>
 									Plan du site
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
-						{accessibility && (
-							<li className="fr-footer__bottom-item">
-								<a
-									className="fr-footer__bottom-link"
-									href={accessibilityLinkProps?.href}
+						{accessibilityLinkProps && (
+							<li className={fr.cx('fr-footer__bottom-item')}>
+								<Link
+									className={fr.cx('fr-footer__bottom-link')}
+									to={accessibilityLinkProps?.to}
 								>
 									Accessibilité : {accessibility}
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
 						{termsLinkProps && (
-							<li className="fr-footer__bottom-item">
-								<a
-									className="fr-footer__bottom-link"
-									href={termsLinkProps?.href}
+							<li className={fr.cx('fr-footer__bottom-item')}>
+								<Link
+									className={fr.cx('fr-footer__bottom-link')}
+									to={termsLinkProps?.to}
 								>
 									Mentions légales
-								</a>
+								</Link>
 								&nbsp;
 							</li>
 						)}
-						{personalDataLinkProps && (
-							<li className="fr-footer__bottom-item">
-								<a
-									className="fr-footer__bottom-link"
-									href={personalDataLinkProps?.href}
+						{otherLinksProps?.map((otherLinkProps, key) => (
+							<li className={fr.cx('fr-footer__bottom-item')} key={key}>
+								<Link
+									className={fr.cx('fr-footer__bottom-link')}
+									to={otherLinkProps?.to}
 								>
-									Données personnelles
-								</a>
+									{otherLinkProps?.title}
+								</Link>
+								&nbsp;
 							</li>
-						)}
+						))}
+						<li className={fr.cx('fr-footer__bottom-item')}>
+							<AppVersion className={fr.cx('fr-footer__bottom-link')} />
+						</li>
 					</ul>
-					<div className="fr-footer__bottom-copy">
+					<div className={fr.cx('fr-footer__bottom-copy')}>
 						<p>
 							<ConvertContent content={license as any} />
 						</p>

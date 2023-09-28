@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { VisualizeResources } from './VisualizeResources';
 import { SelectResources } from './SelectResources';
+import { VisualizeResources } from './VisualizeResources';
 
 // const RP = {
 // 	source: 'http%3A%2F%2Flocalhost%3A3000%2Frp%2Fsource.json',

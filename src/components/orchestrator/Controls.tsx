@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useState } from 'react';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 
 import { LunaticError } from '../../typeLunatic/type';
 import { OrchestratedElement } from '../../typeStromae/type';
@@ -16,17 +16,31 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		goNextPage = () => null,
 		goPreviousPage = () => null,
 		compileControls,
+		pageTag,
 		...rest
 	} = props;
 
+	useEffect(() => {
+		if (!(currentErrors?.roundabout && pageTag?.includes('#'))) {
+			return;
+		}
+		setWarning(false);
+		setCurrentErrors(undefined);
+		setCriticality(false);
+	}, [pageTag, currentErrors]);
+
 	const handleGoNext = useCallback(() => {
+		let errors;
+		if (compileControls) {
+			errors = compileControls();
+		}
+
 		if (warning) {
 			setWarning(false);
 			setCurrentErrors(undefined);
 			setCriticality(false);
 			goNextPage();
-		} else if (compileControls) {
-			const errors = compileControls();
+		} else if (errors) {
 			setCriticality(errors.isCritical);
 			setCurrentErrors(errors.currentErrors);
 			if (errors.currentErrors && !errors.isCritical) {
@@ -40,6 +54,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	}, [compileControls, goNextPage, warning]);
 
 	const handleGoPrevious: () => void = useCallback(() => {
+		setWarning(false);
 		setCriticality(undefined);
 		setCurrentErrors(undefined);
 		goPreviousPage();

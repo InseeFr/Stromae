@@ -4,7 +4,7 @@ export const DEFAULT_HEADER: HeaderType = {
 	brandTop: 'Intitulé',
 	quickAccessItems: [],
 	homeLinkProps: {
-		href: '/',
+		to: '/',
 		title:
 			'Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)',
 	},

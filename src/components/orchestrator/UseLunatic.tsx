@@ -1,9 +1,23 @@
-import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { OrchestratedElement } from '../../typeStromae/type';
-import { OrchestratorProps } from './Orchestrator';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import {
+	CollectStatusEnum,
+	OrchestratedElement,
+	PersonalizationElement,
+} from '../../typeStromae/type';
 import { CloneElements } from './CloneElements';
+import { OrchestratorProps } from './Orchestrator';
+import { useQuestionnaireTitle } from './useQuestionnaireTitle';
+import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
+
+export function createPersonalizationMap(
+	personalization: Array<PersonalizationElement>
+) {
+	return personalization.reduce((acc, { name, value }) => {
+		return { ...acc, [name]: value };
+	}, {});
+}
 
 export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const {
@@ -16,16 +30,25 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		savingType,
 		autoSuggesterLoading,
 		paginated,
-		readOnly,
+		disabled,
+		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
-	const { data, stateData = { currentPage: '1' } } = surveyUnitData ?? {};
-	const { currentPage } = stateData;
+
+	const [personalizationMap, setPersonalizationMap] = useState<
+		Record<string, string | number | boolean | Array<string>>
+	>({});
+	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
+	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 
 	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
 		setCurrentChange({ name });
 	}, []);
+
+	useEffect(() => {
+		setPersonalizationMap(createPersonalizationMap(personalization));
+	}, [personalization]);
 
 	useEffect(() => {
 		setArgs({
@@ -58,7 +81,27 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		Provider,
 		compileControls,
 		pageTag,
+		pager,
 	} = useLunatic(source, data, args);
+
+	useEffect(() => {
+		(
+			document
+				.getElementById('stromae-form')
+				?.getElementsByTagName('legend')[0] as HTMLElement
+		)?.focus();
+	}, [pager]);
+
+	const defaultTitle = metadata?.Header?.serviceTitle;
+	useQuestionnaireTitle({
+		source,
+		page: pager.page,
+		defaultTitle:
+			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
+	});
+
+	const collectStatus = state ?? CollectStatusEnum.Init;
+	useRedirectIfAlreadyValidated(collectStatus);
 
 	return (
 		<Provider>
@@ -73,8 +116,10 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				getData={getData}
 				currentChange={currentChange}
 				pageTag={pageTag}
-				readOnly={readOnly}
-				currentPage={currentPage}
+				disabled={disabled}
+				pageFromAPI={pageFromAPI}
+				personalization={personalizationMap}
+				collectStatus={collectStatus}
 			>
 				{children}
 			</CloneElements>

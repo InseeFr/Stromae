@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { HeaderType } from './HeaderType';
 import { DEFAULT_HEADER } from './default-header';
-import ConvertContent from '../../convertContent';
+import ConvertContent from '../../utils/convertContent';
 import Button from '@codegouvfr/react-dsfr/Button';
-// import { HeaderProps as HeaderPropsDsfr } from '@codegouvfr/react-dsfr/Header';
+import { fr } from '@codegouvfr/react-dsfr';
+import Display from '@codegouvfr/react-dsfr/Display/Display';
+import { Link } from 'react-router-dom';
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
@@ -54,139 +56,155 @@ export function Header(props: HeaderProps) {
 	}, [isAuthenticated, handleOidcAuth, header]);
 
 	return (
-		<header role="banner" className="fr-header" id="header">
-			<div className="fr-header__body">
-				<div className="fr-container">
-					<div className="fr-header__body-row">
-						<div className="fr-header__brand fr-enlarge-link">
-							<div className="fr-header__brand-top">
-								<div className="fr-header__logo">
-									<p className="fr-logo">
-										{<ConvertContent content={brandTop as any} />}
-									</p>
-								</div>
-								<div className="fr-header__operator">
-									<img
-										className="fr-responsive-img"
-										style={{ maxWidth: '3.5rem' }}
-										src={operatorLogo?.imgUrl}
-										alt={operatorLogo?.alt}
-									/>
-								</div>
-								<div className="fr-header__navbar">
-									<button
-										className="fr-btn--menu fr-btn"
-										data-fr-opened="false"
-										aria-controls="modal-577"
-										aria-haspopup="menu"
-										id="button-578"
-										title="Menu"
-									>
-										Menu
-									</button>
-								</div>
-							</div>
-							<div className="fr-header__service">
-								<a
-									href={homeLinkProps.href}
-									title={`Accueil - ${homeLinkProps.title} - République Française`}
-								>
-									<span className="fr-header__service-title">
-										{serviceTitle}
-									</span>
-								</a>
-							</div>
-						</div>
-						<div className="fr-header__tools">
-							<div className="fr-header__tools-links">
-								<ul className="fr-btns-group">
-									<li>
-										<button
-											className="fr-btn fr-fi-theme-fill fr-link--icon-left"
-											aria-controls="fr-theme-modal"
+		<>
+			<header role="banner" className={fr.cx('fr-header')} id="header">
+				<div>
+					<div className={fr.cx('fr-container')}>
+						<div className={fr.cx('fr-header__body-row')}>
+							<div className={fr.cx('fr-header__brand', 'fr-enlarge-link')}>
+								<div className={fr.cx('fr-header__brand-top')}>
+									<div className={fr.cx('fr-header__logo')}>
+										<p className={fr.cx('fr-logo')}>
+											{<ConvertContent content={brandTop as any} />}
+										</p>
+									</div>
+									<div className={fr.cx('fr-header__operator')}>
+										<img
+											className={fr.cx('fr-responsive-img')}
+											style={{ maxWidth: '3.5rem' }}
+											src={operatorLogo?.imgUrl}
+											alt={operatorLogo?.alt}
+										/>
+									</div>
+									<div className={fr.cx('fr-header__navbar')}>
+										<Button
+											className={fr.cx('fr-btn--menu')}
 											data-fr-opened="false"
+											aria-controls="modal-577"
+											aria-haspopup="menu"
+											id="button-578"
+											title="Menu"
 										>
-											Paramètres d'affichage
-										</button>
-									</li>
-									{quickAccessItems &&
-										quickAccessItems.map((quickAccessItem, index) => {
-											return (
-												<li key={index}>
-													{quickAccessItem.buttonProps ? (
-														<Button
-															iconId={quickAccessItem.iconId}
-															onClick={quickAccessItem.buttonProps.onClick}
-														>
-															{quickAccessItem.text}
-														</Button>
-													) : (
-														<a
-															className={`fr-btn ${quickAccessItem.iconId}`}
-															href={quickAccessItem.linkProps?.href}
-														>
-															{quickAccessItem.text}
-														</a>
-													)}
-												</li>
-											);
-										})}
-								</ul>
+											Menu
+										</Button>
+									</div>
+								</div>
+								<div className={fr.cx('fr-header__service')}>
+									<h1 className={fr.cx('fr-header__service-title')}>
+										<Link
+											to="/"
+											title={`Accueil - ${homeLinkProps.title} - République Française`}
+										>
+											{serviceTitle}
+										</Link>
+									</h1>
+								</div>
+							</div>
+							<div className={fr.cx('fr-header__tools')}>
+								<div className={fr.cx('fr-header__tools-links')}>
+									<ul className={fr.cx('fr-btns-group')}>
+										<li>
+											<Button
+												aria-controls="fr-theme-modal"
+												data-fr-opened="false"
+												iconId="fr-icon-theme-fill"
+											>
+												Paramètres d'affichage
+											</Button>
+										</li>
+										{quickAccessItems &&
+											quickAccessItems.map((quickAccessItem, index) => {
+												return (
+													<li key={index}>
+														{quickAccessItem.buttonProps ? (
+															<Button
+																iconId={quickAccessItem.iconId}
+																onClick={quickAccessItem.buttonProps.onClick}
+															>
+																{quickAccessItem.text}
+															</Button>
+														) : (
+															<Button
+																linkProps={{
+																	target: quickAccessItem.linkProps?.target,
+																	to: quickAccessItem.linkProps?.href,
+																	title:
+																		quickAccessItem.linkProps?.target ===
+																		'_blank'
+																			? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
+																			: quickAccessItem.text,
+																}}
+															>
+																{quickAccessItem.text}
+															</Button>
+														)}
+													</li>
+												);
+											})}
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div
-				className="fr-header__menu fr-modal"
-				id="modal-577"
-				aria-labelledby="button-578"
-			>
-				<div className="fr-container">
-					<button
-						className="fr-btn--close fr-btn"
-						aria-controls="modal-577"
-						title="Fermer"
-					>
-						Fermer
-					</button>
-					<div className="fr-header__menu-links">
-						<ul className="fr-btns-group">
-							<li>
-								<button
-									className="fr-btn fr-fi-theme-fill fr-link--icon-left"
-									aria-controls="fr-theme-modal"
-									data-fr-opened="false"
-								>
-									Paramètres d'affichage
-								</button>
-							</li>
-							{quickAccessItems &&
-								quickAccessItems.map((quickAccessItem, index) => {
-									return (
-										<li key={index}>
-											{quickAccessItem.buttonProps ? (
-												<Button
-													iconId={quickAccessItem.iconId}
-													onClick={quickAccessItem.buttonProps.onClick}
-												>
-													{quickAccessItem.text}
-												</Button>
-											) : (
-												<a
-													className={`fr-btn ${quickAccessItem.iconId}`}
-													href={quickAccessItem.linkProps?.href}
-												>
-													{quickAccessItem.text}
-												</a>
-											)}
-										</li>
-									);
-								})}
-						</ul>
+				<div
+					className={fr.cx('fr-header__menu', 'fr-modal')}
+					id="modal-577"
+					aria-labelledby="button-578"
+				>
+					<div className={fr.cx('fr-container')}>
+						<Button
+							className={fr.cx('fr-btn--close')}
+							aria-controls="modal-577"
+							title="Fermer"
+						>
+							Fermer
+						</Button>
+						<div className={fr.cx('fr-header__menu-links')}>
+							<ul className={fr.cx('fr-btns-group')}>
+								<li>
+									<Button
+										iconId="fr-icon-theme-fill"
+										aria-controls="fr-theme-modal"
+										data-fr-opened="false"
+									>
+										Paramètres d'affichage
+									</Button>
+								</li>
+								{quickAccessItems &&
+									quickAccessItems.map((quickAccessItem, index) => {
+										return (
+											<li key={index}>
+												{quickAccessItem.buttonProps ? (
+													<Button
+														iconId={quickAccessItem.iconId}
+														onClick={quickAccessItem.buttonProps.onClick}
+													>
+														{quickAccessItem.text}
+													</Button>
+												) : (
+													<Button
+														linkProps={{
+															target: quickAccessItem.linkProps?.target,
+															to: quickAccessItem.linkProps?.href,
+															title:
+																quickAccessItem.linkProps?.target === '_blank'
+																	? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
+																	: quickAccessItem.text,
+														}}
+													>
+														{quickAccessItem.text}
+													</Button>
+												)}
+											</li>
+										);
+									})}
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
+			<Display />
+		</>
 	);
 }

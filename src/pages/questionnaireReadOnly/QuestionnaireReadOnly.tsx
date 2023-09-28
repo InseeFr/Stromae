@@ -1,14 +1,15 @@
 import { useParams } from 'react-router-dom';
-
-import { useDocumentTitle } from '../../useDocumentTitle';
-import { Orchestrator } from '../../components/orchestrator';
-import { Layout } from '../../components/layout';
-import { Precedent } from '../../components/navigation/Precedent';
-import { Continuer } from '../../components/navigation/Continuer';
+import { ComplementaryComponents } from '../../components/ComplementaryComponents';
+import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
+import { Layout } from '../../components/layout';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
+import { Modals } from '../../components/modals';
+import { Continuer } from '../../components/navigation/Continuer';
+import { Precedent } from '../../components/navigation/Precedent';
+import { OrchestratorReadOnly } from '../../components/orchestrator';
 import { OidcSecure } from '../../lib/oidc';
-import { Grid } from '../../components/Grid';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -25,17 +26,18 @@ export function QuestionnaireReadOnly() {
 		<OidcSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
-					<Orchestrator
-						readOnly={true}
+					<OrchestratorReadOnly
 						features={FEATURES}
 						savingType={COLLECTED}
 					>
 						<Precedent />
 						<Grid>
 							<Formulaire />
+							<Modals />
 							<Continuer />
 						</Grid>
-					</Orchestrator>
+						<ComplementaryComponents />
+					</OrchestratorReadOnly>
 				</Layout>
 			</LoadFromApi>
 		</OidcSecure>

@@ -3,15 +3,17 @@ import { fr } from '@codegouvfr/react-dsfr';
 
 import { OrchestratedElement } from '../../typeStromae/type';
 
-function ErrorMessage({errorMessage}: {errorMessage: ReactNode}) {
-  if (errorMessage && Array.isArray(errorMessage)) {
-    return <>
-      {errorMessage.map((message, i) => {
-        return <p key={i}>{message}</p>
-      })}
-    </>
-  };
-  return <>{errorMessage}</>;
+function ErrorMessage({ errorMessage }: { errorMessage: ReactNode }) {
+	if (errorMessage && Array.isArray(errorMessage)) {
+		return (
+			<>
+				{errorMessage.map((message, i) => {
+					return <p key={i}>{message}</p>;
+				})}
+			</>
+		);
+	}
+	return <>{errorMessage}</>;
 }
 
 export function AlertesControles(props: OrchestratedElement) {
@@ -40,7 +42,7 @@ export function AlertesControles(props: OrchestratedElement) {
 				aria-labelledby="alertHeading"
 				aria-describedby="alertText"
 				id="alert-errors"
-				className={`${fr.cx('fr-alert', type)} fr-mb-3w`}
+				className={fr.cx('fr-alert', type, 'fr-mb-3w')}
 				role="alert"
 				tabIndex={-1}
 			>
