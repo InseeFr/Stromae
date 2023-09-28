@@ -79,7 +79,6 @@ export type OrchestratedElement = {
 	// saving
 	savingFailure?: SavingFailure;
 	waiting?: boolean;
-	currentPage?: string;
 	// disabled all components
 	disabled?: boolean;
 	// Page given by API.getSuData at launch

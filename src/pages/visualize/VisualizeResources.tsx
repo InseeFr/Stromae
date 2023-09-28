@@ -10,7 +10,10 @@ import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
 import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
-import { Orchestrator, OrchestratorReadOnly } from '../../components/orchestrator';
+import {
+	Orchestrator,
+	OrchestratorReadOnly,
+} from '../../components/orchestrator';
 
 type VisualizeResourcesProps = {
 	source?: string;
@@ -34,18 +37,18 @@ export function VisualizeResources(props: VisualizeResourcesProps) {
 		>
 			<Layout>
 				<FinalOrchestrator>
-				<DraftBanner />
-						<ContinueOrRestart />
-						<Precedent />
-						<Grid>
-							<AlertesSaving />
-							<AlertesControles />
-							<Formulaire />
-							<Modals />
-							<Continuer />
-						</Grid>
-						<ComplementaryComponents />
-					</FinalOrchestrator>
+					<DraftBanner />
+					<ContinueOrRestart />
+					<Precedent />
+					<Grid>
+						<AlertesSaving />
+						<AlertesControles />
+						<Formulaire />
+						<Modals />
+						<Continuer />
+					</Grid>
+					<ComplementaryComponents />
+				</FinalOrchestrator>
 			</Layout>
 		</LoadFromUrl>
 	);

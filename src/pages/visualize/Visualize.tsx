@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import { SelectResources } from './SelectResources';
 import { VisualizeResources } from './VisualizeResources';
 
-
 export type NomenclaturesType = Record<string, string>;
 
 export function Visualize() {

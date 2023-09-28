@@ -7,7 +7,7 @@ import { UseLunatic } from './UseLunatic';
 export function OrchestratorReadOnly({
 	children,
 	features,
-	preferences,	
+	preferences,
 }: PropsWithChildren<OrchestratorProps>) {
 	return (
 		<LoadSourceData>

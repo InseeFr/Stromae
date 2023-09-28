@@ -1,7 +1,11 @@
 import { PropsWithChildren, useCallback } from 'react';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
 import type { LunaticSource } from '../../typeLunatic/type-source';
-import { CollectStatusEnum, MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
+import {
+	CollectStatusEnum,
+	MetadataSurvey,
+	SurveyUnitData,
+} from '../../typeStromae/type';
 import { DEFAULT_HEADER } from '../Header/default-header';
 import { DEFAULT_FOOTER } from '../footer/default-footer';
 import { DEFAULT_SUBMIT } from '../postSubmit/default-submit';
