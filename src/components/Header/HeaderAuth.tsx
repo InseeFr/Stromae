@@ -1,24 +1,43 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
-
 import { useOidc } from '../../lib/oidc';
 import { CloneElements } from '../orchestrator/CloneElements';
-
 import { HeaderProps } from './Header';
+import {
+	uriSurveyUnit,
+	uriSurvey,
+	uri404,
+	uriDeconnexion,
+} from '../../lib/domainUri';
 
 type HeaderAuthProps = {
 	children: JSX.Element;
 };
 
-function getCallBack(args: { survey?: string; unit?: string }) {
+function isOnPostCollectPage() {
+	return window.location.pathname.endsWith('/post-envoi');
+}
+
+function getLogInRedirectionUri(args: { survey?: string; unit?: string }) {
 	const { survey, unit } = args;
 	if (survey && unit) {
-		return `${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}`;
+		return uriSurveyUnit(survey, unit);
 	}
 	if (survey) {
-		return `${window.origin}/questionnaire/${survey}`;
+		return uriSurvey(survey);
 	}
-	return `${window.origin}/404`;
+	return uri404();
+}
+
+function getLogOutRedirectionUri(args: { survey?: string; unit?: string }) {
+	const { survey, unit } = args;
+	if (survey && isOnPostCollectPage()) {
+		return uriSurvey(survey);
+	}
+	if (survey && unit) {
+		return uriDeconnexion(survey, unit);
+	}
+	return uri404();
 }
 
 export function HeaderAuth({ children }: HeaderAuthProps) {
@@ -27,11 +46,9 @@ export function HeaderAuth({ children }: HeaderAuthProps) {
 
 	const handleOidcAuth = useCallback(() => {
 		if (isAuthenticated) {
-			logout(
-				`${window.origin}/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`
-			);
+			logout(getLogOutRedirectionUri({ survey, unit }));
 		} else {
-			login(getCallBack({ survey, unit }));
+			login(getLogInRedirectionUri({ survey, unit }));
 		}
 	}, [isAuthenticated, login, logout, survey, unit]);
 

@@ -58,11 +58,11 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 				</p>
 				<p>
 					Visa n°{props.welcome.Enq_NumeroVisa} du Ministre{' '}
-					{props.welcome.Enq_MinistereTutelle}, valable pour l'année{' '}
-					{props.welcome.Enq_AnneeVisa} - Arrêté en{' '}
+					{props.welcome.Enq_MinistereTutelle}, valable pour{' '}
+					{props.welcome.Enq_AnneeVisa}
 					{props.welcome.Enq_ParutionJo
-						? `en date du ${props.welcome.Enq_DateParutionJo}`
-						: 'cours de parution'}
+						? ` - Arrêté en date du ${props.welcome.Enq_DateParutionJo}`
+						: '- Arrêté en cours de parution'}
 					.
 				</p>
 				<p>

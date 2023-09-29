@@ -24,6 +24,7 @@ export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 	const alreadyLoad = useRef(false);
 	const [header, setHeader] = useState<HeaderType | undefined>(undefined);
 	const [footer, setFooter] = useState<FooterType | undefined>(undefined);
+
 	const { getMetadata } = useContext(loadSourceDataContext);
 
 	useAsyncEffect(async () => {
