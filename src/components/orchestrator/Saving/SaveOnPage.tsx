@@ -3,7 +3,6 @@ import { OrchestratedElement, SavingFailure } from '../../../typeStromae/type';
 import { CloneElements } from '../CloneElements';
 import { useSaving } from './useSaving';
 import { usePrevious } from '../../../lib/commons/usePrevious';
-import { useAsyncEffect } from '../../../hooks/useAsyncEffect';
 
 export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 	const {
@@ -12,7 +11,7 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		currentChange,
 		getData,
 		isLastPage,
-		collectStatus,
+		initialCollectStatus,
 		pageTag,
 		children,
 	} = props;
@@ -23,20 +22,22 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 		currentChange,
 		getData,
 		pageTag,
-		isLastPage,
-		collectStatus,
+		initialCollectStatus,
 	});
 	const [waiting, setWaiting] = useState(false);
 	const shouldSync = useRef(false);
-	// eslint-disable-next-line @shopify/binary-assignment-parens
-	const isNewPage = pageTag && previousPageTag && previousPageTag !== pageTag;
-	useAsyncEffect(async () => {
-		if (isNewPage) {
-			shouldSync.current = false;
+
+	const isNewPage =
+		pageTag !== undefined &&
+		previousPageTag !== undefined &&
+		previousPageTag !== pageTag;
+
+	const makeSave = useCallback(
+		async (isLastPage: boolean) => {
 			try {
 				setSavingFailure(undefined);
 				setWaiting(true);
-				const somethingToSave = await save();
+				const somethingToSave = await save(isLastPage);
 				setWaiting(false);
 				if (somethingToSave) {
 					setSavingFailure({ status: 200 });
@@ -45,15 +46,27 @@ export function SaveOnPage(props: PropsWithChildren<OrchestratedElement>) {
 				setSavingFailure({ status: 500 });
 				setWaiting(false);
 			}
-		}
-	}, [isNewPage, save]);
+		},
+		[save]
+	);
+
+	/**
+	 * On déclenche la sauvegarde : quand lunatic à fini de tourner la page et quand l'utilisateur à cliquer
+	 * sur le bouton suivant/precedent
+	 */
+	if (isNewPage && shouldSync.current) {
+		shouldSync.current = false;
+		makeSave(false);
+	}
 
 	const handleNextPage = useCallback(async () => {
-		if (pageTag) {
-			goNextPage?.();
+		if (isLastPage) {
+			await makeSave(true);
+		} else {
 			shouldSync.current = true;
 		}
-	}, [goNextPage, pageTag, shouldSync]);
+		goNextPage?.();
+	}, [goNextPage, shouldSync, isLastPage, makeSave]);
 
 	const handleGoBack = useCallback(async () => {
 		goPreviousPage?.();
