@@ -45,7 +45,7 @@ function getTextFor(code?: number, content?: ContentType, errorType?: string) {
 			subtitle:
 				'La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.',
 			paragraph:
-				'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuervotre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.',
+				'Si vous avez tapé l’adresse web dans le navigateur, vérifiez qu’elle est correcte. La page n’est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez retourner sur la page d’accueil. Sinon contactez-nous pour que l’on puisse vous aider.',
 		};
 	}
 }
