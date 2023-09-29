@@ -125,6 +125,7 @@ export function Header(props: HeaderProps) {
 															</Button>
 														) : (
 															<Button
+																iconId={quickAccessItem.iconId}
 																linkProps={{
 																	target: quickAccessItem.linkProps?.target,
 																	to: quickAccessItem.linkProps?.href,
