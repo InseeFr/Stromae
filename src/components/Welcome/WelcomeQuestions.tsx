@@ -61,8 +61,8 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 					{props.welcome.Enq_MinistereTutelle}, valable pour{' '}
 					{props.welcome.Enq_AnneeVisa}
 					{props.welcome.Enq_ParutionJo
-						? `Arrêté en date du ${props.welcome.Enq_DateParutionJo}`
-						: 'Arrêté en cours de parution'}
+						? ` - Arrêté en date du ${props.welcome.Enq_DateParutionJo}`
+						: '- Arrêté en cours de parution'}
 					.
 				</p>
 				<p>
