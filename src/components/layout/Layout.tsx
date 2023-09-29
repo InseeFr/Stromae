@@ -10,7 +10,6 @@ import { Footer } from '../footer/Footer';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 import { Main } from './Main';
 import { Display } from '@codegouvfr/react-dsfr/Display';
-import { CollectStatusEnum } from '../../typeStromae/type';
 
 type LayoutProps = {};
 
@@ -25,9 +24,8 @@ export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 	const alreadyLoad = useRef(false);
 	const [header, setHeader] = useState<HeaderType | undefined>(undefined);
 	const [footer, setFooter] = useState<FooterType | undefined>(undefined);
-	const [collectStatus, setCollectStatus] =
-		useState<CollectStatusEnum | null>();
-	const { getMetadata, getSurveyUnitData } = useContext(loadSourceDataContext);
+
+	const { getMetadata } = useContext(loadSourceDataContext);
 
 	useAsyncEffect(async () => {
 		if (!getMetadata || alreadyLoad.current) {
@@ -42,11 +40,6 @@ export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 		} else throw new Error('metadata missing.');
 	}, [getMetadata, alreadyLoad]);
 
-	useAsyncEffect(async () => {
-		const suData = await getSurveyUnitData?.();
-		setCollectStatus(suData?.stateData?.state);
-	}, [getSurveyUnitData]);
-
 	if (!header || !footer) {
 		return <LayoutSkeleton />;
 	}
@@ -54,7 +47,7 @@ export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 	return (
 		<>
 			<SkipLinks links={defaultLinks} />
-			<HeaderAuth collectStatus={collectStatus}>
+			<HeaderAuth>
 				<Header header={header} />
 			</HeaderAuth>
 			<Main id="contenu">{children}</Main>
