@@ -33,6 +33,15 @@ export function uriSurveyUnit(survey?: string, unit?: string) {
 	return uri404();
 }
 
+/**
+ * Page publique, spécifique à l'enquête.
+ * @param survey
+ * @returns
+ */
+export function uriSurvey(survey: string) {
+	return `/questionnaire/${survey}`;
+}
+
 /*
  * ressource invoquée par l'utilisateur pour finaliser le questionnaire.
  */
@@ -41,4 +50,14 @@ export function uriPostEnvoi(survey?: string, unit?: string) {
 		return `/questionnaire/${survey}/unite-enquetee/${unit}/post-envoi`;
 	}
 	return uri404();
+}
+
+/**
+ * Page de déconnexion.
+ * @param survey
+ * @param unit
+ * @returns
+ */
+export function uriDeconnexion(survey: string, unit: string) {
+	return `/questionnaire/${survey}/unite-enquetee/${unit}/deconnexion`;
 }
