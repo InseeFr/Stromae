@@ -9,14 +9,16 @@ import {
 	uri404,
 	uriDeconnexion,
 } from '../../lib/domainUri';
-import { CollectStatusEnum } from '../../typeStromae/type';
 
 type HeaderAuthProps = {
 	children: JSX.Element;
-	collectStatus?: CollectStatusEnum | null;
 };
 
-function getCallBack(args: { survey?: string; unit?: string }) {
+function isOnPostCollectPage() {
+	return window.location.pathname.endsWith('/post-envoi');
+}
+
+function getLogInRedirectionUri(args: { survey?: string; unit?: string }) {
 	const { survey, unit } = args;
 	if (survey && unit) {
 		return uriSurveyUnit(survey, unit);
@@ -27,13 +29,9 @@ function getCallBack(args: { survey?: string; unit?: string }) {
 	return uri404();
 }
 
-function getLogOutUri(args: {
-	survey?: string;
-	unit?: string;
-	collectStatus?: CollectStatusEnum | null;
-}) {
-	const { survey, unit, collectStatus } = args;
-	if (collectStatus === CollectStatusEnum.Validated && survey) {
+function getLogOutRedirectionUri(args: { survey?: string; unit?: string }) {
+	const { survey, unit } = args;
+	if (survey && isOnPostCollectPage()) {
 		return uriSurvey(survey);
 	}
 	if (survey && unit) {
@@ -42,17 +40,17 @@ function getLogOutUri(args: {
 	return uri404();
 }
 
-export function HeaderAuth({ children, collectStatus }: HeaderAuthProps) {
+export function HeaderAuth({ children }: HeaderAuthProps) {
 	const { login, logout, isAuthenticated } = useOidc();
 	const { survey, unit } = useParams();
 
 	const handleOidcAuth = useCallback(() => {
 		if (isAuthenticated) {
-			logout(getLogOutUri({ survey, unit, collectStatus }));
+			logout(getLogOutRedirectionUri({ survey, unit }));
 		} else {
-			login(getCallBack({ survey, unit }));
+			login(getLogInRedirectionUri({ survey, unit }));
 		}
-	}, [isAuthenticated, login, logout, survey, unit, collectStatus]);
+	}, [isAuthenticated, login, logout, survey, unit]);
 
 	return (
 		<CloneElements<HeaderProps>
