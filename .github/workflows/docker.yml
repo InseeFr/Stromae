@@ -25,21 +25,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     outputs:
-      is_stromae_upgraded_version: ${{ steps.check-stromae.outputs.changed }}
-      stromae_version: ${{ steps.check-stromae.outputs.version }}
+      is_stromae_upgraded_version: ${{ steps.check.outputs.changed }}
+      stromae_version: ${{ steps.check.outputs.version }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-
-      - name: Check if container version has been updated
+      - name: Check if Stromae version has been updated
         id: check
         uses: EndBug/version-check@v2
-
-      - name: Check if drama queen version has been updated
-        id: check-stromae
-        uses: EndBug/version-check@v2
         with:
-          file-name: drama-queen/package.json
+          file-name: package.json
 
   docker:
     needs: check_if_version_upgraded
