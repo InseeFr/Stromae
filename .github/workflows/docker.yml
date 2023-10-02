@@ -44,11 +44,10 @@ jobs:
         with:
           name: build
           path: build
-      - uses: docker/build-push-action@v4
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          platforms: linux/amd64,linux/arm64
-          context: '.'
-          push: true
-          tags: |
-            inseefr/stromae:latest,
-            inseefr/stromae:${{ needs.check_if_version_upgraded.outputs.stromae_version }}
+          name: ${{ secrets.DOCKERHUB_REGISTRY_HOST }}/stromae
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tags: ${{ needs.check_if_version_upgraded.outputs.stromae_version }}
