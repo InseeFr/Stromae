@@ -1,9 +1,9 @@
 import { fr } from '@codegouvfr/react-dsfr/fr';
 import ConvertContent from '../../utils/convertContent';
 
-import { FooterType } from './FooterType';
 import { Link } from 'react-router-dom';
 import { AppVersion } from '../AppVersion/AppVersion';
+import { FooterType } from './FooterType';
 
 const DEFAULT_FOOTER: FooterType = {
 	brandTop: 'valeur par defaut',

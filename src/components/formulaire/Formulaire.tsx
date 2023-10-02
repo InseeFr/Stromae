@@ -1,6 +1,6 @@
+import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
-import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { Form } from '../skeleton/Form';
 
 type Props = Pick<

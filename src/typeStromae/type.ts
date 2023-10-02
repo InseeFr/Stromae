@@ -1,7 +1,7 @@
-import type { LunaticData, LunaticError } from '../typeLunatic/type';
-import { ComponentType } from '../typeLunatic/type-source';
 import { HeaderType } from '../components/Header/HeaderType';
 import { FooterType } from '../components/footer/FooterType';
+import type { LunaticData, LunaticError } from '../typeLunatic/type';
+import { ComponentType } from '../typeLunatic/type-source';
 
 export enum CollectStatusEnum {
 	Init = 'INIT',
@@ -24,7 +24,7 @@ export type PersonalizationElement = {
 export type SurveyUnitData = {
 	data: LunaticData;
 	stateData: StateData;
-	personalization: Array<PersonalizationElement>;
+	personalization?: Array<PersonalizationElement>;
 };
 
 export type SavingFailure = { status: 200 | 400 | 500 };
