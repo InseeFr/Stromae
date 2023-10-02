@@ -26,6 +26,12 @@ with "idNomenclature1" is the nomenclature id given in the survey for suggester 
 
 We use the [French design system](https://www.systeme-de-design.gouv.fr)
 
+## Docker
+
+You can use Docker image to run StromaeV3.
+
+- `docker run -p 80:80 -t inseefr/stromae:3.0.0-rc.1`
+
 ## Generic Pages, optional pages and components overload
 
 There is 3 generic pages :

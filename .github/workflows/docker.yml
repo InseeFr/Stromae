@@ -25,20 +25,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     outputs:
-      is_stromae_upgraded_version: ${{ steps.check.outputs.changed }}
-      stromae_version: ${{ steps.check.outputs.version }}
+      stromae_version: ${{ steps.version.outputs.prop }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Check if Stromae version has been updated
-        id: check
-        uses: EndBug/version-check@v2
+      - name: Get current version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
         with:
-          file-name: package.json
+          path: 'package.json'
+          prop_path: 'version'
 
   docker:
     needs: check_if_version_upgraded
-    if: needs.check_if_version_upgraded.outputs.is_stromae_upgraded_version == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
