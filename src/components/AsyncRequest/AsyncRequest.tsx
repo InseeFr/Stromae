@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { Alert, AlertProps } from '@codegouvfr/react-dsfr/Alert';
+import { useEffect } from 'react';
 
-import { useAsync, AsyncRequestStatus } from './useAsync';
+import { AsyncRequestStatus, useAsync } from './useAsync';
 
 type AsyncRequestProps<T> = {
 	request?: () => Promise<T>;
@@ -38,7 +38,6 @@ export function AsyncRequest<T>(props: AsyncRequestProps<T>) {
 
 	useEffect(() => {
 		if (error) {
-			// eslint-disable-next-line no-console
 			console.warn(error);
 		}
 	}, [error]);
