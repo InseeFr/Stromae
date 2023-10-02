@@ -1,21 +1,21 @@
+import { LunaticSource } from '../../typeLunatic/type-source';
 import type {
 	DataVariables,
 	MetadataSurvey,
 	StateData,
 	SurveyUnitData,
 } from '../../typeStromae/type';
-import { LunaticSource } from '../../typeLunatic/type-source';
+import { environment } from '../../utils/read-env-vars';
+import { getDepositProof } from './getDepositProof';
 import { getMetadataSurvey } from './getMetadataSurvey';
+import { getNomenclature } from './getNomenclature';
+import { getRequiredNomenclatures } from './getRequiredNomenclatures';
 import { getSurvey } from './getSurvey';
 import { getSurveyUnitData } from './getSurveyUnit';
-import { getRequiredNomenclatures } from './getRequiredNomenclatures';
-import { getNomenclature } from './getNomenclature';
-import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 import { putSurveyUnitData } from './putSurveyUnitData';
-import { getDepositProof } from './getDepositProof';
+import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 
-const DOMAIN: string = process.env.REACT_APP_SURVEY_API_BASE_URL ?? '';
-
+const { DOMAIN } = environment;
 export interface SurveyApi {
 	// any type JSon lunatic
 	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
