@@ -1,11 +1,12 @@
-import { useRef, useEffect, useContext, useState } from 'react';
-import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
+import { useContext, useEffect, useRef, useState } from 'react';
 import {
-	OrchestratedElement,
 	CollectStatusEnum,
+	OrchestratedElement,
 } from '../../../typeStromae/type';
+import { environment } from '../../../utils/read-env-vars';
+import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
 
-const SAVING_STRATEGY = process.env.REACT_APP_SAVING_STRATEGY;
+const { SAVING_STRATEGY } = environment;
 
 type SavingArgs = Pick<
 	OrchestratedElement,

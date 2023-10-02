@@ -1,10 +1,11 @@
 import { PropsWithChildren } from 'react';
 import { OrchestratedElement } from '../../../typeStromae/type';
+import { environment } from '../../../utils/read-env-vars';
 import { SaveOnPage } from './SaveOnPage';
 import { SaveOnSequence } from './SaveOnSequence';
 
 // or sequence
-export const SAVING_TIME = process.env.REACT_APP_SAVING_TIME || 'page';
+const { SAVING_TIME } = environment;
 
 /**
  * La sauveagerde des données pour la FE sde fait lors des changements de sequence et
