@@ -1,13 +1,13 @@
-import { useEffect, useState, PropsWithChildren, useCallback } from 'react';
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import {
 	CollectStatusEnum,
 	OrchestratedElement,
 	PersonalizationElement,
 } from '../../typeStromae/type';
-import { OrchestratorProps } from './Orchestrator';
 import { CloneElements } from './CloneElements';
+import { OrchestratorProps } from './Orchestrator';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 

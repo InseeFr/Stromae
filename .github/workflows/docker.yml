@@ -1,0 +1,56 @@
+name: StromaeV3 Build Docker
+
+on:
+  push:
+    branches:
+      - 'v3-master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: yarn
+      - run: yarn build
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+
+  check_if_version_upgraded:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      is_stromae_upgraded_version: ${{ steps.check.outputs.changed }}
+      stromae_version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Check if Stromae version has been updated
+        id: check
+        uses: EndBug/version-check@v2
+        with:
+          file-name: package.json
+
+  docker:
+    needs: check_if_version_upgraded
+    if: needs.check_if_version_upgraded.outputs.is_stromae_upgraded_version == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+      - uses: docker/build-push-action@v4
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: '.'
+          push: true
+          tags: |
+            inseefr/stromae:latest,
+            inseefr/stromae:${{ needs.check_if_version_upgraded.outputs.stromae_version }}

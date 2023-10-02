@@ -1481,7 +1481,7 @@
 				{
 					"value": "4",
 					"label": {
-						"value": "\"logé(e) gratuitement, par exemple par des parents, des amis ou votre employeur (y compris les personnes occupant un logement qu’elles ont vendu en viager) ?\"",
+						"value": "\"logé(e) gratuitement, par exemple par des parents, des amis ou votre employeur (y compris les personnes occupant un logement qu’elles ont vendu en viager) ?\"",
 						"type": "VTL"
 					}
 				}
@@ -2726,7 +2726,7 @@
 					"mandatory": false,
 					"page": "20.2",
 					"label": {
-						"value": "\"### Quelle est sa situation précisément ?\"",
+						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
 					},
 					"controls": [
@@ -2787,7 +2787,7 @@
 					"mandatory": false,
 					"page": "20.2",
 					"label": {
-						"value": "\"### Quelle est sa situation précisément ?\"",
+						"value": "\"### Quelle est sa situation précisément ?\"",
 						"type": "VTL|MD"
 					},
 					"controls": [

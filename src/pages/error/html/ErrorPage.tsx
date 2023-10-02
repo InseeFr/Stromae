@@ -1,11 +1,11 @@
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { fr } from '@codegouvfr/react-dsfr';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import TechnicalError from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/technical-error.svg';
-import { useDocumentTitle } from '../../../utils/useDocumentTitle';
-import { fr } from '@codegouvfr/react-dsfr';
 import { useContext, useEffect, useState } from 'react';
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { loadSourceDataContext } from '../../../components/loadSourceData/LoadSourceDataContext';
 import { MetadataSurvey } from '../../../typeStromae/type';
+import { useDocumentTitle } from '../../../utils/useDocumentTitle';
 
 type ContentType = {
 	subtitle?: Record<string, string>;
@@ -70,7 +70,6 @@ export function ErrorPage({
 	useEffect(() => {
 		getMetadata()
 			.then(setMetadata)
-			// eslint-disable-next-line no-console
 			.catch((e) => console.log(e));
 	}, [getMetadata]);
 

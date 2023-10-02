@@ -1,8 +1,8 @@
+import { fr } from '@codegouvfr/react-dsfr';
+import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { PropsWithChildren } from 'react';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { CloneElements } from '../orchestrator/CloneElements';
-import { makeStyles } from '@codegouvfr/react-dsfr/tss';
-import { fr } from '@codegouvfr/react-dsfr';
 
 const useStyles = makeStyles()({
 	container: {
