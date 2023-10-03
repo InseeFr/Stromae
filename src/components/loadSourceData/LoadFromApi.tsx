@@ -1,8 +1,9 @@
 import { PropsWithChildren, useCallback } from 'react';
-import { useOidcAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
 
+import { useAccessToken } from '../../lib/oidc';
+import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromApiProps = {
@@ -10,12 +11,15 @@ type LoadFromApiProps = {
 	unit?: string;
 };
 
+const { AUTH_TYPE } = environment;
+
 export function LoadFromApi({
 	survey,
 	unit,
 	children,
 }: PropsWithChildren<LoadFromApiProps>) {
-	const { accessToken } = useOidcAccessToken();
+	const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
+	const { accessToken } = useAccessToken();
 
 	const getMetadata = useCallback(async () => {
 		if (survey) {
@@ -25,18 +29,18 @@ export function LoadFromApi({
 	}, [survey]);
 
 	const getSurvey = useCallback(async () => {
-		if (survey && accessToken) {
+		if (survey && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
 			return surveyApi.getSurvey(survey, accessToken);
 		}
 		return undefined;
-	}, [survey, accessToken]);
+	}, [survey, isOidcEnabled, accessToken]);
 
 	const getSurveyUnitData = useCallback(async () => {
-		if (accessToken && unit) {
+		if (unit && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
 			return surveyApi.getSurveyUnitData(unit, accessToken);
 		}
 		return undefined;
-	}, [unit, accessToken]);
+	}, [unit, isOidcEnabled, accessToken]);
 
 	const getReferentiel = useCallback(
 		async (name: string) => {

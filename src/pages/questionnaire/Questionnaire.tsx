@@ -12,7 +12,7 @@ import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Orchestrator } from '../../components/orchestrator';
-import { OidcSecure } from '../../lib/oidc';
+import { AuthSecure } from '../../lib/oidc';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export type QuestionnaireParams = {
@@ -30,7 +30,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 	useDocumentTitle('Questionnaire');
 
 	return (
-		<OidcSecure>
+		<AuthSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
@@ -48,6 +48,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
-		</OidcSecure>
+		</AuthSecure>
 	);
 }

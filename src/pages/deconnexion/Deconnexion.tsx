@@ -1,18 +1,18 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useCallback, useEffect } from 'react';
-import { useOidc } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
+import { useCallback, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { Layout } from '../../components/layout';
-import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
-import { useDocumentTitle } from '../../utils/useDocumentTitle';
-import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
 import { fr } from '@codegouvfr/react-dsfr';
+import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
+import { Layout } from '../../components/layout';
+import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
+import { useAuth } from '../../lib/oidc/useAuth';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export function Deconnexion() {
 	const { survey, unit } = useParams();
 	useDocumentTitle('Page de déconnexion');
-	const { login, isAuthenticated } = useOidc();
+	const { login, isAuthenticated } = useAuth();
 
 	const navigate = useNavigate();
 
