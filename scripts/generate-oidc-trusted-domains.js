@@ -15,13 +15,10 @@ const apiOrigin =
 	self?._env_?.REACT_APP_SURVEY_API_BASE_URL || '${process.env.REACT_APP_SURVEY_API_BASE_URL}' || '';
 
 const trustedDomains = {
-	default: [oidcServerOrigin, apiOrigin],
-	config_classic: [],
-	config_without_silent_login: [],
-	config_without_refresh_token: [],
-	config_without_refresh_token_silent_login: [],
-	config_google: [],
-	config_with_hash: [],
+	default: {
+		oidcDomains :[oidcServerOrigin],		
+		accessTokenDomains : [apiOrigin]
+	},
 };
 
 `,
