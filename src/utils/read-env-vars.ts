@@ -26,7 +26,7 @@ export enum AuthTypeEnum {
  * @returns the value of variable name
  */
 export const getEnvVar = (varName: string) => {
-	return window._env_[varName] ?? process.env[varName] ?? '';
+	return window?._env_[varName] || process.env[varName] || '';
 };
 
 export const environment = {
