@@ -8,7 +8,7 @@ fs.readFile('.env', 'utf8', function (_, contents) {
 		.filter((data) => data.length === 2)
 		.map(
 			([key]) =>
-				`echo "window._env_['${key}'] = '\$${key}';" >> /usr/share/nginx/html/env-config.js`
+				`echo "self._env_['${key}'] = '\$${key}';" >> /usr/share/nginx/html/env-config.js`
 		);
 
 	const fullFile = ['#!/bin/sh', ...content, 'exec "$@"'].join('\n');
