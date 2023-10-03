@@ -43,8 +43,9 @@
 		"eject": "react-scripts eject",
 		"start-mock-api": "node ./mock-api.js",
 		"postinstall": "copy-dsfr-to-public && node ./node_modules/@axa-fr/react-oidc/bin/copy-service-worker-files.mjs public",
-		"prestart": "only-include-used-icons",
-		"prebuild": "only-include-used-icons"
+		"prestart": "only-include-used-icons && node -r dotenv/config ./scripts/generate-oidc-trusted-domains.js",
+		"prebuild": "only-include-used-icons",
+		"postbuild": "node -r dotenv/config ./scripts/generate-oidc-trusted-domains.js"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -77,6 +78,7 @@
 		"@typescript-eslint/parser": "^5.58.0",
 		"connect-api-mocker": "^1.10.0",
 		"cors": "^2.8.5",
+		"dotenv": "^16.3.1",
 		"eslint": "^8.34.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-config-react-app": "^7.0.1",

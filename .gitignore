@@ -26,4 +26,5 @@ yarn-error.log*
 
 /public/dsfr/*
 /public/OidcServiceWorker.js
+/public/OidcTrustedDomains.js
 /public/configuration.json
