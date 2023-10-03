@@ -52,6 +52,7 @@ export function Continuer(props: OrchestratedElement) {
 					navigate(uri404());
 				}
 			}
+			window.scrollTo(0, 0);
 			goNextPage();
 		},
 		[goNextPage, isLastPage, unit, survey, navigate]
