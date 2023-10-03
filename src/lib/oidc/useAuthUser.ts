@@ -11,10 +11,10 @@ export const useAuthUser = (): {
 		 * Assume this conditional hook does not break anything
 		 */
 		const {
-			oidcUser: { preferred_username },
+			oidcUser,
 			// eslint-disable-next-line react-hooks/rules-of-hooks
 		} = useOidcUser();
-		return { oidcUser: { preferred_username } };
+		return { oidcUser: { preferred_username: oidcUser?.preferred_username } };
 	} else {
 		return {
 			oidcUser: { preferred_username: 'guest' },
