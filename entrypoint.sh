@@ -9,6 +9,6 @@ echo "self._env_['REACT_APP_SAVING_TIME'] = '$REACT_APP_SAVING_TIME';" >> /usr/s
 echo "self._env_['REACT_APP_SAVING_STRATEGY'] = '$REACT_APP_SAVING_STRATEGY';" >> /usr/share/nginx/html/env-config.js
 echo "self._env_['REACT_APP_DEFAULT_SURVEY'] = '$REACT_APP_DEFAULT_SURVEY';" >> /usr/share/nginx/html/env-config.js
 echo "self._env_['REACT_APP_AUTH_TYPE'] = '$REACT_APP_AUTH_TYPE';" >> /usr/share/nginx/html/env-config.js
-echo "self._env_['CLIENT_ID'] = '$CLIENT_ID';" >> /usr/share/nginx/html/env-config.js
-echo "self._env_['AUTHORITY'] = '$AUTHORITY';" >> /usr/share/nginx/html/env-config.js
+echo "self._env_['REACT_APP_CLIENT_ID'] = '$REACT_APP_CLIENT_ID';" >> /usr/share/nginx/html/env-config.js
+echo "self._env_['REACT_APP_AUTHORITY'] = '$REACT_APP_AUTHORITY';" >> /usr/share/nginx/html/env-config.js
 exec "$@"

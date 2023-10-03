@@ -40,8 +40,8 @@ export const environment = {
 };
 
 export const oidcConf = {
-	client_id: getEnvVar('CLIENT_ID'),
-	authority: getEnvVar('AUTHORITY'),
+	client_id: getEnvVar('REACT_APP_CLIENT_ID'),
+	authority: getEnvVar('REACT_APP_AUTHORITY'),
 	scope: 'openid profile email offline_access',
 	service_worker_relative_url: '/OidcServiceWorker.js',
 	service_worker_only: false,
