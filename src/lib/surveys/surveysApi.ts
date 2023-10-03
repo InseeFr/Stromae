@@ -18,25 +18,37 @@ import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 const { DOMAIN } = environment;
 export interface SurveyApi {
 	// any type JSon lunatic
-	getSurvey: (survey: string, token: string) => Promise<LunaticSource>;
-	getSurveyUnitData: (unit: string, token: string) => Promise<SurveyUnitData>;
+	getSurvey: (
+		survey: string,
+		token: string | undefined
+	) => Promise<LunaticSource>;
+	getSurveyUnitData: (
+		unit: string,
+		token: string | undefined
+	) => Promise<SurveyUnitData>;
 	getMetadataSurvey: (survey: string) => Promise<MetadataSurvey>;
 	getRequiredNomenclatures: (
 		survey: string,
-		token: string
+		token: string | undefined
 	) => Promise<Array<string>>;
-	getNomenclature: (name: string, token: string) => Promise<Array<any>>;
+	getNomenclature: (
+		name: string,
+		token: string | undefined
+	) => Promise<Array<any>>;
 	putSurveyUnitData: (
 		data: DataVariables,
 		unit: string,
-		token: string
+		token: string | undefined
 	) => Promise<void>;
 	putSurveyUnitStateData: (
 		stateData: StateData,
 		unit: string,
-		token: string
+		token: string | undefined
 	) => Promise<void>;
-	getDepositiProof: (unit: string, token: string) => Promise<BlobPart>;
+	getDepositiProof: (
+		unit: string,
+		token: string | undefined
+	) => Promise<BlobPart>;
 }
 
 export const surveyApi: SurveyApi = {

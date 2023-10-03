@@ -4,7 +4,7 @@ import { requiredNomenclature } from './api';
 
 export const getRequiredNomenclatures =
 	(BASE_URL: string) =>
-	(survey: string, token: string): Promise<Array<string>> => {
+	(survey: string, token: string | undefined): Promise<Array<string>> => {
 		return authenticatedGetRequest<Array<string>>(
 			requiredNomenclature(BASE_URL, survey),
 			token
