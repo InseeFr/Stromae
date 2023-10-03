@@ -34,11 +34,25 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@axa-fr/react-oidc@6.14.0":
-  version "6.14.0"
-  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc/-/react-oidc-6.14.0.tgz#218a3726ec5ee51cc68fc1786b95121a456ebd47"
-  integrity sha512-hbSJQQkhsvfEKePQiOuvOG/fTlqkcZel7QCg9G2D0ymr5ZDdIcoQ/jlvo3S6ncYLzAPd81QX9pYFhe/KJB8lNQ==
+"@axa-fr/oidc-client-service-worker@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/oidc-client-service-worker/-/oidc-client-service-worker-7.6.0.tgz#4499c95f8988b703e0f5ca252d1b75350d346633"
+  integrity sha512-m/b2hlUvIuRDvLSgINKofSeaBFFKkdYJKi2Nzdy41+5jXOYLv9eA1r56bsLYQXkRsrFy2B2CHCCK9dpC9BY51g==
+
+"@axa-fr/oidc-client@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/oidc-client/-/oidc-client-7.6.0.tgz#bb1dbac7d0c2494e516bd46eb612c794a1d3518e"
+  integrity sha512-ltpEHOAp1mZJG5rS8+pO8h6HVy9xWTMUN7cHW6l+81MJf+2I0Ks245L142+BRz1C/IRAwIyOjGUKvXNCAuSC7A==
   dependencies:
+    "@axa-fr/oidc-client-service-worker" "7.6.0"
+
+"@axa-fr/react-oidc@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc/-/react-oidc-7.6.0.tgz#b3d4c13d418610d2c235f36713b8a3d303773e83"
+  integrity sha512-ugN+SxiEmfAPuAALA6qMPRk/QOwH+IW0VH30rw6arEYsCvmftoGfwruYv7mY1Ay7TBOdty//bHJFsgsG31Q/Cw==
+  dependencies:
+    "@axa-fr/oidc-client" "7.6.0"
+    "@axa-fr/oidc-client-service-worker" "7.6.0"
     base64-js "1.5.1"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.22.13", "@babel/code-frame@^7.8.3":

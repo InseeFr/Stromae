@@ -25,4 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/dsfr/*
+/public/OidcServiceWorker.js
 /public/configuration.json

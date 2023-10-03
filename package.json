@@ -3,7 +3,7 @@
 	"version": "3.0.0-rc.1",
 	"private": true,
 	"dependencies": {
-		"@axa-fr/react-oidc": "6.14.0",
+		"@axa-fr/react-oidc": "^7.6.0",
 		"@codegouvfr/react-dsfr": "^0.75.3",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
@@ -42,7 +42,7 @@
 		"check": "tsc",
 		"eject": "react-scripts eject",
 		"start-mock-api": "node ./mock-api.js",
-		"postinstall": "copy-dsfr-to-public",
+		"postinstall": "copy-dsfr-to-public && node ./node_modules/@axa-fr/react-oidc/bin/copy-service-worker-files.mjs public",
 		"prestart": "only-include-used-icons",
 		"prebuild": "only-include-used-icons"
 	},
