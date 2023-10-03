@@ -27,7 +27,7 @@ export enum AuthTypeEnum {
  */
 export const getEnvVar = (varName: string) => {
 	// eslint-disable-next-line no-restricted-globals
-	return self._env_[varName] ?? process.env[varName] ?? '';
+	return self._env_[varName] || process.env[varName] || '';
 };
 
 export const environment = {
