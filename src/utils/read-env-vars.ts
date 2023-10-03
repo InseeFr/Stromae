@@ -35,6 +35,13 @@ export const environment = {
 		getEnvVar('REACT_APP_SAVING_STRATEGY') || SavingStrategyEnum.Complete,
 	SAVING_TIME: getEnvVar('REACT_APP_SAVING_TIME') || SavingTimeEnum.Sequence,
 	DEFAULT_SURVEY: getEnvVar('REACT_APP_DEFAULT_SURVEY') || 'recensement',
-	// Not Yet Implemented
 	AUTH_TYPE: getEnvVar('REACT_APP_AUTH_TYPE') || AuthTypeEnum.None,
+};
+
+export const oidcConf = {
+	client_id: getEnvVar('CLIENT_ID'),
+	authority: getEnvVar('AUTHORITY'),
+	scope: 'openid profile email offline_access',
+	service_worker_relative_url: '/OidcServiceWorker.js',
+	service_worker_only: false,
 };
