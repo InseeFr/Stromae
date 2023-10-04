@@ -9,6 +9,7 @@ import { Questionnaire } from './pages/questionnaire';
 import { QuestionnaireReadOnly } from './pages/questionnaireReadOnly';
 import { Visualize } from './pages/visualize/Visualize';
 import { Welcome } from './pages/welcome';
+import { environment } from './utils/read-env-vars';
 
 const router = createBrowserRouter([
 	{
@@ -72,6 +73,8 @@ const router = createBrowserRouter([
 		errorElement: <RouteError />,
 	},
 ]);
+
+console.log(environment);
 
 export function App() {
 	return (

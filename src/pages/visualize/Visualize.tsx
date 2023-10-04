@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { AuthSecure } from '../../lib/oidc';
 import { SelectResources } from './SelectResources';
 import { VisualizeResources } from './VisualizeResources';
 
@@ -15,14 +16,20 @@ export function Visualize() {
 
 	if (sourceUrl) {
 		return (
-			<VisualizeResources
-				source={sourceUrl}
-				metadata={metadataUrl ?? undefined}
-				data={dataUrl ?? undefined}
-				readOnly={readOnly === 'true'}
-				nomenclatures={nomenclatures}
-			/>
+			<AuthSecure>
+				<VisualizeResources
+					source={sourceUrl}
+					metadata={metadataUrl ?? undefined}
+					data={dataUrl ?? undefined}
+					readOnly={readOnly === 'true'}
+					nomenclatures={nomenclatures}
+				/>
+			</AuthSecure>
 		);
 	}
-	return <SelectResources setNomenclatures={setNomenclatures} />;
+	return (
+		<AuthSecure>
+			<SelectResources setNomenclatures={setNomenclatures} />
+		</AuthSecure>
+	);
 }
