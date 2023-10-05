@@ -1,5 +1,5 @@
-import { getLang } from 'i18n/build-dictionary';
-import { fr, enUS } from 'date-fns/locale';
+import { enUS, fr } from 'date-fns/locale';
+import { getLang } from '../../i18n/build-dictionary';
 
 export const buildBuidings = (variables) => {
   if (Array.isArray(variables)) {

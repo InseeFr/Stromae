@@ -1,10 +1,9 @@
-import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { OrchestratorManager } from 'components/orchestrator/manager';
-import { secure } from 'components/auth';
-import { READ_ONLY } from 'utils/constants';
-import { Visualizer } from 'components/orchestrator/visualizer';
-import { NotFound } from 'components/pages';
+import { READ_ONLY } from '../../utils/constants';
+import secure from '../auth/hoc/hoc';
+import { OrchestratorManager } from '../orchestrator/manager';
+import { Visualizer } from '../orchestrator/visualizer';
+import { NotFound } from '../pages';
 
 const Router = () => {
   return (

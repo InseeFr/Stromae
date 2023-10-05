@@ -1,5 +1,5 @@
-export const OIDC = 'OIDC';
-export const NONE = 'NONE';
+export const OIDC = 'oidc';
+export const NONE = 'none';
 export const AUTHENTICATION_TYPE_ENUM = [NONE, OIDC];
 
 export const HOUSEHOLD = 'household';

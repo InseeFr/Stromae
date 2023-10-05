@@ -1,7 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { lunaticVersion, stromaeVersion } from 'utils/app';
+import { makeStyles } from '@material-ui/core/styles';
+import { lunaticVersion, stromaeVersion } from '../../utils/app';
 
 const useStyles = makeStyles({
   root: {

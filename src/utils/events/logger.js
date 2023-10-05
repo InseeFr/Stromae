@@ -1,4 +1,4 @@
-import { ORCHESTRATOR_CATEGORY } from 'utils/constants';
+import { ORCHESTRATOR_CATEGORY } from '../constants';
 
 const getHardwareInfo = () => {
   return {

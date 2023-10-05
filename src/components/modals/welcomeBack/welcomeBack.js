@@ -3,11 +3,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { MarkdownTypo } from 'components/designSystem';
-import { Button } from 'components/designSystem/Button';
-import { buttonDictionary, defaultDictionary } from 'i18n';
-import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
-
+import { buttonDictionary, defaultDictionary } from '../../../i18n';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../../utils/events';
+import { Button, MarkdownTypo } from '../../designSystem';
 const utilInfo = (type) => {
   return {
     ...SIMPLE_CLICK_EVENT,
