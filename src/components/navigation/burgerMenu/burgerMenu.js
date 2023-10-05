@@ -4,13 +4,13 @@ import Close from '@material-ui/icons/Close';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import Help from '@material-ui/icons/Help';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AppVersion } from 'components/designSystem/AppVersion';
-import { AssistanceConfirm } from 'components/modals/assistance';
-import { burgerDictionary } from 'i18n';
 import { useEffect, useState } from 'react';
-import { HOUSEHOLD } from 'utils/constants';
-import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
-import { useAuth } from 'utils/oidc';
+import { burgerDictionary } from '../../../i18n';
+import { HOUSEHOLD } from '../../../utils/constants';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../../utils/events';
+import { useAuth } from '../../../utils/oidc';
+import { AppVersion } from '../../designSystem/AppVersion';
+import { AssistanceConfirm } from '../../modals/assistance';
 import './burgerMenu.css';
 
 const utilInfo = (type, page) => {

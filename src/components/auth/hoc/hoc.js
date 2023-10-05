@@ -1,6 +1,6 @@
 import { withOidcSecure } from '@axa-fr/react-oidc';
-import { OIDC } from 'utils/constants';
-import { environment } from 'utils/read-env-vars';
+import { OIDC } from '../../../utils/constants';
+import { environment } from '../../../utils/read-env-vars';
 
 const { AUTH_TYPE } = environment;
 

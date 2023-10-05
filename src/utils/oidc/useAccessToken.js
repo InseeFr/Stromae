@@ -1,6 +1,6 @@
 import { useOidcAccessToken as useOidcAccessTokenAxa } from '@axa-fr/react-oidc';
-import { OIDC } from 'utils/constants';
-import { environment } from 'utils/read-env-vars';
+import { OIDC } from '../constants';
+import { environment } from '../read-env-vars';
 
 const { AUTH_TYPE } = environment;
 

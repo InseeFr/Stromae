@@ -3,12 +3,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Button } from 'components/designSystem/Button';
-import { buttonDictionary, defaultDictionary } from 'i18n';
 import { useParams } from 'react-router-dom';
-import { HOUSEHOLD } from 'utils/constants';
-import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
-import { environment } from 'utils/read-env-vars';
+import { buttonDictionary, defaultDictionary } from '../../../i18n';
+import { HOUSEHOLD } from '../../../utils/constants';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../../utils/events';
+import { environment } from '../../../utils/read-env-vars';
+import { Button } from '../../designSystem';
 
 const utilInfo = (type, currentPage) => {
   return {

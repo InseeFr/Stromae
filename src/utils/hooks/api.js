@@ -1,10 +1,10 @@
-import { errorDictionary } from 'i18n';
 import { useEffect, useState } from 'react';
-import { API } from 'utils/api';
-import { getFetcherForLunatic } from 'utils/api/fetcher';
-import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from 'utils/constants';
-import { useAccessToken } from 'utils/oidc';
-import { environment } from 'utils/read-env-vars';
+import { errorDictionary } from '../../i18n';
+import { API } from '../api';
+import { getFetcherForLunatic } from '../api/fetcher';
+import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from '../constants';
+import { useAccessToken } from '../oidc';
+import { environment } from '../read-env-vars';
 import { useConstCallback } from './useConstCallback';
 
 const { API_URL: apiUrl } = environment;

@@ -1,10 +1,9 @@
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import { visualizeDictionary } from 'i18n';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
-import React from 'react';
-import { QUESTIONNAIRE_EXAMPLES } from 'utils/constants';
+import { visualizeDictionary } from '../../../../i18n';
+import { QUESTIONNAIRE_EXAMPLES } from '../../../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

@@ -1,4 +1,4 @@
-import content from 'resources/content.json';
+import content from '../../resources/content.json';
 
 export const getContent = (context) => content[context];
 

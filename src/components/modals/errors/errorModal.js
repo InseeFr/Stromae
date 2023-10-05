@@ -4,10 +4,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Button } from 'components/designSystem/Button';
-import { buttonDictionary, errorDictionary } from 'i18n';
 import { useCallback } from 'react';
-import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+import { buttonDictionary, errorDictionary } from '../../../i18n';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../../utils/events';
+import { Button } from '../../designSystem';
 
 const useStyles = makeStyles((theme) => ({
   error: {

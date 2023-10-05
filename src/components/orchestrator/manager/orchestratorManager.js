@@ -1,23 +1,27 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { LoaderSimple } from 'components/shared/loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
   READ_ONLY,
-} from 'utils/constants';
+} from '../../../utils/constants';
 import {
   EventsManager,
   INIT_ORCHESTRATOR_EVENT,
   INIT_SESSION_EVENT,
-} from 'utils/events';
-import { useAPI, useAPIRemoteData, useGetReferentiel } from 'utils/hooks';
-import { useAuth, useAuthUser } from 'utils/oidc';
-import { environment } from 'utils/read-env-vars';
-import { Orchestrator } from './../collector';
+} from '../../../utils/events';
+import {
+  useAPI,
+  useAPIRemoteData,
+  useGetReferentiel,
+} from '../../../utils/hooks';
+import { useAuth, useAuthUser } from '../../../utils/oidc';
+import { environment } from '../../../utils/read-env-vars';
+import { LoaderSimple } from '../../shared/loader';
+import { Orchestrator } from '../collector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const { API_URL: apiUrl, PORTAIL_URL: portail } = environment;
+const { PORTAIL_URL: portail } = environment;
 
 const OrchestratorManager = () => {
   const classes = useStyles();

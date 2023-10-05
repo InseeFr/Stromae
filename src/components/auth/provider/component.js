@@ -1,9 +1,10 @@
-import { OidcProvider, TokenRenewMode } from '@axa-fr/react-oidc';
-import { LoaderSimple } from 'components/shared/loader';
+import { TokenRenewMode } from '@axa-fr/oidc-client';
+import { OidcProvider } from '@axa-fr/react-oidc';
 import { useRef, useState } from 'react';
-import { OIDC } from 'utils/constants';
-import { useAsyncEffect } from 'utils/hooks/useAsyncEffect';
-import { environment, oidcConf } from 'utils/read-env-vars';
+import { OIDC } from '../../../utils/constants';
+import { useAsyncEffect } from '../../../utils/hooks/useAsyncEffect';
+import { environment, oidcConf } from '../../../utils/read-env-vars';
+import { LoaderSimple } from '../../shared/loader';
 
 const { AUTH_TYPE } = environment;
 

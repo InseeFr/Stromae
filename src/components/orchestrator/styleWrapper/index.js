@@ -1,5 +1,5 @@
-import { useEffect, useContext } from 'react';
-import { StyleContext } from 'components/style/style';
+import { useContext, useEffect } from 'react';
+import { StyleContext } from '../../style/style';
 
 export const StyleWrapper = ({ children, metadata }) => {
   const { setTheme, setStyleSheets } = useContext(StyleContext);
