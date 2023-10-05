@@ -15,6 +15,27 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@axa-fr/oidc-client-service-worker@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/oidc-client-service-worker/-/oidc-client-service-worker-7.6.0.tgz#4499c95f8988b703e0f5ca252d1b75350d346633"
+  integrity sha512-m/b2hlUvIuRDvLSgINKofSeaBFFKkdYJKi2Nzdy41+5jXOYLv9eA1r56bsLYQXkRsrFy2B2CHCCK9dpC9BY51g==
+
+"@axa-fr/oidc-client@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/oidc-client/-/oidc-client-7.6.0.tgz#bb1dbac7d0c2494e516bd46eb612c794a1d3518e"
+  integrity sha512-ltpEHOAp1mZJG5rS8+pO8h6HVy9xWTMUN7cHW6l+81MJf+2I0Ks245L142+BRz1C/IRAwIyOjGUKvXNCAuSC7A==
+  dependencies:
+    "@axa-fr/oidc-client-service-worker" "7.6.0"
+
+"@axa-fr/react-oidc@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc/-/react-oidc-7.6.0.tgz#b3d4c13d418610d2c235f36713b8a3d303773e83"
+  integrity sha512-ugN+SxiEmfAPuAALA6qMPRk/QOwH+IW0VH30rw6arEYsCvmftoGfwruYv7mY1Ay7TBOdty//bHJFsgsG31Q/Cw==
+  dependencies:
+    "@axa-fr/oidc-client" "7.6.0"
+    "@axa-fr/oidc-client-service-worker" "7.6.0"
+    base64-js "1.5.1"
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -3467,7 +3488,7 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base64-js@^1.0.2, base64-js@^1.5.1:
+base64-js@1.5.1, base64-js@^1.0.2, base64-js@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
@@ -5296,6 +5317,11 @@ dotenv@8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
+dotenv@^16.3.1:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
 
 duplexer@^0.1.1:
   version "0.1.2"
@@ -8377,11 +8403,6 @@ js-sdsl@^4.1.4:
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.4.0.tgz#8b437dbe642daa95760400b602378ed8ffea8430"
   integrity sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==
 
-js-sha256@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
-  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -8585,14 +8606,6 @@ jss@10.10.0, jss@^10.5.1:
   dependencies:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
-
-keycloak-js@^22.0.0:
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-22.0.0.tgz#69c6d194f5908c754b5ed6a515fed107164df3a3"
-  integrity sha512-4/xJm6aswS/RLD3h3OhfZTrHAH6Ku/oDvBbK8/tgTxg0rywbxKUjCRUG2Zkw7UGwJPsrqhVT/nmsGTQqj3sQAw==
-  dependencies:
-    base64-js "^1.5.1"
-    js-sha256 "^0.9.0"
 
 keycode@^2.1.7:
   version "2.2.1"
