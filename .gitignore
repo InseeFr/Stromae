@@ -22,6 +22,8 @@ configuration-local.json
 oidc-local.json
 keycloak-local.json
 
+/public/OidcServiceWorker.js
+/public/OidcTrustedDomains.js
 
 npm-debug.log*
 yarn-debug.log*
