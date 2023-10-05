@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-dev": "craco start",
-    "build": "react-scripts build && copy-and-watch configuration/* build",
+    "build": "react-scripts",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
