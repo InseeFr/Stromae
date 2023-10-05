@@ -42,3 +42,12 @@ export const getCurrentComponent = (components) => (currentPage) => {
     .pop();
   return comp || {};
 };
+
+export const getCurrentSurvey = (path) => {
+  const temp = path.split('/questionnaire/');
+  if (temp.length > 1) {
+    const idQ = temp[1].slice(0, temp[1].indexOf('/'));
+    return idQ.substr(0, idQ.indexOf('2')).toLowerCase();
+  }
+  return '';
+};

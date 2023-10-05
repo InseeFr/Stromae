@@ -3,8 +3,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Button } from 'components/designSystem/Button';
-import { buttonDictionary } from 'i18n';
+import { buttonDictionary } from '../../../i18n';
+import { Button } from '../../designSystem';
 
 const NotYetImpl = ({ open, setOpen }) => {
   const close = () => setOpen(false);

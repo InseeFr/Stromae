@@ -3,7 +3,7 @@ import {
   DEFAULT_METADATA_URL,
   FULL_METADATA_URL,
   FULL_OVERLOAD_EXAMPLE_URL,
-} from 'utils/constants';
+} from '../utils/constants';
 import buttonMessage from './buttonMessage';
 
 const visualizeMessage = {

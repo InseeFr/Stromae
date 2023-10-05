@@ -4,7 +4,7 @@ import {
   EVENT_TYPE_SESSION_STARTED,
   ORCHESTRATOR_CATEGORY,
   SESSION_CATEGORY,
-} from 'utils/constants';
+} from '../constants';
 import { EventsManager } from './logger';
 
 export const simpleLog = (info) => EventsManager.getLogger()?.log(info);

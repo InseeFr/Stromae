@@ -1,15 +1,14 @@
 FROM nginx
+RUN rm -rf /usr/share/nginx/html/*
+
 ADD build /usr/share/nginx/html
+
 RUN rm etc/nginx/conf.d/default.conf
-COPY nginx.conf etc/nginx/conf.d/
+COPY ./nginx.conf /etc/nginx/conf.d/
 
-# Copy .env file and shell script to container
-WORKDIR /usr/share/nginx/html
-COPY ./scripts/env.sh .
-COPY ./scripts/.env .
 
-# Make shell script executable and prevent windows encoding
-RUN sed -i -e 's/\r$//' env.sh && sed -i -e 's/\r$//' .env && chmod +x env.sh
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
 
-# Start Nginx server
-CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+CMD ["nginx", "-g", "daemon off;"]

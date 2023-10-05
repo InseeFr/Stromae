@@ -9,8 +9,8 @@
   "author": "INSEE (http://www.insee.fr)",
   "license": "MIT",
   "dependencies": {
-    "@craco/craco": "^6.4.0",
-    "@inseefr/lunatic": "^2.5.2",
+    "@axa-fr/react-oidc": "^7.6.0",
+    "@inseefr/lunatic": "2.4.9",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -19,7 +19,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "date-fns": "^2.29.3",
-    "keycloak-js": "^22.0.0",
     "oidc-client": "^1.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,24 +26,26 @@
     "react-markdown": "^5.0.3",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
     "sass": "^1.32.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-dev": "craco start",
-    "build": "react-scripts build && copy-and-watch configuration/* build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:check": "eslint . --ext .js,.jsx",
     "lint": "npm run lint:check -- --fix",
     "_format": "prettier '**/*.{js,jsx,json,md}'",
     "format": "npm run _format -- --write",
-    "format:check": "npm run _format -- --list-different"
+    "format:check": "npm run _format -- --list-different",
+    "postinstall": "node ./node_modules/@axa-fr/react-oidc/bin/copy-service-worker-files.mjs public",
+    "prestart": "node -r dotenv/config ./scripts/generate-oidc-trusted-domains.js",
+    "postbuild": "node -r dotenv/config ./scripts/generate-oidc-trusted-domains.js"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -72,10 +73,12 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
     "copy-and-watch": "^0.1.5",
+    "dotenv": "^16.3.1",
     "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

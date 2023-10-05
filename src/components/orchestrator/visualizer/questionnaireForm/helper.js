@@ -1,12 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+import { makeStyles } from '@material-ui/core/styles';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
-import { visualizeDictionary } from 'i18n';
-import { MarkdownTypo } from 'components/designSystem';
+import { visualizeDictionary } from '../../../../i18n';
+import { MarkdownTypo } from '../../../designSystem';
 
 const useStyles = makeStyles((theme) => ({
   heading: {

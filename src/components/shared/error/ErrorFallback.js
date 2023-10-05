@@ -1,15 +1,18 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { Button } from 'components/designSystem';
-import { defaultDictionary, errorDictionary, buttonDictionary } from 'i18n';
-import { lunaticVersion, stromaeVersion } from 'utils/app';
+import {
+  buttonDictionary,
+  defaultDictionary,
+  errorDictionary,
+} from '../../../i18n';
+import { lunaticVersion, stromaeVersion } from '../../../utils/app';
+import { Button } from '../../designSystem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
