@@ -1,15 +1,16 @@
 import { TokenRenewMode } from '@axa-fr/oidc-client';
 import { OidcProvider } from '@axa-fr/react-oidc';
 import { useRef, useState } from 'react';
-import { OIDC } from '../../../utils/constants';
+import { OIDC, READ_ONLY } from '../../../utils/constants';
 import { useAsyncEffect } from '../../../utils/hooks/useAsyncEffect';
 import { environment, oidcConf } from '../../../utils/read-env-vars';
 import { LoaderSimple } from '../../shared/loader';
 
-const { AUTH_TYPE } = environment;
+const { AUTH_TYPE, IDENTITY_PROVIDER } = environment;
 
 export function AuthProvider({ children }) {
   const isOidcEnabled = AUTH_TYPE === OIDC;
+  const isReadOnlyMode = window.location.pathname.startsWith(`/${READ_ONLY}`);
   const alreadyLoad = useRef(false);
   const [configuration, setConfiguration] = useState(undefined);
   useAsyncEffect(async () => {
@@ -21,6 +22,9 @@ export function AuthProvider({ children }) {
       setConfiguration({
         ...oidcConf,
         redirect_uri: `${window.location.origin}/login`,
+        token_request_extras: isReadOnlyMode
+          ? { idpHint: IDENTITY_PROVIDER }
+          : null,
         token_renew_mode: TokenRenewMode.access_token_invalid,
         refresh_time_before_tokens_expiration_in_second: 40,
       });
