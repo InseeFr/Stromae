@@ -3,13 +3,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { AppContext } from 'App';
 import { Button } from 'components/designSystem/Button';
 import { buttonDictionary, defaultDictionary } from 'i18n';
-import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { HOUSEHOLD } from 'utils/constants';
-import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+import { environment } from 'utils/read-env-vars';
 
 const utilInfo = (type, currentPage) => {
   return {
@@ -19,6 +18,8 @@ const utilInfo = (type, currentPage) => {
   };
 };
 
+const { PORTAIL_URL: portail } = environment;
+
 const Assistance = ({
   open,
   setOpen,
@@ -26,7 +27,6 @@ const Assistance = ({
   currentPage,
 }) => {
   const { idQ, idSU } = useParams();
-  const { portail } = useContext(AppContext);
 
   const disagree = () => {
     setOpen(false);

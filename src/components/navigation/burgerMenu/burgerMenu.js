@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
-import Help from '@material-ui/icons/Help';
-import ExitToApp from '@material-ui/icons/ExitToApp';
 import Close from '@material-ui/icons/Close';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import Help from '@material-ui/icons/Help';
+import MenuIcon from '@material-ui/icons/Menu';
+import { AppVersion } from 'components/designSystem/AppVersion';
 import { AssistanceConfirm } from 'components/modals/assistance';
+import { burgerDictionary } from 'i18n';
+import { useEffect, useState } from 'react';
 import { HOUSEHOLD } from 'utils/constants';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from 'utils/events';
+import { useAuth } from 'utils/oidc';
 import './burgerMenu.css';
-import { AppVersion } from 'components/designSystem/AppVersion';
-import { burgerDictionary } from 'i18n';
-import { AuthContext } from 'components/auth/provider/component';
 
 const utilInfo = (type, page) => {
   return { ...SIMPLE_CLICK_EVENT, idParadataObject: `${type}-button`, page };
@@ -22,7 +22,7 @@ const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
   const [assistance, setAssistance] = useState(false);
   const { inseeContext } = metadata;
 
-  const { isUserLoggedIn } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     window.addEventListener('scroll', closeMenu);
@@ -53,7 +53,7 @@ const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
             &nbsp;
             <span className='slideBarButtonText'>{burgerDictionary.help}</span>
           </IconButton>
-          {isUserLoggedIn && inseeContext === HOUSEHOLD && (
+          {isAuthenticated && inseeContext === HOUSEHOLD && (
             <IconButton
               className='burgerMenuButton'
               aria-label='Déconnexion'

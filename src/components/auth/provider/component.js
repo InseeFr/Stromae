@@ -1,64 +1,59 @@
-import { AppContext } from 'App';
+import { OidcProvider, TokenRenewMode } from '@axa-fr/react-oidc';
 import { LoaderSimple } from 'components/shared/loader';
-import { errorDictionary } from 'i18n';
-import React, { useContext, useEffect, useState } from 'react';
-import { getOidc } from 'utils/configuration';
-import { NONE, OIDC } from 'utils/constants';
-import { listenActivity } from 'utils/events';
-import { createKeycloakOidcClient } from 'utils/keycloak';
+import { useRef, useState } from 'react';
+import { OIDC } from 'utils/constants';
+import { useAsyncEffect } from 'utils/hooks/useAsyncEffect';
+import { environment, oidcConf } from 'utils/read-env-vars';
 
-export const AuthContext = React.createContext();
+const { AUTH_TYPE } = environment;
 
-const AuthProvider = ({ children }) => {
-  const {
-    authenticationType: authType,
-    portail: urlPortail,
-    identityProvider,
-  } = useContext(AppContext);
-
-  const [oidcClient, setOidcClient] = useState(() => {
-    switch (authType) {
-      case OIDC:
-        return null;
-      case NONE:
-        return dummyOidcClient;
-      default:
-        throw new Error(errorDictionary.noAuthFile);
-    }
-  });
-
-  useEffect(() => {
-    if (authType !== OIDC) {
+export function AuthProvider({ children }) {
+  const isOidcEnabled = AUTH_TYPE === OIDC;
+  const alreadyLoad = useRef(false);
+  const [configuration, setConfiguration] = useState(undefined);
+  useAsyncEffect(async () => {
+    if (alreadyLoad.current) {
       return;
     }
-
-    (async () => {
-      const oidcConf = await getOidc();
-
-      const oidcClient = await createKeycloakOidcClient({
-        url: oidcConf['auth-server-url'],
-        realm: oidcConf['realm'],
-        clientId: oidcConf['resource'],
-        identityProvider: identityProvider,
-        urlPortail,
-        evtUserActivity: listenActivity,
+    alreadyLoad.current = true;
+    if (isOidcEnabled) {
+      setConfiguration({
+        ...oidcConf,
+        redirect_uri: `${window.location.origin}/login`,
+        token_renew_mode: TokenRenewMode.access_token_invalid,
+        refresh_time_before_tokens_expiration_in_second: 40,
       });
+    }
+  }, [alreadyLoad]);
 
-      setOidcClient(oidcClient);
-    })();
-  }, [authType, identityProvider, urlPortail]);
-
-  if (oidcClient === null) return <LoaderSimple />;
-
-  return (
-    <AuthContext.Provider value={oidcClient}>{children}</AuthContext.Provider>
-  );
-};
-
-const dummyOidcClient = {
-  isUserLoggedIn: true,
-  accessToken: null,
-  logout: () => (window.location.href = '/'),
-};
-
-export default AuthProvider;
+  if (isOidcEnabled && configuration !== undefined) {
+    return (
+      <OidcProvider
+        configuration={configuration}
+        loadingComponent={LoaderSimple}
+        authenticatingComponent={LoaderSimple}
+        callbackSuccessComponent={LoaderSimple}
+        sessionLostComponent={LoaderSimple}
+        authenticatingErrorComponent={() => (
+          <h1>Erreur lors de l'authentification</h1>
+        )}
+        serviceWorkerNotSupportedComponent={() => (
+          <>
+            <h1 className=''>
+              Vous ne pouvez pas vous connecter au questionnaire avec ce
+              navigateur.
+            </h1>
+            <p>
+              Votre navigateur n'est pas sécurisé. Veuillez le mettre à jour ou
+              utiliser un navigateur plus récent.
+            </p>
+          </>
+        )}
+      >
+        {children}
+      </OidcProvider>
+    );
+  }
+  if (isOidcEnabled && !configuration) return <LoaderSimple />;
+  return <>{children}</>;
+}
