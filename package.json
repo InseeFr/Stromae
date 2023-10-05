@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "@axa-fr/react-oidc": "^7.6.0",
-    "@craco/craco": "^6.4.0",
     "@inseefr/lunatic": "2.4.9",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -27,17 +26,16 @@
     "react-markdown": "^5.0.3",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
     "sass": "^1.32.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-dev": "craco start",
-    "build": "react-scripts",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:check": "eslint . --ext .js,.jsx",
@@ -75,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
