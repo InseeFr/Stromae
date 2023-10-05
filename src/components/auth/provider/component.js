@@ -1,10 +1,27 @@
 import { TokenRenewMode } from '@axa-fr/oidc-client';
 import { OidcProvider } from '@axa-fr/react-oidc';
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { OIDC, READ_ONLY } from '../../../utils/constants';
 import { useAsyncEffect } from '../../../utils/hooks/useAsyncEffect';
 import { environment, oidcConf } from '../../../utils/read-env-vars';
 import { LoaderSimple } from '../../shared/loader';
+
+const AuthenticatingErrorComponent = () => (
+  <h1>Erreur lors de l'authentification</h1>
+);
+
+const ServiceWorkerNotSupportedComponent = () => (
+  <>
+    <h1 className=''>
+      Vous ne pouvez pas vous connecter au questionnaire avec ce navigateur.
+    </h1>
+    <p>
+      Votre navigateur n'est pas sécurisé. Veuillez le mettre à jour ou utiliser
+      un navigateur plus récent.
+    </p>
+  </>
+);
 
 const { AUTH_TYPE, IDENTITY_PROVIDER } = environment;
 
@@ -13,6 +30,7 @@ export function AuthProvider({ children }) {
   const isReadOnlyMode = window.location.pathname.startsWith(`/${READ_ONLY}`);
   const alreadyLoad = useRef(false);
   const [configuration, setConfiguration] = useState(undefined);
+
   useAsyncEffect(async () => {
     if (alreadyLoad.current) {
       return;
@@ -39,21 +57,8 @@ export function AuthProvider({ children }) {
         authenticatingComponent={LoaderSimple}
         callbackSuccessComponent={LoaderSimple}
         sessionLostComponent={LoaderSimple}
-        authenticatingErrorComponent={() => (
-          <h1>Erreur lors de l'authentification</h1>
-        )}
-        serviceWorkerNotSupportedComponent={() => (
-          <>
-            <h1 className=''>
-              Vous ne pouvez pas vous connecter au questionnaire avec ce
-              navigateur.
-            </h1>
-            <p>
-              Votre navigateur n'est pas sécurisé. Veuillez le mettre à jour ou
-              utiliser un navigateur plus récent.
-            </p>
-          </>
-        )}
+        authenticatingErrorComponent={AuthenticatingErrorComponent}
+        serviceWorkerNotSupportedComponent={ServiceWorkerNotSupportedComponent}
       >
         {children}
       </OidcProvider>
@@ -62,3 +67,7 @@ export function AuthProvider({ children }) {
   if (isOidcEnabled && !configuration) return <LoaderSimple />;
   return <>{children}</>;
 }
+
+AuthProvider.prototype = {
+  children: PropTypes.node.isRequired,
+};
