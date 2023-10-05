@@ -19,6 +19,7 @@ import {
   useGetReferentiel,
 } from '../../../utils/hooks';
 import { useAuth, useAuthUser } from '../../../utils/oidc';
+import { getCurrentSurvey } from '../../../utils/questionnaire';
 import { environment } from '../../../utils/read-env-vars';
 import { LoaderSimple } from '../../shared/loader';
 import { Orchestrator } from '../collector';
@@ -73,7 +74,7 @@ const OrchestratorManager = () => {
   };
 
   const logoutAndClose = () => {
-    logout(portail);
+    logout(`${portail}/${getCurrentSurvey(window.location.href)}`);
   };
 
   useEffect(() => {
