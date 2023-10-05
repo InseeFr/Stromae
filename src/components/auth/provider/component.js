@@ -19,9 +19,7 @@ export function AuthProvider({ children }) {
     }
     alreadyLoad.current = true;
     if (isOidcEnabled) {
-      const extras = isReadOnlyMode ? { idpHint: IDENTITY_PROVIDER } : null;
-
-      console.log('extras', extras);
+      const extras = isReadOnlyMode ? { kc_idp_hint: IDENTITY_PROVIDER } : null;
       setConfiguration({
         ...oidcConf,
         redirect_uri: `${window.location.origin}/login`,
