@@ -19,12 +19,14 @@ export function AuthProvider({ children }) {
     }
     alreadyLoad.current = true;
     if (isOidcEnabled) {
+      const extras = isReadOnlyMode ? { idpHint: IDENTITY_PROVIDER } : null;
+
+      console.log('extras', extras);
       setConfiguration({
         ...oidcConf,
         redirect_uri: `${window.location.origin}/login`,
-        token_request_extras: isReadOnlyMode
-          ? { idpHint: IDENTITY_PROVIDER }
-          : null,
+        extras: extras,
+        token_request_extras: extras,
         token_renew_mode: TokenRenewMode.access_token_invalid,
         refresh_time_before_tokens_expiration_in_second: 40,
       });
