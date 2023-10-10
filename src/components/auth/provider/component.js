@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getOidc } from 'utils/configuration';
 import { NONE, OIDC } from 'utils/constants';
 import { listenActivity } from 'utils/events';
-import { createKeycloakOidcClient } from 'utils/keycloak';
+import { createOidcClient } from 'utils/auth';
 
 export const AuthContext = React.createContext();
 
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     (async () => {
       const oidcConf = await getOidc();
 
-      const oidcClient = await createKeycloakOidcClient({
+      const oidcClient = await createOidcClient({
         url: oidcConf['auth-server-url'],
         realm: oidcConf['realm'],
         clientId: oidcConf['resource'],

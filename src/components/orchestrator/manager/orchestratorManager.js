@@ -73,7 +73,7 @@ const OrchestratorManager = () => {
 
   useEffect(() => {
     if (isUserLoggedIn && questionnaire) {
-      LOGGER.addMetadata({ idSession: oidcUser?.sub });
+      LOGGER.addMetadata({ idSession: oidcUser?.session_state });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
