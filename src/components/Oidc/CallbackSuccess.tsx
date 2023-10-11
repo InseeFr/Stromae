@@ -31,8 +31,8 @@ export function CallbackSuccess() {
 						className={fr.cx('fr-artwork')}
 						aria-hidden="true"
 						viewBox="0 0 80 80"
-						width="240px"
-						height="240px"
+						width="240"
+						height="240"
 					>
 						<use
 							className={fr.cx('fr-artwork-decorative')}
