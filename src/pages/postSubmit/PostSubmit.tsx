@@ -7,7 +7,7 @@ import { OidcSecure } from '../../lib/oidc';
 
 export function PostSubmit() {
 	const { survey, unit } = useParams();
-	useDocumentTitle("Page d'accueil");
+	useDocumentTitle("Page post envoi");
 
 	return (
 		<OidcSecure>
