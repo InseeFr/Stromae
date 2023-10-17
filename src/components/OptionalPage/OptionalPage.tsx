@@ -48,6 +48,7 @@ export function OptionalPage({ name }: { name?: string }) {
 	const [metadata, setMetadata] = useState<MetadataSurvey>();
 	const navigate = useNavigate();
 
+	
 	useEffect(() => {
 		if (name && metadata) {
 			if (name in metadata?.optionalPages) {

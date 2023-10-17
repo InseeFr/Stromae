@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useMetadata } from '../hooks/useMetadata';
 
 function concat({ title, header }: { title?: string; header?: string }) {
-	return `${title ?? ''}${title && header ? '|' : ''}${header ?? ''}`;
+	return `${title ?? ''}${title && header ? ' | ' : ''}${header ?? ''}`;
 }
 
 export function useDocumentTitle(title?: string | null) {
