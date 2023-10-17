@@ -5,7 +5,25 @@ import { useRef, useState } from 'react';
 import { OIDC, READ_ONLY } from '../../../utils/constants';
 import { useAsyncEffect } from '../../../utils/hooks/useAsyncEffect';
 import { environment, oidcConf } from '../../../utils/read-env-vars';
+import { Button } from '../../designSystem';
 import { LoaderSimple } from '../../shared/loader';
+
+const SessionLostComponent = () => (
+  <>
+    <h1 className=''>Vous avez été déconnecté.</h1>
+    <p>
+      Vos réponses ont été sauvegardées, vous pourrez ainsi compléter
+      ultèrieurement votre questionnaire.
+    </p>
+    <Button
+      onClick={() => {
+        window.location = window.location.href;
+      }}
+    >
+      Se reconnecter
+    </Button>
+  </>
+);
 
 const AuthenticatingErrorComponent = () => (
   <h1>Erreur lors de l'authentification</h1>
@@ -56,7 +74,7 @@ export function AuthProvider({ children }) {
         loadingComponent={LoaderSimple}
         authenticatingComponent={LoaderSimple}
         callbackSuccessComponent={LoaderSimple}
-        sessionLostComponent={LoaderSimple}
+        sessionLostComponent={SessionLostComponent}
         authenticatingErrorComponent={AuthenticatingErrorComponent}
         serviceWorkerNotSupportedComponent={ServiceWorkerNotSupportedComponent}
       >
