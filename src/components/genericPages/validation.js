@@ -1,15 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@material-ui/core/styles';
 import Send from '@material-ui/icons/Send';
-import { validationPageDictionary, buttonDictionary } from 'i18n';
-import { MarkdownTypo } from 'components/designSystem';
-import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
+import React from 'react';
+import { buttonDictionary, validationPageDictionary } from '../../i18n';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../utils/events';
 import { VALIDATION_PAGE } from '../../utils/pagination';
+import { MarkdownTypo } from '../designSystem';
 
 const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },

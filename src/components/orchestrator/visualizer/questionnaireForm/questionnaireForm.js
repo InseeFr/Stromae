@@ -4,9 +4,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { buttonDictionary, visualizeDictionary } from 'i18n';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { buttonDictionary, visualizeDictionary } from '../../../../i18n';
 import {
   DATA_EXAMPLE_URL,
   DEFAULT_DATA_URL,
@@ -16,9 +17,8 @@ import {
   NOMENCLATURE_EXAMPLE_URL,
   QUESTIONNAIRE_EXAMPLE_URL,
   SIMPSONS,
-} from 'utils/constants';
-
-import { Button } from 'components/designSystem';
+} from '../../../../utils/constants';
+import { Button } from '../../../designSystem';
 import Examples from './examples';
 import Helper from './helper';
 

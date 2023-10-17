@@ -1,14 +1,6 @@
 import Keycloak from 'keycloak-js';
 import { READ_ONLY } from 'utils/constants';
-
-const getCurrentSurvey = (path) => {
-  const temp = path.split('/questionnaire/');
-  if (temp.length > 1) {
-    const idQ = temp[1].slice(0, temp[1].indexOf('/'));
-    return idQ.substr(0, idQ.indexOf('2')).toLowerCase();
-  }
-  return '';
-};
+import { getCurrentSurvey } from '../questionnaire';
 
 export const createKeycloakOidcClient = async ({
   url,
@@ -18,7 +10,7 @@ export const createKeycloakOidcClient = async ({
   urlPortail,
   evtUserActivity,
 }) => {
-  const keycloakInstance = Keycloak({ url, realm, clientId });
+  const keycloakInstance = new Keycloak({ url, realm, clientId });
 
   const isAuthenticated = await keycloakInstance
     .init({

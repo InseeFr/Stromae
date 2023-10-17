@@ -1,5 +1,4 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { interpret } from '@inseefr/trevas';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,22 +6,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-
-import { Button as InseeButton } from 'components/designSystem/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import { GetApp } from '@material-ui/icons';
-import { useAPI } from 'utils/hooks';
+import { format, formatDistance } from 'date-fns';
+import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { formatDistance, format } from 'date-fns';
-import { buttonDictionary, endPageDictionary } from 'i18n';
+import { buttonDictionary, endPageDictionary } from '../../i18n';
+import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../utils/events';
+import { useAPI } from '../../utils/hooks';
+import { END_PAGE } from '../../utils/pagination';
 import {
   buildBuidings,
   dateFnsLocal,
   formatLocal,
-} from 'utils/personalization';
-import { interpret } from '@inseefr/trevas';
-import { MarkdownTypo } from 'components/designSystem';
-import { paradataHandler, SIMPLE_CLICK_EVENT } from 'utils/events';
-import { END_PAGE } from '../../utils/pagination';
+} from '../../utils/personalization';
+import { MarkdownTypo } from '../designSystem';
+import { Button as InseeButton } from '../designSystem/Button';
 
 const useStyles = makeStyles((theme) => ({
   card: { marginLeft: '1em', marginRight: '1em' },

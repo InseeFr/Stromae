@@ -2,28 +2,28 @@ import * as lunatic from '@inseefr/lunatic';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { EndPage, ValidationPage, WelcomePage } from 'components/genericPages';
-import { ErrorsModal } from 'components/modals/errors';
-import { SendingConfirmation } from 'components/modals/sendingConfirmation';
-import { WelcomeBack } from 'components/modals/welcomeBack';
-import { AppBar } from 'components/navigation/appBar';
-import { BurgerMenu } from 'components/navigation/burgerMenu';
-import { LoaderSimple } from 'components/shared/loader';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { simpleLog } from 'utils/events';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { simpleLog } from '../../../utils/events';
 import {
   END_PAGE,
   FORM_PAGE,
-  isLunaticPage,
   VALIDATION_PAGE,
   WELCOME_PAGE,
-} from 'utils/pagination';
-import { INIT, VALIDATED } from 'utils/questionnaire/stateData';
+  isLunaticPage,
+} from '../../../utils/pagination';
+import { INIT, VALIDATED } from '../../../utils/questionnaire/stateData';
+import { EndPage, ValidationPage, WelcomePage } from '../../genericPages';
+import { ErrorsModal } from '../../modals/errors';
+import { SendingConfirmation } from '../../modals/sendingConfirmation';
+import { WelcomeBack } from '../../modals/welcomeBack';
+import { AppBar } from '../../navigation/appBar';
+import { BurgerMenu } from '../../navigation/burgerMenu';
+import { LoaderSimple } from '../../shared/loader';
 import '../custom-lunatic.scss';
 import { ButtonsNavigation } from '../navigation';
 import { StyleWrapper } from '../styleWrapper';
 
-export const Orchestrator = ({
+const OrchestratorComponent = ({
   source,
   logoutAndClose: quit,
   stromaeData,
@@ -297,6 +297,8 @@ export const Orchestrator = ({
     </StyleWrapper>
   );
 };
+
+export const Orchestrator = memo(OrchestratorComponent);
 
 const useStyles = makeStyles((theme) => ({
   root: {

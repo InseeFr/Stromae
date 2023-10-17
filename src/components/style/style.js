@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { addStyleSheet } from 'utils/style';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import React, { useEffect, useMemo, useState } from 'react';
+import { addStyleSheet } from '../../utils/style';
 
 export const StyleContext = React.createContext();
 

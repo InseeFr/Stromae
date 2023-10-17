@@ -1,3 +1,6 @@
-import { version, dependencies } from '../../../package.json';
-export const stromaeVersion = version;
-export const lunaticVersion = dependencies['@inseefr/lunatic'].replace('^', '');
+import packageInfo from '../../../package.json';
+
+export const stromaeVersion = packageInfo.version;
+export const lunaticVersion = packageInfo.dependencies[
+  '@inseefr/lunatic'
+].replace('^', '');
