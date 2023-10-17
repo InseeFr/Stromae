@@ -9,14 +9,13 @@ import { HeaderAuth } from '../Header/HeaderAuth';
 import { Footer } from '../footer/Footer';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 import { Main } from './Main';
-import { Display } from '@codegouvfr/react-dsfr/Display';
 
 type LayoutProps = {};
 
 const defaultLinks = [
 	{
 		anchor: '#contenu',
-		label: 'Contenu',
+		label: 'Aller au contenu de la page',
 	},
 ];
 
@@ -52,7 +51,6 @@ export function Layout({ children, ...rest }: PropsWithChildren<LayoutProps>) {
 			</HeaderAuth>
 			<Main id="contenu">{children}</Main>
 			<Footer footer={footer} />
-			<Display />
 		</>
 	);
 }

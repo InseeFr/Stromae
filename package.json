@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@axa-fr/react-oidc": "6.14.0",
-		"@codegouvfr/react-dsfr": "^0.75.3",
+		"@codegouvfr/react-dsfr": "^0.78.1",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
 		"@inseefr/lunatic": "2.6.2",

@@ -37,7 +37,7 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 						index: number
 					) => (
 						<Accordion label={questionAdditionnelle.question} key={index}>
-							{questionAdditionnelle.contenu}
+							<p>{questionAdditionnelle.contenu}</p>
 						</Accordion>
 					)
 				)}

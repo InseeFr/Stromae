@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
 import { useOidc } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-
 import { Layout } from '../../components/layout';
 import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
@@ -72,8 +71,8 @@ export function Deconnexion() {
 								className={fr.cx('fr-artwork')}
 								aria-hidden="true"
 								viewBox="0 0 80 80"
-								width="200px"
-								height="200px"
+								width="200"
+								height="200"
 							>
 								<use
 									className={fr.cx('fr-artwork-decorative')}

@@ -76,7 +76,7 @@ export function WelcomeContainer() {
 								<img
 									className={fr.cx('fr-responsive-img')}
 									src={welcome.Enq_Image}
-									alt="decoration"
+									alt=""
 								></img>
 							</div>
 						)}
@@ -100,9 +100,9 @@ export function WelcomeContainer() {
 				}}
 			>
 				<div className={fr.cx('fr-col-xl-6', 'fr-col-lg-10', 'fr-col-12')}>
-					<h3 className={fr.cx('fr-h4')}>
+					<h2 className={fr.cx('fr-h4')}>
 						En savoir plus sur l'{welcome.Enq_LibelleEnquete}
-					</h3>
+					</h2>
 					<WelcomeQuestions welcome={metadata.Welcome} />
 				</div>
 			</div>
