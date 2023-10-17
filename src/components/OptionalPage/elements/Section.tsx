@@ -10,11 +10,11 @@ function Paragraph({ content, id }: { id?: string; content: string }) {
 			key={`paragraph-${id}`}
 			dangerouslySetInnerHTML={{
 				__html: DOMPurify.sanitize(content, {
-					ALLOWED_TAGS: ['b', 'i', 'a', 'li', 'ul'],
+					ALLOWED_TAGS: ['b', 'i', 'a', 'li', 'ul', 'h4'],
 					ALLOWED_ATTR: ['target', 'href', 'title'],
 				}),
 			}}
-		></p>
+		/>
 	);
 }
 
