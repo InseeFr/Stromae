@@ -43,8 +43,8 @@ export function SessionLost() {
 						className={fr.cx('fr-artwork')}
 						aria-hidden="true"
 						viewBox="0 0 80 80"
-						width="320px"
-						height="320px"
+						width="320"
+						height="320"
 					>
 						<use
 							className={fr.cx('fr-artwork-decorative')}

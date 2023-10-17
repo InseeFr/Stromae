@@ -36,9 +36,9 @@ export function SaveMessage(props: Props) {
 		);
 	}
 	return (
-		<span className={fr.cx('fr-col-12', 'fr-col-md-10')}>
+		<p className={fr.cx('fr-col-12', 'fr-col-md-10', 'fr-mb-0')}>
 			Vos réponses sont enregistrées automatiquement à chaque chargement de
 			page.
-		</span>
+		</p>
 	);
 }

@@ -127,7 +127,7 @@ export type OptionalPageElement = {
 export type SectionElement = OptionalPageElement & {
 	type: OptionalPageElementsEnum.Section;
 	title: string;
-	paragraphs: Array<string> | string;
+	paragraphs: Object | string;
 };
 
 export type TitleElement = OptionalPageElement & {

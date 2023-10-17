@@ -48,6 +48,7 @@ export function OptionalPage({ name }: { name?: string }) {
 	const [metadata, setMetadata] = useState<MetadataSurvey>();
 	const navigate = useNavigate();
 
+	
 	useEffect(() => {
 		if (name && metadata) {
 			if (name in metadata?.optionalPages) {
@@ -66,7 +67,7 @@ export function OptionalPage({ name }: { name?: string }) {
 
 	return (
 		<div
-			className={fr.cx('fr-col-lg-6', 'fr-col-md-9', 'fr-col-12', 'fr-m-10v')}
+			className={fr.cx('fr-col-lg-6', 'fr-col-md-9', 'fr-col-11', 'fr-m-10v')}
 		>
 			{body}
 		</div>

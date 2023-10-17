@@ -114,8 +114,8 @@ export function ErrorPage({
 						className={fr.cx('fr-artwork')}
 						aria-hidden="true"
 						viewBox="0 0 80 80"
-						width="200px"
-						height="200px"
+						width="200"
+						height="200"
 					>
 						<use
 							className={fr.cx('fr-artwork-decorative')}
