@@ -2,7 +2,7 @@ import * as lunatic from '@inseefr/lunatic';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { simpleLog } from '../../../utils/events';
 import {
   END_PAGE,
@@ -11,6 +11,7 @@ import {
   WELCOME_PAGE,
   isLunaticPage,
 } from '../../../utils/pagination';
+import { isNewSequence } from '../../../utils/questionnaire';
 import { INIT, VALIDATED } from '../../../utils/questionnaire/stateData';
 import { EndPage, ValidationPage, WelcomePage } from '../../genericPages';
 import { ErrorsModal } from '../../modals/errors';
@@ -100,15 +101,6 @@ const OrchestratorComponent = ({
   const currentPage =
     orchestratorState === FORM_PAGE ? pageTag : orchestratorState;
 
-  // Persist state data on every change so the user can come back to where he was
-  useEffect(() => {
-    // Do not save before the user start the questionnaire
-    if (showBackModal) {
-      return;
-    }
-    save(currentStateData);
-  }, [currentStateData, save, showBackModal]);
-
   const components = getComponents();
 
   const logoutAndClose = async () => {
@@ -159,6 +151,10 @@ const OrchestratorComponent = ({
         setOrchestratorState(FORM_PAGE);
       } else {
         if (!isLastPage) {
+          if (isNewSequence(components)) {
+            let dataToSave = { stateData: currentStateData, data: getData() };
+            save(dataToSave);
+          }
           handleGoNext(skipValidation, goNextPage);
         } else {
           handleGoNext(skipValidation, () =>
@@ -168,7 +164,17 @@ const OrchestratorComponent = ({
       }
       goToTop();
     },
-    [closeErrorsModal, orchestratorState, goNextPage, handleGoNext, isLastPage]
+    [
+      closeErrorsModal,
+      orchestratorState,
+      isLastPage,
+      components,
+      handleGoNext,
+      goNextPage,
+      currentStateData,
+      getData,
+      save,
+    ]
   );
 
   const onPrevious = () => {
@@ -188,7 +194,6 @@ const OrchestratorComponent = ({
       setOrchestratorState(stateData?.currentPage);
     }
   };
-
   const lunaticDisplay = () => (
     <Card
       className={`lunatic lunatic-component ${classes.component}`}
@@ -243,13 +248,6 @@ const OrchestratorComponent = ({
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}
         {orchestratorState === FORM_PAGE && lunaticDisplay()}
-        {
-          <div>
-            <b>
-              PageTag : {pageTag} - CurrentPage : {currentPage}
-            </b>
-          </div>
-        }
         {orchestratorState === VALIDATION_PAGE && (
           <ValidationPage
             metadata={metadata}
