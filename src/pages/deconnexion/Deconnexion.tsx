@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
 import { useOidc } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-
 import { Layout } from '../../components/layout';
 import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
