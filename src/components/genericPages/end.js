@@ -1,3 +1,4 @@
+import { interpret } from '@inseefr/trevas';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -6,15 +7,14 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import React from 'react';
-
-import { interpret } from '@inseefr/trevas';
 import { GetApp } from '@material-ui/icons';
 import { format, formatDistance } from 'date-fns';
+import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { buttonDictionary, endPageDictionary } from '../../i18n';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../utils/events';
 import { useAPI } from '../../utils/hooks';
+import { END_PAGE } from '../../utils/pagination';
 import {
   buildBuidings,
   dateFnsLocal,
@@ -44,7 +44,6 @@ const EndPage = ({
   metadata: { inseeContext, variables, genericPages },
   personalization,
   stateData: { date },
-  currentPage,
 }) => {
   const classes = useStyles();
 
@@ -52,7 +51,7 @@ const EndPage = ({
     return {
       ...SIMPLE_CLICK_EVENT,
       idParadataObject: `${type}-button`,
-      page: currentPage,
+      page: END_PAGE,
     };
   };
   const finalDate = date || 0;

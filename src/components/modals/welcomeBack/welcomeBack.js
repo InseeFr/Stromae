@@ -13,13 +13,14 @@ const utilInfo = (type) => {
   };
 };
 
-const WelcomeBack = ({ open, setOpen, goToFirstPage }) => {
+const WelcomeBack = ({ open, setOpen, goToFirstPage, goBackToSavedPage }) => {
   const goToCurrentPage = () => {
+    goBackToSavedPage?.();
     setOpen(false);
   };
 
   const goToFirst = () => {
-    goToFirstPage();
+    goToFirstPage?.();
     setOpen(false);
   };
 

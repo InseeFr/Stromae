@@ -2,15 +2,15 @@ import * as lunatic from '@inseefr/lunatic';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { simpleLog } from '../../../utils/events';
 import {
   END_PAGE,
+  FORM_PAGE,
   VALIDATION_PAGE,
   WELCOME_PAGE,
   isLunaticPage,
 } from '../../../utils/pagination';
-import { isNewSequence } from '../../../utils/questionnaire';
 import { INIT, VALIDATED } from '../../../utils/questionnaire/stateData';
 import { EndPage, ValidationPage, WelcomePage } from '../../genericPages';
 import { ErrorsModal } from '../../modals/errors';
@@ -43,7 +43,6 @@ const OrchestratorComponent = ({
   const [validationConfirmation, setValidationConfirmation] = useState(false);
 
   const { stateData, data, personalization } = stromaeData;
-  const [currentStateData, setCurrentStateData] = useState(stateData);
 
   const [validated, setValidated] = useState(
     stateData &&
@@ -51,13 +50,11 @@ const OrchestratorComponent = ({
         stateData.state === 'EXTRACTED' ||
         stateData.state === 'TOEXTRACT')
   );
-
-  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
   const {
     getComponents,
     waiting,
     pageTag,
-    pager: { page },
+    goToPage,
     goNextPage,
     goPreviousPage,
     isFirstPage,
@@ -65,8 +62,6 @@ const OrchestratorComponent = ({
     compileControls,
     getData,
   } = lunatic.useLunatic(source, data, {
-    // ToDo : initial page
-    //initialPage,
     features,
     preferences,
     autoSuggesterLoading,
@@ -74,28 +69,47 @@ const OrchestratorComponent = ({
     activeControls,
   });
 
-  const components = getComponents();
+  const logFunction = (e) => simpleLog({ ...e, page: currentPage });
 
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (validated) return END_PAGE;
+  // Control whether to display the modal to go back to the previous state
+  const showBackModal = !init && !validated && !!stateData?.currentPage;
+
+  // Indicate in which state the orchestrator is, with stromae we need a welcome page before the form and an end page after
+  const [orchestratorState, setOrchestratorState] = useState(() => {
+    if (validated) {
+      return END_PAGE;
+    }
+    if (showBackModal) {
+      return WELCOME_PAGE;
+    }
     if (stateData?.currentPage) {
-      return page;
+      return FORM_PAGE;
     }
     return WELCOME_PAGE;
   });
 
-  const updateStateData = useCallback(
-    (newState) => {
-      const newStateData = {
-        state: newState ?? INIT,
-        date: new Date().getTime(),
-        currentPage: currentPage,
-      };
-      setCurrentStateData(newStateData);
-      return newStateData;
-    },
-    [currentPage]
+  const currentStateData = useMemo(
+    () => ({
+      state: orchestratorState === END_PAGE ? VALIDATED : INIT,
+      date: new Date().getTime(),
+      currentPage:
+        orchestratorState === FORM_PAGE ? pageTag : orchestratorState,
+    }),
+    [pageTag, orchestratorState]
   );
+  const currentPage =
+    orchestratorState === FORM_PAGE ? pageTag : orchestratorState;
+
+  // Persist state data on every change so the user can come back to where he was
+  useEffect(() => {
+    // Do not save before the user start the questionnaire
+    if (showBackModal) {
+      return;
+    }
+    save(currentStateData);
+  }, [currentStateData, save, showBackModal]);
+
+  const components = getComponents();
 
   const logoutAndClose = async () => {
     let dataToSave = { stateData: currentStateData, data: getData() };
@@ -105,8 +119,9 @@ const OrchestratorComponent = ({
     quit(dataToSave);
   };
 
+  // Scroll at the top of the form
   const goToTop = () => {
-    if (topRef && topRef.current) {
+    if (topRef.current) {
       topRef.current.tabIndex = -1;
       topRef.current.focus();
       topRef.current.blur();
@@ -116,13 +131,7 @@ const OrchestratorComponent = ({
   };
   const validateQuestionnaire = () => {
     setValidated(true);
-    const validateUpdateState = updateStateData(VALIDATED);
-    const dataToSave = {
-      stateData: validateUpdateState,
-      data: getData(),
-    };
-    save(dataToSave);
-    setCurrentPage(END_PAGE);
+    setOrchestratorState(END_PAGE);
   };
 
   const [errorActive, setErrorActive] = useState({});
@@ -146,52 +155,39 @@ const OrchestratorComponent = ({
   const onNext = useCallback(
     (event, skipValidation = false) => {
       closeErrorsModal();
-      if (currentPage === WELCOME_PAGE) setCurrentPage(page);
-      else {
-        const onNextUpdateState = updateStateData();
-        const dataToSave = {
-          stateData: onNextUpdateState,
-          data: getData(),
-        };
+      if (orchestratorState === WELCOME_PAGE) {
+        setOrchestratorState(FORM_PAGE);
+      } else {
         if (!isLastPage) {
-          if (isNewSequence(components)) {
-            save(dataToSave);
-          }
           handleGoNext(skipValidation, goNextPage);
         } else {
-          save(dataToSave);
-          handleGoNext(skipValidation, () => setCurrentPage(VALIDATION_PAGE));
+          handleGoNext(skipValidation, () =>
+            setOrchestratorState(VALIDATION_PAGE)
+          );
         }
       }
       goToTop();
     },
-    [
-      closeErrorsModal,
-      components,
-      currentPage,
-      getData,
-      goNextPage,
-      handleGoNext,
-      isLastPage,
-      page,
-      save,
-      updateStateData,
-    ]
+    [closeErrorsModal, orchestratorState, goNextPage, handleGoNext, isLastPage]
   );
 
   const onPrevious = () => {
-    if (currentPage === VALIDATION_PAGE) setCurrentPage(page);
+    if (orchestratorState === VALIDATION_PAGE) setOrchestratorState(FORM_PAGE);
     else {
       if (!isFirstPage) goPreviousPage();
-      else setCurrentPage(WELCOME_PAGE);
+      else setOrchestratorState(WELCOME_PAGE);
     }
   };
 
-  useEffect(() => {
-    if (isLunaticPage(currentPage)) {
-      setCurrentPage(page);
+  const restoreSavedPage = () => {
+    // stateData currentPage can be "welcomePage" instead of a normal page number
+    if (isLunaticPage(stateData?.currentPage)) {
+      goToPage({ page: stateData?.currentPage });
+      setOrchestratorState(FORM_PAGE);
+    } else {
+      setOrchestratorState(stateData?.currentPage);
     }
-  }, [currentPage, page]);
+  };
 
   const lunaticDisplay = () => (
     <Card
@@ -243,23 +239,28 @@ const OrchestratorComponent = ({
         ref={topRef}
         className={classes.root}
       >
-        {currentPage === WELCOME_PAGE && (
+        {orchestratorState === WELCOME_PAGE && (
           <WelcomePage metadata={metadata} personalization={personalization} />
         )}
-        {isLunaticPage(currentPage) && lunaticDisplay()}
-        {currentPage === VALIDATION_PAGE && (
+        {orchestratorState === FORM_PAGE && lunaticDisplay()}
+        {
+          <div>
+            <b>
+              PageTag : {pageTag} - CurrentPage : {currentPage}
+            </b>
+          </div>
+        }
+        {orchestratorState === VALIDATION_PAGE && (
           <ValidationPage
             metadata={metadata}
             setValidationConfirmation={setValidationConfirmation}
-            currentPage={currentPage}
           />
         )}
-        {currentPage === END_PAGE && (
+        {orchestratorState === END_PAGE && (
           <EndPage
             logoutAndClose={logoutAndClose}
             metadata={metadata}
             stateData={currentStateData}
-            currentPage={currentPage}
             personalization={personalization}
           />
         )}
@@ -281,11 +282,9 @@ const OrchestratorComponent = ({
         />
       )}
       <WelcomeBack
-        open={!init && !validated && !!stateData?.currentPage}
+        open={showBackModal}
         setOpen={(o) => setInit(!o)}
-        goToFirstPage={() => {
-          setCurrentPage(WELCOME_PAGE);
-        }}
+        goBackToSavedPage={restoreSavedPage}
       />
       <SendingConfirmation
         open={validationConfirmation}
