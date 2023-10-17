@@ -16,6 +16,7 @@ import {
 import {
   useAPI,
   useAPIRemoteData,
+  useConstCallback,
   useGetReferentiel,
 } from '../../../utils/hooks';
 import { useAuth, useAuthUser } from '../../../utils/oidc';
@@ -31,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
 }));
+
+const preferences = ['COLLECTED'];
+const features = ['VTL', 'MD'];
+const savingType = 'COLLECTED';
 
 const { PORTAIL_URL: portail } = environment;
 
@@ -58,7 +63,7 @@ const OrchestratorManager = () => {
 
   const [errorSending, setErrorSending] = useState(null);
 
-  const sendData = async (dataToSave) => {
+  const sendData = useConstCallback(async (dataToSave) => {
     if (!readonly) {
       const { data, stateData } = dataToSave;
       const { /*status,*/ error: dataError } = await putData(data);
@@ -71,11 +76,11 @@ const OrchestratorManager = () => {
         if (paradataPostError) setErrorSending('Error during sending');
       LOGGER.clear();
     }
-  };
+  });
 
-  const logoutAndClose = () => {
+  const logoutAndClose = useConstCallback(() => {
     logout(`${portail}/${getCurrentSurvey(window.location.href)}`);
-  };
+  });
 
   useEffect(() => {
     if (isAuthenticated && questionnaire) {
@@ -109,9 +114,9 @@ const OrchestratorManager = () => {
           autoSuggesterLoading={true}
           getReferentiel={getReferentiel}
           save={sendData}
-          savingType='COLLECTED'
-          preferences={['COLLECTED']}
-          features={['VTL', 'MD']}
+          savingType={savingType}
+          preferences={preferences}
+          features={features}
           pagination={true}
           activeControls={true}
           readonly={readonly}

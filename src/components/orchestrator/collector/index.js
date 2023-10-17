@@ -2,7 +2,7 @@ import * as lunatic from '@inseefr/lunatic';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { simpleLog } from '../../../utils/events';
 import {
   END_PAGE,
@@ -23,7 +23,7 @@ import '../custom-lunatic.scss';
 import { ButtonsNavigation } from '../navigation';
 import { StyleWrapper } from '../styleWrapper';
 
-export const Orchestrator = ({
+const OrchestratorComponent = ({
   source,
   logoutAndClose: quit,
   stromaeData,
@@ -298,6 +298,8 @@ export const Orchestrator = ({
     </StyleWrapper>
   );
 };
+
+export const Orchestrator = memo(OrchestratorComponent);
 
 const useStyles = makeStyles((theme) => ({
   root: {
