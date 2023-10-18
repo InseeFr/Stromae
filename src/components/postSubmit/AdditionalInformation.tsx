@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 function FeedbackLink({
 	href,
 	imageSrc,
+	alt,
 	label,
 	title,
 	target,
 }: {
 	href: string;
+	alt: string;
 	imageSrc: string;
 	title: string;
 	label: string;
@@ -24,7 +26,7 @@ function FeedbackLink({
 				style={{ backgroundImage: 'none' }}
 				target={target}
 			>
-				<img src={imageSrc} alt="" />
+				<img src={imageSrc} alt={alt} />
 			</Link>
 		);
 	} else if (href) {
@@ -50,6 +52,7 @@ function ProvideFeedback({
 			<div className={fr.cx('fr-col-12', 'fr-col-lg-5', 'fr-mt-2w')}>
 				<h4 className={fr.cx('fr-h6')}>{title}</h4>
 				<FeedbackLink
+					alt={link.alt}
 					title={link.title}
 					href={link.href}
 					target={link.target}
