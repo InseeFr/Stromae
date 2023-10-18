@@ -7,6 +7,19 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
 import { fr } from '@codegouvfr/react-dsfr';
 
+function getButtonTitle(getComponents: () => Array<ComponentType>) {
+	if (getComponents) {
+		const components = getComponents();
+		return components.reduce((acc, component) => {
+			if (component.componentType === 'Sequence') {
+				return `Commencer la saise des questions concernant l'étape ${component.title}`;
+			}
+			return acc;
+		}, `Passer à l'étape suivante`);
+	}
+	return `Passer à l'étape suivante`;
+}
+
 function getStatus(
 	getComponents: () => Array<ComponentType>,
 	isLastPage: boolean
@@ -63,6 +76,7 @@ export function Continuer(props: OrchestratedElement) {
 			priority="primary"
 			onClick={handleClick}
 			className={fr.cx('fr-mt-1w')}
+			title={getButtonTitle(getComponents)}
 			nativeButtonProps={{
 				form: 'stromae-form',
 				type: 'submit',

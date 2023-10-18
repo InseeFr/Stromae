@@ -25,6 +25,7 @@ export function Precedent(props: OrchestratedElement) {
 			<div className={fr.cx('fr-col-12')}>
 				<div className={fr.cx('fr-container')}>
 					<Button
+						title="Revenir à l'étape précédente"
 						priority="tertiary no outline"
 						iconId="fr-icon-arrow-left-line"
 						onClick={handleClick}
