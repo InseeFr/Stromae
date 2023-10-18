@@ -1,7 +1,6 @@
 import { useContext, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fr } from '@codegouvfr/react-dsfr';
-import { Button } from '@codegouvfr/react-dsfr/Button';
 import { format } from 'date-fns';
 import { fr as localeFr } from 'date-fns/esm/locale';
 import { useRemote } from '../orchestrator/useRemote';
