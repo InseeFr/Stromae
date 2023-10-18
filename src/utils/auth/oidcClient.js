@@ -1,4 +1,4 @@
-/* eslint-disable no-labels */
+/* eslint-disable no-labels, no-lone-blocks */
 import { READ_ONLY } from 'utils/constants';
 import { UserManager } from 'oidc-client-ts';
 import jwt_decode from 'jwt-decode';
