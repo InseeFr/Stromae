@@ -66,6 +66,7 @@ export function Continuer(props: OrchestratedElement) {
 				}
 			}
 			window.scrollTo(0, 0);
+			document.getElementById('button-precedent')?.focus();
 			goNextPage();
 		},
 		[goNextPage, isLastPage, unit, survey, navigate]
