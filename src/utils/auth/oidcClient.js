@@ -1,13 +1,13 @@
 /* eslint-disable no-labels, no-lone-blocks */
-import { READ_ONLY } from 'utils/constants';
-import { UserManager } from 'oidc-client-ts';
 import jwt_decode from 'jwt-decode';
-import { Deferred } from '../tools/Deferred';
+import { UserManager } from 'oidc-client-ts';
 import {
   addParamToUrl,
   retrieveParamFromUrl,
 } from 'powerhooks/tools/urlSearchParams';
-import { fnv1aHashToHex } from 'utils/tools/fnv1aHashToHex';
+import { READ_ONLY } from '../constants';
+import { Deferred } from '../tools/Deferred';
+import { fnv1aHashToHex } from '../tools/fnv1aHashToHex';
 
 export const createOidcClient = async ({
   url,

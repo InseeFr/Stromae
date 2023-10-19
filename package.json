@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.4.11",
+  "version": "2.4.12-rc.1",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
@@ -72,12 +72,11 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@craco/craco": "^6.4.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
     "copy-and-watch": "^0.1.5",
-    "dotenv": "^16.3.1",
     "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../components/auth/provider/component';
 import { errorDictionary } from '../../i18n';
 import { API } from '../api';
 import { getFetcherForLunatic } from '../api/fetcher';
 import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from '../constants';
-import { useAccessToken } from '../oidc';
 import { environment } from '../read-env-vars';
 import { useConstCallback } from './useConstCallback';
 
@@ -19,17 +19,17 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useGetReferentiel = (nomenclatures) => {
-  const { accessToken } = useAccessToken();
+  const oidcClient = useContext(AuthContext);
 
   const getReferentiel = useConstCallback((refName) => {
     const finalUrl = `${apiUrl}/api/nomenclature/${refName}`;
-    return getFetcherForLunatic(accessToken)(finalUrl);
+    return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
   });
 
   const getReferentielForVizu = useConstCallback((refName) => {
     if (nomenclatures && Object.keys(nomenclatures).includes(refName)) {
       const finalUrl = nomenclatures[refName];
-      return getFetcherForLunatic(accessToken)(finalUrl);
+      return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
     }
     // No nomenclature, return empty array to lunatic
     return Promise.resolve([]);
@@ -39,42 +39,44 @@ export const useGetReferentiel = (nomenclatures) => {
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { accessToken } = useAccessToken();
+  const oidcClient = useContext(AuthContext);
 
   const getRequiredNomenclatures = useConstCallback(() =>
-    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(accessToken)
+    API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
+      oidcClient.accessToken
+    )
   );
 
   const getQuestionnaire = useConstCallback(() =>
-    API.getQuestionnaire(apiUrl)(questionnaireID)(accessToken)
+    API.getQuestionnaire(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
   const getMetadata = useConstCallback(() =>
-    API.getMetadata(apiUrl)(questionnaireID)(accessToken)
+    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.accessToken)
   );
 
   const getSuData = useConstCallback(() =>
-    API.getSuData(apiUrl)(surveyUnitID)(accessToken)
+    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
   const getPDF = useConstCallback(() =>
-    API.getDepositProof(apiUrl)(surveyUnitID)(accessToken)
+    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
   );
 
   const putSuData = useConstCallback((body) =>
-    API.putSuData(apiUrl)(surveyUnitID)(accessToken)(body)
+    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
   const putData = useConstCallback((body) =>
-    API.putData(apiUrl)(surveyUnitID)(accessToken)(body)
+    API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
   const putStateData = useConstCallback((body) =>
-    API.putStateData(apiUrl)(surveyUnitID)(accessToken)(body)
+    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
   );
 
   const postParadata = useConstCallback((body) =>
-    API.postParadata(apiUrl)(accessToken)(body)
+    API.postParadata(apiUrl)(oidcClient.accessToken)(body)
   );
 
   return {
