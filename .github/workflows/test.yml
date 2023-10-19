@@ -8,16 +8,17 @@ on:
 
 jobs:
   test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: [ '20' ]
+        os: [ ubuntu-latest ]
     name: Tests
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node }}
       - uses: bahmutov/npm-install@v1
       - run: yarn build
-      - name: Check Typing
-        run: yarn run check
-      - name: Unit Tests
-        run: yarn run lint
+      - run: yarn test
