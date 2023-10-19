@@ -69,6 +69,9 @@
 			"last 1 safari version"
 		]
 	},
+	"resolutions": {
+    "babel-loader": "^8.3.0"
+  },
 	"devDependencies": {
 		"@craco/craco": "^7.0.0",
 		"@shopify/eslint-plugin": "^42.1.0",
