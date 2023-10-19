@@ -21,7 +21,4 @@ export const oidcConf = {
   client_id: getEnvVar('REACT_APP_CLIENT_ID'),
   authUrl: getEnvVar('REACY_APP_AUTH_URL'),
   realm: getEnvVar('REACT_APP_AUTH_REALM'),
-  scope: 'openid profile email offline_access',
-  service_worker_relative_url: '/OidcServiceWorker.js',
-  service_worker_only: false,
 };

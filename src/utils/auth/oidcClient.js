@@ -78,7 +78,6 @@ export const createOidcClient = async ({
         name: name,
         value: result.value,
       }).newUrl;
-      console.log(loginSuccessUrl);
       url = result.newUrl;
     }
 
