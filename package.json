@@ -27,16 +27,16 @@
     "react-markdown": "^5.0.3",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
     "sass": "^1.32.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && copy-and-watch configuration/* build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && copy-and-watch configuration/* build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:check": "eslint . --ext .js,.jsx",
@@ -73,6 +73,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@craco/craco": "7.1.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
     "copy-and-watch": "^0.1.5",
     "eslint": "^8.12.0",
