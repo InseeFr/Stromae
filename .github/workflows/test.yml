@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 16
       - uses: bahmutov/npm-install@v1
+        with: 
+          install-command: yarn --frozen-lockfile --silent
       - run: yarn
       - name: Check Typing
         run: yarn run check
