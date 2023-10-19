@@ -1,15 +1,19 @@
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Orchestrator } from 'components/orchestrator/collector';
 import { useEffect, useState } from 'react';
-import { useGetReferentiel, useRemoteData, useVisuQuery } from 'utils/hooks';
 
-import { LoaderSimple } from 'components/shared/loader';
 import { useHistory } from 'react-router';
-import { ORCHESTRATOR_VIZUALISATION } from 'utils/constants';
-import { EventsManager, INIT_ORCHESTRATOR_EVENT } from 'utils/events';
-import { downloadDataAsJson } from 'utils/questionnaire';
+import { ORCHESTRATOR_VIZUALISATION } from '../../../utils/constants';
+import { EventsManager, INIT_ORCHESTRATOR_EVENT } from '../../../utils/events';
+import {
+  useGetReferentiel,
+  useRemoteData,
+  useVisuQuery,
+} from '../../../utils/hooks';
+import { downloadDataAsJson } from '../../../utils/questionnaire';
+import { LoaderSimple } from '../../shared/loader';
+import { Orchestrator } from '../collector';
 import QuestionnaireForm from './questionnaireForm';
 
 const useStyles = makeStyles(() => ({

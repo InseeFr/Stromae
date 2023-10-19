@@ -1,23 +1,24 @@
-import { AppContext } from 'App';
-import { LoaderSimple } from 'components/shared/loader';
-import { errorDictionary } from 'i18n';
-import React, { useContext, useEffect, useState } from 'react';
-import { getOidc } from 'utils/configuration';
-import { NONE, OIDC } from 'utils/constants';
-import { listenActivity } from 'utils/events';
-import { createOidcClient } from 'utils/auth';
+import React, { useEffect, useState } from 'react';
+import { errorDictionary } from '../../../i18n';
+import { createOidcClient } from '../../../utils/auth';
+import { NONE, OIDC } from '../../../utils/constants';
+import { listenActivity } from '../../../utils/events';
+import { environment, oidcConf } from '../../../utils/read-env-vars';
+import { LoaderSimple } from '../../shared/loader';
+
+const dummyOidcClient = {
+  isUserLoggedIn: true,
+  accessToken: null,
+  logout: () => (window.location.href = '/'),
+};
+
+const { AUTH_TYPE, IDENTITY_PROVIDER, PORTAIL_URL } = environment;
 
 export const AuthContext = React.createContext();
 
-const AuthProvider = ({ children }) => {
-  const {
-    authenticationType: authType,
-    portail: urlPortail,
-    identityProvider,
-  } = useContext(AppContext);
-
+export function AuthProvider({ children }) {
   const [oidcClient, setOidcClient] = useState(() => {
-    switch (authType) {
+    switch (AUTH_TYPE) {
       case OIDC:
         return null;
       case NONE:
@@ -28,37 +29,27 @@ const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    if (authType !== OIDC) {
+    if (AUTH_TYPE !== OIDC) {
       return;
     }
 
     (async () => {
-      const oidcConf = await getOidc();
-
       const oidcClient = await createOidcClient({
-        url: oidcConf['auth-server-url'],
-        realm: oidcConf['realm'],
-        clientId: oidcConf['resource'],
-        identityProvider: identityProvider,
-        urlPortail,
+        url: oidcConf.authUrl,
+        realm: oidcConf.realm,
+        clientId: oidcConf.client_id,
+        identityProvider: IDENTITY_PROVIDER,
+        urlPortail: PORTAIL_URL,
         evtUserActivity: listenActivity,
       });
 
       setOidcClient(oidcClient);
     })();
-  }, [authType, identityProvider, urlPortail]);
+  }, []);
 
   if (oidcClient === null) return <LoaderSimple />;
 
   return (
     <AuthContext.Provider value={oidcClient}>{children}</AuthContext.Provider>
   );
-};
-
-const dummyOidcClient = {
-  isUserLoggedIn: true,
-  accessToken: null,
-  logout: () => (window.location.href = '/'),
-};
-
-export default AuthProvider;
+}

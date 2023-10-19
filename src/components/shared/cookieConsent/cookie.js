@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Button, MarkdownTypo } from 'components/designSystem';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { COOKIE_CONSENT } from 'utils/constants';
-import { defaultDictionary, buttonDictionary } from 'i18n';
+import { useState } from 'react';
+import { buttonDictionary, defaultDictionary } from '../../../i18n';
+import { COOKIE_CONSENT } from '../../../utils/constants';
+import { Button, MarkdownTypo } from '../../designSystem';
 
 const CookieConsent = () => {
   const [open, setOpen] = useState(

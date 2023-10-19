@@ -1,23 +1,27 @@
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { AppContext } from 'App';
-import { AuthContext } from 'components/auth/provider';
-import { LoaderSimple } from 'components/shared/loader';
+import { makeStyles } from '@material-ui/core/styles';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
   READ_ONLY,
-} from 'utils/constants';
+} from '../../../utils/constants';
 import {
   EventsManager,
   INIT_ORCHESTRATOR_EVENT,
   INIT_SESSION_EVENT,
-} from 'utils/events';
-import { useAPI, useAPIRemoteData, useGetReferentiel } from 'utils/hooks';
-import { Orchestrator } from './../collector';
+} from '../../../utils/events';
+import {
+  useAPI,
+  useAPIRemoteData,
+  useConstCallback,
+  useGetReferentiel,
+} from '../../../utils/hooks';
+import { AuthContext } from '../../auth/provider/component';
+import { LoaderSimple } from '../../shared/loader';
+import { Orchestrator } from '../collector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OrchestratorManager = () => {
-  const { apiUrl } = useContext(AppContext);
+const preferences = ['COLLECTED'];
+const features = ['VTL', 'MD'];
+const savingType = 'COLLECTED';
 
+const OrchestratorManager = () => {
   const classes = useStyles();
   const [source, setSource] = useState(false);
   const { readonly, idQ, idSU } = useParams();
@@ -52,7 +58,7 @@ const OrchestratorManager = () => {
 
   const [errorSending, setErrorSending] = useState(null);
 
-  const sendData = async (dataToSave) => {
+  const sendData = useConstCallback(async (dataToSave) => {
     if (!readonly) {
       const { data, stateData } = dataToSave;
       const { /*status,*/ error: dataError } = await putData(data);
@@ -65,11 +71,11 @@ const OrchestratorManager = () => {
         if (paradataPostError) setErrorSending('Error during sending');
       LOGGER.clear();
     }
-  };
+  });
 
-  const logoutAndClose = () => {
+  const logoutAndClose = useConstCallback(() => {
     logout('portail');
-  };
+  });
 
   useEffect(() => {
     if (isUserLoggedIn && questionnaire) {
@@ -88,7 +94,7 @@ const OrchestratorManager = () => {
       setSource(questionnaire);
       LOGGER.log(INIT_ORCHESTRATOR_EVENT);
     }
-  }, [questionnaire, loading, apiUrl, LOGGER]);
+  }, [questionnaire, loading, LOGGER]);
 
   return (
     <Box className={classes.root}>
@@ -103,9 +109,9 @@ const OrchestratorManager = () => {
           autoSuggesterLoading={true}
           getReferentiel={getReferentiel}
           save={sendData}
-          savingType='COLLECTED'
-          preferences={['COLLECTED']}
-          features={['VTL', 'MD']}
+          savingType={savingType}
+          preferences={preferences}
+          features={features}
           pagination={true}
           activeControls={true}
           readonly={readonly}
