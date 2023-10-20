@@ -14,7 +14,7 @@ function ConvertContent(props: ConvertContentProps) {
 		return <p className={fr.cx(props.classname)}>{props.content}</p>;
 	}
 	if (props.content.type && props.content.type === 'string') {
-		return <p>{props.content.value}</p>;
+		return <p className={fr.cx(props.classname)}>{props.content.value}</p>;
 	} else if (props.content.type && props.content.type === 'html') {
 		return (
 			<p
