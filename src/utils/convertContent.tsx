@@ -1,7 +1,9 @@
+import { FrCxArg, fr } from '@codegouvfr/react-dsfr';
 import DOMPurify from 'dompurify';
 
 type ConvertContentProps = {
 	content?: string | { value: string; type: 'html' | 'string' };
+	classname?: FrCxArg;
 };
 
 function ConvertContent(props: ConvertContentProps) {
@@ -9,13 +11,14 @@ function ConvertContent(props: ConvertContentProps) {
 		return <></>;
 	}
 	if (typeof props.content === 'string') {
-		return <>{props.content}</>;
+		return <p className={fr.cx(props.classname)}>{props.content}</p>;
 	}
 	if (props.content.type && props.content.type === 'string') {
-		return <span>{props.content.value}</span>;
+		return <p>{props.content.value}</p>;
 	} else if (props.content.type && props.content.type === 'html') {
 		return (
-			<span
+			<p
+				className={fr.cx(props.classname)}
 				dangerouslySetInnerHTML={{
 					__html: DOMPurify.sanitize(props.content?.value, {
 						ALLOWED_TAGS: [

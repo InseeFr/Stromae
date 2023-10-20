@@ -81,7 +81,6 @@ export function Continuer(props: OrchestratedElement) {
 			nativeButtonProps={{
 				form: 'stromae-form',
 				type: 'submit',
-				'aria-atomic': true,
 				'aria-disabled': waiting,
 			}}
 			iconId={waiting ? 'fr-icon-refresh-line' : undefined}

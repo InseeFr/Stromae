@@ -63,9 +63,12 @@ export function WelcomeContainer() {
 					>
 						<div className={fr.cx('fr-col-md-6', 'fr-col-12')}>
 							<h2>Bienvenue sur l'{welcome.Enq_LibelleEnquete}</h2>
-							<p className={fr.cx('fr-text--lead')}>
-								<ConvertContent content={welcome.Enq_ObjectifsCourts} />
-							</p>
+
+							<ConvertContent
+								content={welcome.Enq_ObjectifsCourts}
+								classname="fr-text--lead"
+							/>
+
 							<RespondantsList respondants={welcome.whoAnswers} />
 							<Button size="large" onClick={onClick}>
 								Commencer
