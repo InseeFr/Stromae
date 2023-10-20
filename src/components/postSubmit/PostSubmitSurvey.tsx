@@ -1,7 +1,6 @@
 import { useContext, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fr } from '@codegouvfr/react-dsfr';
-import { Button } from '@codegouvfr/react-dsfr/Button';
 import { format } from 'date-fns';
 import { fr as localeFr } from 'date-fns/esm/locale';
 import { useRemote } from '../orchestrator/useRemote';
@@ -90,9 +89,9 @@ export function PostSubmitSurvey() {
 								Vos réponses ont été envoyées le {submissionDate}.&nbsp;
 								{DescriptionAdditional}
 							</p>
-							<Button onClick={handleDepositProof}>
+							<a onClick={handleDepositProof} className={fr.cx('fr-btn')}>
 								Télécharger l'accusé de réception
-							</Button>
+							</a>
 						</div>
 						<div
 							className={fr.cx(

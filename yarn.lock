@@ -1494,20 +1494,20 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.0.tgz#04ad39d82176c7da1591c81e78b993cffd8348d8"
   integrity sha512-9S9QrXY2K0L4AGDcSgTi9vgiCcG8VcBv4Mp7/1hDPYoswIy6Z6KO5blYto82BT8M0MZNRWmCFLpCs3HlpYGGdw==
 
-"@inseefr/lunatic-dsfr@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-1.0.0.tgz#931f54894dfa6acdfbeb5e7da9daa3b65c364a07"
-  integrity sha512-RbwBDAsLPQam58S9d23I/jgVi0m4kdDZl2UalkqPIpBPx3rHmPfUGvtNz5evfsdJdS02jc6aUUcWVTlLuCcDdw==
+"@inseefr/lunatic-dsfr@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic-dsfr/-/lunatic-dsfr-1.0.6.tgz#5daa8b0a8a3324b351342792575de4d552286054"
+  integrity sha512-u2BD+7uFVAP355RySaBU5E61fSJaGO+7mmemy5O2PDMAF/Vre4t4FHIOWSTBwUFGmc7IworlGSGTeARIL138SQ==
   dependencies:
     "@emotion/styled" "^11.10.6"
-    "@inseefr/lunatic" "^2.6.0"
+    "@inseefr/lunatic" "^2.6.2"
     "@mui/material" "^5.12.0"
     classnames "^2.3.2"
     react-number-format "^5.1.4"
     sass-loader "^13.2.0"
     tss-react "4.8.6"
 
-"@inseefr/lunatic@2.6.2", "@inseefr/lunatic@^2.6.0":
+"@inseefr/lunatic@2.6.2", "@inseefr/lunatic@^2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.6.2.tgz#e593e6efc995b8672e7253d7ae5568821f13d063"
   integrity sha512-6hKSZNomHH3dyBqa6DWJFwr8yA2ZGvT4+7644sG5zj084Tb4C+vhRZKt5mgdPr9U1BGgFirG2PyzrQIuCqgURA==
