@@ -23,13 +23,13 @@ export const useGetReferentiel = (nomenclatures) => {
 
   const getReferentiel = useConstCallback((refName) => {
     const finalUrl = `${apiUrl}/api/nomenclature/${refName}`;
-    return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
+    return getFetcherForLunatic(oidcClient.getUser().accessToken)(finalUrl);
   });
 
   const getReferentielForVizu = useConstCallback((refName) => {
     if (nomenclatures && Object.keys(nomenclatures).includes(refName)) {
       const finalUrl = nomenclatures[refName];
-      return getFetcherForLunatic(oidcClient.accessToken)(finalUrl);
+      return getFetcherForLunatic(oidcClient.getUser().accessToken)(finalUrl);
     }
     // No nomenclature, return empty array to lunatic
     return Promise.resolve([]);
@@ -43,40 +43,44 @@ export const useAPI = (surveyUnitID, questionnaireID) => {
 
   const getRequiredNomenclatures = useConstCallback(() =>
     API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
-      oidcClient.accessToken
+      oidcClient.getUser().accessToken
     )
   );
 
   const getQuestionnaire = useConstCallback(() =>
-    API.getQuestionnaire(apiUrl)(questionnaireID)(oidcClient.accessToken)
+    API.getQuestionnaire(apiUrl)(questionnaireID)(
+      oidcClient.getUser().accessToken
+    )
   );
 
   const getMetadata = useConstCallback(() =>
-    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.accessToken)
+    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.getUser().accessToken)
   );
 
   const getSuData = useConstCallback(() =>
-    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)
+    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)
   );
 
   const getPDF = useConstCallback(() =>
-    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.accessToken)
+    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)
   );
 
   const putSuData = useConstCallback((body) =>
-    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(body)
   );
 
   const putData = useConstCallback((body) =>
-    API.putData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+    API.putData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(body)
   );
 
   const putStateData = useConstCallback((body) =>
-    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.accessToken)(body)
+    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(
+      body
+    )
   );
 
   const postParadata = useConstCallback((body) =>
-    API.postParadata(apiUrl)(oidcClient.accessToken)(body)
+    API.postParadata(apiUrl)(oidcClient.getUser().accessToken)(body)
   );
 
   return {

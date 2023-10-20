@@ -52,7 +52,7 @@ const OrchestratorManager = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const { logout, oidcUser, isUserLoggedIn } = useContext(AuthContext);
+  const { logout, getUser, isUserLoggedIn } = useContext(AuthContext);
 
   const { getReferentiel } = useGetReferentiel();
 
@@ -79,7 +79,7 @@ const OrchestratorManager = () => {
 
   useEffect(() => {
     if (isUserLoggedIn && questionnaire) {
-      LOGGER.addMetadata({ idSession: oidcUser?.session_state });
+      LOGGER.addMetadata({ idSession: getUser().sub });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

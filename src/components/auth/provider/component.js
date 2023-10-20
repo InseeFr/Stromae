@@ -8,8 +8,9 @@ import { LoaderSimple } from '../../shared/loader';
 
 const dummyOidcClient = {
   isUserLoggedIn: true,
-  accessToken: null,
+  getUser: () => ({ accessToken: null, sub: '' }),
   logout: () => (window.location.href = '/'),
+  renewToken: () => {},
 };
 
 const { AUTH_TYPE, IDENTITY_PROVIDER, PORTAIL_URL } = environment;
