@@ -93,9 +93,13 @@ export const createOidcClient = async ({
   async function silentSignInGetAccessToken() {
     const dLoginSuccessUrl = new Deferred();
 
-    const timeout = setTimeout(() => {
-      throw new Error(`SSO silent login timeout with clientId: ${clientId}`);
-    }, 5000);
+    const timeout = setTimeout(
+      () =>
+        dLoginSuccessUrl.reject(
+          new Error(`SSO silent login timeout with clientId: ${clientId}`)
+        ),
+      5000
+    );
 
     const listener = (event) => {
       if (
@@ -164,19 +168,22 @@ export const createOidcClient = async ({
 
     const user = await userManager.signinRedirectCallback(loginSuccessUrl);
 
-    return user.access_token;
+    return user;
   }
-  let currentAccessToken = (await userManager.getUser())?.access_token ?? '';
 
-  if (currentAccessToken === '') {
-    const accessToken = await silentSignInGetAccessToken();
+  let currentUser = await userManager.getUser();
 
-    if (accessToken !== undefined) {
-      currentAccessToken = accessToken;
+  let currentAccessToken = currentUser?.access_token ?? '';
+
+  if (currentUser === null) {
+    const user = await silentSignInGetAccessToken();
+
+    if (user) {
+      currentUser = user;
     }
   }
 
-  if (currentAccessToken === '') {
+  if (currentUser === null) {
     return {
       isUserLoggedIn: false,
       login,
@@ -184,8 +191,10 @@ export const createOidcClient = async ({
   }
   const oidcClient = {
     isUserLoggedIn: true,
-    accessToken: currentAccessToken,
-    oidcUser: await userManager.getUser(),
+    getUser: () => ({
+      accessToken: currentUser.access_token,
+      sub: currentUser.sub,
+    }),
     logout: async ({ redirectTo }) => {
       await userManager.signoutRedirect({
         post_logout_redirect_uri: (() => {
@@ -202,9 +211,7 @@ export const createOidcClient = async ({
       return new Promise(() => {});
     },
     renewToken: async () => {
-      const user = await userManager.signinSilent({
-        redirect_uri: window.location.href,
-      });
+      const user = await userManager.signinSilent();
       currentAccessToken = user.access_token;
     },
   };
