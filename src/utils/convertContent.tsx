@@ -26,6 +26,7 @@ function ConvertContent(props: ConvertContentProps) {
 							'i',
 							'a',
 							'p',
+							'ol',
 							'ul',
 							'li',
 							'h1',

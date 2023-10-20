@@ -39,9 +39,8 @@ export function Footer(props: FooterProps) {
 			<div className={fr.cx('fr-container')}>
 				<div className={fr.cx('fr-footer__body')}>
 					<div className={fr.cx('fr-footer__brand', 'fr-enlarge-link')}>
-						<p className={fr.cx('fr-logo')}>
-							<ConvertContent content={brandTop as any} />
-						</p>
+						<ConvertContent content={brandTop as any} classname="fr-logo" />
+
 						<Link
 							className={fr.cx('fr-footer__brand-link')}
 							to="/"
@@ -163,9 +162,7 @@ export function Footer(props: FooterProps) {
 						</li>
 					</ul>
 					<div className={fr.cx('fr-footer__bottom-copy')}>
-						<p>
-							<ConvertContent content={license as any} />
-						</p>
+						<ConvertContent content={license as any} />
 					</div>
 				</div>
 			</div>

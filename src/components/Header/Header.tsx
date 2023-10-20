@@ -66,9 +66,10 @@ export function Header(props: HeaderProps) {
 							<div className={fr.cx('fr-header__brand', 'fr-enlarge-link')}>
 								<div className={fr.cx('fr-header__brand-top')}>
 									<div className={fr.cx('fr-header__logo')}>
-										<p className={fr.cx('fr-logo')}>
-											{<ConvertContent content={brandTop as any} />}
-										</p>
+										<ConvertContent
+											content={brandTop as any}
+											classname="fr-logo"
+										/>
 									</div>
 									<div className={fr.cx('fr-header__operator')}>
 										<img
