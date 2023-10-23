@@ -212,6 +212,7 @@ export const createOidcClient = async ({
     },
     renewToken: async () => {
       const user = await userManager.signinSilent();
+      currentUser = user;
       currentAccessToken = user.access_token;
     },
   };
