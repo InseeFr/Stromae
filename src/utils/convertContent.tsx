@@ -3,7 +3,7 @@ import DOMPurify from 'dompurify';
 
 type ConvertContentProps = {
 	content?: string | { value: string; type: 'html' | 'string' };
-	classname?: FrCxArg;
+	className?: FrCxArg;
 };
 
 function ConvertContent(props: ConvertContentProps) {
@@ -11,14 +11,15 @@ function ConvertContent(props: ConvertContentProps) {
 		return <></>;
 	}
 	if (typeof props.content === 'string') {
-		return <p className={fr.cx(props.classname)}>{props.content}</p>;
+		return <p className={fr.cx(props.className)}>{props.content}</p>;
 	}
-	if (props.content.type && props.content.type === 'string') {
-		return <p className={fr.cx(props.classname)}>{props.content.value}</p>;
-	} else if (props.content.type && props.content.type === 'html') {
+	if (props.content?.type === 'string') {
+		return <p className={fr.cx(props.className)}>{props.content.value}</p>;
+	}
+	if (props.content?.type === 'html') {
 		return (
 			<p
-				className={fr.cx(props.classname)}
+				className={fr.cx(props.className)}
 				dangerouslySetInnerHTML={{
 					__html: DOMPurify.sanitize(props.content?.value, {
 						ALLOWED_TAGS: [

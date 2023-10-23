@@ -66,7 +66,7 @@ export function WelcomeContainer() {
 
 							<ConvertContent
 								content={welcome.Enq_ObjectifsCourts}
-								classname="fr-text--lead"
+								className="fr-text--lead"
 							/>
 
 							<RespondantsList respondants={welcome.whoAnswers} />

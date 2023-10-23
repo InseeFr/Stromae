@@ -68,7 +68,7 @@ export function Header(props: HeaderProps) {
 									<div className={fr.cx('fr-header__logo')}>
 										<ConvertContent
 											content={brandTop as any}
-											classname="fr-logo"
+											className="fr-logo"
 										/>
 									</div>
 									<div className={fr.cx('fr-header__operator')}>
