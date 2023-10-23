@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ORCHESTRATOR_COLLECT,
@@ -19,9 +19,7 @@ import {
   useConstCallback,
   useGetReferentiel,
 } from '../../../utils/hooks';
-import { useAuth, useAuthUser } from '../../../utils/oidc';
-import { getCurrentSurvey } from '../../../utils/questionnaire';
-import { environment } from '../../../utils/read-env-vars';
+import { AuthContext } from '../../auth/provider/component';
 import { LoaderSimple } from '../../shared/loader';
 import { Orchestrator } from '../collector';
 
@@ -36,8 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const preferences = ['COLLECTED'];
 const features = ['VTL', 'MD'];
 const savingType = 'COLLECTED';
-
-const { PORTAIL_URL: portail } = environment;
 
 const OrchestratorManager = () => {
   const classes = useStyles();
@@ -56,8 +52,7 @@ const OrchestratorManager = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const { logout, isAuthenticated } = useAuth();
-  const { oidcUser } = useAuthUser();
+  const { logout, getUser, isUserLoggedIn } = useContext(AuthContext);
 
   const { getReferentiel } = useGetReferentiel();
 
@@ -79,16 +74,16 @@ const OrchestratorManager = () => {
   });
 
   const logoutAndClose = useConstCallback(() => {
-    logout(`${portail}/${getCurrentSurvey(window.location.href)}`);
+    logout('portail');
   });
 
   useEffect(() => {
-    if (isAuthenticated && questionnaire) {
-      LOGGER.addMetadata({ idSession: oidcUser?.sub });
+    if (isUserLoggedIn && questionnaire) {
+      LOGGER.addMetadata({ idSession: getUser().sub });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, LOGGER, questionnaire]);
+  }, [isUserLoggedIn, LOGGER, questionnaire]);
 
   useEffect(() => {
     if (!loading && questionnaire) {

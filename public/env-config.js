@@ -1,2 +1,1 @@
-/* eslint-disable no-restricted-globals */
-if (!self._env_) self._env_ = {};
+if (!window._env_) window._env_ = {};

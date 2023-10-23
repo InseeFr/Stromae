@@ -135,14 +135,14 @@ body {
 #main .radio-group-list {
   margin-top: 0;
 }
-.lunatic-component label {
+#main .lunatic-component label {
   color: #2b2b2b;
   font-size: 13px;
 }
-.lunatic-component legend,
-.lunatic-component .subsequence-lunatic,
-.lunatic-component .lunatic-dropdown-label,
-.lunatic-component .lunatic-dropdown-label focused #main {
+#main .lunatic-component legend,
+#main .lunatic-component .subsequence-lunatic,
+#main .lunatic-component .lunatic-dropdown-label,
+#main .lunatic-component .lunatic-dropdown-label focused #main {
   color: black;
   font-size: 13px;
   line-height: 16px;
@@ -234,7 +234,7 @@ input.checkbox-lunatic {
   width: -moz-fit-content;
 }
 
-.checkbox-group-list .field {
+#main .checkbox-group-list .field {
   display: block;
 }
 
@@ -332,8 +332,8 @@ input.checkbox-lunatic {
 /* #main div.field-container,
 #main div.declarations-lunatic {
 } */
-.field-container .field .lunatic-textarea .label-description.INSTRUCTION p,
-.field-container .field .lunatic-textarea .label-description.HELP p {
+#main .field-container .field .lunatic-textarea .label-description.INSTRUCTION p,
+#main .field-container .field .lunatic-textarea .label-description.HELP p {
   color: black !important;
 }
 

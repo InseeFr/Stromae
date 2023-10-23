@@ -1,12 +1,21 @@
-import { withOidcSecure } from '@axa-fr/react-oidc';
-import { OIDC } from '../../../utils/constants';
-import { environment } from '../../../utils/read-env-vars';
-
-const { AUTH_TYPE } = environment;
+import { useContext } from 'react';
+import { AuthContext } from '../provider/component';
 
 const secure = (WrappedComponent) => {
-  if (AUTH_TYPE === OIDC) return withOidcSecure(WrappedComponent);
-  return WrappedComponent;
+  const Component = (props) => {
+    const { isUserLoggedIn, login } = useContext(AuthContext);
+    const { otherProps } = props;
+
+    const ReturnedComponent = <WrappedComponent {...otherProps} />;
+
+    if (isUserLoggedIn) {
+      return ReturnedComponent;
+    }
+    login();
+    return null;
+  };
+
+  return Component;
 };
 
 export default secure;
