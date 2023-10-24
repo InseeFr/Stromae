@@ -1,8 +1,12 @@
 import { FrCxArg, fr } from '@codegouvfr/react-dsfr';
 import DOMPurify from 'dompurify';
 
+export type ConvertContentType =
+	| string
+	| { value: string; type: 'html' | 'string' };
+
 type ConvertContentProps = {
-	content?: string | { value: string; type: 'html' | 'string' };
+	content?: ConvertContentType;
 	className?: FrCxArg;
 };
 

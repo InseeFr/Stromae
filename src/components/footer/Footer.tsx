@@ -1,5 +1,5 @@
 import { fr } from '@codegouvfr/react-dsfr/fr';
-import ConvertContent from '../../utils/convertContent';
+import ConvertContent, { ConvertContentType } from '../../utils/convertContent';
 
 import { Link } from 'react-router-dom';
 import { AppVersion } from '../AppVersion/AppVersion';
@@ -39,7 +39,10 @@ export function Footer(props: FooterProps) {
 			<div className={fr.cx('fr-container')}>
 				<div className={fr.cx('fr-footer__body')}>
 					<div className={fr.cx('fr-footer__brand', 'fr-enlarge-link')}>
-						<ConvertContent content={brandTop as any} className="fr-logo" />
+						<ConvertContent
+							content={brandTop as ConvertContentType}
+							className="fr-logo"
+						/>
 
 						<Link
 							className={fr.cx('fr-footer__brand-link')}
@@ -162,7 +165,7 @@ export function Footer(props: FooterProps) {
 						</li>
 					</ul>
 					<div className={fr.cx('fr-footer__bottom-copy')}>
-						<ConvertContent content={license as any}/>
+						<ConvertContent content={license as any} />
 					</div>
 				</div>
 			</div>
