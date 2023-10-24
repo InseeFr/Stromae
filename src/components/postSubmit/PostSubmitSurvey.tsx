@@ -89,7 +89,7 @@ export function PostSubmitSurvey() {
 								Vos réponses ont été envoyées le {submissionDate}.&nbsp;
 								{DescriptionAdditional}
 							</p>
-							<a onClick={handleDepositProof} className={fr.cx('fr-btn')}>
+							<a onClick={handleDepositProof} className={fr.cx('fr-btn')} href='#'>
 								Télécharger l'accusé de réception
 							</a>
 						</div>
