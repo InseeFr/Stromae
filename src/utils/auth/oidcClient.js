@@ -31,18 +31,24 @@ export const createOidcClient = async ({
   });
 
   const login = async () => {
-    const { newUrl: redirect_uri } = addParamToUrl({
+    let { newUrl: redirect_uri } = addParamToUrl({
       url: window.location.href,
       name: configHashKey,
       value: configHash,
     });
 
+    if (window.location.pathname.startsWith(`/${READ_ONLY}`)) {
+      const { newUrl } = addParamToUrl({
+        url: redirect_uri,
+        name: 'kc_idp_hint',
+        value: identityProvider,
+      });
+      redirect_uri = newUrl;
+    }
+
     await userManager.signinRedirect({
       redirect_uri,
       redirectMethod: 'replace',
-      login_hint: window.location.pathname.startsWith(`/${READ_ONLY}`)
-        ? identityProvider
-        : null,
     });
     return new Promise(() => {});
   };
