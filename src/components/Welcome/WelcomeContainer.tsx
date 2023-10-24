@@ -34,7 +34,7 @@ export function WelcomeContainer() {
 		if (oidcUser && survey && unit) {
 			navigate(`/questionnaire/${survey}/unite-enquetee/${unit}`);
 		} else {
-			login();
+			login('/');
 		}
 	}, [oidcUser, login, survey, unit, navigate]);
 
