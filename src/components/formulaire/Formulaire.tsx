@@ -5,7 +5,7 @@ import { Form } from '../skeleton/Form';
 
 type Props = Pick<
 	OrchestratedElement,
-	'currentErrors' | 'disabled' | 'getComponents' | 'waiting'
+	'currentErrors' | 'disabled' | 'getComponents' | 'waiting' | 'pageTag'
 >;
 
 const useStyles = makeStyles()({
@@ -17,7 +17,13 @@ const useStyles = makeStyles()({
 });
 
 export function Formulaire(props: Props) {
-	const { getComponents, currentErrors, disabled = false, waiting } = props;
+	const {
+		getComponents,
+		currentErrors,
+		disabled = false,
+		waiting,
+		pageTag,
+	} = props;
 	const { classes, cx } = useStyles();
 	if (waiting) {
 		return <Form />;
@@ -25,6 +31,7 @@ export function Formulaire(props: Props) {
 	return (
 		<form id="stromae-form" className={cx(classes.root)}>
 			<ComponentsRenderer
+				focusKey={pageTag}
 				getComponents={getComponents}
 				currentErrors={currentErrors}
 				disabled={disabled}
