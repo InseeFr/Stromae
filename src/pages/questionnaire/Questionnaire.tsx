@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
-import { AlertesControles } from '../../components/AlertesControles';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
@@ -39,7 +38,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 						<Precedent />
 						<Grid>
 							<AlertesSaving />
-							<AlertesControles />
 							<Formulaire />
 							<Modals />
 							<Continuer />

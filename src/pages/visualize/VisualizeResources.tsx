@@ -1,5 +1,4 @@
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
-import { AlertesControles } from '../../components/AlertesControles';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
@@ -42,7 +41,6 @@ export function VisualizeResources(props: VisualizeResourcesProps) {
 					<Precedent />
 					<Grid>
 						<AlertesSaving />
-						<AlertesControles />
 						<Formulaire />
 						<Modals />
 						<Continuer />
