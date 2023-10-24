@@ -17,6 +17,7 @@ export const createOidcClient = async ({
   evtUserActivity,
   urlPortail,
 }) => {
+  const isReadOnlyMode = window.location.pathname.startsWith(`/${READ_ONLY}`);
   const configHash = fnv1aHashToHex(`${url} ${realm} ${clientId}`);
   const configHashKey = 'configHash';
 
@@ -31,23 +32,17 @@ export const createOidcClient = async ({
   });
 
   const login = async () => {
-    let { newUrl: redirect_uri } = addParamToUrl({
+    const { newUrl: redirect_uri } = addParamToUrl({
       url: window.location.href,
       name: configHashKey,
       value: configHash,
     });
 
-    if (window.location.pathname.startsWith(`/${READ_ONLY}`)) {
-      const { newUrl } = addParamToUrl({
-        url: redirect_uri,
-        name: 'kc_idp_hint',
-        value: identityProvider,
-      });
-      redirect_uri = newUrl;
-    }
-
     await userManager.signinRedirect({
       redirect_uri,
+      extraQueryParams: isReadOnlyMode
+        ? { kc_idp_hint: identityProvider }
+        : null,
       redirectMethod: 'replace',
     });
     return new Promise(() => {});
