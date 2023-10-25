@@ -16,7 +16,7 @@ export function Deconnexion() {
 	const navigate = useNavigate();
 
 	const onClick = useCallback(() => {
-		login();
+		login('/');
 	}, [login]);
 
 	useEffect(() => {

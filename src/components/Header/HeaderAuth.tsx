@@ -3,12 +3,7 @@ import { useParams } from 'react-router';
 import { useOidc } from '../../lib/oidc';
 import { CloneElements } from '../orchestrator/CloneElements';
 import { HeaderProps } from './Header';
-import {
-	uriSurveyUnit,
-	uriSurvey,
-	uri404,
-	uriDeconnexion,
-} from '../../lib/domainUri';
+import { uriSurvey, uri404, uriDeconnexion } from '../../lib/domainUri';
 
 type HeaderAuthProps = {
 	children: JSX.Element;
@@ -16,17 +11,6 @@ type HeaderAuthProps = {
 
 function isOnPostCollectPage() {
 	return window.location.pathname.endsWith('/post-envoi');
-}
-
-function getLogInRedirectionUri(args: { survey?: string; unit?: string }) {
-	const { survey, unit } = args;
-	if (survey && unit) {
-		return uriSurveyUnit(survey, unit);
-	}
-	if (survey) {
-		return uriSurvey(survey);
-	}
-	return uri404();
 }
 
 function getLogOutRedirectionUri(args: { survey?: string; unit?: string }) {
@@ -48,7 +32,7 @@ export function HeaderAuth({ children }: HeaderAuthProps) {
 		if (isAuthenticated) {
 			logout(getLogOutRedirectionUri({ survey, unit }));
 		} else {
-			login(getLogInRedirectionUri({ survey, unit }));
+			login('/');
 		}
 	}, [isAuthenticated, login, logout, survey, unit]);
 
