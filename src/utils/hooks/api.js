@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../components/auth/provider/component';
+import { useEffect, useState } from 'react';
 import { errorDictionary } from '../../i18n';
 import { API } from '../api';
 import { getFetcherForLunatic } from '../api/fetcher';
 import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from '../constants';
 import { environment } from '../read-env-vars';
+import { useAuth } from './useAuth';
 import { useConstCallback } from './useConstCallback';
 
 const { API_URL: apiUrl } = environment;
@@ -19,17 +19,17 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useGetReferentiel = (nomenclatures) => {
-  const oidcClient = useContext(AuthContext);
+  const { oidc } = useAuth();
 
   const getReferentiel = useConstCallback((refName) => {
     const finalUrl = `${apiUrl}/api/nomenclature/${refName}`;
-    return getFetcherForLunatic(oidcClient.getUser().accessToken)(finalUrl);
+    return getFetcherForLunatic(oidc.getTokens().accessToken)(finalUrl);
   });
 
   const getReferentielForVizu = useConstCallback((refName) => {
     if (nomenclatures && Object.keys(nomenclatures).includes(refName)) {
       const finalUrl = nomenclatures[refName];
-      return getFetcherForLunatic(oidcClient.getUser().accessToken)(finalUrl);
+      return getFetcherForLunatic(oidc.getTokens().accessToken)(finalUrl);
     }
     // No nomenclature, return empty array to lunatic
     return Promise.resolve([]);
@@ -39,48 +39,44 @@ export const useGetReferentiel = (nomenclatures) => {
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const oidcClient = useContext(AuthContext);
+  const { oidc } = useAuth();
 
   const getRequiredNomenclatures = useConstCallback(() =>
     API.getRequiredNomenclatures(apiUrl)(questionnaireID)(
-      oidcClient.getUser().accessToken
+      oidc.getTokens().accessToken
     )
   );
 
   const getQuestionnaire = useConstCallback(() =>
-    API.getQuestionnaire(apiUrl)(questionnaireID)(
-      oidcClient.getUser().accessToken
-    )
+    API.getQuestionnaire(apiUrl)(questionnaireID)(oidc.getTokens().accessToken)
   );
 
   const getMetadata = useConstCallback(() =>
-    API.getMetadata(apiUrl)(questionnaireID)(oidcClient.getUser().accessToken)
+    API.getMetadata(apiUrl)(questionnaireID)(oidc.getTokens().accessToken)
   );
 
   const getSuData = useConstCallback(() =>
-    API.getSuData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)
+    API.getSuData(apiUrl)(surveyUnitID)(oidc.getTokens().accessToken)
   );
 
   const getPDF = useConstCallback(() =>
-    API.getDepositProof(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)
+    API.getDepositProof(apiUrl)(surveyUnitID)(oidc.getTokens().accessToken)
   );
 
   const putSuData = useConstCallback((body) =>
-    API.putSuData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(body)
+    API.putSuData(apiUrl)(surveyUnitID)(oidc.getTokens().accessToken)(body)
   );
 
   const putData = useConstCallback((body) =>
-    API.putData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(body)
+    API.putData(apiUrl)(surveyUnitID)(oidc.getTokens().accessToken)(body)
   );
 
   const putStateData = useConstCallback((body) =>
-    API.putStateData(apiUrl)(surveyUnitID)(oidcClient.getUser().accessToken)(
-      body
-    )
+    API.putStateData(apiUrl)(surveyUnitID)(oidc.getTokens().accessToken)(body)
   );
 
   const postParadata = useConstCallback((body) =>
-    API.postParadata(apiUrl)(oidcClient.getUser().accessToken)(body)
+    API.postParadata(apiUrl)(oidc.getTokens().accessToken)(body)
   );
 
   return {
