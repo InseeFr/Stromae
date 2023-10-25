@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Sun from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/environment/sun.svg';
 import Moon from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/environment/moon.svg';
 import System from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/system.svg';
+import type { ConvertContentType } from '../../utils/convertContent';
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
@@ -66,9 +67,10 @@ export function Header(props: HeaderProps) {
 							<div className={fr.cx('fr-header__brand', 'fr-enlarge-link')}>
 								<div className={fr.cx('fr-header__brand-top')}>
 									<div className={fr.cx('fr-header__logo')}>
-										<p className={fr.cx('fr-logo')}>
-											{<ConvertContent content={brandTop as any} />}
-										</p>
+										<ConvertContent
+											content={brandTop as ConvertContentType}
+											className="fr-logo"
+										/>
 									</div>
 									<div className={fr.cx('fr-header__operator')}>
 										<img
