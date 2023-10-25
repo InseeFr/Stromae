@@ -1,3 +1,4 @@
+import { LoaderSimple } from 'components/shared/loader';
 import { createOidcProvider } from 'oidc-spa/react';
 import React from 'react';
 import { OIDC, READ_ONLY } from '../../../utils/constants';
@@ -48,7 +49,7 @@ export function AuthProvider({ children }) {
       getExtraQueryParams: getExtraQueryParams,
       // See above for other parameters
     });
-    return <OidcProvider fallback={<>Login...</>}>{children}</OidcProvider>;
+    return <OidcProvider fallback={<LoaderSimple />}>{children}</OidcProvider>;
   }
 
   return (
