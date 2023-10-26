@@ -122,5 +122,16 @@
 	},
 	"Portal": {
 		"if you need": "use it !"
+	},
+
+	"paradata": {
+		"level": 2,
+
+		"components": [
+			{
+				"id": "kkxuu8ov",
+				"events": ["focus", "blur"]
+			}
+		]
 	}
 }
