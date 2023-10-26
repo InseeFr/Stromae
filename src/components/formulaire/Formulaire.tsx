@@ -2,6 +2,7 @@ import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
 import { Form } from '../skeleton/Form';
+import { useParadata } from '../../paradata/useParadata';
 
 type Props = Pick<
 	OrchestratedElement,
@@ -86,9 +87,11 @@ export function Formulaire(props: Props) {
 		pageTag,
 	} = props;
 	const { classes, cx } = useStyles();
+	useParadata();
 	if (waiting) {
 		return <Form />;
 	}
+
 	return (
 		<form id="stromae-form" className={cx(classes.root)}>
 			<ComponentsRenderer
