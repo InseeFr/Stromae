@@ -162,5 +162,4 @@ export type MetadataSurvey = {
 	Submit: SubmitType;
 	redirections: Record<string, string>;
 	errorPage: Record<string, string>;
-	refreshDataOnPages?: Array<string>;
-} & { optionalPages: Record<string, OptionalPage> };
+} & { optionalPages: Record<string, OptionalPage> } & { paradata: any };
