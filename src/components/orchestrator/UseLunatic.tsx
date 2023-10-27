@@ -1,12 +1,6 @@
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import {
-	PropsWithChildren,
-	useCallback,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import {
 	CollectStatusEnum,
 	OrchestratedElement,
@@ -39,7 +33,11 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 		metadata,
 	} = props;
-	const { data, stateData, personalization } = surveyUnitData ?? {};
+	const [args, setArgs] = useState<Record<string, unknown>>({});
+	const [personalizationMap, setPersonalizationMap] = useState<
+		Record<string, string | number | boolean | Array<string>>
+	>({});
+	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 	const [refreshControls, setRefreshControls] = useState(false);
@@ -49,13 +47,12 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		setRefreshControls(true);
 	}, []);
 
-	const personalizationMap = useMemo(
-		() => createPersonalizationMap(personalization ?? []),
-		[personalization]
-	);
+	useEffect(() => {
+		setPersonalizationMap(createPersonalizationMap(personalization));
+	}, [personalization]);
 
-	const args = useMemo(
-		() => ({
+	useEffect(() => {
+		setArgs({
 			getReferentiel,
 			custom,
 			preferences,
@@ -63,17 +60,16 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			savingType,
 			autoSuggesterLoading,
 			onChange,
-		}),
-		[
-			getReferentiel,
-			preferences,
-			features,
-			savingType,
-			autoSuggesterLoading,
-			onChange,
-			paginated,
-		]
-	);
+		});
+	}, [
+		getReferentiel,
+		preferences,
+		features,
+		savingType,
+		autoSuggesterLoading,
+		onChange,
+		paginated,
+	]);
 
 	const {
 		getComponents,
