@@ -4629,9 +4629,9 @@ crypto-browserify@^3.11.0:
     randomfill "^1.0.3"
 
 crypto-js@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
-  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 crypto-random-string@^1.0.0:
   version "1.0.0"
@@ -10120,6 +10120,15 @@ oidc-client-ts@^2.3.0:
   dependencies:
     crypto-js "^4.1.1"
     jwt-decode "^3.1.2"
+
+oidc-spa@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/oidc-spa/-/oidc-spa-2.0.3.tgz#387a6c92b2fbd097d75ca9f3fa4b10f7f5213cdc"
+  integrity sha512-pZJgjpdVr2CRGKhqQGj6z7qu1INo9/xP6HkkqIata3zXEmFrIK/zv6SCpDdFMfeIVfqQWV946FVbccUqBrUlcA==
+  dependencies:
+    jwt-decode "^3.1.2"
+    oidc-client-ts "^2.3.0"
+    tsafe "^1.6.5"
 
 on-finished@2.4.1:
   version "2.4.1"

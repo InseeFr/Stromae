@@ -4,11 +4,10 @@ import Close from '@material-ui/icons/Close';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import Help from '@material-ui/icons/Help';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { burgerDictionary } from '../../../i18n';
 import { HOUSEHOLD } from '../../../utils/constants';
 import { SIMPLE_CLICK_EVENT, paradataHandler } from '../../../utils/events';
-import { AuthContext } from '../../auth/provider/component';
 import { AppVersion } from '../../designSystem/AppVersion';
 import { AssistanceConfirm } from '../../modals/assistance';
 import './burgerMenu.css';
@@ -21,8 +20,6 @@ const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [assistance, setAssistance] = useState(false);
   const { inseeContext } = metadata;
-
-  const { isUserLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     window.addEventListener('scroll', closeMenu);
@@ -53,7 +50,7 @@ const BurgerMenu = ({ metadata, currentPage, logoutAndClose }) => {
             &nbsp;
             <span className='slideBarButtonText'>{burgerDictionary.help}</span>
           </IconButton>
-          {isUserLoggedIn && inseeContext === HOUSEHOLD && (
+          {inseeContext === HOUSEHOLD && (
             <IconButton
               className='burgerMenuButton'
               aria-label='Déconnexion'

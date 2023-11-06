@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { AuthContext } from '../provider/component';
+import { useAuth } from 'utils/hooks/useAuth';
 
 const secure = (WrappedComponent) => {
   const Component = (props) => {
-    const { isUserLoggedIn, login } = useContext(AuthContext);
+    const { oidc } = useAuth();
+    const { isUserLoggedIn, login } = oidc;
     const { otherProps } = props;
 
     const ReturnedComponent = <WrappedComponent {...otherProps} />;
@@ -11,7 +11,9 @@ const secure = (WrappedComponent) => {
     if (isUserLoggedIn) {
       return ReturnedComponent;
     }
-    login();
+    login({
+      doesCurrentHrefRequiresAuth: true,
+    });
     return null;
   };
 

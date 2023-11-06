@@ -1,8 +1,9 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth, useUser } from 'utils/hooks/useAuth';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
@@ -19,7 +20,7 @@ import {
   useConstCallback,
   useGetReferentiel,
 } from '../../../utils/hooks';
-import { AuthContext } from '../../auth/provider/component';
+import { getLogoutUrl } from '../../auth/provider/component';
 import { LoaderSimple } from '../../shared/loader';
 import { Orchestrator } from '../collector';
 
@@ -52,7 +53,11 @@ const OrchestratorManager = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const { logout, getUser, isUserLoggedIn } = useContext(AuthContext);
+  const {
+    oidc: { logout, isUserLoggedIn },
+  } = useAuth();
+
+  const { user } = useUser();
 
   const { getReferentiel } = useGetReferentiel();
 
@@ -74,12 +79,12 @@ const OrchestratorManager = () => {
   });
 
   const logoutAndClose = useConstCallback(() => {
-    logout('portail');
+    logout({ redirectTo: 'specific url', url: getLogoutUrl() });
   });
 
   useEffect(() => {
     if (isUserLoggedIn && questionnaire) {
-      LOGGER.addMetadata({ idSession: getUser().sub });
+      LOGGER.addMetadata({ idSession: user.sub });
       LOGGER.log(INIT_SESSION_EVENT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
