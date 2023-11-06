@@ -7,7 +7,7 @@
 		"@codegouvfr/react-dsfr": "^0.78.1",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
-		"@inseefr/lunatic": "2.6.2",
+		"@inseefr/lunatic": "^2.6.3",
 		"@inseefr/lunatic-dsfr": "1.0.8",
 		"@mui/material": "^5.11.8",
 		"@testing-library/jest-dom": "^5.16.5",
@@ -31,7 +31,8 @@
 		"react-scripts": "5.0.1",
 		"tss-react": "4.8.6",
 		"typescript": "^4.9.4",
-		"web-vitals": "^2.1.4"
+		"web-vitals": "^2.1.4",
+		"workers": "^0.0.1"
 	},
 	"scripts": {
 		"start": "craco start",
@@ -44,7 +45,7 @@
 		"start-mock-api": "node ./mock-api.js",
 		"postinstall": "copy-dsfr-to-public",
 		"prestart": "only-include-used-icons",
-		"prebuild": "only-include-used-icons"
+		"prebuild": "only-include-used-icons && npx @inseefr/lunatic workers"
 	},
 	"eslintConfig": {
 		"extends": [

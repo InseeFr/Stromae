@@ -113,11 +113,14 @@ export type ComponentType =
 	| (ComponentTypeBase & ComponentDropdownType)
 	| (ComponentTypeBase & ComponentPairWiseLinksType)
 	| (ComponentTypeBase & ComponentRoundaboutType)
+	| (ComponentTypeBase & ComponentConfirmationModal)
 	| (ComponentTypeBase & ComponentQuestionExplicationType)
 	| (ComponentTypeBase & {
 			componentType: 'Input' | 'CheckboxOne' | 'Textarea';
 	  });
-
+export type ComponentConfirmationModal = {
+	componentType: 'ConfirmationModal';
+};
 export type ComponentQuestionExplicationType = {
 	componentType: 'QuestionExplication';
 };

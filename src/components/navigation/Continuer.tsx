@@ -83,6 +83,7 @@ export function Continuer(props: OrchestratedElement) {
 				type: 'submit',
 				'aria-disabled': waiting,
 			}}
+			id="continue-button"
 			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
 			disabled={waiting}
 		>
