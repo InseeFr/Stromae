@@ -7804,11 +7804,6 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==
 
-"node-logr@>= 0.0.3":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/node-logr/-/node-logr-0.5.2.tgz#07a598e12c279184045c4a2d724897674b154388"
-  integrity sha512-roPNxvG+OsefMyfVa5HeO24kRtxA7UB8CtvsR8CfSxaESw+1FTsMf8gkDluG5vppzXrXVCI146PQR2KMaszWig==
-
 node-releases@^2.0.13:
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.13.tgz#d5ed1627c23e3461e819b02e57b75e4899b1c81d"
@@ -11281,13 +11276,6 @@ workbox-window@6.6.1:
   dependencies:
     "@types/trusted-types" "^2.0.2"
     workbox-core "6.6.1"
-
-workers@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/workers/-/workers-0.0.1.tgz#9958c8b182b50b111113ae4ef98559faad51bcc6"
-  integrity sha512-cp2HU5tdKyxOiHg7l8p67R2F07vLT1Hd/h3Xi3dXtoO5NlXml4nkJ48O0EmEkOMtWqEZMWAoNLZfctT3qiP3IA==
-  dependencies:
-    node-logr ">= 0.0.3"
 
 wrap-ansi@^7.0.0:
   version "7.0.0"
