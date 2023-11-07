@@ -59,6 +59,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			features,
 			savingType,
 			autoSuggesterLoading,
+			workersBasePath: `${window.location.origin}/workers`,
 			onChange,
 		});
 	}, [

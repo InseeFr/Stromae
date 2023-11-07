@@ -5,16 +5,44 @@ import { usePrevious } from '../../lib/commons/usePrevious';
 import { fr } from '@codegouvfr/react-dsfr';
 
 export function Precedent(props: OrchestratedElement) {
-	const { goPreviousPage = () => null, isFirstPage, pageTag } = props;
+	const {
+		goPreviousPage = () => null,
+		isFirstPage,
+		pageTag,
+		getComponents = () => [],
+	} = props;
 
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const previousPage = usePrevious<string>(pageTag);
 
 	useEffect(() => {
 		if (pageTag !== previousPage) {
-			buttonRef.current?.focus();
+			const components = getComponents();
+			const hasConfirmationModal = components.some(
+				(component) => component.componentType === 'ConfirmationModal'
+			);
+			if (hasConfirmationModal) {
+				const cancelButtons = Array.from(
+					document.querySelectorAll('button[value="cancel"]')
+				);
+
+				const handleCancelClick = () => {
+					setTimeout(() => {
+						const continueButton = document.getElementById('continue-button');
+						continueButton?.focus();
+						cancelButtons.forEach((cancelButton) => {
+							cancelButton.removeEventListener('click', handleCancelClick);
+						});
+					}, 0);
+				};
+
+				cancelButtons.forEach((cancelButton) => {
+					cancelButton.addEventListener('click', handleCancelClick);
+				});
+			}
 		}
-	}, [pageTag, previousPage]);
+		return () => {};
+	}, [pageTag, previousPage, getComponents]);
 
 	function handleClick() {
 		goPreviousPage();
