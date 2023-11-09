@@ -1,15 +1,18 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { AuthProvider } from './components/auth';
+import { Deconnexion } from './pages/deconnexion';
+import { RouteError } from './pages/error/Error';
+import { Optional } from './pages/optional';
+import { Portail, RoutingPortail } from './pages/portail';
+import { PostSubmit } from './pages/postSubmit';
 import { Questionnaire } from './pages/questionnaire';
 import { QuestionnaireReadOnly } from './pages/questionnaireReadOnly';
-import { Deconnexion } from './pages/deconnexion';
-import { Welcome } from './pages/welcome';
-import { PostSubmit } from './pages/postSubmit';
 import { Visualize } from './pages/visualize/Visualize';
-import { AuthProvider } from './components/auth';
-import { RoutingPortail, Portail } from './pages/portail';
-import { Optional } from './pages/optional';
-import { RouteError } from './pages/error/Error';
+import { Welcome } from './pages/welcome';
+import { environment } from './utils/read-env-vars';
+
+const { VIZUALIZE_ENABLED } = environment;
 
 const router = createBrowserRouter([
 	{
@@ -54,7 +57,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/visualize',
-		element: <Visualize />,
+		element: VIZUALIZE_ENABLED ? <Visualize /> : <RouteError />,
 		errorElement: <RouteError />,
 	},
 	{
