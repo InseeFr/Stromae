@@ -15,6 +15,8 @@ export const environment = {
   PORTAIL_URL:
     getEnvVar('REACT_APP_PORTAIL_URL') || `${window.location.origin}`,
   IDENTITY_PROVIDER: getEnvVar('REACT_APP_IDENTITY_PROVIDER'),
+  // VISUALIZE is disabled by default, so if value is not present and not set to true in env-config.js, VISUALIZE page is disabled
+  VIZUALIZE_ENABLED: getEnvVar('REACT_APP_VIZUALIZE_ENABLED') || false,
 };
 
 export const oidcConf = {
