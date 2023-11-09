@@ -22,7 +22,7 @@ function ConvertContent(props: ConvertContentProps) {
 	}
 	if (props.content?.type === 'html') {
 		return (
-			<p
+			<div
 				className={fr.cx(props.className)}
 				dangerouslySetInnerHTML={{
 					__html: DOMPurify.sanitize(props.content?.value, {
