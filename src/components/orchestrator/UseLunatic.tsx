@@ -52,7 +52,15 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [refreshControls, setRefreshControls] = useState(false);
 	const shouldSync = useRef(false);
-	const { listenChange, saveChange } = useSaving();
+	const initialCollectStatus = state ?? CollectStatusEnum.Init;
+
+	useRedirectIfAlreadyValidated(initialCollectStatus);
+
+	const { listenChange, saveChange } = useSaving({
+		setWaiting,
+		setFailure,
+		initialCollectStatus,
+	});
 
 	const onChange = useCallback(
 		({ name }: { name: string }, value: unknown) => {
@@ -117,10 +125,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			typeof defaultTitle === 'string' ? defaultTitle : 'Enquête Insee',
 	});
 
-	const initialCollectStatus = state ?? CollectStatusEnum.Init;
-	useRedirectIfAlreadyValidated(initialCollectStatus);
+	// Gestion de la sauvegarde : tout ce qui était dans le composant Save
 	const previousPageTag = usePrevious(pageTag);
-
 	const isNewPage =
 		pageTag !== undefined &&
 		previousPageTag !== undefined &&
@@ -131,16 +137,15 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		goNextPage?.();
 	}, [goNextPage]);
 
-	// let waiting;
+	const handleGoBack = useCallback(() => {
+		shouldSync.current = true;
+		goPreviousPage?.();
+	}, [goPreviousPage]);
+
 	if (isNewPage && shouldSync.current) {
 		shouldSync.current = false;
 
-		saveChange()
-			.then(({ waiting, failure }) => {
-				setWaiting(waiting);
-				setFailure(failure);
-			})
-			.catch(() => {});
+		saveChange({ isLastPage, pageTag });
 	}
 
 	return (
@@ -148,7 +153,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			<CloneElements<OrchestratedElement>
 				compileControls={compileControls}
 				getComponents={getComponents}
-				goPreviousPage={goPreviousPage}
+				goPreviousPage={handleGoBack}
 				goNextPage={handleGoNext}
 				isFirstPage={isFirstPage}
 				isLastPage={isLastPage}

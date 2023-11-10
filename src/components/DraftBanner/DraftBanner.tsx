@@ -60,8 +60,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 		: [];
 	const isSaved = savingFailure ? savingFailure.status === 200 : false;
 	const timer = useRef<ReturnType<typeof setTimeout>>();
-	const duration = 2_000;
-
+	const duration = 20_000;
 	const personalizationLabel =
 		typeof personalization?.bannerLabel === 'string'
 			? personalization?.bannerLabel
