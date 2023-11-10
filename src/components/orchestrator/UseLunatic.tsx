@@ -1,15 +1,24 @@
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import {
+	PropsWithChildren,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import {
 	CollectStatusEnum,
 	OrchestratedElement,
 	PersonalizationElement,
+	SavingFailure,
 } from '../../typeStromae/type';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
+import { useSaving } from './useSaving';
+import { usePrevious } from '../../lib/commons/usePrevious';
 
 export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -34,18 +43,24 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		metadata,
 	} = props;
 	const [args, setArgs] = useState<Record<string, unknown>>({});
+	const [waiting, setWaiting] = useState(false);
+	const [failure, setFailure] = useState<SavingFailure>();
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string | number | boolean | Array<string>>
 	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
-	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 	const [refreshControls, setRefreshControls] = useState(false);
+	const shouldSync = useRef(false);
+	const { listenChange, saveChange } = useSaving();
 
-	const onChange = useCallback(({ name }: { name: string }, value: unknown) => {
-		setCurrentChange({ name });
-		setRefreshControls(true);
-	}, []);
+	const onChange = useCallback(
+		({ name }: { name: string }, value: unknown) => {
+			listenChange(name, value);
+			setRefreshControls(true);
+		},
+		[listenChange]
+	);
 
 	useEffect(() => {
 		setPersonalizationMap(createPersonalizationMap(personalization));
@@ -104,6 +119,29 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 
 	const initialCollectStatus = state ?? CollectStatusEnum.Init;
 	useRedirectIfAlreadyValidated(initialCollectStatus);
+	const previousPageTag = usePrevious(pageTag);
+
+	const isNewPage =
+		pageTag !== undefined &&
+		previousPageTag !== undefined &&
+		previousPageTag !== pageTag;
+
+	const handleGoNext = useCallback(() => {
+		shouldSync.current = true;
+		goNextPage?.();
+	}, [goNextPage]);
+
+	// let waiting;
+	if (isNewPage && shouldSync.current) {
+		shouldSync.current = false;
+
+		saveChange()
+			.then(({ waiting, failure }) => {
+				setWaiting(waiting);
+				setFailure(failure);
+			})
+			.catch(() => {});
+	}
 
 	return (
 		<Provider>
@@ -111,12 +149,11 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				compileControls={compileControls}
 				getComponents={getComponents}
 				goPreviousPage={goPreviousPage}
-				goNextPage={goNextPage}
+				goNextPage={handleGoNext}
 				isFirstPage={isFirstPage}
 				isLastPage={isLastPage}
 				goToPage={goToPage}
 				getData={getData}
-				currentChange={currentChange}
 				pageTag={pageTag}
 				disabled={disabled}
 				pageFromAPI={pageFromAPI}
@@ -124,6 +161,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				initialCollectStatus={initialCollectStatus}
 				refreshControls={refreshControls}
 				setRefreshControls={setRefreshControls}
+				waiting={waiting}
+				savingFailure={failure}
 			>
 				{children}
 			</CloneElements>

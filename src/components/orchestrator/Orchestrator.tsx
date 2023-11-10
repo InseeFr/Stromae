@@ -41,9 +41,7 @@ export function Orchestrator({
 				paginated={true}
 				activeControls={true}
 			>
-				<Saving>
-					<Controls>{children}</Controls>
-				</Saving>
+				<Controls>{children}</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);
