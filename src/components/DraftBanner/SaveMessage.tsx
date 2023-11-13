@@ -15,7 +15,6 @@ const useStyles = makeStyles()({
 export function SaveMessage(props: Props) {
 	const { saved } = props;
 	const { classes, cx } = useStyles();
-
 	// The saved flag is set to a timer, which returns to false after 2 seconds
 	if (saved) {
 		return (
