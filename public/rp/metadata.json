@@ -126,11 +126,18 @@
 
 	"paradata": {
 		"level": 2,
-
 		"components": [
 			{
-				"id": "kkxuu8ov",
+				"id": "kkxuu8ov-nom",
+				"events": ["focus", "blur","input"]
+			},
+			{
+				"id": "kkxuu8ov-email",
 				"events": ["focus", "blur"]
+			},
+			{
+				"id": "lfs5q1zj-iris",
+				"events": ["focus", "blur","input"]
 			}
 		]
 	}
