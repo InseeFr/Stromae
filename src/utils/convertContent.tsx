@@ -39,7 +39,7 @@ function ConvertContent(props: ConvertContentProps) {
 							'h3',
 							'br',
 						],
-						ALLOWED_ATTR: ['target', 'href', 'title'],
+						ALLOWED_ATTR: ['target', 'href', 'title', 'rel'],
 					}),
 				}}
 			/>

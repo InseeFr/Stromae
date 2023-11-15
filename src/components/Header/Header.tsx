@@ -131,6 +131,7 @@ export function Header(props: HeaderProps) {
 															<Button
 																iconId={quickAccessItem.iconId}
 																linkProps={{
+																	rel: quickAccessItem.linkProps?.target === '_blank' ? "noopener noreferrer" : undefined,
 																	target: quickAccessItem.linkProps?.target,
 																	to: quickAccessItem.linkProps?.href,
 																	title:
@@ -191,6 +192,7 @@ export function Header(props: HeaderProps) {
 													<Button
 														iconId={quickAccessItem.iconId}
 														linkProps={{
+															rel: quickAccessItem.linkProps?.target === '_blank' ? "noopener, noreferrer" : undefined,
 															target: quickAccessItem.linkProps?.target,
 															to: quickAccessItem.linkProps?.href,
 															title:

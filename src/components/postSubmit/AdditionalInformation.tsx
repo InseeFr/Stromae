@@ -25,13 +25,14 @@ function FeedbackLink({
 				to={href}
 				style={{ backgroundImage: 'none' }}
 				target={target}
+				rel={target === '_blank' ? "noopener noreferrer" : undefined}
 			>
 				<img src={imageSrc} alt={alt} />
 			</Link>
 		);
 	} else if (href) {
 		return (
-			<Link title={title} to={href} target={target}>
+			<Link title={title} to={href} target={target} rel={target === '_blank' ? "noopener noreferrer" : undefined}>
 				{label}
 			</Link>
 		);
@@ -88,7 +89,7 @@ function SeeResults({
 					title={link.title}
 					to={link.href}
 					target={link.target}
-					rel="noopener noreferrer"
+					rel={link.target === '_blank' ? "noopener noreferrer" : undefined}
 				>
 					{link.label}
 				</Link>

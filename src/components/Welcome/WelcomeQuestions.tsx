@@ -49,7 +49,7 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 						title="Loi n° 51 - 711 du 7 juin 1951 sur l'obligation, la coordination et le secret en matière de statistiques. - ouvre une nouvelle fenêtre"
 						to={props.welcome.Loi_statistique.href}
 						target={props.welcome.Loi_statistique.target}
-						rel="noopener noreferrer"
+						rel={props.welcome.Loi_statistique.target === '_blank' ? "noopener noreferrer" : undefined}
 					>
 						la loi n° 51 - 711 du 7 juin 1951
 					</Link>{' '}
@@ -72,7 +72,7 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 						title="Règlement général 2016/679 du 27 avril 2016 sur la protection des données (RGPD)"
 						to={props.welcome.Loi_rgpd.href}
 						target={props.welcome.Loi_rgpd.target}
-						rel="noopener noreferrer"
+						rel={props.welcome.Loi_rgpd.target === '_blank' ? "noopener noreferrer" : undefined}
 					>
 						règlement général 2016/679 du 27 avril 2016 sur la protection des
 						données (RGPD)
@@ -82,7 +82,7 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 						title="loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés - ouvre une nouvelle fenêtre"
 						to={props.welcome.Loi_informatique.href}
 						target={props.welcome.Loi_informatique.target}
-						rel="noopener noreferrer"
+						rel={props.welcome.Loi_informatique.target === '_blank' ? "noopener noreferrer" : undefined}
 					>
 						loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux
 						fichiers et aux libertés

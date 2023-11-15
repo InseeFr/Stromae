@@ -70,7 +70,7 @@ export function Footer(props: FooterProps) {
 									target="_blank"
 									title="le-recensement-et-moi.fr - ouvre une nouvelle fenêtre"
 									to="https://le-recensement-et-moi.fr"
-									rel="noreferrer"
+									rel="noopener noreferrer"
 								>
 									le-recensement-et-moi
 								</Link>
@@ -79,8 +79,8 @@ export function Footer(props: FooterProps) {
 							<li>
 								<Link
 									title="insee.fr - ouvre une nouvelle fenêtre"
-									rel="noreferrer"
 									target="_blank"
+									rel="noopener noreferrer"
 									className={fr.cx('fr-footer__content-link')}
 									to="https://insee.fr"
 								>
@@ -92,9 +92,9 @@ export function Footer(props: FooterProps) {
 								<Link
 									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
+									rel="noopener noreferrer"
 									title="service-public.fr - ouvre une nouvelle fenêtre"
 									to="https://service-public.fr"
-									rel="noreferrer"
 								>
 									service-public.fr
 								</Link>
@@ -103,7 +103,7 @@ export function Footer(props: FooterProps) {
 							<li>
 								<Link
 									target="_blank"
-									rel="noreferrer"
+									rel="noopener noreferrer"
 									title="data.gouv.fr - ouvre une nouvelle fenêtre"
 									className={fr.cx('fr-footer__content-link')}
 									to="https://data.gouv.fr"
