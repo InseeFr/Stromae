@@ -9,17 +9,16 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 	const [warning, setWarning] = useState<boolean>(false);
 	const [criticality, setCriticality] = useState<boolean>();
 
+	const { children = [], ...rest } = props;
+
 	const {
-		children = [],
-		getErrors,
 		goNextPage = () => null,
 		goPreviousPage = () => null,
 		compileControls,
 		pageTag,
 		refreshControls,
 		setRefreshControls,
-		...rest
-	} = props;
+	} = rest;
 
 	useEffect(() => {
 		if (!(currentErrors?.roundabout && pageTag?.includes('#'))) {

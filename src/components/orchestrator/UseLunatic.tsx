@@ -38,7 +38,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		features,
 		savingType,
 		autoSuggesterLoading,
-		paginated,
 		disabled,
 		metadata,
 	} = props;

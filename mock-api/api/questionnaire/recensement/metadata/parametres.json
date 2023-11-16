@@ -221,5 +221,22 @@
 				"paragraphs": "Au RP on <a href=\"https://google.com\" target=\"_blank\"> pense </a>que c'est <button onclick=\"alert('I'll be king of the pirates!')\">presse me please!</button> super important l'accessibilité. Par contre c'est un peu pénible à impémenter donc on fait quand on le temps ou <b>envie</b> (ce qui revient un peu au même)."
 			}
 		]
+	},
+	"paradata": {
+		"level": 2,
+		"components": [
+			{
+				"id": "kkxuu8ov-nom",
+				"events": ["focus", "blur", "input"]
+			},
+			{
+				"id": "kkxv0qgj-mail",
+				"events": ["focus", "blur"]
+			},
+			{
+				"id": "lfs5q1zj-iris",
+				"events": ["focus", "blur", "input"]
+			}
+		]
 	}
 }

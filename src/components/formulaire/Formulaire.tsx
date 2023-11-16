@@ -87,7 +87,8 @@ export function Formulaire(props: Props) {
 		pageTag,
 	} = props;
 	const { classes, cx } = useStyles();
-	useParadata();
+
+	useParadata({ pageTag });
 	if (waiting) {
 		return <Form />;
 	}
