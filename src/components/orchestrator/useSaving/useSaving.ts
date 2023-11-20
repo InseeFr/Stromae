@@ -42,9 +42,11 @@ export function useSaving({
 		async ({
 			isLastPage,
 			pageTag,
+			getData,
 		}: {
 			isLastPage: boolean;
 			pageTag: string;
+			getData: () => any;
 		}) => {
 			setFailure(undefined);
 			setWaiting(true);
@@ -52,7 +54,12 @@ export function useSaving({
 				// save data
 				const isOnChange = changes.current.size !== 0;
 				if (isOnChange) {
-					const payload = Object.fromEntries(changes.current);
+					const lunaticValues = getData().COLLECTED ?? {};
+					const payload = Object.entries(
+						Object.fromEntries(changes.current)
+					).reduce((acc, [name]) => {
+						return { ...acc, [name]: lunaticValues[name]?.COLLECTED ?? null };
+					}, {});
 					await putSurveyUnitData(payload);
 					setFailure({ status: 200 });
 					changes.current.clear();

@@ -14,6 +14,7 @@ import { Orchestrator } from '../../components/orchestrator';
 import { OidcSecure } from '../../lib/oidc';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { AlertesControles } from '../../components/AlertesControles';
+import { DevOptions } from '../../components/DevOptions';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -35,16 +36,17 @@ export function Questionnaire(props: QuestionnaireProps) {
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
 						<DraftBanner />
-						<AlertesControles />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>
 							<AlertesSaving />
+							<AlertesControles />
 							<Formulaire />
 							<Modals />
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />
+						<DevOptions />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
