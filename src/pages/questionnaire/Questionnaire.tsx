@@ -36,7 +36,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
 						<DraftBanner />
-						<AlertesControles />
 						<ContinueOrRestart />
 						<Precedent />
 						<Grid>
