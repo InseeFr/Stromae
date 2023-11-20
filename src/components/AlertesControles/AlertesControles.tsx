@@ -1,7 +1,7 @@
-import { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode, useState } from 'react';
 import { fr } from '@codegouvfr/react-dsfr';
-
 import { OrchestratedElement } from '../../typeStromae/type';
+import { ComponentType } from '../../typeLunatic/type-source';
 
 function ErrorMessage({ errorMessage }: { errorMessage: ReactNode }) {
 	if (errorMessage && Array.isArray(errorMessage)) {
@@ -16,9 +16,20 @@ function ErrorMessage({ errorMessage }: { errorMessage: ReactNode }) {
 	return <>{errorMessage}</>;
 }
 
+function checkIfIsRoundAbout(components?: ComponentType[]) {
+	if (Array.isArray(components)) {
+		return components.reduce(
+			(status, { componentType }) => status || componentType === 'Roundabout',
+			false
+		);
+	}
+	return true;
+}
+
 export function AlertesControles(props: OrchestratedElement) {
-	const { currentErrors, criticality } = props;
+	const { currentErrors, criticality, getComponents } = props;
 	const type = criticality ? 'fr-alert--error' : 'fr-alert--warning';
+	const [isInRoundabout, setIsRoundabout] = useState(false);
 
 	useEffect(() => {
 		if (currentErrors) {
@@ -26,7 +37,12 @@ export function AlertesControles(props: OrchestratedElement) {
 		}
 	}, [currentErrors]);
 
-	if (currentErrors) {
+	useEffect(() => {
+		const components = getComponents?.();
+		setIsRoundabout(checkIfIsRoundAbout(components));
+	}, [getComponents]);
+
+	if (currentErrors && isInRoundabout) {
 		const content = Object.values(currentErrors)
 			.flat()
 			.map(({ errorMessage, id }) => {

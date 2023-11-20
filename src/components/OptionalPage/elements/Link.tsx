@@ -9,7 +9,7 @@ export function Link({
 	target,
 }: LinkElement) {
 	return (
-		<a id={id} className={className} title={title} href={href} target={target}>
+		<a id={id} className={className} title={title} href={href} target={target} rel={target === "_blank" ? "noopener noreferrer": undefined}>
 			{content}
 		</a>
 	);

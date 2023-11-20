@@ -3,7 +3,6 @@ import { LunaticSource } from '../../typeLunatic/type-source';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { Controls } from './Controls';
 import { LoadSourceData } from './LoadSourceData';
-import { Saving } from './Saving';
 import { UseLunatic } from './UseLunatic';
 
 export type OrchestratorProps = {
@@ -41,9 +40,7 @@ export function Orchestrator({
 				paginated={true}
 				activeControls={true}
 			>
-				<Saving>
-					<Controls>{children}</Controls>
-				</Saving>
+				<Controls>{children}</Controls>
 			</UseLunatic>
 		</LoadSourceData>
 	);

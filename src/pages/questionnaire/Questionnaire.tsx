@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
-import { AlertesControles } from '../../components/AlertesControles';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
 import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
@@ -14,6 +13,8 @@ import { Precedent } from '../../components/navigation/Precedent';
 import { Orchestrator } from '../../components/orchestrator';
 import { OidcSecure } from '../../lib/oidc';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
+import { AlertesControles } from '../../components/AlertesControles';
+import { DevOptions } from '../../components/DevOptions';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -45,6 +46,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />
+						<DevOptions />
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>

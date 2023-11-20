@@ -7,8 +7,8 @@
 		"@codegouvfr/react-dsfr": "^0.78.1",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
-		"@inseefr/lunatic": "2.6.2",
-		"@inseefr/lunatic-dsfr": "1.0.6",
+		"@inseefr/lunatic": "2.6.7",
+		"@inseefr/lunatic-dsfr": "1.0.10",
 		"@mui/material": "^5.11.8",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",
@@ -44,7 +44,7 @@
 		"start-mock-api": "node ./mock-api.js",
 		"postinstall": "copy-dsfr-to-public",
 		"prestart": "only-include-used-icons",
-		"prebuild": "only-include-used-icons"
+		"prebuild": "only-include-used-icons && npx @inseefr/lunatic workers"
 	},
 	"eslintConfig": {
 		"extends": [

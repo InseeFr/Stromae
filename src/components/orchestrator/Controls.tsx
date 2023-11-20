@@ -74,6 +74,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 			goPreviousPage={handleGoPrevious}
 			criticality={criticality}
 			currentErrors={currentErrors}
+			pageTag={pageTag}
 		>
 			{children}
 		</CloneElements>

@@ -37,4 +37,7 @@ export const environment = {
 	DEFAULT_SURVEY: getEnvVar('REACT_APP_DEFAULT_SURVEY') || 'recensement',
 	// Not Yet Implemented
 	AUTH_TYPE: getEnvVar('REACT_APP_AUTH_TYPE') || AuthTypeEnum.None,
+	// VISUALIZE is disabled by default, so if value is not present and not set to true in env-config.js, VISUALIZE page is disabled
+	VIZUALIZE_ENABLED: getEnvVar('REACT_APP_VIZUALIZE_ENABLED') || false,
+	DEBUG: Boolean(getEnvVar('REACT_APP_DEBUG') || false)
 };

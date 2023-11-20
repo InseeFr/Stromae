@@ -1,5 +1,5 @@
 import { fr } from '@codegouvfr/react-dsfr/fr';
-import ConvertContent from '../../utils/convertContent';
+import ConvertContent, { ConvertContentType } from '../../utils/convertContent';
 
 import { Link } from 'react-router-dom';
 import { AppVersion } from '../AppVersion/AppVersion';
@@ -39,9 +39,11 @@ export function Footer(props: FooterProps) {
 			<div className={fr.cx('fr-container')}>
 				<div className={fr.cx('fr-footer__body')}>
 					<div className={fr.cx('fr-footer__brand', 'fr-enlarge-link')}>
-						<p className={fr.cx('fr-logo')}>
-							<ConvertContent content={brandTop as any} />
-						</p>
+						<ConvertContent
+							content={brandTop as ConvertContentType}
+							className="fr-logo"
+						/>
+
 						<Link
 							className={fr.cx('fr-footer__brand-link')}
 							to="/"
@@ -68,7 +70,7 @@ export function Footer(props: FooterProps) {
 									target="_blank"
 									title="le-recensement-et-moi.fr - ouvre une nouvelle fenêtre"
 									to="https://le-recensement-et-moi.fr"
-									rel="noreferrer"
+									rel="noopener noreferrer"
 								>
 									le-recensement-et-moi
 								</Link>
@@ -77,8 +79,8 @@ export function Footer(props: FooterProps) {
 							<li>
 								<Link
 									title="insee.fr - ouvre une nouvelle fenêtre"
-									rel="noreferrer"
 									target="_blank"
+									rel="noopener noreferrer"
 									className={fr.cx('fr-footer__content-link')}
 									to="https://insee.fr"
 								>
@@ -90,9 +92,9 @@ export function Footer(props: FooterProps) {
 								<Link
 									className={fr.cx('fr-footer__content-link')}
 									target="_blank"
+									rel="noopener noreferrer"
 									title="service-public.fr - ouvre une nouvelle fenêtre"
 									to="https://service-public.fr"
-									rel="noreferrer"
 								>
 									service-public.fr
 								</Link>
@@ -101,7 +103,7 @@ export function Footer(props: FooterProps) {
 							<li>
 								<Link
 									target="_blank"
-									rel="noreferrer"
+									rel="noopener noreferrer"
 									title="data.gouv.fr - ouvre une nouvelle fenêtre"
 									className={fr.cx('fr-footer__content-link')}
 									to="https://data.gouv.fr"
@@ -163,9 +165,7 @@ export function Footer(props: FooterProps) {
 						</li>
 					</ul>
 					<div className={fr.cx('fr-footer__bottom-copy')}>
-						<p>
-							<ConvertContent content={license as any} />
-						</p>
+						<ConvertContent content={license as any} />
 					</div>
 				</div>
 			</div>

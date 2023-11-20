@@ -5,7 +5,6 @@ import { isComponentsContainSequence } from '../../lib/commons/isComponentsconta
 import { ComponentType } from '../../typeLunatic/type-source';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
-import { fr } from '@codegouvfr/react-dsfr';
 
 function getButtonTitle(getComponents: () => Array<ComponentType>) {
 	if (getComponents) {
@@ -76,14 +75,13 @@ export function Continuer(props: OrchestratedElement) {
 		<Button
 			priority="primary"
 			onClick={handleClick}
-			className={fr.cx('fr-mt-1w')}
 			title={getButtonTitle(getComponents)}
 			nativeButtonProps={{
 				form: 'stromae-form',
 				type: 'submit',
-				'aria-atomic': true,
 				'aria-disabled': waiting,
 			}}
+			id="continue-button"
 			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
 			disabled={waiting}
 		>
