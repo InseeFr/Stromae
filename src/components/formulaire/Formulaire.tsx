@@ -21,6 +21,12 @@ const useStyles = makeStyles()({
        "input[aria-describedby^='autre-link']": {
             marginBottom:"1rem"
         },
+        ".pairwise-link": {
+            marginBottom: "1rem"
+        },
+       "input[aria-describedby^='autre-link']": {
+            marginBottom:"1rem"
+        },
         "legend": {
             fontSize: "1.75rem",
             lineHeight: "2.25rem",
