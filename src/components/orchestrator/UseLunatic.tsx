@@ -144,8 +144,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 
 	if (isNewPage && shouldSync.current) {
 		shouldSync.current = false;
-
-		saveChange({ isLastPage, pageTag, getData });
+		saveChange({ pageTag, getData });
 	}
 
 	return (
