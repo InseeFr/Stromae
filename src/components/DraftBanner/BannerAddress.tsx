@@ -10,5 +10,7 @@ export function BannerAddress(props: Props) {
 	if (!label) {
 		return null;
 	}
-	return <p className={fr.cx('fr-text--bold', 'fr-mr-2w', 'fr-mb-0')}>{label}</p>;
+	return (
+		<p className={fr.cx('fr-text--bold', 'fr-mr-2w', 'fr-mb-0')}>{label}</p>
+	);
 }

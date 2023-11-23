@@ -94,6 +94,7 @@ export function LoadFromApi({
 				getReferentiel,
 				putSurveyUnitData,
 				getDepositProof,
+				getSurveyUnitStateData: surveyApi.getSurveyUnitStateData,
 			}}
 		>
 			{children}

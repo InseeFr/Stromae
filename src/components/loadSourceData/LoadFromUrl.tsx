@@ -81,6 +81,9 @@ export function LoadFromUrl({
 		[urlNomenclatures]
 	);
 
+	/* problématique pour visualize */
+	const getSurveyUnitStateData = useCallback(async () => undefined, []);
+
 	return (
 		<loadSourceDataContext.Provider
 			value={{
@@ -91,6 +94,7 @@ export function LoadFromUrl({
 				putSurveyUnitData: doNothing,
 				putSurveyUnitStateData: doNothing,
 				getDepositProof,
+				getSurveyUnitStateData,
 			}}
 		>
 			{children}

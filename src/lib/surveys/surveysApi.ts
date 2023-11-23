@@ -37,15 +37,54 @@ export interface SurveyApi {
 		token: string
 	) => Promise<void>;
 	getDepositiProof: (unit: string, token: string) => Promise<BlobPart>;
+	/* Fake endpoint */
+	getSurveyUnitStateData: () => Promise<StateData>;
 }
+
+/**
+ *
+ * StateData peut-être consommé à plusieurs endroit de l'application.
+ * En l'absence d'un state manager, il faut trouver un moyen simple de partager son dernier état,
+ * sans faire d'appels réseau dispensables.
+ * il n'existe pas à proprement parlé de endpoint getSurveyUnitStateData côté API. on l'introduit pour faire simple ici,
+ * mais opn pourrait aussin surchargé le gros get qui reccup data et state data.
+ */
+function manageSurveyUnitStateData(DOMAIN: string) {
+	let stateData: StateData;
+	const putHttp = putSurveyUnitStateData(DOMAIN);
+	const getSuDataHttp = getSurveyUnitData(DOMAIN);
+
+	async function putSuStateData(state: StateData, unit: string, token: string) {
+		await putHttp(state, unit, token);
+		stateData = state;
+	}
+
+	async function getSuData(unit: string, token: string) {
+		const suData = await getSuDataHttp(unit, token);
+		stateData = suData.stateData;
+		return suData;
+	}
+
+	async function getSurveyUnitStateData() {
+		return stateData;
+	}
+	return {
+		putSurveyUnitStateData: putSuStateData,
+		getSurveyUnitData: getSuData,
+		getSurveyUnitStateData,
+	};
+}
+
+const managedSuStateData = manageSurveyUnitStateData(DOMAIN);
 
 export const surveyApi: SurveyApi = {
 	getSurvey: getSurvey(DOMAIN),
 	getMetadataSurvey: getMetadataSurvey(DOMAIN),
-	getSurveyUnitData: getSurveyUnitData(DOMAIN),
+	getSurveyUnitData: managedSuStateData.getSurveyUnitData,
 	getRequiredNomenclatures: getRequiredNomenclatures(DOMAIN),
 	getNomenclature: getNomenclature(DOMAIN),
 	putSurveyUnitData: putSurveyUnitData(DOMAIN),
-	putSurveyUnitStateData: putSurveyUnitStateData(DOMAIN),
+	putSurveyUnitStateData: managedSuStateData.putSurveyUnitStateData,
+	getSurveyUnitStateData: managedSuStateData.getSurveyUnitStateData,
 	getDepositiProof: getDepositProof(DOMAIN),
 };
