@@ -13,7 +13,13 @@ const useStyles = makeStyles()({
 		".lunatic-component-with-dsfr": {
 				"marginBottom": "1rem",
         ".fr-fieldset, .fr-fieldset__element": {
-            marginBottom: 0,
+            marginBottom: 0
+        },
+        ".pairwise-link": {
+            marginBottom: "1rem"
+        },
+       "input[aria-describedby^='autre-link']": {
+            marginBottom:"1rem"
         },
         "legend": {
             fontSize: "1.75rem",
@@ -50,17 +56,17 @@ const useStyles = makeStyles()({
         },
     },
     ".lunatic-dsfr-component-set": {
-        "marginBottom": "1rem",
-        "display": "grid",
-        "grid-template-columns": "1fr",
-        "gap": "1rem",
+        marginBottom: "1rem",
+        display: "grid",
+        gridTemplateColumns: "1fr",
+        gap: "1rem",
         ".fr-callout": {
-            "marginBottom": "0",
+            marginBottom: "0",
         },
         ".lunatic-dsfr-component-set": {
-            "display": "grid",
-            "grid-template-columns": "1fr",
-            "gap": "1rem",
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "1rem",
         },
     },
 	},
