@@ -14,10 +14,6 @@ export function useSaveSurveyUnitStateData() {
 			currentPage: args.pageTag ?? '1',
 		};
 		try {
-<<<<<<< HEAD
-			debugger;
-=======
->>>>>>> ef8292d (save a last time suData when click continue on last page, outof orchestrator)
 			await putSurveyUnitStateData(state);
 			return state;
 		} catch (e) {
