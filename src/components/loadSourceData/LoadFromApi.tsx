@@ -54,14 +54,10 @@ export function LoadFromApi({
 
 	const putSurveyUnitStateData = useCallback(
 		async (state?: StateData) => {
-			try {
-				if (state && unit) {
-					await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
-				}
-			} catch (e) {
-				console.warn(e);
-				return false;
+			if (state && unit) {
+				await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
 			}
+
 			return true;
 		},
 		[accessToken, unit]
