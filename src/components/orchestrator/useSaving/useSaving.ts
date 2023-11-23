@@ -55,6 +55,7 @@ export function useSaving({
 				const isOnChange = changes.current.size !== 0;
 				if (isOnChange) {
 					const lunaticValues = getData().COLLECTED ?? {};
+					if (changes.current.size) {
 						const payload = Object.entries(
 							Object.fromEntries(changes.current)
 						).reduce((acc, [name]) => {
@@ -64,6 +65,7 @@ export function useSaving({
 						setFailure({ status: 200 });
 						changes.current.clear();
 					}
+				}
 				// save stateData
 				const state = {
 					state: getCollectStatus(isOnChange, isLastPage, currentStatus),
