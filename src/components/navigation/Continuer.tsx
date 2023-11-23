@@ -60,14 +60,20 @@ export function Continuer(props: OrchestratedElement) {
 	const handleClick = useCallback(
 		(event: React.MouseEvent) => {
 			event.preventDefault();
+
 			if (isLastPage) {
-				try {
-					saveSuData({ pageTag, collectStatus: CollectStatusEnum.Validated });
-					navigate(uriPostEnvoi(survey, unit));
-				} catch (e) {
-					navigate(uri404());
-				}
+				saveSuData({
+					pageTag,
+					collectStatus: CollectStatusEnum.Validated,
+				})
+					.then(() => {
+						navigate(uriPostEnvoi(survey, unit));
+					})
+					.catch(() => {
+						navigate(uri404());
+					});
 			}
+
 			window.scrollTo(0, 0);
 			document.getElementById('button-precedent')?.focus();
 			goNextPage();
