@@ -9,6 +9,8 @@ import Sun from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/environment/sun.
 import Moon from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/environment/moon.svg';
 import System from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/system.svg';
 import type { ConvertContentType } from '../../utils/convertContent';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const iconContact = fr.cx('fr-icon-questionnaire-line');
 
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
