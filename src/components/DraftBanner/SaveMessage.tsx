@@ -7,7 +7,7 @@ type Props = {
 
 const useStyles = makeStyles()({
 	root: {
-		opacity: 0,
+		opacity: 1,
 		transition: 'opacity ease-in-out 2s',
 	},
 });

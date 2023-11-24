@@ -58,7 +58,6 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const bannerLabelDependencies = personalization?.bannerLabelDependencies
 		? personalization?.bannerLabelDependencies
 		: [];
-	const isSaved = savingFailure ? savingFailure.status === 200 : false;
 	const timer = useRef<ReturnType<typeof setTimeout>>();
 	const duration = 2_000;
 	const personalizationLabel =
@@ -66,7 +65,6 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 			? personalization?.bannerLabel
 			: '';
 	const computedLabel = label ? label : personalizationLabel;
-
 	const { getSurveyUnitData } = useContext(loadSourceDataContext);
 
 	// personalization is loaded on refresh, but if this value changes, it is not updated by default.
@@ -87,7 +85,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	}, [getSurveyUnitData, currentChange, props]);
 
 	useEffect(() => {
-		if (!isSaved) {
+		if (savingFailure?.status !== 200) {
 			return;
 		}
 		if (timer.current) {
@@ -98,7 +96,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 		timer.current = setTimeout(() => {
 			setSaved(false);
 		}, duration);
-	}, [isSaved]);
+	}, [savingFailure]);
 
 	useEffect(() => {
 		// clear timer when component is unmounted
