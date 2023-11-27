@@ -12,9 +12,6 @@ import type { ConvertContentType } from '../../utils/convertContent';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const iconContact = fr.cx('fr-icon-questionnaire-line');
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const iconContact = fr.cx('fr-icon-questionnaire-line');
-
 function getAuthLabel(isAuthenticated: boolean): string {
 	if (isAuthenticated) {
 		return 'Me déconnecter';
