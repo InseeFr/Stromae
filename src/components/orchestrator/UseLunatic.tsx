@@ -45,6 +45,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const [waiting, setWaiting] = useState(false);
 	const [failure, setFailure] = useState<SavingFailure>();
+	const [currentChange, setCurrentChange] = useState<{ name: string }>();
 	const [personalizationMap, setPersonalizationMap] = useState<
 		Record<string, string | number | boolean | Array<string>>
 	>({});
@@ -65,6 +66,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const onChange = useCallback(
 		({ name }: { name: string }, value: unknown) => {
 			listenChange(name, value);
+			setCurrentChange({ name });
 			setRefreshControls(true);
 		},
 		[listenChange]
@@ -144,10 +146,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 
 	if (isNewPage && shouldSync.current) {
 		shouldSync.current = false;
-
-		saveChange({ isLastPage, pageTag, getData });
+		saveChange({ pageTag, getData });
 	}
-
 	return (
 		<Provider>
 			<CloneElements<OrchestratedElement>
@@ -168,6 +168,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 				setRefreshControls={setRefreshControls}
 				waiting={waiting}
 				savingFailure={failure}
+				currentChange={currentChange}
 			>
 				{children}
 			</CloneElements>
