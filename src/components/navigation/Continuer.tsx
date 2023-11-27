@@ -64,11 +64,7 @@ export function Continuer(props: OrchestratedElement) {
 			if (isLastPage) {
 				saveSuData({
 					pageTag,
-<<<<<<< HEAD
-					collectStatus: CollectStatusEnum.Completed,
-=======
 					collectStatus: CollectStatusEnum.Validated,
->>>>>>> 35ccc9c (400 when failed)
 				})
 					.then(() => {
 						navigate(uriPostEnvoi(survey, unit));
