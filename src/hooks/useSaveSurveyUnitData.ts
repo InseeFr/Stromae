@@ -14,7 +14,6 @@ export function useSaveSurveyUnitStateData() {
 			currentPage: args.pageTag ?? '1',
 		};
 		try {
-			debugger;
 			await putSurveyUnitStateData(state);
 			return state;
 		} catch (e) {
