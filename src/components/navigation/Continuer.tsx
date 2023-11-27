@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { useNavigate, useParams } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
@@ -22,10 +22,14 @@ function getButtonTitle(getComponents: () => Array<ComponentType>) {
 
 function getStatus(
 	getComponents: () => Array<ComponentType>,
-	isLastPage: boolean
+	isLastPage: boolean,
+	saving: boolean
 ) {
 	if (isLastPage) {
 		return 'Envoyer mes réponses';
+	}
+	if (saving) {
+		return 'Vos données sont en cours de sauvegarde';
 	}
 	if (getComponents) {
 		const components = getComponents();
@@ -42,6 +46,7 @@ function getStatus(
  * @returns
  */
 export function Continuer(props: OrchestratedElement) {
+	const [saving, setSaving] = useState(false);
 	const {
 		goNextPage = () => null,
 		isLastPage,
@@ -55,22 +60,25 @@ export function Continuer(props: OrchestratedElement) {
 	const { unit, survey } = useParams();
 	const buttonContent = waiting
 		? `Chargement`
-		: getStatus(getComponents, isLastPage ?? false);
+		: getStatus(getComponents, isLastPage ?? false, saving);
 
 	const handleClick = useCallback(
 		(event: React.MouseEvent) => {
 			event.preventDefault();
 
 			if (isLastPage) {
+				setSaving(true);
 				saveSuData({
 					pageTag,
-					collectStatus: CollectStatusEnum.Validated,
+					collectStatus: CollectStatusEnum.Completed,
 				})
 					.then(() => {
 						navigate(uriPostEnvoi(survey, unit));
+						setSaving(false);
 					})
 					.catch(() => {
 						navigate(uri404());
+						setSaving(false);
 					});
 			}
 
@@ -89,7 +97,7 @@ export function Continuer(props: OrchestratedElement) {
 			nativeButtonProps={{
 				form: 'stromae-form',
 				type: 'submit',
-				'aria-disabled': waiting,
+				'aria-disabled': waiting || saving,
 			}}
 			id="continue-button"
 			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
