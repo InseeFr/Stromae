@@ -55,15 +55,15 @@ export function useSaving({
 				const isOnChange = changes.current.size !== 0;
 				if (isOnChange) {
 					const lunaticValues = getData().COLLECTED ?? {};
-					const payload = Object.entries(
-						Object.fromEntries(changes.current)
-					).reduce((acc, [name]) => {
-						return { ...acc, [name]: lunaticValues[name]?.COLLECTED ?? null };
-					}, {});
-					await putSurveyUnitData(payload);
-					setFailure({ status: 200 });
-					changes.current.clear();
-				}
+						const payload = Object.entries(
+							Object.fromEntries(changes.current)
+						).reduce((acc, [name]) => {
+							return { ...acc, [name]: lunaticValues[name]?.COLLECTED ?? null };
+						}, {});
+						await putSurveyUnitData(payload);
+						setFailure({ status: 200 });
+						changes.current.clear();
+					}
 				// save stateData
 				const state = {
 					state: getCollectStatus(isOnChange, isLastPage, currentStatus),
@@ -72,7 +72,6 @@ export function useSaving({
 				};
 				setCurrentStatus(state.state);
 				await putSurveyUnitStateData(state);
-
 				setWaiting(false);
 			} catch (e) {
 				setFailure({ status: 500 });
