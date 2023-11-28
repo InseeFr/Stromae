@@ -70,7 +70,7 @@ export function Continuer(props: OrchestratedElement) {
 				setSaving(true);
 				saveSuData({
 					pageTag,
-					collectStatus: CollectStatusEnum.Completed,
+					collectStatus: CollectStatusEnum.Validated,
 				})
 					.then(() => {
 						navigate(uriPostEnvoi(survey, unit));
