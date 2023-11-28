@@ -129,15 +129,15 @@
 		"components": [
 			{
 				"id": "kkxuu8ov-nom",
-				"events": ["focus", "blur","input"]
+				"events": ["focus", "blur","change"]
 			},
 			{
 				"id": "kkxuu8ov-email",
-				"events": ["focus", "blur"]
+				"events": ["focus", "blur","change"]
 			},
 			{
 				"id": "lfs5q1zj-iris",
-				"events": ["focus", "blur","input"]
+				"events": ["focus", "blur","change"]
 			}
 		]
 	}

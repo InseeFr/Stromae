@@ -15,39 +15,27 @@ export type EventHandler = {
 	event: 'blur' | 'focus' | 'input';
 };
 
+export type tamponType = {
+	type: string
+	element: string;
+	timestamp: number;
+	value?: string 
+};
+
 async function mockApi(events: Array<unknown>) {
 	window.setTimeout(() => {
-		console.log('clean : ', events);
+		 console.log('clean : ', events);
 	}, 50);
 }
 
 export function useParadata({ pageTag }: { pageTag?: string }) {
 	const map = useRef(new Map<string, null>());
-	const eventHandlers = useRef<Record<string, Array<(e?: InputEvent) => any>>>(
-		{}
-	);
-	const [paradata, setParadata] = useState<ParadataComponent>();
 	const tampon = useRef<
-		Array<{ type: string; element: string; timestamp: number }>
+		Array<tamponType>
 	>([]);
 	const [components, setComponents] = useState<[ParadataComponent] | []>([]);
 	const metadata = useMetadata();
 
-	const cally = async (e: Event) => {
-		tampon.current.push({
-			type: e.type,
-			element: (e.target as HTMLInputElement).id,
-			timestamp: new Date().getTime(),
-		});
-		await persist();
-	};
-
-	useEffect(() => {
-		if (metadata?.paradata) {
-			setParadata(metadata?.paradata);
-			setComponents(metadata?.paradata?.components);
-		}
-	}, [metadata]);
 
 	async function persist() {
 		if (tampon.current.length > 0) {
@@ -60,67 +48,81 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 		return false;
 	}
 
-	/**
-	 * à écrire en propre !
-	 */
+	const handleInput = async (e: Event) => {
+		const target = e.target as HTMLInputElement;
+		const structure : tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		if(e.type === 'change') structure.value = target.value;
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleSelect = async (e: Event) => {
+		const target = e.target as HTMLSelectElement;
+		const structure : tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleButton = async (e: Event) => {
+		const target = e.target as HTMLButtonElement;
+		const structure : tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleDefault = async (e: Event) => {
+		const target = e.target as HTMLElement;
+		const structure : tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
 	useEffect(() => {
-		const finded: Record<string, any> = {};
-		// ajout des nouveau handler
-		components.forEach((cmp) => {
-			const elmt = document.getElementById(cmp.id);
+		if (metadata?.paradata) {
+			setComponents(metadata?.paradata?.components);
+		}
+	}, [metadata]);
 
-			if (elmt) {
-				const handlers = [];
-				finded[cmp.id] = null;
-
-				// valider elmt.tagName === INPUT éventuellement
-				cmp.events.forEach((ev) => {
-					if (ev === 'input') {
-						const callback = (e: Event) => {
-							const target = e.target as HTMLInputElement;
-							console.log(cmp.id, ev, target.value);
-						};
-						elmt.addEventListener('input', callback);
-						handlers.push(callback);
-					} else {
-						const callback = () => {
-							console.log(cmp.id, ev);
-						};
-						elmt.addEventListener(ev, callback);
-						handlers.push(callback);
-					}
-				});
-			}
-		});
-
-		// tous les handlers pour des id non trouvés doivent être virés
-		Object.entries(eventHandlers.current).forEach(([id, handlers]) => {
-			// si handler !== null et lenght et !finded, removeEventListener sur all
-		});
+	useEffect(() => {
+		if (components.length) {
+			components.forEach((component: ParadataComponent) => {
+				const elmt = document.getElementById(component.id);
+				if (elmt && !map.current.has(component.id)) {
+					map.current.set(component.id, null);
+					component.events.forEach((ev: string) => {
+						switch (elmt.tagName) {
+							case "INPUT":
+								elmt.addEventListener(ev, handleInput);
+								break;
+							case "SELECT":
+								elmt.addEventListener(ev, handleSelect);
+								break;
+							case "BUTTON":
+								elmt.addEventListener(ev, handleButton);
+								break;
+							default:
+								elmt.addEventListener(ev, handleDefault);
+						}
+					});
+				}
+			});
+		}
 	}, [pageTag, components]);
 
-	// 	const manageEventListner = (add: boolean) => {
-	// 		if (components.length) {
-	// 			components.forEach((component: Component) => {
-	// 				const elmt = document.getElementById(component.id);
-	// 				if (elmt && !map.current.has(component.id)) {
-	// 					map.current.set(component.id, null);
-
-	// 					component.events.forEach((ev: string) => {
-	// 						if (add) {
-	// 							elmt.addEventListener(ev, cally);
-	// 						} else {
-	// 							elmt.removeEventListener(ev, cally);
-	// 						}
-	// 					});
-	// 				}
-	// 			});
-	// 		}
-	// 	};
-
-	// 	manageEventListner(true);
-
-	// 	return () => {
-	// 		manageEventListner(false);
-	// 	};
 }
