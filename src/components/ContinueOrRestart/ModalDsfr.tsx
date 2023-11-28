@@ -15,7 +15,7 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 	const { onKeyDown } = useTabulate(first.current as HTMLElement, last);
 
 	return (
-		<dialog id={id} className={fr.cx('fr-modal', 'fr-modal--opened')}>
+		<div  id={id} className={fr.cx('fr-modal', 'fr-modal--opened')} role='dialog' aria-labelledby="fr-modal-title-modal-1" aria-modal="true">
 			<div
 				className={fr.cx(
 					'fr-container',
@@ -44,6 +44,6 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 					</div>
 				</div>
 			</div>
-		</dialog>
+		</div>
 	);
 }

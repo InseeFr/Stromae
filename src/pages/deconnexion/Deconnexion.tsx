@@ -10,7 +10,7 @@ import { fr } from '@codegouvfr/react-dsfr';
 
 export function Deconnexion() {
 	const { survey, unit } = useParams();
-	useDocumentTitle('Page de déconnexion');
+	useDocumentTitle('Le recensement de la population | Page de déconnexion');
 	const { login, isAuthenticated } = useOidc();
 
 	const navigate = useNavigate();
