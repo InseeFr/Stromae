@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef } from 'react';
+import { PropsWithChildren, useRef, useCallback } from 'react';
 import { useTabulate } from '../../lib/commons/useTabulate';
 import { fr } from '@codegouvfr/react-dsfr/fr';
 
@@ -14,6 +14,17 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 
 	const { onKeyDown } = useTabulate(first.current as HTMLElement, last);
 
+	const onKeyDownExt = useCallback(
+		(e: React.KeyboardEvent<HTMLElement>) => {
+			if (e.key === 'Escape') {
+				close?.();
+			} else {
+				onKeyDown(e);
+			}
+		},
+		[onKeyDown, close]
+	);
+
 	return (
 		<dialog id={id} className={fr.cx('fr-modal', 'fr-modal--opened')}>
 			<div
@@ -25,7 +36,7 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 			>
 				<div
 					className={fr.cx('fr-grid-row', 'fr-grid-row--center')}
-					onKeyDown={onKeyDown}
+					onKeyDown={onKeyDownExt}
 				>
 					<div className={fr.cx('fr-col-12', 'fr-col-md-8', 'fr-col-lg-6')}>
 						<div className={fr.cx('fr-modal__body')}>
