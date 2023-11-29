@@ -138,7 +138,28 @@
 			{
 				"id": "lfs5q1zj-iris",
 				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-lfs0z1kg-:r1s:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-lfs0z1kg-:r1s:-1",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-1-:r24:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-0-:r20:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-0-:r20:-1",
+				"events": ["focus", "blur","change"]
 			}
+			
 		]
 	}
 }

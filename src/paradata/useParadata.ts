@@ -19,12 +19,12 @@ export type tamponType = {
 	type: string
 	element: string;
 	timestamp: number;
-	value?: string 
+	value?: string
 };
 
 async function mockApi(events: Array<unknown>) {
 	window.setTimeout(() => {
-		 console.log('clean : ', events);
+		console.log('clean : ', events);
 	}, 50);
 }
 
@@ -37,69 +37,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 	const metadata = useMetadata();
 
 
-	async function persist() {
-		if (tampon.current.length > 0) {
-			const temp = tampon.current;
-			tampon.current = [];
-			await mockApi(temp);
-
-			return true;
-		}
-		return false;
-	}
-
-	const handleInput = async (e: Event) => {
-		const target = e.target as HTMLInputElement;
-		const structure : tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		if(e.type === 'change') structure.value = target.value;
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleSelect = async (e: Event) => {
-		const target = e.target as HTMLSelectElement;
-		const structure : tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleButton = async (e: Event) => {
-		const target = e.target as HTMLButtonElement;
-		const structure : tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleDefault = async (e: Event) => {
-		const target = e.target as HTMLElement;
-		const structure : tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	useEffect(() => {
-		if (metadata?.paradata) {
-			setComponents(metadata?.paradata?.components);
-		}
-	}, [metadata]);
-
-	useEffect(() => {
+	const manageListners = () => {
 		if (components.length) {
 			components.forEach((component: ParadataComponent) => {
 				const elmt = document.getElementById(component.id);
@@ -123,6 +61,84 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			});
 		}
+	}
+	const mutationObserver = new MutationObserver(manageListners);
+	const targetNode = document.getElementById("stromae-form");
+	const config = { childList: true, subtree: true };
+	if (targetNode)
+		mutationObserver.observe(targetNode, config);
+
+	async function persist() {
+		if (tampon.current.length > 0) {
+			const temp = tampon.current;
+			tampon.current = [];
+			await mockApi(temp);
+
+			return true;
+		}
+		return false;
+	}
+
+	const handleInput = async (e: Event) => {
+		const target = e.target as HTMLInputElement;
+		const structure: tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		if (e.type === 'change') structure.value = target.value;
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleSelect = async (e: Event) => {
+		const target = e.target as HTMLSelectElement;
+		const structure: tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleButton = async (e: Event) => {
+		const target = e.target as HTMLButtonElement;
+		const structure: tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	const handleDefault = async (e: Event) => {
+		const target = e.target as HTMLElement;
+		const structure: tamponType = {
+			type: e.type,
+			element: target.id,
+			timestamp: new Date().getTime(),
+		}
+		tampon.current.push(structure);
+		await persist();
+	}
+
+	useEffect(() => {
+
+		return () => {
+			mutationObserver.disconnect();
+		};
+	}, []);
+
+	useEffect(() => {
+		if (metadata?.paradata) {
+			setComponents(metadata?.paradata?.components);
+		}
+	}, [metadata]);
+
+	useEffect(() => {
+		manageListners();
 	}, [pageTag, components]);
 
 }
