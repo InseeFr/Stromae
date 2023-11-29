@@ -7,7 +7,7 @@ import { OidcSecure } from '../../lib/oidc';
 
 export function PostSubmit() {
 	const { survey, unit } = useParams();
-	useDocumentTitle("Page post envoi");
+	useDocumentTitle("Le recensement de la population | Page post envoi");
 
 	return (
 		<OidcSecure>

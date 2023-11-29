@@ -15,7 +15,7 @@ export function ModalContinueOrRestart(props: {
 			close={props.onClose}
 			last={last.current as HTMLElement}
 		>
-			<h1 className={fr.cx('fr-modal__title')}>Bienvenue</h1>
+			<h1 className={fr.cx('fr-modal__title')}  id="fr-modal-title-modal-1">Bienvenue</h1>
 			<p>
 				Vous avez déjà commencé à renseigner le questionnaire. Souhaitez-vous
 				reprendre là où vous en étiez ou revenir à la première page ?

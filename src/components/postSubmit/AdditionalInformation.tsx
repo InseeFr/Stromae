@@ -51,7 +51,7 @@ function ProvideFeedback({
 	if (submit && Feedback) {
 		return (
 			<div className={fr.cx('fr-col-12', 'fr-col-lg-5', 'fr-mt-2w')}>
-				<h4 className={fr.cx('fr-h6')}>{title}</h4>
+				<h3 className={fr.cx('fr-h6')}>{title}</h3>
 				<FeedbackLink
 					alt={link.alt}
 					title={link.title}
@@ -84,7 +84,7 @@ function SeeResults({
 					'fr-mt-md-2w'
 				)}
 			>
-				<h4 className={fr.cx('fr-h6')}>{title}</h4>
+				<h3 className={fr.cx('fr-h6')}>{title}</h3>
 				<Link
 					title={link.title}
 					to={link.href}
@@ -122,7 +122,7 @@ export default function AdditionalInformation({
 					<div className={fr.cx('fr-container', 'fr-py-6w')}>
 						<div className={fr.cx('fr-grid-row', 'fr-grid-row--center')}>
 							<div className={fr.cx('fr-col-12')}>
-								<h3 className={fr.cx('fr-h5')}>{TitleAdditionalInformation}</h3>
+								<h2 className={fr.cx('fr-h5')}>{TitleAdditionalInformation}</h2>
 							</div>
 
 							<ProvideFeedback submit={submit} Feedback={Feedback} />

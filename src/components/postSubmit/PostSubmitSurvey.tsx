@@ -7,7 +7,6 @@ import { useRemote } from '../orchestrator/useRemote';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 import { Skeleton } from '@mui/material';
 import Confirmation from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/success.svg';
-
 import AdditionalInformation from './AdditionalInformation';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { uri404 } from '../../lib/domainUri';
