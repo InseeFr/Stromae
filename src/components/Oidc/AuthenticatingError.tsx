@@ -34,7 +34,7 @@ export function AuthenticatingError() {
 					className={fr.cx(
 						'fr-col-lg-3',
 						'fr-col-offset-lg-1',
-						'fr-col-8',
+						'fr-col-12',
 						'fr-mt-6w',
 						'fr-col--middle'
 					)}
