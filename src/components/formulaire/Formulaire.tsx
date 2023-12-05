@@ -22,6 +22,8 @@ const useStyles = makeStyles()({
 				marginBottom: '1rem',
 			},
 			legend: {
+				display: "flex",
+				flexDirection: 'column',
 				fontSize: '1.75rem',
 				lineHeight: '2.25rem',
 				paddingBottom: '1rem',
@@ -43,6 +45,8 @@ const useStyles = makeStyles()({
 			},
 			'.lunatic-dsfr-component-set .lunatic-dsfr-radio legend, .lunatic-dsfr-component-set .checkbox-lunatic-dsfr legend, .datepicker-lunatic-dsfr legend':
 				{
+					display: 'flex',
+					flexDirection: 'column',
 					fontSize: '1rem',
 					lineHeight: '2.25rem',
 					paddingBottom: '1rem',
