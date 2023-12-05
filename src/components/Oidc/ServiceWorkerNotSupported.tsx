@@ -27,7 +27,7 @@ export function ServiceWorkerNotSupported() {
 				<div
 					className={fr.cx(
 						'fr-col-offset-lg-1',
-						'fr-col-8',
+						'fr-col-12',
 						'fr-mt-6w',
 						'fr-col--middle'
 					)}

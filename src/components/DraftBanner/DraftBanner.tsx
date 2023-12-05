@@ -6,7 +6,7 @@ import {
 	useContext,
 } from 'react';
 import { makeStyles } from '@codegouvfr/react-dsfr/tss';
-import { Badge } from '@codegouvfr/react-dsfr/Badge';
+import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import { fr } from '@codegouvfr/react-dsfr';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { BannerAddress } from './BannerAddress';
@@ -120,7 +120,7 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 					<div
 						className={cx(
 							classes.addressRow,
-							fr.cx('fr-grid-row--no-gutters', 'fr-grid-row')
+							fr.cx('fr-grid-row--no-gutters', 'fr-grid-row', 'fr-grid-row--middle')
 						)}
 					>
 						<div
@@ -135,11 +135,14 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 								)
 							)}
 						>
-						{saved ? 			
-						<Badge severity="success">
-								BROUILLON ENREGISTRÉ.
-							</Badge>
-						: <Badge>BROUILLON</Badge> }
+						{saved ? 	
+						
+						<Tag iconId="fr-icon-refresh-line">
+Enregistrement...
+</Tag>
+						: 						<Tag iconId="fr-icon-checkbox-circle-line">
+Brouillon enregistré
+</Tag> }
 						</div>
 						<BannerAddress label={computedLabel as string} />
 					</div>
