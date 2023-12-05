@@ -125,7 +125,8 @@
 	},
 
 	"paradata": {
-		"level": 2,
+		"isActive":true,
+		"level": "2",
 		"components": [
 			{
 				"id": "kkxuu8ov-nom",

@@ -3,16 +3,17 @@ import { useMetadata } from '../hooks/useMetadata';
 
 export type ParadataComponent = {
 	id: string;
-	events: Array<'blur' | 'focus' | 'input'>;
+	events: Array<EventHandler["event"]>;
 };
 
 export type ParadataType = {
+	isActive: boolean;
 	level: '1' | '2';
-	components: Array<ParadataComponent>;
+	components: Array<ParadataComponent> | [];
 };
 
 export type EventHandler = {
-	event: 'blur' | 'focus' | 'input';
+	event: 'blur' | 'focus' | 'change' | 'click';
 };
 
 export type tamponType = {
@@ -30,12 +31,13 @@ async function mockApi(events: Array<unknown>) {
 
 export function useParadata({ pageTag }: { pageTag?: string }) {
 	const map = useRef(new Map<string, null>());
-	const tampon = useRef<
-		Array<tamponType>
-	>([]);
-	const [components, setComponents] = useState<[ParadataComponent] | []>([]);
+	const tampon = useRef<Array<tamponType>>([]);
+	const [components, setComponents] = useState<ParadataComponent[] | []>([]);
+	const [activateParadata, setActivateParadata] = useState<boolean>(false);
+	const [paradataLevel, setparadataLevel] = useState<ParadataType["level"]>('1');
+	const targetNode = document.getElementById("stromae-form");
 	const metadata = useMetadata();
-
+	const inputListners = ["focus", "blur", "change"];
 
 	const manageListners = () => {
 		if (components.length) {
@@ -43,7 +45,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				const elmt = document.getElementById(component.id);
 				if (elmt && !map.current.has(component.id)) {
 					map.current.set(component.id, null);
-					component.events.forEach((ev: string) => {
+					component.events.forEach((ev: EventHandler["event"]) => {
 						switch (elmt.tagName) {
 							case "INPUT":
 								elmt.addEventListener(ev, handleInput);
@@ -62,10 +64,17 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 			});
 		}
 	}
-	const mutationObserver = new MutationObserver(manageListners);
-	const targetNode = document.getElementById("stromae-form");
+
+	const manageAllListners = () => {
+		// chnage type any to accept HTMLFormControlsCollection
+		const elements = (targetNode as any).elements;
+		for (const element of elements) {
+			console.log('element : ', element);
+		}
+	}
+	const mutationObserver = new MutationObserver(paradataLevel === '1' ? manageListners : () => console.log('mutation'));
 	const config = { childList: true, subtree: true };
-	if (targetNode)
+	if (targetNode && activateParadata)
 		mutationObserver.observe(targetNode, config);
 
 	async function persist() {
@@ -125,7 +134,6 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 	}
 
 	useEffect(() => {
-
 		return () => {
 			mutationObserver.disconnect();
 		};
@@ -133,12 +141,22 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 
 	useEffect(() => {
 		if (metadata?.paradata) {
-			setComponents(metadata?.paradata?.components);
+			const paradata: ParadataType = metadata?.paradata;
+			setActivateParadata(paradata.isActive || false);
+			setparadataLevel(paradata.level || '1');
+			setComponents(paradata.components || []);
 		}
 	}, [metadata]);
 
 	useEffect(() => {
-		manageListners();
+		if (activateParadata) {
+			if (paradataLevel === '1') {
+				manageListners();
+			} else if (paradataLevel === '2') {
+				if (targetNode) {
+					manageAllListners();
+				}
+			}
+		}
 	}, [pageTag, components]);
-
 }
