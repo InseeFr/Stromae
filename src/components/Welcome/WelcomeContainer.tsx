@@ -1,6 +1,5 @@
 import { useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useOidc, useOidcUser } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { Skeleton } from '@mui/material';
 
@@ -14,12 +13,13 @@ import ConvertContent from '../../utils/convertContent';
 import { useColors } from '@codegouvfr/react-dsfr/useColors';
 import { themeStringToVariable } from '../../utils/themeStringToVariable';
 import { fr } from '@codegouvfr/react-dsfr';
+import { useOidc } from '../../lib/oidc';
 
 export function WelcomeContainer() {
 	const theme = useColors();
 	const navigate = useNavigate();
 	const { survey, unit } = useParams();
-	const { oidcUser } = useOidcUser();
+	const oidcUser = { preferred_username: 'John' };
 	const { login } = useOidc();
 	const { getMetadata } = useContext(loadSourceDataContext);
 	const metadata = useRemote<any>(getMetadata, navigateError);

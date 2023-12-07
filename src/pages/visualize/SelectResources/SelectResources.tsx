@@ -27,9 +27,9 @@ function makePath(source: string, data?: string, metadata?: string) {
 
 export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 	const navigate = useNavigate();
-	const [source, setSource] = useState<string>('');
-	const [metadata, setMetadata] = useState<string>('');
-	const [data, setData] = useState<string>('');
+	const [source, setSource] = useState<string>('rp/source.json');
+	const [metadata, setMetadata] = useState<string>('rp/metadata.json');
+	const [data, setData] = useState<string>('rp/data.json');
 
 	function onClick(): void {
 		if (source) {

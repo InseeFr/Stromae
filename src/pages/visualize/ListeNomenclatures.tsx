@@ -80,6 +80,12 @@ export function ListeNomenclatures({
 	const [rows, setRows] = useState<Array<EntryRow>>(() => {
 		return [
 			{ name: 'communes-2019', uri: '/rp/nomenclatures/communes-2019.json' },
+			{ name: 'communes-2023', uri: '/rp/nomenclatures/communes-2023.json' },
+			{ name: 'nationalites', uri: '/rp/nomenclatures/nationalites.json' },
+			{
+				name: 'pays',
+				uri: '/rp/nomenclatures/pays.json',
+			},
 		];
 	});
 

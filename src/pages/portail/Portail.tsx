@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useOidcUser } from '@axa-fr/react-oidc';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Layout } from '../../components/layout';
@@ -13,7 +12,7 @@ import { WelcomeContainer } from '../../components/Welcome';
 export function Portail() {
 	const navigate = useNavigate();
 	const { survey } = useParams();
-	const { oidcUser } = useOidcUser();
+	const oidcUser = { preferred_username: 'John' };
 
 	useEffect(() => {
 		if (!oidcUser || !oidcUser.preferred_username) {

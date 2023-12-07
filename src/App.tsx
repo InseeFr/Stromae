@@ -57,7 +57,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/visualize',
-		element: VIZUALIZE_ENABLED ? <Visualize /> : <RouteError />,
+		element: <Visualize />,
 		errorElement: <RouteError />,
 	},
 	{
