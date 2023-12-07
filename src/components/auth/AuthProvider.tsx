@@ -27,6 +27,7 @@ function fetchConfig(): Promise<OidcConfiguration> {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
+	return children;
 	const alreadyLoad = useRef(false);
 	const [configuration, setConfiguration] = useState<
 		OidcConfiguration | undefined
