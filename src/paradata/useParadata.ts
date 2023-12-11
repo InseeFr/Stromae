@@ -38,6 +38,8 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 	const targetNode = document.getElementById("stromae-form");
 	const metadata = useMetadata();
 	const inputListners = ["focus", "blur", "change"];
+	const buttonListners = ["focus", "blur", "click"];
+	const defaultListners = ["focus", "blur"];
 
 	const manageListners = () => {
 		if (components.length) {
@@ -69,10 +71,28 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 		// chnage type any to accept HTMLFormControlsCollection
 		const elements = (targetNode as any).elements;
 		for (const element of elements) {
-			console.log('element : ', element);
+			if (element && !map.current.has(element.id)) {
+				map.current.set(element.id, null);
+				switch (element.tagName) {
+					case "INPUT":
+						inputListners.forEach((ev) => {
+							element.addEventListener(ev, handleInput);
+						});
+						break;
+					case "BUTTON":
+						buttonListners.forEach((ev) => {
+							element.addEventListener(ev, handleButton);
+						});
+						break;
+					default:
+						defaultListners.forEach((ev) => {
+							element.addEventListener(ev, handleDefault);
+						});
+				}
+			}
 		}
 	}
-	const mutationObserver = new MutationObserver(paradataLevel === '1' ? manageListners : () => console.log('mutation'));
+	const mutationObserver = new MutationObserver(paradataLevel === '1' ? manageListners : manageAllListners);
 	const config = { childList: true, subtree: true };
 	if (targetNode && activateParadata)
 		mutationObserver.observe(targetNode, config);
