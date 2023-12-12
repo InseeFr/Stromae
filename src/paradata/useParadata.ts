@@ -9,6 +9,7 @@ export type ParadataComponent = {
 export type ParadataType = {
 	isActive: boolean;
 	level: '1' | '2';
+	sendLimit: number;
 	components: Array<ParadataComponent> | [];
 };
 
@@ -35,6 +36,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 	const [components, setComponents] = useState<ParadataComponent[] | []>([]);
 	const [activateParadata, setActivateParadata] = useState<boolean>(false);
 	const [paradataLevel, setparadataLevel] = useState<ParadataType["level"]>('1');
+	const [sendLimit, setSendLimit] = useState<number>(0);
 	const targetNode = document.getElementById("stromae-form");
 	const metadata = useMetadata();
 	const inputListners = ["focus", "blur", "change"];
@@ -92,13 +94,14 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 			}
 		}
 	}
+
 	const mutationObserver = new MutationObserver(paradataLevel === '1' ? manageListners : manageAllListners);
 	const config = { childList: true, subtree: true };
 	if (targetNode && activateParadata)
 		mutationObserver.observe(targetNode, config);
 
 	async function persist() {
-		if (tampon.current.length > 0) {
+		if (tampon.current.length > sendLimit) {
 			const temp = tampon.current;
 			tampon.current = [];
 			await mockApi(temp);
@@ -165,6 +168,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 			setActivateParadata(paradata.isActive || false);
 			setparadataLevel(paradata.level || '1');
 			setComponents(paradata.components || []);
+			setSendLimit(paradata.sendLimit || 0);
 		}
 	}, [metadata]);
 
