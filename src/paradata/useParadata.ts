@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useMetadata } from '../hooks/useMetadata';
+import { createPostEvent } from './createPostEvent';
 
 export type ParadataComponent = {
 	id: string;
-	events: Array<EventHandler["event"]>;
+	events: Array<EventHandler['event']>;
 };
 
 export type ParadataType = {
@@ -18,46 +19,88 @@ export type EventHandler = {
 };
 
 export type tamponType = {
-	type: string
+	type: string;
 	element: string;
 	timestamp: number;
-	value?: string
+	value?: string;
 };
 
-async function mockApi(events: Array<unknown>) {
-	window.setTimeout(() => {
-		console.log('clean : ', events);
-	}, 50);
+const inputListners = ['focus', 'blur', 'change'];
+const buttonListners = ['focus', 'blur', 'click'];
+const defaultListners = ['focus', 'blur'];
+
+function builderEvent({
+	type,
+	element,
+	value,
+}: {
+	type: string;
+	element: string;
+	value?: unknown;
+}) {
+	return {
+		type,
+		element,
+		timestamp: new Date().getTime(),
+		value,
+	};
 }
+
+const postEvent = createPostEvent();
+
+const handleInput = async (e: Event) => {
+	const target = e.target as HTMLInputElement;
+
+	await postEvent(
+		builderEvent({
+			type: e.type,
+			element: target.id,
+			value: e.type === 'change' ? target.value : undefined,
+		})
+	);
+};
+
+const handleButton = async (e: Event) => {
+	const target = e.target as HTMLButtonElement;
+
+	await builderEvent({
+		type: e.type,
+		element: target.id,
+	});
+};
+
+const handleDefault = async (e: Event) => {
+	const target = e.target as HTMLElement;
+
+	await builderEvent({
+		type: e.type,
+		element: target.id,
+	});
+};
 
 export function useParadata({ pageTag }: { pageTag?: string }) {
 	const map = useRef(new Map<string, null>());
-	const tampon = useRef<Array<tamponType>>([]);
+
 	const [components, setComponents] = useState<ParadataComponent[] | []>([]);
 	const [activateParadata, setActivateParadata] = useState<boolean>(false);
-	const [paradataLevel, setparadataLevel] = useState<ParadataType["level"]>('1');
-	const [sendLimit, setSendLimit] = useState<number>(0);
-	const targetNode = document.getElementById("stromae-form");
-	const metadata = useMetadata();
-	const inputListners = ["focus", "blur", "change"];
-	const buttonListners = ["focus", "blur", "click"];
-	const defaultListners = ["focus", "blur"];
+	const [paradataLevel, setparadataLevel] =
+		useState<ParadataType['level']>('1');
 
-	const manageListners = () => {
+	const targetNode = document.getElementById('stromae-form');
+	const metadata = useMetadata();
+
+	const manageListners = useCallback(() => {
 		if (components.length) {
 			components.forEach((component: ParadataComponent) => {
 				const elmt = document.getElementById(component.id);
 				if (elmt && !map.current.has(component.id)) {
 					map.current.set(component.id, null);
-					component.events.forEach((ev: EventHandler["event"]) => {
+					component.events.forEach((ev: EventHandler['event']) => {
 						switch (elmt.tagName) {
-							case "INPUT":
+							case 'INPUT':
 								elmt.addEventListener(ev, handleInput);
 								break;
-							case "SELECT":
-								elmt.addEventListener(ev, handleSelect);
-								break;
-							case "BUTTON":
+							case 'BUTTON':
 								elmt.addEventListener(ev, handleButton);
 								break;
 							default:
@@ -67,21 +110,21 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			});
 		}
-	}
+	}, [components]);
 
-	const manageAllListners = () => {
+	const manageAllListners = useCallback(() => {
 		// chnage type any to accept HTMLFormControlsCollection
 		const elements = (targetNode as any).elements;
 		for (const element of elements) {
 			if (element && !map.current.has(element.id)) {
 				map.current.set(element.id, null);
 				switch (element.tagName) {
-					case "INPUT":
+					case 'INPUT':
 						inputListners.forEach((ev) => {
 							element.addEventListener(ev, handleInput);
 						});
 						break;
-					case "BUTTON":
+					case 'BUTTON':
 						buttonListners.forEach((ev) => {
 							element.addEventListener(ev, handleButton);
 						});
@@ -93,74 +136,25 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			}
 		}
-	}
+	}, [targetNode]);
 
-	const mutationObserver = new MutationObserver(paradataLevel === '1' ? manageListners : manageAllListners);
+	const mutationObserver = useMemo(
+		() =>
+			new MutationObserver(
+				paradataLevel === '1' ? manageListners : manageAllListners
+			),
+		[manageAllListners, paradataLevel, manageListners]
+	);
+
 	const config = { childList: true, subtree: true };
 	if (targetNode && activateParadata)
 		mutationObserver.observe(targetNode, config);
-
-	async function persist() {
-		if (tampon.current.length > sendLimit) {
-			const temp = tampon.current;
-			tampon.current = [];
-			await mockApi(temp);
-
-			return true;
-		}
-		return false;
-	}
-
-	const handleInput = async (e: Event) => {
-		const target = e.target as HTMLInputElement;
-		const structure: tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		if (e.type === 'change') structure.value = target.value;
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleSelect = async (e: Event) => {
-		const target = e.target as HTMLSelectElement;
-		const structure: tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleButton = async (e: Event) => {
-		const target = e.target as HTMLButtonElement;
-		const structure: tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
-
-	const handleDefault = async (e: Event) => {
-		const target = e.target as HTMLElement;
-		const structure: tamponType = {
-			type: e.type,
-			element: target.id,
-			timestamp: new Date().getTime(),
-		}
-		tampon.current.push(structure);
-		await persist();
-	}
 
 	useEffect(() => {
 		return () => {
 			mutationObserver.disconnect();
 		};
-	}, []);
+	}, [mutationObserver]);
 
 	useEffect(() => {
 		if (metadata?.paradata) {
@@ -168,7 +162,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 			setActivateParadata(paradata.isActive || false);
 			setparadataLevel(paradata.level || '1');
 			setComponents(paradata.components || []);
-			setSendLimit(paradata.sendLimit || 0);
+			// setSendLimit(paradata.sendLimit || 0);
 		}
 	}, [metadata]);
 
@@ -182,5 +176,13 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			}
 		}
-	}, [pageTag, components]);
+	}, [
+		pageTag,
+		components,
+		activateParadata,
+		manageAllListners,
+		manageListners,
+		paradataLevel,
+		targetNode,
+	]);
 }

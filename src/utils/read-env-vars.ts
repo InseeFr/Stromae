@@ -31,6 +31,7 @@ export const getEnvVar = (varName: string) => {
 
 export const environment = {
 	DOMAIN: getEnvVar('REACT_APP_SURVEY_API_BASE_URL'),
+	PARADATA_DOMAIN: getEnvVar('REACT_APP_PARADATA_API_BASE_URL'),
 	SAVING_STRATEGY:
 		getEnvVar('REACT_APP_SAVING_STRATEGY') || SavingStrategyEnum.Complete,
 	SAVING_TIME: getEnvVar('REACT_APP_SAVING_TIME') || SavingTimeEnum.Sequence,
