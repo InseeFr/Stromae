@@ -127,7 +127,6 @@
 	"paradata": {
 		"isActive":true,
 		"level": "2",
-		"sendLimit": 10,
 		"components": [
 			{
 				"id": "kkxuu8ov-nom",

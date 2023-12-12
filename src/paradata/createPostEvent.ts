@@ -1,21 +1,24 @@
-// const tampon = useRef<Array<tamponType>>([]);
-// const [sendLimit, setSendLimit] = useState<number>(0);
+export type eventType = {
+	type: string;
+	element: string;
+	timestamp: number;
+	value?: string | undefined;
+};
 
 export function createPostEvent() {
-	// TODO
+	let stack: eventType[] = [];
+	const sendLimit = 5;
 
-	// const Stack = [];
-
-	async function postIt(
-		args: {
-			type: string;
-			element: string;
-			timestamp: number;
-			value?: unknown;
-		},
-		clean = false
-	) {
-		console.log(args);
+	async function postIt(changePage = false, args?: eventType) {
+		if (args) stack.push(args);
+		if (stack.length >= sendLimit || changePage) {
+			const tempStack = stack;
+			stack = [];
+			if (tempStack.length)
+				// appel mock
+				console.log('appel mock', tempStack);
+		}
+		console.log(stack);
 	}
 
 	return postIt;

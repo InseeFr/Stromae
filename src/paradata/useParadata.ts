@@ -18,26 +18,17 @@ export type EventHandler = {
 	event: 'blur' | 'focus' | 'change' | 'click';
 };
 
-export type tamponType = {
+export type eventType = {
 	type: string;
 	element: string;
-	timestamp: number;
-	value?: string;
+	value?: string | undefined;
 };
 
 const inputListners = ['focus', 'blur', 'change'];
 const buttonListners = ['focus', 'blur', 'click'];
 const defaultListners = ['focus', 'blur'];
 
-function builderEvent({
-	type,
-	element,
-	value,
-}: {
-	type: string;
-	element: string;
-	value?: unknown;
-}) {
+function builderEvent({ type, element, value }: eventType) {
 	return {
 		type,
 		element,
@@ -52,6 +43,7 @@ const handleInput = async (e: Event) => {
 	const target = e.target as HTMLInputElement;
 
 	await postEvent(
+		false,
 		builderEvent({
 			type: e.type,
 			element: target.id,
@@ -63,19 +55,25 @@ const handleInput = async (e: Event) => {
 const handleButton = async (e: Event) => {
 	const target = e.target as HTMLButtonElement;
 
-	await builderEvent({
-		type: e.type,
-		element: target.id,
-	});
+	await postEvent(
+		false,
+		builderEvent({
+			type: e.type,
+			element: target.id,
+		})
+	);
 };
 
 const handleDefault = async (e: Event) => {
 	const target = e.target as HTMLElement;
 
-	await builderEvent({
-		type: e.type,
-		element: target.id,
-	});
+	await postEvent(
+		false,
+		builderEvent({
+			type: e.type,
+			element: target.id,
+		})
+	);
 };
 
 export function useParadata({ pageTag }: { pageTag?: string }) {
@@ -162,7 +160,6 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 			setActivateParadata(paradata.isActive || false);
 			setparadataLevel(paradata.level || '1');
 			setComponents(paradata.components || []);
-			// setSendLimit(paradata.sendLimit || 0);
 		}
 	}, [metadata]);
 
@@ -185,4 +182,8 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 		paradataLevel,
 		targetNode,
 	]);
+
+	useEffect(() => {
+		postEvent(true);
+	}, [pageTag]);
 }
