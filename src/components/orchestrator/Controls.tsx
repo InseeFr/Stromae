@@ -47,6 +47,7 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 			if (errors.currentErrors && !errors.isCritical) {
 				setWarning(true);
 			} else if (!errors.currentErrors) {
+				setWarning(false);
 				goNextPage();
 			}
 		} else {
