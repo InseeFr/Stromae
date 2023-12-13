@@ -1,6 +1,5 @@
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
-import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
 
 export function SessionLost() {
@@ -21,14 +20,10 @@ export function SessionLost() {
 						Vos réponses ont été sauvegardées, vous pourrez ainsi compléter
 						ultèrieurement votre questionnaire.
 					</p>
-					<Button
-						size="large"
-						linkProps={{
-							to: '/',
-						}}
+					<a href='/' className="fr-btn"
 					>
 						Se reconnecter
-					</Button>
+					</a>
 				</div>
 				<div
 					className={fr.cx(
