@@ -1,6 +1,5 @@
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import Error from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/error.svg';
-import Button from '@codegouvfr/react-dsfr/Button';
 import { fr } from '@codegouvfr/react-dsfr';
 
 export function AuthenticatingError() {
@@ -21,14 +20,10 @@ export function AuthenticatingError() {
 						Une erreur s'est produite pendant votre authentification. Veuillez
 						réessayer de vous connecter au questionnaire.
 					</p>
-					<Button
-						size="large"
-						linkProps={{
-							to: '/',
-						}}
+					<a href="/" className='fr-btn'
 					>
 						Se reconnecter
-					</Button>
+					</a>
 				</div>
 				<div
 					className={fr.cx(
