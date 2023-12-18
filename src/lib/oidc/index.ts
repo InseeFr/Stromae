@@ -1,3 +1,4 @@
-export { useOidcAccessToken } from './useOidcAccessToken ';
-export { OidcSecure } from './OidcSecure';
-export { useOidc } from './useOidc';
+export { AuthSecure } from './AuthSecure';
+export { useAccessToken } from './useAccessToken';
+export { useAuth } from './useAuth';
+export { useAuthUser } from './useAuthUser';
