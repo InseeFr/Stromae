@@ -22,8 +22,6 @@ const useStyles = makeStyles()({
 				marginBottom: '1rem',
 			},
 			legend: {
-				display: "flex",
-				flexDirection: 'column',
 				fontSize: '1.75rem',
 				lineHeight: '2.25rem',
 				paddingBottom: '1rem',
