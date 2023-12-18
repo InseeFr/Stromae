@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { responseData } from './LoadSourceData';
 
 const controller = new AbortController();
@@ -29,7 +29,7 @@ export function useRemote<T>(
 					try {
 						setResult(await cally());
 					} catch (e: any) {
-						const data = e?.response.data;
+						const data = e?.response?.data;
 						onfail(data);
 					}
 				})();

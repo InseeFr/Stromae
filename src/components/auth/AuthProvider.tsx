@@ -30,6 +30,7 @@ function fetchConfig(): Promise<OidcConfiguration> {
 const { AUTH_TYPE } = environment;
 
 export function AuthProvider({ children }: AuthProviderProps) {
+	const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
 	const alreadyLoad = useRef(false);
 	const [configuration, setConfiguration] = useState<
 		OidcConfiguration | undefined
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		}
 		alreadyLoad.current = true;
 
-		if (AUTH_TYPE === AuthTypeEnum.Oidc) {
+		if (isOidcEnabled) {
 			const conf = await fetchConfig();
 			setConfiguration({
 				...conf,
@@ -51,7 +52,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		}
 	}, [alreadyLoad]);
 
-	if (AUTH_TYPE === AuthTypeEnum.Oidc && configuration !== undefined) {
+	if (isOidcEnabled && configuration !== undefined) {
 		return (
 			<OidcProvider
 				configuration={configuration}
@@ -66,7 +67,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			</OidcProvider>
 		);
 	}
-	if (AUTH_TYPE === AuthTypeEnum.Oidc && configuration === undefined)
-		return <Pending />;
+	if (isOidcEnabled && configuration === undefined) return <Pending />;
 	return <>{children}</>;
 }

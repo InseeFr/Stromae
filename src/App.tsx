@@ -12,7 +12,7 @@ import { Visualize } from './pages/visualize/Visualize';
 import { Welcome } from './pages/welcome';
 import { environment } from './utils/read-env-vars';
 
-const { VIZUALIZE_ENABLED } = environment;
+const { VISUALIZE_ENABLED } = environment;
 
 const router = createBrowserRouter([
 	{
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/visualize',
-		element: VIZUALIZE_ENABLED ? <Visualize /> : <RouteError />,
+		element: VISUALIZE_ENABLED ? <Visualize /> : <RouteError />,
 		errorElement: <RouteError />,
 	},
 	{
