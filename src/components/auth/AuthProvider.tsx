@@ -1,18 +1,19 @@
-import { useRef, useState } from 'react';
 import {
 	OidcConfiguration,
 	OidcProvider,
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
+import { useRef, useState } from 'react';
 
-import { Layout as LayoutSkeleton } from '../skeleton/Layout';
-import { Authenticating } from '../Oidc/Authenticating';
-import { publicGetRequest } from '../../lib/commons/axios-utils';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
-import { CallbackSuccess } from '../Oidc/CallbackSuccess';
+import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
+import { Authenticating } from '../Oidc/Authenticating';
 import { AuthenticatingError } from '../Oidc/AuthenticatingError';
+import { CallbackSuccess } from '../Oidc/CallbackSuccess';
 import { ServiceWorkerNotSupported } from '../Oidc/ServiceWorkerNotSupported';
 import { SessionLost } from '../Oidc/SessionLost';
+import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -26,6 +27,8 @@ function fetchConfig(): Promise<OidcConfiguration> {
 	return publicGetRequest<OidcConfiguration>('/configuration.json');
 }
 
+const { AUTH_TYPE } = environment;
+
 export function AuthProvider({ children }: AuthProviderProps) {
 	const alreadyLoad = useRef(false);
 	const [configuration, setConfiguration] = useState<
@@ -36,16 +39,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			return;
 		}
 		alreadyLoad.current = true;
-		const conf = await fetchConfig();
-		setConfiguration({
-			...conf,
-			redirect_uri: `${window.location.origin}/login`,
-			token_renew_mode: TokenRenewMode.access_token_invalid,
-			refresh_time_before_tokens_expiration_in_second: 40,
-		});
+
+		if (AUTH_TYPE === AuthTypeEnum.Oidc) {
+			const conf = await fetchConfig();
+			setConfiguration({
+				...conf,
+				redirect_uri: `${window.location.origin}/login`,
+				token_renew_mode: TokenRenewMode.access_token_invalid,
+				refresh_time_before_tokens_expiration_in_second: 40,
+			});
+		}
 	}, [alreadyLoad]);
 
-	if (configuration !== undefined) {
+	if (AUTH_TYPE === AuthTypeEnum.Oidc && configuration !== undefined) {
 		return (
 			<OidcProvider
 				configuration={configuration}
@@ -60,5 +66,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			</OidcProvider>
 		);
 	}
-	return <Pending />;
+	if (AUTH_TYPE === AuthTypeEnum.Oidc && configuration === undefined)
+		return <Pending />;
+	return <>{children}</>;
 }
