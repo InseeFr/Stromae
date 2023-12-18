@@ -25,11 +25,16 @@ function errorHandler(error: AxiosError) {
 	}
 }
 
-function jwtHeaders(token: string, contentType?: string) {
-	return {
-		Authorization: `Bearer ${token}`,
+function jwtHeaders(token: string | undefined, contentType?: string) {
+	const headers = {
 		'Content-type': contentType ?? 'application/json; charset=utf-8',
 	};
+	if (token)
+		return {
+			Authorization: `Bearer ${token}`,
+			...headers,
+		};
+	return headers;
 }
 
 function publicHeader() {
@@ -49,7 +54,7 @@ export async function publicGetRequest<T>(url: string) {
 
 export async function authenticatedGetRequest<T>(
 	url: string,
-	token: string,
+	token: string | undefined,
 	contentType?: string
 ) {
 	try {
@@ -66,7 +71,10 @@ export async function authenticatedGetRequest<T>(
 	}
 }
 
-export async function authenticatedGetBlob(url: string, token: string) {
+export async function authenticatedGetBlob(
+	url: string,
+	token: string | undefined
+) {
 	try {
 		const headers = jwtHeaders(token, 'application/pdf');
 		const { data } = await axios<BlobPart>({
@@ -85,7 +93,7 @@ export async function authenticatedGetBlob(url: string, token: string) {
 export async function authenticatedPutRequest<T>(
 	url: string,
 	data: T,
-	token: string
+	token: string | undefined
 ) {
 	try {
 		const headers = jwtHeaders(token);
