@@ -11,7 +11,17 @@ export function Visualize() {
 	const metadataUrl = searchParams.get('metadata');
 	const dataUrl = searchParams.get('data');
 	const readOnly = searchParams.get('readOnly');
-	const [nomenclatures, setNomenclatures] = useState<NomenclaturesType>({});
+	const [nomenclatures, setNomenclatures] = useState<NomenclaturesType>(() => {
+		const stringNomenclatures = searchParams.get('nomenclatures');
+		try {
+			return JSON.parse(
+				stringNomenclatures ??
+					`{ "communes-2023": "/rp/nomenclatures/communes-2023.json" }`
+			);
+		} catch (e) {
+			return {};
+		}
+	});
 
 	if (sourceUrl) {
 		return (
@@ -24,5 +34,10 @@ export function Visualize() {
 			/>
 		);
 	}
-	return <SelectResources setNomenclatures={setNomenclatures} />;
+	return (
+		<SelectResources
+			nomenclatures={nomenclatures}
+			setNomenclatures={setNomenclatures}
+		/>
+	);
 }

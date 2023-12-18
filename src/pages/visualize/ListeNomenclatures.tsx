@@ -72,15 +72,23 @@ function extractNomenclaturesFromList(rows: Array<EntryRow> = []) {
 	}, {});
 }
 
+function extractRowsFromNomeclature(
+	nomenclatures: NomenclaturesType
+): Array<EntryRow> {
+	return Object.entries(nomenclatures || {}).reduce((acc, [name, uri]) => {
+		return [...acc, { name, uri }] as Array<EntryRow>;
+	}, [] as Array<EntryRow>);
+}
+
 export function ListeNomenclatures({
+	nomenclatures,
 	setNomenclatures,
 }: {
+	nomenclatures: NomenclaturesType;
 	setNomenclatures: (n: NomenclaturesType) => void;
 }) {
 	const [rows, setRows] = useState<Array<EntryRow>>(() => {
-		return [
-			{ name: 'communes-2019', uri: '/rp/nomenclatures/communes-2019.json' },
-		];
+		return extractRowsFromNomeclature(nomenclatures);
 	});
 
 	const onChange = useCallback(
