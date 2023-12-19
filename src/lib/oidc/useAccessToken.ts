@@ -3,16 +3,6 @@ import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 
 const { AUTH_TYPE } = environment;
 
-/** */
-export function useOidcAccessToken(): {
-	accessToken: string;
-	accessTokenPayload: string;
-} {
-	const { accessToken, accessTokenPayload } = useOidcAccessTokenAxa();
-
-	return { accessToken, accessTokenPayload };
-}
-
 export function useAccessToken(): {
 	accessToken: string | undefined;
 	accessTokenPayload: string | undefined;

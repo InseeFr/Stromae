@@ -28,31 +28,37 @@ function fetchConfig(): Promise<OidcConfiguration> {
 }
 
 const { AUTH_TYPE } = environment;
+const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
 
 export function AuthProvider({ children }: AuthProviderProps) {
-	const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
 	const alreadyLoad = useRef(false);
 	const [configuration, setConfiguration] = useState<
 		OidcConfiguration | undefined
 	>(undefined);
+
+	const oidcProviderReady = isOidcEnabled && configuration;
+	const waitingForOidcConfiguration = isOidcEnabled && !configuration;
+
 	useAsyncEffect(async () => {
 		if (alreadyLoad.current) {
 			return;
 		}
 		alreadyLoad.current = true;
 
-		if (isOidcEnabled) {
-			const conf = await fetchConfig();
-			setConfiguration({
-				...conf,
-				redirect_uri: `${window.location.origin}/login`,
-				token_renew_mode: TokenRenewMode.access_token_invalid,
-				refresh_time_before_tokens_expiration_in_second: 40,
-			});
+		if (!isOidcEnabled) {
+			return;
 		}
+
+		const conf = await fetchConfig();
+		setConfiguration({
+			...conf,
+			redirect_uri: `${window.location.origin}/login`,
+			token_renew_mode: TokenRenewMode.access_token_invalid,
+			refresh_time_before_tokens_expiration_in_second: 40,
+		});
 	}, [alreadyLoad]);
 
-	if (isOidcEnabled && configuration !== undefined) {
+	if (oidcProviderReady) {
 		return (
 			<OidcProvider
 				configuration={configuration}
@@ -67,6 +73,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			</OidcProvider>
 		);
 	}
-	if (isOidcEnabled && configuration === undefined) return <Pending />;
+	if (waitingForOidcConfiguration) return <Pending />;
 	return <>{children}</>;
 }

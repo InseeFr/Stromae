@@ -12,15 +12,15 @@ type LoadFromApiProps = {
 };
 
 const { AUTH_TYPE } = environment;
+const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
 
 export function LoadFromApi({
 	survey,
 	unit,
 	children,
 }: PropsWithChildren<LoadFromApiProps>) {
-	const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
-
 	const { accessToken } = useAccessToken();
+	const isTokenReady = (isOidcEnabled && accessToken) || !isOidcEnabled;
 
 	const getMetadata = useCallback(async () => {
 		if (survey) {
@@ -30,18 +30,18 @@ export function LoadFromApi({
 	}, [survey]);
 
 	const getSurvey = useCallback(async () => {
-		if (survey && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
+		if (survey && isTokenReady) {
 			return surveyApi.getSurvey(survey, accessToken);
 		}
 		return undefined;
-	}, [survey, isOidcEnabled, accessToken]);
+	}, [survey, isTokenReady, accessToken]);
 
 	const getSurveyUnitData = useCallback(async () => {
-		if (unit && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
+		if (unit && isTokenReady) {
 			return surveyApi.getSurveyUnitData(unit, accessToken);
 		}
 		return undefined;
-	}, [unit, isOidcEnabled, accessToken]);
+	}, [unit, isTokenReady, accessToken]);
 
 	const getReferentiel = useCallback(
 		async (name: string) => {
@@ -59,20 +59,20 @@ export function LoadFromApi({
 
 	const putSurveyUnitStateData = useCallback(
 		async (state?: StateData) => {
-			if (state && unit && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
+			if (state && unit && isTokenReady) {
 				await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
 			}
 
 			return true;
 		},
-		[accessToken, isOidcEnabled, unit]
+		[accessToken, isTokenReady, unit]
 	);
 
 	const putSurveyUnitData = useCallback(
 		async (data?: DataVariables) => {
 			try {
 				if (data) {
-					if (unit && ((isOidcEnabled && accessToken) || !isOidcEnabled)) {
+					if (unit && isTokenReady) {
 						await surveyApi.putSurveyUnitData(data, unit, accessToken);
 					}
 				}
@@ -82,7 +82,7 @@ export function LoadFromApi({
 			}
 			return true;
 		},
-		[accessToken, isOidcEnabled, unit]
+		[accessToken, isTokenReady, unit]
 	);
 
 	const contextValue = useMemo(
