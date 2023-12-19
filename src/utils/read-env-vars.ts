@@ -35,9 +35,8 @@ export const environment = {
 		getEnvVar('REACT_APP_SAVING_STRATEGY') || SavingStrategyEnum.Complete,
 	SAVING_TIME: getEnvVar('REACT_APP_SAVING_TIME') || SavingTimeEnum.Sequence,
 	DEFAULT_SURVEY: getEnvVar('REACT_APP_DEFAULT_SURVEY') || 'recensement',
-	// Not Yet Implemented
-	AUTH_TYPE: getEnvVar('REACT_APP_AUTH_TYPE') || AuthTypeEnum.None,
+	AUTH_TYPE: getEnvVar('REACT_APP_AUTH_TYPE') || AuthTypeEnum.Oidc,
 	// VISUALIZE is disabled by default, so if value is not present and not set to true in env-config.js, VISUALIZE page is disabled
-	VIZUALIZE_ENABLED: getEnvVar('REACT_APP_VIZUALIZE_ENABLED') || false,
-	DEBUG: Boolean(getEnvVar('REACT_APP_DEBUG') === 'true')
+	VISUALIZE_ENABLED: `${getEnvVar('REACT_APP_VISUALIZE_ENABLED')}` === 'true',
+	DEBUG: Boolean(getEnvVar('REACT_APP_DEBUG') === 'true'),
 };

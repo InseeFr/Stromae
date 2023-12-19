@@ -8,10 +8,16 @@ import { ListeNomenclatures } from '../ListeNomenclatures';
 import { NomenclaturesType } from '../Visualize';
 
 export type SelectResourceProps = {
+	nomenclatures: NomenclaturesType;
 	setNomenclatures: (nomenclatures: NomenclaturesType) => void;
 };
 
-function makePath(source: string, data?: string, metadata?: string) {
+function makePath(
+	source: string,
+	data?: string,
+	metadata?: string,
+	nomenclatures?: NomenclaturesType
+) {
 	let query = `?source=${source}`;
 	if (data?.length) {
 		query = `${query}&data=${data}`;
@@ -19,13 +25,19 @@ function makePath(source: string, data?: string, metadata?: string) {
 	if (metadata?.length) {
 		query = `${query}&metadata=${metadata}`;
 	}
+	if (nomenclatures) {
+		query = `${query}&nomenclatures=${JSON.stringify(nomenclatures)}`;
+	}
 	return {
 		pathname: '/visualize',
 		search: query,
 	};
 }
 
-export function SelectResources({ setNomenclatures }: SelectResourceProps) {
+export function SelectResources({
+	nomenclatures,
+	setNomenclatures,
+}: SelectResourceProps) {
 	const navigate = useNavigate();
 	const [source, setSource] = useState<string>('');
 	const [metadata, setMetadata] = useState<string>('');
@@ -33,7 +45,7 @@ export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 
 	function onClick(): void {
 		if (source) {
-			navigate(makePath(source, data, metadata));
+			navigate(makePath(source, data, metadata, nomenclatures));
 		}
 		return undefined;
 	}
@@ -96,7 +108,10 @@ export function SelectResources({ setNomenclatures }: SelectResourceProps) {
 					ils devront aussi figurer dans la section suggesters du fichier
 					source.
 				</p>
-				<ListeNomenclatures setNomenclatures={setNomenclatures} />
+				<ListeNomenclatures
+					nomenclatures={nomenclatures}
+					setNomenclatures={setNomenclatures}
+				/>
 				<Button onClick={onClick}>Visualiser le questionnaire</Button>
 			</Grid>
 		</>

@@ -1,18 +1,19 @@
-import { useRef, useState } from 'react';
 import {
 	OidcConfiguration,
 	OidcProvider,
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
+import { useRef, useState } from 'react';
 
-import { Layout as LayoutSkeleton } from '../skeleton/Layout';
-import { Authenticating } from '../Oidc/Authenticating';
-import { publicGetRequest } from '../../lib/commons/axios-utils';
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
-import { CallbackSuccess } from '../Oidc/CallbackSuccess';
+import { publicGetRequest } from '../../lib/commons/axios-utils';
+import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
+import { Authenticating } from '../Oidc/Authenticating';
 import { AuthenticatingError } from '../Oidc/AuthenticatingError';
+import { CallbackSuccess } from '../Oidc/CallbackSuccess';
 import { ServiceWorkerNotSupported } from '../Oidc/ServiceWorkerNotSupported';
 import { SessionLost } from '../Oidc/SessionLost';
+import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 
 function Pending() {
 	return <LayoutSkeleton />;
@@ -26,16 +27,28 @@ function fetchConfig(): Promise<OidcConfiguration> {
 	return publicGetRequest<OidcConfiguration>('/configuration.json');
 }
 
+const { AUTH_TYPE } = environment;
+const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
+
 export function AuthProvider({ children }: AuthProviderProps) {
 	const alreadyLoad = useRef(false);
 	const [configuration, setConfiguration] = useState<
 		OidcConfiguration | undefined
 	>(undefined);
+
+	const oidcProviderReady = isOidcEnabled && configuration;
+	const waitingForOidcConfiguration = isOidcEnabled && !configuration;
+
 	useAsyncEffect(async () => {
 		if (alreadyLoad.current) {
 			return;
 		}
 		alreadyLoad.current = true;
+
+		if (!isOidcEnabled) {
+			return;
+		}
+
 		const conf = await fetchConfig();
 		setConfiguration({
 			...conf,
@@ -45,7 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		});
 	}, [alreadyLoad]);
 
-	if (configuration !== undefined) {
+	if (oidcProviderReady) {
 		return (
 			<OidcProvider
 				configuration={configuration}
@@ -60,5 +73,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			</OidcProvider>
 		);
 	}
-	return <Pending />;
+	if (waitingForOidcConfiguration) return <Pending />;
+	return <>{children}</>;
 }

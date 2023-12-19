@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
-import { useOidc } from '../../lib/oidc';
+import { uri404, uriDeconnexion, uriSurvey } from '../../lib/domainUri';
+import { useAuth } from '../../lib/oidc';
 import { CloneElements } from '../orchestrator/CloneElements';
 import { HeaderProps } from './Header';
-import { uriSurvey, uri404, uriDeconnexion } from '../../lib/domainUri';
 
 type HeaderAuthProps = {
 	children: JSX.Element;
@@ -25,7 +25,7 @@ function getLogOutRedirectionUri(args: { survey?: string; unit?: string }) {
 }
 
 export function HeaderAuth({ children }: HeaderAuthProps) {
-	const { login, logout, isAuthenticated } = useOidc();
+	const { login, logout, isAuthenticated } = useAuth();
 	const { survey, unit } = useParams();
 
 	const handleOidcAuth = useCallback(() => {

@@ -8,7 +8,7 @@ import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { OrchestratorReadOnly } from '../../components/orchestrator';
-import { OidcSecure } from '../../lib/oidc';
+import { AuthSecure } from '../../lib/oidc';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
 
 export type QuestionnaireParams = {
@@ -23,7 +23,7 @@ export function QuestionnaireReadOnly() {
 	const { survey, unit } = useParams();
 	useDocumentTitle('Questionnaire');
 	return (
-		<OidcSecure>
+		<AuthSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<OrchestratorReadOnly features={FEATURES} savingType={COLLECTED}>
@@ -37,6 +37,6 @@ export function QuestionnaireReadOnly() {
 					</OrchestratorReadOnly>
 				</Layout>
 			</LoadFromApi>
-		</OidcSecure>
+		</AuthSecure>
 	);
 }
