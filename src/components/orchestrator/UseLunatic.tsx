@@ -19,8 +19,6 @@ import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 import { useSaving } from './useSaving';
 import { usePrevious } from '../../lib/commons/usePrevious';
-import { useRefreshData } from './useRefreshData';
-import { LunaticData } from '../../typeLunatic/type';
 
 export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -52,7 +50,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		Record<string, string | number | boolean | Array<string>>
 	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
-	const [currentData, setCurrentData] = useState<LunaticData | undefined>(data);
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [refreshControls, setRefreshControls] = useState(false);
 	const shouldSync = useRef(false);
@@ -112,9 +109,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		compileControls,
 		pageTag,
 		pager,
-	} = useLunatic(source, currentData, args);
-
-	useRefreshData({ pageTag, refreshData: setCurrentData });
+	} = useLunatic(source, data, args);
 
 	useEffect(() => {
 		(
