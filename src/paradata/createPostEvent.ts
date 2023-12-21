@@ -1,3 +1,7 @@
+import { environment } from '../utils/read-env-vars';
+import { uriParadata } from '../lib/domainUri';
+import { publicPostRequest } from '../lib/commons/axios-utils';
+
 export type eventType = {
 	type: string;
 	element: string;
@@ -5,7 +9,7 @@ export type eventType = {
 	value?: string | undefined;
 };
 
-export function createPostEvent() {
+export function createPostEvent({ unit }: { unit?: string }) {
 	let stack: eventType[] = [];
 	const sendLimit = 5;
 
@@ -13,12 +17,21 @@ export function createPostEvent() {
 		if (args) stack.push(args);
 		if (stack.length >= sendLimit || changePage) {
 			const tempStack = stack;
+
+			if (tempStack.length && unit) {
+				publicPostRequest(
+					`${environment.PARADATA_DOMAIN}${uriParadata(unit)}`,
+					stack
+				).catch(() => {
+					console.warn(
+						'paradata fail',
+						`${environment.PARADATA_DOMAIN}${uriParadata(unit)}`,
+						stack
+					);
+				});
+			}
 			stack = [];
-			if (tempStack.length)
-				// appel mock
-				console.log('appel mock', tempStack);
 		}
-		console.log(stack);
 	}
 
 	return postIt;

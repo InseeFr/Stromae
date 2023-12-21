@@ -28,57 +28,17 @@ const inputListners = ['focus', 'blur', 'change'];
 const buttonListners = ['focus', 'blur', 'click'];
 const defaultListners = ['focus', 'blur'];
 
-function builderEvent({ type, element, value }: eventType) {
-	return {
-		type,
-		element,
-		timestamp: new Date().getTime(),
-		value,
-	};
-}
-
-const postEvent = createPostEvent();
-
-const handleInput = async (e: Event) => {
-	const target = e.target as HTMLInputElement;
-
-	await postEvent(
-		false,
-		builderEvent({
-			type: e.type,
-			element: target.id,
-			value: e.type === 'change' ? target.value : undefined,
-		})
-	);
-};
-
-const handleButton = async (e: Event) => {
-	const target = e.target as HTMLButtonElement;
-
-	await postEvent(
-		false,
-		builderEvent({
-			type: e.type,
-			element: target.id,
-		})
-	);
-};
-
-const handleDefault = async (e: Event) => {
-	const target = e.target as HTMLElement;
-
-	await postEvent(
-		false,
-		builderEvent({
-			type: e.type,
-			element: target.id,
-		})
-	);
-};
-
-export function useParadata({ pageTag }: { pageTag?: string }) {
+export function useParadata({
+	pageTag,
+	unit,
+}: {
+	pageTag?: string;
+	survey?: string;
+	unit?: string;
+}) {
 	const map = useRef(new Map<string, null>());
 
+	const postEvent = useMemo(() => createPostEvent({ unit }), [unit]);
 	const [components, setComponents] = useState<ParadataComponent[] | []>([]);
 	const [activateParadata, setActivateParadata] = useState<boolean>(false);
 	const [paradataLevel, setparadataLevel] =
@@ -86,6 +46,61 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 
 	const targetNode = document.getElementById('stromae-form');
 	const metadata = useMetadata();
+
+	function builderEvent({ type, element, value }: eventType) {
+		return {
+			type,
+			element,
+			timestamp: new Date().getTime(),
+			value,
+		};
+	}
+
+	const handleInput = useCallback(
+		async (e: Event) => {
+			const target = e.target as HTMLInputElement;
+
+			await postEvent(
+				false,
+				builderEvent({
+					type: e.type,
+					element: target.id,
+					value: e.type === 'change' ? target.value : undefined,
+				})
+			);
+		},
+		[postEvent]
+	);
+
+	const handleButton = useCallback(
+		async (e: Event) => {
+			const target = e.target as HTMLButtonElement;
+
+			await postEvent(
+				false,
+				builderEvent({
+					type: e.type,
+					element: target.id,
+				})
+			);
+		},
+		[postEvent]
+	);
+
+	const handleDefault = useCallback(
+		async (e: Event) => {
+			const target = e.target as HTMLElement;
+
+			await postEvent(
+				false,
+				builderEvent({
+					type: e.type,
+					element: target.id,
+				})
+			);
+		},
+		[postEvent]
+	);
 
 	const manageListners = useCallback(() => {
 		if (components.length) {
@@ -108,7 +123,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			});
 		}
-	}, [components]);
+	}, [components, handleInput, handleButton, handleDefault]);
 
 	const manageAllListners = useCallback(() => {
 		// chnage type any to accept HTMLFormControlsCollection
@@ -134,7 +149,7 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 				}
 			}
 		}
-	}, [targetNode]);
+	}, [handleButton, handleDefault, handleInput, targetNode]);
 
 	const mutationObserver = useMemo(
 		() =>
@@ -185,5 +200,5 @@ export function useParadata({ pageTag }: { pageTag?: string }) {
 
 	useEffect(() => {
 		postEvent(true);
-	}, [pageTag]);
+	}, [pageTag, postEvent]);
 }

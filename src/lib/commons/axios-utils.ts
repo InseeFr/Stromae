@@ -95,3 +95,13 @@ export async function authenticatedPutRequest<T>(
 		throw new Error(`Request fail : ${url}`);
 	}
 }
+
+export async function publicPostRequest<T>(url: string, data: T) {
+	try {
+		const headers = publicHeader();
+		await axios<T>({ method: HTTP_VERBS.post, url, headers, data });
+	} catch (error: AxiosError | any) {
+		errorHandler(error);
+		throw new Error(`Request fail : ${url}`);
+	}
+}

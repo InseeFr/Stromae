@@ -3,6 +3,7 @@ import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
 import { Form } from '../skeleton/Form';
 import { useParadata } from '../../paradata/useParadata';
+import { useParams } from 'react-router';
 
 type Props = Pick<
 	OrchestratedElement,
@@ -79,6 +80,7 @@ const useStyles = makeStyles()({
 });
 
 export function Formulaire(props: Props) {
+	const { survey, unit } = useParams();
 	const {
 		getComponents,
 		currentErrors,
@@ -88,7 +90,7 @@ export function Formulaire(props: Props) {
 	} = props;
 	const { classes, cx } = useStyles();
 
-	useParadata({ pageTag });
+	useParadata({ pageTag, survey, unit });
 	if (waiting) {
 		return <Form />;
 	}
