@@ -12,7 +12,7 @@ const config = {
 		mermaid: true,
 	},
 	title: 'Stromae V3',
-	tagline: '',
+	tagline: `Orchestrateur web de la filière d'enquête de l'Insee`,
 	favicon: '/img/favicon.ico',
 
 	// Set the production url of your site here
