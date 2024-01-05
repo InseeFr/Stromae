@@ -5,7 +5,16 @@ import styles from './styles.module.css';
 const FeatureList = [
 	{
 		title: `Système de Design de l'État - (DSFR)`,
-		Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+		Svg: (props) => (
+			<a href="https://github.com/codegouvfr/react-dsfr">
+				<img
+					src={
+						'https://github.com/codegouvfr/react-dsfr/releases/download/assets/dsfr-react_repo-card.png'
+					}
+					{...props}
+				/>
+			</a>
+		),
 		description: (
 			<>
 				Stromae utilise le Design Système Français de l'État, grâce à la
@@ -15,7 +24,15 @@ const FeatureList = [
 	},
 	{
 		title: 'Propulsé par @inseefr/Lunatic',
-		Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+
+		Svg: (props) => (
+			<a href="https://github.com/InseeFr/Lunatic">
+				<img
+					src={require('@site/static/img/lunatic-logo.png').default}
+					{...props}
+				/>
+			</a>
+		),
 		description: (
 			<>
 				La librairie TS <code>@inseefr/lunatic</code> permet l'orchestration des
