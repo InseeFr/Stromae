@@ -1,0 +1,8 @@
+{
+	"label": "Orchestration de questionnaire",
+	"position": 2,
+	"link": {
+		"type": "generated-index",
+		"description": "Fonctionnalités de l'orchestrateur"
+	}
+}
