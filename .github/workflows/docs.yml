@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'v3-master'
+      - 'v3/docs'
 
 jobs:
   build-deploy-assets:
