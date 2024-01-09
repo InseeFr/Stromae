@@ -29,7 +29,7 @@ export const useGetReferentiel = (nomenclatures) => {
   const getReferentielForVizu = useConstCallback((refName) => {
     if (nomenclatures && Object.keys(nomenclatures).includes(refName)) {
       const finalUrl = nomenclatures[refName];
-      return getFetcherForLunatic(oidc.getTokens().accessToken)(finalUrl);
+      return getFetcherForLunatic(null)(finalUrl);
     }
     // No nomenclature, return empty array to lunatic
     return Promise.resolve([]);
