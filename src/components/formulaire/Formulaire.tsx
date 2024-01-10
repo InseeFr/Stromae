@@ -60,15 +60,19 @@ const useStyles = makeStyles()({
 		},
 		'.lunatic-dsfr-component-set': {
 			marginBottom: '1rem',
-			display: 'grid',
-			gridTemplateColumns: '1fr',
+			display: 'flex',
+			flexDirection: 'column', 
+			alignItems: 'flex-start',
 			gap: '1rem',
 			'.fr-callout': {
 				marginBottom: '0',
 			},
+			'.lunatic-dsfr-component-set-component': {
+				width: '100%'
+			},
 			'.lunatic-dsfr-component-set': {
-				display: 'grid',
-				gridTemplateColumns: '1fr',
+				display: 'flex',
+				flexDirection: 'column', 
 				gap: '1rem',
 			},
 		},
