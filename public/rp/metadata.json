@@ -122,5 +122,45 @@
 	},
 	"Portal": {
 		"if you need": "use it !"
+	},
+
+	"paradata": {
+		"isActive":true,
+		"level": "2",
+		"components": [
+			{
+				"id": "kkxuu8ov-nom",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "kkxuu8ov-email",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "lfs5q1zj-iris",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-lfs0z1kg-:r1s:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-lfs0z1kg-:r1s:-1",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-1-:r24:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-0-:r20:-0",
+				"events": ["focus", "blur","change"]
+			},
+			{
+				"id": "fr-fieldset-radio-klqncpes-0-:r20:-1",
+				"events": ["focus", "blur","change"]
+			}
+			
+		]
 	}
 }

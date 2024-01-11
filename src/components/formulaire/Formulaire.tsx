@@ -2,6 +2,8 @@ import { makeStyles } from '@codegouvfr/react-dsfr/tss';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { ComponentsRenderer } from '../ComponentsRenderer';
 import { Form } from '../skeleton/Form';
+import { useParadata } from '../../paradata/useParadata';
+import { useParams } from 'react-router';
 
 type Props = Pick<
 	OrchestratedElement,
@@ -78,6 +80,7 @@ const useStyles = makeStyles()({
 });
 
 export function Formulaire(props: Props) {
+	const { survey, unit } = useParams();
 	const {
 		getComponents,
 		currentErrors,
@@ -86,9 +89,12 @@ export function Formulaire(props: Props) {
 		pageTag,
 	} = props;
 	const { classes, cx } = useStyles();
+
+	useParadata({ pageTag, survey, unit });
 	if (waiting) {
 		return <Form />;
 	}
+
 	return (
 		<form id="stromae-form" className={cx(classes.root)}>
 			<ComponentsRenderer
