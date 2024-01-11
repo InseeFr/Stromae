@@ -10,7 +10,6 @@ export type ParadataComponent = {
 export type ParadataType = {
 	isActive: boolean;
 	level: '1' | '2';
-	sendLimit: number;
 	components: Array<ParadataComponent> | [];
 };
 

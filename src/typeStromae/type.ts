@@ -148,6 +148,21 @@ export type ListElement = OptionalPageElement & {
 	items: Array<AcceptedElements & { element?: AcceptedElements }>;
 };
 
+export type EventHandler = {
+	event: 'blur' | 'focus' | 'change' | 'click';
+};
+
+export type ParadataComponent = {
+	id: string;
+	events: Array<EventHandler['event']>;
+};
+
+export type ParadataType = {
+	isActive: boolean;
+	level: '1' | '2';
+	components: Array<ParadataComponent> | [];
+};
+
 export type AcceptedElements =
 	| TitleElement
 	| LinkElement
@@ -162,4 +177,4 @@ export type MetadataSurvey = {
 	Submit: SubmitType;
 	redirections: Record<string, string>;
 	errorPage: Record<string, string>;
-} & { optionalPages: Record<string, OptionalPage> } & { paradata: any };
+} & { optionalPages: Record<string, OptionalPage> } & { paradata: ParadataType };
