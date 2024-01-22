@@ -1,8 +1,9 @@
-import { PropsWithChildren, useCallback } from 'react';
-import { useOidcAccessToken } from '../../lib/oidc';
+import { PropsWithChildren, useCallback, useMemo } from 'react';
+import { useAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
 
+import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
 type LoadFromApiProps = {
@@ -10,12 +11,16 @@ type LoadFromApiProps = {
 	unit?: string;
 };
 
+const { AUTH_TYPE } = environment;
+const isOidcEnabled = AUTH_TYPE === AuthTypeEnum.Oidc;
+
 export function LoadFromApi({
 	survey,
 	unit,
 	children,
 }: PropsWithChildren<LoadFromApiProps>) {
-	const { accessToken } = useOidcAccessToken();
+	const { accessToken } = useAccessToken();
+	const isTokenReady = (isOidcEnabled && accessToken) || !isOidcEnabled;
 
 	const getMetadata = useCallback(async () => {
 		if (survey) {
@@ -25,18 +30,18 @@ export function LoadFromApi({
 	}, [survey]);
 
 	const getSurvey = useCallback(async () => {
-		if (survey && accessToken) {
+		if (survey && isTokenReady) {
 			return surveyApi.getSurvey(survey, accessToken);
 		}
 		return undefined;
-	}, [survey, accessToken]);
+	}, [survey, isTokenReady, accessToken]);
 
 	const getSurveyUnitData = useCallback(async () => {
-		if (accessToken && unit) {
+		if (unit && isTokenReady) {
 			return surveyApi.getSurveyUnitData(unit, accessToken);
 		}
 		return undefined;
-	}, [unit, accessToken]);
+	}, [unit, isTokenReady, accessToken]);
 
 	const getReferentiel = useCallback(
 		async (name: string) => {
@@ -54,20 +59,20 @@ export function LoadFromApi({
 
 	const putSurveyUnitStateData = useCallback(
 		async (state?: StateData) => {
-			if (state && unit) {
+			if (state && unit && isTokenReady) {
 				await surveyApi.putSurveyUnitStateData(state, unit, accessToken);
 			}
 
 			return true;
 		},
-		[accessToken, unit]
+		[accessToken, isTokenReady, unit]
 	);
 
 	const putSurveyUnitData = useCallback(
 		async (data?: DataVariables) => {
 			try {
 				if (data) {
-					if (unit) {
+					if (unit && isTokenReady) {
 						await surveyApi.putSurveyUnitData(data, unit, accessToken);
 					}
 				}
@@ -77,21 +82,32 @@ export function LoadFromApi({
 			}
 			return true;
 		},
-		[accessToken, unit]
+		[accessToken, isTokenReady, unit]
+	);
+
+	const contextValue = useMemo(
+		() => ({
+			getMetadata,
+			getSurvey,
+			getSurveyUnitData,
+			putSurveyUnitStateData,
+			getReferentiel,
+			putSurveyUnitData,
+			getDepositProof,
+		}),
+		[
+			getDepositProof,
+			getMetadata,
+			getReferentiel,
+			getSurvey,
+			getSurveyUnitData,
+			putSurveyUnitData,
+			putSurveyUnitStateData,
+		]
 	);
 
 	return (
-		<loadSourceDataContext.Provider
-			value={{
-				getMetadata,
-				getSurvey,
-				getSurveyUnitData,
-				putSurveyUnitStateData,
-				getReferentiel,
-				putSurveyUnitData,
-				getDepositProof,
-			}}
-		>
+		<loadSourceDataContext.Provider value={contextValue}>
 			{children}
 		</loadSourceDataContext.Provider>
 	);

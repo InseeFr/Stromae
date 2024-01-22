@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { AlertesSaving } from '../../components/AlertSaving/AlertesSaving';
+import { AlertesControles } from '../../components/AlertesControles';
 import { ComplementaryComponents } from '../../components/ComplementaryComponents/ComplementaryComponents';
 import { ContinueOrRestart } from '../../components/ContinueOrRestart/ContinueOrRestart';
+import { DevOptions } from '../../components/DevOptions';
 import { DraftBanner } from '../../components/DraftBanner/DraftBanner';
 import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
@@ -11,10 +13,8 @@ import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Orchestrator } from '../../components/orchestrator';
-import { OidcSecure } from '../../lib/oidc';
+import { AuthSecure } from '../../lib/oidc';
 import { useDocumentTitle } from '../../utils/useDocumentTitle';
-import { AlertesControles } from '../../components/AlertesControles';
-import { DevOptions } from '../../components/DevOptions';
 
 export type QuestionnaireParams = {
 	survey?: string;
@@ -31,7 +31,7 @@ export function Questionnaire(props: QuestionnaireProps) {
 	useDocumentTitle('Questionnaire');
 
 	return (
-		<OidcSecure>
+		<AuthSecure>
 			<LoadFromApi survey={survey} unit={unit}>
 				<Layout>
 					<Orchestrator features={FEATURES} savingType={COLLECTED}>
@@ -50,6 +50,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 					</Orchestrator>
 				</Layout>
 			</LoadFromApi>
-		</OidcSecure>
+		</AuthSecure>
 	);
 }

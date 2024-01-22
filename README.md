@@ -2,6 +2,8 @@
 
 Web application for the management of questionnaires powered by Lunatic (https://github.com/InseeFr/Lunatic)
 
+[**Documentation de Stromae**](https://inseefr.github.io/Stromae/)
+
 ## View a survey
 
 You can view a questionnaire in stromae by going to `https://url-of-application/visualize`.

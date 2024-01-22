@@ -4,9 +4,11 @@ import {
 	PropsWithChildren,
 	useCallback,
 	useEffect,
+	useMemo,
 	useRef,
 	useState,
 } from 'react';
+import { usePrevious } from '../../lib/commons/usePrevious';
 import {
 	CollectStatusEnum,
 	OrchestratedElement,
@@ -18,7 +20,6 @@ import { OrchestratorProps } from './Orchestrator';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 import { useSaving } from './useSaving';
-import { usePrevious } from '../../lib/commons/usePrevious';
 
 export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -46,10 +47,10 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	const [waiting, setWaiting] = useState(false);
 	const [failure, setFailure] = useState<SavingFailure>();
 	const [currentChange, setCurrentChange] = useState<{ name: string }>();
-	const [personalizationMap, setPersonalizationMap] = useState<
-		Record<string, string | number | boolean | Array<string>>
-	>({});
 	const { data, stateData, personalization = [] } = surveyUnitData ?? {};
+	const personalizationMap = useMemo<
+		Record<string, string | number | boolean | Array<string>>
+	>(() => createPersonalizationMap(personalization), [personalization]);
 	const { currentPage: pageFromAPI, state } = stateData ?? {};
 	const [refreshControls, setRefreshControls] = useState(false);
 	const shouldSync = useRef(false);
@@ -71,10 +72,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		},
 		[listenChange]
 	);
-
-	useEffect(() => {
-		setPersonalizationMap(createPersonalizationMap(personalization));
-	}, [personalization]);
 
 	useEffect(() => {
 		setArgs({

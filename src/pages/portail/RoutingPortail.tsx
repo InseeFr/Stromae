@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { environment } from '../../utils/read-env-vars';
+import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 
-const { DEFAULT_SURVEY } = environment;
+const { DEFAULT_SURVEY, AUTH_TYPE, VISUALIZE_ENABLED } = environment;
+const visualizeRoutingEnabled =
+	AUTH_TYPE === AuthTypeEnum.None && VISUALIZE_ENABLED;
 
 export function RoutingPortail() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (DEFAULT_SURVEY) {
+		if (visualizeRoutingEnabled) {
+			navigate(`/visualize`);
+		} else if (DEFAULT_SURVEY) {
 			navigate(`/questionnaire/${DEFAULT_SURVEY}`);
 		} else {
 			navigate(`/404`);

@@ -1,26 +1,26 @@
-import { useCallback, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useOidc, useOidcUser } from '@axa-fr/react-oidc';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import { Skeleton } from '@mui/material';
+import { useCallback, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { useRemote } from '../orchestrator/useRemote';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
+import { useRemote } from '../orchestrator/useRemote';
 
+import { fr } from '@codegouvfr/react-dsfr';
+import { useColors } from '@codegouvfr/react-dsfr/useColors';
+import { useAuth, useAuthUser } from '../../lib/oidc';
+import ConvertContent from '../../utils/convertContent';
+import { themeStringToVariable } from '../../utils/themeStringToVariable';
+import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import { RespondantsList } from './RespondantsList';
 import { WelcomeQuestions } from './WelcomeQuestions';
-import { useDocumentTitle } from '../../utils/useDocumentTitle';
-import ConvertContent from '../../utils/convertContent';
-import { useColors } from '@codegouvfr/react-dsfr/useColors';
-import { themeStringToVariable } from '../../utils/themeStringToVariable';
-import { fr } from '@codegouvfr/react-dsfr';
 
 export function WelcomeContainer() {
 	const theme = useColors();
 	const navigate = useNavigate();
 	const { survey, unit } = useParams();
-	const { oidcUser } = useOidcUser();
-	const { login } = useOidc();
+	const { oidcUser } = useAuthUser();
+	const { login } = useAuth();
 	const { getMetadata } = useContext(loadSourceDataContext);
 	const metadata = useRemote<any>(getMetadata, navigateError);
 	const welcome = metadata?.Welcome;
