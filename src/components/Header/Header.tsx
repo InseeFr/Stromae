@@ -136,11 +136,7 @@ export function Header(props: HeaderProps) {
 																	rel: quickAccessItem.linkProps?.target === '_blank' ? "noopener noreferrer" : undefined,
 																	target: quickAccessItem.linkProps?.target,
 																	to: quickAccessItem.linkProps?.href,
-																	title:
-																		quickAccessItem.linkProps?.target ===
-																			'_blank'
-																			? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
-																			: quickAccessItem.text,
+																	title: quickAccessItem.linkProps?.target === '_blank' ? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`: quickAccessItem.text,
 																}}
 															>
 																{quickAccessItem.text}
