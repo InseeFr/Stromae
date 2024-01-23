@@ -8,7 +8,7 @@ import { surveySource } from './api';
  */
 export const getSurvey = (BASE_URL: string) =>
 	moize(
-		(survey: string, token: string): Promise<LunaticSource> => {
+		(survey: string, token?: string): Promise<LunaticSource> => {
 			return authenticatedGetRequest<LunaticSource>(
 				surveySource(BASE_URL, survey),
 				token

@@ -5,7 +5,7 @@ import { surveyUnit } from './api';
 
 export const getSurveyUnitData = (BASE_URL: string) =>
 	moize(
-		async (unit: string, token: string): Promise<SurveyUnitData> => {
+		async (unit: string, token?: string): Promise<SurveyUnitData> => {
 			const { data, stateData, personalization } =
 				await authenticatedGetRequest<SurveyUnitData>(
 					surveyUnit(BASE_URL, unit),
