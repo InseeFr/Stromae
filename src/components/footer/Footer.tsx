@@ -47,8 +47,7 @@ export function Footer(props: FooterProps) {
 						<Link
 							className={fr.cx('fr-footer__brand-link')}
 							to="/"
-							title={`Accueil - ${homeLinkProps && homeLinkProps.title
-								} - République Française`}
+							title={`Accueil - ${homeLinkProps && homeLinkProps.title} - République Française`}
 						>
 							<img
 								className={fr.cx('fr-footer__logo')}
