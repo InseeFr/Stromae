@@ -42,6 +42,7 @@ export function useSaving({
 				const isOnChange = changes.current.size !== 0;
 				if (isOnChange) {
 					const lunaticValues = getData()?.COLLECTED ?? {};
+					const keys = Array.from(changes.current.keys());
 					const payload = Object.entries(
 						Object.fromEntries(changes.current)
 					).reduce((acc, [name]) => {
@@ -49,7 +50,10 @@ export function useSaving({
 					}, {});
 					await putSurveyUnitData(payload);
 					setFailure({ status: 200 });
-					changes.current.clear();
+
+					for (const variable of keys) {
+						changes.current.delete(variable);
+					}
 				}
 				// save stateData
 				const state = await saveSuData({
