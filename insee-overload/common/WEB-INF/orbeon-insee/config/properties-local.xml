@@ -46,10 +46,10 @@
     <property as="xs:string" name="enregistrer-service" value="collectes/reponse"/>
     <!-- The name of the service of recovery of the Piloting information -->
     <property as="xs:string" name="informations-service" value="informations/questionnaire"/>
-
+    
     <!-- The version number -->
-
-    <property as="xs:string" name="numero-version" value="1.2.8"/>
+    
+    <property as="xs:string" name="numero-version" value="4.2.7"/>
 
 
     <!-- The end of the path of the My Account section on the portal side -->

@@ -945,3 +945,77 @@ label.radio {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
 }
+
+
+/***** ajout 2022 *****/
+
+/*largeur bandeau*/
+.orbeon .navbar-fixed-top {
+    position:unset;
+}
+
+/*lien zarb*/
+span.fr-navbar-home-link.xforms-group {
+    display:none;
+}
+
+/*barre avancement*/
+#progress-control≡≡c {
+    display:none;
+}
+
+/*bouton de navigation*/
+.orbeon .fr-buttons {
+    position:inherit;
+}
+
+span[role=navigation].fr-buttons {
+    width:auto;
+}
+
+/*#previous{
+    float:right;
+}
+#start,
+#next {
+    float:right;
+}*/
+
+
+/*hide output*/
+.orbeon .xforms-output.xforms-output-appearance-minimal output.xforms-output-output {
+    display:none !important;
+}
+
+#remontePage-control {
+    position: absolute;
+    left: -99999rem;
+}
+
+h1 span.titre_enquete {
+  white-space: normal;
+}
+
+
+
+
+html#xf-1 body.orbeon form#xforms-form div#warningNext_c div#warningNext {
+  position:fixed !important;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+html#xf-1 body.orbeon form#xforms-form div#warningPrevious_c div#warningPrevious {
+  position:fixed !important;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.orbeon .xforms-select-appearance-full .xforms-items {
+  flex-direction: row;
+}
+
+

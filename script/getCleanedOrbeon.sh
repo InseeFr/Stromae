@@ -43,6 +43,7 @@ function cleanOrbeon(){
     echo "Clean Exist source"
     rm -rfv WEB-INF/exist-data
     rm -rfv WEB-INF/lib/exist-*.jar
+	rm -rfv WEB-INF/lib/log4j-to-slf4j-*.jar
     echo "Delete unecessary file in WEB-INF folder"
     find WEB-INF/* -maxdepth 0 -type f -delete
     echo "Delete unecessary apps in WEB-INF/resources/apps folder"
