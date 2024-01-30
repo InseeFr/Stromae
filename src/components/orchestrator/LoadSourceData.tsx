@@ -5,10 +5,11 @@ import { LunaticSource } from '../../typeLunatic/type-source';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
+import { uri301, uri404 } from '../../lib/domainUri';
+import { removeDeclarationsAfterFromSource } from '../../utils/questionnaire';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
-import { uri301, uri404 } from '../../lib/domainUri';
 
 type LoadSourceDataProps = {
 	onChange?: (args: any) => void;
@@ -45,13 +46,16 @@ export function LoadSourceData({
 		navigateError
 	);
 
-	if (!source || !surveyUnitData) {
+	const sourceWithoutDeclarationsAfter =
+		removeDeclarationsAfterFromSource(source);
+
+	if (!sourceWithoutDeclarationsAfter || !surveyUnitData) {
 		// TODO skeleton
 		return null;
 	}
 	return (
 		<CloneElements<OrchestratorProps>
-			source={source}
+			source={sourceWithoutDeclarationsAfter}
 			surveyUnitData={surveyUnitData}
 			getReferentiel={getReferentiel}
 			onChange={onChange}
