@@ -1,5 +1,6 @@
 import { JsonViewer } from '@site/src/components/JsonViewer';
-import { Header, Footer } from './metadata';
+import { ImgViewer } from '@site/src/components/ImgViewer';
+import { Header, Footer, Welcome } from './metadata';
 
 # Personnalisation
 Permet la personalisation de l'entête et le pied de page selon l'enquête.
@@ -16,6 +17,8 @@ Ce "Header" est entièrement paramétrable et ces paramètres viennent des possi
 
 Le Header et le pied de page sont écrit en VTL x MD.
 
+Mise à part cette specificité, ils doivent respecter les `props` de leur composants DSFR (Header et Footer)
+
 
 <JsonViewer json={Header}></JsonViewer>
 
@@ -29,7 +32,15 @@ Le Header et le pied de page sont écrit en VTL x MD.
 
 ### Cas RP
 
-Dans le cas du RP, la page d'accueil n'est pas personalisable via la partie personalization du fichier `data`.
+Dans le cas du RP, la page d'accueil n'est pas personnalisable via la partie `personalization` du fichier `data`.
+De plus, elle reste accessible même si l'unité enquêtée n'est pas authentifié.
+
+On assume que le cas RP n'arrive jamais en visualisation.
+Il arrive en mode "collecte" seulement lorsque l'identifiant du questionnaire vaut "`recensement`". Il s'agit d'un cas à part à conserver.
+
+Dans tous les autres cas, cette page nécessite l'authentification de l'unité enquêtée.
+
+
 Pour rappel, `personalization` est array qui liste les variables de personnalisation de l'orchestrateur pour une UE donnée.
 
 Exemple de valeur
@@ -42,7 +53,17 @@ const personalization = [
 ```
 
 La page d'accueil est la première page qui s'affiche si `currentPage`de l'objet data est `null`.
-Au niveau du routage de l'application, l'orchestrateur s'affiche sur la page `/questionnaire/${xxx}/unite-enquetee/${yyy}/welcome`
+Au niveau du routage de l'application, l'orchestrateur s'affiche sur la page `/questionnaire/${xxx}/unite-enquetee/${yyy}/accueil`
+
+Paramétrisation:
+
+Il s'agit de la liste des variables qui sont valorisables.
+
+<JsonViewer json={Welcome}></JsonViewer>
+
+<ImgViewer src="https://laurentc35.github.io/drawio/StromaeWelcomePage.drawio.png"/>
+
+
 
 ### Cas nominale / Filière
 
