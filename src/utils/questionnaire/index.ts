@@ -1,7 +1,7 @@
 import { LunaticComponentDefinition } from '../../typeLunatic/type';
 import { DeclarationType, LunaticSource } from '../../typeLunatic/type-source';
 
-const removeDeclartionsAfterFromDeclarations = (
+const removeDeclarationsAfterFromDeclarations = (
 	declarations: DeclarationType[]
 ): DeclarationType[] => {
 	if (Array.isArray(declarations))
@@ -27,7 +27,7 @@ const removeDeclarationsAfterFromComponent = (
 		return component;
 	}
 
-	const declarationsWithoutAfter = removeDeclartionsAfterFromDeclarations(
+	const declarationsWithoutAfter = removeDeclarationsAfterFromDeclarations(
 		component.declarations
 	);
 
