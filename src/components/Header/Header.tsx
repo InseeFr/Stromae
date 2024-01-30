@@ -77,7 +77,7 @@ export function Header(props: HeaderProps) {
 									<div className={fr.cx('fr-header__operator')}>
 										<img
 											className={fr.cx('fr-responsive-img')}
-											style={{ maxWidth: '3.5rem' }}
+											style={{ maxWidth: '3.5rem', height: 'auto !important', alignSelf: 'flex-start' }}
 											src={operatorLogo?.imgUrl}
 											alt={operatorLogo?.alt}
 										/>
@@ -136,11 +136,7 @@ export function Header(props: HeaderProps) {
 																	rel: quickAccessItem.linkProps?.target === '_blank' ? "noopener noreferrer" : undefined,
 																	target: quickAccessItem.linkProps?.target,
 																	to: quickAccessItem.linkProps?.href,
-																	title:
-																		quickAccessItem.linkProps?.target ===
-																		'_blank'
-																			? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`
-																			: quickAccessItem.text,
+																	title: quickAccessItem.linkProps?.target === '_blank' ? `${quickAccessItem.text} - ouvre une nouvelle fenêtre`: quickAccessItem.text,
 																}}
 															>
 																{quickAccessItem.text}

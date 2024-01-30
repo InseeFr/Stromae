@@ -70,16 +70,12 @@ export function LoadFromApi({
 
 	const putSurveyUnitData = useCallback(
 		async (data?: DataVariables) => {
-			try {
-				if (data) {
-					if (unit && isTokenReady) {
-						await surveyApi.putSurveyUnitData(data, unit, accessToken);
-					}
+			if (data) {
+				if (unit && isTokenReady) {
+					await surveyApi.putSurveyUnitData(data, unit, accessToken);
 				}
-			} catch (e) {
-				console.warn(e);
-				return false;
 			}
+
 			return true;
 		},
 		[accessToken, isTokenReady, unit]
