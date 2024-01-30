@@ -25,8 +25,8 @@ export function ModalWarningVizu() {
 				Bienvenue
 			</h1>
 			<p>
-				Vous visualisez actuellement votre questionnaire sur une plateforme
-				"beta".
+				Vous visualisez actuellement votre questionnaire sur un orchestrateur en
+				version "beta".
 			</p>
 
 			<section className={fr.cx('fr-accordion')}>
