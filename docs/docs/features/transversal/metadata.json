@@ -1,0 +1,376 @@
+{
+	"Header": {
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
+		"homeLinkProps": {
+			"title": "Le recensement de la population"
+		},
+		"operatorLogo": {
+			"alt": "Insee, mesurer pour comprendre",
+			"imgUrl": "/logoINSEE.png",
+			"orientation": "horizontal"
+		},
+		"serviceTitle": "Le recensement de la population",
+		"quickAccessItems": [
+			{
+				"iconId": "fr-icon-questionnaire-line",
+				"linkProps": {
+					"href": "https://www.le-recensement-et-moi.fr/reponses/",
+					"target": "_blank"
+				},
+				"text": "Nous contacter"
+			}
+		]
+	},
+	"Footer": {
+		"brandTop": {
+			"value": "République<br />française",
+			"type": "html"
+		},
+		"operatorLogo": {
+			"alt": "Insee, mesurer pour comprendre",
+			"imgUrl": "/logoINSEE.png",
+			"orientation": "horizontal"
+		},
+		"accessibility": "partiellement conforme",
+		"accessibilityLinkProps": {
+			"to": "/questionnaire/recensement/accessibilite"
+		},
+		"otherLinksProps": [
+			{
+				"to": "/questionnaire/recensement/securite",
+				"title": "Sécurité"
+			},
+			{
+				"to": "/questionnaire/recensement/aide-a-la-navigation",
+				"title": "Aide à la navigation"
+			}
+		],
+		"homeLinkProps": {
+			"title": "Le recensement de la population"
+		},
+		"termsLinkProps": {
+			"to": "/questionnaire/recensement/mentions-legales"
+		},
+		"websiteMapLinkProps": {
+			"to": "/questionnaire/recensement/plan-du-site"
+		},
+		"contentDescription": "Le recensement, c'est utile, c'est simple, c'est sûr.",
+		"license": {
+			"value": "<p>Ce site utilise les applications Insee 'Stromae' et 'Lunatic', qui sont sous <a title='licence MIT - nouvelle fenêtre' href='https://github.com/InseeFr/Stromae/blob/v3-master/LICENSE' target='_blank'>licence MIT</a>, en s’appuyant sur le système de design de l'Etat disponible sous <a href='https://github.com/etalab/licence-ouverte/blob/master/LO.md' title='licence etalab-2.0 - nouvelle fenêtre' target='_blank'>licence etalab-2.0</a>.</p>",
+			"type": "html"
+		}
+	},
+	"Welcome": {
+		"Enq_LibelleEnquete": "Enquête statistique obligatoire du recensement de la population 2024",
+		"Enq_ObjectifsCourts": {
+			"value": "<p>Le questionnaire du recensement est divisé en 3 parties :</p><ol><li> Le logement</li> <li> La liste des habitants du logement</li><li>Les questionnaires individuels</li></ol> <p>Le temps de réponse estimé est de 15 minutes.</p>",
+			"type": "html"
+		},
+		"Enq_colorTheme": "greenMenthe.default",
+		"Enq_Image": "https://le-recensement-et-moi.fr/illu-femme-ordi.svg",
+		"Enq_CaractereObligatoire": true,
+		"Enq_QualiteStatistique": true,
+		"Enq_NumeroVisa": "2018A001EC",
+		"Enq_MinistereTutelle": "de l'Économie, des Finances et de la Relance",
+		"Enq_ParutionJo": true,
+		"Enq_DateParutionJo": "01/01/2018",
+		"Enq_RespOperationnel": "l'Institut national de la statistique et des études économiques (Insee)",
+		"Enq_RespTraitement": "l'Insee",
+		"Enq_AnneeVisa": "les années 2018 à 2024",
+		"Loi_statistique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000888573",
+			"target": "_blank"
+		},
+		"Loi_rgpd": {
+			"href": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
+			"target": "_blank"
+		},
+		"Loi_informatique": {
+			"href": "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460",
+			"target": "_blank"
+		},
+		"Enq_Faq_QuestionsAdditionnelles": [
+			{
+				"question": "A quoi sert le recensement de la population?",
+				"contenu": "La connaissance précise de la répartition de la population et de son évolution sur le territoire permet d’ajuster l'action publique aux besoins de tous en matières d’équipements collectifs (écoles, maisons de retraite, etc...) ou encore de transports à développer."
+			},
+			{
+				"question": "Comment mes données sont protégées ?",
+				"contenu": "Le recensement se déroule selon des procédures approuvées par la Cnil (Commission nationale de l'informatique et des libertés). L'Insee est le seul organisme habilité à exploiter les questionnaires, et cela de façon anonyme. Ils ne peuvent donc donner lieu à aucun contrôle administratif ou fiscal."
+			}
+		]
+	},
+	"Submit": {
+		"DescriptionAdditional": "Si vous avez indiqué une adresse électronique, un accusé de réception vous sera envoyé automatiquement.",
+		"TitleAdditionalInformation": "La démarche du recensement de la population",
+		"Feedback": {
+			"title": "Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela ne prend que 2 minutes.",
+			"link": {
+				"label": "Je donne mon avis",
+				"title": "Donner votre avis sur l'enquête du recensement - ouvre une nouvelle fenêtre",
+				"target": "_blank",
+				"href": "https://voxusagers.numerique.gouv.fr/Demarches/848?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=d209f7b2be0fca3de1df21eaeff49a97",
+				"imageSrc": "https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg",
+				"alt": "Donner votre avis sur l'enquête du recensement"
+			}
+		},
+		"Results": {
+			"title": "Vous souhaitez consulter les résultats du recensement de la population?",
+			"link": {
+				"target": "_blank",
+				"title": "Accéder aux résultats du recensement - ouvre une nouvelle fentetre",
+				"label": "Voir les résultats",
+				"href": "https://www.insee.fr/fr/information/2008354"
+			}
+		}
+	},
+	"optionalPages": {
+		"plan-du-site": [
+			{ "type": "title", "title": "Plan du site", "id": "plan-du-site-title" },
+			{
+				"type": "list",
+				"items": [
+					{
+						"type": "link",
+						"content": "Accueil",
+						"href": "/"
+					},
+					{
+						"type": "link",
+						"content": "Mentions légales",
+						"href": "/questionnaire/recensement/mentions-legales"
+					},
+					{
+						"type": "link",
+						"content": "Accessibilité",
+						"href": "/questionnaire/recensement/accessibilite"
+					},
+					{
+						"type": "link",
+						"content": "Sécurité",
+						"href": "/questionnaire/recensement/securite"
+					}
+				]
+			}
+		],
+		"mentions-legales": [
+			{ "type": "title", "title": "Mentions Légales", "id": "mention-legales" },
+			{
+				"type": "section",
+				"title": "Présentation du service",
+				"paragraphs": "Le service de réponse en ligne est destiné aux ménages dont la résidence principale est recensée. Ces ménages peuvent saisir leurs questionnaires directement en ligne par Internet. L'utilisateur du service peut interrompre la saisie du questionnaire sans perdre les informations qu'il a entrées. Les réponses sont sauvegardées automatiquement après chaque question. Une fois la saisie du questionnaire terminée, l'utilisateur transmet le questionnaire en cliquant sur le bouton « Envoyer mes réponses». La date de cette opération est considérée par l'Insee comme la date d'envoi du questionnaire. Pour accéder au service de réponse en ligne, l'utilisateur doit s'identifier en fournissant son code d'accès et son mot de passe figurant sur la notice internet qui lui a été remise par l'agent recenseur."
+			},
+			{
+				"type": "section",
+				"title": "Cadre juridique du recensement de la population",
+				"paragraphs": [
+					"Vu l'avis favorable du Conseil national de l'information statistique, cette enquête, reconnue d'<b>intérêt général et de qualité statistique</b>, est obligatoire, en application de la loi n°51-711 du 7 juin 1951 modifiée sur l'obligation, la coordination et le secret en matière de statistiques. Visa n°<b>2018A001EC</b> du Ministre de l'économie et des finances, valable pour les années 2018 à 2024.",
+					"Les réponses à ce questionnaire sont protégées par le secret statistique et destinées à l'Insee. Le règlement général 2016/679 du 27 avril 2016 sur la protection des données (RGPD) ainsi que la loi n° 78-17 du 6 janvier 1978 modifiée, relative à l'informatique, aux fichiers et aux libertés, s'appliquent à la présente enquête. Les droits d'accès, de rectification ou de limitation de traitement peuvent être exercés auprès des directions régionales de l'Insee. "
+				]
+			},
+			{
+				"type": "section",
+				"title": "Identification et confidentialité",
+				"paragraphs": [
+					"Le recensement de la population est une opération entièrement sécurisée. L'Insee est le seul et unique organisme qui peut exploiter vos questionnaires. Il est donc impossible que vos informations soient utilisées pour un contrôle administratif ou fiscal. Toutes les statistiques liées au recensement sont anonymes et toutes vos réponses sont strictement confidentielles.",
+					"L'Insee a mis en œuvre un dispositif de protection des accès sur son serveur (code d'accès et mot de passe) pour que les utilisateurs puissent être assurés de la confidentialité des données transmises. L'utilisateur dispose des données d'identification sur la notice qui lui a été remise par l'agent recenseur. Ces données permettront d'utiliser le service de réponse électronique pour l'<b>ensemble des habitants du logement.</b> ",
+					"Pour des raisons de contrôle et de sécurité, votre adresse IP sera collectée et conservée dans les mêmes conditions que les autres données nominatives. Elle sera toutefois récupérée et stockée uniquement sous forme anonyme et cryptée. Elle n’est pas accessible par les utilisateurs des applications, et ne sert qu’à l'élaboration de statistiques concernant le nombre d’adresses IP utilisées pour une zone de collecte."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Session",
+				"paragraphs": [
+					"Dès que l'utilisateur a été identifié, une session est établie avec le serveur.",
+					"Si l'utilisateur reste plus de 30 minutes sans intervenir dans le service de réponse au questionnaire, la session est interrompue. L'Insee estime en effet qu'au-delà de cette durée, l'utilisateur a vraisemblablement quitté le site sans fermer la session et que cela présente un risque en termes de confidentialité des informations saisies. L'utilisateur peut accéder de nouveau au questionnaire en s'identifiant."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Sécurité du service de réponse en ligne",
+				"paragraphs": [
+					"La transmission des informations (données d'identification de l'utilisateur, réponses aux questionnaires) est sécurisée dans les deux sens par un procédé couramment employé par les sites bancaires ou commerciaux. Ainsi un chiffrement automatique garantit la confidentialité et l'intégrité des données changées vis-à-vis de personnes tierces qui tenteraient \"d'écouter\" la ligne entre l'ordinateur de l'utilisateur et le serveur du Recensement de la population ou qui chercheraient à les modifier. Ce procédé de sécurisation permet aussi à l'utilisateur de s'assurer que ses données parviennent bien au serveur de réponse électronique et non chez un tiers.",
+					"L'Insee met également en œuvre les moyens et dispositifs requis en l'état de l'art pour assurer au mieux la confidentialité et l'intégrité des données reçues et limiter les risques liés aux intrusions, piratages ou insertions de virus sur son site (cf. <a href=\"/questionnaire/recensement/securite\">compléments d'information sur la sécurité du service).</a>"
+				]
+			},
+			{
+				"type": "section",
+				"title": "Configuration requise",
+				"paragraphs": [
+					"L'accès se fait à partir du  support de l'utilisateur équipé d'un navigateur internet et d'un moyen d'accès au réseau internet (cf. <a href=\"/questionnaire/recensement/aide-a-la-navigation\">Aide à la navigation<a>) "
+				]
+			},
+			{
+				"type": "section",
+				"title": "COPYRIGHT INSEE",
+				"paragraphs": [
+					"L'Insee détient l'ensemble des droits de propriété intellectuelle relatifs aux éléments figurant sur ce site. Toute reproduction, totale ou partielle, ou imitation, des écrans de navigation, logos, notamment celui de l'Insee, images et photos est interdite sans l'accord exprès préalable et écrit de l'Insee."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Homologation",
+				"paragraphs": [
+					"Le directeur général de l'Insee, après avoir recueilli l'avis de la commission d’homologation, atteste que le système d’information du recensement de la population est protégé, conformément aux objectifs fixés par le maître d’ouvrage, pour répondre, de manière proportionnée, aux besoins de protection du système et des informations, face aux risques identifiés.",
+					"Paris le 11 janvier 2024",
+					"Pour le directeur général de l'Insee",
+					"Par délégation",
+					"Le directeur du Système d’Information de l'Insee"
+				]
+			},
+			{
+				"type": "section",
+				"title": "Informations éditeurs",
+				"paragraphs": [
+					{
+						"title": "Éditeur :",
+						"paragraph": "Insee (Institut national de la statistique et des études économiques)"
+					},
+					"88, avenue Verdier ",
+					"92541 Montrouge cedex",
+					"Tél. : 01 87 69 50 00",
+					{
+						"title": "Directeur de la publication : ",
+						"paragraph": "Jean-Luc Tavernier"
+					},
+					{ "title": "Rédacteur en chef : ", "paragraph": "Muriel Barlet" },
+					{ "title": "Administrateur : ", "paragraph": "Julia Dirand" },
+					{
+						"title": "Conception et réalisation : ",
+						"paragraph": "Centre national informatique de Paris - Équipe du recensement de la population"
+					},
+					{
+						"title": "Conformément à la réglementation les déclarations nécessaires ont été effectuées&nbsp;: ",
+						"paragraph": "<ul><li>auprès du Tribunal de Grande Instance de Paris </li> <li>auprès de la CNIL </li> <li>auprès du CSA</li></ul>"
+					}
+				]
+			}
+		],
+		"securite": [
+			{ "type": "title", "title": "Sécurité", "id": "securite" },
+			{
+				"type": "section",
+				"paragraphs": [
+					"Le site de réponse au Recensement de la population dispose d’une sécurisation d'un niveau correspondant à ce qui est employé par les sites bancaires ou commerciaux.",
+					"Cette sécurisation s'appuie sur le mécanisme SSL avec utilisation d'un \"certificat\" de serveur.",
+					"Elle permet de vous assurer que vos données parviendront bien au serveur de réponse électronique du Recensement de la population et pas chez un tiers. La sécurisation de la connexion se met en place de façon automatique dès que le système vous demande de fournir vos données d'identification.",
+					"La transmission des données (données d'identification de l'utilisateur, réponses aux questionnaires) est sécurisée dans les deux sens. Un chiffrement des données garantit leur confidentialité et leur intégrité vis-à-vis de personnes tierces qui tenteraient \"d'écouter\" la ligne entre votre ordinateur et le serveur de l'Insee, ou/et qui chercheraient à modifier les données transmises."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Comment vous assurer que vous êtes bien connecté(e) au site du Recensement de la population ?",
+				"paragraphs": [
+					"Lors de votre première connexion sur le site de réponse électronique, un certificat de la société Dhimyotis est enregistré dans votre navigateur. Le site fait alors partie des sites sécurisés que votre navigateur reconnaît. ",
+					"Pour visionner le certificat, il faut cliquer sur l'icône en forme de cadenas ou sur le menu sécurité de votre navigateur.",
+					"Vérifiez que le certificat contient bien les informations suivantes : ",
+					"<ul><li>Certificat délivré à : questionnaire.le-recensement-et-moi.fr</li><li>Certificat délivré par : Dhimyotis</li><li>Date d'expiration: 20/05/2024</li></ul>",
+					"Si c'est le cas, vous vous êtes bien connecté(e) au site du Recensement de la population administré par l'Insee."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Identification des utilisateurs",
+				"paragraphs": [
+					"Pour assurer une sécurité optimale, l'accès au site de réponse en ligne est contrôlé par un code d'accès et un mot de passe. Ces derniers vous ont été transmis sur la notice internet par l'agent recenseur."
+				]
+			},
+			{
+				"type": "section",
+				"title": "Erreur d'identification",
+				"paragraphs": [
+					"Si vous vous trompez en entrant les données d'identification, celles-ci vous sont redemandées.",
+					"Le nombre d'essais est limité. Il s'agit entre autres de dissuader les tentatives d'accès malveillantes. Au-delà d'un certain nombre d'essais, votre compte sera bloqué pour une durée déterminée. Passé ce délai vous pourrez tenter de vous reconnecter ou contacter votre mairie pour obtenir de nouveaux codes."
+				]
+			}
+		],
+		"aide-a-la-navigation": [
+			{ "type": "title", "title": "Aide à la navigation" },
+			{
+				"type": "section",
+				"paragraphs": [
+					"Les boutons « Précédent » et « Continuer » vous permettent de naviguer dans le questionnaire.",
+					"Vos réponses sont enregistrées à chaque fois que vous passez à une autre question mais ne sont pas transmises. Vous pouvez revenir sur le questionnaire à tout moment pendant la collecte du recensement pour compléter ultérieurement le questionnaire.",
+					"Le bouton « Envoyer mes réponses », accessible à la fin du questionnaire, vous permet de transmettre votre questionnaire renseigné à l'Insee, d’informer l'agent recenseur que vous avez répondu et de télécharger votre accusé de réception."
+				]
+			}
+		],
+		"accessibilite": [
+			{
+				"type": "title",
+				"title": "Accessibilité"
+			},
+			{
+				"type": "section",
+				"title": "État de conformité",
+				"paragraphs": "Le site questionnaire.le-recensement-et-moi.fr est partiellement conforme avec le référentiel général d’amélioration de l'accessibilité (RGAA), version 4.1 en raison des non-conformités et des dérogations énumérées ci-dessous."
+			},
+			{
+				"type": "section",
+				"title": "Résultats des tests",
+				"paragraphs": "L'audit de conformité réalisé par la société Smile révèle que 88% des critères du RGAA 4.1 sont respectés."
+			},
+			{
+				"type": "section",
+				"title": "Contenus non accessibles",
+				"paragraphs": [
+					{
+						"title": "Non-conformités",
+						"paragraph": "Quelques anomalies vont pénaliser les utilisateurs en situation de handicap, naviguant ou non à l'aide de technologies d’assistance. Les non-conformités les plus bloquantes pour les utilisateurs concernent : <ul><li>Certains scripts ne sont pas compatibles avec les technologies d’assistance.</li><li>Le code source généré est non valide.</li> <li>Les titres de page ne sont pas pertinents sur certaines étapes du formulaire.</li> <li>Au niveau formulaire: <ul><li>Les champs obligatoires ne sont pas indiqués en amont.</li> <li>Des messages d’erreurs s’affichent quand la saisie n’est pas obligatoire.</li></ul>"
+					}
+				]
+			},
+			{
+				"type": "section",
+				"title": "Établissement de cette déclaration d'accessibilité",
+				"paragraphs": "Cette déclaration a été établie le 28/11/2023."
+			},
+			{
+				"type": "section",
+				"title": "Technologies utilisées pour la réalisation du site web",
+				"paragraphs": "<ul><li>HTML5</li><li>CSS</li><li>Javascript</li></ul>"
+			},
+			{
+				"type": "section",
+				"title": "Environnement de test",
+				"paragraphs": "Les vérifications de restitution de contenus ont été réalisées sur la base de la combinaison fournie par la base de référence du RGAA 4.1, avec les versions suivantes : <ul><li>Agent utilisateur: Firefox</li><li>Technologie d'assistance: NVDA</li></ul>"
+			},
+			{
+				"type": "section",
+				"title": "Outils pour évaluer l'accessibilité",
+				"paragraphs": "<ul><li>Wave</li><li>WCAG color contrast checker</li><li>Heading maps</li><li>Stylus</li><li>Web développer toolbar</li><li>Inspecteur du navigateur</li><li>Validateur en ligne du W3C</li><li>PDF Accessibility Checker</li></ul>"
+			},
+			{
+				"type": "section",
+				"title": "Pages du site ayant fait l'objet de la vérification de conformité",
+				"paragraphs": "<ul><li>Connexion</li><li>Accueil</li><li>Plan de site</li><li>Accessibilité</li><li>Mentions légales</li><li>Questionnaire (toutes les étapes)</li><li>Post envoi</li><li>Deconnexion</li></ul>"
+			},
+			{
+				"type": "section",
+				"title": "Retour d'information et contact",
+				"paragraphs": "Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez votre agent recenseur ou votre mairie pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme."
+			},
+			{
+				"type": "section",
+				"title": "Voie de recours",
+				"paragraphs": [
+					"Cette procédure est à utiliser dans le cas suivant. ",
+					"Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services du portail et vous n’avez pas obtenu de réponse satisfaisante.",
+					"<ul><li><a href='https://formulaire.defenseurdesdroits.fr/' target='_blank' title='écrire un message au défenseur des droits - nouvelle fenêtre'>Écrire un message au Défenseur des droits</a></li><li><a href='https://www.defenseurdesdroits.fr/saisir/delegues' target='_blank' title='Contacter le délégué du Défenseur des droits - nouvelle fenêtre'>Contacter le délégué du Défenseur des droits dans votre région</a></li><li>Envoyer un courrier par la poste à l'adresse suivante : (gratuit, ne pas mettre de timbre)",
+					"Défenseur des droits",
+					"Libre réponse",
+					"71120 75342 Paris CEDEX 07</li></ul>"
+				]
+			}
+		]
+	},
+	"errorPage": {
+		"subtitle": {
+			"pre-collecte": "La collecte dans votre commune n'a pas encore débuté. Vous pourrez répondre au questionnaire dans quelques jours.  Par avance, merci de votre participation.",
+			"post-collecte": "Le recensement de la population est terminé dans votre commune, merci de votre participation."
+		}
+	}
+}

@@ -1,0 +1,70 @@
+import { JsonViewer } from '@site/src/components/JsonViewer';
+import { ImgViewer } from '@site/src/components/ImgViewer';
+import { Header, Footer, Welcome } from './metadata';
+
+# Personnalisation
+Permet la personalisation de l'entête et le pied de page selon l'enquête.
+
+## Principe
+
+Le fichier metadata décrit au format json, permet de rensigner tous les éléments paramétrable de l'orchestrateur, c'est à dire :
+
+## L'entête / Header
+
+L'entête (logo, titre, liens additionnel) est la première partie de la page qui prend toute la largeur et qui sert de navigation simple pour l'usager.
+On l'appelle aussi "Header".
+Ce "Header" est entièrement paramétrable et ces paramètres viennent des possibilités offertes par le DSFR.
+
+Le Header et le pied de page sont écrit en VTL x MD.
+
+Mise à part cette specificité, ils doivent respecter les `props` de leur composants DSFR (Header et Footer)
+
+
+<JsonViewer json={Header}></JsonViewer>
+
+
+## Le pied de page
+
+
+<JsonViewer json={Footer}></JsonViewer>
+
+## Page d'accueil
+
+### Cas RP
+
+Dans le cas du RP, la page d'accueil n'est pas personnalisable via la partie `personalization` du fichier `data`.
+De plus, elle reste accessible même si l'unité enquêtée n'est pas authentifié.
+
+On assume que le cas RP n'arrive jamais en visualisation.
+Il arrive en mode "collecte" seulement lorsque l'identifiant du questionnaire vaut "`recensement`". Il s'agit d'un cas à part à conserver.
+
+Dans tous les autres cas, cette page nécessite l'authentification de l'unité enquêtée.
+
+
+Pour rappel, `personalization` est array qui liste les variables de personnalisation de l'orchestrateur pour une UE donnée.
+
+Exemple de valeur
+
+```tsx
+const personalization = [
+    {name: "QuiRepond1", value : "Mme Dupond" },
+    {name: "QuiRepond2", value : "et son mari" }
+]
+```
+
+La page d'accueil est la première page qui s'affiche si `currentPage`de l'objet data est `null`.
+Au niveau du routage de l'application, l'orchestrateur s'affiche sur la page `/questionnaire/${xxx}/unite-enquetee/${yyy}/accueil`
+
+Paramétrisation:
+
+Il s'agit de la liste des variables qui sont valorisables.
+
+<JsonViewer json={Welcome}></JsonViewer>
+
+<ImgViewer src="https://laurentc35.github.io/drawio/StromaeWelcomePage.drawio.png"/>
+
+
+
+### Cas nominale / Filière
+
+
