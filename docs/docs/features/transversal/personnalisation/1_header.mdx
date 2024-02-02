@@ -4,11 +4,48 @@ Cet élément apparaît en haut de page de façon permanente.
 
 L'entête (logo, titre, liens additionnel) est la première partie de la page qui prend toute la largeur et qui sert de navigation simple pour l'usager.
 On l'appelle aussi "Header".
-Ce "Header" est entièrement paramétrable et ces paramètres viennent des possibilités offertes par le DSFR.
+Ce "Header" est en partie paramétrable et ces paramètres viennent des possibilités offertes par le DSFR.
 
-Le Header et le pied de page sont écrit en VTL x MD.
+Les paramètres du Header sont du texte. (pas de VTL ou MD)
 
-Mise à part cette specificité, ils doivent respecter les `props` de leur composants DSFR (Header et Footer)
+## Specification TS du header du fichier "metadata"
+
+Pour plus de détails, se référer à la [documentation DSFR du header](https://components.react-dsfr.codegouv.studio/?path=/docs/components-header--with-horizontal-operator-logo) 
+
+```typescript
+
+export type QuickAccessItem = {
+	iconId: string;
+	linkProps: {
+		href: string;
+		// target est toujours "_blank"
+	},
+	text: string;
+}
+export type Header = {
+	title: string;
+	operatorLogo: {
+		alt: string;
+		imgUrl: string;
+		orientation: "vertical" | "horizontal";
+	}
+	quickAccessItems?: Array<QuickAccessItem>;
+};
+```
+
+Des liens (`quickAccessItems`) sont toujours présents et mis par défaut par Stromae:
+- "Paramètres d'affichage" (thème sombre/claire)
+- "Contacter l'assistance":
+	- idUE: path param après `/unite-enquetee`
+	- enquete: query param fourni par collecter -> à discuter avec eux
+	- via l'environnement PORTAIL_URL: `${PORTAIL_URL}/${enquete}/contacter-assistance/auth?idue=${idSU}`
+- "Me connecter" / "Me déconnecter" (provoque la déconnexion de l'utilisateur):
+	- discuter avec "collecter" pour la `logoutUrl` (passé en paramètre dans l'url à l'ouverture par les plateformes de collecte)
+	- par défaut, `logoutUrl` vaudra `PORTAIL_URL`.
+
+## Cas de la visualisation
+
+:warning: à compléter :warning:
 
 ## Exemple "ménage"
 
@@ -17,29 +54,18 @@ Exemple pour une enquête ménage
 ```json
 {
     "Header":{
-        "serviceTitle": "Enq_LibelleEnquete",
+        "serviceTitle": "Enquête statistique sur les technologies de l’information et de la communication 2021",
         "operatorLogo":{
             "alt": "Insee, mesurer pour comprendre",
 			"imgUrl": "/logoINSEE.png",
+
         },
-        "quickAccessItems":[
-            {
-				"iconId": "fr-icon-questionnaire-line",
-				"linkProps": {
-					"href": "https://www.le-recensement-et-moi.fr/reponses/",
-					"target": "_blank"
-				},
-				"text": "Contacter l'assistance"
-			},
-            {
-				"iconId": "fr-icon-questionnaire-line",
-				"linkProps": {
-					"href": "https://www.le-recensement-et-moi.fr/reponses/",
-					"target": "_blank"
-				},
-				"text": "Contacter l'assistance"
-			}
-        ]
+        "quickAccessItems":[]
     }
 }
 ```
+
+Visuel correspondant:
+
+:warning: à compléter :warning:
+
