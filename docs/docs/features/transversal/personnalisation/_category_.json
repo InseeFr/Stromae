@@ -3,6 +3,6 @@
 	"position": 3,
 	"link": {
 		"type": "generated-index",
-		"description": "Personnalisation de l'orchestrateur par enquête. Le fichier metadata décrit au format json, permet de rensigner tous les éléments paramétrable de l'orchestrateur, c'est à dire l'entête / Header, le pied de page / Footer, page d'accueil et page de fin/remerciement"
+		"description": "Personnalisation de l'orchestrateur par enquête. Le fichier metadata décrit au format json, permet de renseigner tous les éléments paramétrables de l'orchestrateur, c'est à dire l'entête / Header, le pied de page / Footer, page d'accueil et page de fin/remerciement"
 	}
 }
