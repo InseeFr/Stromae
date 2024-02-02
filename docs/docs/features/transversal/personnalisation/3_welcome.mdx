@@ -1,0 +1,30 @@
+import { ImgViewer } from '@site/src/components/ImgViewer';
+
+# Page d'accueil
+
+Première page, avant de répondre au questionnaire.
+
+
+
+On assume que le cas RP n'arrive jamais en visualisation.
+Il arrive en mode "collecte" seulement lorsque l'identifiant du questionnaire vaut "`recensement`". Il s'agit d'un cas à part à conserver.
+
+Dans tous les autres cas, cette page nécessite l'authentification de l'unité enquêtée.
+
+
+Pour rappel, `personalization` est array qui liste les variables de personnalisation de l'orchestrateur pour une UE donnée.
+
+Exemple de valeur
+
+```tsx
+const personalization = [
+    {name: "QuiRepond1", value : "Mme Dupond" },
+    {name: "QuiRepond2", value : "et son mari" }
+]
+```
+
+La page d'accueil est la première page qui s'affiche si `currentPage`de l'objet data est `null`.
+Au niveau du routage de l'application, l'orchestrateur s'affiche sur la page `/questionnaire/${xxx}/unite-enquetee/${yyy}/accueil`
+
+
+<ImgViewer src="https://laurentc35.github.io/drawio/StromaeWelcomePage.drawio.png"/>

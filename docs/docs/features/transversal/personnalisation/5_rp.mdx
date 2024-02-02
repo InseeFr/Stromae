@@ -1,0 +1,29 @@
+import { JsonViewer } from '@site/src/components/JsonViewer';
+import { ImgViewer } from '@site/src/components/ImgViewer';
+import { Header as HeaderRP, Footer as FooterRP, Welcome as WelcomeRP } from './metadataRP';
+
+# Cas actuel du RP
+Voici les fichiers actuels du RP, qu'il faudra adapter avec les nouvelles modélisation choisi.
+
+## L'entête / Header
+
+
+<JsonViewer json={HeaderRP}></JsonViewer>
+
+
+### Le pied de page
+
+
+<JsonViewer json={FooterRP}></JsonViewer>
+
+### Page d'accueil
+
+Dans le cas du RP, la page d'accueil n'est pas personnalisable via la partie `personalization` du fichier `data`.
+De plus, elle reste accessible même si l'unité enquêtée n'est pas authentifié.
+
+<JsonViewer json={WelcomeRP}></JsonViewer>
+
+
+
+
+

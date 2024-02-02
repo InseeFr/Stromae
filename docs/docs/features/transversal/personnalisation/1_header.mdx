@@ -1,0 +1,45 @@
+# Entête / Header
+
+Cet élément apparaît en haut de page de façon permanente.
+
+L'entête (logo, titre, liens additionnel) est la première partie de la page qui prend toute la largeur et qui sert de navigation simple pour l'usager.
+On l'appelle aussi "Header".
+Ce "Header" est entièrement paramétrable et ces paramètres viennent des possibilités offertes par le DSFR.
+
+Le Header et le pied de page sont écrit en VTL x MD.
+
+Mise à part cette specificité, ils doivent respecter les `props` de leur composants DSFR (Header et Footer)
+
+## Exemple "ménage"
+
+Exemple pour une enquête ménage
+
+```json
+{
+    "Header":{
+        "serviceTitle": "Enq_LibelleEnquete",
+        "operatorLogo":{
+            "alt": "Insee, mesurer pour comprendre",
+			"imgUrl": "/logoINSEE.png",
+        },
+        "quickAccessItems":[
+            {
+				"iconId": "fr-icon-questionnaire-line",
+				"linkProps": {
+					"href": "https://www.le-recensement-et-moi.fr/reponses/",
+					"target": "_blank"
+				},
+				"text": "Contacter l'assistance"
+			},
+            {
+				"iconId": "fr-icon-questionnaire-line",
+				"linkProps": {
+					"href": "https://www.le-recensement-et-moi.fr/reponses/",
+					"target": "_blank"
+				},
+				"text": "Contacter l'assistance"
+			}
+        ]
+    }
+}
+```
