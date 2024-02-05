@@ -51,16 +51,13 @@ export function Continuer(props: OrchestratedElement) {
 		goNextPage = () => null,
 		isLastPage,
 		getComponents = () => [],
-		// `waiting` is activated to communicate to users that an API request is in process
-		waiting = false,
+
 		pageTag,
 	} = props;
 	const navigate = useNavigate();
 	const saveSuData = useSaveSurveyUnitStateData();
 	const { unit, survey } = useParams();
-	const buttonContent = waiting
-		? `Chargement`
-		: getStatus(getComponents, isLastPage ?? false, saving);
+	const buttonContent = getStatus(getComponents, isLastPage ?? false, saving);
 
 	const handleClick = useCallback(
 		(event: React.MouseEvent) => {
@@ -97,11 +94,10 @@ export function Continuer(props: OrchestratedElement) {
 			nativeButtonProps={{
 				form: 'stromae-form',
 				type: 'submit',
-				'aria-disabled': waiting || saving,
+				'aria-disabled': saving,
 			}}
 			id="continue-button"
-			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
-			disabled={waiting}
+			disabled={saving}
 		>
 			{buttonContent}
 		</Button>
