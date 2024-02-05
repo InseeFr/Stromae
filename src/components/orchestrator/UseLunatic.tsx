@@ -58,7 +58,6 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	useRedirectIfAlreadyValidated(initialCollectStatus);
 
 	const { listenChange, saveChange } = useSaving({
-		setWaiting,
 		setFailure,
 		initialCollectStatus,
 	});
@@ -146,6 +145,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 
 	if (isNewPage && shouldSync.current) {
 		shouldSync.current = false;
+		setWaiting(true);
 		saveChange({ pageTag, getData });
 	}
 	return (

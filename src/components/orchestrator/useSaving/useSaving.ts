@@ -15,16 +15,11 @@ function getCollectStatus(changing: boolean, previous: CollectStatusEnum) {
 }
 
 type useSavingArgs = {
-	setWaiting: (w: boolean) => void;
 	setFailure: (s?: SavingFailure) => void;
 	initialCollectStatus: CollectStatusEnum;
 };
 
-export function useSaving({
-	setWaiting,
-	setFailure,
-	initialCollectStatus,
-}: useSavingArgs) {
+export function useSaving({ setFailure, initialCollectStatus }: useSavingArgs) {
 	const [currentStatus, setCurrentStatus] = useState(initialCollectStatus);
 	const changes = useRef<Map<string, unknown>>(new Map());
 	const saveSuData = useSaveSurveyUnitStateData();
@@ -36,7 +31,8 @@ export function useSaving({
 	const saveChange = useCallback(
 		async ({ pageTag, getData }: { pageTag: string; getData: () => any }) => {
 			setFailure(undefined);
-			setWaiting(true);
+			// setWaiting(true);
+
 			try {
 				// save data
 				const isOnChange = changes.current.size !== 0;
@@ -57,13 +53,13 @@ export function useSaving({
 					collectStatus: getCollectStatus(isOnChange, currentStatus),
 				});
 				setCurrentStatus(state.state);
-				setWaiting(false);
+				return true;
 			} catch (e) {
 				setFailure({ status: 500 });
-				setWaiting(false);
+				return false;
 			}
 		},
-		[currentStatus, putSurveyUnitData, setFailure, setWaiting, saveSuData]
+		[currentStatus, putSurveyUnitData, setFailure, saveSuData]
 	);
 
 	return { listenChange, saveChange };
