@@ -1,0 +1,40 @@
+{
+	"inseeContext": "household",
+
+	"Header": {
+		"serviceTitle": "Enquête statistique sur les technologies de l’information et de la communication 2024",
+		"operatorLogo": {
+			"alt": "Insee, mesurer pour comprendre",
+			"imgUrl": "/logoINSEE.png"
+		},
+		"quickAccessItems": []
+	},
+
+	"Footer": {},
+
+	"Welcome": {
+		"Enq_Image": "https://le-recensement-et-moi.fr/illu-femme-ordi.svg",
+		"Enq_LibelleEnquete": "l'enquête statistique sur les technologies de l’information et de la communication 2024",
+		"Enq_ObjectifsCourts": {
+			"value": "\"Cette enquête permet de connaître l'équipement et les usages des personnes dans le domaine des technologies de l'information et de la communication (téléphone fixe et mobile, informatique, internet sur support fixe et mobile).\n\n Le temps de réponse à ce questionnaire est estimé à 15 minutes\" \n\n **Qui doit répondre à ce questionnaire ?** \n\n || whoAnswers",
+			"type": "VTL|MD"
+		},
+		"Enq_Faq_QuestionsAdditionnelles": [],
+		"Enq_CadreLegal": {
+			"Enq_CaractereObligatoire": true,
+			"Enq_NumeroVisa": "2024A004EC",
+			"Enq_AnneeVisa": "2023",
+			"Enq_MinistereTutelle": "de l'Économie, des Finances et de la Souveraineté industrielle et numérique ",
+			"Enq_ParutionJo": true,
+			"Enq_DateParutionJo": "15/11/2023",
+			"Enq_RespOperationnel": "l'Insee",
+			"Enq_RespTraitement": "l'Institut national de la statistique et des études économiques (Insee)",
+			"Enq_QualiteStatistique": true
+		}
+	},
+
+	"PostValidated": {
+		"Enq_RespOperationnel": "L'Insee",
+		"Enq_Text_Additionnel": "Vous pouvez à présent vous déconnecter."
+	}
+}
