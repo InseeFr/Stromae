@@ -94,7 +94,6 @@ export function Formulaire(props: Props) {
 		isLastPage,
 	} = props;
 	const { classes, cx } = useStyles();
-	console.log(waiting)
 	if (waiting && !isLastPage) {
 		return <Form />;
 	}
