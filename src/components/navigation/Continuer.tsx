@@ -101,7 +101,7 @@ export function Continuer(props: OrchestratedElement) {
 			}}
 			id="continue-button"
 			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
-			disabled={waiting}
+			disabled={waiting || saving}
 		>
 			{buttonContent}
 		</Button>
