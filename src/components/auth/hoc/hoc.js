@@ -1,9 +1,7 @@
+import { decodeJwt } from 'oidc-spa';
 import { listenActivity } from 'utils/events';
 import { useAuth } from 'utils/hooks/useAuth';
-import { oidcConf } from 'utils/read-env-vars';
 import { getLogoutUrl } from '../provider/component';
-
-const { noActivityTimeoutInSeconds } = oidcConf;
 
 const secure = (WrappedComponent) => {
   const Component = (props) => {
@@ -15,12 +13,18 @@ const secure = (WrappedComponent) => {
 
     if (isUserLoggedIn) {
       (async function callee() {
+        const { exp: expirationTime } = decodeJwt(oidc?.getTokens()?.idToken);
+
+        const logoutTimeInMiliseconds = expirationTime * 1000 - Date.now();
+
         const logoutTimeout = setTimeout(async () => {
           console.log(
-            `No user activity detected during ${noActivityTimeoutInSeconds} seconds. Logout user.`
+            `No user activity detected during ${
+              logoutTimeInMiliseconds / 1000
+            } seconds. Logout user.`
           );
           await logout({ redirectTo: 'specific url', url: getLogoutUrl() });
-        }, noActivityTimeoutInSeconds * 1000);
+        }, logoutTimeInMiliseconds);
 
         await listenActivity();
         clearTimeout(logoutTimeout);

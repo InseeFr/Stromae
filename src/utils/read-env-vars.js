@@ -23,7 +23,4 @@ export const oidcConf = {
   client_id: getEnvVar('REACT_APP_CLIENT_ID'),
   authUrl: getEnvVar('REACT_APP_AUTH_URL'),
   realm: getEnvVar('REACT_APP_AUTH_REALM'),
-  // If no value is provided, default value is 15 minutes = 900 seconds (15 * 60)
-  noActivityTimeoutInSeconds:
-    Number(getEnvVar('REACT_APP_NO_ACTIVITY_TIMEOUT')) || 900,
 };
