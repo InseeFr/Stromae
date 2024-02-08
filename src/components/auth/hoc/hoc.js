@@ -1,5 +1,4 @@
-import { useAuth } from 'utils/hooks/useAuth';
-import { useAutoLogout } from 'utils/hooks/useAutoLogout';
+import { useAuth, useAutoLogout } from 'utils/hooks/useAuth';
 
 const secure = (WrappedComponent) => {
   const ReturnedComponent = (props) => {
