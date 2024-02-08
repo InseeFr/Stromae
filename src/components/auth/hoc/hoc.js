@@ -18,8 +18,9 @@ const secure = (WrappedComponent) => {
     if (isUserLoggedIn) {
       if (AUTH_TYPE === OIDC) {
         (async function callee() {
-          const { exp: expirationTime } = decodeJwt(oidc?.getTokens()?.idToken);
-
+          const { exp: expirationTime } = decodeJwt(
+            oidc?.getTokens()?.accessToken
+          );
           const logoutTimeInMiliseconds = expirationTime * 1000 - Date.now();
 
           const logoutTimeout = setTimeout(async () => {
