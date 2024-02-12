@@ -14,7 +14,7 @@ export const useUser = () => {
     throw new Error('This hook should be used only on authenticated routes');
   }
 
-  const { idToken } = oidc.getTokens();
+  const { idToken } = oidc.oidcTokens;
 
   const user = useMemo(() => {
     if (AUTH_TYPE === OIDC) return decodeJwt(idToken);

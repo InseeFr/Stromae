@@ -28,6 +28,13 @@ const getExtraQueryParams = () => {
 const dummyOidc = {
   isUserLoggedIn: true,
   logout: () => (window.location.href = '/'),
+  oidcTokens: {
+    accessToken: null,
+    idToken: null,
+    refreshToken: null,
+    refreshTokenExpirationTime: null,
+    accessTokenExpirationTime: Date.now() + 60 * 60 * 1000,
+  },
   getTokens: () => ({
     accessToken: null,
     idToken: null,
