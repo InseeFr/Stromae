@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useOidc } from 'utils/oidc';
 import { errorDictionary } from '../../i18n';
 import { API } from '../api';
 import { getFetcherForLunatic } from '../api/fetcher';
 import { DEFAULT_DATA_URL, DEFAULT_METADATA_URL } from '../constants';
 import { environment } from '../read-env-vars';
-import { useAuth } from './useAuth';
 import { useConstCallback } from './useConstCallback';
 
 const { API_URL: apiUrl } = environment;
@@ -19,7 +19,7 @@ const getErrorMessage = (response, type = 'q') => {
 };
 
 export const useGetReferentiel = (nomenclatures) => {
-  const { oidc } = useAuth();
+  const oidc = useOidc();
 
   const getReferentiel = useConstCallback((refName) => {
     const finalUrl = `${apiUrl}/api/nomenclature/${refName}`;
@@ -39,7 +39,7 @@ export const useGetReferentiel = (nomenclatures) => {
 };
 
 export const useAPI = (surveyUnitID, questionnaireID) => {
-  const { oidc } = useAuth();
+  const oidc = useOidc();
 
   const getRequiredNomenclatures = useConstCallback(() =>
     API.getRequiredNomenclatures(apiUrl)(questionnaireID)(

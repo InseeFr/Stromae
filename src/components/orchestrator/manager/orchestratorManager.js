@@ -3,7 +3,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth, useUser } from 'utils/hooks/useAuth';
+import { useUser } from 'utils/hooks/useAuth';
+import { getLogoutUrl, useOidc } from 'utils/oidc';
 import {
   ORCHESTRATOR_COLLECT,
   ORCHESTRATOR_READONLY,
@@ -20,7 +21,6 @@ import {
   useConstCallback,
   useGetReferentiel,
 } from '../../../utils/hooks';
-import { getLogoutUrl } from '../../auth/provider/component';
 import { LoaderSimple } from '../../shared/loader';
 import { Orchestrator } from '../collector';
 
@@ -53,9 +53,7 @@ const OrchestratorManager = () => {
 
   const { putData, putStateData, postParadata } = useAPI(idSU, idQ);
 
-  const {
-    oidc: { logout, isUserLoggedIn },
-  } = useAuth();
+  const { logout, isUserLoggedIn } = useOidc();
 
   const { user } = useUser();
 

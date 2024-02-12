@@ -1,18 +1,13 @@
-import { useAuth, useAutoLogout } from 'utils/hooks/useAuth';
+import { useOidc } from 'utils/oidc';
 
 const secure = (WrappedComponent) => {
-  const ReturnedComponent = (props) => {
-    useAutoLogout();
-    return <WrappedComponent {...props} />;
-  };
-
   const Component = (props) => {
-    const { oidc } = useAuth();
+    const oidc = useOidc();
     const { isUserLoggedIn, login } = oidc;
     const { otherProps } = props;
 
     if (isUserLoggedIn) {
-      return <ReturnedComponent {...otherProps} />;
+      return <WrappedComponent {...otherProps} />;
     }
     login({
       doesCurrentHrefRequiresAuth: true,
