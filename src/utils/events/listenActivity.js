@@ -1,4 +1,5 @@
-export const listenActivity = () => {
+const defaultListener = () => console.log('User is actif !');
+export const listenActivity = (listener = defaultListener) => {
   const activityEvents = [
     'mousedown',
     'mousemove',
@@ -6,12 +7,7 @@ export const listenActivity = () => {
     'scroll',
     'touchstart',
   ];
-  return new Promise((resolve) => {
-    const listener = () => {
-      resolve();
-    };
-    activityEvents.forEach(function (eventName) {
-      window.addEventListener(eventName, listener, { once: true });
-    });
+  activityEvents.forEach(function (eventName) {
+    window.addEventListener(eventName, listener, false);
   });
 };
