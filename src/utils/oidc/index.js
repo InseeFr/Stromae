@@ -76,7 +76,7 @@ prOidc.then((oidc) => {
 
   const getDelayExpriationinMs = () => {
     const expirationTime = oidc.getTokens().accessTokenExpirationTime;
-    return expirationTime * 1000 - Date.now();
+    return expirationTime - Date.now();
   };
 
   const logoutIfIdle = async () => {
