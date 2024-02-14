@@ -5,7 +5,12 @@ import { Form } from '../skeleton/Form';
 
 type Props = Pick<
 	OrchestratedElement,
-	'currentErrors' | 'disabled' | 'getComponents' | 'waiting' | 'pageTag'
+	| 'currentErrors'
+	| 'disabled'
+	| 'getComponents'
+	| 'waiting'
+	| 'pageTag'
+	| 'isLastPage'
 >;
 
 const useStyles = makeStyles()({
@@ -42,18 +47,18 @@ const useStyles = makeStyles()({
 				fontWeight: '400',
 			},
 			'.lunatic-dsfr-component-set .lunatic-dsfr-radio legend, .lunatic-dsfr-component-set .checkbox-lunatic-dsfr legend, .datepicker-lunatic-dsfr legend':
-				{
-					display: 'flex',
-					flexDirection: 'column',
-					fontSize: '1rem',
-					lineHeight: '2.25rem',
-					paddingBottom: '1rem',
-					paddingLeft: '0.75rem',
-					paddingRight: '0.75rem',
-					marginLeft: '-0.25rem',
-					marginRight: '-0.25rem',
-					fontWeight: '400',
-				},
+			{
+				display: 'flex',
+				flexDirection: 'column',
+				fontSize: '1rem',
+				lineHeight: '2.25rem',
+				paddingBottom: '1rem',
+				paddingLeft: '0.75rem',
+				paddingRight: '0.75rem',
+				marginLeft: '-0.25rem',
+				marginRight: '-0.25rem',
+				fontWeight: '400',
+			},
 			'.datepicker-lunatic-dsfr legend': {
 				fontWeight: '700',
 			},
@@ -61,18 +66,18 @@ const useStyles = makeStyles()({
 		'.lunatic-dsfr-component-set': {
 			marginBottom: '1rem',
 			display: 'flex',
-			flexDirection: 'column', 
+			flexDirection: 'column',
 			alignItems: 'flex-start',
 			gap: '1rem',
 			'.fr-callout': {
 				marginBottom: '0',
 			},
 			'.lunatic-dsfr-component-set-component': {
-				width: '100%'
+				width: '100%',
 			},
 			'.lunatic-dsfr-component-set': {
 				display: 'flex',
-				flexDirection: 'column', 
+				flexDirection: 'column',
 				gap: '1rem',
 			},
 		},
@@ -86,9 +91,10 @@ export function Formulaire(props: Props) {
 		disabled = false,
 		waiting,
 		pageTag,
+		isLastPage,
 	} = props;
 	const { classes, cx } = useStyles();
-	if (waiting) {
+	if (waiting && !isLastPage) {
 		return <Form />;
 	}
 	return (

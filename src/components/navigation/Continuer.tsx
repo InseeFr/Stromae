@@ -58,7 +58,7 @@ export function Continuer(props: OrchestratedElement) {
 	const navigate = useNavigate();
 	const saveSuData = useSaveSurveyUnitStateData();
 	const { unit, survey } = useParams();
-	const buttonContent = waiting
+	const buttonContent = waiting || saving
 		? `Chargement`
 		: getStatus(getComponents, isLastPage ?? false, saving);
 
@@ -100,8 +100,8 @@ export function Continuer(props: OrchestratedElement) {
 				'aria-disabled': waiting || saving,
 			}}
 			id="continue-button"
-			iconId={waiting ? 'fr-icon-refresh-line' : undefined}
-			disabled={waiting}
+			iconId={waiting || saving ? 'fr-icon-refresh-line' : undefined}
+			disabled={waiting || saving}
 		>
 			{buttonContent}
 		</Button>
