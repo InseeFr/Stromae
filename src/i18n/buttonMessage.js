@@ -26,6 +26,7 @@ const buttonMessage = {
     en: `Go to the first page`,
   },
   visualize: { fr: `Visualiser`, en: `Visualize` },
+  reconnect: { fr: `Se reconnecter`, en: `Reconnect` },
 };
 
 export default buttonMessage;

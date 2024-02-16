@@ -1,1 +1,1 @@
-export { default } from './hoc';
+export { secure } from './hoc';

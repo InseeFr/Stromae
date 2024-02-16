@@ -35,6 +35,7 @@ const dummyOidc = {
     refreshTokenExpirationTime: null,
     accessTokenExpirationTime: Date.now() + 60 * 60 * 1000,
   },
+  login: () => window.location.reload(),
   getTokens: () => ({
     accessToken: null,
     idToken: null,
@@ -83,7 +84,7 @@ prOidc.then((oidc) => {
     clearTimeout(timer);
 
     timer = setTimeout(async () => {
-      await oidc.logout({ redirectTo: 'specific url', url: getLogoutUrl() });
+      await oidc.logout({ redirectTo: 'current page' });
     }, getDelayExpriationinMs());
   };
 
