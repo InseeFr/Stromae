@@ -1,7 +1,7 @@
+import { secure } from 'components/auth/hoc';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { environment } from 'utils/read-env-vars';
 import { READ_ONLY } from '../../utils/constants';
-import secure from '../auth/hoc/hoc';
 import { OrchestratorManager } from '../orchestrator/manager';
 import { Visualizer } from '../orchestrator/visualizer';
 import { NotFound } from '../pages';

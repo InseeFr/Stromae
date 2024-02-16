@@ -1,4 +1,16 @@
 const errorMessage = {
+  getErrorLogOffTitle: {
+    fr: 'Vous avez été déconnecté',
+    en: 'You have been logged out',
+  },
+  getErrorLogOffDetails1: {
+    fr: 'Pour des raisons de sécurité, vous avez été déconnecté pour inactivité.',
+    en: 'For security reasons, you have been logged out for inactivity.',
+  },
+  getErrorLogOffDetails2: {
+    fr: 'Pour continuer à remplir le questionnaire, veuillez vous reconnecter.',
+    en: 'To continue completing the questionnaire, please log in again..',
+  },
   getError401: {
     fr: 'Vous semblez avoir été déconnecté.',
     en: 'Changing the sequence',

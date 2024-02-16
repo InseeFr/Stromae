@@ -1,21 +1,16 @@
+import { LogoutModal } from 'components/modals/logout';
 import { useOidc } from 'utils/oidc';
 
-const secure = (WrappedComponent) => {
+export const secure = (WrappedComponent) => {
   const Component = (props) => {
     const oidc = useOidc();
-    const { isUserLoggedIn, login } = oidc;
+    const { isUserLoggedIn } = oidc;
     const { otherProps } = props;
 
     if (isUserLoggedIn) {
       return <WrappedComponent {...otherProps} />;
-    }
-    login({
-      doesCurrentHrefRequiresAuth: true,
-    });
-    return null;
+    } else return <LogoutModal />;
   };
 
   return Component;
 };
-
-export default secure;
