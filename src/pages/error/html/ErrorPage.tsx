@@ -26,13 +26,13 @@ function ErrorStatus({
 }
 
 function getTextFor(code?: number, content?: ContentType, errorType?: string) {
-	if (code === 301 && errorType) {
+	if (code === 423 && errorType) {
 		return {
 			title: 'Temporairement indisponible',
 			subtitle: content?.subtitle && content?.subtitle[errorType],
 			paragraph: content?.paragraph && content?.paragraph[errorType],
 		};
-	} else if (code === 301) {
+	} else if (code === 423) {
 		return {
 			title: 'Temporairement indisponible',
 			subtitle:
@@ -90,7 +90,7 @@ export function ErrorPage({
 					<ErrorStatus errorStatus={errorStatus} code={code} />
 					<p className={fr.cx('fr-mt-3w', 'fr-text--lead')}>{subtitle}</p>
 					<p className={fr.cx('fr-mt-3w')}>{paragraph}</p>
-					{code !== 301 && (
+					{code !== 423 && (
 						<Button
 							size="large"
 							linkProps={{

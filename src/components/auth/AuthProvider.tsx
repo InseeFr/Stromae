@@ -4,7 +4,6 @@ import {
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
 import { useRef, useState } from 'react';
-
 import { useAsyncEffect } from '../../hooks/useAsyncEffect';
 import { publicGetRequest } from '../../lib/commons/axios-utils';
 import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
