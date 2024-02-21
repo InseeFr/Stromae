@@ -5,7 +5,7 @@ import { LunaticSource } from '../../typeLunatic/type-source';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
-import { uri301, uri404 } from '../../lib/domainUri';
+import { uri423, uri404 } from '../../lib/domainUri';
 import { removeDeclarationsAfterFromSource } from '../../utils/questionnaire';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
@@ -31,8 +31,8 @@ export function LoadSourceData({
 
 	function navigateError(data?: responseData) {
 		if (data?.status) {
-			if (data.status === 301) {
-				navigate(uri301(survey, data.message));
+			if (data.status === 423) {
+				navigate(uri423(survey, data.message));
 			} else {
 				navigate(uri404());
 			}
