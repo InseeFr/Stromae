@@ -2,15 +2,14 @@ import { useDocumentTitle } from '../../utils/useDocumentTitle';
 import Information from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg';
 import { fr } from '@codegouvfr/react-dsfr';
 import { useCallback } from 'react';
-// import { useOidc } from '@axa-fr/react-oidc';
+import { useOidc } from '@axa-fr/react-oidc';
 import Button from '@codegouvfr/react-dsfr/Button';
 
 export function SessionLost() {
-	// const { login } = useOidc();
+	const { login } = useOidc();
 	const onClick = useCallback(() => {
-		// login('/');
-		console.log("We don't do anything for u!");
-	}, []);
+		login('/');
+	}, [login]);
 	useDocumentTitle("Page d'authentification avec un navigateur non supporté");
 	return (
 		<div className={fr.cx('fr-container')} aria-live="polite" aria-busy="true">
