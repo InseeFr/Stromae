@@ -86,7 +86,7 @@ export type Hierarchy = {
 
 export type ComponentTypeBase = {
 	label: LabelType;
-	declarations: DeclarationType[];
+	declarations?: DeclarationType[];
 	conditionFilter: ConditionFilterType;
 	controls?: ControlType[];
 	id: string;
