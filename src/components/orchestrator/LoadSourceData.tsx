@@ -6,7 +6,6 @@ import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { loadSourceDataContext } from '../loadSourceData/LoadSourceDataContext';
 
 import { uri423, uri404 } from '../../lib/domainUri';
-import { removeDeclarationsAfterFromSource } from '../../utils/questionnaire';
 import { CloneElements } from './CloneElements';
 import { OrchestratorProps } from './Orchestrator';
 import { useRemote } from './useRemote';
@@ -46,16 +45,14 @@ export function LoadSourceData({
 		navigateError
 	);
 
-	const sourceWithoutDeclarationsAfter =
-		removeDeclarationsAfterFromSource(source);
 
-	if (!sourceWithoutDeclarationsAfter || !surveyUnitData) {
+	if (!source || !surveyUnitData) {
 		// TODO skeleton
 		return null;
 	}
 	return (
 		<CloneElements<OrchestratorProps>
-			source={sourceWithoutDeclarationsAfter}
+			source={source}
 			surveyUnitData={surveyUnitData}
 			getReferentiel={getReferentiel}
 			onChange={onChange}
