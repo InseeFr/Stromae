@@ -16,6 +16,7 @@ const DEFAULT_FOOTER: FooterType = {
 	homeLinkProps: undefined,
 	license: undefined,
 	operatorLogo: undefined,
+	appSupplementaire: undefined
 };
 
 type FooterProps = { footer?: FooterType };
@@ -32,6 +33,7 @@ export function Footer(props: FooterProps) {
 		websiteMapLinkProps,
 		license,
 		operatorLogo,
+		appSupplementaire
 	} = props.footer || DEFAULT_FOOTER;
 	// We don't use the React DSFR Footer component because the links are not correctly displayed with nvda (the links are all on one line)
 	return (
@@ -159,7 +161,7 @@ export function Footer(props: FooterProps) {
 							</li>
 						))}
 						<li className={fr.cx('fr-footer__bottom-item')}>
-							<AppVersion className={fr.cx('fr-footer__bottom-link')} />
+							<AppVersion className={fr.cx('fr-footer__bottom-link')} appSupplementaire={appSupplementaire} />
 						</li>
 					</ul>
 					<div className={fr.cx('fr-footer__bottom-copy')}>
