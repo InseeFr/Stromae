@@ -1,10 +1,11 @@
+import { createMockReactOidc } from 'oidc-spa/mock/react';
 import { createReactOidc } from 'oidc-spa/react';
-import { OIDC, READ_ONLY } from 'utils/constants';
-import { listenActivity } from 'utils/events';
-import { environment, oidcConf } from 'utils/read-env-vars';
+import { READ_ONLY } from 'utils/constants';
+import { environment, oidcConf } from '../read-env-vars';
 
-const { IDENTITY_PROVIDER, PORTAIL_URL, AUTH_TYPE } = environment;
-const { authUrl, realm, client_id } = oidcConf;
+const { AUTH_TYPE, IDENTITY_PROVIDER, PORTAIL_URL } = environment;
+
+const { authUrl, client_id, realm } = oidcConf;
 
 const isReadOnlyMode = window.location.pathname.startsWith(`/${READ_ONLY}`);
 
@@ -25,72 +26,13 @@ const getExtraQueryParams = () => {
   return {};
 };
 
-const dummyOidc = {
-  isUserLoggedIn: true,
-  logout: () => (window.location.href = '/'),
-  oidcTokens: {
-    accessToken: null,
-    idToken: null,
-    refreshToken: null,
-    refreshTokenExpirationTime: null,
-    accessTokenExpirationTime: Date.now() + 60 * 60 * 1000,
-  },
-  login: () => window.location.reload(),
-  getTokens: () => ({
-    accessToken: null,
-    idToken: null,
-    refreshToken: null,
-    refreshTokenExpirationTime: null,
-    accessTokenExpirationTime: Date.now() + 60 * 60 * 1000,
-  }),
-};
+export const { OidcProvider, useOidc, prOidc } =
+  AUTH_TYPE === 'none'
+    ? createMockReactOidc({ isUserInitiallyLoggedIn: true })
+    : createReactOidc({
+        clientId: client_id,
+        issuerUri: `${authUrl}/realms/${realm}`,
+        publicUrl: process.env.PUBLIC_URL,
 
-const NoneProvider = ({ children }) => <>{children}</>;
-
-const createReactNone = () => {
-  return {
-    OidcProvider: NoneProvider,
-    prOidc: Promise.resolve(dummyOidc),
-    useOidc: () => dummyOidc,
-  };
-};
-
-const createReactNoneorOidc = () => {
-  if (AUTH_TYPE === OIDC)
-    return createReactOidc({
-      clientId: client_id,
-      issuerUri: `${authUrl}/realms/${realm}`,
-
-      extraQueryParams: getExtraQueryParams,
-    });
-
-  return createReactNone();
-};
-
-export const { OidcProvider, prOidc, useOidc } = createReactNoneorOidc();
-
-prOidc.then((oidc) => {
-  if (!oidc.isUserLoggedIn) {
-    return;
-  }
-  let timer;
-
-  const getDelayExpriationinMs = () => {
-    const expirationTime = oidc.getTokens().accessTokenExpirationTime;
-    return expirationTime - Date.now();
-  };
-
-  const logoutIfIdle = async () => {
-    clearTimeout(timer);
-
-    timer = setTimeout(async () => {
-      await oidc.logout({ redirectTo: 'current page' });
-    }, getDelayExpriationinMs());
-  };
-
-  // Initial call to set the logout timer
-  logoutIfIdle();
-
-  // Event listeners to reset timer on user activity
-  listenActivity(logoutIfIdle);
-});
+        extraQueryParams: getExtraQueryParams,
+      });
