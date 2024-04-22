@@ -33,7 +33,7 @@ const dictionary = {
     en: 'Are you still there ?',
   },
   logoutCountDown: {
-    fr: 'Vous allez être déconnectés dans',
+    fr: 'Vous allez être déconnecté dans',
     en: 'You will be logged out in',
   },
 };
