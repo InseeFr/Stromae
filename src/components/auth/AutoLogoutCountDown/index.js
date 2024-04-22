@@ -55,7 +55,7 @@ export function AutoLogoutCountdown() {
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold',
-        zIndex: 1000,
+        zIndex: 1200,
       }}
     >
       <div>
