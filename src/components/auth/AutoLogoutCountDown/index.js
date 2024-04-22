@@ -7,8 +7,6 @@ export function AutoLogoutCountdown() {
   const { isUserLoggedIn, subscribeToAutoLogoutCountdown } = useOidc();
   const [secondsLeft, setSecondsLeft] = useState(undefined);
 
-  console.log('seconfsLeft', secondsLeft);
-
   useEffect(
     () => {
       if (!isUserLoggedIn) {
