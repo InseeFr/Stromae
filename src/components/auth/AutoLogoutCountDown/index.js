@@ -55,12 +55,16 @@ export function AutoLogoutCountdown() {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        color: 'white',
+        fontWeight: 'bold',
         zIndex: 1000,
       }}
     >
       <div>
-        <Typography>{defaultDictionary.logoutAreYouThere}</Typography>
-        <Typography>{`${defaultDictionary.logoutCountDown} ${secondsLeft} sec`}</Typography>
+        <Typography variant='h5'>
+          {defaultDictionary.logoutAreYouThere}
+        </Typography>
+        <Typography>{`${defaultDictionary.logoutCountDown} ${secondsLeft} sec.`}</Typography>
       </div>
     </div>
   );
