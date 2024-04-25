@@ -28,6 +28,14 @@ const dictionary = {
     fr: `Version de la dépendance @inseefr/lunatic`,
     en: `Version of the @inseefr/lunatic dependency`,
   },
+  logoutAreYouThere: {
+    fr: 'Vous êtes toujours là ?',
+    en: 'Are you still there ?',
+  },
+  logoutCountDown: {
+    fr: 'Vous allez être déconnecté dans',
+    en: 'You will be logged out in',
+  },
 };
 
 export default dictionary;
