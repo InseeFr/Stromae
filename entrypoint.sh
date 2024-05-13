@@ -14,4 +14,5 @@ echo "window._env_['REACT_APP_CLIENT_ID'] = '$REACT_APP_CLIENT_ID';" >> /usr/sha
 echo "window._env_['REACT_APP_AUTH_REALM'] = '$REACT_APP_AUTH_REALM';" >> /usr/share/nginx/html/env-config.js
 echo "window._env_['REACT_APP_PORTAIL_URL'] = '$REACT_APP_PORTAIL_URL';" >> /usr/share/nginx/html/env-config.js
 echo "window._env_['REACT_APP_IDENTITY_PROVIDER'] = '$REACT_APP_IDENTITY_PROVIDER';" >> /usr/share/nginx/html/env-config.js
+echo "window._env_['REACT_APP_BASE_URL'] = '$REACT_APP_BASE_URL';" >> /usr/share/nginx/html/env-config.js
 exec "$@"
