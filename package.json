@@ -1,6 +1,6 @@
 {
   "name": "stromae",
-  "version": "2.4.19",
+  "version": "2.4.20",
   "description": "Web application for the management of questionnaires powered by Lunatic",
   "repository": {
     "type": "git",
@@ -33,10 +33,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npm run generate-entrypoint && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "npm run generate-entrypoint && react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts --openssl-legacy-provider test",
+    "eject": "react-scripts --openssl-legacy-provider eject",
     "generate-entrypoint": "node scripts/generate-entrypoint.js",
     "prepare": "husky install",
     "lint:check": "eslint . --ext .js,.jsx",

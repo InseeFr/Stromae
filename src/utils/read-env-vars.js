@@ -9,6 +9,14 @@ export const getEnvVar = (varName) => {
   return window?._env_?.[varName] || process.env[varName] || '';
 };
 
+const formatBaseUrl = (baseUrl) => {
+  if (baseUrl) {
+    if (baseUrl.startsWith('/')) return baseUrl;
+    return `/${baseUrl}`;
+  }
+  return baseUrl;
+};
+
 export const environment = {
   API_URL: getEnvVar('REACT_APP_SURVEY_API_BASE_URL'),
   AUTH_TYPE: getEnvVar('REACT_APP_AUTH_TYPE') || 'none',
@@ -17,6 +25,7 @@ export const environment = {
   IDENTITY_PROVIDER: getEnvVar('REACT_APP_IDENTITY_PROVIDER'),
   // VISUALIZE is disabled by default, so if value is not present and not set to true in env-config.js, VISUALIZE page is disabled
   VIZUALIZE_ENABLED: getEnvVar('REACT_APP_VIZUALIZE_ENABLED') || false,
+  BASE_URL: formatBaseUrl(getEnvVar('REACT_APP_BASE_URL') || null),
 };
 
 export const oidcConf = {

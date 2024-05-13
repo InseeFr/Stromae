@@ -6,6 +6,9 @@ import './App.css';
 import { Router } from './components/router';
 import { ErrorFallback } from './components/shared/error';
 import { StyleProvider } from './components/style';
+import { environment } from 'utils/read-env-vars';
+
+const { BASE_URL } = environment;
 
 const App = () => {
   return (
@@ -13,7 +16,7 @@ const App = () => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <AuthProvider>
           <AutoLogoutCountdown />
-          <BrowserRouter>
+          <BrowserRouter basename={BASE_URL}>
             <Router />
           </BrowserRouter>
         </AuthProvider>
