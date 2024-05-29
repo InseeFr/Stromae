@@ -1,4 +1,4 @@
-# Champ "Nombre"
+# Champ Nombre
 
 Le composant InputNumber permet d'afficher un champ numérique.
 Il est caractérisé par une valeur minimale, une valeur maximale et un nombre de décimales autorisées on souhaite valider la longueur)
