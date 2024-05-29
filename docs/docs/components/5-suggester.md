@@ -9,7 +9,8 @@ https://inseefr.github.io/Bowie/pogues/guide/
 
 ### Visuels Stromae DSFR
 
-En cours
+![image](https://github.com/InseeFr/Stromae/assets/71011059/e3d44934-b353-4995-a6b4-eb53bcfd9369)
+
 
 ### Visuels DSFR
 
