@@ -12,6 +12,11 @@ https://inseefr.github.io/Bowie/pogues/guide/
 
 ### Visuels Stromae DSFR
 
+![image](https://github.com/InseeFr/Stromae/assets/71011059/5bb4640b-dccc-4c17-8025-722689ca7708)
+
+![image](https://github.com/InseeFr/Stromae/assets/71011059/1ea3d1fb-eb9f-448e-aaaa-2578473a6a69)
+
+
 ### Visuels DSFR
 
 Séquence : https://inseefr.github.io/Lunatic-DSFR/storybook/?path=/docs/components-sequence--documentation
