@@ -1,4 +1,4 @@
-# Séquence et sous-séquence
+# Les séquences et sous-séquences
 
 Une séquence est une partie ou module de questionnaire. Elle dispose d'un style d'affichage "dédié".
 Une sous-séquence est une partie d'une séquence : un questionnaire comporte une ou plusieurs séquences, chacune d'elles peut comporter entre 0 et plusieurs sous-séquences. 
