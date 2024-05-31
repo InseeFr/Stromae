@@ -1,0 +1,8 @@
+{
+	"label": "Agrégateurs",
+	"position": 2,
+	"link": {
+		"type": "generated-index",
+		"description": "Les composants permettant d'agréger des informations complexes (et qui peuvent être décrits grâce aux outils Pogues, Eno et Lunatic)"
+	}
+}
