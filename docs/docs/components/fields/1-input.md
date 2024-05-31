@@ -1,4 +1,4 @@
-# Champ texte
+# Champ Texte
 
 Le composant Input permet d'afficher un simple champ texte, caractérisé par une longueur maximale du texte.
 Un controle supplémentaire est à ajouter pour définir une longueur précise.
