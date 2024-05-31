@@ -1,4 +1,4 @@
-# Question à choix unique
+# Les questions à choix unique
 
 Le composant Radio Permet de sélectionner une valeur parmi une liste d'options (questions à choix unique).
 Les modalités de réponse peuvent être personnalisées.
