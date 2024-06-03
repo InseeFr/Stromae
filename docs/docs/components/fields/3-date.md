@@ -6,7 +6,7 @@ Pour chaque format, on peut décire une date minimale et une date maximale
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
