@@ -6,7 +6,7 @@ Chaque réponse prendra la valeur true ou false en fonction de l'état de la cas
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
