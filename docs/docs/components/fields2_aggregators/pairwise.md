@@ -6,7 +6,7 @@ Une matrice de symétrie permet de calculer les liens inverses.
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
