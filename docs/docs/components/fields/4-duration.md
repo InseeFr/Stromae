@@ -6,7 +6,7 @@ Le composant Duration peut être utilisée pour collecter une date. Elle peut co
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
