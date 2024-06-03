@@ -6,7 +6,7 @@ Les modalités de réponse peuvent être personnalisées.
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
