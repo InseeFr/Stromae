@@ -7,7 +7,7 @@ Le composant TextArea permet d'afficher un champ texte plus long que l'Input.
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 
