@@ -6,7 +6,7 @@ On peut également préciser l'unité dans laquelle il est collecté. Cette unit
 
 ### Comment faire dans Pogues ?
 
-https://inseefr.github.io/Bowie/pogues/guide/
+https://inseefr.github.io/Bowie/pogues/Le%20guide/
 
 ### Visuels Stromae DSFR
 ![image](https://github.com/InseeFr/Stromae/assets/71011059/77961be2-6164-4fb2-8e64-3dcd23b183da)
