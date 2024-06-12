@@ -1,4 +1,4 @@
-# Stromae V3
+# Stromae DSFR
 
 Web application for the management of questionnaires powered by Lunatic (https://github.com/InseeFr/Lunatic)
 
