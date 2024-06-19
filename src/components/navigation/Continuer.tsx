@@ -26,7 +26,7 @@ function getStatus(
 	saving: boolean
 ) {
 	if (isLastPage) {
-		return 'Envoyer mes réponses';
+		return 'Valider mes réponses';
 	}
 	if (saving) {
 		return 'Vos données sont en cours de sauvegarde';
@@ -58,9 +58,10 @@ export function Continuer(props: OrchestratedElement) {
 	const navigate = useNavigate();
 	const saveSuData = useSaveSurveyUnitStateData();
 	const { unit, survey } = useParams();
-	const buttonContent = waiting || saving
-		? `Chargement`
-		: getStatus(getComponents, isLastPage ?? false, saving);
+	const buttonContent =
+		waiting || saving
+			? `Chargement`
+			: getStatus(getComponents, isLastPage ?? false, saving);
 
 	const handleClick = useCallback(
 		(event: React.MouseEvent) => {
