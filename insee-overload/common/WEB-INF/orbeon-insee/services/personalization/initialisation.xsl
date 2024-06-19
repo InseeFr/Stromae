@@ -7,10 +7,15 @@
     <xsl:param name="informations"/>
 
     <xsl:template match="/">
-        <xsl:apply-templates select="/xhtml:html"/>
+        <xsl:variable name="deblok">
+		<xsl:value-of select=".//Util/debloquer/name()"/>
+        </xsl:variable>
+        <xsl:apply-templates select="/xhtml:html">
+            <xsl:with-param name="deblok" select="$deblok" tunnel="yes"/>
+        </xsl:apply-templates>
     </xsl:template>
 
-    <xsl:template match="node()|@*" mode="#all">
+    <xsl:template match="node()|@*" mode="#all">        
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
@@ -18,8 +23,29 @@
 
     <!-- When the instance corresponding to the questionnaire data is found, it is replaced by the retrieved instance. -->
     <xsl:template match="form[parent::xf:instance[@id='fr-form-instance']]">
-        <xsl:copy-of select="$instance"/>
+	    <xsl:if test="not($instance//ACCUEIL)">    
+		    <form><FIN/><xsl:copy-of select="$instance/form/stromae"/></form>
+	    </xsl:if>	  
+	    <xsl:if test="$instance//ACCUEIL">
+	    	<xsl:copy-of select="$instance"/>
+	    </xsl:if>	
     </xsl:template>
+
+    <!-- When extraction was done -->
+    <xsl:template match="xhtml:p[xhtml:a[@href='recapitulatifPdf']]" mode="#all">
+        <xsl:param name="deblok" tunnel="yes"/>
+        <xsl:if test="$instance//ACCUEIL">
+            <xsl:copy>
+                <xsl:apply-templates select="node()|@*" mode="#current"/>
+	    </xsl:copy>
+	    <xsl:if test="$deblok eq ''">	
+	        <xhtml:p>
+                    <xhtml:b>Attention, une fois déconnecté, vous ne pourrez plus télécharger ce récapitulatif.</xhtml:b>
+	        </xhtml:p>
+	    </xsl:if>
+        </xsl:if>        
+    </xsl:template>
+    
 
     <!-- When we find the instance corresponding to the Control data, we apply the templates of the recovered data, in order to perform some treatments -->
     <xsl:template match="InformationsQuestionnaire[parent::xf:instance[@id='fr-donnees-pilotage']]">
