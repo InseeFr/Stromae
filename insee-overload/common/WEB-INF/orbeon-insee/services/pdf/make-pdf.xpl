@@ -18,7 +18,7 @@
 		</p:input>
 		<p:input name="submission" transform="oxf:unsafe-xslt" href="#parameters">
 			<xf:submission xsl:version="2.0" method="get"
-				resource="{p:property('server-exist-orbeon')}/restxq/collectes/formulaire/{/parameters/survey}/{/parameters/modele}"
+				resource="{p:property('server-exist-orbeon')}/rest/db/orbeon/fr/{/parameters/survey}/{/parameters/modele}/form/form.xhtml"
 			/>
 		</p:input>
 		<p:output name="response" id="form"/>
