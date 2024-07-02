@@ -3,12 +3,20 @@
 		"COLLECTED": {
 			"PRENOM": { "COLLECTED": ["Dad", "Mom", "Unknow"] },
 			"AGE": { "COLLECTED": [30, 29, 5] },
+			"EMAIL_OCC": { "COLLECTED": "françois.morel@insee.fr" },
+			"NOM_OCC": { "COLLECTED": "François Morel" },
 			"LINKS": {
 				"COLLECTED": [[null]]
 			},
+			"CPOST_LOC": { "COLLECTED": "Paris(12)" },
 			"OTHER": {
 				"COLLECTED": [[null]]
 			}
+		},
+		"EXTERNAL": {
+			"DEP_CODE": "75",
+			"COM_CODE": "012",
+			"LIBELLE_COMMUNE": "Paris(12)"
 		}
 	},
 	"stateData": {
