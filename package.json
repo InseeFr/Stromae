@@ -1,6 +1,6 @@
 {
 	"name": "stromae",
-	"version": "3.1.6-test-adresse",
+	"version": "3.1.6",
 	"private": true,
 	"dependencies": {
 		"@axa-fr/react-oidc": "^7.18.5",
