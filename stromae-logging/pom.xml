@@ -30,7 +30,7 @@
 			<artifactId>log4j-1.2-api</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		
+
 		<!-- Tomcat -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
