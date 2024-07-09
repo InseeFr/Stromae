@@ -1,4 +1,4 @@
-FROM tomcat:10-jre11
+FROM tomcat:10-jre17
 
 RUN apt-get update -qy && apt-get install gettext-base -y
 RUN rm -rf $CATALINA_HOME/webapps/*

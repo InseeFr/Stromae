@@ -15,8 +15,8 @@
 		<log4j.version>2.23.1</log4j.version>
 		<junit.version>4.13.1</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<compiler.source>11</compiler.source>
-		<compiler.target>11</compiler.target>
+		<compiler.source>17</compiler.source>
+		<compiler.target>17</compiler.target>
 	</properties>
 
 	<dependencies>
