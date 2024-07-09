@@ -10,19 +10,25 @@
 	<name>Stromae Logging</name>
 
 	<properties>
-		<tomcat.version>8.5.9</tomcat.version>
+		<tomcat.version>10.1.25</tomcat.version>
 		<javax.servlet.version>2.4</javax.servlet.version>
+		<log4j.version>2.23.1</log4j.version>
 		<junit.version>4.13.1</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<compiler.source>1.8</compiler.source>
-		<compiler.target>1.8</compiler.target>
+		<compiler.source>11</compiler.source>
+		<compiler.target>11</compiler.target>
 	</properties>
 
 	<dependencies>
 		<dependency>
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		
 		<!-- Tomcat -->
@@ -33,9 +39,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${javax.servlet.version}</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- Test -->

@@ -8,14 +8,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.log4j.MDC;
 
 /**
@@ -40,12 +34,11 @@ public class AddSessionDataFilter implements Filter {
 	 * Execute filter: save data session
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+						 FilterChain chain) throws IOException, ServletException {
 
 		boolean userSession = false;
 		boolean userIpAddr = false;
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-
 
 		if (httpRequest.getSession(false) != null) {
 			String sessionId = httpRequest.getSession(false).getId();
