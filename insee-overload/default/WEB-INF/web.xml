@@ -158,14 +158,14 @@
         The next two listeners are to be added from version 2017.2
         
     -->
-    <!-- <listener>
+    <listener>
         <listener-class>org.orbeon.oxf.xforms.ReplicationServletContextListener</listener-class>
-    </listener> -->
+    </listener>
     <!--XForms session listener-->
-    <!-- <listener>
+    <listener>
         <listener-class>org.orbeon.oxf.xforms.XFormsServletContextListener</listener-class>
-    </listener> -->
-    <!--General-purpose session listener-->
+    </listener>
+    <!-- General-purpose session listener -->
     <listener>
         <listener-class>org.orbeon.oxf.webapp.OrbeonSessionListener</listener-class>
     </listener>
