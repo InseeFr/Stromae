@@ -1,13 +1,13 @@
 package fr.insee.stromae.logging;
 
+
+import org.apache.log4j.Level;
+import org.apache.log4j.spi.Filter;
+import org.apache.log4j.spi.LoggingEvent;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Filter;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
 import java.util.regex.Pattern;
-
-
 
 /**
  * Log4j filter allowing to filter log messages according to a pattern 
@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * in the appender's conf
  * @author Benjamin Bour
  */
-public class CustomFilterParadata implements Filter {
+public class CustomFilterParadata extends Filter {
 	
 	public static String orbeonEvent = "(DOMActivate|xforms-focus|xxforms-value)";
 	public static String orbeonSource = "(setvalue|client|select)";
@@ -34,10 +34,12 @@ public class CustomFilterParadata implements Filter {
 	 * Filter decision rule
 	 */
 	@Override
-	public boolean isLoggable(LogRecord record) {
-		Level logLevel = record.getLevel();
-		String msg = record.getMessage();
-		return logLevel == Level.SEVERE  || isAccepted(msg);
+	public int decide(LoggingEvent event) {
+		// to filter with the id of survey : String enquete = (String) event.getMDC("survey");
+		Level logLevel = event.getLevel();
+		String msg = event.getRenderedMessage();
+		if (logLevel == Level.ERROR || logLevel == Level.FATAL || isAccepted(msg)) return Filter.ACCEPT;
+		return Filter.DENY;
 	}
 
 	public static boolean isAccepted(String message) {
@@ -46,6 +48,4 @@ public class CustomFilterParadata implements Filter {
 		}
 		return false;
 	}
-
-
 }

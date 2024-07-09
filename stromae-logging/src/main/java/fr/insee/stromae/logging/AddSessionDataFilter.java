@@ -1,16 +1,16 @@
 
 package fr.insee.stromae.logging;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.log4j.MDC;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServletRequest;
-import org.apache.log4j.MDC;
 
 /**
  * Filter added via web.xml configuration

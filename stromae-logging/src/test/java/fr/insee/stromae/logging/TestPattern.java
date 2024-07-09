@@ -1,12 +1,10 @@
 package fr.insee.stromae.logging;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import fr.insee.stromae.logging.CustomFilterParadata;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestPattern {
 	
