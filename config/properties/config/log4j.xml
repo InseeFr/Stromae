@@ -32,23 +32,6 @@
         </filter>
     </appender>
 
-    <appender name="ParadataFileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="File" value="${catalina.base}/logs/paradata-orbeon.log"/>
-        <param name="MaxFileSize" value="1MB"/>
-        <param name="maxBackupIndex" value="200"/>
-        <param name="Append" value="false" />
-        <param name="Encoding" value="UTF-8"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ISO8601} %p %c{1} - sessionId:%X{sessionId} ipAddr:%X{ipAddr} userAgent:%X{userAgent} survey:%X{survey} surveyUnit:%X{surveyUnit} OrbeonMessage:%m%n"/>
-        </layout>
-        <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMin" value="DEBUG" />
-            <param name="LevelMax" value="INFO" />
-        </filter>
-        <!-- Filter useless logs -->
-        <filter class="fr.insee.stromae.logging.CustomFilterParadata" />
-    </appender>
-
     <!-- XForms engine activity, see http://wiki.orbeon.com/forms/doc/developer-guide/xforms-logging -->
     <category name="org.orbeon.oxf.xforms.processor.XFormsServer">
         <priority value="debug"/>
@@ -74,7 +57,6 @@
     <root>
         <priority value="debug"/>
         <appender-ref ref="RollingFileAppender"/>
-        <appender-ref ref="ParadataFileAppender"/>
     </root>
 
 </log4j:configuration>
