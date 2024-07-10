@@ -64,17 +64,6 @@
         <param-value>true</param-value>
     </context-param>
 
-    <!-- logging -->
-    <filter>
-        <filter-name>AddSessionDataFilter</filter-name>
-        <filter-class>fr.insee.stromae.logging.AddSessionDataFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AddSessionDataFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-
     <!--Security filter for eXist-->
 
     <filter>
