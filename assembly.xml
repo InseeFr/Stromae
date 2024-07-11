@@ -37,15 +37,5 @@
             </includes>
             <outputDirectory/>
         </fileSet>
-        <fileSet>
-            <directory>${project.basedir}/stromae-logging/target</directory>
-            <includes>
-                <include>*.jar</include>
-            </includes>
-            <excludes>
-                <exclude>junit*.jar</exclude>
-            </excludes>
-            <outputDirectory>WEB-INF/lib</outputDirectory>
-        </fileSet>
     </fileSets>    
 </assembly>

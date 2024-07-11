@@ -1018,4 +1018,13 @@ html#xf-1 body.orbeon form#xforms-form div#warningPrevious_c div#warningPrevious
   flex-direction: row;
 }
 
+body.orbeon div.date.xforms-type-date div.date span.add-on {
+  background-image: url(/rmestromae/3.1415/img/calendar.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+  
+  body.orbeon span.add-on i.fa.fa-fw.fa-calendar::before{
+      content: none;
+  }
 
