@@ -1,6 +1,5 @@
 FROM tomcat:9-jre17
 
-RUN apt-get update -qy && apt-get install gettext-base -y
 RUN rm -rf $CATALINA_HOME/webapps/*
 ADD config/ $CATALINA_HOME/webapps/
 ADD ./target/*.war $CATALINA_HOME/webapps/rmesstromae.war
