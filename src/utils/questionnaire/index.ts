@@ -2,7 +2,7 @@ import { LunaticComponentDefinition } from '../../typeLunatic/type';
 import { DeclarationType, LunaticSource } from '../../typeLunatic/type-source';
 
 const removeDeclarationsAfterFromDeclarations = (
-	declarations: DeclarationType[]
+	declarations?: DeclarationType[]
 ): DeclarationType[] => {
 	if (Array.isArray(declarations))
 		return declarations.filter(
@@ -10,6 +10,14 @@ const removeDeclarationsAfterFromDeclarations = (
 		);
 	return [];
 };
+
+function clearDeclarations(component: LunaticComponentDefinition) {
+	const { declarations, ...rest } = component;
+	if (declarations && declarations.length) {
+		return component;
+	}
+	return rest;
+}
 
 /**
  * Remove declarations with position AFTER_QUESTION_TEXT from component
@@ -28,7 +36,7 @@ const removeDeclarationsAfterFromComponent = (
 	}
 
 	const declarationsWithoutAfter = removeDeclarationsAfterFromDeclarations(
-		component.declarations
+		component?.declarations
 	);
 
 	// For components which includes components like Loop
@@ -36,17 +44,17 @@ const removeDeclarationsAfterFromComponent = (
 		const newComponents = component.components.map(
 			removeDeclarationsAfterFromComponent
 		);
-		return {
+		return clearDeclarations({
 			...component,
 			declarations: declarationsWithoutAfter,
 			components: newComponents,
-		};
+		});
 	}
 
-	return {
+	return clearDeclarations({
 		...component,
 		declarations: declarationsWithoutAfter,
-	};
+	});
 };
 
 /**

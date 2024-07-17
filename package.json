@@ -1,13 +1,13 @@
 {
 	"name": "stromae",
-	"version": "3.1.3",
+	"version": "3.1.6",
 	"private": true,
 	"dependencies": {
 		"@axa-fr/react-oidc": "^7.18.5",
 		"@codegouvfr/react-dsfr": "^0.78.1",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
-		"@inseefr/lunatic": "2.6.10",
+		"@inseefr/lunatic": "2.6.12",
 		"@inseefr/lunatic-dsfr": "1.0.21",
 		"@mui/material": "^5.11.8",
 		"@testing-library/jest-dom": "^5.16.5",
