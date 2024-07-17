@@ -10,6 +10,9 @@ import Confirmation from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/
 import AdditionalInformation from './AdditionalInformation';
 import { MetadataSurvey, SurveyUnitData } from '../../typeStromae/type';
 import { uri404 } from '../../lib/domainUri';
+import { environment } from '../../utils/read-env-vars';
+
+const { DEPOSIT_PROOF_FILE_NAME } = environment;
 
 function parseDate(date?: number) {
 	if (date !== undefined) {
@@ -25,7 +28,7 @@ function download(data: BlobPart, unit: string) {
 	const url = URL.createObjectURL(new Blob([data]));
 	const aLink = document.createElement('a');
 	aLink.href = url;
-	aLink.download = `deposit-proof-${unit}.pdf`;
+	aLink.download = `${DEPOSIT_PROOF_FILE_NAME}-${unit}.pdf`;
 	aLink.click();
 }
 
