@@ -3,7 +3,7 @@ import { RegisteredLinkProps } from '@codegouvfr/react-dsfr/link';
 
 export type FooterType = FooterProps & {
 	otherLinksProps: Array<RegisteredLinkProps>;
-	appSupplementaire: any;
+	appSupplementaire?: string;
 };
 
 export type FooterJsonProps = {
