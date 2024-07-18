@@ -39,4 +39,6 @@ export const environment = {
 	// VISUALIZE is disabled by default, so if value is not present and not set to true in env-config.js, VISUALIZE page is disabled
 	VISUALIZE_ENABLED: `${getEnvVar('REACT_APP_VISUALIZE_ENABLED')}` === 'true',
 	DEBUG: Boolean(getEnvVar('REACT_APP_DEBUG') === 'true'),
+	DEPOSIT_PROOF_FILE_NAME:
+		getEnvVar('REACT_APP_DEPOSIT_PROOF_FILE_NAME') || 'deposit-proof',
 };
