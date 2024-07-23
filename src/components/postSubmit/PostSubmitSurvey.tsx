@@ -35,7 +35,7 @@ function download(data: BlobPart, unit: string) {
 export function PostSubmitSurvey() {
 	const navigate = useNavigate();
 	const { unit } = useParams();
-	const { getMetadata, getSurveyUnitData, getDepositProof } = useContext(
+	const { getMetadata, getDepositProof, getSurveyUnitData } = useContext(
 		loadSourceDataContext
 	);
 
@@ -52,7 +52,7 @@ export function PostSubmitSurvey() {
 
 	const metadata = useRemote<MetadataSurvey>(getMetadata, navigateError);
 	const surveyUnitData = useRemote<SurveyUnitData>(
-		getSurveyUnitData,
+		async () => getSurveyUnitData?.(true),
 		navigateError
 	);
 	const submit = metadata?.Submit;

@@ -51,7 +51,7 @@ function dependenciesHaveChanged(
 export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 	const { savingFailure, currentChange, personalization } = props;
 	const { classes, cx } = useStyles();
-	// saved is used as a flag to display the save message 
+	// saved is used as a flag to display the save message
 	const [saved, setSaved] = useState(false);
 	const [label, setlabel] = useState(personalization?.bannerLabel ?? '');
 	const bannerLabelDependencies = personalization?.bannerLabelDependencies
@@ -120,7 +120,11 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 					<div
 						className={cx(
 							classes.addressRow,
-							fr.cx('fr-grid-row--no-gutters', 'fr-grid-row', 'fr-grid-row--middle')
+							fr.cx(
+								'fr-grid-row--no-gutters',
+								'fr-grid-row',
+								'fr-grid-row--middle'
+							)
 						)}
 					>
 						<div
@@ -135,21 +139,20 @@ export function DraftBanner(props: PropsWithChildren<OrchestratedElement>) {
 								)
 							)}
 						>
-						{saved ? 	
-						
-						<Tag iconId="fr-icon-refresh-line">
-Enregistrement...
-</Tag>
-						: 						<Tag iconId="fr-icon-checkbox-circle-line">
-Brouillon enregistré
-</Tag> }
+							{saved ? (
+								<Tag iconId="fr-icon-refresh-line">Enregistrement...</Tag>
+							) : (
+								<Tag iconId="fr-icon-checkbox-circle-line">
+									Brouillon enregistré
+								</Tag>
+							)}
 						</div>
 						<BannerAddress label={computedLabel as string} />
 					</div>
-							<p className={fr.cx('fr-col-12', 'fr-col-md-10', 'fr-mb-0')}>
-			Vos réponses sont enregistrées automatiquement à chaque chargement de
-			page.
-		</p>
+					<p className={fr.cx('fr-col-12', 'fr-col-md-10', 'fr-mb-0')}>
+						Vos réponses sont enregistrées automatiquement à chaque chargement
+						de page.
+					</p>
 				</div>
 			</div>
 		</div>

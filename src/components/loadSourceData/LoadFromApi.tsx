@@ -2,7 +2,6 @@ import { PropsWithChildren, useCallback, useMemo } from 'react';
 import { useAccessToken } from '../../lib/oidc';
 import { surveyApi } from '../../lib/surveys/surveysApi';
 import { DataVariables, StateData } from '../../typeStromae/type';
-
 import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 import { loadSourceDataContext } from './LoadSourceDataContext';
 
@@ -36,12 +35,19 @@ export function LoadFromApi({
 		return undefined;
 	}, [survey, isTokenReady, accessToken]);
 
-	const getSurveyUnitData = useCallback(async () => {
-		if (unit && isTokenReady) {
-			return surveyApi.getSurveyUnitData(unit, accessToken);
-		}
-		return undefined;
-	}, [unit, isTokenReady, accessToken]);
+	const getSurveyUnitData = useCallback(
+		async (refresh?: boolean) => {
+			if (unit && isTokenReady) {
+				if (refresh) {
+					return surveyApi.getFreshSurveyUnitData(unit, accessToken);
+				}
+
+				return surveyApi.getSurveyUnitData(unit, accessToken);
+			}
+			return undefined;
+		},
+		[unit, isTokenReady, accessToken]
+	);
 
 	const getReferentiel = useCallback(
 		async (name: string) => {

@@ -10,7 +10,9 @@ import {
 export type LoadSourceDataContextType = {
 	getMetadata: () => Promise<MetadataSurvey | undefined>;
 	getSurvey: () => Promise<LunaticSource | undefined>;
-	getSurveyUnitData?: () => Promise<SurveyUnitData | undefined>;
+	getSurveyUnitData?: (
+		refresh?: boolean
+	) => Promise<SurveyUnitData | undefined>;
 	getReferentiel: (name: string) => Promise<Array<unknown>>;
 	/* */
 	putSurveyUnitData: (data?: DataVariables) => Promise<boolean>;

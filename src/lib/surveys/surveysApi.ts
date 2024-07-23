@@ -11,7 +11,7 @@ import { getMetadataSurvey } from './getMetadataSurvey';
 import { getNomenclature } from './getNomenclature';
 import { getRequiredNomenclatures } from './getRequiredNomenclatures';
 import { getSurvey } from './getSurvey';
-import { getSurveyUnitData } from './getSurveyUnit';
+import { fectchSurveyUnitData, getSurveyUnitData } from './getSurveyUnit';
 import { putSurveyUnitData } from './putSurveyUnitData';
 import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 
@@ -23,6 +23,10 @@ export interface SurveyApi {
 		token: string | undefined
 	) => Promise<LunaticSource>;
 	getSurveyUnitData: (
+		unit: string,
+		token: string | undefined
+	) => Promise<SurveyUnitData>;
+	getFreshSurveyUnitData: (
 		unit: string,
 		token: string | undefined
 	) => Promise<SurveyUnitData>;
@@ -55,6 +59,7 @@ export const surveyApi: SurveyApi = {
 	getSurvey: getSurvey(DOMAIN),
 	getMetadataSurvey: getMetadataSurvey(DOMAIN),
 	getSurveyUnitData: getSurveyUnitData(DOMAIN),
+	getFreshSurveyUnitData: fectchSurveyUnitData(DOMAIN),
 	getRequiredNomenclatures: getRequiredNomenclatures(DOMAIN),
 	getNomenclature: getNomenclature(DOMAIN),
 	putSurveyUnitData: putSurveyUnitData(DOMAIN),
