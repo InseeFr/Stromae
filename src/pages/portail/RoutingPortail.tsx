@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthTypeEnum, environment } from '../../utils/read-env-vars';
 
 const { DEFAULT_SURVEY, AUTH_TYPE, VISUALIZE_ENABLED } = environment;
-const visualizeRoutingEnabled =
+export const visualizeRoutingEnabled =
 	AUTH_TYPE === AuthTypeEnum.None && VISUALIZE_ENABLED;
 
 export function RoutingPortail() {
