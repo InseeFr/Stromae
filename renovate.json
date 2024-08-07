@@ -1,0 +1,34 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended", ":semanticCommits", ":disableRateLimiting"],
+	"packageRules": [
+		{
+			"matchPaths": ["package.json"],
+			"matchPackagePatterns": ["*"],
+			"labels": ["dependencies"],
+			"bumpVersion": "patch",
+			"dependencyDashboardApproval": true
+		},
+		{
+			"groupName": "all minor dependencies",
+			"groupSlug": "all-minor-patch",
+			"matchPackagePatterns": ["*"],
+			"matchUpdateTypes": ["minor", "patch"],
+			"bumpVersion": "patch",
+			"dependencyDashboardApproval": false
+		},
+		{
+			"matchPaths": [".github/workflows/**", "ci/**"],
+			"labels": ["CI"],
+			"dependencyDashboardApproval": true
+		}
+	],
+	"vulnerabilityAlerts": {
+		"enabled": true,
+		"addLabels": ["security"],
+		"bumpVersion": "patch",
+		"schedule": ["before 5:00am"]
+	},
+	"schedule": ["every weekend"],
+	"timezone": "Europe/Paris"
+}
