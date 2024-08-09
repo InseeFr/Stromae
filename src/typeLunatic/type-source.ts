@@ -170,7 +170,6 @@ export type ComponentRosterForLoopType = {
 		rowspan?: number;
 		id?: string;
 	}[];
-	positioning: 'HORIZONTAL';
 };
 
 export type ComponentLoopType = {
@@ -189,7 +188,6 @@ export type ComponentTableType = {
 	lines: ComponentRosterForLoopType['lines'];
 	header: ComponentRosterForLoopType['header'];
 	body: ComponentRosterForLoopType['body'];
-	positioning: ComponentRosterForLoopType['positioning'];
 };
 
 export type ComponentNumberType = {
