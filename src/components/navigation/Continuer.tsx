@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { CollectStatusEnum, OrchestratedElement } from '../../typeStromae/type';
@@ -57,7 +57,6 @@ export function Continuer(props: OrchestratedElement) {
 	} = props;
 	const navigate = useNavigate();
 	const saveSuData = useSaveSurveyUnitStateData();
-	const { unit, survey } = useParams();
 	const buttonContent =
 		waiting || saving
 			? `Chargement`
