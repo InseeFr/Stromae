@@ -87,7 +87,7 @@ export function Continuer(props: OrchestratedElement) {
 			document.getElementById('button-precedent')?.focus();
 			goNextPage();
 		},
-		[goNextPage, isLastPage, unit, survey, navigate, saveSuData, pageTag]
+		[goNextPage, isLastPage, navigate, saveSuData, pageTag]
 	);
 
 	return (
