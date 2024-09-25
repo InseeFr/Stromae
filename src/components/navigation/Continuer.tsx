@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { CollectStatusEnum, OrchestratedElement } from '../../typeStromae/type';
-import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
+import { uri404 } from '../../lib/domainUri';
 import { useSaveSurveyUnitStateData } from '../../hooks/useSaveSurveyUnitData';
 
 function getButtonTitle(getComponents: () => Array<ComponentType>) {
@@ -74,7 +74,7 @@ export function Continuer(props: OrchestratedElement) {
 					collectStatus: CollectStatusEnum.Validated,
 				})
 					.then(() => {
-						navigate(uriPostEnvoi(survey, unit));
+						navigate(0);
 						setSaving(false);
 					})
 					.catch(() => {
