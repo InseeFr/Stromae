@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { Button } from '@codegouvfr/react-dsfr/Button';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
 import { CollectStatusEnum, OrchestratedElement } from '../../typeStromae/type';
-import { uriPostEnvoi, uri404 } from '../../lib/domainUri';
+import { uri404 } from '../../lib/domainUri';
 import { useSaveSurveyUnitStateData } from '../../hooks/useSaveSurveyUnitData';
 
 function getButtonTitle(getComponents: () => Array<ComponentType>) {
@@ -57,7 +57,6 @@ export function Continuer(props: OrchestratedElement) {
 	} = props;
 	const navigate = useNavigate();
 	const saveSuData = useSaveSurveyUnitStateData();
-	const { unit, survey } = useParams();
 	const buttonContent =
 		waiting || saving
 			? `Chargement`
@@ -74,7 +73,7 @@ export function Continuer(props: OrchestratedElement) {
 					collectStatus: CollectStatusEnum.Validated,
 				})
 					.then(() => {
-						navigate(uriPostEnvoi(survey, unit));
+						navigate(0);
 						setSaving(false);
 					})
 					.catch(() => {
@@ -87,7 +86,7 @@ export function Continuer(props: OrchestratedElement) {
 			document.getElementById('button-precedent')?.focus();
 			goNextPage();
 		},
-		[goNextPage, isLastPage, unit, survey, navigate, saveSuData, pageTag]
+		[goNextPage, isLastPage, navigate, saveSuData, pageTag]
 	);
 
 	return (
