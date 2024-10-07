@@ -1528,20 +1528,20 @@
     sass-loader "^13.2.0"
     tss-react "4.8.6"
 
-"@inseefr/lunatic@2.6.12":
-  version "2.6.12"
-  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.6.12.tgz#01c22c2fd3e15bfe41d12073693c88972af65c4c"
-  integrity sha512-enC+w7PEklIkikb/+stD+SY+W5Lml67Q+0qwDTTiIP25WkxnV5zyklmByWMoEQ17VonpBSPtf4K1bskG0//OZg==
+"@inseefr/lunatic@2.6.13":
+  version "2.6.13"
+  resolved "https://registry.yarnpkg.com/@inseefr/lunatic/-/lunatic-2.6.13.tgz#0ce41d358194576101082f4c34de17fc3544f9c0"
+  integrity sha512-xv44h2p8TdXkb8udgZgPymPivrhyn8hAYxRa+HxkCGV0bpBXBgJvJo+x6yIoXk4KCuJif/ry982Z5ssj1iloeg==
   dependencies:
     "@inseefr/trevas" "^0.1.20"
     "@inseefr/vtl-2.0-antlr-tools" "^0.1.0-bundle"
     antlr4 "4.11.0"
     classnames "^2.3.1"
-    date-fns "^2.25.0"
+    date-fns "^3.0.0"
     lodash.camelcase "^4.3.0"
     lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
-    object-hash "^2.2.0"
+    object-hash "^3.0.0"
     prop-types "^15.7.2"
     react-keyboard-event-handler "^1.5.4"
     react-markdown "^8.0.3"
@@ -4345,6 +4345,11 @@ date-fns@^2.25.0, date-fns@^2.27.0, date-fns@^2.29.3:
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
   dependencies:
     "@babel/runtime" "^7.21.0"
+
+date-fns@^3.0.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
+  integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
 
 dayjs@^1.8.12:
   version "1.11.10"
