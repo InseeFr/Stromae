@@ -41,7 +41,7 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 						</Accordion>
 					)
 				)}
-			<Accordion label="Quel est le cadre légal de l'enquête?">
+			<Accordion label="Quel est le cadre légal de l'enquête&nbsp;?">
 				<p>
 					Vu l'avis favorable du Conseil national de l'information statistique,
 					cette enquête{caracteristiqueEnquete}, en application de{' '}
@@ -60,9 +60,9 @@ export function WelcomeQuestions(props: { welcome: WelcomeType }) {
 					Visa n°{props.welcome.Enq_NumeroVisa} du Ministre{' '}
 					{props.welcome.Enq_MinistereTutelle}, valable pour{' '}
 					{props.welcome.Enq_AnneeVisa}
-					{props.welcome.Enq_ParutionJo
+					{props.welcome.Enq_ParutionJo !== undefined && (props.welcome.Enq_ParutionJo
 						? ` - Arrêté en date du ${props.welcome.Enq_DateParutionJo}`
-						: '- Arrêté en cours de parution'}
+						: '- Arrêté en cours de parution')}
 					.
 				</p>
 				<p>
