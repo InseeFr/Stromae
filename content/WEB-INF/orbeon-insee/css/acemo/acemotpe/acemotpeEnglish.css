@@ -1,0 +1,18 @@
+/*largeur */
+@media (min-width: 1200px) {
+	  .orbeon .container {width: 1200px;}
+	  .orbeon [class*="span"] {width: 1200px;}
+	}
+	
+/*@media (min-width: 1400px) {
+	  .orbeon .container {width: 1300px;}	
+	  .orbeon [class*="span"] {width: 1300px;}
+	}*/
+	
+div#jqmb13di-control .checkbox > span {
+    white-space:nowrap;
+}
+
+div[id=jqmb13di-control] .nombre .xforms-input-input {
+    width:100px;
+}

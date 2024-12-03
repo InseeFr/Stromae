@@ -1,0 +1,16 @@
+<properties xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+    <!--********************************Les proprietes existantes d'orbeon********************************-->
+    <!-- Le chemin vers la collection qui va abriter les formulaires qui vont etre traites par orbeon  (avec id et mdp de connexion)-->
+    <property as="xs:anyURI" name="oxf.fr.persistence.exist.exist-uri" value="$STROMAE_DB_URL/$ORBEON_EXIST_COLLECTION"/>
+    <!-- L'url vers coltorb pour la redirection des services orbeon (bien indiquer l'adresse du serveur et pas l'url accedee) -->
+    <property as="xs:anyURI" name="oxf.url-rewriting.service.base-uri" value="$STROMAE_HOST"/>
+    <!--********************************Les propretes creees par coltrane********************************-->
+    <!-- L'url de base pour la redirection vers l'url orbeon -->
+    <property as="xs:anyURI" name="url-orbeon" value="$STROMAE_HOST"/>
+    <property as="xs:anyURI" name="url-orbeon-s" value="$STROMAE_HOST"/>
+    <!-- L'adresse du serveur exist (avec id et mdp de connexion) -->
+    <property as="xs:anyURI" name="server-exist-orbeon" value="$STROMAE_DB_URL/$ORBEON_EXIST"/>
+    <!-- Affichage du numero de version -->
+    <property as="xs:boolean" name="affichage-numero" value="true"/>
+    <property as="xs:string" name="insee-context" value="default"/>
+</properties>

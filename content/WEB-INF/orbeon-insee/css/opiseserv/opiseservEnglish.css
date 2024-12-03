@@ -1,0 +1,17 @@
+.xforms-readonly *, 
+.xforms-readonly span.block.question:first-of-type, 
+.xforms-readonly span.block.question > span.bloc:first-of-type, 
+.xforms-readonly span.question > .xforms-label:first-of-type,
+.xforms-readonly span.statement.xforms-control label,
+.xforms-readonly .question .xforms-label .block.control,
+.xforms-readonly .question .xforms-label .block.hint,
+.xforms-readonly .question .xforms-label .block.help,
+.xforms-readonly .question .xforms-label .block.alert,
+.xforms-readonly .question .xforms-label .block.warning,
+.xforms-readonly .question .xforms-label .block,
+.fr-section-content table .xforms-readonly .xforms-label,
+.fr-section-content .submodule table .xforms-readonly .xforms-label,
+.xforms-readonly span.question > textarea,
+.xforms-readonly input.xforms-input-input {
+    color: black;
+}

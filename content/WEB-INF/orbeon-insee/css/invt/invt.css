@@ -1,0 +1,10 @@
+@media (min-width: 800px) {
+div[id*=jt096ta6-control] table.question.fauxTableau tbody th {
+    width: 10em;
+}
+}
+@media (max-width: 799px) {
+div[id*=jt096ta6-control] table.question.fauxTableau tbody th {
+    width: auto;
+}
+}

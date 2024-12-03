@@ -1,0 +1,239 @@
+/*/\*largeur *\/
+@media (min-width: 1200px) {
+	  .orbeon .container {width: 1200px;}
+	  .orbeon [class*="span"] {width: 1200px;}
+	}
+	
+@media (min-width: 1400px) {
+	  .orbeon .container {width: 1300px;}	
+	  .orbeon [class*="span"] {width: 1300px;}
+	}*/
+
+/*pourcentageAvancement*/
+#BarreFixe-control{
+  display:inline-block;
+}
+
+#progress-percent span[id*=progress-percent] {
+    color:black;
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* alignement nom mel... */
+.orbeon div span[id*=Nom-control] ,
+.orbeon div span[id*=Mel-control] ,
+.orbeon div span[id*=Telephone-control]  {
+    display: block;
+}
+.orbeon div span[id*=Nom-control] > label,
+.orbeon div span[id*=Mel-control] > label,
+.orbeon div span[id*=Telephone-control] > label {
+    display: inline;
+}
+
+span[id*=ComplementAdresse-control], 
+span[id*=InformationsVoie-control], 
+span[id*=MentionSpeciale-control], 
+span[id*=Ville-control], 
+span[id*=LibellePays-control] {
+    display:block;
+}
+
+div[id*=INSEE-COLTRANE-QUEST-DEBUT-control] .fr-section-content .xforms-label {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+div[id*=INSEE-BUSINESS-QUEST-DEBUT-control] .fr-section-content .xforms-label {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+div[id*=SEQ-0-control] .fr-section-content .xforms-label {
+    padding-left: 0;
+    padding-right: 5px;
+}
+div[id*=INSEE-COLTRANE-QUEST-DEBUT-control] .fr-section-content h3 .xforms-label {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+div[id*=INSEE-BUSINESS-QUEST-DEBUT-control] .fr-section-content h3 .xforms-label {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+div[id*=SEQ-0-control] .fr-section-content h3 .xforms-label {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+
+span#progress-bar-container-control label[for*=progress-bar-container-control] {
+    display: inline-block;
+}
+
+span.right span#progress-percent {
+    display: inline-block;
+}
+
+span#progress-control {
+    display: inline-block;
+}
+
+@media (min-width: 750px){
+  .progress-bar-container {
+     height: 2em; 
+  }
+}
+
+span#fr-view-component div.progress-bar-container span.right {
+  color: #333333;
+  padding-right: 1em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  padding-left: 0em;
+}
+
+@media (min-width: 550px) {
+  div.progress-bar-container span.right {
+    display: inline;
+    float:right;
+  }
+}
+
+
+@media (max-width: 549px) {
+  div.progress-bar-container > span.right {
+    display: inline-block;
+    float:none;
+  }
+}
+
+
+@media (min-width: 750px) {
+  .menuBandeau nav#nav > a {
+    padding: 0px;     
+    margin: 2px;
+    }
+}
+
+@media (min-width: 750px) {
+  .orbeon .navbar-inverse .navbar-inner div.container > img {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+div.menuBandeau {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 751px) {
+  div.menuBandeau {
+    width: 190px;  
+  }
+  .menuBandeau nav#nav {
+  padding-top: 0px;
+  width: 190px;
+}
+}
+
+@media (max-width: 750px) {
+  div.menuBandeau {
+    width: 70px;  
+  }
+  .menuBandeau nav#nav {  
+    width: 210px;
+  }
+  .menuBandeau nav#nav > a {
+    padding-left:0px;
+  }
+}
+
+.orbeon .navbar-inverse div.navbar-inner > div.container {
+    display:flex;
+}
+
+.orbeon .navbar-inverse div.navbar-inner > div.container > h1 {
+  flex-grow: 1;
+  text-align: left;
+}
+
+/*largeur duree*/
+.orbeon span.duration > input {
+    width: 4em;
+}
+
+/*page debut*/
+span[id*=ACCUEIL-2-control] label.xforms-label div.frame {
+    background-color: #e0e2de;
+    padding: 1em;
+    border: 2px solid #1B3280;
+    border-radius: 10px;
+}
+
+div.frameAvertissement p b img {
+    background-color: #ffc300;    
+}
+
+/*page fin*/
+@media (min-width: 750px) {
+    .orbeon div.center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 650px;
+    }
+}
+.orbeon div[id*=VALIDATION-control] div.center div.frame,
+.orbeon div[id*=CONFIRMATION-control] div.center div.frame,
+.orbeon div[id*=FIN-control] div.center div.frame {
+    background-color: #e0e2de;
+    padding: 1em;
+    border: 2px solid #1B3280;
+    border-radius: 10px;
+}
+
+.orbeon div[id*=FIN-control] div.center div.frame span span[id*=messageConfirmation]{
+        color: #333333;
+}
+
+.orbeon div[id*=VALIDATION-control] div.center div.frame .center-body,
+.orbeon div[id*=CONFIRMATION-control] .center-body,
+.orbeon div[id*=CONFIRMATION-control] .center-body div.frame p {
+    text-align:center;
+}
+
+.orbeon div[id*=VALIDATION-control] div.center div.frame p.indentation-with-bullet,
+.orbeon div[id*=VALIDATION-control] div.center div.frame p.simple-identation {
+    margin-left: 3em;
+}
+.orbeon div[id*=VALIDATION-control] div.center div.frame p.indentation-with-bullet {
+    display: list-item;
+}
+
+/*grisé trop clair*/
+
+.xforms-readonly *,
+/* Les libellés des questions */
+.xforms-readonly span.block.question:first-of-type,
+.xforms-readonly span.block.question > span.block:first-of-type,
+.xforms-readonly span.question > .xforms-label:first-of-type,
+/* les déclarations des questions */
+.xforms-readonly span.statement.xforms-control label,
+.xforms-readonly .question .xforms-label .block.control,
+.xforms-readonly .question .xforms-label .block.hint,
+.xforms-readonly .question .xforms-label .block.help,
+.xforms-readonly .question .xforms-label .block.alert,
+.xforms-readonly .question .xforms-label .block.warning,
+.xforms-readonly .question .xforms-label .block,
+/* les entêtes de tableaux */
+.fr-section-content table .xforms-readonly .xforms-label,
+.fr-section-content .submodule table .xforms-readonly .xforms-label,
+/* champ input et textarea */
+.xforms-readonly span.question > textarea,
+.xforms-readonly input.xforms-input-input {
+  color: #848484;
+}
+

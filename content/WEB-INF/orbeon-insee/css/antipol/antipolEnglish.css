@@ -1,0 +1,9 @@
+@media (min-width: 1250px) {
+	  .orbeon .container {width: 1250px;}
+	  .orbeon [class*="span"] {width: 1250px;}
+	}
+	
+
+#jfwd6v6a-control .number .xforms-input-input {
+    width: 95px;
+}

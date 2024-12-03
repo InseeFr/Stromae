@@ -1,0 +1,15 @@
+.fr-section-content .xforms-label{
+    font-style: normal;  
+}
+.fr-section-content .paragraphe .xforms-label{
+    font-style: normal;  
+}
+.question .xforms-label .bloc {
+    font-style: normal;
+}
+.question .xforms-label .bloc.consigne {
+    font-style: normal;
+}
+.question .xforms-label .bloc.aide {
+    font-style: normal;
+}

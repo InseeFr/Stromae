@@ -1,0 +1,57 @@
+/* I - INFORMATIONS CONCERNANT VOTRE ETABLISSEMENT */
+
+span.question > label[for*=HEURSUP-control],
+span.question > label[for*=HEURCOMP-control] {
+    margin-top:1em;
+}
+
+span.consigne > label[for*=DARES-ACEMO-QC-13-3-DARES-ACEMO-II-13-3-control] {
+    margin-top:2em;
+}
+
+/* II - TEMPS DE TRAVAIL DES SALARIÉS ET DURÉE DU TRAVAIL */
+
+.orbeon table[name=DARES-ACEMO-QG-22-1] {
+    display:flex;
+    flex-direction: column;
+}
+
+.orbeon table[name=DARES-ACEMO-QG-22-1] tbody {
+    display:flex;
+    flex-direction: column;
+}
+.orbeon table[name=DARES-ACEMO-QG-22-1] tbody tr{
+    display:flex;
+}
+
+.orbeon table[name=DARES-ACEMO-QG-22-1] tbody tr td {
+    flex-grow: 1;
+}
+.orbeon table[name=DARES-ACEMO-QG-22-1] thead tr {
+    flex-grow: 1;
+    display:flex;
+}
+.orbeon table[name=DARES-ACEMO-QG-22-1] thead tr th{
+    flex-grow: 1;
+}
+.orbeon table[name=DARES-ACEMO-QG-22-1] tbody tr td p > span{
+    text-align:center;
+}
+
+/* III - SUIVI DES RÉMUNÉRATIONS DES POSTES DE TRAVAIL LES PLUS REPRÉSENTATIFS DE VOS SALARIÉS */
+
+.xforms-readonly input[id*=DARES-ACEMO-SEQ-3-control] {
+    color:black;
+}
+
+/* IV - EMPLOIS POUR LESQUELS VOUS FAITES DES DÉMARCHES DE RECHERCHE D'UN CANDIDAT */
+
+div[id*=DARES-ACEMO-SEQ-4-control] table.question.fauxTableau,
+div[id*=DARES-ACEMO-SEQ-4-control] table.question.fauxTableau td,
+div[id*=DARES-ACEMO-SEQ-4-control] table.question.fauxTableau th{
+    border: none;
+}
+.question span[id*=DARES-ACEMO-QG-42-1-DARES-ACEMO-CL-4-2-control] .xforms-label .bloc {
+    font-style: normal;
+    padding-left: 0em;
+    }

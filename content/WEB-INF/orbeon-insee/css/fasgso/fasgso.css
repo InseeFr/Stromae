@@ -1,0 +1,10 @@
+/*  taille des images meteo */  
+.orbeon span > img[alt="Très satisfaisant"], 
+.orbeon span > img[alt="Plutôt satisfaisant"], 
+.orbeon span > img[alt="Plutôt insatisfaisant"], 
+.orbeon span > img[alt="Très insatisfaisant"]
+{
+    max-width: 40px;
+    height: 40px;
+    width: 40px;
+}

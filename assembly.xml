@@ -5,13 +5,6 @@
         <format>war</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
-    <files>
-        <file>
-            <source>${project.basedir}/insee-overload/common/WEB-INF/orbeon-insee/config/properties-local.xml</source>
-            <outputDirectory>WEB-INF/orbeon-insee/config</outputDirectory>
-            <filtered>true</filtered>
-        </file>
-    </files>
     <fileSets>
         <fileSet>
             <directory>${project.basedir}/orbeon-source</directory>
@@ -21,17 +14,7 @@
             <outputDirectory/>
         </fileSet>
         <fileSet>
-            <directory>${project.basedir}/insee-overload/common</directory>
-            <includes>
-                <include>**/**</include>
-            </includes>            
-            <excludes>
-                <exclude>**/**/properties-local.xml</exclude>
-            </excludes>
-            <outputDirectory/>
-        </fileSet>
-        <fileSet>
-            <directory>${project.basedir}/insee-overload/default</directory>
+            <directory>${project.build.directory}/content</directory>
             <includes>
                 <include>**/**</include>
             </includes>

@@ -1,0 +1,10 @@
+@media (min-width: 750px) {
+    .question.multiple-choice-question span[role=group]{
+        display:flex;
+    }
+
+}
+
+.question.multiple-choice-question span[role=group] label.checkbox > span {
+    white-space: nowrap;
+}

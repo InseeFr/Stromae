@@ -1,0 +1,82 @@
+/*Couleur du bandeau*/
+.orbeon .navbar-inverse .navbar-inner
+{
+  background-color: #FFD1CF;
+}
+/* Les titres de section sont en rouge */
+.xforms-switch .xbl-fr-section .xforms-group h2.fr-section-title {
+    background-color: #FF625C;
+    color: black;
+}
+
+
+/*Couleur sous titre en rose*/
+div.fr-section-content .paragraphe h3 .xforms-label {
+    background-color:#FFD1CF;
+    color: black;
+    font-weight: bold;
+    }
+ 
+ /*couleur du texte*/
+.fr-section-content .xforms-label {
+    color: black;
+} 
+.fr-section-content .paragraphe .xforms-label {
+    color: black;    
+} 
+ 
+/*------------------ Encadrement de sous-module ------------------*/
+div.paragraphe{
+    border: thin black solid;
+    padding-left: 1em; /* Pour décaler le texte dans les sous-modules*/
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-top: 2px;
+    margin-bottom: 3em; /* séparer les modules entre-eux*/
+}
+div.paragraphe:last-of-type{
+    margin-bottom: 1em; /* marge plus petite pour le dernier*/
+}
+div.paragraphe:first-of-type{
+    margin-top: 2em; /* Pour le premier sous-module afin de laisser de l'espace en haut */
+} 
+
+
+ /*----------- Couleur de tous les boutons, regrouper pour une seule modif -----*/
+.orbeon .btn,
+#menuButton,
+.menuBandeau nav > a{
+    background-color: #ff9894;
+}
+#menuButton:hover,
+#menuButton:focus,
+.menuBandeau nav > a:hover,
+.menuBandeau nav > a:focus,
+.orbeon .btn:hover,
+.orbeon .btn:focus{
+    background-color: #fdb2af;
+}
+button.btn[id ^= "previous"],
+button.btn[id ^= "next"],
+button.btn[id ^= "start"],
+.btn.txt{
+    background-color: #ff9894;
+}
+button.btn[id ^= "previous"]:hover,
+button.btn[id ^= "previous"]:focus,
+button.btn[id ^= "next"]:hover,
+button.btn[id ^= "next"]:focus,
+button.btn[id ^= "start"]:hover,
+button.btn[id ^= "start"]:focus,
+.btn.txt:hover,
+.btn.txt:focus{
+    background-color: #fdb2af;
+} 
+
+progress::-moz-progress-bar { background: #8ab4f8; }   
+progress::-webkit-progress-value { background: #8ab4f8; }
+progress { color: #8ab4f8; }
+
+label div.frameAvertissement p b img {
+    background-color: #ff9894;    
+}

@@ -1,0 +1,142 @@
+/*.orbeon  span.lienDeblocage a  {
+	display : inline-block;
+}
+
+.orbeon input {
+	width : 14em;
+}
+
+.orbeon div.GroupeNatureVariable > span.libelle > label {
+	font-size : 1.5em;
+	font-weight : bold;
+	border-style: none;
+}
+
+.orbeon div.GroupeNatureVariable > span.description > label{
+	font-style: italic;
+}
+
+.orbeon div.Activite {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 2em;
+}
+
+*/
+/*.orbeon div.ConteneurNatureVariable {
+	text-align: right;
+	text-align: left;
+}*/
+.orbeon div.Produit {
+	display: block;
+	margin-top: 0em;
+	padding-bottom: 0.5em;
+	border-bottom: thin dashed black;
+}
+ 
+.orbeon div.NatureVariable {
+	border: thin solid black;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-radius: 10px;
+	background-color: #F3FAFE;
+	display: inline-block;
+	margin-bottom: 0.5em;
+}
+
+.orbeon div.NatureVariable span.suffix{
+	display: inline-block;
+}
+
+/* 
+.orbeon div.Variable {
+	margin-left : 1em;
+	width: 21em;
+	display : inline-block;
+}
+
+.orbeon div.libelle-description {
+	display: inline-block;
+}
+*/
+.orbeon div.Activite > span.identifiant, .orbeon div.Activite > span.libelle,
+.orbeon div.Produit > span.identifiant, .orbeon div.Produit > span.libelle,
+.orbeon div.Variable > span.question > label, .orbeon div.Variable > span.question > input {
+	display: inline-block;
+	margin: 0.5em;
+}
+
+/*
+.orbeon div.Variable > span.libelle > label{
+	margin-right: 0.5em;
+}
+
+.orbeon div.Activite > span.description > label {
+	margin-left: 3em;
+}
+.orbeon div.Produit > span.description > label {
+	margin-left: 4em;
+}
+*/
+.orbeon div.Activite > span.identifiant > label {
+	font-weight : bold;
+	text-decoration: underline;
+	border: thin solid black;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	width: 4em;
+	border-radius: 5px;
+	background-color: #F3FAFE;
+}
+
+.orbeon div.Produit > span.identifiant > label {
+	border: thin solid black;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	width: 5em;
+	border-radius: 5px;
+	background-color: #F3FAFE;
+}
+/*
+.orbeon .xbl-fr-section .fr-section-title .fr-section-label
+{
+  background-color: #3D5B77;
+  color: #F3FAFE;
+}
+.orbeon .xbl-fr-section .fr-section-title .fr-section-label a
+{
+  background-color: #3D5B77;
+  color: #F3FAFE;
+}*/
+
+
+.fr-section-content label.xforms-label {
+     padding-right: 6px; 
+     padding-left: 0em; 
+}
+
+.fr-section-content span.description label.xforms-label {
+     padding-right: 6px; 
+     padding-left: 0em; 
+}
+
+
+span.suffix, span.double-duration-suffix {
+     padding-left: 0em; 
+}
+
+.orbeon div.Variable > span.question > label {
+    display:block;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.orbeon .xforms-hint-appearance-full span[id*=HEURE_REMP] > *, .orbeon .xforms-hint-appearance-full span[id*=MIN_REMP] > *{
+    display:inline;
+}
+.orbeon .xforms-hint-appearance-full span[id*=HEURE_REMP] > .suffixe, .orbeon .xforms-hint-appearance-full span[id*=MIN_REMP] > .suffix{
+  padding-left: 1em;
+}
