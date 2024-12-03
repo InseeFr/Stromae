@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - "v1-orbeon-2022"
-      - "v1/*"
+      - "v1/**"
 
 jobs:
   build:
