@@ -3,7 +3,14 @@ import { CollectStatusEnum, SavingFailure } from '../../../typeStromae/type';
 import { loadSourceDataContext } from '../../loadSourceData/LoadSourceDataContext';
 import { useSaveSurveyUnitStateData } from '../../../hooks/useSaveSurveyUnitData';
 
-function getCollectStatus(changing: boolean, previous: CollectStatusEnum) {
+function getCollectStatus(
+	changing: boolean,
+	previous: CollectStatusEnum,
+	isLastPage?: boolean
+) {
+	if (isLastPage) {
+		return CollectStatusEnum.Validated;
+	}
 	if (previous === CollectStatusEnum.Validated) {
 		return CollectStatusEnum.Validated;
 	}
@@ -34,9 +41,18 @@ export function useSaving({
 	}, []);
 
 	const saveChange = useCallback(
-		async ({ pageTag, getData }: { pageTag: string; getData: () => any }) => {
+		async ({
+			pageTag,
+			getData,
+			isLastPage,
+		}: {
+			pageTag: string;
+			getData: () => any;
+			isLastPage?: boolean;
+		}) => {
 			setFailure(undefined);
 			setWaiting(true);
+
 			try {
 				// save data
 				const isOnChange = changes.current.size !== 0;
@@ -58,7 +74,11 @@ export function useSaving({
 				// save stateData
 				const state = await saveSuData({
 					pageTag,
-					collectStatus: getCollectStatus(isOnChange, currentStatus),
+					collectStatus: getCollectStatus(
+						isOnChange,
+						currentStatus,
+						isLastPage
+					),
 				});
 				setCurrentStatus(state.state);
 				setWaiting(false);
@@ -67,7 +87,7 @@ export function useSaving({
 				setWaiting(false);
 			}
 		},
-		[currentStatus, putSurveyUnitData, setFailure, setWaiting, saveSuData]
+		[setFailure, setWaiting, saveSuData, currentStatus, putSurveyUnitData]
 	);
 
 	return { listenChange, saveChange };
