@@ -1,0 +1,29 @@
+/* nom de l'enquête sur une ligne dans le bandeau d'en-tête */
+.orbeon h1, .navbar-inner > .container > img {
+    float: none;
+}
+
+td label .titre0, td label .titre1, td label .titre2,
+td label .intertitre0, td label .intertitre1, td label .intertitre2
+{
+    font-weight: bold;
+}
+
+td label .intertitre0, td label .intertitre1, td label .intertitre2,
+td label .ventilation0, td label .ventilation1, td label .ventilation2
+{
+    font-style: italic;
+}
+
+td label .titre1, td label .intertitre1, td label .ventilation1, td label .code1
+{
+	margin-left: 2em;
+}
+td label .titre2, td label .intertitre2, td label .ventilation2, td label .code2
+{
+	margin-left: 4em;
+}
+td label .code3
+{
+	margin-left: 6em;
+}

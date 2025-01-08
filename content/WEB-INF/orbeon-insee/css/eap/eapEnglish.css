@@ -1,0 +1,137 @@
+/* largeur globale */
+
+@media (min-width: 1200px) {
+	  .orbeon .container {width: 1200px;}
+	  .orbeon [class*="span"] {width: 1200px;}
+	}
+	
+@media (min-width: 1400px) {
+	  .orbeon .container {width: 1300px;}	
+	  .orbeon [class*="span"] {width: 1300px;}
+	}
+
+/* correction tableau */
+div div table tbody tr th.dizparu{
+    display:none;
+}
+/* couleur zone saisie */
+.orbeon .xforms-input input {
+    background-color: #F3FAFE;
+}
+/* couleur zone lecture seule */
+.orbeon .xforms-input input[disabled] {
+    background-color: #eeeeee;
+    color:#848484;
+}
+
+/* couleur rouge pour les dif */
+table[name*=INSEE-EAP-QG-4-2] tbody tr td span[id*=INSEE-EAP-QG-4-2-INSEE-EAP-CL-CL-EAP-10-6b-control] label.xforms-label{
+    font-weight:bold;
+    color:red;
+}
+.fr-section-content table.multiple-choice-question td[id*=plop]{
+    display:none;
+    }
+
+#fr-view .nombre .xforms-input-input {
+    width: 9em;
+}
+
+/* Couleur du texte */ 
+div#INSEE-EAP-SEQ-5-control .xforms-readonly *,
+div#INSEE-EAP-SEQ-8-control .xforms-readonly *,
+div#INSEE-EAP-SEQ-9-control .xforms-readonly *,
+div#INSEE-EAP-SEQ-10-control .xforms-readonly *,
+div#INSEE-EAP-SEQ-11-control .xforms-readonly * {
+    color:black;
+}
+
+
+/* modif A00 indentation - no border */
+
+.fr-section-content table .xforms-label[for*=EAP-17-3-control],
+.fr-section-content table .xforms-label[for*=EAP-17-4-control],
+.fr-section-content table .xforms-label[for*=EAP-17-5-control],
+.fr-section-content table .xforms-label[for*=EAP-17-7-control],
+.fr-section-content table .xforms-label[for*=EAP-17-8-control],
+.fr-section-content table .xforms-label[for*=EAP-17-9-control],
+.fr-section-content table .xforms-label[for*=EAP-17-11-control],
+.fr-section-content table .xforms-label[for*=EAP-17-12-control],
+.fr-section-content table .xforms-label[for*=EAP-17-13-control],
+.fr-section-content table .xforms-label[for*=EAP-17-15-control],
+.fr-section-content table .xforms-label[for*=EAP-17-16-control],
+.fr-section-content table .xforms-label[for*=EAP-17-17-control]
+{
+    padding-left:2em;
+}
+
+div[id*=INSEE-EAP-SEQ-1] table.question.multiple-choice-question,
+div[id*=INSEE-EAP-SEQ-1] table.question.multiple-choice-question td,
+div[id*=INSEE-EAP-SEQ-1] table.question.multiple-choice-question th {
+    border:none;
+}
+
+/* B01 trop de gras */
+.xforms-switch .fr-section-content .question span[id*=CE9-control] > i,
+.xforms-switch .fr-section-content .question label[for*=CE7-control] > i {
+    font-weight:normal;
+}
+
+/* B00 */
+.orbeon span[id*=CE0-control] > .xforms-hint {
+    font-size:inherit;
+}
+div[id*=INSEE-EAP-SEQ-4] table.question.multiple-choice-question,
+div[id*=INSEE-EAP-SEQ-4] table.question.multiple-choice-question td,
+div[id*=INSEE-EAP-SEQ-4] table.question.multiple-choice-question th {
+    border:none;
+}
+div[id*=INSEE-EAP-SEQ-4] table.question.multiple-choice-question tbody tr {
+    line-height:0px;
+}
+div[id*=INSEE-EAP-SEQ-4] table.question.multiple-choice-question tbody tr td .xforms-alert {
+    line-height:20px;
+}
+
+/*F00*/
+
+.fr-section-content table span.precisez .xforms-label {
+    white-space: nowrap;
+}
+table.question.complex-grid span[id*=VH1b-control] {
+    display:flex;
+}
+table.question.complex-grid span[id*=VH1b-control] span.suffixe {
+    align-self: center;
+    font-weight: normal;
+}
+
+
+/*heure min fin*/
+
+.orbeon .xforms-hint-appearance-full span[id*=HEURE_REMP] > *, .orbeon .xforms-hint-appearance-full span[id*=MIN_REMP] > *{
+    display:inline;
+}
+.orbeon .xforms-hint-appearance-full span[id*=HEURE_REMP] > .suffixe, .orbeon .xforms-hint-appearance-full span[id*=MIN_REMP] > .suffixe{
+  padding-left: 1em;
+}
+div[id*=INSEE-EAP-SEQ-14-control] .fr-section-content .xforms-label {
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.suffixe {
+    margin-left: 3px;
+}
+
+.suffixe:has(> span) {
+    margin-left: 0px;
+}
+
+html .orbeon .xforms-hint-appearance-full .xforms-hint {
+    margin-left: 0px;
+}
+
+html .orbeon .xforms-hint-appearance-full span[id*=CE0-control].xforms-hint {
+    margin-left: 1em;
+}

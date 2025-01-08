@@ -1,0 +1,14 @@
+@media (min-width: 1250px) {
+	  .orbeon .container {width: 1250px;}
+	  .orbeon [class*="span"] {width: 1250px;}
+	}
+	
+#jfwd6v6a-control span.suffixe {
+    padding-left: 0em;
+    display: block;
+    text-align:center;
+}
+
+#jfwd6v6a-control .xforms-input-input {
+    width: 120px;
+}

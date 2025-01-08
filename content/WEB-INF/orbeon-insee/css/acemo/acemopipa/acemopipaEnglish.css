@@ -1,0 +1,14 @@
+/* II - PARTICIPATION DES SALARIÉS AU TITRE DE L'EXERCICE 2018 */
+
+/*unite en noir*/
+div .xforms-readonly > span{
+    color:black;
+}
+
+span.suffix {
+    padding-left: 0.5em;
+}
+
+span.suffix span.suffix {
+    padding-left: 0em;
+}

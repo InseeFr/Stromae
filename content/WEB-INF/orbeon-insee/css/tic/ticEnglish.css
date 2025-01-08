@@ -1,0 +1,18 @@
+.fr-section-content .xforms-label{
+    font-style: normal;  
+}
+.fr-section-content .submodule .xforms-label{
+    font-style: normal;  
+}
+.fr-section-content .xforms-label .hint{
+    font-style: normal;  
+}
+.question .xforms-label .block {
+    font-style: normal;
+}
+.question .xforms-label .block.hint {
+    font-style: normal;
+}
+.fr-section-content .xforms-label .help {
+    font-style: normal;
+}

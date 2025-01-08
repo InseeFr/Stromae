@@ -1,0 +1,15 @@
+@media (min-width: 1200px) {
+	  .orbeon .container {width: 1200px;}
+	  .orbeon [class*="span"] {width: 1200px;}
+	  span[id*=d1e2957-THEN-control] table.question.multiple-choice-question tbody th {width: 38em;}
+
+	  
+	}
+
+div[id*=jk9nii14-control] table.question.multiple-choice-question tbody th {
+    width: auto;
+}
+
+@media (max-width: 1199px) {
+	  span[id*=d1e2957-THEN-control] table.question.multiple-choice-question tbody th {width: auto;}
+	}

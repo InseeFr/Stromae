@@ -1,0 +1,132 @@
+/*largeur */
+@media (min-width: 1200px) {
+	  .orbeon .container {width: 1200px;}
+	  .orbeon [class*="span"] {width: 1200px;}
+	}
+	
+@media (min-width: 1400px) {
+	  .orbeon .container {width: 1300px;}	
+	  .orbeon [class*="span"] {width: 1300px;}
+	}
+
+
+.orbeon #INSEE-OFATS-SEQ-2b-control span.nombre .xforms-input-input,
+.orbeon #INSEE-OFATS-SEQ-3-control span.nombre .xforms-input-input {
+    width: 6.6em;
+}
+#INSEE-OFATS-SEQ-3-control select, 
+#INSEE-OFATS-SEQ-2b-control select {
+    width: 10em;
+}
+
+#INSEE-OFATS-SEQ-4-control select, 
+#INSEE-OFATS-SEQ-4-control input {
+    width: 6.5em;
+    margin-left:0px;
+}
+
+#INSEE-OFATS-SEQ-4-control span.suffixe {
+    padding-left: 0em;
+    display: block;
+    text-align:center;
+}
+
+.orbeon #INSEE-OFATS-SEQ-4-control input[id*=DNOM_JV-control],
+.orbeon #INSEE-OFATS-SEQ-4-control input[id*=DEFF_JV-control],
+.orbeon #INSEE-OFATS-SEQ-4-control select{
+    margin-bottom: 19px;
+}
+
+/* ofats only */
+
+.number span[id*=k3plf6d9] .xforms-input-input {
+        width: 6em;
+}
+.number span[id*=k3plk9zj] .xforms-input-input {
+        width: 6em;
+}
+.number span[id*=k3plk9zj] input[id*=B2NB_FIL].xforms-input-input {
+        width: 4em;
+}
+.number span[id*=k3ply1vx] .xforms-input-input {
+        width: 6em;
+}
+.number span[id*=k3ply1vx] input[id*=CNB_FIL].xforms-input-input {
+        width: 4em;
+}
+
+.number span[id*=k3ptzo1l] .xforms-input-input {
+        width: 9em;
+}
+
+.number span[id*=k3ptzo1l] input[id*=DTX_C_JV].xforms-input-input,
+.number span[id*=k3ptzo1l] input[id*=DQUOTITE].xforms-input-input {
+        width: 3em;
+}
+
+
+
+.orbeon table[name=k3ojs908] th, 
+.orbeon table[name=k3ojs908] td,
+
+.orbeon table[name=k3okdsy9] th, 
+.orbeon table[name=k3okdsy9] td,
+
+.orbeon table[name=k3okdd3t] th, 
+.orbeon table[name=k3okdd3t] td,
+
+.orbeon table[name=k3ojv8rq] th, 
+.orbeon table[name=k3ojv8rq] td {
+	padding: 0.1em !important;	
+}
+
+
+.orbeon table[name=k3ojs908] td select,
+.orbeon table[name=k3okdsy9] td select,
+.orbeon table[name=k3okdd3t] td select,
+.orbeon table[name=k3ojv8rq] td select {
+	margin-left: 0em;
+}
+
+.orbeon table[name=k3ojs908] td label.checkbox,
+.orbeon table[name=k3okdsy9] td label.checkbox,
+.orbeon table[name=k3okdd3t] td label.checkbox,
+.orbeon table[name=k3ojv8rq] td label.checkbox {
+	margin-left: 0em;
+	margin-right: 0em;
+	width: 5.5em;	
+}
+
+.orbeon table[name=k3ojs908] td div,
+.orbeon table[name=k3okdsy9] td div,
+.orbeon table[name=k3okdd3t] td div,
+.orbeon table[name=k3ojv8rq] td div {
+	display: flex;
+	justify-content: center;
+}
+
+.orbeon table[name=k3ojs908] th, 
+.orbeon table[name=k3okdsy9] th, 
+.orbeon table[name=k3okdd3t] th, 
+.orbeon table[name=k3ojv8rq] th {
+	width: min-content;
+}
+
+.orbeon table[name=k3okdd3t] td span.add-on{
+	padding-left:0em;
+	padding-right:0em;
+}
+
+.orbeon table[name=k3okdd3t] td span.add-on > span[id*=suffix] > span[id*=suffix]{
+	min-width: unset;
+}
+
+.orbeon table[name="k3okdd3t"] td select {
+	width:7em;
+}
+
+@media (min-width: 1450px) {
+          .orbeon .container {width: 1450px;}
+          .orbeon [class*="span"] {width: 1450px;}
+        }
+

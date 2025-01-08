@@ -3,30 +3,28 @@ name: Stromae V1 - build docker
 on:
   push:
     branches:
-      - 'v1-orbeon-2022'
+      - "v1-orbeon-2022"
+      - "v1/**"
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     outputs:
       stromae-version: ${{ steps.version-step.outputs.version }}
     steps:
-      - uses: actions/checkout@v2
-
-
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
-          java-version: 17
-
+          distribution: "temurin"
+          java-version: "17"
       - name: script download and clean Orbeon
         run: |
-         chmod +x ./script/getCleanedOrbeon.sh
-         ./script/getCleanedOrbeon.sh $ORBEON_URL_CE
+          chmod +x ./scripts/get-cleaned-orbeon.sh
+          ./scripts/get-cleaned-orbeon.sh $ORBEON_URL
         shell: bash
         env:
-          ORBEON_URL_CE: https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2022.1-ce/orbeon-2022.1.202212310353-CE.zip
+          ORBEON_URL: https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2022.1.6-pe-pseudo/orbeon-2022.1.6.202401300738-PE.zip
 
       - name: Get Version
         id: version-step
@@ -36,10 +34,10 @@ jobs:
         run: echo ${{ steps.version-step.outputs.version }}
 
       - name: Build with Maven
-        run: mvn clean install
- 
+        run: mvn clean package
+
       - name: Upload war
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: war
           path: target/*.war
@@ -49,10 +47,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Download build
         id: download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: war
           path: target/
@@ -65,5 +63,3 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           default_branch: ${{ github.ref }}
           tags: ${{ needs.build.outputs.stromae-version }}
-
-  
