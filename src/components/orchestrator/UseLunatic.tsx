@@ -43,6 +43,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		disabled,
 		metadata,
 	} = props;
+	const pageReached = useRef<string>(undefined);
 	const [args, setArgs] = useState<Record<string, unknown>>({});
 	const [waiting, setWaiting] = useState(false);
 	const [failure, setFailure] = useState<SavingFailure>();
@@ -83,6 +84,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 			autoSuggesterLoading,
 			workersBasePath: `${window.location.origin}/workers`,
 			onChange,
+			initialPage: pageReached.current,
 		});
 	}, [
 		getReferentiel,
@@ -107,6 +109,8 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 		pageTag,
 		pager,
 	} = useLunatic(source, data, args);
+
+	pageReached.current = pageTag;
 
 	useEffect(() => {
 		(

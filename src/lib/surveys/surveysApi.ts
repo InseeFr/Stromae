@@ -18,41 +18,15 @@ import { putSurveyUnitStateData } from './putSurveyUnitStateData';
 const { DOMAIN } = environment;
 export interface SurveyApi {
 	// any type JSon lunatic
-	getSurvey: (
-		survey: string,
-		token: string | undefined
-	) => Promise<LunaticSource>;
-	getSurveyUnitData: (
-		unit: string,
-		token: string | undefined
-	) => Promise<SurveyUnitData>;
-	getFreshSurveyUnitData: (
-		unit: string,
-		token: string | undefined
-	) => Promise<SurveyUnitData>;
+	getSurvey: (survey: string) => Promise<LunaticSource>;
+	getSurveyUnitData: (unit: string) => Promise<SurveyUnitData>;
+	getFreshSurveyUnitData: (unit: string) => Promise<SurveyUnitData>;
 	getMetadataSurvey: (survey: string) => Promise<MetadataSurvey>;
-	getRequiredNomenclatures: (
-		survey: string,
-		token: string | undefined
-	) => Promise<Array<string>>;
-	getNomenclature: (
-		name: string,
-		token: string | undefined
-	) => Promise<Array<any>>;
-	putSurveyUnitData: (
-		data: DataVariables,
-		unit: string,
-		token: string | undefined
-	) => Promise<void>;
-	putSurveyUnitStateData: (
-		stateData: StateData,
-		unit: string,
-		token: string | undefined
-	) => Promise<void>;
-	getDepositiProof: (
-		unit: string,
-		token: string | undefined
-	) => Promise<BlobPart>;
+	getRequiredNomenclatures: (survey: string) => Promise<Array<string>>;
+	getNomenclature: (name: string) => Promise<Array<any>>;
+	putSurveyUnitData: (data: DataVariables, unit: string) => Promise<void>;
+	putSurveyUnitStateData: (stateData: StateData, unit: string) => Promise<void>;
+	getDepositiProof: (unit: string) => Promise<BlobPart>;
 }
 
 export const surveyApi: SurveyApi = {
