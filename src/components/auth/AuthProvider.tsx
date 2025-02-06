@@ -1,7 +1,6 @@
 import {
 	OidcConfiguration,
 	OidcProvider,
-	TokenAutomaticRenewMode,
 	TokenRenewMode,
 } from '@axa-fr/react-oidc';
 import { useRef, useState } from 'react';
@@ -14,6 +13,11 @@ import { CallbackSuccess } from '../Oidc/CallbackSuccess';
 import { ServiceWorkerNotSupported } from '../Oidc/ServiceWorkerNotSupported';
 import { SessionLost } from '../Oidc/SessionLost';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
+
+enum TokenAutomaticRenewMode {
+	AutomaticBeforeTokenExpiration = 'AutomaticBeforeTokensExpiration',
+	AutomaticOnlyWhenFetchExecuted = 'AutomaticOnlyWhenFetchExecuted',
+}
 
 function Pending() {
 	return <LayoutSkeleton />;
