@@ -3,9 +3,7 @@ import { Button } from '@codegouvfr/react-dsfr/Button';
 import { useNavigate } from 'react-router';
 import { isComponentsContainSequence } from '../../lib/commons/isComponentscontainSequence';
 import { ComponentType } from '../../typeLunatic/type-source';
-import { CollectStatusEnum, OrchestratedElement } from '../../typeStromae/type';
-import { uri404 } from '../../lib/domainUri';
-import { useSaveSurveyUnitStateData } from '../../hooks/useSaveSurveyUnitData';
+import { OrchestratedElement } from '../../typeStromae/type';
 
 function getButtonTitle(getComponents: () => Array<ComponentType>) {
 	if (getComponents) {
@@ -48,45 +46,48 @@ function getStatus(
 export function Continuer(props: OrchestratedElement) {
 	const [saving, setSaving] = useState(false);
 	const {
-		goNextPage = () => null,
+		goNextPage = async () => null,
 		isLastPage,
 		getComponents = () => [],
 		// `waiting` is activated to communicate to users that an API request is in process
 		waiting = false,
-		pageTag,
 	} = props;
 	const navigate = useNavigate();
-	const saveSuData = useSaveSurveyUnitStateData();
 	const buttonContent =
 		waiting || saving
 			? `Chargement`
 			: getStatus(getComponents, isLastPage ?? false, saving);
 
 	const handleClick = useCallback(
-		(event: React.MouseEvent) => {
+		async (event: React.MouseEvent) => {
 			event.preventDefault();
 
-			if (isLastPage) {
-				setSaving(true);
-				saveSuData({
-					pageTag,
-					collectStatus: CollectStatusEnum.Validated,
-				})
-					.then(() => {
-						navigate(0);
-						setSaving(false);
-					})
-					.catch(() => {
-						navigate(uri404());
-						setSaving(false);
-					});
-			}
-
+			// if (isLastPage) {
+			// 	setSaving(true);
+			// 	saveSuData({
+			// 		pageTag,
+			// 		collectStatus: CollectStatusEnum.Validated,
+			// 	})
+			// 		.then(() => {
+			// 			navigate(0);
+			// 			setSaving(false);
+			// 		})
+			// 		.catch(() => {
+			// 			navigate(uri404());
+			// 			setSaving(false);
+			// 		});
+			// } else {
 			window.scrollTo(0, 0);
 			document.getElementById('button-precedent')?.focus();
-			goNextPage();
+			setSaving(true);
+			await goNextPage();
+			setSaving(false);
+			if (isLastPage) {
+				navigate(0);
+			}
+			// }
 		},
-		[goNextPage, isLastPage, navigate, saveSuData, pageTag]
+		[goNextPage, isLastPage, navigate]
 	);
 
 	return (
