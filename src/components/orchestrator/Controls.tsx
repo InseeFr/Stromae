@@ -34,7 +34,6 @@ export function Controls(props: PropsWithChildren<OrchestratedElement>) {
 		let errors;
 		if (compileControls) {
 			errors = compileControls();
-			console.log({ errors });
 		}
 		setRefreshControls?.(false);
 		if (warning && !refreshControls) {

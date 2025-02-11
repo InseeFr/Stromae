@@ -1,3 +1,4 @@
+import { OidcClient } from '@axa-fr/react-oidc';
 import axios, { AxiosError } from 'axios';
 
 export const HTTP_VERBS = {
@@ -5,6 +6,18 @@ export const HTTP_VERBS = {
 	post: 'post',
 	put: 'put',
 };
+
+type Token = {
+	expiresAt: number;
+	accessToken: string;
+};
+
+async function getValidToken(): Promise<Token> {
+	const getOidc = OidcClient.get;
+	const t = await getOidc().getValidTokenAsync();
+
+	return t.tokens;
+}
 
 function errorHandler(error: AxiosError) {
 	if (axios.isAxiosError(error)) {
@@ -54,11 +67,14 @@ export async function publicGetRequest<T>(url: string) {
 
 export async function authenticatedGetRequest<T>(
 	url: string,
-	token: string | undefined,
+
 	contentType?: string
 ) {
 	try {
-		const headers = jwtHeaders(token, contentType);
+		const headers = jwtHeaders(
+			(await getValidToken()).accessToken,
+			contentType
+		);
 		const { data } = await axios<T>({
 			method: HTTP_VERBS.get,
 			url,
@@ -71,12 +87,12 @@ export async function authenticatedGetRequest<T>(
 	}
 }
 
-export async function authenticatedGetBlob(
-	url: string,
-	token: string | undefined
-) {
+export async function authenticatedGetBlob(url: string) {
 	try {
-		const headers = jwtHeaders(token, 'application/pdf');
+		const headers = jwtHeaders(
+			(await getValidToken()).accessToken,
+			'application/pdf'
+		);
 		const { data } = await axios<BlobPart>({
 			method: HTTP_VERBS.get,
 			url,
@@ -90,13 +106,9 @@ export async function authenticatedGetBlob(
 	}
 }
 
-export async function authenticatedPutRequest<T>(
-	url: string,
-	data: T,
-	token: string | undefined
-) {
+export async function authenticatedPutRequest<T>(url: string, data: T) {
 	try {
-		const headers = jwtHeaders(token);
+		const headers = jwtHeaders((await getValidToken()).accessToken);
 		await axios<T>({ method: HTTP_VERBS.put, url, headers, data });
 	} catch (error: AxiosError | any) {
 		errorHandler(error);

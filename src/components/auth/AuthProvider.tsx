@@ -14,6 +14,11 @@ import { ServiceWorkerNotSupported } from '../Oidc/ServiceWorkerNotSupported';
 import { SessionLost } from '../Oidc/SessionLost';
 import { Layout as LayoutSkeleton } from '../skeleton/Layout';
 
+enum TokenAutomaticRenewMode {
+	AutomaticBeforeTokenExpiration = 'AutomaticBeforeTokensExpiration',
+	AutomaticOnlyWhenFetchExecuted = 'AutomaticOnlyWhenFetchExecuted',
+}
+
 function Pending() {
 	return <LayoutSkeleton />;
 }
@@ -53,9 +58,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			...conf,
 			redirect_uri: `${window.location.origin}/login`,
 			token_renew_mode: TokenRenewMode.access_token_invalid,
-			refresh_time_before_tokens_expiration_in_second: 40,
+			// refresh_time_before_tokens_expiration_in_second: 40,
 			service_worker_relative_url: '/OidcServiceWorker.js',
 			service_worker_only: false,
+			service_worker_activate: () => false,
+			token_automatic_renew_mode:
+				TokenAutomaticRenewMode.AutomaticOnlyWhenFetchExecuted,
 		});
 	}, [alreadyLoad]);
 

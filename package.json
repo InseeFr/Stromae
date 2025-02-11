@@ -1,9 +1,9 @@
 {
 	"name": "stromae",
-	"version": "3.2.1",
+	"version": "3.3.0",
 	"private": true,
 	"dependencies": {
-		"@axa-fr/react-oidc": "^7.18.5",
+		"@axa-fr/react-oidc": "^7.25.2",
 		"@codegouvfr/react-dsfr": "^0.78.1",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
