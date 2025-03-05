@@ -36,7 +36,7 @@
             </xsl:when>
             <xsl:when test="p:property('insee-context') = 'business'">
                 <xsl:value-of
-                    select="concat(p:property('url-orbeon'), '/contacter/', $survey, '/', $surveyUnit)"
+                    select="concat(p:property('url-orbeon-s'), '/contacter/', $survey, '/', $surveyUnit)"
                 />
             </xsl:when>
             <xsl:otherwise>
@@ -78,10 +78,10 @@
                 />
             </xsl:when>
             <xsl:when test="p:property('insee-context') = 'business'">
-                <xsl:value-of select="concat(p:property('url-orbeon'), p:property('logout-uri'))"/>
+                <xsl:value-of select="concat(p:property('url-orbeon-s'), p:property('logout-uri'))"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="concat(p:property('url-orbeon'), p:property('logout-uri'))"/>
+                <xsl:value-of select="concat(p:property('url-orbeon-s'), p:property('logout-uri'))"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>

@@ -16,6 +16,11 @@
     <!-- Le template du pdf -->
     <xsl:template match="/">
 
+        <!-- debug preuve de dépôt -->
+        <!--<xsl:result-document href="{concat('opt/tomcat/webapps/',concat(//xf:instance[@id='fr-form-instance']/form/@modele,'voila.xml'))}">
+            <xsl:copy-of select="root()"/>
+        </xsl:result-document>-->
+        <!-- fin debug preuve de dépôt -->
         <xsl:variable name="tree" as="node()">
             <xsl:element name="Tree"/>
         </xsl:variable>
@@ -402,7 +407,7 @@
     </xsl:template>
 
     <!-- Les champs -->
-    <xsl:template match="xf:textarea | xf:input | fr:number">
+    <xsl:template match="xf:textarea | xf:input | fr:number | fr:date">
         <xsl:param name="tree" as="node()" tunnel="yes"/>
         <fo:block font-family="{$style}" font-size="10pt" space-before="6px" start-indent="10px">
             <fo:block>
@@ -422,6 +427,9 @@
                 <!--<xsl:value-of select="$response"/>-->
                 <!-- ajout du séparateur de milliers -->
                 <xsl:choose>
+                    <xsl:when test="self::fr:date and string-length($response)=10">
+                        <xsl:value-of select="concat(substring($response,9,2),'/',substring($response,6,2),'/',substring($response,1,4))"/>
+                    </xsl:when>
                     <xsl:when test="self::fr:number">
                         <xsl:variable name="whole-part" as="xs:integer">
                             <xsl:choose>

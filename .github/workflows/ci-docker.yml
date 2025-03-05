@@ -24,7 +24,7 @@ jobs:
           ./scripts/get-cleaned-orbeon.sh $ORBEON_URL
         shell: bash
         env:
-          ORBEON_URL: https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2022.1.6-pe-pseudo/orbeon-2022.1.6.202401300738-PE.zip
+          ORBEON_URL: https://github.com/orbeon/orbeon-forms/releases/download/tag-release-2022.1.8-pe-pseudo/orbeon-2022.1.8.202409051445-PE.zip
 
       - name: Get Version
         id: version-step

@@ -1,4 +1,4 @@
-ARG TOMCAT_VERSION=9.0.91-jre17-temurin-jammy
+ARG TOMCAT_VERSION=9.0.100-jre17-temurin-jammy
 FROM tomcat:${TOMCAT_VERSION}
 
 # Ajout securité tomcat
