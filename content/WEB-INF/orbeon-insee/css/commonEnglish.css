@@ -1011,18 +1011,20 @@ h1 span.titre_enquete {
 
 
 
+html#xf-1 body.orbeon.yui-skin-sam form#xforms-form div#errorNext_c div#errorNext.yui-panel,
 html#xf-1 body.orbeon form#xforms-form div#warningNext_c div#warningNext {
   position:fixed !important;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 40% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
 
+html#xf-1 body.orbeon.yui-skin-sam form#xforms-form div#errorPrevious_c div#errorPrevious.yui-panel,
 html#xf-1 body.orbeon form#xforms-form div#warningPrevious_c div#warningPrevious {
   position:fixed !important;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 40% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 
