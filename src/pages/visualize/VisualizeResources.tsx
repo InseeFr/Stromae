@@ -7,7 +7,6 @@ import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout/Layout';
 import { LoadFromUrl } from '../../components/loadSourceData/LoadFromUrl';
-import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import {
@@ -43,7 +42,6 @@ export function VisualizeResources(props: VisualizeResourcesProps) {
 					<Grid>
 						<AlertesSaving />
 						<Formulaire />
-						<Modals />
 						<ModalWarningVizu />
 						<Continuer />
 					</Grid>

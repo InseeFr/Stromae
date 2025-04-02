@@ -4,7 +4,6 @@ import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
-import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { OrchestratorReadOnly } from '../../components/orchestrator';
@@ -30,7 +29,6 @@ export function QuestionnaireReadOnly() {
 						<Precedent />
 						<Grid>
 							<Formulaire />
-							<Modals />
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />

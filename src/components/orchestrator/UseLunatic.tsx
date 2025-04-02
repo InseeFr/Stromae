@@ -1,6 +1,7 @@
 import { useLunatic } from '@inseefr/lunatic';
 import * as custom from '@inseefr/lunatic-dsfr';
 import {
+	createContext,
 	PropsWithChildren,
 	useCallback,
 	useEffect,
@@ -20,6 +21,17 @@ import { OrchestratorProps } from './Orchestrator';
 import { useQuestionnaireTitle } from './useQuestionnaireTitle';
 import { useRedirectIfAlreadyValidated } from './useRedirectIfAlreadyValidated';
 import { useSaving } from './useSaving';
+import { ConfirmationModal as Modal } from '../ConfirmationModal/ConfirmationModal';
+
+const CUSTOM = { ...custom, Modal };
+
+//
+export type UseLunaticContext = ReturnType<typeof useLunatic>;
+const useLunaticContextInitial: UseLunaticContext = {
+	goToPage: () => null,
+	goNextPage: () => null,
+};
+export const useLunaticContext = createContext(useLunaticContextInitial);
 
 export function createPersonalizationMap(
 	personalization: Array<PersonalizationElement>
@@ -77,7 +89,7 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	useEffect(() => {
 		setArgs({
 			getReferentiel,
-			custom,
+			custom: CUSTOM,
 			preferences,
 			features,
 			savingType,
@@ -152,28 +164,30 @@ export function UseLunatic(props: PropsWithChildren<OrchestratorProps>) {
 	}
 	return (
 		<Provider>
-			<CloneElements<OrchestratedElement>
-				compileControls={compileControls}
-				getComponents={getComponents}
-				goPreviousPage={handleGoBack}
-				goNextPage={handleGoNext}
-				isFirstPage={isFirstPage}
-				isLastPage={isLastPage}
-				goToPage={goToPage}
-				getData={getData}
-				pageTag={pageTag}
-				disabled={disabled}
-				pageFromAPI={pageFromAPI}
-				personalization={personalizationMap}
-				initialCollectStatus={initialCollectStatus}
-				refreshControls={refreshControls}
-				setRefreshControls={setRefreshControls}
-				waiting={waiting}
-				savingFailure={failure}
-				currentChange={currentChange}
-			>
-				{children}
-			</CloneElements>
+			<useLunaticContext.Provider value={{ goToPage, goNextPage }}>
+				<CloneElements<OrchestratedElement>
+					compileControls={compileControls}
+					getComponents={getComponents}
+					goPreviousPage={handleGoBack}
+					goNextPage={handleGoNext}
+					isFirstPage={isFirstPage}
+					isLastPage={isLastPage}
+					goToPage={goToPage}
+					getData={getData}
+					pageTag={pageTag}
+					disabled={disabled}
+					pageFromAPI={pageFromAPI}
+					personalization={personalizationMap}
+					initialCollectStatus={initialCollectStatus}
+					refreshControls={refreshControls}
+					setRefreshControls={setRefreshControls}
+					waiting={waiting}
+					savingFailure={failure}
+					currentChange={currentChange}
+				>
+					{children}
+				</CloneElements>
+			</useLunaticContext.Provider>
 		</Provider>
 	);
 }
