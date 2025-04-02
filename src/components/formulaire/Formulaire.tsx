@@ -11,6 +11,8 @@ type Props = Pick<
 	| 'waiting'
 	| 'pageTag'
 	| 'isLastPage'
+	| 'goNextPage'
+	| 'goToPage'
 >;
 
 const useStyles = makeStyles()({
@@ -87,6 +89,8 @@ const useStyles = makeStyles()({
 export function Formulaire(props: Props) {
 	const {
 		getComponents,
+		goToPage,
+		goNextPage,
 		currentErrors,
 		disabled = false,
 		waiting,
@@ -102,9 +106,11 @@ export function Formulaire(props: Props) {
 			<ComponentsRenderer
 				focusKey={pageTag}
 				getComponents={getComponents}
+				goToPage={goToPage}
+				goNextPage={goNextPage}
 				currentErrors={currentErrors}
 				disabled={disabled}
-				except={['QuestionExplication', 'ConfirmationModal']}
+				except={['QuestionExplication']}
 			/>
 		</form>
 	);

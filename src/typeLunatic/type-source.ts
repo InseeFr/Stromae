@@ -84,6 +84,13 @@ export type Hierarchy = {
 	subSequence: SequenceDescription;
 };
 
+export type GoToPage = (page: { page: string; iteration?: number }) => void;
+
+// type GetComponentProps = () => {
+// 	errors: Record<string, LunaticError[]> | undefined;
+// 	disabled: boolean;
+// };
+
 export type ComponentTypeBase = {
 	label: LabelType;
 	declarations?: DeclarationType[];
@@ -97,6 +104,7 @@ export type ComponentTypeBase = {
 	mandatory?: boolean;
 	page: string;
 	title?: string;
+	executeExpression: (expression: string) => ReactNode;
 };
 export type ComponentType =
 	| (ComponentTypeBase & ComponentSequenceType)

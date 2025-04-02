@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { ModalDsfr } from './ModalDsfr';
+import { ModalDsfr, ModalDsfrContent, ModalDsfrFooter } from './ModalDsfr';
 import { fr } from '@codegouvfr/react-dsfr/fr';
 
 export function ModalContinueOrRestart(props: {
@@ -15,30 +15,36 @@ export function ModalContinueOrRestart(props: {
 			close={props.onClose}
 			last={last.current as HTMLElement}
 		>
-			<h1 className={fr.cx('fr-modal__title')}  id="fr-modal-title-modal-1">Bienvenue</h1>
-			<p>
-				Vous avez déjà commencé à renseigner le questionnaire. Souhaitez-vous
-				reprendre là où vous en étiez ou revenir à la première page ?
-			</p>
-			<ul className={fr.cx('fr-btns-group', 'fr-btns-group--inline-md')}>
-				<li>
-					<button
-						className={fr.cx('fr-btn', 'fr-btn--secondary')}
-						onClick={props.onRestart}
-					>
-						Revenir à la première page
-					</button>
-				</li>
-				<li>
-					<button
-						className={fr.cx('fr-btn')}
-						onClick={props.onContinue}
-						ref={last}
-					>
-						Reprendre là où j'en étais
-					</button>
-				</li>
-			</ul>
+			<ModalDsfrContent>
+				<h1 className={fr.cx('fr-modal__title')} id="fr-modal-title-modal-1">
+					Bienvenue
+				</h1>
+				<p>
+					Vous avez déjà commencé à renseigner le questionnaire. Souhaitez-vous
+					reprendre là où vous en étiez ou revenir à la première page ?
+				</p>
+			</ModalDsfrContent>
+			<ModalDsfrFooter>
+				<ul className={fr.cx('fr-btns-group', 'fr-btns-group--inline-md')}>
+					<li>
+						<button
+							className={fr.cx('fr-btn', 'fr-btn--secondary')}
+							onClick={props.onRestart}
+						>
+							Revenir à la première page
+						</button>
+					</li>
+					<li>
+						<button
+							className={fr.cx('fr-btn')}
+							onClick={props.onContinue}
+							ref={last}
+						>
+							Reprendre là où j'en étais
+						</button>
+					</li>
+				</ul>
+			</ModalDsfrFooter>
 		</ModalDsfr>
 	);
 }

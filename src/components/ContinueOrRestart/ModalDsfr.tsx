@@ -8,6 +8,14 @@ type ModalDsfrProps = {
 	last?: HTMLElement;
 };
 
+export function ModalDsfrContent(props: PropsWithChildren) {
+	return <div className={fr.cx('fr-modal__content')}>{props.children}</div>;
+}
+
+export function ModalDsfrFooter(props: PropsWithChildren) {
+	return <div className="fr-modal__footer">{props.children}</div>;
+}
+
 export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 	const first = useRef<HTMLButtonElement>(null);
 	const { children, id, close, last } = props;
@@ -26,7 +34,13 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 	);
 
 	return (
-		<div  id={id} className={fr.cx('fr-modal', 'fr-modal--opened')} role='dialog' aria-labelledby="fr-modal-title-modal-1" aria-modal="true">
+		<div
+			id={id}
+			className={fr.cx('fr-modal', 'fr-modal--opened')}
+			role="dialog"
+			aria-labelledby="fr-modal-title-modal-1"
+			aria-modal="true"
+		>
 			<div
 				className={fr.cx(
 					'fr-container',
@@ -44,13 +58,15 @@ export function ModalDsfr(props: PropsWithChildren<ModalDsfrProps>) {
 								<button
 									className={fr.cx('fr-link--close', 'fr-link')}
 									title="Fermer"
-									onClick={close}
+									onClick={() => {
+										close();
+									}}
 									ref={first}
 								>
 									Fermer
 								</button>
 							</div>
-							<div className={fr.cx('fr-modal__content')}>{children}</div>
+							{children}
 						</div>
 					</div>
 				</div>

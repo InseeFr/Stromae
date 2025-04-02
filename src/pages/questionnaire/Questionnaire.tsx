@@ -9,7 +9,6 @@ import { Grid } from '../../components/Grid/Grid';
 import { Formulaire } from '../../components/formulaire';
 import { Layout } from '../../components/layout';
 import { LoadFromApi } from '../../components/loadSourceData/LoadFromApi';
-import { Modals } from '../../components/modals';
 import { Continuer } from '../../components/navigation/Continuer';
 import { Precedent } from '../../components/navigation/Precedent';
 import { Orchestrator } from '../../components/orchestrator';
@@ -42,7 +41,6 @@ export function Questionnaire(props: QuestionnaireProps) {
 							<AlertesSaving />
 							<AlertesControles />
 							<Formulaire />
-							<Modals />
 							<Continuer />
 						</Grid>
 						<ComplementaryComponents />

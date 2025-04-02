@@ -2,14 +2,22 @@ import * as lunatic from '@inseefr/lunatic';
 import { OrchestratedElement } from '../../typeStromae/type';
 import { LunaticComponentContainer } from '../formulaire/LunaticComponentContainer';
 import { LunaticComponents } from '@inseefr/lunatic';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 type Props = {
 	only?: string[];
 	except?: string[];
 	// Key that trigger a new autofocus on the first field
 	focusKey?: string;
-} & Pick<OrchestratedElement, 'currentErrors' | 'disabled' | 'getComponents'>;
+} & Pick<
+	OrchestratedElement,
+	| 'currentErrors'
+	| 'disabled'
+	| 'getComponents'
+	| 'goToPage'
+	| 'goPreviousPage'
+	| 'goNextPage'
+>;
 
 export function ComponentsRenderer(props: Props) {
 	const {
@@ -27,18 +35,20 @@ export function ComponentsRenderer(props: Props) {
 		) ?? [];
 
 	return (
-		<LunaticComponents
-			autoFocusKey={computeFocusKey(focusKey, currentErrors)}
-			components={validComponents as any}
-			componentProps={() => ({
-				...rest,
-				errors: currentErrors,
-				disabled,
-			})}
-			wrapper={({ children, id }: { children: ReactNode; id: string }) => (
-				<LunaticComponentContainer id={id} children={children} />
-			)}
-		/>
+		<>
+			<LunaticComponents
+				autoFocusKey={computeFocusKey(focusKey, currentErrors)}
+				components={validComponents as any}
+				componentProps={() => ({
+					...rest,
+					errors: currentErrors,
+					disabled,
+				})}
+				wrapper={({ children, id }: { children: ReactNode; id: string }) => (
+					<LunaticComponentContainer id={id} children={children} />
+				)}
+			/>
+		</>
 	);
 }
 
